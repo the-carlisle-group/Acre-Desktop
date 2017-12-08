@@ -8,6 +8,11 @@ However, while one of  Acre Desktop’s main purposes is to facilitate SCM using
 it has tremendous value as a simple addition to the IDE, eliminating many of the downsides of workspaces,
 while keeping all of the benefits.
 
+## Installation
+Acre Desktop is distributed as a compressed folder that contains a folder named acre. Uncompress, and put the acre folder anywhere.
+Inside this folder is a workspace named acre.dws. Load this workspace once, and restart the APL session.
+Acre Desktop is now installed as a set of user commands.  
+
 ## The Project
 Acre Desktop introduces to the IDE the concept of a project.
 In the workspace, a project is represented by a namespace. This is called the **project space**.
@@ -74,6 +79,8 @@ Note that there is a Chrome plug-in that decodes names for better viewing experi
 
 ## The Acre Config File
 This text file contains acre parameters specific to the project. It may be JSON or a Dyalog scripted namespace. For example:
+
+~~~
 { 
      "ProjectName":  "MyProject"
      "ProjectSpace": "#.Library.MyProject"
@@ -81,6 +88,8 @@ This text file contains acre parameters specific to the project. It may be JSON 
      "Load":         ["../APLTeam/Utils","../APLTeam/LogDog"]
      "StartUp":      "Initialize"    
 }
+~~~
+
 The ProjectName is the simple name Acre Desktop uses to refer to the project when open. It should be a valid APL name.
 Acre commands that operate on open projects require this name. If not present, this defaults to the last node of the project folder.
 Acre will not open two projects with the same name at the same time, even if their project namespaces differ.
