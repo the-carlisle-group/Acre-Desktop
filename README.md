@@ -9,8 +9,10 @@ it has tremendous value as a simple addition to the IDE, eliminating many of the
 while keeping all of the benefits.
 
 ## Installation
-Acre Desktop is distributed as a compressed folder that contains a folder named acre. Uncompress, and put the acre folder anywhere.
-Inside this folder is a workspace named acre.dws. Load this workspace once, and restart the APL session.
+Acre Desktop is distributed as a compressed folder that contains a folder named acre.
+To install, uncompress, and put the acre folder anywhere.
+Inside this folder is a workspace named acre.dws.
+Load this workspace once, and restart the APL session.
 Acre Desktop is now installed as a set of user commands.  
 
 ## The Project
