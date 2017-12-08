@@ -1,4 +1,4 @@
-# Acre-Desktop
+# Acre Desktop
 
 ## Introduction
 Acre Desktop is an enhancement to the Dyalog APL IDE, delivered as a small set of user commands,
