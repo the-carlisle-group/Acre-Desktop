@@ -55,13 +55,13 @@ This brings the code into the workspace, but Acre Desktop does not monitor it.
 ## Project Internals
 A project folder can have any number of arbitrary files or folders in it. 
 However, there are two folder names and one file name that Acre Desktop reserves.
-The first reserved folder is named APLSource. This folder contains the APL source code in text files,
+The first reserved folder is named **APLSource.** This folder contains the APL source code in text files,
 in a folder hierarchy mirroring the project namespace structure.
 You can create this folder yourself, and populate it with text files that contain the source for APL items.
 Most of the time, however, this folder is created for you by the CreateProject command.
-The second reserved folder is .acre. This folder contains Acre Desktop related stuff. 
+The second reserved folder is **.acre**. This folder contains Acre Desktop related stuff. 
 In general, there are no user serviceable parts in this folder, and you cannot create it yourself.
-The reserved file is acre.config. This is a text file (JSON or scripted namespace),
+The reserved file is **acreconfig.txt**. This is a text file (JSON or scripted namespace),
 that contains configuration parameters for the project. 
 This file is created for you when the CreateProject command is used to create the project, but it is easy to create it by hand. 
 Thus it is simple to create a project outside of the Dyalog IDE and Acre Desktop if you so choose. 
