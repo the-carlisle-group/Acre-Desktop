@@ -1,4 +1,4 @@
-# Acre Desktop
+#  ![](/images/logo/logo32.png) Acre Desktop
 
 ## Introduction
 Acre Desktop is an enhancement to the Dyalog APL IDE, delivered as a small set of user commands,
@@ -77,7 +77,7 @@ The @ symbol indicates that the single following character is uppercase,
 and the ! symbol indicates that all of the following characters are uppercase.
 Thus, the encoding of the APL name DataTable is @data@table, and the encoding of DATATABLE is !DATATABLE,
 while no encoding is needed for the lowercase name datatable.
-Note that there is a Chrome plug-in that decodes names for better viewing experience in the browser.
+Note that there is a [Chrome plug-in](https://github.com/the-carlisle-group/Acre-Desktop-Chrome-Extension) that decodes names for better viewing experience in the browser.
 
 ## The Acre Config File
 This text file contains acre parameters specific to the project. It may be JSON or a Dyalog scripted namespace. For example:
