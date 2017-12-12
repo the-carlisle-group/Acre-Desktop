@@ -1,0 +1,11 @@
+ dn←{
+     (nam num exp)←1↓¨{⍵⊂⍨{⍵∧4>+\⍵}⍵∊'[]'}'[',⍵
+     scr←9=⎕NC nam
+     new←(⊂exp)((⍎num)mg)(scr=1 0)⎕SRC∘⍎or ⎕NR nam
+     (sp nam)←'.'pn nam
+     1:⊢(⍎sp,scr⊃'⎕fx' '⎕fix')new
+⍝ define
+⍝ ⍵ string - "#.path.itemname[n] expression"
+⍝   itemname may be a function, operator, class or scripted space
+⍝ ← result of #.path.⎕FX or #.path.⎕FIX on amended ⎕NR or script of named item
+ }

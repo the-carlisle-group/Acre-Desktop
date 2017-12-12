@@ -1,0 +1,15 @@
+ tv←{
+     n←⎕NS''
+     w d←ht es ⍵
+     n.d←d
+     {(+/∨\' '≠⌽⍵)↑¨↓⍵}n ⍺.{
+         (⊂⍵)∊⍺.d:⍵
+         ⍺.d,←⊂⍵
+         f←(~∘' '¨↓(⊢(⌿⍨)3 4∊⍨⎕NC)⎕REFS ⍵)~⊂⍵
+         ⍕⍵,⊂'|',⍕⍪∇/⍺,⍪f
+     }w
+⍝ tree view of function calls
+⍝ ⍺ namespace wherein -
+⍝ ⍵ function/operator-name
+⍝ ← (large) nested text array
+ }

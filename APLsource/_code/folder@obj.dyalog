@@ -1,0 +1,11 @@
+ folderObj←{⍺←⊢
+     dir←⊃,/1 ⎕NPARTS ⍵,'/'
+     p t s d←0 1 2 3 ⎕NINFO⍠1⊢dir,'*'
+     p s d/⍨←⊂t=2
+     r⊣(r←⎕NS'').(Path Size Date)←p s(DT.ts2dt↑d)
+⍝ folder object - ignore subfolders - see fileTree
+⍝ ⍵ string - dir path
+⍝ ← scalar space with [Path Size Date] for all files in dir
+⍝   Path will always contain '/' rather than '\'
+⍝   Date as YYYYMMDD.hhmmss
+ }

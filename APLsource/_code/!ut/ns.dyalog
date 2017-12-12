@@ -1,0 +1,11 @@
+ ns←{
+     ⍵{⍵\{
+             0::1            ⍝ ok if error!
+             {0}#.⎕SRC #.⍎⍵  ⍝ wrong if not
+         }¨⍵/⍺
+     }9.1=#.⎕NC ⍵
+⍝ non scripted
+⍝ ⍵ nested list
+⍝ ← boolean, which of (⍵) are names of non-scripted (ordinary) nss
+⍝ Phil Last ⍝ 2008-04-15 19:04
+ }

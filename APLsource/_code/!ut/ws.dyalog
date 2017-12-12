@@ -1,0 +1,19 @@
+ ws←{
+     nsn←{⊃⍵~⍨'f'∘,∘⍕¨⍳1+⍴⍵}~∘' '¨↓#.⎕NL⍳10 ⍝ named in root! e.g. 'f0'
+     cpy←⍎nsn ⎕NS''                       ⍝ create it - cpy is ref
+     sws sns←⍵                              ⍝ source ws & ns
+     z←sns{6::0 ⋄ +{}⍺ cpy.⎕CY ⍵}sws        ⍝ ← populate ref
+     rfs nss/⍨←⊂ns⊢nss←⍕¨rfs←1↓nt cpy     ⍝ named non scripted ns-tree
+     tns←(⍕⍺)∘,¨(2+⍴nsn)↓¨nss               ⍝ swap to target prefix (⍺)
+     tns←⊃rfs.{⍵ ⎕NS ⎕NL 2 3 4}tns          ⍝ copy vars fns & ops for each ns
+     {tns}#.⎕EX nsn                         ⍝ lose global root ns 'f0'?
+⍝ wscopy
+⍝ ⍺ ref of namespace in active ws (obviously)
+⍝ ⍵ two strings (wspath)(nspath)
+⍝ ← name of namespace being the name of the target parent (⍺)
+⍝   followed by the final node of the source path
+⍝   only contents of named & non-scripted nss are copied.
+⍝   Items in target but not in source are kept.
+⍝ e.g. '#.one.two.three' ws 'c:\wss\that' '#.AAA.BBB'
+⍝ #.one.two.three.BBB
+ }

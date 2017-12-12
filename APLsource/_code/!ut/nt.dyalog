@@ -1,0 +1,8 @@
+ nt←{
+     ⍵{⊃∇/⍺.(⍺{(0,⍵)/⍨0,(⍺≠⍵)∧⍺=⍵.##}⍎⍕'⍺',⌽↓⎕NL 9.1),⊂⍵,⍺}⍬
+⍝ namespace tree
+⍝ ⍵ ns
+⍝ ← ns and all nss below
+⍝   excludes nss whose only ref is outside parent
+⍝ Phil Last ⍝ 2008-04-30 00:30
+ }

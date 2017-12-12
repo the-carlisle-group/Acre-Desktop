@@ -1,0 +1,30 @@
+ ia←{⍺←⊢
+     ~∘' '¨(⊢(⌿⍨)0≤⎕NC)⎕NR⊃⎕SI
+     alpha
+     bravo
+     charlie
+     delta
+     echo
+     foxtrot
+     golf
+     hotel
+     india
+     juliet
+     kilo
+     lima
+     mike
+     november
+     oscar
+     papa
+     quebec
+     romeo
+     sierra
+     tango
+     uniform
+     victor
+     whisky
+     x_ray
+     yankee
+     zulu
+⍝ ICAO (international civil aviation organization) alphabet
+ }

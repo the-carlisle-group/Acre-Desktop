@@ -1,0 +1,25 @@
+ wt0←{
+     ns←⎕NS''
+     ns.(sofar inc)←0 0.1
+     ns.wait←⊃⍵⍵,1
+     ns.(rslt this)←⎕NS''
+     ns.tid←⍺⍺{6::
+         ⍵⍵.rslt∘←⍺⍺ ⍵
+     }ns&⍵
+     ns∘{(⍺.tid∊⎕TNUMS)≤⍺.wait≤⍺.sofar:0
+         ∇ ⍺.sofar+←⎕DL ⍺.inc
+     }0:
+     ns.tid←⎕TKILL ns.tid
+     ns.rslt≢ns.this:ns.rslt
+     ⍺←⊢
+     1≢⍺ 1:⍺
+⍝ wait
+⍝ ⍺  dflt result if supplied
+⍝ ⍺⍺ function - monad or (larg∘dyad)
+⍝ ⍵⍵ seconds for (⍺⍺) to finish - number or {fn} to return such
+⍝ ⍵  rarg to (⍺⍺)
+⍝ ←  If (⍺⍺) returns a result then this returns it.
+⍝    Otherwise if (⍺) is supplied this returns that.
+⍝    Otherwise this returns nothing.
+⍝ Phil Last ⍝ 2007-06-23 18:50
+ }

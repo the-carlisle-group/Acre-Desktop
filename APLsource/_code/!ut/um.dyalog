@@ -1,0 +1,5 @@
+ um←{
+     (⍵⍳⍵)=⍳⍴⍵
+⍝ unique mask
+⍝ ⍵ vector
+ }
