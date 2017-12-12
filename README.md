@@ -10,7 +10,7 @@ while keeping all of the benefits.
 
 ## Installation
 Acre Desktop is distributed as a compressed folder that contains a folder named acre.
-To install, uncompress, and put the acre folder anywhere.
+To install, [download](https://github.com/the-carlisle-group/Acre-Desktop/releases/download/latest) the latest release, uncompress, and put the acre folder anywhere.
 Inside this folder is a workspace named acre.dws.
 Load this workspace once, and restart the APL session.
 Acre Desktop is now installed as a set of user commands.  
