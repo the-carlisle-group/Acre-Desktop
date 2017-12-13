@@ -84,7 +84,6 @@ This text file contains acre parameters specific to the project. It may be JSON 
 
 ~~~
 { 
-     "ProjectName":  "MyProject"
      "ProjectSpace": "#.Library.MyProject"
      "Open":         ["MyOtherProject1","MyOtherProject2"]
      "Load":         ["../APLTeam/Utils","../APLTeam/LogDog"]
@@ -92,12 +91,9 @@ This text file contains acre parameters specific to the project. It may be JSON 
 }
 ~~~
 
-The ProjectName is the simple name Acre Desktop uses to refer to the project when open. It should be a valid APL name.
-Acre commands that operate on open projects require this name. If not present, this defaults to the last node of the project folder.
-Acre will not open two projects with the same name at the same time, even if their project namespaces differ.
-No such restriction holds for loading a project.  
 The ProjectSpace parameter is the namespace for the project code.
-If not present, this defaults to #.ProjectName. 
+If not present, this defaults to a root level namespace named for last node of the project folder.
+For example, if the project folder is c:\CarlisleGroup\FlipDB, the default project space is #.FlipDB. 
 
 The Open parameter is a list of additional projects to open. 
 The Load parameter is a list of additional projects to load. 
