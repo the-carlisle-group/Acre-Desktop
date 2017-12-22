@@ -9,7 +9,7 @@ it has tremendous value as a simple addition to the IDE, eliminating many of the
 while keeping all of the benefits.
 
 ## Installation
-Acre Desktop is distributed as a compressed folder that contains a folder named acre.
+Acre Desktop is distributed as a compressed folder that contains a folder named acre.  Dyalog APL 15.0 Unicode is the minimum supported version of Dyalog APL.
 To install, [download](https://github.com/the-carlisle-group/Acre-Desktop/releases/latest) the latest release, uncompress, and put the acre folder anywhere.
 Inside this folder is a workspace named acre.dws.
 Load this workspace once, and restart the APL session.
