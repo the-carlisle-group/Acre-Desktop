@@ -72,9 +72,9 @@ The APLSource folder contains the APL Source code.
 Each APL item, be it a class, namespace script, function or variable, is in a .dyalog text file,
 in a folder hierarchy that mimics the namespace structure.
 Because APL names are case sensitive, while some operating file systems are not,
-folder and file names are tagged by Acre Desktop with a [**case-code**.]
-(https://github.com/the-carlisle-group/Acre-Desktop-Chrome-Extension)
-
+folder and file names are tagged by Acre Desktop with a **case-code**.
+In general, case-codes can be ignored by the programmer, but for details see the wiki page for 
+[Item Names and File Names](https://github.com/the-carlisle-group/Acre-Desktop/wiki/Item-Names-and-File-Names)
 
 ## The Acre Config File
 This text file contains acre parameters specific to the project. It may be JSON or a Dyalog scripted namespace. For example:
