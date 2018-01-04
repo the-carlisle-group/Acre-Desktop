@@ -72,12 +72,9 @@ The APLSource folder contains the APL Source code.
 Each APL item, be it a class, namespace script, function or variable, is in a .dyalog text file,
 in a folder hierarchy that mimics the namespace structure.
 Because APL names are case sensitive, while some operating file systems are not,
-folder and file names must conform to a simple convention.
-The @ symbol indicates that the single following character is uppercase,
-and the ! symbol indicates that all of the following characters are uppercase.
-Thus, the encoding of the APL name DataTable is @data@table, and the encoding of DATATABLE is !DATATABLE,
-while no encoding is needed for the lowercase name datatable.
-Note that there is a [Chrome plug-in](https://github.com/the-carlisle-group/Acre-Desktop-Chrome-Extension) that decodes names for better viewing experience in the browser.
+folder and file names are tagged by Acre Desktop with a [**case-code**.]
+(https://github.com/the-carlisle-group/Acre-Desktop-Chrome-Extension)
+
 
 ## The Acre Config File
 This text file contains acre parameters specific to the project. It may be JSON or a Dyalog scripted namespace. For example:
