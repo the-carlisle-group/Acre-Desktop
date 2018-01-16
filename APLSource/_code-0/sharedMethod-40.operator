@@ -1,0 +1,7 @@
+ sharedMethod←{
+     arg←⍵
+⍝    ↓↓↓
+     ⍺⍺ arg
+
+⍝ Phil Last 2018-01-10 21.54
+ }

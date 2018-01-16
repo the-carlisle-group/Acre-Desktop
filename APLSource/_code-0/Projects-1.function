@@ -1,0 +1,5 @@
+ Projects←{
+     0::0/showMsg MS.GX
+     {↑⍵.(nspath folder)}openProjects''
+⍝ Phil Last 2018-01-15 15.35
+ }

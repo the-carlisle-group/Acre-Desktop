@@ -1,0 +1,7 @@
+ CreateProject←{
+     0=dat←createProject ⍵:''
+     dat.nspath⊣dataSpaces dat
+⍝ ⍵ folder space
+⍝ ← ProjectSpace
+⍝ Phil Last 2017-11-28 09.50
+ }

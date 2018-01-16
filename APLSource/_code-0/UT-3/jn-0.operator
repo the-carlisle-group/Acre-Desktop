@@ -1,0 +1,11 @@
+ jn←{⍺←⍺
+     s←'internal left argument'
+     ⍺≢s:s ⍺⍺ ⍺(⍵⍵ ⍵)
+     s d←⍵
+     (⍺⍺ s)⍵⍵ d
+⍝ janus looking both ways
+⍝ a f jn g jn h w ←→ (f a)g(h w)
+⍝               ←→ a ((f⊣) g ⊢∘h) w
+⍝ first:  ⍺ ←→ a ⋄ ⍺⍺ ←→ f jn g ⋄ ⍵⍵ ←→ h ⋄ ⍵ ←→ w
+⍝ second: ⍺ ←→ d ⋄ ⍺⍺ ←→ f      ⋄ ⍵⍵ ←→ g ⋄ ⍵ ←→ a(h w)
+ }

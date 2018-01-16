@@ -1,0 +1,28 @@
+ getAllCode←{dat←⍺
+⍝ code-file-name -value -type
+     n←≢⊃cfn cfv cft←dat getCode''              ⍝ entire
+     n←showMsg(×n)/,⊂(n UT.pl MS.FK),MS.FP,MS.EY,dat.codefile
+⍝ source-change-name -type -value, source-delete-name
+     n←≢sdn,⊃scn sct scv sdn←dat getSource''  ⍝ chg or del in source
+     n←showMsg(×n)/⊂(n UT.pl MS.FN),MS.FO,MS.EY,dat.source
+⍝ code-change-name -value -type, code-delete-name -value -type
+     ccn ccv cct cdn cdv cdt←dat getChanges''
+
+     alldel←sdn∪cdn~scn            ⍝ src-del or code-del w/o src-chg
+     allchg←scn∪ccn~sdn            ⍝ src-chg or code-chg w/o src-del
+     valtyp←(((scv,ccv,cdv,cfv),[-0.1]sct,cct,cdt,cft),0){
+         ↓⍺⍺[;⍵⍵⍳⍵]}(scn,ccn,cdn,cfn)
+     z←dat putDeleted(⊂,valtyp)sdn ⍝ src-del to code-del
+     z←dat putChanged(⊂,valtyp)scn ⍝ src-chg to code-chg
+
+     n←≢dat.changed←allchg∪alldel ⍝ all chg or del
+     z←showMsg(×n)/(n UT.pl MS.FN),MS.FP,MS.EY,dat.changes
+     nms←allchg∪cfn~alldel         ⍝ all chg or orig w/o all del
+     ⌽1⌽(⊂,valtyp)nms
+
+⍝ ⍺ dat
+⍝ ← fqn typ val
+⍝ merge all sources for session
+⍝ runs only under Open/Load
+⍝ Phil Last 2018-01-14 17.22
+ }

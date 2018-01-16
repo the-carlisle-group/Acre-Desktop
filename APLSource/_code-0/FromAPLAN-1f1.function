@@ -1,0 +1,6 @@
+ FromAPLAN←{
+     AN.decode #.⍎if(2=⎕NC)⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
+⍝ decode APLAN expression
+⍝ expression requires "double quotes" if it contains [brackets].
+⍝ Phil Last 2018-01-14 21.34
+ }

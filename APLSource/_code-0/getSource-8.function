@@ -1,0 +1,33 @@
+ getSource←{dat←⍺
+     src←dat.source                                   ⍝ ../APLSource/
+     tgt←dat.nspath,'.'
+     read←{⊃MS.HI ⎕NGET ⍵ 1}
+     (path date)←{⍵.(Path Date)}fileTree⊢src
+     file type←↓⍉↑(UT.px(≢src)↓⊢)¨path           ⍝ ns/path/file.type
+     path date file type/⍨←∊/cc type MS.NC
+
+     name←'/.'decodeCaps file
+⍝     raw←'/.'stripCode file
+⍝     diff←raw≢¨name
+
+     reg←sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
+     del←reg.name~name                                ⍝ file missing
+     reg.(name file date hash)/⍨←⊂reg.name∊name       ⍝ reg w/o dels
+     diff←date≠reg.(date name)UT.co name              ⍝ diff of date
+     (name file date path type)/⍨←⊂diff               ⍝ res only diff
+     hash←UT.hx↑{2 ⎕NQ'.'MS.HJ ⍵}¨path                ⍝ hash of diff
+     diff←hash≠reg.(hash name)UT.co name              ⍝ diff of hash
+     (name file date hash path type)/⍨←⊂diff          ⍝ res only diff
+     reg.(name file date hash)/⍨←⊂~reg.name∊name      ⍝ reg w/o res
+     reg.(name file date hash),←(name file date hash) ⍝ reg + res
+     z←reg UT.aw dat.sourcereg
+     vals←read/0,⍪path
+     (tgt∘,¨name)type vals(tgt∘,¨del)
+⍝ ⍺ dat
+⍝ ⍵ ?
+⍝ ← fqn type value del
+⍝   changed or deleted since previous sync
+⍝   add to code- or change-files elsewhere
+⍝ see putItem
+⍝ Phil Last 2018-01-14 17.22
+ }

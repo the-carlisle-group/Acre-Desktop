@@ -1,0 +1,7 @@
+ nx←nx
+ nx←1↓⎕NPARTS
+⍝ name, extension
+⍝ nilad returning monad
+⍝ 'zero/one/two.three.four'
+⍝ → 'two.three' '.four'
+⍝ ⎕NPARTS is far and away the fastest I can achieve.

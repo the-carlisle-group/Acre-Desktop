@@ -1,0 +1,16 @@
+ getChangeFilenames←{dat←⍺
+     s t←dat.(nspath changes)
+     n←'..'encodeCaps(1+≢s)↓¨f←,⊂if≡⍵
+     c←nameClass f   ⍝ may be MS.AL ".*" dealt with elsewhere
+     ,/(⊂t),n,(⍪c),⊂MS.HN
+
+⍝ ⍺ dat
+⍝ ⍵ fqns
+⍝ ← full paths
+⍝   with nspath #.one
+⍝   and folder c:/myproject/
+⍝   script #.one.TWO.Three.four
+⍝   → c:/myproject/.acre/changes/TWO-7.Three-1.four-0.script.change
+⍝ must be encoded as separate files
+⍝ Phil Last 2017-12-01 11.17
+ }

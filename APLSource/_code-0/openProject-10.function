@@ -1,0 +1,33 @@
+ openProject←{⍺←⊢
+     what proj←⍵
+     which←⊃MS.ER MS.EQ/⍨open load←MS.FW MS.FY∊what''
+     folder target←2↑proj,⊂''
+     null⊢folder←{getFolder'/'}if null⊢folder:0
+     dat.changed←''⊣dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
+     dat.folder←fp folder,'/'
+     dat.(config source code changes)←{
+         ⍵}dat.folder∘,¨MS.HM MS.GY,,\MS.HL MS.EU
+     ~∨/src cde cnf←⎕NEXISTS¨dat.(source code config):0⊣showMsg MS.HB
+
+     dat.(codefile sourcereg)←dat.code∘,¨MS.EV MS.HF
+     z←'dat'⎕NS readConfig dat.config
+     nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null target
+     ~((1=≢¨)∨UT.ns∨0=⎕NC)⊂dat.nspath←⊃prefSpace⊂nspath:0⊣showMsg MS.DC
+     ~null showMsg dat∘openConflict⍣open⊢'':0
+
+     z←showMsg(which,MS.EY),dat.folder
+     space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{#.⎕NL⍳10}if≢dat.nspath
+     z←showMsg MS.EZ,dat.nspath
+     z←⎕MKDIR/3,⍪dat.(source changes)/⍨~src cde
+     fqn type value←dat{
+         ⍵=0:'' ''
+         ⍵=1:⍺ putCode 3⍴⍺ getSource''⊣showMsg MS.EP,MS.BC,MS.BD  ⍝ once
+         ⍵=2:⍺ putSource ⍺ getAllCode''⊣showMsg MS.EP,MS.BA,MS.BD ⍝ how?
+         ⍵=3:⍺ getAllCode''                                       ⍝ normal
+     }2⊥cde src
+     actual←fixValue fqn type value
+     dat⊣dat.loadtime,←DT.ts2dt ⎕TS
+⍝ ⍵ ('Open'|'Load') folder
+⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
+⍝ Phil Last 2018-01-15 22.16
+ }

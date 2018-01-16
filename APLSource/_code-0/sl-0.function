@@ -1,0 +1,3 @@
+ sl←sl          ⍝ sep string to list sans sep
+ sl←⊣(1↓¨=⊂⊢),  ⍝ nilad returning dyad
+⍝ Phil Last 2017-12-19 07.35

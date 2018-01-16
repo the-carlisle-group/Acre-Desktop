@@ -1,0 +1,15 @@
+ encodeCaps←{⍺←⊢ ⋄ null ⍵:''
+     in out←'#' '#-0'(⊢,,)¨⍺⊣'./'
+     hd←⎕D,'abcdef',⎕D,'ABCDEF'
+     one←{⍺,⍵,'-',hd⌷⍨⊂{
+             {⍵↑⍨-1⌈⊥⍨∨\0≠⍵}2⊥⍉s⍴⌽⍵↑⍨×/s←4,⍨⌈4÷⍨⍴⍵}⍵≠cc ⍵}
+     in out←(in,'#',in)(out,'#-0',out)
+     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sl⊃,/in∘,¨⊂if≡⍵
+⍝ ⍺ input output separators
+⍝ ⍵ (ns.path)+
+⍝   'zero.One.tWo.THree.foUr.NinETynIne' +
+⍝ ← (file/path)+
+⍝   'zero-0/One-1/tWo-2/THree-3/foUr-4/NinETynIne-99' +
+⍝ see decodeCaps
+⍝ Phil Last 2018-01-11 17.17
+ }

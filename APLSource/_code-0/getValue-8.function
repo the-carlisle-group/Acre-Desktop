@@ -1,0 +1,18 @@
+ getValue←{
+     type←nameClass⊢fqn←,⊂if≡⍵
+     z←(1↓¨nms)(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴nms←MS.NC
+     nc←nms⍳type
+     val←0⍴⍨⍴fqn
+     (x/val)←⊢∘ntbs∘⍎/0,⍪fqn/⍨x←nc=ns.charmat
+     (x/val)←⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist
+     (x/val)←AN.format∘⍎/2,⍪fqn/⍨x←nc=ns.array
+     (x/val)←⊢∘⎕NR/0,⍪fqn/⍨x←nc∊ns.(function operator)
+     (x/val)←{0::0 ⋄ ⎕SRC⍎⍵}/0,⍪fqn/⍨x←nc∊ns.(script class interface)
+     fqn type val/¨⍨⊂~val∊0                   ⍝ remove anything else
+⍝ ⍵ fqns
+⍝ ← fqn type val - of only arrays, defined fns and ops and scripts
+⍝   filtered and re-ordered
+⍝   vals are lists of strings
+⍝ see fix Values
+⍝ Phil Last 2017-11-22 22.38
+ }

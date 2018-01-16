@@ -1,0 +1,7 @@
+ Close←{dat←⍺
+     ≢dataSpaces dat⊣showMsg MS.BN,dat.nspath
+⍝ close an open project
+⍝ ⍺ dat
+⍝ ← number open
+⍝ Phil Last 2017-12-13 09.49
+ }

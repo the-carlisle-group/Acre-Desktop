@@ -1,0 +1,4 @@
+ no←no
+ no←~∘∊⍨
+⍝ nulls out
+⍝ Phil Last 2017-12-19 07.35

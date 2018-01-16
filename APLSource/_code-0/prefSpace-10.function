@@ -1,0 +1,8 @@
+ prefSpace←{
+     null⊢nms←⊂if≡⍵:0/⊂''
+     SV.space''['#'=⊃¨nms],¨nms
+⍝ ⍵ items or spaces
+⍝ ← depth-2 list of items or space paths
+⍝ whence command called for non-fqn space or items
+⍝ Phil Last 2018-01-15 22.16
+ }

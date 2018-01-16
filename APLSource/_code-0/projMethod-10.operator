@@ -1,0 +1,14 @@
+ projMethod←{⍺←⊢
+     args←⍵
+     proj←prefSpace⊃proj arg←1(↑_↓)args
+     0∊⍴dats←openProjects'':0⍴showMsg MS.GX
+     msk←dats.nspath∊proj
+     0=dat←⊃1↓0,msk/dats:0⍴showMsg MS.BM
+⍝       ↓↓↓↓
+     dat ⍺⍺ arg
+
+⍝ ⍵       args
+⍝ args    projectspace arg ...
+⍝ run instance method of project ref'd in first of args
+⍝ Phil Last 2018-01-10 21.54
+ }

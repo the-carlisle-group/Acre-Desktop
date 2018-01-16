@@ -1,0 +1,111 @@
+ allMessages←{
+
+     name←⍵    ⍝ system name
+     nms←{     ⍝ local ns
+         ⍵.name←name
+         ⍵.author←'Phil Last <phil.last@4xtra.com>'
+         ⍵
+     }⎕NS''
+
+     ⊢⎕THIS.MS←{ ⍝ global ns
+         ⍵.AA←nms.name
+         ⍵.AD←'.dyalog'
+
+         ⍵.AE←'.array'       ⍝ see MS.NC
+         ⍵.AF←'.function'
+         ⍵.AG←'.operator'
+         ⍵.AH←'.script'
+         ⍵.AI←'.class'
+         ⍵.AJ←'.interface'
+         ⍵.AK←'.charlist'
+         ⍵.AL←'.*' ⍝ set as filetype for unknown
+         ⍵.AM←'.charmat'
+         ⍵.AN←'.namespace' ⍝ not in NC below
+
+         ⍵.AR←'file files'
+
+         ⍵.BA←'Source '
+         ⍵.BC←'Code '
+         ⍵.BD←'folder '
+         ⍵.BF←'Version '
+         ⍵.BM←'Project not open'
+         ⍵.BN←'Closed '
+         ⍵.BV←'No change'
+
+         ⍵.CA←'A project may not be opened inside another:'
+         ⍵.CX←'please confirm within _ by restarting with this code: "_".'
+
+         ⍵.DA←' - Local history purged'
+         ⍵.DB←'Problem reading '
+         ⍵.DC←'Invalid namespace name'
+         ⍵.DH←'No appropriate items supplied'
+         ⍵.DI←'No open project can handle item'
+         ⍵.DK←'Saved: '
+
+         ⍵.EF←'Comparing '
+         ⍵.EI←'Identifying changes'
+         ⍵.EP←'Creating '
+         ⍵.EQ←'Loading '
+         ⍵.ER←'Opening '
+         ⍵.ES←'Copying '
+         ⍵.ET←'Deleting '
+         ⍵.EU←'changes/'
+         ⍵.EV←'codefile'
+         ⍵.EW←'config'
+         ⍵.EX←'.delete'
+         ⍵.EY←' from '
+         ⍵.EZ←' into '
+
+         ⍵.FA←'Variables'
+         ⍵.FB←'Functions'
+         ⍵.FC←'Operators'
+         ⍵.FD←'Scripts'
+         ⍵.FE←'Classes'
+         ⍵.FF←'Interfaces'
+         ⍵.FG←'When opened:'
+         ⍵.FH←'Time to load:'
+         ⍵.FI←'Total items:'
+         ⍵.FJ←'namespace namespaces'
+         ⍵.FK←'item items'
+
+         ⍵.FM←''
+         ⍵.FN←'update updates'
+         ⍵.FO←' imported '
+         ⍵.FP←' loaded '
+         ⍵.FW←'Open'
+         ⍵.FY←'Load'
+
+         ⍵.GA←'On'
+         ⍵.GB←'Off'
+         ⍵.GI←'hour hours'
+         ⍵.GJ←'minute minutes'
+         ⍵.GK←'second seconds'
+         ⍵.GT←'NO MSG'
+         ⍵.GX←'No open projects'
+         ⍵.GY←'APLSource/'
+         ⍵.GZ←'.txt'
+
+         ⍵.HA←'Project or folder already exists.'
+         ⍵.HB←'Invalid path or not a project.'
+         ⍵.HF←'sourcereg'
+         ⍵.HG←':Namespace'
+         ⍵.HH←':EndNamespace'
+         ⍵.HI←'UTF-8'
+         ⍵.HJ←'GetBuildID'
+         ⍵.HL←'.',MS.AA,'/'
+         ⍵.HM←MS.AA,MS.EW,MS.GZ
+         ⍵.HN←'.change'
+
+         ⍵.ID←'text for message ID'
+
+         ⍵.NC←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AK MS.AM
+
+         ⍵.__←⊃⎕XSI
+         ⍵
+     }⎕THIS.MS←⎕NS''
+
+⍝ ⍵ system name
+⍝ ← ⍵ containing messages
+⍝ reuse empties - search for "←''"
+⍝ Phil Last 2018-01-15 15.35
+ }

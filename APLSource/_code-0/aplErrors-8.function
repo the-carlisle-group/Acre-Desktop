@@ -1,0 +1,16 @@
+ aplErrors←{
+     {
+         ⍵.SE←2   ⍝ SYNTAX ERROR
+         ⍵.IE←3   ⍝ INDEX ERROR
+         ⍵.RE←4   ⍝ RANK ERROR
+         ⍵.LE←5   ⍝ LENGTH ERROR
+         ⍵.VE←6   ⍝ VALUE ERROR
+         ⍵.DE←11  ⍝ DOMAIN ERROR
+         ⍵.NE←16  ⍝ NONCE ERROR
+         ⍵.FIE←20 ⍝ FILE INDEX ERRROR
+         ⍵.FNE←22 ⍝ FILE NAME ERROR
+         ⍵
+     }⎕NS''
+⍝ namespace with error number constants
+⍝ Phil Last 2017-07-12 11.15
+ }

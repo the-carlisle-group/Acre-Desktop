@@ -1,0 +1,21 @@
+ itemMethod←{⍺←⊢
+     0:method←⍺⍺
+     null⊢items←⍵:0⍴showMsg MS.DH
+     0∊⍴ids←openProjects'':0⍴showMsg MS.GX
+     items←prefSpace items   ⍝ prefix non-FQNs
+     no←0=dat←whichProject items
+     z←showMsg MS.DI showList no/items
+     items dat/⍨←⊂~no
+     0∊⍴items:0⍴showMsg MS.DH
+⍝       ↓↓↓↓
+     ⊃if≢⍺⍺/dat{⍺ ⍵}⌸items
+
+⍝ ⍺⍺   method to run - takes instance data space left arg
+⍝ ⍵    args
+⍝ args random list of items of possiby disparate projects
+⍝ Run instance method ⍺⍺ for each subgroup of ⍵
+⍝   corresponding to an open project
+⍝   Methods expected to take 1 or more names and return a subset
+⍝ ← results per project, '' if none
+⍝ Phil Last 2018-01-10 21.54
+ }

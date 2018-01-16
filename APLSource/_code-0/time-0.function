@@ -1,0 +1,5 @@
+ time←{⍺←⊢
+     UT.ls,UT.pl/(×t)⌿(t←0 60 60⊤⍵),⍪MS.GI MS.GJ MS.GK
+⍝
+⍝ Phil Last 2017-12-08 12.12
+ }
