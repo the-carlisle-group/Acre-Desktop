@@ -1,0 +1,3 @@
+ null←null       ⍝ matches type - all blanks and zeros
+ null←≡∘∊⍨       ⍝ nilad returning monad
+⍝ Phil Last 2017-12-18 14.37

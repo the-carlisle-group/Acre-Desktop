@@ -1,0 +1,18 @@
+ openConflict←{dat←⍺
+     0=⍴old←openProjects'':⍬
+     new←,dat
+     paths←old.(nspath,'.')
+     path←new.(nspath,'.')
+     ∨/paths∊path:''                  ⍝ same space - ok
+     ∨/⊃¨path⍷¨paths:''               ⍝ over - ok
+     under←⊃¨paths⍷¨path              ⍝ new in old - forbidden
+     ∨/b←under:MS.CA showList(new,b/old).nspath
+     ⍬
+
+⍝ ⍺ dat
+⍝ ← null or msgs
+⍝   The order in this function is paramount.
+⍝   implements rule:
+⍝       A project may not be opened inside another
+⍝ Phil Last 2017-12-09 18.57
+ }

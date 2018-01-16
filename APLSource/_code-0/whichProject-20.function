@@ -1,0 +1,11 @@
+ whichProject←{
+     null⊢fqn←⊂if≡⍵:⍬
+     0∊⍴ids←openProjects'':{0}¨fqn
+     nss←,∘'.'¨path←ids.nspath
+     x←0=dss←(ids,0)path UT.co fqn           ⍝ items are projects
+     ~∨/x:dss
+     (x/dss)←{⊃1↓0,ids/⍨nss(⊃⍷)¨⊂⍵}/0,⍪x/fqn ⍝ items are members
+     dss
+⍝ ⍵ fqns
+⍝ ← dataspace or zero per fqn
+ }

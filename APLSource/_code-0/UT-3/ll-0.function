@@ -1,0 +1,6 @@
+ ll←{
+     ⍺{s←⎕NS'' ⋄ s⊣s.⍎(⍺⍺ cc ⍺),'←⍵'}/⍵.({⍵(⍎⍵)}'⎕io',,' ',⎕NL 2.1)
+⍝ case-folded clone
+⍝ ⍵ space with vars
+⍝ ← space as ⍵ but all vars are lower/upper case according ⍺
+ }

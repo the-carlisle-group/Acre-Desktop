@@ -1,0 +1,35 @@
+ decode←{⍺←⊢
+     abc←'ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüþ∆⍙ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ'
+⍝ ↑   (⊢(/⍨)0≤⎕NC∘⍪)⎕UCS⍳10000
+     nan←' ''[(⊂¯.⋄←⍴)]'  ⍝ non-alphanumeric
+     syntax←⎕D,nan,abc
+     quoted←≠\''''=⊢
+     keep←∧\quoted≥'⍝'=⊢
+     decom←,(/⍨),∘keep
+     br←{(+/∨\' '≠⌽⍵)↑¨↓⍵}
+     cr←⎕UCS 13
+     sl←⊣(1↓¨=⊂⊢),
+     simple←{2=⍴⍴⍵:decom'⋄',⍵ ⋄ 1≠≡1/⍵:⊃,/('⋄',decom)¨⍵
+         cr∊⍵:⊃,/('⋄',decom)¨cr sl ⍵ ⋄ decom ⍵}
+     r←∊∘'[(⍴⊂⋄ ←)]'
+     rem←⊢(/⍨)quoted≥' '∘=∧(1⌽r)∨¯1⌽r  ⍝ rem blanks adj to [(⍴⊂⋄ ←)]
+     rho←'⍴'∘=>(¯1⌽∊∘⎕D)∧1⌽'⊂'∘=       ⍝ '⍴' not twixt ⎕D and '⊂'
+     enc←'⊂'∘=>¯1⌽∊∘'[(⋄⍴'             ⍝ '⊂' not after '[(⋄⍴←⊂'
+     syn←~∊∘syntax                     ⍝ not in syntax
+     nam←∊∘abc>¯1⌽∊∘(abc,⎕D,'[⋄')      ⍝ abc not after name or '[⋄'
+     ass←'←'∘=>(¯1⌽∊∘(abc,⎕D))∧1⌽∊∘(⎕D,'.¯[(''') ⍝ '←' not twixt nam & val
+
+     a←rem simple ⍵
+     z←<\(quoted<rho∨enc∨syn∨nam∨ass)a
+     ∨/z:((⎕EM 2),,cr,↑a(z\'^')/¨⍨⊂x∊z/x←+\a∊'[(⋄')⎕SIGNAL 2
+     ......
+     x←⍳⍴r←0⍴⍨⍴a
+     d←q<'⋄'=a                       ⍝ bool where diamonds
+     b←-⌿+\q<⍤1⊢'[]'∘.=a             ⍝ dept twixt brackets
+     p←-⌿+\q<⍤1⊢'()'∘.=a             ⍝ dept twixt parens
+     w←(⊢=⌈/)b+p                     ⍝ bool where max depth
+     deepest←'(['(∊⍨⊂⊢)a/⍨(⊢=⌈/)b+p
+     .
+
+⍝ Phil Last 2018-01-03 21.03
+ }

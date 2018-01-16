@@ -1,0 +1,23 @@
+ nameClass←{
+     null⊢fqn←,⊂if≡⍵:''
+⍝  array function operator script class interface charlist unknown charmat
+⍝  MS.AE   MS.AF    MS.AG  MS.AH  MS.AI   MS.AJ     MS.AK   MS.AL   MS.AM
+⍝   2       3        4      9.1    9.4     9.5       2       0       2
+     c←9(⊢-1|>×⊢)(⎕NC fqn)(⊣×∊)validAPLType'' ⍝ floor < 9
+     t←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AL
+     r←t[2 3 4 9.1 9.4 9.5⍳c]
+     (a/r)←{
+         r←(≡v),≢⍴v←#.⍎⍵
+         r≡1 2:MS.AE MS.AM⊃⍨1=0=10|⎕DR ⍵ ⍝ charmat
+         r≡2 1:MS.AE MS.AK⊃⍨∧/(''≡0∘/)¨⍵ ⍝ charlist
+         MS.AE
+     }/0,⍪fqn/⍨a←c=2
+     (a/r)←{
+         0::'' ⍝ blue-bell
+         MS.AH⊣⎕SRC #.⍎⍵ ⍝ script
+     }/0,⍪fqn/⍨a←c=9.1
+     r
+
+⍝ return identifier also used as filetype
+⍝ Phil Last 2018-01-15 15.35
+ }

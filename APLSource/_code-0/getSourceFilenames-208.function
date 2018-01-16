@@ -1,0 +1,17 @@
+ getSourceFilenames←{dat←⍺
+     src tgt←dat.(nspath source)
+     name←(1+≢src)↓¨fqn←,⊂if≡⍵
+     reg←sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
+     x←∊∘'#'⊢file←reg.((file,'#')name)UT.co name
+     (x/file)←'./'encodeCaps x/name
+     tgt∘,¨file,¨nameClass fqn
+
+⍝ ⍺ dat
+⍝ ⍵ assume fqns
+⍝ ← full paths
+⍝   with nspath #.one
+⍝   and folder c:/myproject/
+⍝   array #.one.TWO.Three.four
+⍝   gives c:/myproject/APLSource/TWO-7/Three-1/four-0.array
+⍝ Phil Last 2018-01-02 20.42
+ }

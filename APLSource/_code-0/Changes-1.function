@@ -1,0 +1,21 @@
+ Changes←{dat←⍺
+     all←(⊢(/⍨)0<⎕NC)dat.changed
+     reg←sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
+     dat.nspath≡⊃⍵:{         ⍝ project changes
+         0∊⍴⍵:⍪''
+         date←reg.(date name)UT.co(1+≢dat.nspath)↓¨⍵
+         ⍪⍵[⍒date]
+     }all
+
+     null⊢item←⍬⍴⍵∩all:⍪''   ⍝ item changes
+     file←⊃dat getChangeFilenames item
+     cmp←⌽1↓⍳1⊃⎕FSIZE⊢tie←file ⎕FTIE 0
+     ptr val←UT.ht ⎕FREAD tie,⊂cmp
+     cmp←1↓cmp
+     date←↓MS.DK,⍤1 DT.(dt2fm∘ts2dt∘fd2ts)⊢/∘⎕FRDCI¨tie,¨cmp
+     z←⎕FUNTIE tie
+     ⍪⊃,/,(⊂⊂''),(⊂¨↓⍕((cmp=ptr)\⊂'>>>'),(⊂MS.BF),cmp,⍪date),⍪val
+⍝ list changed items of project
+⍝ or dates and values of item
+⍝ Phil Last 2017-12-14 23.23
+ }

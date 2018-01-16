@@ -1,0 +1,17 @@
+ setEnvironment←{⍺←⊢                       ⍝ runs only if no projects already open
+     top←UT.rs⊢ici←⎕THIS                   ⍝ child of # or ⎕SE
+     ici.SV←top.⎕NS''
+     SV.setupcomplete←0
+     path ws name←SV.(inipath workspace systemname)←⍵
+     ici.MS←allMessages name
+     ici.EN←aplErrors''
+     ici.OPT←optionFields''
+     SV.sessionstart←sessionStart''        ⍝ ↓ runtime = no msgs, no editor
+     z←editFix'Start'                      ⍝ sets other stuff in SV
+     z←showMsg⍕3⍴getVersion''
+     1:SV.setupcomplete←1
+⍝ some dictionaries & derived fns
+⍝ ⍵ ?
+⍝   there should be no open instances when this runs
+⍝ ← 1
+ }

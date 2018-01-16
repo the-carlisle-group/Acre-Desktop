@@ -1,0 +1,13 @@
+ putCode←{dat←⍺
+     src tgt←dat.(nspath codefile)
+     fqn type value←⍵
+     name←(1+≢src)↓¨fqn ⍝ [#.nspath.]name.within.project
+     code←codeFields if(0=⊢)'*'UT.ar tgt
+     code.(name type value)/⍨←⊂~code.name∊name
+     code.(name type value),←name type value
+     z←code UT.aw tgt
+     fqn type value
+⍝ ⍺ dat
+⍝ ⍵ fqn type value
+⍝ ← ⍵ same - having written to codefile
+ }

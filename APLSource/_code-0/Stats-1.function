@@ -1,0 +1,31 @@
+ Stats←{dat←⍺
+     space←⍎dat.nspath ⎕NS''
+     start←DT.dt2fm⊃s t←dat.loadtime
+     time←~∘' ',{(×⍵)⌿1⌽⍕'ms',⍪⍵}0 60⊤⌈--/24×60×60×DT.dt2dd s t
+     items←i/⍨~ns←UT.ns⊢i←space UT.li⊢v←validAPLType''
+     tally←{⍵[⍋⍵;]},∘≢⌸(⎕NC items)∩v
+     sub←0×y←∪x←v-(v<9)×1|v
+     sub[y⍳x]+←(v∊⊣/tally)\⊢/tally
+     ns←(+/ns)+0<≢space.⎕NL v~9.1
+     tot←+/sub
+     nss←'in ',(1++/ns)UT.pl MS.FJ
+     nms←MS.FG MS.FH''MS.FA MS.FB MS.FC MS.FD MS.FE MS.FF''MS.FI nss
+     UT.bx nms,⍪start time'',sub,''tot''
+⍝
+⍝.---------------------------------------.
+⍝| When opened:      2017-12-10 13:51:12 |
+⍝| Time to load:                      1s |
+⍝|                                       |
+⍝| Variables                         612 |
+⍝| Functions                         202 |
+⍝| Operators                          61 |
+⍝| Scripts                             0 |
+⍝| Classes                             0 |
+⍝| Interfaces                          0 |
+⍝|                                       |
+⍝| Total items:                      875 |
+⍝| in 4 namespaces                       |
+⍝'---------------------------------------'
+
+⍝ Phil Last 2018-01-15 15.35
+ }

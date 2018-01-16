@@ -1,0 +1,17 @@
+ readConfig←{cnf←⍵
+     0::⎕NS''⊣showMsg UT.bx MS.DB,cnf
+     res←UT.lc configFields''
+     ~⎕NEXISTS cnf:res
+     d←~∘∊⍨⊃MS.HI ⎕NGET cnf 1
+     r t←0{'⍝'=z←⊃~∘' '⊃⍵:(1+⍺)∇ 1↓⍵ ⋄ ⍺ z}d
+     cfg←UT.lc t{                       ⍝ actuals
+         ⍺='{':7159⌶1↓⊃,/(⎕UCS 13),¨⍵   ⍝ JSON
+         ⍺=':':0 ⎕FIX ⍵                 ⍝ APLscript
+         ⍺='[':AN.decode ⍵              ⍝ APLAN
+         ⎕NS''                          ⍝ none of the above
+     }r↓d
+     res⊣'res'⎕NS cfg.⎕NS⊃∩/(cfg res).(⎕NL-2) ⍝ overwrite with actuals
+⍝ ⍵ config filename
+⍝ config is JSON, APLscript or APLAN
+⍝ result is namespace with all and only expected fields
+ }

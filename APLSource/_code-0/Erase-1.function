@@ -1,0 +1,5 @@
+ Erase←{dat←⍺
+     fqn typ val←getValue ⍵
+     (⊢⊣⎕EX)dat putChanged fqn val typ MS.EX
+⍝ Phil Last 2017-12-06 00.48
+ }

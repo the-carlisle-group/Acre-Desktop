@@ -1,0 +1,4 @@
+ fp←fp
+ fp←(⊃,/)1 ⎕NPARTS⊢
+⍝ file path
+⍝ Phil Last 2018-01-14 19.04

@@ -1,0 +1,6 @@
+ lc←{
+     0 ll ⍵
+⍝ lower case clone
+⍝ ⍵ space with vars
+⍝ ← space as ⍵ but all vars are lower case
+ }

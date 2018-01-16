@@ -1,0 +1,13 @@
+ getVersion←{
+     1:' 'sl⊃releaseNotes⊣''
+⍝ see releaseNotes wherein first line should be
+⍝       name ver date compat
+⍝ name   - system name
+⍝ ver    - as maj.mid.min
+⍝ date   - when code released
+⍝ compat - earliest data-compatible ver
+⍝
+⍝ notes on the present release should be terminated
+⍝ with a line containing only hyphens.
+⍝ Phil Last 2014-10-10
+ }

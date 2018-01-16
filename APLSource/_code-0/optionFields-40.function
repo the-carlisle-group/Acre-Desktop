@@ -1,0 +1,11 @@
+ optionFields←{⍺←⊢
+     {
+         ⍵.debug←MS.GA ⍝ 'On' but unused
+         ⍵.messages←'' ⍝ message output control
+         ⍵.result←''   ⍝ name for latest result
+         ⍵.rows←⍬      ⍝ result output rows
+         ⍵
+     }⎕NS''
+⍝
+⍝ Phil Last 2018-01-10 21.54
+ }

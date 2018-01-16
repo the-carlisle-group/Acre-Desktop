@@ -1,0 +1,4 @@
+ px←px
+ px←((,/2⍴⊢),2↓⊢)⎕NPARTS
+⍝ 'path/name.ext' → 'path/name' '.ext'
+⍝ Phil Last 2018-01-12 19.45

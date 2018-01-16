@@ -1,0 +1,6 @@
+ uc←{
+     1 ll ⍵
+⍝ upper case clone
+⍝ ⍵ space with vars
+⍝ ← space as ⍵ but all vars are upper case
+ }

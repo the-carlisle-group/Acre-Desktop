@@ -1,0 +1,9 @@
+ OpenProject←{⍺←⊢
+     0=dat←openProject MS.FW ⍵:''
+     dat.nspath⊣dataSpaces dat
+⍝ ⍵ folder [space]
+⍝ ← projectname projectspace
+⍝   project is open
+⍝   see LoadProject
+⍝ Phil Last 2017-12-09 23.28
+ }

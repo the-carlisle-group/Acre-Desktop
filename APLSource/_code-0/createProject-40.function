@@ -1,0 +1,27 @@
+ createProject←{
+     dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
+     null⊃folder nspath case←3↑⊂if≡⍵:0
+     dat.folder←fp folder,'/'
+     ⎕NEXISTS dat.folder:0⊣showMsg MS.HA
+     dat.nspath←⊃prefSpace⊂{'/'UT.nn ¯1↓dat.folder}if null nspath
+     ~((1=≢¨)∨UT.ns∨0=⎕NC)⊂dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
+     dat.case←≢/cc case MS.GB
+     dat.(config source code changes)←{
+         ⍵}dat.folder∘,¨MS.HM MS.GY,,\MS.HL MS.EU
+     dat.(codefile sourcereg)←dat.code∘,¨MS.EV MS.HF
+     space←⍎dat.nspath ⎕NS''⊣openProjects''
+     z←3 ⎕MKDIR¨dat.(source changes)
+     (cfg←configFields'').ProjectSpace←dat.nspath
+     cfg.CaseCode←dat.case⊃MS.GB MS.GA
+     z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
+⍝    z←(2 AN.format cfg)MS.HI ⎕NPUT dat.config   ⍝ ← APLAN ↑ aplscript
+⍝    z←(0 1(7160⌶)cfg)                            ⍝ ← JSON
+     z←'dat'⎕NS UT.lc cfg
+     fqn type val←getValue space UT.li 2 3 4 9
+     fqn type val←dat putCode dat putSource fqn type val
+     dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''
+⍝ ⍵ path [space]
+⍝ ← dat or 0
+⍝ see openProject CreateProject
+⍝ Phil Last 2018-01-15 22.16
+ }

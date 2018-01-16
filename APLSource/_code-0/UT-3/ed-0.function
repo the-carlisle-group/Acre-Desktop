@@ -1,0 +1,22 @@
+ ed←{
+     ({⍵⊣⍵.s←''}⎕NS''){
+         ⍺.(''⊣(⎕NS'').(⎕ED&'_'⊣_←⍵)) ⍝ ⍕⍪⍣(1 2≡(⍴∘⍴,≡)⍵)⊢⍵))
+     }{
+         9.1≢⎕NC⊂,'⍵':# ⍺⍺ ⍵
+         ⍵∊⍺.s:''
+         ⍺.s,←⍵
+         n←∇∘⍵.⍎/⍺,⍪~∘' '¨↓⍵.⎕NL 9.1
+         ⍵ ⍺⍺↑({⊢/('['∊¨⍵)⌽(⊂'##'),⍪⍵}⍕¨⍵),¨↓'.',⍵.⎕NL 2 3 4
+     }⍵
+
+     {(⎕NS'').(⎕ED&'_'⊣_←⍵)} ⍝ is sufficient for an array
+⍝ show
+⍝ ⍺  ignored
+⍝ ⍵  array or space
+⍝ ←  null
+⍝    display array in editor
+⍝ or display member list of space and
+⍝    recursively for contained member spaces
+⍝ Phil Last ⍝ 2008-03-12 08:32
+⍝ Phil Last 2015-10-19
+ }

@@ -1,0 +1,5 @@
+ sl←sl
+ sl←⊣(1↓¨=⊂⊢),
+⍝ separated string to list without sep
+⍝ nilad returning dyad
+⍝ Phil Last 2017-12-19 07.35
