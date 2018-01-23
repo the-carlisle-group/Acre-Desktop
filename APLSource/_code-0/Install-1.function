@@ -4,9 +4,10 @@
      mss←allMessages name ⍝ creates ⎕this.MS
      new←'#'=⊃⊃⎕XSI
      apo←'"'∘(qu←UT.qu)
-     old←1↓¨{⍵⊂⍨⍵∊'∘;'}'∘',⎕SE.SALT.Settings'cmddir'        ⍝ seek'∘;'
+     sep←⊃';:'∩cmddir←⎕SE.SALT.Settings'cmddir'
+     old←1↓¨sep{⍵⊂⍨⍵∊'∘',⍺}'∘',cmddir                       ⍝ seek'∘;'
      f←{⍵/⍨(⊢=⌈/)(+\×~)⍵∊'/\'} ⍝ last /substring/           ⍝ repl';'
-     old←⊃,/';',¨old/⍨~¯1(↓∊↑)cc f¨old,⊂path                ⍝ sans me
+     old←⊃,/sep,¨old/⍨~¯1(↓∊↑)cc f¨old,⊂path                ⍝ sans me
      z←⎕SE.SALT.Settings'cmddir "',path,old,'" -permanent'  ⍝ add me
      cmds grp parse desc help←⍕¨↓⍉qu¨1↓allMethods name
      re←{⊃⍵{(⍴,⍵)↓⊃,/⍵∘,¨(⍴,⍺)↓¨⍺{⍵⊂⍨⍺⍷⍵}⍺,⍺⍺}/⍺}
