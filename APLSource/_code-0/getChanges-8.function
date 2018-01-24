@@ -6,7 +6,7 @@
      path res ext chg/⍨←⊂2>chg←⊃⍳/cc(MS.EX MS.HN)ext  ⍝ del chg
      null path:empty
      res type←↓⍉↑nx¨res          ⍝ 'path.name.type' → 'path.name' '.type'
-     path res type chg/⍨←∊/cc type MS.NC
+     path res type chg/⍨←∊/cc type MS.AZ
      fqn←tgt∘,¨'..'decodeCaps res
      dat.changed←fqn
      dn dp dt←fqn path type/¨⍨⊂~chg  ⍝ dels

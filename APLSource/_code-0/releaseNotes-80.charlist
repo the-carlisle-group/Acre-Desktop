@@ -1,3 +1,61 @@
+Acre 4.0.4 ⍝ Phil 2018-01-23 4.0.2
+
+Release Notes
+
+Acre DeskTop           
+
+Configuration parameters Open, Load and Startup all now in operation.
+
+A project having its "Open" parameter set to the folder path of another
+project will open that first before the main project. Likewise for "Load".
+The "Startup" parameter for the main or only project will be executed after
+it is Opened or Loaded.
+
+A hook for other programs to access acre data in a standard way now exists 
+in the form of a "run" function in ⎕SE.acre. Methods implemented are:
+nameclass  - return the nameclass filetype of one or more items
+changefile - return the change filename of one or more changed items
+deletefile - return the delete filename of one or more deleted items
+sourcefile - return the source filename of one or more items
+putchange  - force the creation of or appending to a changefile
+             and the creation or overwriting of a sourcefile with the 
+             latest value of one or more items.
+
+The syntax for an acre command is
+]acre.command args [options] ⍝ comment
+
+An unquoted "lamp" comment symbol terminates the command and is ignored.
+An unquoted "[" left bracket begins the option specification.
+Between the command name and the options, comment or line-end the string 
+    is parsed into blank and quote separated substrings:
+
+]acre.command one "two three" four five ⍝ is received by the command as:
+    'one' 'two three' 'four' 'five'
+
+Three options are available to control output.
+]acre.command args [messages←'off'           ⍝ turns messages off
+]acre.command args [messages←'#.global.name' ⍝ buffers messages
+]acre.command args [rows←integer             ⍝ restricts the number of
+                                             ⍝ rows returned
+]acre.command args [result←'#.global.name'   ⍝ stores the entire result
+
+Thus:
+]acre.command args [result←'#.result' ⋄ rows←30]
+    will display only 30 rows but put the entire result into #.result.
+
+The default for each is the empty string.
+     
+Bug fix: CreateProject no longer adds separate files for members of scripted
+spaces nor for members of references that point back to another space in the
+tree.
+
+Still to do:
+Honour "CaseCode" parameter
+Conflict resolution re. incorrect case-code
+Conflict resolution re. name-class file-type.
+
+⍝ Phil 2018-01-23 21.36
+-------------
 Acre 4.0.3 2018-01-16 4.0.2
 
 Release Notes

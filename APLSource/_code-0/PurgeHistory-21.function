@@ -1,9 +1,11 @@
  PurgeHistory←{dat←⍺
+     start←dat.loadtime
      z←deleteFolder dat.code
      keep OPT.messages←OPT.messages MS.GB
-     res←OpenProject dat.folder dat.nspath
+     dat←openProject MS.FW(dat.folder dat.nspath)
+     dat.loadtime←start
      OPT.messages←keep
-     res,MS.DA
+     dat.nspath,MS.DA
 ⍝ ← as OpenProject
 ⍝ Phil Last 2018-01-15 23.35
  }

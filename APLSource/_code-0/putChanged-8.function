@@ -1,6 +1,7 @@
  putChanged←{dat←⍺                           ⍝ or Deleted
      null⊃fqn val typ del←4↑⍵:fqn
      chg del←0 1=del≡MS.EX
+     fqn val typ←,∘⊂¨if(≡⊃)fqn val typ
      fns←dat getChangeFilenames fqn  ⍝ if del or new type will be ".*"
      fns←⍉⍪fns{⍺ UT.re MS.AL ⍵}¨typ
      fns⍪⍨←(MS.EX,⍨(-≢MS.HN)↓⊢)¨fns          ⍝ del over chg

@@ -5,8 +5,8 @@
      fixFn←{0::0 ⋄ n s v←⍵ ⋄ n≡s.⎕FX v}
      fixClss←~{⍵\~1↓0,fixSrc⌿⍵/⍺}⍣≡
 
-     fqn typ val←⍵
-     z←(1↓¨nms)(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴nms←MS.NC
+     fqn typ val←,∘⊂¨if(≡⊃)⍵
+     z←(1↓¨nms)(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴nms←MS.AZ
      nc←nms⍳typ
      nam←1↓¨1⊃spc nam←↓⍉↑nx¨fqn
      res←0⍴⍨⍴nam
@@ -16,6 +16,7 @@
      (x/res)←AN.decode fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.array
      (x/res)←⊢fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.charlist
      (x/res)←↑fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.charmat
+     (x/res)←{1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.charstring
      (x/res)←fixFn/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc∊ns.(function operator)
      (x/res)←(↑x∘/¨spc val)∘fixClss 1/⍨+/x←nc∊ns.(class interface)
      nameClass fqn ⍝ ignoring res????

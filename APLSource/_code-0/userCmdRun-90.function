@@ -8,7 +8,7 @@
      strs←UT.sv str                          ⍝ words and strings
      opt←{0::⎕NS'' ⋄ AN.decode ⍵,'←]'~⍵}opt
      z←{⍎'OPT.',⍵,'←opt.',⍵}/0,⍪⊃∩/(opt OPT).⎕NL-2 ⍝ see optionFields
-     (item proj share)←'i' 'p' 's'=⊃parser   ⍝ see allMethods
+     (item proj share)←'i' 'p' 's'=⊃parser   ⍝ see all Methods
      res←'res'{⍵,⍺/⍨null ⍵}OPT.result        ⍝ local if not assigned
 ⍝                    ↓↓↓↓↓
      res←res{⍎⍺,'←⍵'}method{
@@ -16,7 +16,8 @@
          proj:(⍎⍺)projMethod ⍵               ⍝ first item is project
          share:(⍎⍺)sharedMethod ⍵            ⍝ arg is specific to method
      }strs
-     OPT.rows(⊢↑⍨⊣⌊⊢∘≢)res
+     0=≢r←OPT.rows:res
+     ⍪(⊢↑⍨r⌊≢)ntbs ⎕FMT res
 ⍝ ⍵ method; arg string; type of fn; whence called; whence loaded; system.
 ⍝ Phil Last 2018-01-15 22.16
  }

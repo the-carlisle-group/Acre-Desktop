@@ -1,8 +1,9 @@
  allMethods←{
      this←⍵ ⋄ item project shared←'item' 'project' 'shared'
-     z←⍉⍪'Name' 'Group' 'Type' 'Description' ']Syntax arguments'
+     z←0 5⍴''
+⍝        Name   Group   Type    Description           ]Syntax arguments
      z⍪←'Changes'this item'List changed items in project or changes to one' ']Changes space | item'
-     z⍪←'CreateProject'this shared'Create a new project ' ']CreateProject folder space [codecase]'
+     z⍪←'CreateProject'this shared'Create a new project' ']CreateProject folder space [codecase]'
      z⍪←'Erase'this item'Erase an item or items from an open project' ']Erase item item ...'
      z⍪←'FromAPLAN'this shared'Evaluate an APLAN expression' ']FromAPLAN name | "expression"'
      z⍪←'LoadProject'this shared'Load project code into ws' ']LoadProject folder [space]'

@@ -1,0 +1,21 @@
+ ni←{⍺←⊢ ⋄ ⍵≡⍺ ⍵:∇/⍵ ⋄ {⍵._Inst}{
+         (⍵._Inst.⍎⍺,'←⍵∘{0::(⊃⍬⍴⎕DM)⎕SIGNAL ⎕EN ⋄ ⍺ ⍺._Class.',⍺,'⍵}')/⍵
+     }/⍵,⍺{⍵⊣⍵.(_Class _Inst)←⍺,#.⎕NS''}#.⎕NS''
+⍝ ⍵ (class)(methods)
+⍝ ← instance
+⍝ class: space having at least the functions named in methods.
+⍝ methods: names of explicit dyadic functions in class.
+⍝ instance: space with derived methods that call the class
+⍝           methods that share data in their unnamed space
+⍝           left argument that refs instance and class.
+⍝ .-class-----. .-instance-. .-------------.
+⍝ | fns, data | | methods  | | data  class |
+⍝ |   methods | '--↓-------' | instance ↓  |
+⍝ '-----↓--↑--'    |   ↑     '--↓-------|--'
+⍝    ↑  |  |       |   |        |   ↑   |
+⍝    |  |  '-------'   '--------'   |   |
+⍝    |  |                           |   |
+⍝    |  '---------------------------'   |
+⍝    |                                  |
+⍝    '----------------------------------'
+ }

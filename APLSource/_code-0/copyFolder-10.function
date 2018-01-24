@@ -9,7 +9,7 @@
          t←fileTree tgt
          (s t).Path
      }UT.tk 0
-     z←showMsg MS.EF,(≢sp)UT.pl MS.AR
+     z←showMsg MS.EF,(≢sp)UT.pl MS.FL
      del copy←{
          sp←(⍴src)↓¨sp
          tp←(⍴tgt)↓¨tp
@@ -22,9 +22,9 @@
          del(miss,diff)
      }UT.tk 0
      del/⍨←era
-     z←showMsg era/MS.ET,(≢del)UT.pl MS.AR
+     z←showMsg era/MS.ET,(≢del)UT.pl MS.FL
      z←⎕NDELETE⍨/UT.tk del,1
-     z←showMsg MS.ES,(≢copy)UT.pl MS.AR
+     z←showMsg MS.ES,(≢copy)UT.pl MS.FL
      z←(copyFile⊣)/UT.tk copy,0
      ⊢/↑copy
 ⍝ copy only missing and different.

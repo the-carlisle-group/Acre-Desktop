@@ -5,11 +5,13 @@
 ⍝   2       3        4      9.1    9.4     9.5       2       0       2
      c←9(⊢-1|>×⊢)(⎕NC fqn)(⊣×∊)validAPLType'' ⍝ floor < 9
      t←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AL
+⍝ subset of MS.AZ and not necessarily in the same order
      r←t[2 3 4 9.1 9.4 9.5⍳c]
      (a/r)←{
          r←(≡v),≢⍴v←#.⍎⍵
-         r≡1 2:MS.AE MS.AM⊃⍨1=0=10|⎕DR ⍵ ⍝ charmat
-         r≡2 1:MS.AE MS.AK⊃⍨∧/(''≡0∘/)¨⍵ ⍝ charlist
+         r≡2 1:MS.AE MS.AK⊃⍨∧/(''≡0∘/)¨v ⍝ charlist
+         r≡1 2:MS.AE MS.AM⊃⍨1=0=10|⎕DR v ⍝ charmat
+         r≡1 1:MS.AE MS.AN⊃⍨1=0=10|⎕DR v ⍝ charstring
          MS.AE
      }/0,⍪fqn/⍨a←c=2
      (a/r)←{

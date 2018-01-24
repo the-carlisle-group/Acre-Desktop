@@ -4,6 +4,7 @@
      SV.setupcomplete←0
      path ws name←SV.(inipath workspace systemname)←⍵
      ici.MS←allMessages name
+     ici.SX←syntaxHelp name
      ici.EN←aplErrors''
      ici.OPT←optionFields''
      SV.sessionstart←sessionStart''        ⍝ ↓ runtime = no msgs, no editor

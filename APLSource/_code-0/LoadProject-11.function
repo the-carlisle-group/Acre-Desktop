@@ -1,9 +1,9 @@
- LoadProject←{⍺←⊢
-     0=dat←openProject MS.FY ⍵:''
+ LoadProject←{⍺←⊢ ⍝ monad from UCMD - dyad is subsid
+     0=dat←⍺ openProject MS.FY ⍵:''
      dat.nspath
 ⍝ ⍵ folder [space]
 ⍝ ← projectname projectspace
 ⍝   project is not open
 ⍝   see OpenProject
-⍝ Phil Last 2017-12-09 23.28
+⍝ Phil 2018-01-23 15.35
  }

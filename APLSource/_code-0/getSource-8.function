@@ -4,7 +4,7 @@
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src
      file type←↓⍉↑(UT.px(≢src)↓⊢)¨path           ⍝ ns/path/file.type
-     path date file type/⍨←∊/cc type MS.NC
+     path date file type/⍨←∊/cc type MS.AZ
 
      name←'/.'decodeCaps file
 ⍝     raw←'/.'stripCode file

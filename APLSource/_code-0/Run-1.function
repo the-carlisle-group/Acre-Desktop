@@ -1,4 +1,10 @@
- Run←{
+ Run←{⍺←⊢
+  ⍝   null⊢function←⍺⊣'':''
+  ⍝   code←externalCalls .{}⊂function
+
+
+
+
      dat←⍺
      (function arg)←UT.ht⊂if≡⍵ ⍝ ⊂if≡ redundant?
      v f←↓⍉↑⎕VFI¨arg           ⍝ arg is list of strings

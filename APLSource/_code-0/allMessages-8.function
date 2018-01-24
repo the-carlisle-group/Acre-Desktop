@@ -7,11 +7,11 @@
          ⍵
      }⎕NS''
 
-     ⊢⎕THIS.MS←{ ⍝ global ns
+     ⊢{ ⍝ return ns
          ⍵.AA←nms.name
          ⍵.AD←'.dyalog'
 
-         ⍵.AE←'.array'       ⍝ see MS.NC
+         ⍵.AE←'.array'
          ⍵.AF←'.function'
          ⍵.AG←'.operator'
          ⍵.AH←'.script'
@@ -20,9 +20,9 @@
          ⍵.AK←'.charlist'
          ⍵.AL←'.*' ⍝ set as filetype for unknown
          ⍵.AM←'.charmat'
-         ⍵.AN←'.namespace' ⍝ not in NC below
+         ⍵.AN←'.charstring'
+         ⍵.AZ←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AK MS.AM MS.AN
 
-         ⍵.AR←'file files'
 
          ⍵.BA←'Source '
          ⍵.BC←'Code '
@@ -41,6 +41,7 @@
          ⍵.DH←'No appropriate items supplied'
          ⍵.DI←'No open project can handle item'
          ⍵.DK←'Saved: '
+         ⍵.DL←'Fixed: '
 
          ⍵.EF←'Comparing '
          ⍵.EI←'Identifying changes'
@@ -67,8 +68,9 @@
          ⍵.FI←'Total items:'
          ⍵.FJ←'namespace namespaces'
          ⍵.FK←'item items'
+         ⍵.FL←'file files'
 
-         ⍵.FM←''
+         ⍵.FM←'.gitignore'
          ⍵.FN←'update updates'
          ⍵.FO←' imported '
          ⍵.FP←' loaded '
@@ -96,16 +98,21 @@
          ⍵.HM←MS.AA,MS.EW,MS.GZ
          ⍵.HN←'.change'
 
-         ⍵.ID←'text for message ID'
-
-         ⍵.NC←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AK MS.AM
+         ⍵.IA←'putchange'
+         ⍵.IB←'nameclass'
+         ⍵.IC←'changefile'
+         ⍵.ID←'deletefile'
+         ⍵.IE←'sourcefile'
+         ⍵.IF←'associate'
+         ⍵.IX←MS.IA MS.IB MS.IC MS.ID MS.IE MS.IF
+         ⍵.IZ←'''method'' run args'
 
          ⍵.__←⊃⎕XSI
          ⍵
-     }⎕THIS.MS←⎕NS''
+     }MS←⎕NS''
 
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil Last 2018-01-15 15.35
+⍝ Phil 2018-01-23 15.35
  }

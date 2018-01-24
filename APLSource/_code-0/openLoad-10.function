@@ -1,0 +1,11 @@
+ openLoad←{dat←⍺
+     pre←{{(':'∘∊∨'/'=⊃)⍺:⍺ ⍵
+             (dat.folder,'../',⍺)⍵
+         }/↑2↑¨~∘∊⍨⊂if≡¨⊂if≡⍵}
+     z←LoadProject/0,⍪pre dat.load
+     z,OpenProject/0,⍪pre dat.open
+⍝ dyadic calls to OpenProject and LoadProject tell them NOT to run Startup
+⍝ Load and Open dependent projects
+⍝ this is potentially endlessly recursive
+⍝ Phil 2018-01-23 21.45
+ }
