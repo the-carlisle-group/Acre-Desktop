@@ -42,6 +42,7 @@
          ⍵.DI←'No open project can handle item'
          ⍵.DK←'Saved: '
          ⍵.DL←'Fixed: '
+         ⍵.DM←'Syntax: '
 
          ⍵.EF←'Comparing '
          ⍵.EI←'Identifying changes'

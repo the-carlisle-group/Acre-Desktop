@@ -1,7 +1,7 @@
  undoredo←{
      dat←⍺
      sig←⍺⍺    ⍝ Undo - , Redo +
-     fqn←{⍵/⍨(#.⎕NC ⍵)∊validAPLType''},∘⊂if(≡<2⌊≢)⍵
+     fqn←{⍵/⍨(#.⎕NC ⍵)∊validAPLType''},∘⊂if≡⍵
      fil←dat getChangeFilenames fqn
      null⊢fqn fil/⍨←⊂⎕NEXISTS¨fil:''
      doit←{fqn fil←⍺ ⍵

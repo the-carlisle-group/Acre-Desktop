@@ -1,6 +1,5 @@
- itemMethod←{⍺←⊢
-     0:method←⍺⍺
-     null⊢items←⍵:0⍴showMsg MS.DH
+ itemMethod←{⍺←⊢ ⋄ mon←1≡⍺ 1
+     mon<null⊢items←⍵:0⍴showMsg MS.DM,SX.⍎⍺
      0∊⍴ids←openProjects'':0⍴showMsg MS.GX
      items←prefSpace items   ⍝ prefix non-FQNs
      no←0=dat←whichProject items
@@ -10,6 +9,7 @@
 ⍝       ↓↓↓↓
      ⊃if≢⍺⍺/dat{⍺ ⍵}⌸items
 
+⍝ [⍺]  name of method
 ⍝ ⍺⍺   method to run - takes instance data space left arg
 ⍝ ⍵    args
 ⍝ args random list of items of possiby disparate projects

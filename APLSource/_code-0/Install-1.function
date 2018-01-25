@@ -2,10 +2,11 @@
      path wsid←2⍴,\1 ⎕NPARTS(⍵≡∊⍵)⊃⍵ ⎕WSID
      name←1↓{⍵/⍨1=+\⍵='.'}⊃⎕XSI
      apo←'"'∘(qu←UT.qu)
-     old←1↓¨{⍵⊂⍨⍵∊'∘;'}'∘',⎕SE.SALT.Settings'cmddir'        ⍝ seek'∘;'
-     f←{⍵/⍨(⊢=⌈/)(+\×~)⍵∊'/\'} ⍝ last /substring/           ⍝ repl';'
-     old←⊃,/';',¨old/⍨~¯1(↓∊↑)cc f¨old,⊂path                ⍝ sans me
-     z←⎕SE.SALT.Settings'cmddir "',path,old,'" -permanent'  ⍝ add me
+     sep←⊃~∘'∘'⊢⎕SE.SALT.PATHDEL                           ⍝ thanks Gil
+     old←1↓¨{⍵⊂⍨⍵∊sep,'∘'}sep,⎕SE.SALT.Settings'cmddir'    ⍝ seek both
+     f←{⍵/⍨(⊢=⌈/)(+\×~)⍵∊'/\'}                             ⍝ last /substr/
+     old←⊃,/sep,¨old/⍨~¯1(↓∊↑)cc f¨old,⊂path               ⍝ sans me
+     z←⎕SE.SALT.Settings'cmddir "',path,old,'" -permanent' ⍝ add me
      cmds grp parse desc help←⍕¨↓⍉qu¨allMethods name
      re←{⊃⍵{(⍴,⍵)↓⊃,/⍵∘,¨(⍴,⍺)↓¨⍺{⍵⊂⍨⍺⍷⍵}⍺,⍺⍺}/⍺}
      data←(name)(grp)(path)(wsid)(cmds)(desc)(parse)(help)

@@ -1,5 +1,5 @@
  syntaxHelp←{
      UT.dx(⊣/_⊢/)allMethods ⍵
-⍝ ns of [cmd←']cmd sytax' ⋄ ...]
+⍝ ns of [cmd←']cmd syntax' ⋄ ...]
 ⍝ Phil Last 2018-01-18 22.13
  }

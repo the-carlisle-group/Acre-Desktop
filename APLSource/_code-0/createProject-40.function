@@ -1,6 +1,6 @@
  createProject←{
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     ∨/nil 2⍴folder nspath case←3↑⊂if≡⍵:0⊣showMsg SX.CreateProject
+     ∨/nil 2⍴folder nspath case←3↑⊂if≡⍵:0⊣showMsg MS.DM,SX.CreateProject
      dat.folder←fp folder,'/'
      ⎕NEXISTS dat.folder:0⊣showMsg MS.HA
      dat.nspath←⊃prefSpace⊂nspath

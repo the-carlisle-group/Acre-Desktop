@@ -2,21 +2,22 @@
      what proj←⍵
      which←⊃MS.ER MS.EQ/⍨open load←MS.FW MS.FY∊what''
      folder target←2↑proj,⊂''
-     null⊢folder←{getFolder'/'}if null⊢folder:0
+     null⊢folder←{getFolder'/'}if null⊢folder:0⊣showMsg MS.DM,SX.⍎1⊃⎕SI
      dat.changed←''⊣dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
      dat.folder←fp folder,'/'
      dat.(config source code changes)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,,\MS.HL MS.EU
-     ~∨/src cde cnf←⎕NEXISTS¨dat.(source changes config):0⊣showMsg MS.HB
-
+     ~∨/src cde cnf←⎕NEXISTS¨dat.(source changes config):{
+         0}showMsg MS.HB,' ',¯50 UT.tm dat.folder
      dat.(codefile sourcereg)←dat.code∘,¨MS.EV MS.HF
      z←'dat'⎕NS readConfig dat.config
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null target
-     ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath←⊃prefSpace nspath:0⊣showMsg MS.DC
+     ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
+         0}showMsg MS.DC
      ~null showMsg dat∘openConflict⍣open⊢'':0
      z←dat openLoad'' ⍝ subsids
      z←showMsg(which,MS.EY),dat.folder
-     space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{#.⎕NL⍳10}if≢dat.nspath
+     space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
      z←showMsg MS.EZ,dat.nspath
      z←⎕MKDIR/3,⍪dat.(changes source)/⍨~cde src
      fqn type value←dat{

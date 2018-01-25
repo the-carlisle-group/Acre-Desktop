@@ -12,9 +12,9 @@
      res←'res'{⍵,⍺/⍨null ⍵}OPT.result        ⍝ local if not assigned
 ⍝                    ↓↓↓↓↓
      res←res{⍎⍺,'←⍵'}method{
-         item:(⍎⍺)itemMethod ⍵               ⍝ items of arg are names
-         proj:(⍎⍺)projMethod ⍵               ⍝ first item is project
-         share:(⍎⍺)sharedMethod ⍵            ⍝ arg is specific to method
+         item:⍺(⍎⍺)itemMethod ⍵              ⍝ items of arg are names
+         proj:⍺(⍎⍺)projMethod ⍵              ⍝ first item is project
+         share:⍺(⍎⍺)sharedMethod ⍵           ⍝ arg is specific to method
      }strs
      0=≢r←OPT.rows:res
      ⍪(⊢↑⍨r⌊≢)ntbs ⎕FMT res

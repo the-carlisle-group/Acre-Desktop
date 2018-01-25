@@ -2,20 +2,20 @@
      this←⍵ ⋄ item project shared←'item' 'project' 'shared'
      z←0 5⍴''
 ⍝        Name   Group   Type    Description           ]Syntax arguments
-     z⍪←'Changes'this item'List changed items in project or changes to one' ']Changes space | item'
+     z⍪←'Changes'this item'List changed items in project or changes to one' ']Changes project-space | item'
      z⍪←'CreateProject'this shared'Create a new project' ']CreateProject folder space [codecase]'
-     z⍪←'Erase'this item'Erase an item or items from an open project' ']Erase item item ...'
+     z⍪←'Erase'this item'Erase an item or items from an open project' ']Erase item(s)'
      z⍪←'FromAPLAN'this shared'Evaluate an APLAN expression' ']FromAPLAN name | "expression"'
      z⍪←'LoadProject'this shared'Load project code into ws' ']LoadProject folder [space]'
      z⍪←'OpenProject'this shared'Load project code into ws for development' ']OpenProject folder [space]'
      z⍪←'Projects'this shared'List names, spaces & folders of all open projects.' ']Projects'
-     z⍪←'PurgeHistory'this project'Fix changes to an open project' ']PurgeHistory project'
-     z⍪←'Redo'this item'Re-apply last undone change.' ']Redo item'
+     z⍪←'PurgeHistory'this project'Fix changes to an open project' ']PurgeHistory project-space'
+     z⍪←'Redo'this item'Re-apply last undone change.' ']Redo item(s)'
      z⍪←'Restore'this item'Bring back items ]erased' ']Restore item'
-     z⍪←'Run'this project'Experimental or unexposed method' ']Run project method args'
-     z⍪←'Stats'this project'Project Statistics' ']Stats project'
+⍝     z⍪←'Run'this project'Experimental or unexposed method' ']Run project method args'
+     z⍪←'Stats'this project'Project Statistics' ']Stats project-space'
      z⍪←'ToAPLAN'this shared'Format a value as APLAN' ']ToAPLAN name | "expression"'
-     z⍪←'Undo'this item'Revert to previous version' ']Undo item'
+     z⍪←'Undo'this item'Revert to previous version' ']Undo item(s)'
      z
 
 ⍝  parser   argument

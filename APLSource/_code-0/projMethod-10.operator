@@ -1,12 +1,14 @@
- projMethod←{⍺←⊢
+ projMethod←{⍺←⊢ ⋄ mon←1≡⍺ 1
      args←⍵
-     proj←prefSpace⊃proj arg←1(↑_↓)args
-     0∊⍴dats←openProjects'':0⍴showMsg MS.GX
-     msk←dats.nspath∊proj
+     proj arg←1(↑_↓)args
+     mon<(null proj)∨0∊⍴dats←openProjects'':0⍴showMsg MS.DM,SX.⍎⍺
+     msk←dats.nspath∊prefSpace proj
      0=dat←⊃1↓0,msk/dats:0⍴showMsg MS.BM
 ⍝       ↓↓↓↓
      dat ⍺⍺ arg
 
+⍝ [⍺]  name of method
+⍝ ⍺⍺   method
 ⍝ ⍵       args
 ⍝ args    projectspace arg ...
 ⍝ run instance method of project ref'd in first of args
