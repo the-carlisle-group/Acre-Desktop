@@ -1,3 +1,13 @@
+Acre 4.0.5 2018-01-25
+
+Release Notes
+
+Acre DeskTop           
+                     
+First release under GitHub
+
+⍝ Phil 2018-01-25 14.41
+---------------------
 Acre 4.0.4 ⍝ Phil 2018-01-23 4.0.2
 
 Release Notes
@@ -150,5 +160,5 @@ Above methods are all there is.
 The "4.0.0" repreated above indicates incompatibility with all previous versions/releases.
 
 The simplest way to try this out is to move or rename and keep your acre 3 folder and put this in its place.
------------
+-----------                 
 ⍝ Phil Last 2017-12-07 07.58

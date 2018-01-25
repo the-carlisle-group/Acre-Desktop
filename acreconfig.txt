@@ -1,7 +1,7 @@
-:Namespace
+﻿:Namespace
     CaseCode←'On'
     Load←''
     Open←''
     ProjectSpace←'#.acre'
-    StartUp←''
+    StartUp←'#.acre._code.refs 0'
 :EndNamespace
