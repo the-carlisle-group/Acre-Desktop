@@ -1,0 +1,40 @@
+ R←Test_Config_ProjectSpace_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list
+⍝ Create a project and check whether `acreconfig.txt[ProjectSpace]` is honored.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ :Trap (~stopFlag)/0
+     result←Exec'acre.Createproject "',projectPath,'" #.',projectName,' [ messages←''off'' ]'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ #.⎕EX projectName
+ #.⎕SHADOW'Temp'
+ buff←''
+ buff,←⊂':Namespace'
+ buff,←⊂'   ProjectSpace←''#.Temp'''
+ buff,←⊂':EndNamespace'
+ A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
+
+ :Trap (~stopFlag)/0
+     list←Exec'acre.Projects'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp'#.Temp'≢Exec'acre.OpenProject ',projectPath
+ →GoToTidyUp 1≠(⊃⍴Exec'acre.Projects')-⊃⍴list
+ →GoToTidyUp'World'≢#.Temp.Hello
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

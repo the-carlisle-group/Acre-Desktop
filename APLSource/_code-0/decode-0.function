@@ -2,7 +2,7 @@
      abc←,'ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
      abc,←'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüþ'
      abc,←'∆⍙ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ'
-⍝ ↑   (⊢(/⍨)0≤⎕NC∘⍪)⎕UCS⍳10000
+⍝ ↑   (,(⌿⍨)0≤⎕NC)⍪⎕UCS⍳10000
      nan←' ''[(⊂¯.⋄←⍴)]'  ⍝ non-alphanumeric
      syntax←⎕D,nan,abc
      quoted←≠\''''=⊢
@@ -27,8 +27,8 @@
      ......
      x←⍳⍴r←0⍴⍨⍴a
      d←q<'⋄'=a                       ⍝ bool where diamonds
-     b←-⌿+\q<⍤1⊢'[]'∘.=a             ⍝ dept twixt brackets
-     p←-⌿+\q<⍤1⊢'()'∘.=a             ⍝ dept twixt parens
+     b←-⌿+\q<⍤1⊢'[]'∘.=a             ⍝ dpth twixt brackets
+     p←-⌿+\q<⍤1⊢'()'∘.=a             ⍝ dpth twixt parens
      w←(⊢=⌈/)b+p                     ⍝ bool where max depth
      deepest←'(['(∊⍨⊂⊢)a/⍨(⊢=⌈/)b+p
      .

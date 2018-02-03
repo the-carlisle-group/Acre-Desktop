@@ -1,0 +1,10 @@
+ {list}←E list
+⍝ Get all functions into the editor starting their names with "Test_".
+ :If 0∊⍴list
+     list←'T'⎕NL 3
+ :ElseIf 2=⍴⍴list
+     list←{⎕ML←3 ⋄ ⊃⍵}list[;⎕IO]
+ :Else
+     'Invalid right argument'⎕SIGNAL 11
+ :EndIf
+ {(0∊⍴⍵): ⋄ ⎕ML←3 ⋄ ⎕ED⊃⍵}&↓'Test_'{⍵⌿⍨⍺∧.=⍨(⍴,⍺)↑[1+⎕IO]⍵}list

@@ -1,0 +1,16 @@
+ R←Test_AAA_001(stopFlag batchFlag);⎕TRAP
+⍝ Check whether it's the right version. ("AAA" makes sure that this runs first)
+⍝ The name makes sure that this runs first.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Inactive
+ :Return
+
+ R←∆Failed
+
+ {}Exec']acre.projects [ messages←''#.AcreMessages'' ]'
+ →PassesIf 3=⎕SE.acre.⎕NC'run'
+
+ →PassesIf'4.0.5'≡2⊃⎕SE.acre._code.getVersion''    ⍝TODO⍝  Should be an official method
+
+ R←∆OK

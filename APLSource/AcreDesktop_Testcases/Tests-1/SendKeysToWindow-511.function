@@ -1,0 +1,7 @@
+ SendKeysToWindow(handle keystrokes);wsh;SendMessage
+ {}⎕NA'u user32|SendMessage* U U U'
+ SendMessage handle 12 'a'
+
+⍝ 'wsh'⎕WC'OLEClient' 'WScript.Shell'
+⍝ wsh.SendKeys handle keystrokes
+⍝Done

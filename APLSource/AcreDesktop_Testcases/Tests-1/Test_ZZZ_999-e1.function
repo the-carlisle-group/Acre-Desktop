@@ -1,0 +1,19 @@
+ R←Test_ZZZ_999(stopFlag batchFlag);⎕TRAP;paths;acreHome;releaseNotes;version
+⍝ Checks whether the result of acre's `getVersion` fits "releaseNotes.txt"
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Inactive
+ :Return
+
+ R←∆OK
+
+ {}Exec'acre.projects'
+ version←2⊃⎕SE.acre._code.getVersion ⍬           ⍝TODO⍝  ⍝TODO⍝ We should have this "officially" (via `run`)
+ paths←⎕SE.UCMD'Settings cmddir'
+ paths←1↓¨⎕SE.SALT.PATHDEL{⍺{⍵⊂⍨⍵∊⍺}(⊃⍺),⍵}paths
+⍝ acreHome←⊃({⊃⍴'[\\/]acre$'⎕S 0⊣⍵}¨paths)/paths
+ acreHome←⊃(⊢(/⍨)(∨/'acre'⍷⊢)¨)paths
+ releaseNotes←A.ReadUtf8File acreHome,'\releaseNotes.txt'
+ →PassesIf version≡{⍵↑⍨¯1+⍵⍳' '}(⍴'Acre ')↓1⊃releaseNotes
+
+ R←∆OK

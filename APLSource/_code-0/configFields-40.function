@@ -1,6 +1,6 @@
  configFields←{⍺←⊢
      {
-         ⍵.CaseCode←'on'     ⍝ integer suffix to name elements
+         ⍵.CaseCode←'On'     ⍝ integer suffix to name elements
          ⍵.ProjectSpace←''   ⍝ #[.path]
          ⍵.Open←''           ⍝ Open with this project
          ⍵.Load←''           ⍝ Load with this project

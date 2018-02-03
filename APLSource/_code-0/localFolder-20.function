@@ -1,4 +1,4 @@
  localFolder←{
-     ac.fp(ac.getEnvironment'temp'),'/../'
+     fp(ac.getEnvironment'temp'),'/../'
 ⍝ Phil 2018-01-23 15.35
  }

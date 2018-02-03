@@ -1,0 +1,29 @@
+ R←Test_CreateProject_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list;noOf
+⍝ Create a project which has just a namespace script.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FIX':Namespace Foo' '∇r←Hello' 'r←''World''' '∇' ':EndNamespace'
+ noOf←⊃⍴Exec'acre.Projects'
+
+ :Trap (~stopFlag)/0
+     result←Exec'acre.Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
+ →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
+ →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.script')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ {}Exec'acre.Projects [ messages←''on'' ]'

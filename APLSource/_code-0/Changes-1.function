@@ -7,7 +7,7 @@
          ⍪⍵[⍒date]
      }all
 
-     null⊢item←⍬⍴⍵∩all:⍪''   ⍝ item changes
+     null⊢item←⍬⍴⍵∩all:⍪''   ⍝ item change
      file←⊃dat getChangeFilenames item
      cmp←⌽1↓⍳1⊃⎕FSIZE⊢tie←file ⎕FTIE 0
      ptr val←UT.ht ⎕FREAD tie,⊂cmp

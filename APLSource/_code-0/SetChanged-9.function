@@ -1,0 +1,6 @@
+ SetChanged←{⍺←⊢
+     dat←⍺
+     dat putChanged⌽1⌽getValue ⍵
+⍝
+⍝ Phil 2018-02-02 23.49
+ }

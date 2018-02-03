@@ -1,0 +1,28 @@
+ R←Test_Misc_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+⍝ Exercise the `Stats` command
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+
+ {}Exec'CreateProject ',projectPath,' #.',projectName
+ result←Exec'acre.Stats',' [ messages←''#.AcreMessages'' ]'
+ →GoToTidyUp~0∊⍴result
+ →GoToTidyUp'Syntax: ]acre.Stats project-space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}#.AcreMessages
+ result←Exec'acre.Stats #.',projectName
+ →GoToTidyUp 2≠⍴⍴result
+ →GoToTidyUp 14≠⊃⍴result
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ {}F.RmDir projectPath ⋄ :EndTrap
+ {}Exec'Projects [ messages←''on'' ]'
+⍝Done

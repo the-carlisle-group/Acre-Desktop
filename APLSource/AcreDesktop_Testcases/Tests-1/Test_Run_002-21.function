@@ -1,0 +1,28 @@
+ R←Test_Run_002(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;changeFilename;changePath;aplsourcePath
+⍝ Exercise the `run` function on both "putchange" and "changefile".
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'\',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+ {}Exec'CreateProject  "',projectPath,'" #.',projectName,' [ messages←''#.AcreMessages'' ]'
+
+ ref.⎕FX'r←Hello' 'r←''Whole universe'''
+ {}'putchange'⎕SE.acre.run'#.',projectName,'.Hello'
+ changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ ⍝ Check number of components and contents of the last one.
+ changePath←F.EnforceBackslash 1⊃⎕NPARTS changeFilename
+ →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
+ →GoToTidyUp 1≠⍴⊃F.Dir changeFilename
+ aplsourcePath←('Expand'F.NormalizePath changePath,'..\..'),'\APLSource'
+ →GoToTidyUp 1≠⍴⊃F.Dir aplsourcePath,'\*'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

@@ -9,7 +9,7 @@
 
      ⊢{ ⍝ return ns
          ⍵.AA←nms.name
-         ⍵.AD←'.dyalog'
+         ⍵.AD←'Type changed'
 
          ⍵.AE←'.array'
          ⍵.AF←'.function'
@@ -32,17 +32,22 @@
          ⍵.BN←'Closed '
          ⍵.BV←'No change'
 
-         ⍵.CA←'A project may not be opened inside another:'
+         ⍵.CA←'! A project may not be opened inside another:'
+         ⍵.CB←' will need to be amended.'
          ⍵.CX←'please confirm within _ by restarting with this code: "_".'
 
          ⍵.DA←' - Local history purged'
-         ⍵.DB←'Problem reading '
+         ⍵.DB←'! Problem reading '
          ⍵.DC←'Invalid namespace name'
-         ⍵.DH←'No appropriate items supplied'
-         ⍵.DI←'No open project can handle item'
+         ⍵.DD←'!!! Multiple source files exist for'
+         ⍵.DH←'! No appropriate items supplied'
+         ⍵.DI←'! No open project can handle item'
          ⍵.DK←'Saved: '
          ⍵.DL←'Fixed: '
          ⍵.DM←'Syntax: '
+         ⍵.DN←'!!! Trapped error in '
+         ⍵.DO←'options - '
+         ⍵.DP←'Startup - '
 
          ⍵.EF←'Comparing '
          ⍵.EI←'Identifying changes'
@@ -76,7 +81,9 @@
          ⍵.FO←' imported '
          ⍵.FP←' loaded '
          ⍵.FW←'Open'
+         ⍵.FX←'!!! Not fixed'
          ⍵.FY←'Load'
+         ⍵.FZ←'AcreDesktop_Testcases'
 
          ⍵.GA←'On'
          ⍵.GB←'Off'
@@ -88,8 +95,8 @@
          ⍵.GY←'APLSource/'
          ⍵.GZ←'.txt'
 
-         ⍵.HA←'Project or folder already exists.'
-         ⍵.HB←'Invalid path or not a project.'
+         ⍵.HA←'! Project or folder already exists.'
+         ⍵.HB←'! Invalid path or not a project.'
          ⍵.HF←'sourcereg'
          ⍵.HG←':Namespace'
          ⍵.HH←':EndNamespace'
@@ -99,14 +106,14 @@
          ⍵.HM←MS.AA,MS.EW,MS.GZ
          ⍵.HN←'.change'
 
-         ⍵.IA←'putchange'
+⍝         ⍵.IA←'putchange'
          ⍵.IB←'nameclass'
          ⍵.IC←'changefile'
          ⍵.ID←'deletefile'
          ⍵.IE←'sourcefile'
-         ⍵.IF←'associate'
-         ⍵.IX←MS.IA MS.IB MS.IC MS.ID MS.IE MS.IF
-         ⍵.IZ←'''method'' run args'
+⍝         ⍵.IX←MS.IA MS.IB MS.IC MS.ID MS.IE MS.IF
+         ⍵.IX←MS.IB MS.IC MS.ID MS.IE
+         ⍵.IZ←'''method'' ⎕SE.',MS.AA,'.run args'
 
          ⍵.__←⊃⎕XSI
          ⍵

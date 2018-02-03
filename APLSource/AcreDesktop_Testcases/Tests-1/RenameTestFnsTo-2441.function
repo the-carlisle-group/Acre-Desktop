@@ -1,0 +1,112 @@
+ {r}←oldName RenameTestFnsTo newName;⎕IO;body;rc;⎕ML;header;comment;res;name;right;left;newParent;oldParent;delFilanme;A
+⍝ Renames a test function and tells acre.
+⍝ r ← ⍬
+ ⎕IO←0 ⋄ ⎕ML←3
+ :If 9=#.⎕NC'APLTreeUtils'
+     A←#.APLTreeUtils
+ :ElseIf 9=⎕NC'APLTreeUtils'
+     A←APLTreeUtils
+ :ElseIf 9=##.⎕NC'APLTreeUtils'
+     A←##.APLTreeUtils
+ :ElseIf 9∊⊃¨⎕RSI.⎕NC⊂'APLTreeUtils'
+     A←(⊃(9=⊃¨⎕RSI.⎕NC⊂'APLTreeUtils')/⎕RSI).APLTreeUtils
+ :ElseIf 9∊⊃¨⎕RSI.##.⎕NC⊂'APLTreeUtils'
+     A←(⊃(9=⊃¨⎕RSI.##.⎕NC⊂'APLTreeUtils')/⎕RSI.##).APLTreeUtils
+ :Else
+     'Missing: APLTreeUtils'⎕SIGNAL 6
+ :EndIf
+ r←⍬
+ (oldName newName)←oldName newName~¨' '
+ :If '.'∊oldName
+     (oldParent oldName)←¯1 0↓¨'.'A.SplitPath oldName
+     oldParent←⍎oldParent
+ :Else
+     oldParent←↑⎕RSI
+ :EndIf
+ :If '.'∊newName
+     (newParent newName)←¯1 0↓¨'.'A.SplitPath newName
+     newParent←⍎newParent
+ :Else
+     newParent←↑⎕RSI
+ :EndIf
+ ⎕SIGNAL 11/⍨oldParent≢newParent
+ 'Function to be renamed not found'⎕SIGNAL 11/⍨3≠oldParent.⎕NC oldName
+ 'New name is already used'⎕SIGNAL 11/⍨0<newParent.⎕NC newName
+ 'New name is invalid'⎕SIGNAL 11/⍨¯1=newParent.⎕NC newName
+ body←oldParent.⎕NR oldName
+ header←0⊃body
+ (header comment)←header{(⍵↑⍺)(⍵↓⍺)}header⍳'⍝'
+ :If (oldParent.⎕NC⊂oldName)∊3.2   ⍝ Dfns
+     :If 1=⍴body
+         (oldName body)←{⍵{(⍵↑⍺)(⍵↓⍺)}⍵⍳'←'}0⊃body
+         body←,⊂newName,body
+         oldName~←' '
+     :Else
+         (0⊃body)←newName,'←{'
+     :EndIf
+ :Else
+     (res header)←header{~'←'∊⍺:''⍺ ⋄ ((1+⍵)↑⍺)((1+⍵)↓⍺)}header⍳'←'
+     :If '('∊header
+         (header right)←header{(⍵↑⍺)(⍵↓⍺)}header⍳'('
+         header←{⍵⊂⍨' '≠⍵}header
+         :Select ⍬⍴⍴header
+         :Case 1       ⍝ Monadic fns
+             name←header
+             left←''
+         :Case 2        ⍝ Dyadic fns
+             (left name)←header
+         :Else
+             .          ⍝ ?!
+         :EndSelect
+     :Else
+         header←{⍵⊂⍨' '≠⍵}header
+         :Select ⍬⍴⍴header
+         :Case 1        ⍝ Niladic fns
+             name←header
+             left←right←''
+         :Case 2        ⍝ Monadic fns
+             (name right)←header
+             left←''
+         :Case 3        ⍝ Dyadic fns
+             (name right left)←header
+         :Else
+             .          ⍝ ?!
+         :EndSelect
+     :EndIf
+     name←newName
+     (0⊃body)←res,left,' ',name,' ',right,comment
+ :EndIf
+ :If ' '≠1↑0⍴rc←newParent.⎕FX⊃body
+     . ⍝ something went wrong
+ :EndIf
+ :If (0=#.⎕NC'acre')∧0=⎕SE.⎕NC'acre'
+     ⎕←'acre not found in the workspace'
+     oldParent.⎕EX oldName
+ :Else
+     (oldName newName)←{(⍕newParent),'.',⍵}¨oldName newName
+     :If 0<⎕SE.⎕NC'acre'
+         delFilanme←(↑⎕SE.UCMD'acre.getchangefilename ',newName),'.DEL'
+         :If ⎕NEXISTS delFilanme
+             ⎕NDELETE delFilanme
+         :EndIf
+         :If 0∊⍴rc←⎕SE.UCMD'acre.setchanged ',newName
+             ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
+         :EndIf
+         :If 0∊⍴rc←⎕SE.UCMD'acre.Erase ',oldName
+             ⎕←'acre was told about the deletion of a test fns but it was not interested.'
+         :EndIf
+     :Else
+         delFilanme←(↑#.acre.GetChangeFileName newName),'.DEL'
+         :If ⎕NEXISTS delFilanme
+             ⎕NDELETE delFilanme
+         :EndIf
+         :If 0∊⍴rc←#.acre.SetChanged newName
+             ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
+         :EndIf
+         :If 0∊⍴rc←#.acre.Erase oldName
+             ⎕←'acre was told about the deletion of a test fns but it was not interested.'
+         :EndIf
+     :EndIf
+     ⎕EX oldName
+     ⎕←'***Done'
+ :EndIf

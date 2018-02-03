@@ -1,0 +1,26 @@
+ R←Test_Misc_002(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;noOfOpenProjects
+⍝ Exercise the `Projects` command
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+
+ noOfOpenProjects←⊃⍴Exec'acre.Projects'
+ {}Exec'CreateProject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ →GoToTidyUp~0∊⍴#.AcreMessages
+ result←Exec'acre.Projects'
+ →GoToTidyUp 0∊⍴result
+ →GoToTidyUp 1≠(⊃⍴result)-noOfOpenProjects
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ {}F.RmDir projectPath ⋄ :EndTrap
+⍝Done

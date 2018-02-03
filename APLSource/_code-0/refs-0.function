@@ -1,6 +1,7 @@
  refs←{⍺←⊢
-     z←#.ac.MS←#.ac.allMessages'acre'⊣#.(an ut)←{⍵.(AN UT)}#.ac←#.acre._code
-     0 0⍴#.ac.keys''
+     ⎕AN≢'Phil':0 0⍴''
+     z←#.ac.MS←allMessages 1⊃'.'sl⊃⎕XSI⊣#.(an ut)←{⍵.(AN UT)}#.ac←⎕THIS
+     0 0⍴keys''
 ⍝ see buildWs
-⍝ Phil 2018-01-23 15.22
+⍝ Phil 2018-01-31 14.11
  }

@@ -5,7 +5,7 @@
      ⎕NEXISTS dat.folder:0⊣showMsg MS.HA
      dat.nspath←⊃prefSpace⊂nspath
      ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
-     dat.case←≢/cc case MS.GB
+     dat.case←≢/cc case MS.GB  ⍝ not Off
      dat.(config source code changes)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,,\MS.HL MS.EU
      dat.(codefile sourcereg)←dat.code∘,¨MS.EV MS.HF
@@ -14,7 +14,7 @@
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.CaseCode←dat.case⊃MS.GB MS.GA
      z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
-     z←'.acre/'⎕NPUT dat.folder,MS.FM
+     z←('.',MS.AA,'/')⎕NPUT dat.folder,MS.FM ⍝ git specific -
      z←'dat'⎕NS UT.lc cfg
      fqn←(⊢(/⍨)0<⎕NC)(⊂dat.nspath),space UT.li validAPLType''
      fqn/⍨←~(sp¨∊⊢(/⍨)UT.ns<9<⎕NC)fqn

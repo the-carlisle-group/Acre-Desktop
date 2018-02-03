@@ -1,0 +1,9 @@
+ r←∆GetAcreHomeFolder;bool
+ r←⎕SE.SALT.Settings'cmddir'
+ r←(⊂'')~⍨1↓¨{⍵⊂⍨⍵∊';,∘'}';',r
+ :If 1=+/bool←⎕NEXISTS¨r,¨⊂'\acre.dws'
+     r←(bool⍳1)⊃r
+ :Else
+     'Could not work out acre''s home folder'⎕SIGNAL 11
+ :EndIf
+⍝Done

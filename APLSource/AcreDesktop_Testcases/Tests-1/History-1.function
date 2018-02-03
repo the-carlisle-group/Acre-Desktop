@@ -1,0 +1,6 @@
+ History
+⍝ * 1.1.0 from 2018-01-26
+⍝   * New test cases added covering acre 4.0.5
+⍝   * Bug fix: APLTreeUtils was not found.
+⍝ * 1.0.0 from 2018-01-20
+⍝   * Fits to version 4.0.3 of acre.

@@ -7,6 +7,9 @@
      path date file type/⍨←∊/cc type MS.AZ
 
      name←'/.'decodeCaps file
+     dup←(⊢∊⊢(/⍨)⍳⍨≠⍳∘≢)name
+     z←showMsg MS.DD showList,/((dat.nspath,'.')∘,¨dup/name),'=',⍪dup/type
+
 ⍝     raw←'/.'stripCode file
 ⍝     diff←raw≢¨name
 
@@ -29,5 +32,5 @@
 ⍝   changed or deleted since previous sync
 ⍝   add to code- or change-files elsewhere
 ⍝ see putItem
-⍝ Phil Last 2018-01-14 17.22
+⍝ Phil 2018-02-02 22.28
  }

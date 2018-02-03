@@ -19,8 +19,13 @@
      (x/res)←{1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.charstring
      (x/res)←fixFn/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc∊ns.(function operator)
      (x/res)←(↑x∘/¨spc val)∘fixClss 1/⍨+/x←nc∊ns.(class interface)
-     nameClass fqn ⍝ ignoring res????
+
+     z←showMsg MS.FX showList fqn/⍨~res  ⍝ not fixed
+     fqn typ val/⍨←⊂res
+     chg←typ≢¨type←nameClass fqn
+     z←showMsg MS.AD showList chg/,/fqn,' ',typ,'>',⍪type ⍝ type change
+     fqn type val
 ⍝ ⍵ fqn type value
-⍝ ← fixed × ⎕NC
-⍝ Phil Last 2018-01-14 17.22
+⍝ ← ⍵ fixed
+⍝ Phil 2018-02-02 18.48
  }

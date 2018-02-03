@@ -1,0 +1,26 @@
+ R←Test_CreateProject_001(stopFlag batchFlag);⎕TRAP;path;rc;en;more;projectPath;ref;projectName;result;list
+⍝ Create a project with a specified namespace, check that it is open as well as the number of files in `APLSource/`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ :Trap (~stopFlag)/0
+     result←Exec'acre.Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
+ →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
+ →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Hello-1.function')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

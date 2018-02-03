@@ -1,5 +1,16 @@
- Erase←{dat←⍺
-     fqn typ val←getValue ⍵
+ Erase←{dat←⍺ ⋄ nms←⍵
+
+⍝⍝ items and nss spec'd by name
+⍝     its←⍵~nss←⍵/⍨UT.ns ⍵
+⍝     nms←∪its,⊃,/{UT.na ⍵,'.*'}/0,⍪nss
+⍝⍝ items and anything spec'd by wildcard
+⍝     its←⍵~wcd←⍵/⍨'*'∊¨⍵
+⍝     nms←∪its,⊃,/⊢∘UT.na/0,wcd
+
+     fqn typ val←getValue nms
+     null fqn:0/showMsg MS.DH
      (⊢⊣⎕EX)dat putChanged fqn val typ MS.EX
+⍝ ⍵ items
+⍝ ← ⍵ of which erased
 ⍝ Phil Last 2017-12-06 00.48
  }

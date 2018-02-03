@@ -1,6 +1,5 @@
  optionFields←{⍺←⊢
      {
-         ⍵.debug←MS.GA ⍝ 'On' but unused
          ⍵.messages←'' ⍝ message output control
          ⍵.result←''   ⍝ name for latest result
          ⍵.rows←⍬      ⍝ result output rows

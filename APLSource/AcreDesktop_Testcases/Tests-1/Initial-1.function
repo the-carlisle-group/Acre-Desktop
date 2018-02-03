@@ -1,0 +1,9 @@
+ Initial;rc;en;more
+ ⎕IO←1 ⋄ ⎕ML←1
+ EstablishRefs ⍬
+ ∆PATH←F.GetTempPath,'AcreDesktop_Testcases'
+ (rc en more)←F.RmDir ∆PATH
+ Assert 0=rc  ⍝ If this fails then somebody might look into the directory, or a file inside is tied etc.
+ Assert'CREATE!'F.CheckPath ∆PATH
+ Exec←⎕SE.UCMD
+⍝Done
