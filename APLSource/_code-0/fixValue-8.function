@@ -1,4 +1,4 @@
- fixValue←{null ⍵:⍬
+ fixValue←{null ⍵:'' '' ''
      fixNs←(⍎''⎕NS⍨⊢)eu
      fixSrc←{0::0 ⋄ 1⊣⍺.⎕FIX ⍵}
      fixVar←{0::0 ⋄ n s v←⍵ ⋄ 1⊣n s.{⍎⍺,'←⍵'}⍺⍺ v}
