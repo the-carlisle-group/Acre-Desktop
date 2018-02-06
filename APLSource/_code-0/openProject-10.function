@@ -21,6 +21,7 @@
      space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
      z←showMsg MS.EZ,dat.nspath
      z←⎕MKDIR/3,⍪dat.(changes source)/⍨~cde src
+     z←MS.AB∘⎕NPUT if(~⎕NEXISTS)dat.folder,MS.FM  ⍝ git specific -
      fqn type value←dat{
          ⍵=0:'' ''
          ⍵=1:⍺ putCode 3⍴⍺ getSource''⊣showMsg MS.EP,MS.BC,MS.BD  ⍝ once

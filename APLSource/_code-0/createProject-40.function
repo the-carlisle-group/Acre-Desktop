@@ -14,7 +14,7 @@
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.CaseCode←dat.case⊃MS.GB MS.GA
      z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
-     z←('.',MS.AA,'/')⎕NPUT dat.folder,MS.FM ⍝ git specific -
+     z←MS.AB ⎕NPUT dat.folder,MS.FM ⍝ git specific -
      z←'dat'⎕NS UT.lc cfg
      fqn←(⊢(/⍨)0<⎕NC)(⊂dat.nspath),space UT.li validAPLType''
      fqn/⍨←~(sp¨∊⊢(/⍨)UT.ns<9<⎕NC)fqn

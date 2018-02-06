@@ -9,6 +9,7 @@
 
      ⊢{ ⍝ return ns
          ⍵.AA←nms.name
+         ⍵.AB←'.',MS.AA,'/'
          ⍵.AD←'Type changed'
 
          ⍵.AE←'.array'
@@ -22,7 +23,7 @@
          ⍵.AM←'.charmat'
          ⍵.AN←'.charstring'
          ⍵.AZ←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AK MS.AM MS.AN
-
+         ⍵.AU←nms.author
 
          ⍵.BA←'Source '
          ⍵.BC←'Code '

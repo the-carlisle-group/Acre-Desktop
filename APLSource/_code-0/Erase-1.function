@@ -9,8 +9,14 @@
 
      fqn typ val←getValue nms
      null fqn:0/showMsg MS.DH
-     (⊢⊣⎕EX)dat putChanged fqn val typ MS.EX
+     new←~old←⎕NEXISTS¨fns←getChangeFilenames fqn
+     res←{⍺⊣⎕FUNTIE(((-≢MS.HN)↓⍵),MS.EX)⎕FRENAME ⍵ ⎕FTIE 0}old⌿fqn,⍪fns
+     ∧/old:res
+     fqn val typ/⍨←⊂new
+     res,(⊢⊣⎕EX)dat putChanged fqn val typ MS.EX
+
 ⍝ ⍵ items
 ⍝ ← ⍵ of which erased
+⍝   if .change exists just rename to .delete - else put and rename
 ⍝ Phil Last 2017-12-06 00.48
  }
