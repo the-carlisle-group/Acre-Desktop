@@ -1,0 +1,3 @@
+ r←∆NoAcreTests
+        ⍝ Constant; used as result of a test function
+ r←¯30

@@ -1,0 +1,7 @@
+ Cleanup
+ :Trap 0 ⋄ F.RmDir ∆PATH ⋄ :EndTrap
+ {}Exec'acre.Projects [ messages←''on'' ] '
+ ⎕EX¨'AF'
+ ⎕EX'∆PATH'
+ ⎕EX'Exec'
+⍝Done

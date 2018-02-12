@@ -1,0 +1,45 @@
+ R←Test_Config_StartUp_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list
+⍝ Create a project and check whether `acreconfig.txt[StartUp]` is honored.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ :Trap (~stopFlag)/0
+     result←Exec'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ #.⎕EX projectName
+ #.⎕SHADOW'Temp'
+ 'Temp'#.⎕NS''
+ #.Temp.Works←0
+
+ buff←''
+ buff,←⊂':Namespace'
+ buff,←⊂'   CaseCode←''On'''
+ buff,←⊂'   Load←'''''
+ buff,←⊂'   Open←'''''
+ buff,←⊂'   ProjectSpace←'''''
+ buff,←⊂'   StartUp←''#.Temp.Works←1'''
+ buff,←⊂':EndNamespace'
+ A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
+
+ :Trap (~stopFlag)/0
+     result←Exec'acre.OpenProject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp 1≠#.Temp.Works
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ {}Exec'acre.Projects [ messages←''on'' ]'

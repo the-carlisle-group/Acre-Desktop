@@ -1,9 +1,10 @@
  openLoad←{dat←⍺
-     pre←{{(':'∘∊∨'/'=⊃)⍺:⍺ ⍵
-             (dat.folder,'../',⍺)⍵
-         }/↑2↑¨~∘∊⍨⊂if≡¨⊂if≡⍵}
-     z←LoadProject/0,⍪pre dat.load
-     z,OpenProject/0,⍪pre dat.open
+     pref←{(':'∘∊∨'/\'∊⍨⊃)⍺:⍺ ⍵ ⍝ absolute path
+         (dat.folder,'../',⍺)⍵  ⍝ relative path
+     }
+     mix←{↑2↑¨~∘∊⍨⊂if≡¨⊂if≡⍵}
+     z←LoadProject/(⊂MS.FY),⍪pref/mix dat.load
+     z,OpenProject/(⊂MS.FW),⍪pref/mix dat.open
 ⍝ dyadic calls to OpenProject and LoadProject tell them NOT to run Startup
 ⍝ Load and Open dependent projects
 ⍝ this is potentially endlessly recursive

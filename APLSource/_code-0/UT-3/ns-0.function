@@ -3,7 +3,7 @@
                  0::1            ⍝ ok if error!
                  {0}#.⎕SRC #.⍎⍵  ⍝ wrong if not
              }¨⍵/⍺
-         }9.1=#.⎕NC ⍵}⊂⍣(1=≡⍵)⊢⍵
+         }9.1=#.⎕NC ⍵}⊂if≡⍵
 ⍝ non scripted
 ⍝ ⍵ nested list
 ⍝ ← boolean, which of (⍵) are names of non-scripted (ordinary) nss

@@ -9,10 +9,13 @@
      tie←del ⎕FTIE 0
      val←currentChange tie
      tie←⎕FUNTIE chg ⎕FRENAME tie
-     type←fixValue⊢ftv←,∘⊂¨fqn type val
-     fqn⊣dat putSource ftv
+     null⊢fqn type val←fixValue fqn type val:''
+     fqn⊣dat putSource fqn type val
 ⍝ Rename ONE ONLY .delete to .change
 ⍝ Replace in source
 ⍝ Refix in ws
+
+⍝ can we do this for multiples and for spaces or wildcards?
+
 ⍝ Phil Last 2018-01-14 18.38
  }

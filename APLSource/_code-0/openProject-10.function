@@ -1,35 +1,38 @@
- openProject←{⍺←⊢ ⋄ top←1≡⍺ 1 ⍝ monad from UCMD - dyad is subsid
-     what proj←⍵
-     which←⊃MS.ER MS.EQ/⍨open load←MS.FW MS.FY∊what''
-     folder target←2↑proj,⊂''
-     null⊢folder←{getFolder'/'}if null⊢folder:0⊣showMsg MS.DM,SX.⍎1⊃⎕SI
+ openProject←{⍺←⊢ ⋄ top←1≡⍺ 1 ⍝ monad from sharedMethod - dyad is subsid
+     2<≢1⊃what proj←⍵:0⊣showMsg MS.DM,SX.⍎1⊃⎕SI
+     which←⊃MS.ER MS.EQ/⍨open load←MS.FW MS.FY∊⊂what
+     null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:0
      dat.changed←''⊣dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     dat.folder←fp folder,'/'
+     dat.folder←fp src,'/'
      dat.(config source code changes)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,,\MS.HL MS.EU
      ~∨/src cde cnf←⎕NEXISTS¨dat.(source changes config):{
          0}showMsg MS.HB,' ',¯50 UT.tm dat.folder
      dat.(codefile sourcereg)←dat.code∘,¨MS.EV MS.HF
      z←'dat'⎕NS readConfig dat.config
-     nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null target
+     nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}showMsg MS.DC
-     ~null showMsg dat∘openConflict⍣open⊢'':0
-     z←dat openLoad'' ⍝ subsids
+     ~null showMsg dat∘openConflict⍣open⊢'':0 ⍝ can't open below a project
+     z←dat openLoad'' ⍝ open or load subsids
+     ~null showMsg dat∘openConflict⍣open⊢'':{
+         0}showMsg dat.config MS.CB ⍝ again in case subsids above
      z←showMsg(which,MS.EY),dat.folder
      space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
      z←showMsg MS.EZ,dat.nspath
      z←⎕MKDIR/3,⍪dat.(changes source)/⍨~cde src
+     z←MS.AB∘⎕NPUT if(~⎕NEXISTS)dat.folder,MS.FM  ⍝ git specific -
      fqn type value←dat{
          ⍵=0:'' ''
          ⍵=1:⍺ putCode 3⍴⍺ getSource''⊣showMsg MS.EP,MS.BC,MS.BD  ⍝ once
          ⍵=2:⍺ putSource ⍺ getAllCode''⊣showMsg MS.EP,MS.BA,MS.BD ⍝ how?
          ⍵=3:⍺ getAllCode''                                       ⍝ normal
      }2⊥cde src
-     actual←fixValue fqn type value
-     z←{0::0 ⋄ ⊢showMsg⍎⍵}if top⊢dat.startup
+     fqn type value←fixValue fqn type value
+     z←space∘{0::⊢showMsg UT.bx MS.DN,MS.DP,⍵
+         ⊢showMsg⍕⍺.⍎⍵}if(open∧top>null)dat.startup
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS
 ⍝ ⍵ ('Open'|'Load') folder
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
-⍝ Phil 2018-01-23 15.35
+⍝ Phil 2018-01-28 00.15
  }

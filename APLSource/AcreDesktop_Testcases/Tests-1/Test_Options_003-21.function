@@ -1,0 +1,33 @@
+ R←Test_Options_003(stopFlag batchFlag);⎕TRAP;result;list;projectName;projectPath;ref;noOfOpenProjects
+⍝ Test setting "result"
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+ #.⎕SHADOW'AcreResult'
+ 'AcreResult'#.⎕NS''
+
+ noOfOpenProjects←⊃⍴Exec'acre.Projects [ messages←''#.AcreMessages'']'
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ :Trap (~stopFlag)/0
+     {}Exec'acre.Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ list←Exec'acre.Projects [ messages←''#.AcreMessages'' ⋄ result←''#.AcreResult'' ]'
+ →PassesIf 0∊⍴#.AcreMessages            ⍝ Nothing to tell
+ →PassesIf(⊃⍴#.AcreResult)=1+noOfOpenProjects
+
+ R←∆OK
+
+∆TidyUp:
+ {}Exec'acre.Projects [ messages←'''' ⋄ result←'''' ]'
+ F.RmDir projectPath

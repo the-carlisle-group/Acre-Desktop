@@ -3,5 +3,5 @@
     Load←''
     Open←''
     ProjectSpace←'#.acre'
-    StartUp←'#.acre._code.refs 0'
+    StartUp←'_code.refs 0'
 :EndNamespace

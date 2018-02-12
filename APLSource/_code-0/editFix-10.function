@@ -20,15 +20,15 @@
      0=dat←whichProject fqn:{}{
          ⍵}showMsg(~'['∊fqn)/UT.bx MS.DI,' "',fqn,'".'
      (('⎕'∊fqn)≥(⎕NC⊂fqn)∊0,validAPLType''):
-     first:{nv←fqn(,⊂'.'UT.nn fqn)if null⊢nv←⊃¨1 0 1/getValue⊂fqn
+     first:{nv←fqn(,⊂'.'UT.nn fqn)if null⊃¨1 0 1/getValue,⊂fqn
          z←SV.itemvalue editStore nv
          z←⎕NQ'⎕SE'enum value space name new}''
      (('⎕'∊z)∨0≥nc←#.⎕NC⊂z←fqn):                  ⍝ doesn't exist or bad name
      oldval←SV.itemvalue editStore fqn
-     (oldval≡newval←⊃2⊃getValue⊂fqn):               ⍝ unchanged
+     (oldval≡newval←⊃2⊃getValue,⊂fqn):               ⍝ unchanged
      type←⊃nameClass fqn
-     z←⍴dat∘putChanged⍣(~(⊂fqn)∊dat.changed)⊂¨fqn oldval type
-     z←showMsg MS.DK,⊃dat putChanged⊂¨fqn newval type
+     z←⍴dat∘putChanged⍣(~(⊂fqn)∊dat.changed),∘⊂¨fqn oldval type
+     z←showMsg MS.DK,⊃dat putChanged,∘⊂¨fqn newval type
 ⍝ ⍺ dat
 ⍝ ⍵ 'Start' or 'Close' or callback argument
 ⍝ ← 0 for 'Start' and 'Close' - else none

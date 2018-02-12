@@ -15,7 +15,7 @@
      }
      fqn val←↓⍉↑~∘∊⍨doit/fqn,⍪fil
      typ←nameClass fqn
-     done←fixValue fqn typ val
+     null⊢fqn typ val←fixValue fqn typ val:''
      fqn⊣dat putSource fqn typ val
 ⍝ ⍺ dat
 ⍝ ⍵ fqns

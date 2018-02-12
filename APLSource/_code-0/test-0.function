@@ -1,0 +1,7 @@
+ test←{⍺←⊢
+     mrr←⎕SE.acre._code.OPT.(messages result rows)
+     z←##.AcreDesktop_Testcases.Tester.EstablishHelpersIn ⍬
+     z←##.AcreDesktop_Testcases.Tests.Run ⍝ Debug 0
+     ⎕SE.acre._code.OPT.(messages result rows)←mrr
+⍝ Phil 2018-01-31 16.02
+ }

@@ -1,0 +1,3 @@
+ {r}←EstablishRefs dummy
+ r←⍬
+ (A F)←##.(APLTreeUtils FilesAndDirs)

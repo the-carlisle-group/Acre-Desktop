@@ -1,12 +1,51 @@
-Acre 4.0.5 2018-01-25
+Acre 4.0.7 2018-??-??
+
+Release Notes
+
+Acre DeskTop           
+
+]Erase used to create a new change file and rename to ,delete. Or add a new
+component to an existing .change file and rename. It was blind to its prior 
+existence making the code easier to implement. 
+
+But the outcome was a new redundant component if the file did exist. Now 
+does as before if new but merely renames an old.
+
+
+
+
+
+
+---------------------------
+Acre 4.0.6 2018-02-02
 
 Release Notes
 
 Acre DeskTop           
                      
-First release under GitHub
+Monitoring and warning of unfixed items in OpenProject and LoadProject.
+Monitoring and warning of multiple files due to type change.
 
-⍝ Phil 2018-01-25 14.41
+Single-step build function (..._code.buildWs'') must be run from open
+development project, Closes project(s), cleans up, saves workspace
+(acre.dws), command file (acre.dyalog) and releaseNotes.txt overwriting
+those in installation folder.
+
+Various bug fixes.
+
+Re-instated command
+    ]SetChanged item(s)
+
+-------------------------
+Acre 4.0.5 2018-01-26
+
+Release Notes
+
+Acre DeskTop           
+                     
+Second release under GitHub
+
+⍝ Phil 2018-02-01 17.08
 ---------------------
 Acre 4.0.4 ⍝ Phil 2018-01-23 4.0.2
 

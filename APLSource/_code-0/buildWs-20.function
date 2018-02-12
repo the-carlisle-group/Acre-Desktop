@@ -1,12 +1,15 @@
  buildWs←{⍺←⊢
+     ms←MS
+     ac←⎕SE UT.fr'.'UT.nn sp⊃⎕XSI                           ⍝ ⎕SE equiv
      z←⎕EX(,(/⍨)(≢/⊢,⍕∘⍎¨))⍪## UT.li 9                      ⍝ anon refs
-     wsid←⎕SE.acre._code.SV.workspace
-     z←⎕SE.acre._code.dataSpaces⍣2⊢''                       ⍝ close all
-     z←#.⎕EX~∘'acre' ''~∘' '¨↓#.⎕NL⍳11                      ⍝ clean
+     wsid←ac.SV.workspace
+     ac←⍴ac.dataSpaces⍣2⊢''                                 ⍝ close all
+     z←#.⎕EX~∘ms.AA''~∘' '¨↓#.⎕NL⍳11                        ⍝ clean
+     z←##.⎕EX ms.FZ  ⍝ testcases is sibling to _code
      #.⎕LX←((⊃⎕XSI)UT.re(⊃⎕SI)'Install'),2⍴''''             ⍝ set ⎕lx
-     #.⎕WSID←wsid                                           ⍝ set wsid
-     ⍪#.⎕WSID')reset' ')save'#.⎕LX                          ⍝ prompt
+     r←0 ⎕SAVE⊢#.⎕WSID←wsid                                 ⍝ set wsid
+     #.(⍎⎕LX)
 ⍝ from within dev project, close self using running ⎕SE clone
 ⍝ clean ws - see refs
-⍝ phil 2017-02-15 12.51
+⍝ Phil 2018-01-31 16.02
  }

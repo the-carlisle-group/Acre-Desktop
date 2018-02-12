@@ -1,10 +1,7 @@
- f00←{⍺←⊢
-     z←1↓,1⌽')','⋄','(',⎕FMT↑⍵
-     ((z='[')/z)←⊂'↑1/¨('
-     z←⊃,/z
-     ((z=']')/z)←')'
-     ((z='⋄')/z)←⊂')('
-     z←⊃,/z
-     ⍎z
-⍝ Phil Last 2018-01-07 17.43
+ f00←{⍺←⊢ ⋄ m←⍺⊣0
+     null⊢fqn←(⊢(/⍨)m≤⎕NC)prefSpace ⍵:fqn
+     fqn/¨⍨←⊂(ss≥9<⎕NC)fqn
+
+⍝ ⍺ 0/1 - 0 allow missing - 1 only extant
+⍝ Phil 2018-01-31 00.20
  }

@@ -2,6 +2,8 @@
      start←dat.loadtime
      z←deleteFolder dat.code
      was OPT.messages←OPT.messages MS.GB
+⍝ to suppress config: Load, Open and Startup
+⍝     dat←MS.DA openProject MS.FW(dat.folder dat.nspath)
      dat←openProject MS.FW(dat.folder dat.nspath)
      z←⍴dataSpaces dat ⍝ ← open ↑ left closed
      dat.loadtime←start

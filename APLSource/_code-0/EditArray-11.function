@@ -1,9 +1,12 @@
  EditArray←{⍺←⊢
+
+     DO NOT USE
+
      mon←1≡⍺ 1
-     2≠#.⎕NC fqn←⊃⍵:''
+     2≠#.⎕NC fqn←⊃⊂if≡⍵:''
      value←⍎fqn ⍝ original
-     ed←#.⎕NS''
      fqn type val←⊃¨getValue fqn
+     ed←(#.⎕NS'').{⍎⍵⊣⍵ ⎕NS''}1↓type
      name←'.'UT.nn fqn
      z←name ed.{⍎⍺,'←⍵'}val
      null ed.⎕ED name:''
@@ -11,7 +14,8 @@
      type←fixValue fqn type val
      value≡⍎fqn:''
      0=⊃dat←⍺⊣whichProject if mon⊢fqn:MS.DL,fqn
-     MS.DK,⊃dat putChanged fqn type val
+     r←⊃dat putChanged fqn val type
+     r⊣showMsg MS.DK,r
 ⍝
 ⍝ Phil Last 2018-01-17 14.32
  }

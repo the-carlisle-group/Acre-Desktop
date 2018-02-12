@@ -1,0 +1,26 @@
+ R←Test_Options_001(stopFlag batchFlag);⎕TRAP;result;list
+⍝ Test setting "messages"
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+ #.⎕SHADOW'AcreFunctionResult'
+ 'AcreFunctionResult'#.⎕NS''
+ #.AcreFunctionResult.Buffer←''
+
+ {}Exec'acre.Projects [ messages←''#.AcreMessages'' ]'
+ →PassesIf 0∊⍴#.AcreMessages            ⍝ Nothing to tell
+ #.AcreMessages←''
+
+ {}Exec'acre.Stats [ messages←''#.AcreMessages'' ]'
+ →PassesIf~0∊⍴#.AcreMessages            ⍝ Should be syntax hint (project is missing)
+
+ #.AcreFunctionResult.⎕FX'Collect←{' 'Buffer,←⊂⍵' '⍬' '}'
+ {}Exec'acre.Projects [ messages←''#.AcreFunctionResult.Collect'' ]'
+ →PassesIf 0∊⍴#.AcreFunctionResult.Buffer
+ {}Exec'acre.Stats [ messages←''#.AcreFunctionResult.Collect'' ]'
+ →PassesIf~0∊⍴#.AcreFunctionResult.Buffer
+
+ R←∆OK

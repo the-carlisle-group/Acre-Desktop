@@ -1,8 +1,10 @@
  sharedMethod←{
      arg←⍵
 ⍝    ↓↓↓
-     ⍺⍺ arg
+     MS.DM≡res←⍺⍺ arg:0⍴showMsg MS.DM,SX.⍎⍺
+     res
 
-⍝ nothing special - they have to do it all themselves
+⍝ nothing special - they have to do it all themselves except
+⍝ returning MS.DM displays syntax help for command.
 ⍝ Phil 2018-01-25 08.05
  }

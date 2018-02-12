@@ -1,0 +1,61 @@
+ R←Test_Config_Load_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;list;projectName2;projectPath2;ref2;noOfProjects
+⍝ Create a project and check whether `acreconfig.txt[Load]` is honored.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ noOfProjects←⊃⍴Exec'Projects'
+ projectName←⊃⎕SI
+ projectPath←F.EnforceSlash ∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+
+ :Trap (~stopFlag)/0
+     {}Exec'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ projectName2←(⊃⎕SI),'_2'
+ projectPath2←F.EnforceSlash ∆PATH,'/',projectName2
+ #.⎕SHADOW projectName2
+ ref2←⍎projectName2 #.⎕NS''
+ ref2.⎕FX'r←Hello' 'r←''Universe'''
+
+ :Trap (~stopFlag)/0
+     {}Exec'acre.Createproject ',projectPath2,' #.',projectName2,' [ messages←''off'' ]'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ #.⎕EX¨projectName projectName2
+ #.⎕SHADOW'Temp'
+ buff←''
+ buff,←⊂':Namespace'
+ buff,←⊂'   Load←(⊂''',projectPath2,''' ''#.Temp'')'
+ buff,←⊂'   ProjectSpace←''#.',projectName,''''
+ buff,←⊂':EndNamespace'
+ A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
+
+ :Trap (~stopFlag)/0
+     list←Exec'acre.OpenProject ',projectPath,' [ messages←''#.AcreMessages'' ]'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp 9=#.⎕NC projectName2
+ →GoToTidyUp 0=#.⎕NC'Temp'
+ →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
+ →GoToTidyUp'Universe'≢#.Temp.Hello
+ →GoToTidyUp 6≠⍴#.AcreMessages
+ →GoToTidyUp 1≠(⊃⍴Exec'Projects')-noOfProjects
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
+ :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
+ {}Exec'acre.projects [ messages←''on'' ]'

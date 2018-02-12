@@ -3,7 +3,7 @@
 ⍝ logical vector reduction
 ⍝ In the following list of logical vector reductions the
 ⍝ comment describes ⍵ when 1<⍴⍵ and the result is true.
-⍝ The boolean digits are the values, for each ⍺⍺ of ,∘.⍺⍺⍨0 1
+⍝ The boolean digits are the values, for each ⍺⍺/ of ∘.⍺⍺⍨0 1
 ⍝ The two D:fns and two dervs are the missing logicals - (0 a c f)
 
      0 0 0 0 ⋄ {0}/⍵  ⍝ never

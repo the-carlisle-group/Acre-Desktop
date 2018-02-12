@@ -1,0 +1,42 @@
+ R←Test_Config_CaseCode_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list
+⍝ Create a project and check whether `acreconfig.txt[CaseCode]` is honored   (not active yet)
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Inactive
+ :Return
+
+ R←∆Failed
+
+ .  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝    Do we really need this? I don't think so!
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+
+ :Trap (~stopFlag)/0
+     result←Exec'acre.Createproject ',projectPath,' # [ messages←''#.AcreMessages'' ]'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ buff←;;
+ buff,←⊂':Namespace'
+ buff,←⊂'   CaseCode←''On'''
+ buff,←⊂':EndNamespace'
+ A.WriteUtf8File(projectPath,'acreconfig.txt')buff
+
+ :Trap (~stopFlag)/0
+     list←Exec'acre.Projects'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ .
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

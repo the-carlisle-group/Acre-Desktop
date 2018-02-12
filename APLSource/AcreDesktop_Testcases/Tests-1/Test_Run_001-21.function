@@ -1,0 +1,45 @@
+ R←Test_Run_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref
+⍝ Exercise the `run` function on "nameclass".
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ ref.⎕FX'Hello2←{''Universe''}'
+ ref.vtv←'APL' 'Python' 'Ruby'
+ ref.charmat←↑'APL' 'Python' 'Ruby'
+ ref.charvector←'APL is great'
+ ref.int←1 2 3
+ ref.mat←?2 3⍴1200
+ ref.nested←⊂⊂⊂1 2 3
+ ref.empty1←⍬
+ ref.empty2←''
+ 'container'ref.⎕NS''
+ ref.⎕FIX,¨':Namespace Foo' '∇r←Hello3' 'r←''All the rest''' '∇' ':EndNamespace'
+ ref.⎕FIX':Class Goo' '∇r←Hello4' ':Access Public Shared' 'r←''All the rest''' '∇' ':EndClass'
+ ref.⎕FIX':Interface Boo' '∇r←Hello5' '∇' ':EndInterface'
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+ {}Exec'Projects [ messages←''#.AcreMessages'' ]'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
+
+ →PassesIf'.function'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
+ →PassesIf'.script'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'
+ →PassesIf'.class'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Goo'
+ →PassesIf'.interface'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Boo'
+ →PassesIf'.charlist'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.vtv'
+ →PassesIf'.charmat'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.charmat'
+ →PassesIf'.charstring'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.charvector'
+ →PassesIf'.array'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.int'
+ →PassesIf'.array'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.mat'
+ →PassesIf'.array'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.nested'
+ →PassesIf'.array'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.empty1'
+ →PassesIf'.charstring'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.empty2'
+ →PassesIf'.*'≡⊃'nameclass'⎕SE.acre.run'Certainly_unknown'
+ →PassesIf'.script' '.class' '.interface'≡'nameclass'⎕SE.acre.run(⊂'#.',projectName),¨'.Foo' '.Goo' '.Boo'
+ →PassesIf 0∊⍴⊃'nameclass'⎕SE.acre.run'#.',projectName,'.container'
+
+ R←∆OK

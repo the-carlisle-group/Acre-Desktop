@@ -4,7 +4,7 @@
      path←dat getSourceFilenames fqn
      (b/path)←{⍺ UT.re MS.AL ⍵}⌿↑path type/¨⍨⊂b←(1∊MS.AL⍷⊢)¨path
      tree←⎕MKDIR/3,⍪∪⊃∘⎕NPARTS¨path ⍝ ensure folders
-     z←value{⍺ MS.HI ⎕NPUT ⍵ 1}¨path
+     z←(,∘⊂if≡¨value){(,⍺)MS.HI ⎕NPUT ⍵ 1}¨path
      name←(1+≢src)↓¨fqn
      file←(≢tgt)↓¨(-≢¨type)↓¨path
      tree←fileTree tgt   ⍝ Path Size Date
