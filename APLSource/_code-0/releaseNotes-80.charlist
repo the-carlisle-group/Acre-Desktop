@@ -1,22 +1,3 @@
-Acre 4.0.7 2018-??-??
-
-Release Notes
-
-Acre DeskTop           
-
-]Erase used to create a new change file and rename to ,delete. Or add a new
-component to an existing .change file and rename. It was blind to its prior 
-existence making the code easier to implement. 
-
-But the outcome was a new redundant component if the file did exist. Now 
-does as before if new but merely renames an old.
-
-
-
-
-
-
----------------------------
 Acre 4.0.6 2018-02-02
 
 Release Notes
