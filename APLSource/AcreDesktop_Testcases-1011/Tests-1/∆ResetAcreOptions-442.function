@@ -1,0 +1,2 @@
+ ∆ResetAcreOptions
+ {}⎕SE.UCMD'acre.Projects [ messages←''on'' ⋄ result←'''' ⋄ row←⍬ ]'

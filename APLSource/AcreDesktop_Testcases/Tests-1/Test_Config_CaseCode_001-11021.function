@@ -17,7 +17,7 @@
  #.AcreMessages←''
 
  :Trap (~stopFlag)/0
-     result←Exec'acre.Createproject ',projectPath,' # [ messages←''#.AcreMessages'' ]'
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' # [ messages←''#.AcreMessages'' ]'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -29,7 +29,7 @@
  A.WriteUtf8File(projectPath,'acreconfig.txt')buff
 
  :Trap (~stopFlag)/0
-     list←Exec'acre.Projects'
+     list←⎕SE.UCMD'acre.Projects'
  :Else
      →GoToTidyUp 1
  :EndTrap

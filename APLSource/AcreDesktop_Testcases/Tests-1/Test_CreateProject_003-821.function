@@ -9,10 +9,10 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FIX':Namespace Foo' '∇r←Hello' 'r←''World''' '∇' ':EndNamespace'
- noOf←⊃⍴Exec'acre.Projects'
+ noOf←⊃⍴⎕SE.UCMD'acre.Projects'
 
  :Trap (~stopFlag)/0
-     result←Exec'acre.Createproject ',projectPath,' #.',projectName
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -26,4 +26,3 @@
 
 ∆TidyUp:
  F.RmDir projectPath
- {}Exec'acre.Projects [ messages←''on'' ]'

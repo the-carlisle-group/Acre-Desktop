@@ -1,7 +1,6 @@
  Cleanup
  :Trap 0 ⋄ F.RmDir ∆PATH ⋄ :EndTrap
- {}Exec'acre.Projects [ messages←''on'' ] '
+ ∆ResetAcreOptions
  ⎕EX¨'AF'
  ⎕EX'∆PATH'
- ⎕EX'Exec'
 ⍝Done

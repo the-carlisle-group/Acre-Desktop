@@ -1,0 +1,6 @@
+ GetTempFilename←{
+ ⍝ Returns the name of an (unused) temp file with the extension ⍵.
+     fn←F.GetTempFilename''
+     _←F.DeleteFile fn
+     (¯3↓fn),⍵
+ }

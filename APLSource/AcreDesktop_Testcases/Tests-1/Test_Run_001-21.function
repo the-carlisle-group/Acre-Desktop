@@ -24,7 +24,7 @@
  ref.⎕FIX':Interface Boo' '∇r←Hello5' '∇' ':EndInterface'
  #.⎕SHADOW'AcreMessages'
  #.AcreMessages←''
- {}Exec'Projects [ messages←''#.AcreMessages'' ]'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
+ {}⎕SE.UCMD'Projects [ messages←''#.AcreMessages'' ]'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
 
  →PassesIf'.function'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
  →PassesIf'.script'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'

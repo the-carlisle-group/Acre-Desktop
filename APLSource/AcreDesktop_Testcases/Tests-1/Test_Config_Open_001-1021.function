@@ -4,7 +4,7 @@
 
  R←∆Failed
 
- noOfProjects←⊃⍴Exec'Projects'
+ noOfProjects←⊃⍴⎕SE.UCMD'Projects'
  projectName←⊃⎕SI
  projectPath←F.EnforceSlash ∆PATH,'/',projectName
  #.⎕SHADOW projectName
@@ -14,7 +14,7 @@
  #.AcreMessages←''
 
  :Trap (~stopFlag)/0
-     {}Exec'acre.Createproject "',projectPath,'" #.',projectName,' [ messages←''off'' ]'
+     {}⎕SE.UCMD'acre.Createproject "',projectPath,'" #.',projectName,' [ messages←''off'' ]'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -27,7 +27,7 @@
  ref2.⎕FX'r←Hello' 'r←''Universe'''
 
  :Trap (~stopFlag)/0
-     {}Exec'acre.Createproject "',projectPath2,'" #.',projectName2,' [ messages←''off'' ]'
+     {}⎕SE.UCMD'acre.Createproject "',projectPath2,'" #.',projectName2,' [ messages←''off'' ]'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -43,7 +43,7 @@
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
 
  :Trap (~stopFlag)/0
-     list←Exec'acre.OpenProject ',projectPath,' [ messages←''#.AcreMessages'' ]'
+     list←⎕SE.UCMD'acre.OpenProject ',projectPath,' [ messages←''#.AcreMessages'' ]'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -53,11 +53,11 @@
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
  →GoToTidyUp 6≠⍴#.AcreMessages
- →GoToTidyUp 2≠(⊃⍴Exec'Projects')-noOfProjects
+ →GoToTidyUp 2≠(⊃⍴⎕SE.UCMD'Projects')-noOfProjects
 
  R←∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
- {}Exec'acre.projects [ messages←''on'' ]'
+ {}⎕SE.UCMD'acre.projects [ messages←''on'' ]'

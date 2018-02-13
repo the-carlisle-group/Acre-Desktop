@@ -12,10 +12,10 @@
  #.⎕SHADOW'AcreMessages'
  #.AcreMessages←''
 
- noOfOpenProjects←⊃⍴Exec'acre.Projects'
- {}Exec'CreateProject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ noOfOpenProjects←⊃⍴⎕SE.UCMD'acre.Projects'
+ {}⎕SE.UCMD'CreateProject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
  →GoToTidyUp~0∊⍴#.AcreMessages
- result←Exec'acre.Projects'
+ result←⎕SE.UCMD'acre.Projects'
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 1≠(⊃⍴result)-noOfOpenProjects
 

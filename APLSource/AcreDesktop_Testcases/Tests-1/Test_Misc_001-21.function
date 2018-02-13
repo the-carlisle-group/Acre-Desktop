@@ -12,11 +12,11 @@
  #.⎕SHADOW'AcreMessages'
  #.AcreMessages←''
 
- {}Exec'CreateProject ',projectPath,' #.',projectName
- result←Exec'acre.Stats',' [ messages←''#.AcreMessages'' ]'
+ {}⎕SE.UCMD'CreateProject ',projectPath,' #.',projectName
+ result←⎕SE.UCMD'acre.Stats',' [ messages←''#.AcreMessages'' ]'
  →GoToTidyUp~0∊⍴result
  →GoToTidyUp'Syntax: ]acre.Stats project-space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}#.AcreMessages
- result←Exec'acre.Stats #.',projectName
+ result←⎕SE.UCMD'acre.Stats #.',projectName
  →GoToTidyUp 2≠⍴⍴result
  →GoToTidyUp 14≠⊃⍴result
 
@@ -24,5 +24,4 @@
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir projectPath ⋄ :EndTrap
- {}Exec'Projects [ messages←''on'' ]'
 ⍝Done
