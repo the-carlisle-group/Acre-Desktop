@@ -13,7 +13,8 @@
  {}Exec'CreateProject  "',projectPath,'" #.',projectName,' [ messages←''#.AcreMessages'' ]'
 
  ref.⎕FX'r←Hello' 'r←''Whole universe'''
- {}'putchange'⎕SE.acre.run'#.',projectName,'.Hello'
+⍝ {}'putchange'⎕SE.acre.run'#.',projectName,'.Hello'
+ {}⎕SE.UCMD']SetChanged ','#.',projectName,'.Hello'
  changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
  ⍝ Check number of components and contents of the last one.
  changePath←F.EnforceBackslash 1⊃⎕NPARTS changeFilename

@@ -1,25 +1,25 @@
  createProject←{
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
      ∨/nil 2⍴folder nspath case←3↑⊂if≡⍵:0⊣showMsg MS.DM,SX.CreateProject
-     dat.folder←fp folder,'/'
+     dat.folder←fPath folder,'/'
      ⎕NEXISTS dat.folder:0⊣showMsg MS.HA
      dat.nspath←⊃prefSpace⊂nspath
      ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
-     dat.case←≢/cc case MS.GB  ⍝ not Off
-     dat.(config source code changes)←{
-         ⍵}dat.folder∘,¨MS.HM MS.GY,,\MS.HL MS.EU
-     dat.(codefile sourcereg)←dat.code∘,¨MS.EV MS.HF
+     dat.case←≢/CC case MS.GB  ⍝ not Off
+     dat.(config source code changes sourcereg)←{
+         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
      space←⍎dat.nspath ⎕NS''⊣openProjects''
      z←3 ⎕MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.CaseCode←dat.case⊃MS.GB MS.GA
      z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
+     z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
+     cfg.ProjectFolder←dat.folder
+     space.AcreConfig←cfg ⍝ ← into project ↑ add folder
      z←MS.AB ⎕NPUT dat.folder,MS.FM ⍝ git specific -
-     z←'dat'⎕NS UT.lc cfg
-     fqn←(⊢(/⍨)0<⎕NC)(⊂dat.nspath),space UT.li validAPLType''
-     fqn/⍨←~(sp¨∊⊢(/⍨)UT.ns<9<⎕NC)fqn
+     fqn←validItem space UT.li validAPLType''
      fqn type val←getValue fqn
-     fqn type val←dat putCode dat putSource fqn type val
+     fqn type val←dat putSource fqn type val
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0

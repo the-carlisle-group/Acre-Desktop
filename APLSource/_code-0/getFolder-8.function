@@ -1,6 +1,6 @@
  getFolder←{
      ⍵{
-         ⍵.(HasEdit StartIn)←1,⊂fp''if null ⍺
+         ⍵.(HasEdit StartIn)←1,⊂fPath''if null ⍺
          ⍵.Target⊣⍵.Wait
      }⎕NEW⊂'BrowseBox'
 ⍝ ⍵ start-in folder

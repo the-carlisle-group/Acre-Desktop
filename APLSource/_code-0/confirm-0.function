@@ -1,6 +1,6 @@
  confirm←{
      (sec msg)←UT.ht ⍺
-     ra←⍴0⊃(a_9 code)←cc(⎕A,⎕D)(⊃⌽⊂if≡⍵)
+     ra←⍴0⊃(a_9 code)←CC(⎕A,⎕D)(⊃⌽⊂if≡⍵)
      ≠/×0 sec+(ra⊥a_9⍳code)-⌊2⊃⎕AI÷1000:1
      msg≡,⊂MS.GT:0    ⍝ msg NO MSG
      time←UT.ls,UT.pl/(×t)⌿(t←0 60 60⊤sec),⍪MS.GI MS.GJ MS.GK

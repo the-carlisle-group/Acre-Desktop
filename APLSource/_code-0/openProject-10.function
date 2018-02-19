@@ -3,13 +3,12 @@
      which←⊃MS.ER MS.EQ/⍨open load←MS.FW MS.FY∊⊂what
      null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:0
      dat.changed←''⊣dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     dat.folder←fp src,'/'
-     dat.(config source code changes)←{
-         ⍵}dat.folder∘,¨MS.HM MS.GY,,\MS.HL MS.EU
-     ~∨/src cde cnf←⎕NEXISTS¨dat.(source changes config):{
+     dat.folder←fPath src,'/'
+     dat.(config source code changes sourcereg)←{
+         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
+     ~∨/2⍴src cnf cde←⎕NEXISTS¨dat.(source config changes):{
          0}showMsg MS.HB,' ',¯50 UT.tm dat.folder
-     dat.(codefile sourcereg)←dat.code∘,¨MS.EV MS.HF
-     z←'dat'⎕NS readConfig dat.config
+     z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}showMsg MS.DC
@@ -19,16 +18,12 @@
          0}showMsg dat.config MS.CB ⍝ again in case subsids above
      z←showMsg(which,MS.EY),dat.folder
      space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
+     space.AcreConfig←cfg⊣cfg.ProjectFolder←dat.folder
      z←showMsg MS.EZ,dat.nspath
      z←⎕MKDIR/3,⍪dat.(changes source)/⍨~cde src
      z←MS.AB∘⎕NPUT if(~⎕NEXISTS)dat.folder,MS.FM  ⍝ git specific -
-     fqn type value←dat{
-         ⍵=0:'' ''
-         ⍵=1:⍺ putCode 3⍴⍺ getSource''⊣showMsg MS.EP,MS.BC,MS.BD  ⍝ once
-         ⍵=2:⍺ putSource ⍺ getAllCode''⊣showMsg MS.EP,MS.BA,MS.BD ⍝ how?
-         ⍵=3:⍺ getAllCode''                                       ⍝ normal
-     }2⊥cde src
-     fqn type value←fixValue fqn type value
+     z←dat getSource'' ⍝ gets, fixes, writes chgs and dels
+     dat.changed←dat changes''
      z←space∘{0::⊢showMsg UT.bx MS.DN,MS.DP,⍵
          ⊢showMsg⍕⍺.⍎⍵}if(open∧top>null)dat.startup
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS

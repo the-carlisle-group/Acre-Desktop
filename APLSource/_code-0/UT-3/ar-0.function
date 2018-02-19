@@ -1,5 +1,5 @@
  ar←{
-     req←' 'sl⍕⍺
+     req←~∘∊⍨' 'sl⍕⍺
      22::0 ⍝ missing file
      tie←⍵ ⎕FSTIE 0
      dct←⎕FREAD tie,1

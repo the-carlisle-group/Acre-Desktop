@@ -1,6 +1,6 @@
  Changes←{dat←⍺
      all←(⊢(/⍨)0<⎕NC)dat.changed
-     reg←sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
+     reg←dat sourceReg''
      dat.nspath≡⊃⍵:{         ⍝ project changes
          0∊⍴⍵:⍪''
          date←reg.(date name)UT.co(1+≢dat.nspath)↓¨⍵

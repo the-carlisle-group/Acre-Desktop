@@ -1,4 +1,4 @@
- putChanged←{dat←⍺                           ⍝ or Deleted
+ putChange←{dat←⍺                           ⍝ or Deleted
      null⊃fqn val typ del←4↑⍵:fqn
      chg del←0 1=del≡MS.EX
      fqn val typ←,∘⊂¨if(≡⊃)fqn val typ
@@ -20,11 +20,9 @@
          (⎕FUNTIE tie)⊢ptr ⎕FAPPEND tie
      }
      z←change/0,⍪↓⍉↑val old new ren exi
-     z←dat∘putSource⍣chg⊢fqn typ val
-     z←dat∘delSource⍣del⊢fqn
      fqn⊣dat.changed∪←fqn
 ⍝ ⍺ dat
 ⍝ ⍵ fqn value type [MS.EX] if del
 ⍝ ← fqns
-⍝ Phil Last 2017-12-04 08.28
+⍝ Phil 2018-02-17 23.14
  }

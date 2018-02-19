@@ -1,5 +1,0 @@
- putDeleted←{dat←⍺
-     fqn val typ←⍵
-     dat putChanged fqn val typ MS.EX
-⍝ Phil Last 2017-12-04 08.28
- }

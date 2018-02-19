@@ -1,0 +1,5 @@
+ validItem←{
+     (⊢(/⍨)0(ss uniq)sPath¨)(⊢(/⍨)0∘ss<⎕NC∊validAPLType),∘⊂if≡⍵
+⍝ no labels, derived fns, container spaces, instances or script members
+⍝ Phil 2018-02-18 21.26
+ }

@@ -51,7 +51,10 @@
          ⍵.DP←'Startup - '
 
          ⍵.EF←'Comparing '
+         ⍵.EG←'Fixing '
          ⍵.EI←'Identifying changes'
+         ⍵.EN←'Writing '
+         ⍵.EO←'Reading '
          ⍵.EP←'Creating '
          ⍵.EQ←'Loading '
          ⍵.ER←'Opening '
@@ -62,7 +65,7 @@
          ⍵.EW←'config'
          ⍵.EX←'.delete'
          ⍵.EY←' from '
-         ⍵.EZ←' into '
+         ⍵.EZ←' to '
 
          ⍵.FA←'Variables'
          ⍵.FB←'Functions'
@@ -79,7 +82,6 @@
 
          ⍵.FM←'.gitignore'
          ⍵.FN←'update updates'
-         ⍵.FO←' imported '
          ⍵.FP←' loaded '
          ⍵.FW←'Open'
          ⍵.FX←'!!! Not fixed'
@@ -92,6 +94,7 @@
          ⍵.GJ←'minute minutes'
          ⍵.GK←'second seconds'
          ⍵.GT←'NO MSG'
+         ⍵.GU←'New in Editor'
          ⍵.GX←'No open projects'
          ⍵.GY←'APLSource/'
          ⍵.GZ←'.txt'
@@ -107,12 +110,10 @@
          ⍵.HM←MS.AA,MS.EW,MS.GZ
          ⍵.HN←'.change'
 
-⍝         ⍵.IA←'putchange'
          ⍵.IB←'nameclass'
          ⍵.IC←'changefile'
          ⍵.ID←'deletefile'
          ⍵.IE←'sourcefile'
-⍝         ⍵.IX←MS.IA MS.IB MS.IC MS.ID MS.IE MS.IF
          ⍵.IX←MS.IB MS.IC MS.ID MS.IE
          ⍵.IZ←'''method'' ⎕SE.',MS.AA,'.run args'
 

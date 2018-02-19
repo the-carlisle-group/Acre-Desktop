@@ -1,19 +1,33 @@
-Acre 4.0.7 2018-??-??
+Acre 4.1.0 2018-02-18
 
 Release Notes
 
 Acre DeskTop           
 
-]Erase used to create a new change file and rename to ,delete. Or add a new
-component to an existing .change file and rename. It was blind to its prior 
-existence making the code easier to implement. 
+Acre desktop no longer supports the codefile. Open and Load initially will 
+be slower but the whole structure will be simpler and less prone to error.
 
-But the outcome was a new redundant component if the file did exist. Now 
-does as before if new but merely renames an old.
+Partially mitigated by relying on a changed mod-date for file changes 
+rather than using GetBuildID to get a signature.
 
+In consequence items erased from source that have been unchanged since last 
+purge will not be subject to Restore.
 
+]Erase formerly created a new change file and renamed it to .delete. Or 
+added a new component to an existing .change file and renamed it. The 
+function was blind to the file's prior existence making the code easier to 
+implement. 
 
+But the outcome was a new redundant component if the file did exist. It now 
+does as before if new but merely renames the file if it already exists.
 
+Creating an item in the editor or renaming an old one was causing an error 
+by supplying an invalid fallback value for the first component of the 
+changefile.
+
+Fixed by not making the attempt.
+
+CreateProject would include members of scripted spaces. Fixed.
 
 
 ---------------------------

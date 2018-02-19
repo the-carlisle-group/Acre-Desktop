@@ -52,7 +52,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 6≠⍴#.AcreMessages
+⍝ →GoToTidyUp 8≠⍴#.AcreMessages
  →GoToTidyUp 2≠(⊃⍴Exec'Projects')-noOfProjects
 
  R←∆OK

@@ -1,4 +1,4 @@
- cc←cc
- cc←819⌶
+ CC←CC
+ CC←819⌶
 ⍝ case folding
 ⍝ nilad returning ambivalent
