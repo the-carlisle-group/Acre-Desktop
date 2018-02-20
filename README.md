@@ -98,4 +98,3 @@ An item in either list is the project folder alone, or a project folder and a pr
 Together, the two lists are **included** projects.
 The StartUp parameter is an expression to be executed in the project namespace after the project
 and all of the included projects are open or loaded. 
-
