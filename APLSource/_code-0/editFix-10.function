@@ -17,8 +17,6 @@
      first←event≢enum ⋄ ss←0∊UT.ns⊂⍕space              ⍝ is space scripted?
      fqn←(⍕space),(ss≤space=#)/'.',name new⊃⍨ren←(≢∘∊⍨new)∧2≠space.⎕NC name
      ss←{(9=⌊⎕NC ⍵)∧0∊UT.ns ⍵}⊂fqn                     ⍝ scripted?
-     0=dat←whichProject fqn:{}{
-         ⍵}showMsg(~'['∊fqn)/UT.bx MS.DI,' "',fqn,'".'
      (('⎕'∊fqn)≥(⎕NC⊂fqn)∊0,validAPLType''):
      first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
          z←SV.itemvalue editStore nv
@@ -26,6 +24,8 @@
      (('⎕'∊z)∨0≥nc←#.⎕NC⊂z←fqn):                  ⍝ doesn't exist or bad name
      new←MS.GU≡oldval←SV.itemvalue editStore fqn
      (oldval≡newval←⊃2⊃getValue,⊂fqn):               ⍝ unchanged
+     0=dat←whichProject fqn:{}{
+         ⍵}showMsg(~'['∊fqn)/UT.bx MS.DI,' "',fqn,'".'
      type←⊃nameClass fqn
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←showMsg MS.DK,⊃dat setChange fqn type newval

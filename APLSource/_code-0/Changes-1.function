@@ -1,5 +1,5 @@
  Changes←{dat←⍺
-     all←(⊢(/⍨)0<⎕NC)dat.changed
+     all←(⊢(/⍨)0<⎕NC)dat changes''
      reg←dat sourceReg''
      dat.nspath≡⊃⍵:{         ⍝ project changes
          0∊⍴⍵:⍪''

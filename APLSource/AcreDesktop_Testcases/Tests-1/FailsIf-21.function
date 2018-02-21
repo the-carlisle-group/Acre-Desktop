@@ -1,5 +1,0 @@
- FailsIf←{
-⍝ Usage : →FailsIf x, where x is a boolean scalar
-     ⎕TRAP←(999 'E' '(⎕IO⊃⎕DM)⎕SIGNAL 999')(0 'N')
-     PassesIf~⍵                   ⍝ Just PassesIf on negation
- }

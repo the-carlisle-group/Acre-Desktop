@@ -1,6 +1,0 @@
- {r}←RunDebug debugFlag;ref;⎕IO;⎕ML
-⍝ Run all test cases with DEBUG flag on
-⍝ If `debugFlag` is 1 then `RunDebug` stops just before executing any specific test case.
- ⎕IO←1 ⋄ ⎕ML←3
- ref←{9=#.⎕NC ⍵:# ⋄ 9=(↑⎕RSI).⎕NC ⍵:↑⎕RSI ⋄ 9=##.⎕NC ⍵:## ⋄ 'Cannot find "Tester"'⎕SIGNAL 6}'Tester'
- r←debugFlag ref.Tester.RunDebug ⎕THIS

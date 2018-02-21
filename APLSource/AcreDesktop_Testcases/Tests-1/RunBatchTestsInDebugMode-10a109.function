@@ -1,5 +1,0 @@
- {r}←RunBatchTestsInDebugMode;ref;⎕IO;⎕ML
-⍝ Run all batch tests in debug mode (no error trapping) and with stopFlag←1.
- ⎕IO←1 ⋄ ⎕ML←3
- ref←{9=#.⎕NC ⍵:# ⋄ 9=(↑⎕RSI).⎕NC ⍵:↑⎕RSI ⋄ 9=##.⎕NC ⍵:## ⋄ 'Cannot find "Tester"'⎕SIGNAL 6}'Tester'
- r←0 1 ref.Tester.RunBatchTests ⎕THIS

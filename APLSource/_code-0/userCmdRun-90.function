@@ -8,7 +8,9 @@
      strs←UT.sv str                          ⍝ words and strings
      opt←{⎕NS''}if{9≠⎕NC'f'⊣f←⍵}{0::''⊣showMsg UT.bx MS.DN,MS.DO,⍵
          AN.decode ⍵}if('←'∘∊)opt
-     z←{⍎'OPT.',⍵,'←opt.',⍵}/0,⍪⊃∩/(opt OPT).⎕NL-2 ⍝ see optionFields
+     ⎕THIS.OPT←optionFields''
+     z←opt.{⎕EX(⎕NL-2)~⍵}OPT.⎕NL-2
+     z←'OPT'⎕NS opt
      (item proj share)←'i' 'p' 's'=⊃parser   ⍝ see all Methods
      res←'res'{⍵,⍺/⍨null ⍵}OPT.result        ⍝ local if not assigned
      res←res'edit'⊃⍨ed←≡/CC res'⎕ED'

@@ -1,14 +1,7 @@
  PurgeHistory←{dat←⍺
-     start←dat.loadtime
-     z←deleteFolder dat.code
-     was OPT.messages←OPT.messages MS.GB
-⍝ to suppress config: Load, Open and Startup
-⍝     dat←MS.DA openProject MS.FW(dat.folder dat.nspath)
-     dat←openProject MS.FW(dat.folder dat.nspath)
-     z←⍴dataSpaces dat ⍝ ← open ↑ left closed
-     dat.loadtime←start
-     OPT.messages←was
-     dat.nspath,MS.DA
-⍝ ← as OpenProject
-⍝ Phil Last 2018-01-15 23.35
+     files←⊃(⊣(/⍨)2=⊢)/0 1 ⎕NINFO⍠1⊢dat.changes,'*'
+     z←⎕NDELETE/1,⍪files
+     dat.changed←''
+     1⊣showMsg dat.nspath,MS.DA
+⍝ Phil 2018-02-21 09.58
  }
