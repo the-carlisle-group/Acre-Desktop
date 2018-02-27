@@ -1,6 +1,6 @@
  refs←{⍺←⊢
      ⎕AN≢'Phil':0 0⍴''
-     z←#.ac.MS←allMessages 1⊃'.'sl⊃⎕XSI⊣#.(an ut)←{⍵.(AN UT)}#.ac←⎕THIS
+     z←#.ac.MS←allMessages 1⊃'.'sep⊃⎕XSI⊣#.(an ut)←{⍵.(AN UT)}#.ac←⎕THIS
      0 0⍴keys''
 ⍝ see buildWs
 ⍝ Phil 2018-01-31 14.11

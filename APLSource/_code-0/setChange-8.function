@@ -1,0 +1,7 @@
+ setChange←{dat←⍺
+     fqn typ val←⍵
+     z←dat putChange fqn val typ
+     ⊃dat putSource fqn typ val
+⍝ both
+⍝ Phil 2018-02-17 23.14
+ }

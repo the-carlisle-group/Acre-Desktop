@@ -1,7 +1,7 @@
  stripCode←{⍺←⊢
      in out←'#' '#'(⊢,,)¨⍺⊣'/.'
-     one←{⍺,⊃'-'sl ⍵}
-     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sl⊃,/in∘,¨⊂if≡⍵
+     one←{⍺,⊃'-'sep ⍵}
+     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sep⊃,/in∘,¨⊂if≡⍵
 ⍝ same as decodeCaps but ignore caseCode leaving caps as are
 ⍝ Phil Last 2018-01-11 17.17
  }

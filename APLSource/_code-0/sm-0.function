@@ -1,5 +1,0 @@
- sm←{⍺←⊢
-     (ns<9<⎕NC)sp¨⊂if≡⍵
-⍝ script member
-⍝ Phil 2018-01-28 18.16
- }

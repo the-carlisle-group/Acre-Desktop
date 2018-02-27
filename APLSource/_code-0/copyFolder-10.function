@@ -1,6 +1,6 @@
  copyFolder←{⍺←⊢ ⋄ era←1=⍺⊣0
-     source target←'/'UT.nn¨src tgt←¯1↓¨fp¨⍵,¨'/'
-     n←≢/cc source target
+     source target←'/'UT.nn¨src tgt←¯1↓¨fPath¨⍵,¨'/'
+     n←≢/CC source target
      tgt,←n/'/',source
      z←showMsg MS.EI
      sp tp←{
@@ -13,11 +13,11 @@
      del copy←{
          sp←(⍴src)↓¨sp
          tp←(⍴tgt)↓¨tp
-         s t←cc sp tp
+         s t←CC sp tp
          del←tgt∘,¨tp/⍨~t∊s
          miss←↓⍉src tgt∘.,sp/⍨~mem←s∊t
          both←src tgt∘.,sp/⍨mem
-         hash←{2 ⎕NQ'.' 'GetBuildID'⍵}
+         hash←{2 ⎕NQ'.'MS.HJ ⍵}
          diff←↓⍉both/⍨~≡⌿hash¨both
          del(miss,diff)
      }UT.tk 0

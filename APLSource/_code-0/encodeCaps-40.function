@@ -2,9 +2,9 @@
      in out←'#' '#-0'(⊢,,)¨⍺⊣'./'
      hd←⎕D,'abcdef',⎕D,'ABCDEF'
      one←{⍺,⍵,'-',hd⌷⍨⊂{
-             {⍵↑⍨-1⌈⊥⍨∨\0≠⍵}2⊥⍉s⍴⌽⍵↑⍨×/s←4,⍨⌈4÷⍨⍴⍵}⍵≠cc ⍵}
+             {⍵↑⍨-1⌈⊥⍨∨\0≠⍵}2⊥⍉s⍴⌽⍵↑⍨×/s←4,⍨⌈4÷⍨⍴⍵}⍵≠CC ⍵}
      in out←(in,'#',in)(out,'#-0',out)
-     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sl⊃,/in∘,¨⊂if≡⍵
+     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sep⊃,/in∘,¨⊂if≡⍵
 ⍝ ⍺ input output separators
 ⍝ ⍵ (ns.path)+
 ⍝   'zero.One.tWo.THree.foUr.NinETynIne' +

@@ -1,0 +1,8 @@
+ itemName←{
+     f←(id←dataSpaces'').source
+     null⊢b←{⊃∊/CC f p}if null f∊p←(≢¨f)↑¨⊂fp←⊃,/2⍴1 ⎕NPARTS ⍵:''⊣showMsg fp
+     id←⊃b/id
+     id.nspath,'.',⊃'/.'decodeCaps(≢⊃b/f)↓fp
+⍝ itemname from source filepath
+⍝ Phil 2018-02-25 00.38
+ }

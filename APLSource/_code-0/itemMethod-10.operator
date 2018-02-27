@@ -1,11 +1,11 @@
  itemMethod←{⍺←⊢ ⋄ mon←1≡⍺ 1
-     mon<null⊢items←⍵:0⍴showMsg MS.DM,SX.⍎⍺
-     0∊⍴ids←openProjects'':0⍴showMsg MS.GX
+     mon<null⊢items←⍵:''⊣showMsg MS.DM,SX.⍎⍺
+     0∊⍴ids←openProjects'':''⊣showMsg MS.GX
      items←prefSpace items   ⍝ prefix non-FQNs
      no←0=dat←whichProject items
      z←showMsg MS.DI showList no/items
      items dat/⍨←⊂~no
-     0∊⍴items:0⍴showMsg MS.DH
+     0∊⍴items:''⊣showMsg MS.DH
 ⍝       ↓↓↓↓
      ⊃if≢⍺⍺/dat{⍺ ⍵}⌸items
 

@@ -1,13 +1,9 @@
  fileTree←{⍺←⊢
-     root←fp ⍵,'/.'
-⍝     file←{⍵⊣⍵.(Path Name Size Date Folder)←'' ''⍬'' ''}⎕NS''
+     root←fPath ⍵,'/.'
      file←{⍵⊣⍵.(Path Size Date)←''⍬ ⍬}⎕NS''
      tree←{file dir←⍺ ⍵
          p t s d←0 1 2 3 ⎕NINFO⍠1⊢dir,'/*'
          (sub z z)(p s d)←↓¨(1 2=⊂t)/¨⊂↑p s d
-⍝         n←(1+≢dir)↓¨p
-⍝         f←(-≢¨n)↓¨p
-⍝         file.(Path Name Size Date Folder),←p n s d f
          file.(Path Size Date),←p s d
          ∇⍨/sub,file
      }

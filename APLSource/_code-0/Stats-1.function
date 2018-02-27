@@ -2,30 +2,32 @@
      space←⍎dat.nspath ⎕NS''
      start←DT.dt2fm⊃s t←dat.loadtime
      time←~∘' ',{(×⍵)⌿1⌽⍕'ms',⍪⍵}0 60⊤⌈--/24×60×60×DT.dt2dd s t
-     items←i/⍨~ns←UT.ns⊢i←space UT.li⊢v←validAPLType''
-     tally←{⍵[⍋⍵;]},∘≢⌸(⎕NC items)∩v
-     sub←0×y←∪x←v-(v<9)×1|v
-     sub[y⍳x]+←(v∊⊣/tally)\⊢/tally
-     ns←(+/ns)+0<≢space.⎕NL v~9.1
+     s←b/⊃s b←{s _ 0 ss⊃n s←n ⍵/¨⍨⊂(0<⎕NC)n←UT.df¨⍵}(∪⊢,UT.nt)space
+     sub←,+/s.(≢⎕NL)2.1       ⍝ arrays
+     sub,←+/s.(≢⎕NL)⊂3.1 3.2  ⍝ functions
+     sub,←+/s.(≢⎕NL)4         ⍝ operators
+     sub,←+/b=0               ⍝ scripts
+     sub,←+/s.(≢⎕NL)9.4       ⍝ classes
+     sub,←+/s.(≢⎕NL)9.5       ⍝ interfaces
      tot←+/sub
-     nss←'in ',(1++/ns)UT.pl MS.FJ
+     nss←'in ',(+/b)UT.pl MS.FJ
      nms←MS.FG MS.FH''MS.FA MS.FB MS.FC MS.FD MS.FE MS.FF''MS.FI nss
      UT.bx nms,⍪start time'',sub,''tot''
-⍝
-⍝.---------------------------------------.
-⍝| When opened:      2017-12-10 13:51:12 |
-⍝| Time to load:                      1s |
-⍝|                                       |
-⍝| Variables                         612 |
-⍝| Functions                         202 |
-⍝| Operators                          61 |
-⍝| Scripts                             0 |
-⍝| Classes                             0 |
-⍝| Interfaces                          0 |
-⍝|                                       |
-⍝| Total items:                      875 |
-⍝| in 4 namespaces                       |
-⍝'---------------------------------------'
 
-⍝ Phil Last 2018-01-15 15.35
+⍝.--------------------------------------.
+⍝| When opened:     2018-02-12 13:14:09 |
+⍝| Time to load:                     1s |
+⍝|                                      |
+⍝| Variables                          6 |
+⍝| Functions                        372 |
+⍝| Operators                         80 |
+⍝| Scripts                            2 |
+⍝| Classes                            3 |
+⍝| Interfaces                         0 |
+⍝|                                      |
+⍝| Total items:                     463 |
+⍝| in 9 namespaces                      |
+⍝'--------------------------------------'
+
+⍝ Phil 2018-02-12 13.14
  }

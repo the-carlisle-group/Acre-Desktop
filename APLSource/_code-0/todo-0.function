@@ -1,8 +1,0 @@
- todo←{
-     'vars in scripts'
-     'dependencies'
-     'StartUp'
-     'Name conflicts'
-     'Type comflicts'
-     'acre.run'
- }

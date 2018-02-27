@@ -1,7 +1,7 @@
  getSourceFilenames←{dat←⍺
      src tgt←dat.(nspath source)
      name←(1+≢src)↓¨fqn←,⊂if≡⍵
-     reg←sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
+     reg←dat sourceReg''
      x←∊∘'#'⊢file←reg.((file,'#')name)UT.co name
      (x/file)←'./'encodeCaps x/name
      tgt∘,¨file,¨nameClass fqn

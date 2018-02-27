@@ -1,26 +1,24 @@
  putSource←{dat←⍺
-     null⊢fqn type value←⍵:⍵
+     null⊢fqn type value←,∘⊂¨if(≡⊃)⍵:⍵
      src tgt←dat.(nspath source)
      path←dat getSourceFilenames fqn
      (b/path)←{⍺ UT.re MS.AL ⍵}⌿↑path type/¨⍨⊂b←(1∊MS.AL⍷⊢)¨path
-     tree←⎕MKDIR/3,⍪∪⊃∘⎕NPARTS¨path ⍝ ensure folders
+     tree←⎕MKDIR/3,⍪∪⊃∘⎕NPARTS¨path         ⍝ ensure folders
      z←(,∘⊂if≡¨value){(,⍺)MS.HI ⎕NPUT ⍵ 1}¨path
      name←(1+≢src)↓¨fqn
      file←(≢tgt)↓¨(-≢¨type)↓¨path
-     tree←fileTree tgt   ⍝ Path Size Date
-     date←tree.(Date Path)UT.co path
-     hash←UT.hx↑{2 ⎕NQ'.'MS.HJ ⍵}¨path
-     reg←sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
-     reg.(name file date hash)/⍨←⊂~reg.name∊name
-     reg.(name file date hash),⍨←name file date hash
+     tree←fileTree tgt                      ⍝ get all Path Size Date
+     date←tree.(Date Path)UT.co path        ⍝ Date for only files written
+     reg←dat sourceReg''
+     reg.(name file date)/⍨←⊂~reg.name∊name ⍝ update only files written
+     reg.(name file date),⍨←name file date
      z←reg UT.aw dat.sourcereg
      fqn type value
 
 ⍝ ⍺ dat
-⍝ ⍵ FQNs type values  ⍝ formatted for two destinations
+⍝ ⍵ FQNs type values
 ⍝ ← ⍵ same - having written to sourcetree
-⍝ write to source tree files
-⍝ get hash
-⍝ write to reg
-⍝ Phil Last 2018-01-15 23.35
+⍝   write to source tree files
+⍝   write to reg
+⍝ Phil 2018-02-12 22.05
  }
