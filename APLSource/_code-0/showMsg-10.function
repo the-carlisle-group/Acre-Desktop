@@ -2,7 +2,7 @@
      (null ⍵):⍵                 ⍝ empty arg
      disp←OPT.messages
      data←ntbs ⎕FMT↑⍵
-     ≡/cc disp MS.GB:data         ⍝ its NOT having been displayed!
+     ≡/CC disp MS.GB:data         ⍝ its NOT having been displayed!
      '#'∊disp:data⊣⍎disp,(2 0 3⍳#.⎕NC disp)↓',← data'
 ⍝    data⊣#.what← data          ⍝ named buffer - missing
 ⍝    data⊣#.what,← data         ⍝              - array

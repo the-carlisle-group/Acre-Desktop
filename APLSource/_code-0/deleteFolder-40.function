@@ -5,7 +5,7 @@
          z←∇⍨/d,⎕NDELETE⍨/f,1       ⍝ del files and dirs
          z←⎕DL×≢n                   ⍝ delay if members
          ⎕NDELETE ⍵                 ⍝ now it's empty
-     }fp ⍵,'/.'
+     }fPath ⍵,'/.'
 ⍝ delete folder and tree
 ⍝ Phil Last 2017-06-02 08.12
  }

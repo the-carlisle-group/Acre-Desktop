@@ -1,5 +1,5 @@
  getVersion←{
-     1:' 'sl⊃releaseNotes⊣''
+     1:' 'sep⊃releaseNotes⊣''
 ⍝ see releaseNotes wherein first line should be
 ⍝       name ver date compat
 ⍝ name   - system name

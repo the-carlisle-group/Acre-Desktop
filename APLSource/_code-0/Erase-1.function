@@ -1,16 +1,23 @@
  Erase←{dat←⍺ ⋄ nms←⍵
 
 ⍝⍝ items and nss spec'd by name
-⍝     its←⍵~nss←⍵/⍨UT.ns ⍵
+⍝     its←⍵~nss←⍵/⍨0 ss ⍵
 ⍝     nms←∪its,⊃,/{UT.na ⍵,'.*'}/0,⍪nss
 ⍝⍝ items and anything spec'd by wildcard
 ⍝     its←⍵~wcd←⍵/⍨'*'∊¨⍵
 ⍝     nms←∪its,⊃,/⊢∘UT.na/0,wcd
 
      fqn typ val←getValue nms
-     null fqn:0/showMsg MS.DH
-     (⊢⊣⎕EX)dat putChanged fqn val typ MS.EX
+     null fqn:''⊣showMsg MS.DH
+     new←~old←⎕NEXISTS¨fns←dat getChangeFilenames fqn
+     res←{⍺⊣⎕FUNTIE(((-≢MS.HN)↓⍵),MS.EX)⎕FRENAME ⍵ ⎕FTIE 0}/old⌿fqn,⍪fns
+     ∧/old:(⊢⊣⎕EX)res⊣dat delSource fqn
+
+     z←dat putChange(new∘/¨fqn val typ),⊂MS.EX
+     (⊢⊣⎕EX)dat delSource fqn
+
 ⍝ ⍵ items
 ⍝ ← ⍵ of which erased
-⍝ Phil Last 2017-12-06 00.48
+⍝   if .change exists just rename to .delete - else put and rename
+⍝ Phil 2018-02-17 23.14
  }

@@ -2,35 +2,39 @@
      src←dat.source                                   ⍝ ../APLSource/
      tgt←dat.nspath,'.'
      read←{⊃MS.HI ⎕NGET ⍵ 1}
-     (path date)←{⍵.(Path Date)}fileTree⊢src
-     file type←↓⍉↑(UT.px(≢src)↓⊢)¨path           ⍝ ns/path/file.type
-     path date file type/⍨←∊/cc type MS.AZ
-
+     (path date)←{⍵.(Path Date)}fileTree⊢src     ⍝ all files
+     file type←↓⍉↑(UT.px(≢src)↓⊢)¨path           ⍝ 'ns/path/file' '.type'
+     path date file type/⍨←∊/CC type MS.AZ       ⍝ only valid types
      name←'/.'decodeCaps file
      dup←(⊢∊⊢(/⍨)⍳⍨≠⍳∘≢)name
-     z←showMsg MS.DD showList,/((dat.nspath,'.')∘,¨dup/name),'=',⍪dup/type
-
-⍝     raw←'/.'stripCode file
-⍝     diff←raw≢¨name
-
-     reg←sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
-     del←reg.name~name                                ⍝ file missing
-     reg.(name file date hash)/⍨←⊂reg.name∊name       ⍝ reg w/o dels
-     diff←date≠reg.(date name)UT.co name              ⍝ diff of date
-     (name file date path type)/⍨←⊂diff               ⍝ res only diff
-     hash←UT.hx↑{2 ⎕NQ'.'MS.HJ ⍵}¨path                ⍝ hash of diff
-     diff←hash≠reg.(hash name)UT.co name              ⍝ diff of hash
-     (name file date hash path type)/⍨←⊂diff          ⍝ res only diff
-     reg.(name file date hash)/⍨←⊂~reg.name∊name      ⍝ reg w/o res
-     reg.(name file date hash),←(name file date hash) ⍝ reg + res
-     z←reg UT.aw dat.sourcereg
-     vals←read/0,⍪path
-     (tgt∘,¨name)type vals(tgt∘,¨del)
+     z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
+⍝     was←dat sourceReg''
+     was←{⎕NS ⍵.(⎕NL-2.1)}if{null ⍵.name}dat sourceReg''
+⍝     was.(name file date),←(null was.name)/¨name file date
+     del←tgt∘,¨was.name~name                    ⍝ file missing
+     z←showMsg(×z)/((z←≢del)UT.pl MS.FL),MS.EV,MS.EY,src
+     fnm←~∘∊⍨(⊃∘⊃0 ⎕NINFO⍠1⊢)¨dat getChangeFilenames del  ⍝ ".*"
+     ⍝ rename existing .change to ↓ .delete ELSE FORGET!!
+     z←showMsg(×z)/MS.EP,((z←≢fnm)UT.pl MS.EG),MS.EZ,MS.EX
+     z←{⎕NUNTIE ⍵ ⎕NRENAME ⍺ ⎕NTIE 0}/fnm,⍪,∘MS.EX¨(-≢MS.HN)↓¨fnm
+     diff←date≠was.(date name)UT.co name   ⍝ diff date - maybe new
+     z←showMsg MS.EO,((≢path)UT.pl MS.FK),MS.EY,src
+     val←read/0,⍪path
+     fqn type val←fixValue(tgt∘,¨name)type val ⍝ type could change
+     z←showMsg(×z)/MS.EN,((z←+/diff)UT.pl MS.FN),MS.EZ,dat.changes
+     fqn←dat putChange diff∘/¨fqn val type
+     (reg←⎕NS'').(name file date)←name file date
+     reg UT.aw dat.sourcereg
 ⍝ ⍺ dat
 ⍝ ⍵ ?
-⍝ ← fqn type value del
-⍝   changed or deleted since previous sync
-⍝   add to code- or change-files elsewhere
-⍝ see putItem
-⍝ Phil 2018-02-02 22.28
+⍝ ← fqn type value
+⍝   get source tree
+⍝   read source reg
+⍝   compare
+⍝   create deletefiles
+⍝   read source files
+⍝   fix values
+⍝   create changefiles
+⍝   write new source reg
+⍝ Phil 2018-02-16 23.10
  }

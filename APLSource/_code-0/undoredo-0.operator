@@ -24,6 +24,6 @@
 ⍝   pointer change to previous edit if exists
 ⍝   changefile is [orig edit1 edit2 ... ptr]
 ⍝   putChange writes next edit to last comp and its number to next.
-⍝   this increments or decrements pointer up twixt first & penultimate
+⍝   this increments or decrements pointer twixt first & penultimate
 ⍝ Phil Last 2018-01-14 23.07
  }

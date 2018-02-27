@@ -3,9 +3,9 @@
      tgt←dat.sourcereg
      file←dat getSourceFilenames fqn
      gone←⎕NDELETE/1,⍪file
-     reg←sourceFields if(0=⊢)'*'UT.ar tgt
+     reg←dat sourceReg''
      nam←(1+≢src)↓¨fqn
-     reg.(name file hash date)/⍨←⊂~reg.name∊nam
+     reg.(name file date)/⍨←⊂~reg.name∊nam
      gone/fqn⊣reg UT.aw tgt
 ⍝ ⍺ dat
 ⍝ ⍵ fqns

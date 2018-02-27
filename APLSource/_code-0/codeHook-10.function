@@ -1,15 +1,15 @@
  codeHook←{⍺←⊢
-     null⊢fn←⊂cc ⍺⊣'':''⊣showMsg MS.IZ
+     null⊢fn←⊂CC ⍺⊣'':''⊣showMsg MS.IZ
      z←fns(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴fns←MS.IX ⍝ MS.__
      ix←fns⍳fn
      SV.space←'.',⍨(¯1+((⊂MS.AA)(∨/⍷)¨⎕XSI)⍳0)⊃⎕NSI
-     arg←~∘∊⍨' 'sl⍕⍵
-⍝     ix=ns.putchange:{⍺ putChanged⌽1⌽getValue ⍵}itemMethod arg
+     arg←⊂if≡⍵
      ix=ns.nameclass:nameClass prefSpace arg ⍝ itemMethod does this
      ix=ns.changefile:getChangeFilenames itemMethod arg
      ix=ns.deletefile:,∘MS.EX¨(-≢MS.HN)↓¨getChangeFilenames itemMethod arg
      ix=ns.sourcefile:getSourceFilenames itemMethod arg
+     ix=ns.itemname:itemName¨arg
      ''
 ⍝ Marilyn Last named this fn
-⍝ Phil 2018-01-23 15.35
+⍝ Phil 2018-02-25 00.38
  }

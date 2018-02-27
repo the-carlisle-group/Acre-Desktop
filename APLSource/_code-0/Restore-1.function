@@ -1,10 +1,10 @@
  Restore←{dat←⍺
-     (null∨0<⎕NC)fqn←⊃⍵∩dat.changed:''
+     (null∨0<⎕NC)fqn←⊃⍵∩dat deleted'':''
      tgt src←MS.EX MS.HN
      file←MS.EX,⍨(-≢MS.HN)↓chg←⊃dat getChangeFilenames fqn
 ⍝    type will be MS.AL ".*"
      null⊢del←⊃⊃0 ⎕NINFO⍠1⊢file:''
-     name type←nx sp del ⍝ file is path.name.type.delete
+     name type←namx sPath del ⍝ file is path.name.type.delete
      chg←MS.HN,⍨(-≢MS.EX)↓del
      tie←del ⎕FTIE 0
      val←currentChange tie
