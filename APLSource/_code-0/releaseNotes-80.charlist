@@ -1,8 +1,11 @@
-Acre 4.1.0 2018-02-21
+Acre 4.1.1 2018-02-27
 
 Release Notes
 
-Acre DeskTop           
+Acre DeskTop
+
+Almost identical to 4.1.0 which was never properly released but a very few
+minor changes force this to be 4.1.1           
 
 Acre desktop no longer supports the codefile. Open and Load initially will 
 be slower but the whole structure will be simpler and less prone to error.
