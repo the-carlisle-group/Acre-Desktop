@@ -1,0 +1,14 @@
+ ∆Test_CreateProject_005 path;buff;OK;NOT_OK;rc;projects
+ ⎕IO←1 ⋄ ⎕ML←1
+ OK←128 ⋄ NOT_OK←129
+ F.RmDir path
+ #.⎕FX'r←Hello' 'r←''Hello world'''
+ buff←⎕SE.UCMD'Acre.CreateProject ',path,' #'
+ rc←NOT_OK
+ :If (,'#')≡buff
+ :AndIf 1=⊃⍴projects←⎕SE.UCMD'Acre.Projects'
+ :ElseIf 2=⍴##.FilesAndDirs.Dir(⊃projects[1;2]),'APLSource/'
+     rc←OK
+ :EndIf
+ ⎕OFF rc
+⍝Done

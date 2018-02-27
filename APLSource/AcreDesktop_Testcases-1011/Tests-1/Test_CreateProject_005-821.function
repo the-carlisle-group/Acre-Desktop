@@ -1,0 +1,29 @@
+ R←Test_CreateProject_005(stopFlag batchFlag);⎕TRAP;old_WSID;old_LX;cmd;newWsid;rc;OK;NOT_OK;projectPath
+⍝ Create a root project. Due to its nature this test must run in a separate instance of Dyalog.
+⍝ Is only executed when the acre project is open.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ old_WSID←⎕WSID
+ old_LX←⎕LX
+ newWsid←⎕WSID←GetTempFilename'dws'
+ projectPath←F.GetTempPath,⊃⎕SI
+ ⎕LX←(⊃{⍺,'∆',⍵}/'.'A.SplitPath⊃⎕XSI),'''',projectPath,''''
+ ⎕SAVE ⎕WSID
+ ⎕WSID←old_WSID
+ ⎕LX←old_LX
+ cmd←'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'"'
+ cmd,←' "',newWsid,'"'
+ cmd,←' maxws=64MB'
+ rc←3⊃##.Execute.Application cmd
+ OK←128 ⋄ NOT_OK←129
+ Assert rc∊OK NOT_OK
+ →GoToTidyUp rc=OK
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ F.DeleteFile newWsid ⋄ :EndTrap
+ :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
+⍝Done

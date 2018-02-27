@@ -4,16 +4,16 @@
 
  R←∆Failed
 
- result←{(⎕UCS 13)A.Split ⍵}Exec'acre.ToAplan 10 10⍴1'
+ result←{(⎕UCS 13)A.Split ⍵}⎕SE.UCMD'acre.ToAplan 10 10⍴1'
  →GoToTidyUp 12≠⊃⍴result
 
- result←Exec'acre.ToAplan 10 10⍴1 [ rows←4 ]'
+ result←⎕SE.UCMD'acre.ToAplan 10 10⍴1 [ rows←4 ]'
  →GoToTidyUp 4≠⊃⍴result
 
- result←Exec'acre.ToAplan 10 10⍴1 [ rows←400 ]'
+ result←⎕SE.UCMD'acre.ToAplan 10 10⍴1 [ rows←400 ]'
  →GoToTidyUp 12≠⊃⍴result
 
  R←∆OK
 
 ∆TidyUp:
- {}Exec'acre.ToAplan 1 [ rows←⍬ ]'
+ {}⎕SE.UCMD'acre.ToAplan 1 [ rows←⍬ ]'

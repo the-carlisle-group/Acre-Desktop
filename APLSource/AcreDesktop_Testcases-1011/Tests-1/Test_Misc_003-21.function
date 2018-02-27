@@ -1,0 +1,39 @@
+ R←Test_Misc_003(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+⍝ Exercise `Undo` and `Redo`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ ref.⎕FX'r←Hello2' 'r←''World2'''
+
+ :Trap (~stopFlag)/0
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp result≢'#.',⊃⎕SI
+ →GoToTidyUp'World'≢ref.Hello
+ ref.⎕FX'r←Hello' 'r←''Universe'''
+ result←⎕SE.UCMD'Acre.SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp 0∊⍴result~' '
+ →GoToTidyUp'Universe'≢ref.Hello
+ result←⎕SE.UCMD'Acre.Undo #.',projectName,'.Hello'
+  ⍝TODO  Add after fix:
+  ⍝ 1. Check `result`
+  ⍝ 2. Execute function and check for "World"
+  ⍝ 3. Execute "Redo"
+  ⍝ 4. Check `result`
+  ⍝ 5. Execute function and check for "Universe"
+
+  ⍝ 6. Change `Hello2` as well
+  ⍝ 7. Perform "Undo" and "Redo" for two items.
+
+∆TidyUp:
+ F.RmDir projectPath
+⍝Done

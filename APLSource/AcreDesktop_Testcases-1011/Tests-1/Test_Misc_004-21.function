@@ -1,0 +1,54 @@
+ R←Test_Misc_004(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;projects;path;list
+⍝ Exercise `Erase` and `Restore`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ ref.⎕FX'r←Hello2' 'r←''World2'''
+
+ :Trap (~stopFlag)/0
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp result≢'#.',⊃⎕SI
+ projects←⎕SE.UCMD'Acre.Projects'
+ path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
+ list←⊃F.Dir path,'*'
+ →GoToTidyUp 2≠⍴list
+ result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Hello'
+ →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →GoToTidyUp 0≠ref.⎕NC'Hello'
+ →GoToTidyUp 3≠ref.⎕NC'Hello2'
+ result←⎕SE.UCMD'Acre.Restore #.',projectName,'.Hello'
+ →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →GoToTidyUp 3≠ref.⎕NC'Hello'
+ →GoToTidyUp 3≠ref.⎕NC'Hello2'
+ result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Hello #.',projectName,'.Hello2'
+ →GoToTidyUp result≢('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
+ →GoToTidyUp 0∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
+ →GoToTidyUp~0∊⍴⊃F.Dir path,'*'
+ path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'.acre/changes/'
+ list←⊃F.Dir path,'*'
+ →GoToTidyUp 2≠⍴list
+ →GoToTidyUp'delete' 'delete'≢A.Last¨list
+ result←⎕SE.UCMD'Acre.Restore #.',projectName,'.Hello #.',projectName,'.Hello2'
+ →GoToTidyUp 3∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'   ⍝ Is it deliberate that `Erase` accepts more than 1 item but `Restore` does not?
+ result←⎕SE.UCMD'Acre.Restore #.',projectName,'.Hello2'  ⍝  ⍝TODO⍝  For the time being ?!
+ →GoToTidyUp 3∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
+ path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
+ →GoToTidyUp 2≠⍴⊃F.Dir path,'*'
+ path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'.acre/changes/'
+ list←⊃F.Dir path,'*'
+ →GoToTidyUp 2≠⍴list
+ →GoToTidyUp'change' 'change'≢A.Last¨list
+
+∆TidyUp:
+ F.RmDir projectPath
+⍝Done

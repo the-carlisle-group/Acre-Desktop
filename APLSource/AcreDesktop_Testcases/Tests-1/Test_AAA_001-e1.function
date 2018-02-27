@@ -8,7 +8,7 @@
 
  R←∆Failed
 
- {}Exec']acre.projects [ messages←''#.AcreMessages'' ]'
+ {}⎕SE.UCMD']acre.projects [ messages←''#.AcreMessages'' ]'
  →PassesIf 3=⎕SE.acre.⎕NC'run'
 
  →PassesIf'4.0.5'≡2⊃⎕SE.acre._code.getVersion''    ⍝TODO⍝  Should be an official method

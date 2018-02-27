@@ -7,7 +7,7 @@
 
  R←∆OK
 
- {}Exec'acre.projects'
+ {}⎕SE.UCMD'acre.projects'
  version←2⊃⎕SE.acre._code.getVersion ⍬           ⍝TODO⍝  ⍝TODO⍝ We should have this "officially" (via `run`)
  paths←⎕SE.UCMD'Settings cmddir'
  paths←1↓¨⎕SE.SALT.PATHDEL{⍺{⍵⊂⍨⍵∊⍺}(⊃⍺),⍵}paths

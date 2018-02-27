@@ -1,0 +1,26 @@
+ R←Test_CreateProject_002(stopFlag batchFlag);⎕TRAP;path;rc;en;more;projectPath;ref;projectName;result;list
+⍝ Tries to create a project on an invalid path.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ :If 'Win'≢A.GetOperatingSystem ⍬
+     R←∆WindowsOnly
+ :Else
+     R←∆Failed
+
+     projectName←⊃⎕SI
+     projectPath←'QWE:/This_does_almost_certainly_Not_Exist/aa/bb/cc/dd'
+     #.⎕SHADOW projectName
+     ref←⍎projectName #.⎕NS''
+     ref.⎕FX'r←Hello' 'r←''World'''
+     #.⎕SHADOW'AcreMessages'
+     #.AcreMessages←''
+
+     :Trap (~stopFlag)/0
+         result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''#.AcreMessages'' ]'
+     :Else
+         →GoToTidyUp 1
+     :EndTrap
+
+     →PassesIf 1=⍴#.AcreMessages
+     R←∆OK
+ :EndIf

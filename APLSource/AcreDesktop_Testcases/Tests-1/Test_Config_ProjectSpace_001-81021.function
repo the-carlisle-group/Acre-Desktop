@@ -11,7 +11,7 @@
  ref.⎕FX'r←Hello' 'r←''World'''
 
  :Trap (~stopFlag)/0
-     result←Exec'acre.Createproject "',projectPath,'" #.',projectName,' [ messages←''off'' ]'
+     result←⎕SE.UCMD'acre.Createproject "',projectPath,'" #.',projectName,' [ messages←''off'' ]'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -25,13 +25,13 @@
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
 
  :Trap (~stopFlag)/0
-     list←Exec'acre.Projects'
+     list←⎕SE.UCMD'acre.Projects'
  :Else
      →GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp'#.Temp'≢Exec'acre.OpenProject ',projectPath
- →GoToTidyUp 1≠(⊃⍴Exec'acre.Projects')-⊃⍴list
+ →GoToTidyUp'#.Temp'≢⎕SE.UCMD'acre.OpenProject ',projectPath
+ →GoToTidyUp 1≠(⊃⍴⎕SE.UCMD'acre.Projects')-⊃⍴list
  →GoToTidyUp'World'≢#.Temp.Hello
 
  R←∆OK
