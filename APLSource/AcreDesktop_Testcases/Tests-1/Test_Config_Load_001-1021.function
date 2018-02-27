@@ -50,13 +50,8 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
-<<<<<<< HEAD
-⍝ →GoToTidyUp 5≠⍴#.AcreMessages
- →GoToTidyUp 1≠(⊃⍴Exec'Projects')-noOfProjects
-=======
  →GoToTidyUp 6≠⍴#.AcreMessages
  →GoToTidyUp 1≠(⊃⍴⎕SE.UCMD'Projects')-noOfProjects
->>>>>>> 9862bc7568bf463d682ff35985a0aaec215e4038
 
  R←∆OK
 

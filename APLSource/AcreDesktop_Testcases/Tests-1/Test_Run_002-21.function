@@ -13,12 +13,7 @@
  {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' [ messages←''#.AcreMessages'' ]'
 
  ref.⎕FX'r←Hello' 'r←''Whole universe'''
-<<<<<<< HEAD
-⍝ {}'putchange'⎕SE.acre.run'#.',projectName,'.Hello'
- {}⎕SE.UCMD']SetChanged ','#.',projectName,'.Hello'
-=======
  {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
->>>>>>> 9862bc7568bf463d682ff35985a0aaec215e4038
  changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
  ⍝ Check number of components and contents of the last one.
  changePath←F.EnforceBackslash 1⊃⎕NPARTS changeFilename
