@@ -1,5 +1,5 @@
  ss←{⍺←⊢ ⋄ b←⍺⊣1
-     n\{0::~⍺ ⋄ ⍺⊣⎕SRC⍎⍵}/b,⍪⍵/⍨n←9.1=⎕NC ⍵
+     {n\{0::~⍺ ⋄ ⍺⊣⎕SRC⍎⍵}/b,⍪⍵/⍨n←9.1=⎕NC ⍵}⊂if≡⍵
 ⍝ ⍺ 1/0 - 1 scripted - 0 not scripted
 ⍝ ⍵ fqns (2 1≡≡,≢∘⍴)
 ⍝ ← boolean - which are scripted or non-scripted spaces

@@ -10,7 +10,7 @@
          0}showMsg MS.HB,' ',¯50 UT.tm dat.folder
      z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
-     ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
+     ~((1=≢)∨0∘ss∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}showMsg MS.DC
      ~null showMsg dat∘openConflict⍣open⊢'':0 ⍝ can't open below a project
      z←dat openLoad'' ⍝ open or load subsids

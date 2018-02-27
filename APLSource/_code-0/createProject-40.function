@@ -4,7 +4,7 @@
      dat.folder←fPath folder,'/'
      ⎕NEXISTS dat.folder:0⊣showMsg MS.HA
      dat.nspath←⊃prefSpace⊂nspath
-     ~((1=≢)∨UT.ns∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
+     ~((1=≢)∨0∘ss∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
      dat.case←≢/CC case MS.GB  ⍝ not Off
      dat.(config source code changes sourcereg)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF

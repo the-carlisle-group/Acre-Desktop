@@ -8,7 +8,9 @@
      name←'/.'decodeCaps file
      dup←(⊢∊⊢(/⍨)⍳⍨≠⍳∘≢)name
      z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
-     was←dat sourceReg''
+⍝     was←dat sourceReg''
+     was←{⎕NS ⍵.(⎕NL-2.1)}if{null ⍵.name}dat sourceReg''
+⍝     was.(name file date),←(null was.name)/¨name file date
      del←tgt∘,¨was.name~name                    ⍝ file missing
      z←showMsg(×z)/((z←≢del)UT.pl MS.FL),MS.EV,MS.EY,src
      fnm←~∘∊⍨(⊃∘⊃0 ⎕NINFO⍠1⊢)¨dat getChangeFilenames del  ⍝ ".*"

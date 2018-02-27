@@ -114,7 +114,8 @@
          ⍵.IC←'changefile'
          ⍵.ID←'deletefile'
          ⍵.IE←'sourcefile'
-         ⍵.IX←MS.IB MS.IC MS.ID MS.IE
+         ⍵.IF←'itemname'
+         ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF
          ⍵.IZ←'''method'' ⎕SE.',MS.AA,'.run args'
 
          ⍵.__←⊃⎕XSI

@@ -1,7 +1,7 @@
  Erase←{dat←⍺ ⋄ nms←⍵
 
 ⍝⍝ items and nss spec'd by name
-⍝     its←⍵~nss←⍵/⍨UT.ns ⍵
+⍝     its←⍵~nss←⍵/⍨0 ss ⍵
 ⍝     nms←∪its,⊃,/{UT.na ⍵,'.*'}/0,⍪nss
 ⍝⍝ items and anything spec'd by wildcard
 ⍝     its←⍵~wcd←⍵/⍨'*'∊¨⍵
