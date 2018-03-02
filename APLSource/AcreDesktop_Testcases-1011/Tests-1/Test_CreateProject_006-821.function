@@ -1,0 +1,18 @@
+ R←Test_CreateProject_006(stopFlag batchFlag);⎕TRAP;result
+⍝ Tryn to create a project with just one argument.
+⍝ Is only executed when the acre project is open.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'AcreMessage'
+ '#.AcreMessage'#.⎕NS''
+ #.AcreMessage.buffer←''
+
+ result←⎕SE.UCMD'acre.CreateProject "C:\Users\All Users\AppData\Roaming\',(##.APLTreeUtils.Last⊃⎕XSI),'" [ messages←''#.AcreMessage.buffer'' ]'
+ →PassesIf 0∊⍴result
+ →PassesIf 1=⍴#.AcreMessage.buffer
+ →PassesIf'Syntax:'{⍺≡(⍴⍺)↑⍵}⊃#.AcreMessage.buffer
+
+ R←∆OK
+⍝Done

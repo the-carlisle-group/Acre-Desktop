@@ -1,0 +1,16 @@
+ R←Test_Options_005(stopFlag batchFlag);⎕TRAP
+⍝ Make sure that setting "messages" is only active for the current command. Was once a bug.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+
+ {}⎕SE.UCMD'acre.Stats [ messages←''#.AcreMessages'' ]'
+ →PassesIf 1=⍴#.AcreMessages            ⍝ Should be syntax hint (project is missing)
+
+ {}⎕SE.UCMD'acre.Stats'
+ →PassesIf 1=⍴#.AcreMessages            ⍝ No change
+
+ R←∆OK

@@ -1,0 +1,30 @@
+ R←Test_Options_004(stopFlag batchFlag);⎕TRAP;projectName;ref;projectPath;result
+⍝ Test setting "KeepLocalHistory"
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ :Trap (~stopFlag)/0
+     {}⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,'[ keepLocalHistory←''off'' ]'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ ref.⎕FX'r←Hello' 'r←''Universe'''
+ result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ Assert~0∊⍴result
+ (⊂'codefile')∊{2⊃⎕NPARTS ⍵}¨⊃##.FilesAndDirs.Dir projectPath,'\.acre\'
+ →GoToTidyUp 0≠(⊂'codefile')∊{2⊃⎕NPARTS ⍵}¨⊃##.FilesAndDirs.Dir projectPath,'\.acre\'
+ →GoToTidyUp 0≠(⊂'codefile')∊{2⊃⎕NPARTS ⍵}¨⊃##.FilesAndDirs.Dir projectPath,'\.acre\changes'
+ →GoToTidyUp ##.FilesAndDirs.IsDir projectPath,'\.acre\changes'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
