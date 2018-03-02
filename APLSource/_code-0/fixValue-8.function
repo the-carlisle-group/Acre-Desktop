@@ -1,4 +1,4 @@
- fixValue←{null ⍵:⍬
+ fixValue←{null ⍵:'' '' ''
      fixNs←(⍎''⎕NS⍨⊢)eu
      fixSrc←{0::0 ⋄ 1⊣⍺.⎕FIX ⍵}
      fixVar←{0::0 ⋄ n s v←⍵ ⋄ 1⊣n s.{⍎⍺,'←⍵'}⍺⍺ v}
@@ -8,7 +8,7 @@
      fqn typ val←,∘⊂¨if(≡⊃)⍵
      z←(1↓¨nms)(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴nms←MS.AZ
      nc←nms⍳typ
-     nam←1↓¨1⊃spc nam←↓⍉↑nx¨fqn
+     nam←1↓¨1⊃spc nam←↓⍉↑namx¨fqn
      res←0⍴⍨⍴nam
      (x/spc)←fixNs spc/⍨x←nc=ns.script  ⍝ parents of scripts
      (x/res)←fixSrc⌿↑spc val/¨⍨⊂x←nc=ns.script

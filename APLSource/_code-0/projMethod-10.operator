@@ -1,9 +1,9 @@
  projMethod←{⍺←⊢ ⋄ mon←1≡⍺ 1
      args←⍵
      proj arg←1(↑_↓)args
-     mon<(null proj)∨0∊⍴dats←openProjects'':0⍴showMsg MS.DM,SX.⍎⍺
+     mon<(null proj)∨0∊⍴dats←openProjects'':''⊣showMsg MS.DM,SX.⍎⍺
      msk←dats.nspath∊prefSpace proj
-     0=dat←⊃1↓0,msk/dats:0⍴showMsg MS.BM
+     0=dat←⊃1↓0,msk/dats:''⊣showMsg MS.BM
 ⍝       ↓↓↓↓
      dat ⍺⍺ arg
 

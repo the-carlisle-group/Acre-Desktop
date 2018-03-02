@@ -1,20 +1,19 @@
  readConfig←{cnf←⍵
-     0::⎕NS''⊣showMsg UT.bx MS.DB,cnf
-     res←{res←UT.lc configFields''
-         ~⎕NEXISTS cnf:res
-         d←~∘∊⍨⊃MS.HI ⎕NGET cnf 1           ⍝ lose blank rows
-         r t←0{'⍝'=z←⊃~∘' '⊃⍵:(1+⍺)∇ 1↓⍵ ⋄ ⍺ z}d ⍝ lose comment rows
-         cfg←UT.lc t{                       ⍝ actuals
-             ⍺='{':7159⌶1↓⊃,/(⎕UCS 13),¨⍵   ⍝ JSON
-             ⍺=':':0 ⎕FIX ⍵                 ⍝ APLscript
-             ⍺='[':AN.decode ⍵              ⍝ APLAN
-             ⎕NS''                          ⍝ none of the above
-         }r↓d
-         res⊣'res'⎕NS cfg.⎕NS⊃∩/(cfg res).(⎕NL-2) ⍝ overwrite with actuals
-     }cnf
-     res⊣res.case←≢/cc res.casecode MS.GB ⍝ not 'Off'
+     rl←CC⊢ru←{⍵.⎕NL-2}res←configFields''
+     0::res⊣showMsg UT.bx MS.DB,cnf
+     ~⎕NEXISTS cnf:res
+     d←~∘∊⍨⊃MS.HI ⎕NGET cnf 1                     ⍝ lose blank rows
+     r t←0{'⍝'=z←⊃~∘' '⊃⍵:(1+⍺)∇ 1↓⍵ ⋄ ⍺ z}d      ⍝ lose comment rows
+     cl←CC⊢cu←{⍵.⎕NL-2}cfg←t{                     ⍝ actuals
+         ⍺='{':7159⌶1↓⊃,/(⎕UCS 13),¨⍵                 ⍝ JSON
+         ⍺=':':0 ⎕FIX ⍵                               ⍝ APLscript
+         ⍺='[':AN.decode ⍵                            ⍝ APLAN
+         ⎕NS''                                        ⍝ none of the above
+     }r↓d
+     null⊢int←rl∩cl:res                           ⍝ supplied
+     res⊣ru[rl⍳int]res.{⍎⍕⍺,'←⍵'}cfg.⍎⍕cu[cl⍳int] ⍝ merge
 ⍝ ⍵ config filename
 ⍝ config is JSON, APLscript or APLAN
 ⍝ result is namespace with all and only expected fields
-⍝ ++++ `case` which is boolean equiv of CaseCode 'on' or 'off'
+⍝   with "proper" case restored
  }

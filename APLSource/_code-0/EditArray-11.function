@@ -14,7 +14,7 @@
      type←fixValue fqn type val
      value≡⍎fqn:''
      0=⊃dat←⍺⊣whichProject if mon⊢fqn:MS.DL,fqn
-     r←⊃dat putChanged fqn val type
+     r←⊃dat setChange fqn type val
      r⊣showMsg MS.DK,r
 ⍝
 ⍝ Phil Last 2018-01-17 14.32

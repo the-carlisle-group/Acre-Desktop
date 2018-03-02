@@ -1,7 +1,0 @@
- PassesIf←{
-⍝ Usage : →PassesIf x, where x is a boolean scalar
-     ⍵:⍬                     ⍝ Passes test, so →PassesIf x just continues
-     0=⎕NC'stopFlag':0       ⍝ Stop not defined, continue with test suite
-     ~stopFlag:0             ⍝ Do not stop, continue with test suite
-     ⎕SIGNAL 999             ⍝ Otherwise stop for investigation
- }

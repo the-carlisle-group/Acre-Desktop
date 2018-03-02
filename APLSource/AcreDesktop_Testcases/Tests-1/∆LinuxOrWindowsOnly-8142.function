@@ -1,3 +1,0 @@
- r←∆LinuxOrWindowsOnly
-        ⍝ Constant; used as result of a test function
- r←¯21

@@ -1,9 +1,9 @@
  encode36←{null ⍵:''
      hd←⎕D,⎕A
      enc←{{⍵↑⍨-1⌈⊥⍨∨\0≠⍵}2 3 2 3⊥⍉s⍴⌽⍵↑⍨×/s←4,⍨⌈4÷⍨⍴⍵}
-     one←{'/',⍵,'-',hd⌷⍨⊂enc ⍵≠cc ⍵}
+     one←{'/',⍵,'-',hd⌷⍨⊂enc ⍵≠CC ⍵}
      in out←'.#.' '/#-0/'
-     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/one eu 1↓(⊃in)sl⊃,/in∘,¨⊂if≡⍵
+     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/one eu 1↓(⊃in)sep⊃,/in∘,¨⊂if≡⍵
 
 ⍝ ⍵ (ns.path)+
 ⍝   'zero.One.tWo.THree.foUr.NinETynIne' +

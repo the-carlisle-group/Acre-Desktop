@@ -1,5 +1,0 @@
- {r}←Run;ref;⎕IO;⎕ML
-⍝ Run all test cases
- ⎕IO←1 ⋄ ⎕ML←3
- ref←{9=#.⎕NC ⍵:# ⋄ 9=(↑⎕RSI).⎕NC ⍵:↑⎕RSI ⋄ 9=##.⎕NC ⍵:## ⋄ 'Cannot find "Tester"'⎕SIGNAL 6}'Tester'
- r←ref.Tester.Run ⎕THIS

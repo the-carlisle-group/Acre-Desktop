@@ -1,0 +1,6 @@
+ sourceReg←{
+     dat←⍺
+     sourceFields if(0=⊢)'*'UT.ar dat.sourcereg
+⍝
+⍝ Phil 2018-02-16 21.54
+ }
