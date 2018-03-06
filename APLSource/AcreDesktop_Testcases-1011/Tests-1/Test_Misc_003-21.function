@@ -34,6 +34,8 @@
   ⍝ 6. Change `Hello2` as well
   ⍝ 7. Perform "Undo" and "Redo" for two items.
 
+ R←∆OK
+
 ∆TidyUp:
  F.RmDir projectPath
 ⍝Done

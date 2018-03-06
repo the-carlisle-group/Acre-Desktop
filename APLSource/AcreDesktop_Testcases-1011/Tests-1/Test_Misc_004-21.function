@@ -49,6 +49,8 @@
  →GoToTidyUp 2≠⍴list
  →GoToTidyUp'change' 'change'≢A.Last¨list
 
+ R←∆OK
+
 ∆TidyUp:
  F.RmDir projectPath
 ⍝Done
