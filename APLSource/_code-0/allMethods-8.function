@@ -9,7 +9,7 @@
      z⍪←'LoadProject'this shared'Load project code into ws',⊂']',this,'.LoadProject folder [space]'
      z⍪←'OpenProject'this shared'Load project code into ws for development',⊂']',this,'.OpenProject folder [space]'
      z⍪←'Projects'this shared'List names, spaces & folders of all open projects.',⊂']',this,'.Projects'
-     z⍪←'PurgeHistory'this project'Fix changes to an open project',⊂']',this,'.PurgeHistory project-space'
+     z⍪←'PurgeHistory'this item'Fix changes to an open project',⊂']',this,'.PurgeHistory project-space'
      z⍪←'Redo'this item'Re-apply last undone change.',⊂']',this,'.Redo item(s)'
      z⍪←'Restore'this item'Bring back items ]erased',⊂']',this,'.Restore item'
      z⍪←'SetChanged'this item'Write items as if changed in the editor',⊂']',this,'.SetChanged item(s)'

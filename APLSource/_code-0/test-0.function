@@ -1,10 +1,8 @@
  test←{⍺←⊢
-     mrr←⎕SE.acre._code.OPT.(messages result rows)
      tests←##.AcreDesktop_Testcases
      fns←tests.Tests.⎕NL-3
      z←tests.(Tester.EstablishHelpersIn Tests)
-     z←tests.Tests.Run ⍝ Debug 0
-     ⎕SE.acre._code.OPT.(messages result rows)←mrr
+     z←(1∊⍵)tests.Tests.RunDebug ie{tests.Tests.Run⊣⍵}0
      z←tests.Tests.{⎕EX(⎕NL-3)~⍵}fns
 ⍝ Phil 2018-01-31 16.02
  }

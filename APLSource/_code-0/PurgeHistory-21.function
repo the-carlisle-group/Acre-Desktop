@@ -1,7 +1,15 @@
  PurgeHistory←{dat←⍺
-     files←⊃(⊣(/⍨)2=⊢)/0 1 ⎕NINFO⍠1⊢dat.changes,'*'
-     z←⎕NDELETE/1,⍪files
-     dat.changed←''
-     1⊣showMsg dat.nspath,MS.DA
-⍝ Phil 2018-02-21 09.58
+     dat.nspath≡⊃⍵:{      ⍝ all for project
+         files←⊃(⊣(/⍨)2=⊢)/0 1 ⎕NINFO⍠1⊢dat.changes,'*'
+         ok←∧/⎕NDELETE/1,⍪files
+         dat.changed←''
+         ok⊣showMsg ok/dat.nspath,MS.DA
+     }0
+                          ⍝ one item
+     dl←,∘MS.EX⊢(-≢MS.HN)↓fn←⊃dat getChangeFilenames⊂fqn←⊃⍵
+     ok←1∊⎕NDELETE/1,⍪dl fn
+     dat.changed~←⊂fqn
+     ok⊣showMsg ok/fqn,MS.DA
+⍝ Purge history for project or one item.
+⍝ Phil 2018-03-01 09.45
  }

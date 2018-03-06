@@ -1,7 +1,8 @@
  openProject←{⍺←⊢ ⋄ top←1≡⍺ 1 ⍝ monad from sharedMethod - dyad is subsid
      2<≢1⊃what proj←⍵:0⊣showMsg MS.DM,SX.⍎1⊃⎕SI
      which←⊃MS.ER MS.EQ/⍨open load←MS.FW MS.FY∊⊂what
-     null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:0
+     null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:{
+         0}showMsg open⊃SX.(LoadProject OpenProject)
      dat.changed←''⊣dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
      dat.folder←fPath src,'/'
      dat.(config source code changes sourcereg)←{
@@ -12,12 +13,10 @@
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ss∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}showMsg MS.DC
-     ~null showMsg dat∘openConflict⍣open⊢'':0 ⍝ can't open below a project
-     z←dat openLoad'' ⍝ open or load subsids
-     ~null showMsg dat∘openConflict⍣open⊢'':{
-         0}showMsg dat.config MS.CB ⍝ again in case subsids above
+     ~dat openLoad open:0 ⍝ open or load subsids
      z←showMsg(which,MS.EY),dat.folder
      space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
+     cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←≢/CC dat.keephistory MS.GB
      space.AcreConfig←cfg⊣cfg.ProjectFolder←dat.folder
      z←showMsg MS.EZ,dat.nspath
      z←⎕MKDIR/3,⍪dat.(changes source)/⍨~cde src

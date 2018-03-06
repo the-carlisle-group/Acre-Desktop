@@ -1,9 +1,8 @@
  Changes←{dat←⍺
      all←(⊢(/⍨)0<⎕NC)dat changes''
-     reg←dat sourceReg''
      dat.nspath≡⊃⍵:{         ⍝ project changes
          0∊⍴⍵:⍪''
-         date←reg.(date name)UT.co(1+≢dat.nspath)↓¨⍵
+         date←(dat sourceReg'').(date name)UT.co(1+≢dat.nspath)↓¨⍵
          ⍪⍵[⍒date]
      }all
 

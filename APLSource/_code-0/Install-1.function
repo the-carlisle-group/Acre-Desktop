@@ -40,11 +40,12 @@
 ⍝:          ⍕⍪'' 'Syntax: ',¨desc help⊃¨⍨cmds⍳⊂⍵
 ⍝:    }
 ⍝:    Run←{cmd arg←⍵
-⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY⍣(0∊⎕NC'<n>')⊢⍵}wsid
+⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC'<n>'
+⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY ⍵}⍣new⊢wsid
 ⍝:     nsi←((⎕XSI+.=¨'.')⍳1)⊃⎕NSI  ⍝ whence called
 ⍝:     parse←parse⊃⍨cmds⍳⊂cmd
 ⍝:   ⍝                    ↓↓↓↓
-⍝:     ⎕SE.<n>._code. userCmdRun cmd arg parse nsi path wsid name
+⍝:     ⎕SE.<n>._code. userCmdRun new cmd arg parse nsi path wsid name
 ⍝:    }
 ⍝:  :endnamespace
  }

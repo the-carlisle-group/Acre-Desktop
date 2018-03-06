@@ -15,7 +15,7 @@
          cr∊⍵:⊃,/('⋄',decom)¨cr sl ⍵ ⋄ decom ⍵}
      r←∊∘'[(⍴⊂⋄ ←)]'
      rem←⊢(/⍨)quoted≥' '∘=∧(1⌽r)∨¯1⌽r  ⍝ rem blanks adj to [(⍴⊂⋄ ←)]
-     rho←'⍴'∘=>(¯1⌽∊∘⎕D)∧1⌽'⊂'∘=       ⍝ '⍴' not twixt ⎕D and '⊂'
+     rho←'⍴'∘=>(¯1⌽∊∘⎕D)∧1⌽'⊂'∘=       ⍝ '⍴' not twixt '0-9' and '⊂'
      enc←'⊂'∘=>¯1⌽∊∘'[(⋄⍴'             ⍝ '⊂' not after '[(⋄⍴←⊂'
      syn←~∊∘syntax                     ⍝ not in syntax
      nam←∊∘abc>¯1⌽∊∘(abc,⎕D,'[⋄')      ⍝ abc not after name or '[⋄'

@@ -18,7 +18,7 @@
      z←showMsg(×z)/MS.EP,((z←≢fnm)UT.pl MS.EG),MS.EZ,MS.EX
      z←{⎕NUNTIE ⍵ ⎕NRENAME ⍺ ⎕NTIE 0}/fnm,⍪,∘MS.EX¨(-≢MS.HN)↓¨fnm
      diff←date≠was.(date name)UT.co name   ⍝ diff date - maybe new
-     z←showMsg MS.EO,((≢path)UT.pl MS.FK),MS.EY,src
+     z←showMsg MS.AC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,src
      val←read/0,⍪path
      fqn type val←fixValue(tgt∘,¨name)type val ⍝ type could change
      z←showMsg(×z)/MS.EN,((z←+/diff)UT.pl MS.FN),MS.EZ,dat.changes

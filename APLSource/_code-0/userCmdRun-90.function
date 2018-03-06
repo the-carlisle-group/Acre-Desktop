@@ -1,6 +1,7 @@
  userCmdRun←{
-     (method string parser space path wsid name)←⍵
-     z←Start path wsid name                  ⍝ once
+     (new method string parser space path wsid name)←⍵
+     z←Start⍣new⊢path wsid name              ⍝ once
+     SV.debug←1∊⎕SE.SALTUtils.DEBUG          ⍝ OK?
      SV.space←space,'.'                      ⍝ whence called
      z←openProjects''                        ⍝ still open?
      str com←((0⍳⍨(∧\quoted≥'⍝'=⊢))(↑_↓)⊢)string

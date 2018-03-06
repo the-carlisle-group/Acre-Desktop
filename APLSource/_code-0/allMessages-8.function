@@ -10,7 +10,9 @@
      ⊢{ ⍝ return ns
          ⍵.AA←nms.name
          ⍵.AB←'.',MS.AA,'/'
+         ⍵.AC←'Please wait - '
          ⍵.AD←'Type changed'
+
 
          ⍵.AE←'.array'
          ⍵.AF←'.function'

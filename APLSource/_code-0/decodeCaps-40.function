@@ -1,9 +1,10 @@
  decodeCaps←{⍺←⊢ ⋄ null ⍵:''
+     delta←{('∆⍙',⍵)[('+±',⍵)⍳⍵]}
      in out←'#-0' '#'(⊢,,)¨⍺⊣'/.'
      hd←⎕D,'abcdef',⎕D,'ABCDEF'
      one←{null 1⊃n c←2↑'-'sep ⍵:⍺,n
          ⍺,⊢⌿(↑1 0 CC¨⊂n)⊖⍨(≢n)↑⌽,⍉(4⍴2)⊤16|hd⍳c}
-     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sep⊃,/in∘,¨⊂if≡⍵
+     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sep delta⊃,/in∘,¨⊂if≡⍵
 ⍝ ⍺ input output separators
 ⍝ ← (ns.path)+
 ⍝   'zero.One.tWo.THree.foUr.NinETynIne' +
