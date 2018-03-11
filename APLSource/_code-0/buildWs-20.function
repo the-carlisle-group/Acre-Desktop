@@ -1,10 +1,10 @@
  buildWs←{⍺←⊢
-     ac←⎕SE UT.fr'.'UT.nn sPath⊃⎕XSI                        ⍝ ⎕SE equiv
+     sc←⎕SE UT.fr'.'UT.nn sPath⊃⎕XSI                        ⍝ ⎕SE equiv
      z←⎕EX(,(/⍨)(≢/⊢,⍕∘⍎¨))⍪## UT.li 9                      ⍝ anon refs
-     aa fz←ac.(MS.AA MS.FZ)
-     wsid←ac.SV.workspace
-     ac←⍴ac.dataSpaces⍣2⊢''                                 ⍝ close all
-     z←#.⎕EX~∘aa''~∘' '¨↓#.⎕NL⍳11                        ⍝ clean
+     aa fz←sc.(MS.AA MS.FZ)
+     wsid←sc.SV.workspace
+     sc←⍴sc.dataSpaces⍣2⊢''                                 ⍝ close all
+     z←#.⎕EX~∘aa''~∘' '¨↓#.⎕NL⍳11                           ⍝ clean
      z←##.⎕EX fz  ⍝ testcases is sibling to _code
      #.⎕LX←((⊃⎕XSI)UT.re(⊃⎕SI)'Install'),2⍴''''             ⍝ set ⎕lx
      r←0 ⎕SAVE⊢#.⎕WSID←wsid                                 ⍝ set wsid

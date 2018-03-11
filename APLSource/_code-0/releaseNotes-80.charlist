@@ -1,3 +1,41 @@
+Acre 4.1.2 2018-03-11
+
+Release Notes
+
+Acre DeskTop
+
+For a new project acreConfig.txt is now created with
+    KeepHistory←'On'
+
+This is the default. Changing it to
+    KeepHistory←'Off' 
+or inserting that or 
+   "KeepHistory": "Off" ⍝ or "off" or "OFF" &c.
+
+into an existing file causes the next ]Open- or ]LoadProject to erase the 
+.acre/ folder and disables the ]Changes, ]Restore, ]Undo, ]Redo and 
+]PurgeHistory commands for that project.
+
+Removing or changing it back to 'On' (or 'on' or 'ON' &c.) restores the 
+commands and the recording of new changes but not the previously discarded 
+history.
+
+The names in acreConfig.txt are case insensitive. This means that although 
+the file can contain e.g. both "Open" and "open" or "KeepHistory" and 
+"keephistory" only one of them will be honoured. This is the first that 
+appears in alphabetical (⎕NL) order. In #.project.AcreConfig they are
+standardised with the documented (PascalCase) capitalisation.
+
+"∆" and "⍙" in item and space names will now be converted to "+" and "±" -
+⎕UCS 43 177 - in file and folder names to avoid problems with Compressed 
+Folders. The only other known name-characters causing problems are the 
+underscored alphabet. No provision is made to convert them. The best advice 
+if you want to be able to compress acre projects is not to use them.
+
+In certain circumstances duplicate source files or folders for the same 
+item may be created. ]Open- and ]LoadProject will report these but not 
+affect them. The user can erase the unwanted ones in the OS.
+--------------------
 Acre 4.1.1 2018-02-27
 
 Release Notes
@@ -36,187 +74,3 @@ prevent their being reset to default.
 "! No open project can handle item ..." message now only after a change.
 
 ---------------------------
-Acre 4.0.6 2018-02-02
-
-Release Notes
-
-Acre DeskTop           
-                     
-Monitoring and warning of unfixed items in OpenProject and LoadProject.
-Monitoring and warning of multiple files due to type change.
-
-Single-step build function (..._code.buildWs'') must be run from open
-development project, Closes project(s), cleans up, saves workspace
-(acre.dws), command file (acre.dyalog) and releaseNotes.txt overwriting
-those in installation folder.
-
-Various bug fixes.
-
-Re-instated command
-    ]SetChanged item(s)
-
--------------------------
-Acre 4.0.5 2018-01-26
-
-Release Notes
-
-Acre DeskTop           
-                     
-Second release under GitHub
-
-⍝ Phil 2018-02-01 17.08
----------------------
-Acre 4.0.4 ⍝ Phil 2018-01-23 4.0.2
-
-Release Notes
-
-Acre DeskTop           
-
-Configuration parameters Open, Load and Startup all now in operation.
-
-A project having its "Open" parameter set to the folder path of another
-project will open that first before the main project. Likewise for "Load".
-The "Startup" parameter for the main or only project will be executed after
-it is Opened or Loaded.
-
-A hook for other programs to access acre data in a standard way now exists 
-in the form of a "run" function in ⎕SE.acre. Methods implemented are:
-nameclass  - return the nameclass filetype of one or more items
-changefile - return the change filename of one or more changed items
-deletefile - return the delete filename of one or more deleted items
-sourcefile - return the source filename of one or more items
-putchange  - force the creation of or appending to a changefile
-             and the creation or overwriting of a sourcefile with the 
-             latest value of one or more items.
-
-The syntax for an acre command is
-]acre.command args [options] ⍝ comment
-
-An unquoted "lamp" comment symbol terminates the command and is ignored.
-An unquoted "[" left bracket begins the option specification.
-Between the command name and the options, comment or line-end the string 
-    is parsed into blank and quote separated substrings:
-
-]acre.command one "two three" four five ⍝ is received by the command as:
-    'one' 'two three' 'four' 'five'
-
-Three options are available to control output.
-]acre.command args [messages←'off'           ⍝ turns messages off
-]acre.command args [messages←'#.global.name' ⍝ buffers messages
-]acre.command args [rows←integer             ⍝ restricts the number of
-                                             ⍝ rows returned
-]acre.command args [result←'#.global.name'   ⍝ stores the entire result
-
-Thus:
-]acre.command args [result←'#.result' ⋄ rows←30]
-    will display only 30 rows but put the entire result into #.result.
-
-The default for each is the empty string.
-     
-Bug fix: CreateProject no longer adds separate files for members of scripted
-spaces nor for members of references that point back to another space in the
-tree.
-
-Still to do:
-Honour "CaseCode" parameter
-Conflict resolution re. incorrect case-code
-Conflict resolution re. name-class file-type.
-
-⍝ Phil 2018-01-23 21.36
--------------
-Acre 4.0.3 2018-01-16 4.0.2
-
-Release Notes
-
-Acre DeskTop 
-
-Lots of bug fixes and a few minor enhancements, mostly messages.
-
-⍝ Phil Last 2018-01-16 13.57
------------------------
-Acre 4.0.2 2018-01-15 4.0.2
-
-Release Notes
-
-Acre DeskTop
-
-New name encoding scheme. e.g. function "ONE.Two.three" would be stored as
-"ONE-7/Two-1/three-0.function" as a text file; and the change folder as
-"ONE-7.Two-1.three-0.function.change" if changed; or
-"ONE-7.Two-1.three-0.function.delete" if deleted.
-
-Implemented nameclass filetypes are:
-.charmat   - text matrix - split with no trailing blanks
-.charlist  - list of textstrings - as is
-.array     - other array - formatted in APLAN
-.function  - dfn or trad - not derived - ⎕NR
-.operator  - monadic or dyadic - ⎕NR
-.script    - :Namespace - ⎕SRC
-.class     - :Class - ⎕SRC
-.interface - :Interface - ⎕SRC
-No metadata are stored in the text/change/delete files other than APLAN 
-markup for .array files.
-
-Methods mplemented:
-Changes
-CreateProject
-Erase
-FromAPLAN
-LoadProject
-OpenProject
-Projects
-PurgeHistory
-Redo
-Restore
-Stats
-ToAPLAN
-Undo
-
-What isn't implemented:
-    Load, Open, CaseCode and Startup configuration parameters.
-    Conflict resolution over filename case and filetypes.
-
-⍝ Phil Last 2018-01-15 00.07
------------------------
-Acre 4.0.1 2017-12-11 4.0.0
-
-Release Notes
-
-Acre DeskTop
-
-Two new methods:
- Name      Type     Description                                         ]Syntax arguments
- ----      ----     -----------                                         -----------------
- Projects  shared   List names, spaces & folders of all open projects.  ]Projects                      
- Stats     project  Project Statistics                                  ]Stats project                 
-
-But mainly just correcting the existing ones and various bugs 
-concerned with saving changes.
-Added a few msgs.
-
-⍝ Phil Last 2017-12-11 00.03
------------------------
-Acre 4.0.0 2017-12-07 4.0.0
-
-Release Notes
-
-Acre DeskTop
-
- method          type        description                                 syntax
- ------          ----        -----------                                 ------
- Consolidate     project     Fix changes to an open project              ]Consolidate project [confirm]
- CreateProject   shared      Create a new project                        ]CreateProject folder [space]
- Erase           item        Erase items from an open project            ]Erase item[s]
- Methods         shared      Display all methods, types and descriptions ]Methods
- OpenProject     shared      Load project code into ws for development   ]OpenProject folder [space]
- Redo            item        Redo last change ]undone                    ]Redo item[s]
- Restore         item        Bring back items ]erased                    ]Restore item[s]
- Run             project     Experimental or unexposed method            ]Run project args
- Undo            item        Undo last saved change                      ]Undo item[s]
-
-Above methods are all there is.
-The "4.0.0" repreated above indicates incompatibility with all previous versions/releases.
-
-The simplest way to try this out is to move or rename and keep your acre 3 folder and put this in its place.
------------                 
-⍝ Phil Last 2017-12-07 07.58

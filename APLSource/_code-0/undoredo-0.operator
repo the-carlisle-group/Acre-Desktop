@@ -1,5 +1,6 @@
- undoredo←{
-     dat←⍺
+ undoredo←{dat←⍺
+     ~dat.hist:''⊣showMsg dat noHistMsg''
+
      sig←⍺⍺    ⍝ Undo - , Redo +
      fqn←{⍵/⍨(#.⎕NC ⍵)∊validAPLType''},∘⊂if≡⍵
      fil←dat getChangeFilenames fqn

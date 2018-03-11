@@ -1,5 +1,5 @@
  getSource←{dat←⍺
-     src←dat.source                                   ⍝ ../APLSource/
+     src←dat.source                              ⍝ ../APLSource/
      tgt←dat.nspath,'.'
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src     ⍝ all files
@@ -8,33 +8,25 @@
      name←'/.'decodeCaps file
      dup←(⊢∊⊢(/⍨)⍳⍨≠⍳∘≢)name
      z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
-⍝     was←dat sourceReg''
-     was←{⎕NS ⍵.(⎕NL-2.1)}if{null ⍵.name}dat sourceReg''
-⍝     was.(name file date),←(null was.name)/¨name file date
-     del←tgt∘,¨was.name~name                    ⍝ file missing
-     z←showMsg(×z)/((z←≢del)UT.pl MS.FL),MS.EV,MS.EY,src
-     fnm←~∘∊⍨(⊃∘⊃0 ⎕NINFO⍠1⊢)¨dat getChangeFilenames del  ⍝ ".*"
-     ⍝ rename existing .change to ↓ .delete ELSE FORGET!!
-     z←showMsg(×z)/MS.EP,((z←≢fnm)UT.pl MS.EG),MS.EZ,MS.EX
-     z←{⎕NUNTIE ⍵ ⎕NRENAME ⍺ ⎕NTIE 0}/fnm,⍪,∘MS.EX¨(-≢MS.HN)↓¨fnm
-     diff←date≠was.(date name)UT.co name   ⍝ diff date - maybe new
      z←showMsg MS.AC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,src
-     val←read/0,⍪path
-     fqn type val←fixValue(tgt∘,¨name)type val ⍝ type could change
+     val←read/0,⍪path ⋄ tnam←tgt∘,¨name
+     fqn type val←fixValue tnam type val         ⍝ type-change fix-fail
+     ~dat.hist:⍵
+
+     now←⎕NS(sourceFields'').⎕NL-2.1             ⍝ record what we read
+     was←now if{null ⍵.name}dat sourceReg''      ⍝ what was last time
+     del←dat erase tgt∘,¨was.name~name               ⍝ file missing
+     name date←↓⍉↑(↓⍉↑name date)tnam UT.co fqn
+     diff←date≠was.(date name)UT.co name         ⍝ diff date - maybe new
      z←showMsg(×z)/MS.EN,((z←+/diff)UT.pl MS.FN),MS.EZ,dat.changes
      fqn←dat putChange diff∘/¨fqn val type
-     (reg←⎕NS'').(name file date)←name file date
-     reg UT.aw dat.sourcereg
+     ⍵⊣now UT.aw dat.sourcereg
 ⍝ ⍺ dat
 ⍝ ⍵ ?
-⍝ ← fqn type value
-⍝   get source tree
-⍝   read source reg
-⍝   compare
-⍝   create deletefiles
-⍝   read source files
-⍝   fix values
-⍝   create changefiles
-⍝   write new source reg
+⍝ ← ⍵
+⍝ get source and fix
+⍝ if hist rename missing changes to delete
+⍝ append or create changefiles
+⍝ record what exists
 ⍝ Phil 2018-02-16 23.10
  }

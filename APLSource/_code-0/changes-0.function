@@ -1,4 +1,6 @@
  changes←{dat←⍺
+     ~dat.hist:''
+
      ∪(dat.nspath,'.')∘,¨'..'decodeCaps UT.sp¨⊃{
          ⍺/⍨⍵∊⊂MS.HN}/↓⍉↑namx¨{⍵.Path}folderObj dat.changes
 ⍝ ← fqns of all items in .change files

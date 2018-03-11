@@ -20,8 +20,8 @@
      first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
          z←SV.itemvalue editStore nv
          z←⎕NQ'⎕SE'enum value space name new}''
-     (('⎕'∊z)∨0≥#.⎕NC⊂z←fqn):                  ⍝ doesn't exist or bad name
      new←MS.GU≡oldval←SV.itemvalue editStore fqn
+     ('⎕'∘∊∨0≥#.⎕NC∘⊂)fqn:                  ⍝ doesn't exist or bad name
      (oldval≡newval←⊃2⊃getValue,⊂fqn):               ⍝ unchanged
      0=dat←whichProject fqn:{}{
          ⍵}showMsg(~'['∊fqn)/UT.bx MS.DI,' "',fqn,'".'

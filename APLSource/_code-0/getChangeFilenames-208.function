@@ -1,6 +1,9 @@
  getChangeFilenames←{dat←⍺
+     f←,⊂if≡⍵
+     ~dat.hist:(≢f)⍴⊂''
+
      s t←dat.(nspath changes)
-     n←'..'encodeCaps(1+≢s)↓¨f←,⊂if≡⍵
+     n←'..'encodeCaps(1+≢s)↓¨f
      c←nameClass f   ⍝ may be MS.AL ".*" dealt with elsewhere
      ,/(⊂t),n,(⍪c),⊂MS.HN
 

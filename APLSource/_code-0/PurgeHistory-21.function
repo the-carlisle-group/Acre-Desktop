@@ -1,4 +1,6 @@
  PurgeHistory←{dat←⍺
+     ~dat.hist:0⊣showMsg dat noHistMsg''
+
      dat.nspath≡⊃⍵:{      ⍝ all for project
          files←⊃(⊣(/⍨)2=⊢)/0 1 ⎕NINFO⍠1⊢dat.changes,'*'
          ok←∧/⎕NDELETE/1,⍪files

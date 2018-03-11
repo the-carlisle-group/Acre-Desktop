@@ -3,6 +3,8 @@
      tgt←dat.sourcereg
      file←dat getSourceFilenames fqn
      gone←⎕NDELETE/1,⍪file
+     ~dat.hist:gone/fqn
+
      reg←dat sourceReg''
      nam←(1+≢src)↓¨fqn
      reg.(name file date)/⍨←⊂~reg.name∊nam

@@ -1,14 +1,16 @@
- putChange←{dat←⍺                           ⍝ or Deleted
+ putChange←{dat←⍺                     ⍝ or Deleted
+     ~dat.hist:''
+
      null⊃fqn val typ del←4↑⍵:fqn
      chg del←0 1=del≡MS.EX
      fqn val typ←,∘⊂¨if(≡⊃)fqn val typ
-     fns←dat getChangeFilenames fqn  ⍝ if del or new type will be ".*"
+     fns←dat getChangeFilenames fqn   ⍝ if del or new type will be ".*"
      fns←⍉⍪fns{⍺ UT.re MS.AL ⍵}¨typ
-     fns⍪⍨←(MS.EX,⍨(-≢MS.HN)↓⊢)¨fns          ⍝ del over chg
+     fns⍪⍨←(MS.EX,⍨(-≢MS.HN)↓⊢)¨fns   ⍝ del over chg
      aud←2⊥fns∊{⍵.Path}folderObj dat.changes
 ⍝ extant: 0 add , 1 change , 2 delete , 3 BOTH!!!
-     exi←aud≠0                               ⍝ exists
-     ren←(del∧aud=1)∨chg∧aud=2               ⍝ but wrong type
+     exi←aud≠0                        ⍝ exists
+     ren←(del∧aud=1)∨chg∧aud=2        ⍝ but wrong type
      old new←↓(del=ren)⊖fns
      change←{val old new ren exi←⍵
          tie←exi{

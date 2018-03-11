@@ -1,4 +1,6 @@
  deleted←{dat←⍺
+     ~dat.hist:''
+
      ∪(dat.nspath,'.')∘,¨'..'decodeCaps UT.sp¨⊃{
          ⍺/⍨⍵∊⊂MS.EX}/↓⍉↑namx¨{⍵.Path}folderObj dat.changes
 ⍝ ← fqns of all items in .delete files

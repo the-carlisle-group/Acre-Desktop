@@ -12,8 +12,6 @@
          ⍵.AB←'.',MS.AA,'/'
          ⍵.AC←'Please wait - '
          ⍵.AD←'Type changed'
-
-
          ⍵.AE←'.array'
          ⍵.AF←'.function'
          ⍵.AG←'.operator'
@@ -31,6 +29,7 @@
          ⍵.BC←'Code '
          ⍵.BD←'folder '
          ⍵.BF←'Version '
+         ⍵.BL←'History is disabled for '
          ⍵.BM←'Project not open'
          ⍵.BN←'Closed '
          ⍵.BV←'No change'
