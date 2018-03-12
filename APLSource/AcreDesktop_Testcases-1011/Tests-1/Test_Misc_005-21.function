@@ -1,0 +1,25 @@
+ R←Test_Misc_005(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list
+⍝ Exercise the "PurgeHistory" command.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+
+ ref.⎕FX'r←Hello' 'r←''World2'''
+ result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ →PassesIf~0∊⍴result
+ →PassesIf 1=⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ →PassesIf 1=⎕SE.UCMD'acre.PurgeHistory #.',projectName,' [messages←''off'']'
+ →PassesIf 0=⎕SE.UCMD'acre.PurgeHistory #.',projectName,' [messages←''off'']'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

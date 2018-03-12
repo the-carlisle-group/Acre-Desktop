@@ -19,7 +19,7 @@
      :EndTrap
 
      errMsg←1⊃⎕DM
-     →PassesIf'FILE NAME ERROR'≡(⍴'* Command Execution Failed: ')↓errMsg~⎕UCS 8
+     →PassesIf∨/'FILE NAME ERROR'⍷errMsg~⎕UCS 8
      R←∆OK
 
  :EndIf

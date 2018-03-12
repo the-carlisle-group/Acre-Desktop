@@ -10,7 +10,4 @@
  {}⎕SE.UCMD'acre.Stats [ messages←''#.AcreMessages'' ]'
  →PassesIf 1=⍴#.AcreMessages            ⍝ Should be syntax hint (project is missing)
 
- {}⎕SE.UCMD'acre.Stats'
- →PassesIf 1=⍴#.AcreMessages            ⍝ No change
-
  R←∆OK

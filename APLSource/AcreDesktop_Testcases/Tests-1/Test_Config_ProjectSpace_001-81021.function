@@ -25,12 +25,12 @@
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
 
  :Trap (~stopFlag)/0
-     list←⎕SE.UCMD'acre.Projects'
+     list←⎕SE.UCMD'acre.Projects '
  :Else
      →GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp'#.Temp'≢⎕SE.UCMD'acre.OpenProject ',projectPath
+ →GoToTidyUp'#.Temp'≢⎕SE.UCMD'acre.OpenProject ',projectPath,'  [ messages←''off'' ]'
  →GoToTidyUp 1≠(⊃⍴⎕SE.UCMD'acre.Projects')-⊃⍴list
  →GoToTidyUp'World'≢#.Temp.Hello
 

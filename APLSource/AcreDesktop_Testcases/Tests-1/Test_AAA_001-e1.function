@@ -3,14 +3,11 @@
 ⍝ The name makes sure that this runs first.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Inactive
- :Return
-
  R←∆Failed
 
- {}⎕SE.UCMD']acre.projects [ messages←''#.AcreMessages'' ]'
+ {}⎕SE.UCMD']acre.projects'
  →PassesIf 3=⎕SE.acre.⎕NC'run'
 
- →PassesIf'4.0.5'≡2⊃⎕SE.acre._code.getVersion''    ⍝TODO⍝  Should be an official method
+ →PassesIf'4.1.2'≡2⊃⎕SE.acre._code.getVersion''    ⍝TODO⍝  Should be an official method
 
  R←∆OK

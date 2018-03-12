@@ -39,8 +39,8 @@
  →GoToTidyUp 2≠⍴list
  →GoToTidyUp'delete' 'delete'≢A.Last¨list
  result←⎕SE.UCMD'Acre.Restore #.',projectName,'.Hello #.',projectName,'.Hello2'
- →GoToTidyUp 3∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'   ⍝ Is it deliberate that `Erase` accepts more than 1 item but `Restore` does not?
- result←⎕SE.UCMD'Acre.Restore #.',projectName,'.Hello2'  ⍝  ⍝TODO⍝  For the time being ?!
+ →GoToTidyUp 3≠ref.⎕NC'Hello'
+ result←⎕SE.UCMD'Acre.Restore #.',projectName,'.Hello2'
  →GoToTidyUp 3∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
  →GoToTidyUp 2≠⍴⊃F.Dir path,'*'
