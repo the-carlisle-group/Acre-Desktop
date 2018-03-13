@@ -1,0 +1,26 @@
+ R←Test_CreateProject_007(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list;noOf
+⍝ Create a project with a nested namespace. Top level owns a class, sub level a ref pointing to this.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FIX':Class Foo' '∇r←Hello' ':Access Public Shared' 'r←''World''' '∇' ':EndClass'
+ 'Sub'ref.⎕NS''
+ ref.Sub.Goo←⍎'#.',projectName,'.Foo'
+ noOf←⊃⍴⎕SE.UCMD'acre.Projects'
+
+ result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ →GoToTidyUp 0∊⍴result
+ →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
+ →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
+ →GoToTidyUp(,⊂F.EnforceSlash projectPath,'/APLSource/Foo-1.class')≢F.EnforceSlash¨⊃F.Dir projectPath,'/APLSource/*'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

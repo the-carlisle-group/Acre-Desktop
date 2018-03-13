@@ -1,0 +1,27 @@
+ R←Test_CreateProject_008(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list;noOf
+⍝ Create a project that carries a link to a namespace script outside the project.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'APLTreeUtils'
+ #.⎕FIX ⎕SRC ##.APLTreeUtils
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.APLtreeUtils←#.APLTreeUtils
+ ref.Foo←'Hello←{''World''}'
+ noOf←⊃⍴⎕SE.UCMD'acre.Projects'
+
+ result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ →GoToTidyUp 0∊⍴result
+ →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
+ →GoToTidyUp 1≠⍴⊃F.Dir projectPath,'/APLSource/*'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
