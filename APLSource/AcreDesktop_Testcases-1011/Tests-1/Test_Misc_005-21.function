@@ -17,7 +17,7 @@
  →PassesIf~0∊⍴result
  →PassesIf 1=⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
  →PassesIf 1=⎕SE.UCMD'acre.PurgeHistory #.',projectName,' [messages←''off'']'
- →PassesIf 0=⎕SE.UCMD'acre.PurgeHistory #.',projectName,' [messages←''off'']'
+ →PassesIf 0=⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
  R←∆OK
 
