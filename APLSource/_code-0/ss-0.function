@@ -1,7 +1,8 @@
- ss←{⍺←⊢ ⋄ b←⍺⊣1
+ ss←{⍺←⊢ ⋄ b←⍺⊣1 ⍝ dflt 1 - scripted
      {n\{0::~⍺ ⋄ ⍺⊣⎕SRC⍎⍵}/b,⍪⍵/⍨n←9.1=⎕NC ⍵}⊂if≡⍵
-⍝ ⍺ 1/0 - 1 scripted - 0 not scripted
+⍝ ⍺ 1/0 - 1 scripted - 0 not-scripted
 ⍝ ⍵ fqns (2 1≡≡,≢∘⍴)
 ⍝ ← boolean - which are scripted or non-scripted spaces
+⍝ NB # is neither
 ⍝ Phil 2018-02-01 17.06
  }

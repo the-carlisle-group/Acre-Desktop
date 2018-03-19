@@ -27,7 +27,7 @@
      z←dat getSource'' ⍝ gets, fixes, writes chgs and dels
      dat.changed←dat changes''
      z←space∘{0::⊢showMsg UT.bx MS.DN,MS.DP,⍵
-         ⊢showMsg⍕⍺.⍎⍵}if(open∧top>null)dat.startup
+         ⊢⍺.⍎UT.ep ⍵}if(open∧top>null)dat.startup
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS
 ⍝ ⍵ ('Open'|'Load') folder
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject

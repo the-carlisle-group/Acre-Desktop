@@ -5,6 +5,8 @@
      (b/path)←{⍺ UT.re MS.AL ⍵}⌿↑path type/¨⍨⊂b←(1∊MS.AL⍷⊢)¨path
      tree←⎕MKDIR/3,⍪∪⊃∘⎕NPARTS¨path         ⍝ ensure folders
      z←(,∘⊂if≡¨value){(,⍺)MS.HI ⎕NPUT ⍵ 1}¨path
+     ~dat.hist:fqn type value
+
      name←(1+≢src)↓¨fqn
      file←(≢tgt)↓¨(-≢¨type)↓¨path
      tree←fileTree tgt                      ⍝ get all Path Size Date
@@ -19,6 +21,6 @@
 ⍝ ⍵ FQNs type values
 ⍝ ← ⍵ same - having written to sourcetree
 ⍝   write to source tree files
-⍝   write to reg
+⍝   write to reg if dat.hist
 ⍝ Phil 2018-02-12 22.05
  }

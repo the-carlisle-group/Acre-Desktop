@@ -1,0 +1,7 @@
+ fixQV←{⍺←⊢
+     0≠⍵.⎕NC MS.BH:''
+     nms←'⎕IO ⎕ML ⎕WX ⎕CT ⎕PP'
+     ⊢⍵.⎕FIX(MS.HG,MS.BH)(' ##.(',nms,')←',⍕⍵.⍎nms)MS.HH
+⍝
+⍝ Phil 2018-03-15 19.03
+ }

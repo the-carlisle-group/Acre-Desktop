@@ -13,6 +13,7 @@
      cmp←1↓cmp
      date←↓MS.DK,⍤1 DT.(dt2fm∘ts2dt∘fd2ts)⊢/∘⎕FRDCI¨tie,¨cmp
      z←⎕FUNTIE tie
+     ⍪⍪¨' ',¨(⊂¨↓⍕((cmp=ptr)\⊂'>>>'),(⊂MS.BF),cmp,⍪date),¨val
      ⍪⊃,/,(⊂⊂''),(⊂¨↓⍕((cmp=ptr)\⊂'>>>'),(⊂MS.BF),cmp,⍪date),⍪val
 ⍝ list changed items of project
 ⍝ or dates and values of item

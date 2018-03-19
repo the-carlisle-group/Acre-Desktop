@@ -1,5 +1,5 @@
  undoredo←{dat←⍺
-     ~dat.hist:''⊣showMsg dat noHistMsg''
+     ~dat.hist:''⊣dat noHistMsg''
 
      sig←⍺⍺    ⍝ Undo - , Redo +
      fqn←{⍵/⍨(#.⎕NC ⍵)∊validAPLType''},∘⊂if≡⍵

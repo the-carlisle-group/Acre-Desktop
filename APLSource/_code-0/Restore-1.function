@@ -1,5 +1,5 @@
  Restore←{dat←⍺
-     ~dat.hist:''⊣showMsg dat noHistMsg''
+     ~dat.hist:''⊣dat noHistMsg''
      (null∨0<⎕NC)fqn←⊃⍵∩dat deleted'':''
      tgt src←MS.EX MS.HN
      file←MS.EX,⍨(-≢MS.HN)↓chg←⊃dat getChangeFilenames fqn

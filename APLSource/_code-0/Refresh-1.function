@@ -1,0 +1,5 @@
+ Refresh←{dat←⍺
+     dat getSource MS.BG
+⍝
+⍝ Phil 2018-03-13 21.56
+ }
