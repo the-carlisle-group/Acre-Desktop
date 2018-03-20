@@ -1,0 +1,6 @@
+ ref←{⍺←⊢
+     z\⊢∘(UT.df∘⍎≢⊢)/0,⍪⍵/⍨z←9=⌊⎕NC ⍵
+⍝ ⍵ fqns
+⍝ ← boolean which are refs or ptrs as opposed to named nss or clss
+⍝ Phil 2018-03-20 00.08
+ }

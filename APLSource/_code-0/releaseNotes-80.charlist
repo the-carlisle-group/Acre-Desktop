@@ -1,3 +1,21 @@
+Acre 4.1.3 2018-03-20
+
+Release Notes
+
+Acre DeskTop
+
+Corrects the bifurcated folder structure of the test cases that was caused
+manually by my oversight in importing them.
+
+Corrects the unwanted storing of refs and ptrs to namespaces and classes
+at other points in the tree by CreateProject, Erase and SetChanged.
+
+Includes various other rationalisations and minor bug fixes.
+
+The following is a repetition of the notes for build 4.1.2 which was not 
+officially released.
+
+ -------------------
 Acre 4.1.2 2018-03-11
 
 Release Notes

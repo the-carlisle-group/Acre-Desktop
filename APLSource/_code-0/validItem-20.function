@@ -1,7 +1,11 @@
  validItem←{
 ⍝ also needs to remove refs and items whose parents are refs
+     {⍵(/⍨)(1∘ss⍱ref)uniq sPath¨⍵}(⊢(/⍨)0∘ss<ref<⎕NC∊validAPLType),∘⊂if≡⍵
+
+     ref←(UT.df∘⍎≢⊢)¨ ⋄ scr←1∘ss ⋄ nsc←0∘ss
+     {⍵(/⍨)(ref⍱scr)uniq sPath¨⍵}(⊢(/⍨)nsc<⎕NC∊validAPLType),∘⊂if≡⍵
+
      {⍵(/⍨)~1 ss uniq sPath¨⍵}(⊢(/⍨)0∘ss<⎕NC∊validAPLType),∘⊂if≡⍵
-⍝     (⊢(/⍨)0(ss uniq)sPath¨)(⊢(/⍨)0∘ss<⎕NC∊validAPLType),∘⊂if≡⍵
 ⍝ no labels, derived fns, container spaces, instances or script members
 ⍝ Phil 2018-02-18 21.26
  }

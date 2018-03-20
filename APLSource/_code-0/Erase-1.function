@@ -7,6 +7,8 @@
 ⍝     its←⍵~wcd←⍵/⍨'*'∊¨⍵
 ⍝     nms←∪its,⊃,/⊢∘UT.na/0,wcd
 
+     nms←validItem nms
+
      ~dat.hist:(⊢⊣⎕EX)dat delSource nms
 
      fqn typ val←getValue nms
