@@ -20,11 +20,12 @@
      (x/res)←fixFn/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc∊ns.(function operator)
      (x/res)←(↑x∘/¨spc val)∘fixClss 1/⍨+/x←nc∊ns.(class interface)
 
+     res←res>MS.AL''∊⍨now←nameClass fqn
      z←showMsg MS.FX showList fqn/⍨~res  ⍝ not fixed
-     fqn typ val/⍨←⊂res
-     chg←typ≢¨type←nameClass fqn
-     z←showMsg MS.AD showList chg/,/fqn,' ',typ,'>',⍪type ⍝ type change
-     fqn type val
+     fqn typ now val/⍨←⊂res
+     chg←typ≢¨now
+     z←showMsg MS.AD showList chg/,/fqn,' ',typ,'>',⍪now ⍝ type change
+     fqn now val
 ⍝ ⍵ fqn type value
 ⍝ ← ⍵ fixed
 ⍝ Phil 2018-02-02 18.48
