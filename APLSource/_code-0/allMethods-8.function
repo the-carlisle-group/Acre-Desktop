@@ -4,6 +4,7 @@
 ⍝        Name   Group   Type    Description           ]Syntax arguments
      z⍪←'Changes'this item'List changed items in project or changes to one',⊂']',this,'.Changes project-space | item'
      z⍪←'CreateProject'this shared'Create a new project',⊂']',this,'.CreateProject folder space [codecase]'
+⍝     z⍪←'EditArray'this item'Edit an existing array',⊂']',this,'.EditArray item'
      z⍪←'Erase'this item'Erase an item or items from an open project',⊂']',this,'.Erase item(s)'
      z⍪←'FromAPLAN'this shared'Evaluate an APLAN expression',⊂']',this,'.FromAPLAN name | "expression"'
      z⍪←'LoadProject'this shared'Load project code into ws',⊂']',this,'.LoadProject folder [space]'

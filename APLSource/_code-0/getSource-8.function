@@ -18,7 +18,8 @@
      del←dat erase tgt∘,¨was.name~name               ⍝ file missing
      name date←↓⍉↑(↓⍉↑name date)tnam UT.co fqn
      diff←date≠was.(date name)UT.co name         ⍝ diff date - maybe new
-     z←showMsg(×z)/MS.EN,((z←+/diff)UT.pl MS.FN),MS.EZ,dat.changes
+     msg←MS.EN,((+/diff)UT.pl MS.FN),MS.EZ,¯30 UT.tm dat.changes
+     z←showMsg msg showList diff/fqn
      fqn←dat putChange diff∘/¨fqn val type
      ⍵⊣now UT.aw dat.sourcereg
 ⍝ ⍺ dat

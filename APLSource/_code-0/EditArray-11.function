@@ -1,6 +1,6 @@
  EditArray←{⍺←⊢
 
-     DO NOT USE
+ ⍝    DO NOT USE
 
      mon←1≡⍺ 1
      2≠#.⎕NC fqn←⊃⊂if≡⍵:''

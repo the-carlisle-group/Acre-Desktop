@@ -8,7 +8,7 @@
      dat.(config source code changes sourcereg)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
      ~∨/2⍴src cnf cde←⎕NEXISTS¨dat.(source config changes):{
-         0}showMsg MS.HB,' ',¯50 UT.tm dat.folder
+         0}showMsg MS.HB,' ',¯30 UT.tm dat.folder
      z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ss∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{

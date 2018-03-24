@@ -1,5 +1,5 @@
  Changes←{dat←⍺
-     ~dat.hist:⍪''⊣showMsg dat noHistMsg''
+     ~dat.hist:⍪''⊣dat noHistMsg''
      null⊢all←(⊢(/⍨)0<⎕NC)dat changes'':⍪''
      dat.nspath≡⊃⍵:{         ⍝ project changes
          date←(dat sourceReg'').(date name)UT.co(1+≢dat.nspath)↓¨⍵

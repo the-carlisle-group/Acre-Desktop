@@ -118,7 +118,8 @@
          ⍵.ID←'deletefile'
          ⍵.IE←'sourcefile'
          ⍵.IF←'itemname'
-         ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF
+         ⍵.IG←'getversion'
+         ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF MS.IG
          ⍵.IZ←'''method'' ⎕SE.',MS.AA,'.run args'
 
          ⍵.__←⊃⎕XSI
