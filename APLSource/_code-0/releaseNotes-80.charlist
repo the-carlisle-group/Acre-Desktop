@@ -10,7 +10,7 @@ manually by my oversight in importing them.
 Corrects the unwanted storing of refs and ptrs to namespaces and classes
 at other points in the tree by CreateProject, Erase and SetChanged.
 
-Corrects the incorrect reporting of classes hat have failed to fix.
+Corrects the incorrect reporting of classes that have failed to fix.
 
 Includes various other rationalisations and minor bug fixes.
 
