@@ -1,5 +1,5 @@
  decodeCaps←{⍺←⊢ ⋄ null ⍵:''
-     delta←{('∆⍙',⍵)[('+±',⍵)⍳⍵]}
+     delta←{('∆⍙',⍵)[('+±',⍵)⍳⍵]}   ⍝ remove this in June or July
      in out←'#-0' '#'(⊢,,)¨⍺⊣'/.'
      hd←⎕D,'abcdef',⎕D,'ABCDEF'
      one←{null 1⊃n c←2↑'-'sep ⍵:⍺,n

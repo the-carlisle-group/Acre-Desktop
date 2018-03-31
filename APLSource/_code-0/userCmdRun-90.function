@@ -1,5 +1,5 @@
  userCmdRun←{
-     (new method string parser space path wsid name)←⍵
+     (new method string type space path wsid name)←⍵
      z←Start⍣new⊢path wsid name              ⍝ once
      SV.debug←1∊⎕SE.SALTUtils.DEBUG          ⍝ OK?
      SV.space←space,'.'                      ⍝ whence called
@@ -12,7 +12,7 @@
      ⎕THIS.OPT←optionFields''
      z←opt.{⎕EX(⎕NL-2)~⍵}OPT.⎕NL-2
      z←'OPT'⎕NS opt
-     (item proj share)←'i' 'p' 's'=⊃parser   ⍝ see all Methods
+     (item proj share)←'i' 'p' 's'=⊃type     ⍝ see allMethods
      res←'res'{⍵,⍺/⍨null ⍵}OPT.result        ⍝ local if not assigned
      res←res'edit'⊃⍨ed←≡/CC res'⎕ED'
 ⍝                    ↓↓↓↓↓

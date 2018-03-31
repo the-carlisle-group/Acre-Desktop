@@ -21,7 +21,7 @@
      z⍪←'Undo'this item'Revert to previous version',⊂']',this,'.Undo item(s)'
      z
 
-⍝  parser   argument
+⍝  type     argument
 ⍝  ------   --------
 ⍝  item     itemname(s)
 ⍝  project  projectname [args]

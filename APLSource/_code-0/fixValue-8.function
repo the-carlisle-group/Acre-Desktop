@@ -1,18 +1,18 @@
  fixValue←{null ⍵:'' '' ''
-     fixNs←(⍎''⎕NS⍨⊢)eu
-     fixSrc←{0::0 ⋄ 1⊣⍺.⎕FIX ⍵}
+     fixNs←⍎''⎕NS⍨⍕
+     fixSrc←{0::0 ⋄ 1⊣(fixNs ⍺).⎕FIX ⍵}
      fixVar←{0::0 ⋄ n s v←⍵ ⋄ 1⊣n s.{⍎⍺,'←⍵'}⍺⍺ v}
      fixFn←{0::0 ⋄ n s v←⍵ ⋄ n≡s.⎕FX v}
      fixClss←~{⍵\~1↓0,fixSrc⌿⍵/⍺}⍣≡
 
      fqn typ val←,∘⊂¨if(≡⊃)⍵
+     fqn typ val{⍺[⍵]}←⊂⍋(≢sPath)¨fqn
      z←(1↓¨nms)(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴nms←MS.AZ
      nc←nms⍳typ
      nam←1↓¨1⊃spc nam←↓⍉↑namx¨fqn
      res←0⍴⍨⍴nam
-     (x/spc)←fixNs spc/⍨x←nc=ns.script  ⍝ parents of scripts
      (x/res)←fixSrc⌿↑spc val/¨⍨⊂x←nc=ns.script
-     (x/spc)←fixNs spc/⍨x←nc≠ns.script  ⍝ complete space-tree
+     spc←fixNs eu spc
      (x/res)←AN.decode fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.array
      (x/res)←⊢fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.charlist
      (x/res)←↑fixVar/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc=ns.charmat
@@ -20,8 +20,8 @@
      (x/res)←fixFn/0,⍪↓⍉↑nam spc val/¨⍨⊂x←nc∊ns.(function operator)
      (x/res)←(↑x∘/¨spc val)∘fixClss 1/⍨+/x←nc∊ns.(class interface)
 
-     res←res>MS.AL''∊⍨now←nameClass fqn
-     z←showMsg MS.FX showList fqn/⍨~res  ⍝ not fixed
+     res←res>MS.AL''∊⍨now←nameClass fqn ⍝ no error on fix and not unknown
+     z←showMsg MS.FX showList fqn/⍨~res ⍝ not fixed
      fqn typ now val/⍨←⊂res
      chg←typ≢¨now
      z←showMsg MS.AD showList chg/,/fqn,' ',typ,'>',⍪now ⍝ type change

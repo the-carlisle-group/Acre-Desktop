@@ -9,8 +9,8 @@
      z←⎕SE.SALT.Settings'cmddir "',path,old,'" -permanent' ⍝ add me
      cmds grp parse desc help←⍕¨↓⍉qu¨allMethods name
      re←{⊃⍵{(⍴,⍵)↓⊃,/⍵∘,¨(⍴,⍺)↓¨⍺{⍵⊂⍨⍺⍷⍵}⍺,⍺⍺}/⍺}
-     data←(name)(grp)(path)(wsid)(cmds)(desc)(parse)(help)
-     code←'<n>' '<g>' '<p>' '<w>' '<c>' '<d>' '<a>' '<h>'
+     data←(name)(grp)(cmds)(desc)(parse)(help)
+     code←'<n>' '<g>' '<c>' '<d>' '<a>' '<h>'
      script←,(⎕UCS 10),{0 3↓⍵⌿⍨>/'⍝: '⍷⍵}⎕CR⊃⎕SI
      script←⊂(⎕UCS 10){1↓¨⍵⊂⍨⍵=⍺}⊃re/(↓code,⍪data),⊂script
      z←script ⎕NPUT(path,name,'.dyalog')1    ⍝ 1=rewrite
@@ -18,14 +18,8 @@
      z←(⊂{⍵/⍨∧\(⍵∊∊⍵)∨⍵∨.≠¨'-'}releaseNotes⊣'')⎕NPUT rel 1
      ⍪'Installed at ' ']open ',∘apo¨path rel
 ⍝:  :namespace <n>Init
-⍝: ⍝ generated script, do not edit. None of name "<n>",
-⍝: ⍝ path "<p>"
-⍝: ⍝ or wsid "<w>"
-⍝: ⍝ is in the source.
 ⍝:     ⎕io ⎕ml←0
 ⍝:     name  ← ,'<n>'  ⍝ string
-⍝:     path  ← ,'<p>'  ⍝ string
-⍝:     wsid  ← ,'<w>'  ⍝ string
 ⍝:     group ← ,¨<g>   ⍝  list
 ⍝:     cmds  ← ,¨<c>   ⍝  list
 ⍝:     desc  ← ,¨<d>   ⍝  list
@@ -40,6 +34,7 @@
 ⍝:          ⍕⍪'' 'Syntax: ',¨desc help⊃¨⍨cmds⍳⊂⍵
 ⍝:    }
 ⍝:    Run←{cmd arg←⍵
+⍝:     (path wsid)←,\2⍴1 ⎕NPARTS ##.SourceFile
 ⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC'<n>'
 ⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY ⍵}⍣new⊢wsid
 ⍝:     nsi←((⎕XSI+.=¨'.')⍳1)⊃⎕NSI  ⍝ whence called

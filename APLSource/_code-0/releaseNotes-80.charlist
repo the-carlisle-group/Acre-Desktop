@@ -14,6 +14,10 @@ Corrects the incorrect reporting of classes that have failed to fix.
 
 Includes various other rationalisations and minor bug fixes.
 
+The command script is now independent of location so once installed the 
+acre folder can be overwritten with a new release without the need to 
+reload the installation workspace.
+
 The following is a repetition of the notes for build 4.1.2 which was not 
 officially released.
 

@@ -1,7 +1,7 @@
  fixQV←{⍺←⊢
-     0≠⍵.⎕NC MS.BH:''
-     nms←'⎕IO ⎕ML ⎕WX ⎕CT ⎕PP'
-     ⊢⍵.⎕FIX(MS.HG,MS.BH)(' ##.(',nms,')←',⍕⍵.⍎nms)MS.HH
+     0≠⍵.⎕NC fn←MS.BH:''       ⍝ fn name
+     nms←MS.BI                 ⍝ which vars ?
+     ⊢⍵.⎕FIX(MS.HG,fn)(' ##.(',nms,')←',⍕⍵.⍎nms)MS.HH
 ⍝
 ⍝ Phil 2018-03-15 19.03
  }
