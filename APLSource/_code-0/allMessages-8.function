@@ -39,7 +39,7 @@
 
          ⍵.CA←'! A project may not be opened inside another:'
          ⍵.CB←' will need to be amended.'
-         ⍵.CX←'please confirm within _ by restarting with this code: "_".'
+         ⍵.CC←'please confirm within _ by restarting with this code: "_".'
 
          ⍵.DA←' - Local history purged'
          ⍵.DB←'! Problem reading '
@@ -83,7 +83,6 @@
          ⍵.FJ←'namespace namespaces'
          ⍵.FK←'item items'
          ⍵.FL←'file files'
-
          ⍵.FM←'.gitignore'
          ⍵.FN←'update updates'
          ⍵.FP←' loaded '

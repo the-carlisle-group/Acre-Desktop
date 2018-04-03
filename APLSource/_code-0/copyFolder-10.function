@@ -1,6 +1,6 @@
  copyFolder←{⍺←⊢ ⋄ era←1=⍺⊣0
      source target←'/'UT.nn¨src tgt←¯1↓¨fPath¨⍵,¨'/'
-     n←≢/CC source target
+     n←≢/Cc source target
      tgt,←n/'/',source
      z←showMsg MS.EI
      sp tp←{
@@ -13,7 +13,7 @@
      del copy←{
          sp←(⍴src)↓¨sp
          tp←(⍴tgt)↓¨tp
-         s t←CC sp tp
+         s t←Cc sp tp
          del←tgt∘,¨tp/⍨~t∊s
          miss←↓⍉src tgt∘.,sp/⍨~mem←s∊t
          both←src tgt∘.,sp/⍨mem

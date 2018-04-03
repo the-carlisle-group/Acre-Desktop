@@ -1,5 +1,5 @@
  codeHook←{⍺←⊢
-     null⊢fn←⊂CC ⍺⊣'':''⊣showMsg MS.IZ
+     null⊢fn←⊂Cc ⍺⊣'':''⊣showMsg MS.IZ
      z←fns(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴fns←MS.IX ⍝ MS.__
      ix←fns⍳fn
      SV.space←'.',⍨(¯1+((⊂MS.AA)(∨/⍷)¨⎕XSI)⍳0)⊃⎕NSI

@@ -14,7 +14,7 @@
      {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:
      enum←SV.eventnumber
      (editor event value space name new)←⍵             ⍝ so long as onFix unchanged
-     first←event≢enum ⋄ sn←1 ss⊂⍕space                 ⍝ is space scripted?
+     first←event≢enum ⋄ sn←1 ssp⊂⍕space                 ⍝ is space scripted?
      fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(≢∘∊⍨new)∧2≠space.⎕NC name
      (('⎕'∊fqn)≥(⎕NC⊂fqn)∊0,validAPLType''):
      first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn

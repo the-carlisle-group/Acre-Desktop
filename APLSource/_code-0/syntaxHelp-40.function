@@ -1,5 +1,5 @@
  syntaxHelp←{
-     UT.dx(⊣/_⊢/)allMethods ⍵
-⍝ ns of [cmd←']cmd syntax' ⋄ ...]
-⍝ Phil Last 2018-01-18 22.13
+     CD.command(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}CD.syntax
+⍝ ns of command syntax uses CD ex setEnvironment & cmdDefs
+⍝ Phil 2018-03-31 17.53
  }

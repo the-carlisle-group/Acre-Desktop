@@ -5,12 +5,13 @@
      sep←⊃~∘'∘'⊢⎕SE.SALT.PATHDEL                           ⍝ thanks Gil
      old←1↓¨{⍵⊂⍨⍵∊sep,'∘'}sep,⎕SE.SALT.Settings'cmddir'    ⍝ seek both
      f←{⍵/⍨(⊢=⌈/)(+\×~)⍵∊'/\'}                             ⍝ last /substr/
-     old←⊃,/sep,¨old/⍨~¯1(↓∊↑)CC f¨old,⊂path               ⍝ sans me
+     old←⊃,/sep,¨old/⍨~¯1(↓∊↑)Cc f¨old,⊂path               ⍝ sans me
      z←⎕SE.SALT.Settings'cmddir "',path,old,'" -permanent' ⍝ add me
-     cmds grp parse desc help←⍕¨↓⍉qu¨allMethods name
+     cmds help opt syn type grp←{
+         ⍕¨qu¨¨⍵.(command help options syntax type group)}cmdDefs name
      re←{⊃⍵{(⍴,⍵)↓⊃,/⍵∘,¨(⍴,⍺)↓¨⍺{⍵⊂⍨⍺⍷⍵}⍺,⍺⍺}/⍺}
-     data←(name)(grp)(cmds)(desc)(parse)(help)
-     code←'<n>' '<g>' '<c>' '<d>' '<a>' '<h>'
+     data←(name)(grp)(cmds)(opt)(help)(type)(syn)
+     code←'<n>' '<g>' '<c>' '<o>' '<h>' '<t>' '<s>'
      script←,(⎕UCS 10),{0 3↓⍵⌿⍨>/'⍝: '⍷⍵}⎕CR⊃⎕SI
      script←⊂(⎕UCS 10){1↓¨⍵⊂⍨⍵=⍺}⊃re/(↓code,⍪data),⊂script
      z←script ⎕NPUT(path,name,'.dyalog')1    ⍝ 1=rewrite
@@ -22,25 +23,25 @@
 ⍝:     name  ← ,'<n>'  ⍝ string
 ⍝:     group ← ,¨<g>   ⍝  list
 ⍝:     cmds  ← ,¨<c>   ⍝  list
-⍝:     desc  ← ,¨<d>   ⍝  list
-⍝:     parse ← ,¨<a>   ⍝  list
 ⍝:     help  ← ,¨<h>   ⍝  list
+⍝:     type  ← ,¨<t>   ⍝  list
+⍝:     syn   ← ,¨<s>   ⍝  list
+⍝:     parse ← ,¨<o>   ⍝  list
 ⍝:   ∇ r←List
 ⍝:     r←{⎕NS''}¨⍳⍴cmds
-⍝:     r.(Name Desc Group)←↓⍉↑cmds desc group
-⍝:     r.(Parse)←⊂''
+⍝:     r.(Name Desc Group Parse)←↓⍉↑cmds help group parse
 ⍝:   ∇
-⍝:    Help←{⍝ ↑(2 2⊤1+3|⍺)/desc help⊃¨⍨cmds⍳⊂⍵
-⍝:          ⍕⍪'' 'Syntax: ',¨desc help⊃¨⍨cmds⍳⊂⍵
+⍝:    Help←{⍕⍪'' 'Syntax: ',¨help syn⊃¨⍨cmds⍳⊂⍵
 ⍝:    }
 ⍝:    Run←{cmd arg←⍵
+⍝:     arg.help:Help cmd
 ⍝:     (path wsid)←,\2⍴1 ⎕NPARTS ##.SourceFile
 ⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC'<n>'
 ⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY ⍵}⍣new⊢wsid
 ⍝:     nsi←((⎕XSI+.=¨'.')⍳1)⊃⎕NSI  ⍝ whence called
-⍝:     parse←parse⊃⍨cmds⍳⊂cmd
+⍝:     type←type⊃⍨cmds⍳⊂cmd
 ⍝:   ⍝                    ↓↓↓↓
-⍝:     ⎕SE.<n>._code. userCmdRun new cmd arg parse nsi path wsid name
+⍝:     ⎕SE.<n>._code. userCmdRun new cmd arg type nsi path wsid name
 ⍝:    }
 ⍝:  :endnamespace
  }

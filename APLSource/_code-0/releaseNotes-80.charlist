@@ -1,3 +1,28 @@
+Acre 4.1.4-? 2018-04=??
+
+Release Notes
+
+Acre DeskTop
+
+The "[option←'value']" specification is no longer supported.
+
+Acre now uses the inbuilt "-option=value" specification.
+
+Initially only
+ 
+-help
+-messages=on | off | #.global.name
+-track=on | off
+-dependencies=on | off
+
+are recognised. The latter two are valid for only OpenProject and are
+ignored in any case.                                                 
+
+-help displays the description and syntax of the particular command,
+    currently without the additional information about modifiers and
+    script location.
+-messages is as it was.
+-----------------
 Acre 4.1.3 2018-03-20
 
 Release Notes

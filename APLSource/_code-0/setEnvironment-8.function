@@ -1,15 +1,15 @@
- setEnvironment←{⍺←⊢                       ⍝ runs only if no projects already open
-     top←UT.rs⊢ici←⎕THIS                   ⍝ child of # or ⎕SE
+ setEnvironment←{⍺←⊢                  ⍝ only if no projects
+     top←UT.rs⊢ici←⎕THIS              ⍝ child of # or ⎕SE
      ici.SV←top.⎕NS''
      SV.setupcomplete←0
      path ws name←SV.(inipath workspace systemname)←⍵
      ici.MS←allMessages name
-     ici.SX←syntaxHelp name
      ici.EN←aplErrors''
-     ici.OPT←optionFields''
-     ici.CD←AN.decode cmdDefs''
-     SV.sessionstart←sessionStart''        ⍝ ↓ runtime = no msgs, no editor
-     z←editFix'Start'                      ⍝ sets other stuff in SV
+     ici.CD←cmdDefs name
+     ici.SX←syntaxHelp name
+     SV.sessionstart←sessionStart''
+     z←editFix'Start'                 ⍝ sets other stuff in SV
+     ici.OPT←{⍵⊣⍵.messages←'on'}⎕NS'' ⍝ pro-tem
      z←showMsg⍕3⍴getVersion''
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns

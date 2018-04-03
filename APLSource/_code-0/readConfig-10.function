@@ -1,10 +1,10 @@
  readConfig←{cnf←⍵
-     rl←CC⊢ru←{⍵.⎕NL-2}res←configFields''
+     rl←Cc⊢ru←{⍵.⎕NL-2}res←configFields''
      0::res⊣showMsg UT.bx MS.DB,cnf
      ~⎕NEXISTS cnf:res
      d←~∘∊⍨⊃MS.HI ⎕NGET cnf 1                     ⍝ lose blank rows
      r t←0{'⍝'=z←⊃~∘' '⊃⍵:(1+⍺)∇ 1↓⍵ ⋄ ⍺ z}d      ⍝ lose comment rows
-     cl←CC⊢cu←{⍵.⎕NL-2}cfg←t{                     ⍝ actuals
+     cl←Cc⊢cu←{⍵.⎕NL-2}cfg←t{                     ⍝ actuals
          ⍺='{':7159⌶1↓⊃,/(⎕UCS 13),¨⍵                 ⍝ JSON
          ⍺=':':0 ⎕FIX ⍵                               ⍝ APLscript
          ⍺='[':AN.decode ⍵                            ⍝ APLAN

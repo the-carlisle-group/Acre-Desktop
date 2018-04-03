@@ -1,6 +1,7 @@
  catalog←{opt←⍵ ⋄ cat←⎕NS''
      0⊣SV.{⍎⍺,'←⍵'}/##.OPTIONS.({(↓⍵),⍪1↓⍎'0',,' ',⍵}⎕NL 2.1): ⍝ copy options to SV
-     raw←''⍬(0 0⍴' ')(#.⎕NS'')                                 ⍝ null str, vec, mat & ns
+⍝     raw←''⍬(0 0⍴' ')(#.⎕NS'')                                 ⍝ null str, vec, mat & ns
+     raw←''⍬(0 0⍴' ')(⎕NS'')                                 ⍝ null str, vec, mat & ns
      enc←SV.((AP,AP,' ')(,ZE)(LB CS RB)(LB CS AS RB))          ⍝ ditto
      cat.(key val)←cat,¨opt⌽raw enc
      cat⊣cat.def←SV.(LB,CS,(CI⌷CM AS),RB)     ⍝ trap circle or not

@@ -1,4 +1,4 @@
- ss←{⍺←⊢ ⋄ b←⍺⊣1 ⍝ dflt 1 - scripted
+ ssp←{⍺←⊢ ⋄ b←⍺⊣1 ⍝ dflt 1 - scripted
      {n\{0::~⍺ ⋄ ⍺⊣⎕SRC⍎⍵}/b,⍪⍵/⍨n←9.1=⎕NC ⍵}⊂if≡⍵
 ⍝ ⍺ 1/0 - 1 scripted - 0 not-scripted
 ⍝ ⍵ fqns (2 1≡≡,≢∘⍴)

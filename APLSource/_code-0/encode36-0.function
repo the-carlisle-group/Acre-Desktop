@@ -1,7 +1,7 @@
  encode36←{null ⍵:''
      hd←⎕D,⎕A
      enc←{{⍵↑⍨-1⌈⊥⍨∨\0≠⍵}2 3 2 3⊥⍉s⍴⌽⍵↑⍨×/s←4,⍨⌈4÷⍨⍴⍵}
-     one←{'/',⍵,'-',hd⌷⍨⊂enc ⍵≠CC ⍵}
+     one←{'/',⍵,'-',hd⌷⍨⊂enc ⍵≠Cc ⍵}
      in out←'.#.' '/#-0/'
      (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/one eu 1↓(⊃in)sep⊃,/in∘,¨⊂if≡⍵
 

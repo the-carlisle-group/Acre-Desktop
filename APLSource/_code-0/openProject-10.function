@@ -11,14 +11,14 @@
          0}showMsg MS.HB,' ',¯30 UT.tm dat.folder
      z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
-     ~((1=≢)∨0∘ss∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
+     ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}showMsg MS.DC
      ~dat openLoad open:0 ⍝ load subsids
 
      z←showMsg(which,MS.EY),dat.folder
      space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
-     cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←≢/CC dat.keephistory MS.GB
-     cfg.CaseCode←MS.GB MS.GA⊃⍨dat.case←≢/CC dat.casecode MS.GB
+     cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←≢/Cc dat.keephistory MS.GB
+     cfg.CaseCode←MS.GB MS.GA⊃⍨dat.case←≢/Cc dat.casecode MS.GB
      space.AcreConfig←cfg⊣cfg.ProjectFolder←dat.folder
      z←showMsg MS.EZ,dat.nspath
      z←deleteFolder⍣(cde>dat.hist)⊢dat.code

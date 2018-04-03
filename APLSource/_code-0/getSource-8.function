@@ -4,7 +4,7 @@
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src     ⍝ all files
      file type←↓⍉↑(UT.px(≢src)↓⊢)¨path           ⍝ 'ns/path/file' '.type'
-     path date file type/⍨←∊/CC type MS.AZ       ⍝ only valid types
+     path date file type/⍨←∊/Cc type MS.AZ       ⍝ only valid types
      name←'/.'decodeCaps file
      dup←(⊢∊⊢(/⍨)⍳⍨≠⍳∘≢)name
      z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type

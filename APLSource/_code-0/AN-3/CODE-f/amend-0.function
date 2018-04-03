@@ -1,6 +1,7 @@
  amend←{⍺←⊢
      SV.DB↓0::⎕SIGNAL/⌽⎕EN,⎕DM
-     ns←#.⎕NS''
+⍝     ns←#.⎕NS''
+     ns←⎕NS''
      name←'APL','array' 'space'⊃⍨9=⎕NC'⍵'
      1∘⊃⍣(1≢⍺ 1)decode name ns.{⍎⍺⊣⎕ED ⍺⊣⍎⍺,'←⍵'}format ⍺ ⍵
 
