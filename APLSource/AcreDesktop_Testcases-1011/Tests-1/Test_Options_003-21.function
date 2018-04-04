@@ -9,7 +9,7 @@
  #.⎕SHADOW'AcreResult'
  'AcreResult'#.⎕NS''
 
- noOfOpenProjects←⊃⍴⎕SE.UCMD'acre.Projects [ messages←''#.AcreMessages'']'
+ noOfOpenProjects←⊃⍴⎕SE.UCMD'acre.Projects -messages=''#.AcreMessages'''
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
@@ -22,7 +22,7 @@
      →GoToTidyUp 1
  :EndTrap
 
- list←⎕SE.UCMD'acre.Projects [ messages←''#.AcreMessages'' ⋄ result←''#.AcreResult'' ]'
+ list←⎕SE.UCMD'acre.Projects -messages=''#.AcreMessages'' ⋄ result←''#.AcreResult'''
  →PassesIf 0∊⍴#.AcreMessages            ⍝ Nothing to tell
  →PassesIf(⊃⍴#.AcreResult)=1+noOfOpenProjects
 

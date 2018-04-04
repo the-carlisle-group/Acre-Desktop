@@ -11,7 +11,7 @@
  ref.⎕FX'r←Hello' 'r←''World'''
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject "',projectPath,'" #.',projectName,' [ messages←''off'' ]'
+     result←⎕SE.UCMD'acre.Createproject "',projectPath,'" #.',projectName,' -messages=''off'''
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -30,7 +30,7 @@
      →GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp'#.Temp'≢⎕SE.UCMD'acre.OpenProject ',projectPath,'  [ messages←''off'' ]'
+ →GoToTidyUp'#.Temp'≢⎕SE.UCMD'acre.OpenProject ',projectPath,'  -messages=''off'''
  →GoToTidyUp 1≠(⊃⍴⎕SE.UCMD'acre.Projects')-⊃⍴list
  →GoToTidyUp'World'≢#.Temp.Hello
 

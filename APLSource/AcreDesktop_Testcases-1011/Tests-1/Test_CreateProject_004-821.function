@@ -14,7 +14,7 @@
  noOf←⊃⍴⎕SE.UCMD'acre.Projects'
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
  :Else
      →GoToTidyUp 1
  :EndTrap

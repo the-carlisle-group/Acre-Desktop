@@ -7,7 +7,7 @@
  #.⎕SHADOW'AcreMessages'
  #.AcreMessages←''
 
- {}⎕SE.UCMD'acre.Stats [ messages←''#.AcreMessages'' ]'
+ {}⎕SE.UCMD'acre.Stats -messages=''#.AcreMessages'''
  →PassesIf 1=⍴#.AcreMessages            ⍝ Should be syntax hint (project is missing)
 
  R←∆OK

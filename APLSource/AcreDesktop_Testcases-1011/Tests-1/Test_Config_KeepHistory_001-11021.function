@@ -10,7 +10,7 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
 
- result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
 
  ref.⎕FX'r←Hello' 'r←''World2'''
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
@@ -20,12 +20,12 @@
  F.DeleteFile list
 
  F.RmDir projectPath
- result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
  configFilename←projectPath,'\acreconfig.txt'
  buff←A.ReadUtf8File configFilename
  buff←'KeepHistory←''On'''⎕R'KeepHistory←''Off'''⊣buff
  A.WriteUtf8File configFilename buff
- result←⎕SE.UCMD'acre.OpenProject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ result←⎕SE.UCMD'acre.OpenProject ',projectPath,' #.',projectName,' -messages=''off'''
  →PassesIf 0=F.IsDir projectPath,'\.acre'
  ref.⎕FX'r←Hello' 'r←''World2'''
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'

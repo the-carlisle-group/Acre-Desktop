@@ -15,7 +15,7 @@
  ref.Foo←'Hello←{''World''}'
  noOf←⊃⍴⎕SE.UCMD'acre.Projects'
 
- result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'

@@ -10,13 +10,13 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
 
- result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' [ messages←''off'' ]'
+ result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
 
  ref.⎕FX'r←Hello' 'r←''World2'''
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
  →PassesIf~0∊⍴result
  →PassesIf 1=⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
- →PassesIf 1=⎕SE.UCMD'acre.PurgeHistory #.',projectName,' [messages←''off'']'
+ →PassesIf 1=⎕SE.UCMD'acre.PurgeHistory #.',projectName,' -messages=''off'''
  →PassesIf 0=⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
  R←∆OK

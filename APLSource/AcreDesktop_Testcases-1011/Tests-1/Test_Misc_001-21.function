@@ -13,9 +13,9 @@
  #.AcreMessages←''
 
  {}⎕SE.UCMD'CreateProject ',projectPath,' #.',projectName
- result←⎕SE.UCMD'acre.Stats',' [ messages←''#.AcreMessages'' ]'
+ result←⎕SE.UCMD'acre.Stats',' -messages=''#.AcreMessages'''
  →GoToTidyUp~0∊⍴result
- →GoToTidyUp'Syntax: ]acre.Stats project-space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}#.AcreMessages
+ →GoToTidyUp'Syntax: ]acre.Stats space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}#.AcreMessages
  result←⎕SE.UCMD'acre.Stats #.',projectName
  →GoToTidyUp 2≠⍴⍴result
  →GoToTidyUp 14≠⊃⍴result

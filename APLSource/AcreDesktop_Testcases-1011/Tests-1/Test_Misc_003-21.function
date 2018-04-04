@@ -23,7 +23,7 @@
  result←⎕SE.UCMD'Acre.SetChanged #.',projectName,'.Hello'
  →GoToTidyUp 0∊⍴result~' '
  →GoToTidyUp'Universe'≢ref.Hello
- result←⎕SE.UCMD'Acre.Undo #.',projectName,'.Hello [messages←''off'']'
+ result←⎕SE.UCMD'Acre.Undo #.',projectName,'.Hello -messages=''off'''
   ⍝TODO  Add after fix:
   ⍝ 1. Check `result`
   ⍝ 2. Execute function and check for "World"
