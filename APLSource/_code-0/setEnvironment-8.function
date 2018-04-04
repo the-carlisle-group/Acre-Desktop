@@ -9,7 +9,7 @@
      ici.SX←syntaxHelp name
      SV.sessionstart←sessionStart''
      z←editFix'Start'                 ⍝ sets other stuff in SV
-     ici.OPT←{⍵⊣⍵.messages←'on'}⎕NS'' ⍝ pro-tem
+⍝     ici.OPT←{⍵⊣⍵.messages←'on'}⎕NS'' ⍝ pro-tem as this runs
      z←showMsg⍕3⍴getVersion''
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns

@@ -1,10 +1,10 @@
  userCmdRun←{
      (new method arg type space path wsid name)←⍵
+     ⎕THIS.OPT←⎕NS arg.(⎕NS'qwertyuiopasdfghjklzxcvbnm'⎕NL 2.1)
      z←Start⍣new⊢path wsid name              ⍝ once
      SV.debug←1∊⎕SE.SALTUtils.DEBUG          ⍝ OK?
      SV.space←space,'.'                      ⍝ whence called
      z←openProjects''                        ⍝ still open?
-     ⎕THIS.OPT←⎕NS arg.(⎕NS'qwertyuiopasdfghjklzxcvbnm'⎕NL 2.1)
      (item proj share)←'i' 'p' 's'=⊃type     ⍝ see allMethods
 ⍝         ↓↓↓↓↓
      res←method{

@@ -36,7 +36,7 @@
 ⍝:    Run←{cmd arg←⍵
 ⍝:     arg.help:Help cmd
 ⍝:     (path wsid)←,\2⍴1 ⎕NPARTS ##.SourceFile
-⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC'<n>'
+⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC name
 ⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY ⍵}⍣new⊢wsid
 ⍝:     nsi←((⎕XSI+.=¨'.')⍳1)⊃⎕NSI  ⍝ whence called
 ⍝:     type←type⊃⍨cmds⍳⊂cmd
