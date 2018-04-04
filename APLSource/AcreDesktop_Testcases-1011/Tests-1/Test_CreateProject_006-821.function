@@ -15,4 +15,3 @@
  →PassesIf'Syntax:'{⍺≡(⍴⍺)↑⍵}⊃#.AcreMessage.buffer
 
  R←∆OK
-⍝Done
