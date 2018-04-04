@@ -1,0 +1,11 @@
+ R←Test_Misc_006(stopFlag batchFlag);⎕TRAP;version
+⍝ Exercise `getVersion`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ version←'getversion'⎕SE.acre.run''
+ →PassesIf 2='.'+.=version
+ →PassesIf 3=⍴'.'##.APLTreeUtils.Split version
+
+ R←∆OK
