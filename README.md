@@ -55,15 +55,17 @@ This brings the code into the workspace, but Acre Desktop does not monitor it.
 ## Project Internals
 A project folder can have any number of arbitrary files or folders in it. 
 However, there are two folder names and one file name that Acre Desktop reserves.
+
 The first reserved folder is named **APLSource.** This folder contains the APL source code in text files,
 in a folder hierarchy mirroring the project namespace structure.
 You can create this folder yourself, and populate it with text files that contain the source for APL items.
 Most of the time, however, this folder is created for you by the CreateProject command.
-The second reserved folder is **.acre**. This folder contains Acre Desktop related stuff. 
-In general, there are no user serviceable parts in this folder, and you cannot create it yourself.
+
+The second reserved folder is **.acre**. This folder contains Acre Desktop related stuff. In general, there are no user serviceable parts in this folder, and you cannot create it yourself.
+
 The reserved file is **acreconfig.txt**. This is a text file (JSON or scripted namespace),
-that contains configuration parameters for the project. 
-This file is created for you when the CreateProject command is used to create the project, but it is easy to create it by hand. 
+that contains configuration parameters for the project. This file is created for you when the CreateProject command is used to create the project, but it is easy to create it by hand.
+
 Thus it is simple to create a project outside of the Dyalog IDE and Acre Desktop if you so choose. 
 Simply create a folder for your project, create a sub folder named APLSource, and populate with source code text files.
 
@@ -71,6 +73,7 @@ Simply create a folder for your project, create a sub folder named APLSource, an
 The APLSource folder contains the APL Source code. 
 Each APL item, be it a class, namespace script, function or variable, is in a .dyalog text file,
 in a folder hierarchy that mimics the namespace structure.
+
 Because APL names are case sensitive, while some operating file systems are not,
 folder and file names are tagged by Acre Desktop with a **case-code**.
 In general, case-codes can be ignored by the programmer, but for details see the wiki page for 
@@ -89,12 +92,16 @@ This text file contains acre parameters specific to the project. It may be JSON 
 ~~~
 
 The ProjectSpace parameter is the namespace for the project code.
+
 If not present, this defaults to a root level namespace named for last node of the project folder.
 For example, if the project folder is c:\CarlisleGroup\FlipDB, the default project space is #.FlipDB. 
 
 The Open parameter is a list of additional projects to open. 
+
 The Load parameter is a list of additional projects to load. 
+
 An item in either list is the project folder alone, or a project folder and a project space. 
 Together, the two lists are **included** projects.
+
 The StartUp parameter is an expression to be executed in the project namespace after the project
 and all of the included projects are open or loaded. 
