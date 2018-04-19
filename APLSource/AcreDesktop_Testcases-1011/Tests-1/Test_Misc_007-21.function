@@ -1,0 +1,33 @@
+ R←Test_Misc_007(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+⍝ Enforce a name clash
+⍝ acre should prevent the user from doing stupid stuff like this.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Log←''
+
+ :Trap (~stopFlag)/0
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ ref.⎕EX'Hello'
+ 'Hello'ref.⎕NS''
+ ref.Hello.⎕FX'r←Hello2' 'r←''Universe'''
+ result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello.Hello22 -messages=#.TEMP.Log'
+ →GoToTidyUp~0∊⍴result
+ →GoToTidyUp 0∊⍴#.TEMP.Log
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
