@@ -16,7 +16,6 @@
  {}⎕SE.UCMD'CreateProject ',projectPath,' #.',projectName,' -messages=''off'''
  →GoToTidyUp~0∊⍴#.AcreMessages
  result←⎕SE.UCMD'acre.Projects'
- →GoToTidyUp 0 2≢⍴result
  →GoToTidyUp 1≠(⊃⍴result)-noOfOpenProjects
 
  R←∆OK
