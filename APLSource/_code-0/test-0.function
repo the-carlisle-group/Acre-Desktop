@@ -1,5 +1,6 @@
  test←{⍺←⊢
-     tests←##.AcreDesktop_Testcases
+     z←refs''
+     tests←##.⍎MS.FZ
      fns←tests.Tests.⎕NL-3
      z←tests.(Tester.EstablishHelpersIn Tests)
      z←(1∊⍵)tests.Tests.RunDebug ie{tests.Tests.Run⊣⍵}0

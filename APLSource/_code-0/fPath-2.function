@@ -1,4 +1,7 @@
- fPath←fPath
- fPath←(⊃,/)1 ⎕NPARTS⊢
+ fPath←{r←⍵
+     r←⊃,/1 ⎕NPARTS r
+     ~∨/'/../'⍷r:r ⍝ ← Windows ...
+     ⊃{⍺,'/',⍵}/{⍵/⍨1,⍨2⍱/⍵∊⊂'..'}'/'sep r
 ⍝ file path
-⍝ Phil Last 2018-01-14 19.04
+⍝ Phil 2018-04-12 08.01
+ }

@@ -1,27 +1,27 @@
  allMessages←{
 
-     name←⍵    ⍝ system name
-     nms←{     ⍝ local ns
+     name←⍵                    ⍝ system name
+     nms←{                     ⍝ local ns
          ⍵.name←name
          ⍵.author←'Phil Last <phil.last@4xtra.com>'
          ⍵
      }⎕NS''
 
-     ⊢{ ⍝ return ns
+     ⊢{                        ⍝ return ns
          ⍵.AA←nms.name
          ⍵.AB←'.',MS.AA,'/'
          ⍵.AC←'Please wait - '
          ⍵.AD←'Type changed'
-         ⍵.AE←'.array'
-         ⍵.AF←'.function'
-         ⍵.AG←'.operator'
-         ⍵.AH←'.script'
-         ⍵.AI←'.class'
-         ⍵.AJ←'.interface'
-         ⍵.AK←'.charlist'
-         ⍵.AL←'.*' ⍝ set as filetype for unknown
-         ⍵.AM←'.charmat'
-         ⍵.AN←'.charstring'
+         ⍵.AE←'.array'         ⍝ apla
+         ⍵.AF←'.function'      ⍝ aplf
+         ⍵.AG←'.operator'      ⍝ aplo
+         ⍵.AH←'.script'        ⍝ apln
+         ⍵.AI←'.class'         ⍝ aplc
+         ⍵.AJ←'.interface'     ⍝ apli
+         ⍵.AK←'.charlist'      ⍝ apll
+         ⍵.AM←'.charmat'       ⍝ aplm
+         ⍵.AN←'.charstring'    ⍝ apls
+         ⍵.AL←'.*'             ⍝ set as filetype for unknown
          ⍵.AZ←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AK MS.AM MS.AN
          ⍵.AU←nms.author
 
@@ -32,10 +32,17 @@
          ⍵.BG←'Refresh'
          ⍵.BH←'quadVars'
          ⍵.BI←'⎕IO ⎕ML ⎕WX'
-         ⍵.BL←'History is disabled for '
-         ⍵.BM←'Project not open'
-         ⍵.BN←'Closed '
+         ⍵.BJ←'⍝ This script was fixed by ',MS.AA
+         ⍵.BK←'⍝ it can be kept, cloned, renamed, amended or ]erased.'
+         ⍵.BL←'⍝ its purpose is to set the environment for the project.'
+         ⍵.BM←''
+         ⍵.BN←MS.BJ MS.BK MS.BL
+         ⍵.BO←'Added script "',MS.BH,'"'
+         ⍵.BP←''
+         ⍵.BU←'History is disabled for '
          ⍵.BV←'No change'
+         ⍵.BW←'Project not open'
+         ⍵.BX←'Closed '
 
          ⍵.CA←'! A project may not be opened inside another:'
          ⍵.CB←' will need to be amended.'
@@ -85,7 +92,10 @@
          ⍵.FL←'file files'
          ⍵.FM←'.gitignore'
          ⍵.FN←'update updates'
-         ⍵.FP←' loaded '
+         ⍵.FO←'Change History:'
+         ⍵.FP←' in '
+         ⍵.FQ←' is '
+         ⍵.FV←'AcreConfig'
          ⍵.FW←'Open'
          ⍵.FX←'!!! Not fixed'
          ⍵.FY←'Load'
@@ -93,6 +103,7 @@
 
          ⍵.GA←'On'
          ⍵.GB←'Off'
+         ⍵.GC←'empty'
          ⍵.GI←'hour hours'
          ⍵.GJ←'minute minutes'
          ⍵.GK←'second seconds'
@@ -118,7 +129,7 @@
          ⍵.ID←'deletefile'
          ⍵.IE←'sourcefile'
          ⍵.IF←'itemname'
-         ⍵.IG←'getversion'
+         ⍵.IG←'version'
          ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF MS.IG
          ⍵.IZ←'''method'' ⎕SE.',MS.AA,'.run args'
 

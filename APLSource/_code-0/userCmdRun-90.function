@@ -5,7 +5,7 @@
      SV.debug←1∊⎕SE.SALTUtils.DEBUG          ⍝ OK?
      SV.space←space,'.'                      ⍝ whence called
      z←openProjects''                        ⍝ still open?
-     (item proj share)←'i' 'p' 's'=⊃type     ⍝ see allMethods
+     (item proj share)←'i' 'p' 's'=⊃type     ⍝ see cmdDefs
 ⍝         ↓↓↓↓↓
      res←method{
          item:⍺(⍎⍺)itemMethod ⍵              ⍝ items of arg are names

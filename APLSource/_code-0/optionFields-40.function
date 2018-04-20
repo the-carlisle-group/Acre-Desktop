@@ -1,12 +1,13 @@
  optionFields←{⍺←⊢
 
-     opts←,⊂'-dependencies:on'
-     opts,←⊂'-help'
-     opts,←⊂'-messages:on'
-     opts,←⊂'-track:on'
+     opts←,⊂'dependencies:on'
+     opts,←⊂'help'
+     opts,←⊂'messages:on'
+     opts,←⊂'track:on'
 
-     in←(⊃1↓⊢)¨opts
-     {⊃,/' ',¨opts[in⍳in∩⍵]}¨⊂if≡⍵
+     in←⊃¨opts
+     opts←' -'∘,¨opts
+     {⊃,/opts[in⍳in∩⍵]}¨⊂if≡⍵
 ⍝ convert strings of initials to option specs
 ⍝ Phil 2018-04-03 12.16
  }

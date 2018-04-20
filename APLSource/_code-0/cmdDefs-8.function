@@ -46,7 +46,7 @@
          command←'PurgeHistory'
          help←'Fix changes to an open project'
          options←'hm'
-         syntax←'space'
+         syntax←'space | item'
          type←'item'
          ][
          command←'Redo'
@@ -54,6 +54,12 @@
          options←'hm'
          syntax←'item(s)'
          type←'item'
+         ][
+         command←'Refresh'
+         help←'Update open project with source changes since previous'
+         options←'hm'
+         syntax←'space'
+         type←'project'
          ][
          command←'Restore'
          help←'Bring back items ]erased'

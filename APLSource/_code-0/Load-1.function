@@ -1,9 +1,0 @@
- Load←{⍺←⊢ ⍝ monad from UCMD - dyad is subsid
-     0=dat←⍺ openProject MS.FW ⍵:''
-     dat.nspath⊣dataSpaces dat ⍝ remember
-⍝ ⍵ folder [space]
-⍝ ← projectname projectspace
-⍝   project is open
-⍝   see Copy
-⍝ Phil 2018-01-23 15.35
- }

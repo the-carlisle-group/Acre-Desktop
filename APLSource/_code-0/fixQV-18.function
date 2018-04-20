@@ -1,7 +1,8 @@
  fixQV←{⍺←⊢
      0≠⍵.⎕NC fn←MS.BH:''       ⍝ fn name
      nms←MS.BI                 ⍝ which vars ?
-     ⊢⍵.⎕FIX(MS.HG,fn)(' ##.(',nms,')←',⍕⍵.⍎nms)MS.HH
+     z←⍵.⎕FIX(MS.HG,fn)('    ##.(',nms,')←',⍕⍵.⍎nms),MS.BN,⊂MS.HH
+     showMsg MS.BO
 ⍝
-⍝ Phil 2018-03-15 19.03
+⍝ Phil 2018-04-04 21.06
  }

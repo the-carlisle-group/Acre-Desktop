@@ -9,7 +9,7 @@
      ix=ns.deletefile:,∘MS.EX¨(-≢MS.HN)↓¨getChangeFilenames itemMethod arg
      ix=ns.sourcefile:getSourceFilenames itemMethod arg
      ix=ns.itemname:itemName¨arg
-     ix=ns.getversion:' 'sep⊃releaseNotes⊣''
+     ix=ns.version:' 'sep⊃releaseNotes⊣''
      ''
 ⍝ Marilyn Last named this fn
 ⍝ Phil 2018-03-22 20.37

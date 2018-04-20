@@ -1,5 +1,5 @@
  Close←{dat←⍺
-     ≢dataSpaces dat⊣showMsg MS.BN,dat.nspath
+     ≢dataSpaces dat⊣showMsg MS.BX,dat.nspath
 ⍝ close an open project
 ⍝ ⍺ dat
 ⍝ ← number open

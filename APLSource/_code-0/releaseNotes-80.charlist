@@ -1,3 +1,49 @@
+Acre 4.2.0 2018-04-20
+
+Release Notes
+
+Acre Desktop
+
+New command
+    ]acre.Refresh -h
+ Update open project with changes to source 
+ Syntax: ]acre.Refresh space
+
+If KeepHistory is Off then copy in additions and changes.
+If KeepHistory is On then also create change files for additions and
+    changes; and delete files for deletions of items already changed.
+
+The "acre." group prefix is mandatory because there is already a command
+    ]salt.Refresh
+that appears to fulfil a similar role.
+
+    ]acre.Stats now includes:
+| Change History:    484kB in 22 files | size in Bytes with SI prefix
+|    or                                |
+| Change History:             is empty | after ]PurgeHistory
+|    or                                |
+| Change History                is Off | if KeepHistory is Off
+
+Script:
+.--------------------------------------------------------.
+|:Namespace quadVars                                     |
+|    ##.(⎕IO ⎕ML ⎕WX)←n n n                              |
+|⍝ This script was fixed by acre                         |
+|⍝ it can be kept, cloned, renamed, amended or ]erased.  |
+|⍝ its purpose is to set the environment for the project.|
+|:EndNamespace                                           |
+'--------------------------------------------------------'
+is now added to the project by CreateProject if no item with that name
+exists.
+
+The "hooks" supplied by ⎕SE.acre.run now comprise:
+nameclass  - the source file extension for each item in its argument
+changefile - the change file name for each item in its argument
+deletefile - the delete file name for each item in its argument
+sourcefile - the source file name for each item in its argument
+itemname   - the item name for each source file name in its argument
+version    - the name, release number and date of the installed acre
+---------------------
 Acre 4.2.0 2018-04-04
 
 Release Notes

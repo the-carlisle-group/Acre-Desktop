@@ -1,5 +1,6 @@
  Refresh←{dat←⍺
      dat getSource MS.BG
-⍝
+⍝ getSource will filter on date greater than previously known whether
+⍝ edited externally or written back from ws.
 ⍝ Phil 2018-03-13 21.56
  }

@@ -9,14 +9,13 @@
      dat.(hist case)←1,≢/Cc case MS.GB  ⍝ not Off
      dat.(config source code changes sourcereg)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
-     space←⍎dat.nspath ⎕NS''⊣openProjects''
+     z←fixQV⊢space←⍎dat.nspath ⎕NS''⊣openProjects''
      z←3 ⎕MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.CaseCode←dat.case⊃MS.GB MS.GA
      z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
-     cfg.ProjectFolder←dat.folder
-     space.AcreConfig←cfg ⍝ ← into project ↑ add folder
+     z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
      z←MS.AB ⎕NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItem space UT.li validAPLType''
      fqn type val←getValue fqn

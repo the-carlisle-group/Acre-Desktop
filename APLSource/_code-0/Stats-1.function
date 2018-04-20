@@ -9,25 +9,26 @@
      sub,←+/b=0               ⍝ scripts
      sub,←+/s.(≢⎕NL)9.4       ⍝ classes
      sub,←+/s.(≢⎕NL)9.5       ⍝ interfaces
-     tot←+/sub
-     nss←'in ',(+/b)UT.pl MS.FJ
-     nms←MS.FG MS.FH''MS.FA MS.FB MS.FC MS.FD MS.FE MS.FF''MS.FI nss
-     UT.bx nms,⍪start time'',sub,''tot''
-
+     h s n←{1,(+/,≢){⍵.Size}folderObj dat.changes}⍣dat.hist⊢0 0 0
+     hist←{(⊃'B'UT.mn s),MS.FP,n UT.pl MS.FL}⍣(×n)⊢MS.FQ,h⊃MS.GB MS.GC
+     tot←(⍕+/sub),MS.FP,(+/b)UT.pl MS.FJ
+     nms←MS.FG MS.FH''MS.FA MS.FB MS.FC MS.FD MS.FE MS.FF''MS.FI MS.FO
+     UT.bx nms,⍪start time'',sub,''tot hist
+                                        ⍝
 ⍝.--------------------------------------.
-⍝| When opened:     2018-02-12 13:14:09 |
-⍝| Time to load:                     1s |
+⍝| When opened:     2018-04-04 22:08:36 |
+⍝| Time to load:                     2s |
 ⍝|                                      |
-⍝| Variables                          6 |
-⍝| Functions                        372 |
-⍝| Operators                         80 |
+⍝| Variables                          4 |
+⍝| Functions                        354 |
+⍝| Operators                         81 |
 ⍝| Scripts                            2 |
-⍝| Classes                            3 |
+⍝| Classes                            4 |
 ⍝| Interfaces                         0 |
 ⍝|                                      |
-⍝| Total items:                     463 |
-⍝| in 9 namespaces                      |
+⍝| Total items:     445 in 9 namespaces |
+⍝| Change History:     258kB in 9 files |
 ⍝'--------------------------------------'
 
-⍝ Phil 2018-02-12 13.14
+⍝ Phil 2018-04-04 22.48
  }

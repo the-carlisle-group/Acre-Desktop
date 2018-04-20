@@ -1,23 +1,26 @@
  getSource←{dat←⍺
-     src←dat.source                              ⍝ ../APLSource/
-     tgt←dat.nspath,'.'
+     src tgt←dat.(source nspath),¨'' '.'         ⍝ ../APLSource/
+     fresh←⍵≡MS.BG ⋄ last←⌈/dat.loadtime
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src     ⍝ all files
+     path date/⍨←⊂~∨/'/.'⍷↑path                  ⍝ ignore all /.*/
      file type←↓⍉↑(UT.px(≢src)↓⊢)¨path           ⍝ 'ns/path/file' '.type'
      path date file type/⍨←∊/Cc type MS.AZ       ⍝ only valid types
      name←'/.'decodeCaps file
+     now←⎕NS(sourceFields'').⎕NL-2.1             ⍝ name file date
+     path date file name type/⍨←⊂fresh≤new←date>last  ⍝ new or not refresh
      dup←(⊢∊⊢(/⍨)⍳⍨≠⍳∘≢)name
      z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
      z←showMsg MS.AC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,src
      val←read/0,⍪path ⋄ tnam←tgt∘,¨name
      fqn type val←fixValue tnam type val         ⍝ type-change fix-fail
+     dat.loadtime,←DT.ts2dt ⎕TS
      ~dat.hist:⍵
 
-     now←⎕NS(sourceFields'').⎕NL-2.1             ⍝ record what we read
      was←now if{null ⍵.name}dat sourceReg''      ⍝ what was last time
-     del←dat erase tgt∘,¨was.name~name               ⍝ file missing
+     del←⎕EX dat erase tgt∘,¨was.name~now.name   ⍝ file missing
      name date←↓⍉↑(↓⍉↑name date)tnam UT.co fqn
-     diff←date≠was.(date name)UT.co name         ⍝ diff date - maybe new
+     diff←⍬ if(0∊⍴)date≠was.(date name)UT.co name ⍝ diff date - maybe new
      msg←MS.EN,((+/diff)UT.pl MS.FN),MS.EZ,¯30 UT.tm dat.changes
      z←showMsg msg showList diff/fqn
      fqn←dat putChange diff∘/¨fqn val type
