@@ -1,0 +1,29 @@
+ R←Test_Run_007(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;expected;list;names
+⍝ Exercise the `run` function on "nameclass".
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'\',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+
+ ref.⎕FX'r←Hello' 'r←''Whole universe'''
+ ref.⎕FX'r←(fns MyOp)arg' 'r←fns arg'
+ ref.varsSimple←'Hello'
+ ref.varsVTV←'Hello' 'world'
+ ref.varsMat←↑'Hello' 'World'
+ ref.varsMixed←1 'Hello'(2 3)
+ ref.⎕FIX':Class MyClass' '' ':EndClass'
+ ref.⎕FIX':Namespace MyNamespace' ':EndNamespace'
+ ref.⎕FIX':Interface MyInterface' ':EndInterface'
+ expected←'.function' '.operator' '.charstring' '.charlist' '.charmat' '.array' '.class' '.script' '.interface'
+ names←'Hello' 'MyOp' 'varsSimple' 'varsVTV' 'varsMat' 'varsMixed' 'MyClass' 'MyNamespace' 'MyInterface'
+ list←{'NameClass'⎕SE.acre.run ⍵}¨(⊂'#.',projectName,'.'),¨names
+ →GoToTidyUp list≢expected
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

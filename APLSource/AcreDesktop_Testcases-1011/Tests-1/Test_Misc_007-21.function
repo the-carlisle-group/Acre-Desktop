@@ -20,10 +20,10 @@
      →GoToTidyUp 1
  :EndTrap
 
- ref.⎕EX'Hello'
- 'Hello'ref.⎕NS''
- ref.Hello.⎕FX'r←Hello2' 'r←''Universe'''
- result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello.Hello22 -messages=#.TEMP.Log'
+ ref.⎕EX'Hello'                                 ⍝ Erase from WS but do not tell acre!
+ 'Hello'ref.⎕NS''                               ⍝ Create a namespace with the name of that function - that's a name clash.
+ ref.Hello.⎕FX'r←Foo' 'r←''Universe'''          ⍝ acre does not care about empty namespaces, so we need to populate it with something, anything.
+ result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello.Foo -messages=#.TEMP.Log'
  →GoToTidyUp~0∊⍴result
  →GoToTidyUp 0∊⍴#.TEMP.Log
 
