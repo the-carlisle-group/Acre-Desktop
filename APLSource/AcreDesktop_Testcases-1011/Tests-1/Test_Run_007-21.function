@@ -21,7 +21,7 @@
  expected←'.function' '.operator' '.charstring' '.charlist' '.charmat' '.array' '.class' '.script' '.interface'
  names←'Hello' 'MyOp' 'varsSimple' 'varsVTV' 'varsMat' 'varsMixed' 'MyClass' 'MyNamespace' 'MyInterface'
  list←{'NameClass'⎕SE.acre.run ⍵}¨(⊂'#.',projectName,'.'),¨names
- →GoToTidyUp list≢expected
+ →GoToTidyUp list≢expected  ⍝ Depth is 3 rather than 2?!
 
  R←∆OK
 
