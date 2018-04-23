@@ -21,7 +21,7 @@
  projects←⎕SE.UCMD'Acre.Projects'
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
  list←⊃F.Dir path,'*'
- →GoToTidyUp 2≠⍴list
+ →GoToTidyUp 3≠⍴list  ⍝ Quad-Vars script is added automatically
  result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
  →GoToTidyUp 0≠ref.⎕NC'Hello'
@@ -33,7 +33,7 @@
  result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Hello #.',projectName,'.Hello2'
  →GoToTidyUp result≢('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
  →GoToTidyUp 0∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
- →GoToTidyUp~0∊⍴⊃F.Dir path,'*'
+ →GoToTidyUp 1≠⍴⊃F.Dir path,'*'   ⍝ Quad-Vars script is added automatically
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'.acre/changes/'
  list←⊃F.Dir path,'*'
  →GoToTidyUp 2≠⍴list
@@ -43,7 +43,7 @@
  result←⎕SE.UCMD'Acre.Restore #.',projectName,'.Hello2'
  →GoToTidyUp 3∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
- →GoToTidyUp 2≠⍴⊃F.Dir path,'*'
+ →GoToTidyUp 3≠⍴⊃F.Dir path,'*'   ⍝ Quad-Vars script is added automatically
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'.acre/changes/'
  list←⊃F.Dir path,'*'
  →GoToTidyUp 2≠⍴list

@@ -19,7 +19,7 @@
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
- →GoToTidyUp 1≠⍴⊃F.Dir projectPath,'/APLSource/*'
+ →GoToTidyUp 2≠⍴⊃F.Dir projectPath,'/APLSource/*' ⍝ QuadVars script is added automatically!
 
  R←∆OK
 
