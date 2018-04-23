@@ -1,0 +1,26 @@
+ R←Test_Run_006(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;itemName;sourceFilename
+⍝ Exercise the `run` function on "itemname".
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'\',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ #.⎕SHADOW'AcreMessages'
+ #.AcreMessages←''
+ {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' [ messages←''#.AcreMessages'' ]'
+
+ ref.⎕FX'r←Hello' 'r←''Whole universe'''
+ result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+
+ sourceFilename←⊃'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ itemName←⊃'itemname'⎕SE.acre.run sourceFilename
+ →GoToTidyUp itemName≢'#.',projectName,'.Hello'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

@@ -1,5 +1,5 @@
- R←Test_Misc_006(stopFlag batchFlag);⎕TRAP;version
-⍝ Exercise `getVersion`.
+ R←Test_Run_003(stopFlag batchFlag);⎕TRAP;version
+⍝ Exercise the `run` function on `version`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed

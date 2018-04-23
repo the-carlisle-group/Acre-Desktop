@@ -1,5 +1,5 @@
- R←Test_Run_002(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;changeFilename;changePath;aplsourcePath
-⍝ Exercise the `run` function on "changefile".
+ R←Test_Run_004(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;changePath;aplsourcePath;result;deleteFilename
+⍝ Exercise the `run` function on "deletefile".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -14,12 +14,14 @@
 
  ref.⎕FX'r←Hello' 'r←''Whole universe'''
  {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
- changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
- changePath←F.EnforceBackslash 1⊃⎕NPARTS changeFilename
+ result←⎕SE.UCMD'acre.Erase #.',projectName,'.Hello'
+ →GoToTidyUp result≢,⊂'#.Test_Run_004.Hello'
+
+ deleteFilename←⊃'deletefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ changePath←F.EnforceBackslash 1⊃⎕NPARTS deleteFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
- →GoToTidyUp 1≠⍴⊃F.Dir changeFilename
- aplsourcePath←('Expand'F.NormalizePath changePath,'..\..'),'\APLSource'
- →GoToTidyUp 2≠⍴⊃F.Dir aplsourcePath,'\*'       ⍝ Quad-Vars script is added automatically
+ →GoToTidyUp 1≠⍴⊃F.Dir changePath
+ →GoToTidyUp~F.IsFile deleteFilename
 
  R←∆OK
 
