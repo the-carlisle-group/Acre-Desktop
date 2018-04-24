@@ -25,7 +25,7 @@
  ref.Hello.⎕FX'r←Foo' 'r←''Universe'''          ⍝ acre does not care about empty namespaces, so we need to populate it with something, anything.
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello.Foo -messages=#.TEMP.Log'
  →GoToTidyUp~0∊⍴result
- →GoToTidyUp 0∊⍴#.TEMP.Log
+ →GoToTidyUp~0∊⍴#.TEMP.Log
 
  R←∆OK
 

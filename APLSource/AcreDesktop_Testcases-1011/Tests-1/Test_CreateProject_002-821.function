@@ -14,7 +14,7 @@
      ref.⎕FX'r←Hello' 'r←''World'''
 
      :Trap 0
-         result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName
+         result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=off'
          →FailsIf 1
      :EndTrap
 

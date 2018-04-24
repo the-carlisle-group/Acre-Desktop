@@ -10,14 +10,13 @@
  ref←⍎projectName #.⎕NS''
  #.⎕SHADOW'AcreMessages'
  #.AcreMessages←''
- {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' [ messages←''#.AcreMessages'' ]'
+ {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' -messages=off'
 
  ref.⎕FX'r←Hello' 'r←''Whole universe'''
  {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ deleteFilename←⊃'deletefile'⎕SE.acre.run'#.',projectName,'.Hello'
  result←⎕SE.UCMD'acre.Erase #.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.Test_Run_004.Hello'
-
- deleteFilename←⊃'deletefile'⎕SE.acre.run'#.',projectName,'.Hello'
  changePath←F.EnforceBackslash 1⊃⎕NPARTS deleteFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
  →GoToTidyUp 1≠⍴⊃F.Dir changePath

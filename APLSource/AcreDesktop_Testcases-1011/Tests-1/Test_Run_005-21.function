@@ -10,7 +10,7 @@
  ref←⍎projectName #.⎕NS''
  #.⎕SHADOW'AcreMessages'
  #.AcreMessages←''
- {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' [ messages←''#.AcreMessages'' ]'
+ {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' -messages=off'
 
  ref.⎕FX'r←Hello' 'r←''Whole universe'''
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
