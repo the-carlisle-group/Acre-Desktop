@@ -13,11 +13,9 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' # [ messages←''#.AcreMessages'' ]'
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' # -messages=''off'''
  :Else
      →GoToTidyUp 1
  :EndTrap

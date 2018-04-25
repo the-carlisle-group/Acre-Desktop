@@ -24,7 +24,8 @@
  ref.⎕FIX':Interface Boo' '∇r←Hello5' '∇' ':EndInterface'
  #.⎕SHADOW'AcreMessages'
  #.AcreMessages←''
- {}⎕SE.UCMD'Projects [ messages←''#.AcreMessages'' ]'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
+ {}⎕SE.UCMD'Projects -messages=''#.AcreMessages'''  ⍝ Make sure that at least one acre command was executed before doing a `run`.
+ →PassesIf 0∊⍴#.AcreMessages
 
  →PassesIf'.function'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
  →PassesIf'.script'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'
@@ -41,5 +42,6 @@
  →PassesIf'.*'≡⊃'nameclass'⎕SE.acre.run'Certainly_unknown'
  →PassesIf'.script' '.class' '.interface'≡'nameclass'⎕SE.acre.run(⊂'#.',projectName),¨'.Foo' '.Goo' '.Boo'
  →PassesIf 0∊⍴⊃'nameclass'⎕SE.acre.run'#.',projectName,'.container'
+ →PassesIf'.*'≡⊃'nameclass'⎕SE.acre.run'#.DoesNotExist'
 
  R←∆OK

@@ -1,6 +1,5 @@
  Cleanup
  :Trap 0 ⋄ F.RmDir ∆PATH ⋄ :EndTrap
- ∆ResetAcreOptions
  ⎕EX¨'AF'
  ⎕EX'∆PATH'
 ⍝Done

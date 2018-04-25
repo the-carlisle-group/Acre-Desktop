@@ -5,21 +5,23 @@
  R←∆Failed
 
  projectName←⊃⎕SI
- projectPath←∆PATH,'\',projectName
+ projectPath←F.EnforceSlash ∆PATH,'\',projectName
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
  {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' -messages=off'
 
  ref.⎕FX'r←Hello' 'r←''Whole universe'''
  {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
  changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
- changePath←F.EnforceBackslash 1⊃⎕NPARTS changeFilename
+ changePath←F.EnforceSlash 1⊃⎕NPARTS changeFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
  →GoToTidyUp 1≠⍴⊃F.Dir changeFilename
  aplsourcePath←('Expand'F.NormalizePath changePath,'..\..'),'\APLSource'
  →GoToTidyUp 2≠⍴⊃F.Dir aplsourcePath,'\*'       ⍝ Quad-Vars script is added automatically
+
+ changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello_DoesNotExist'
+ →GoToTidyUp~changePath{⍺≡(⍴⍺)↑⍵}changeFilename
+ →GoToTidyUp'.*.change'{⍺≢(-⍴⍺)↑⍵}(⍴changePath)↓changeFilename
 
  R←∆OK
 

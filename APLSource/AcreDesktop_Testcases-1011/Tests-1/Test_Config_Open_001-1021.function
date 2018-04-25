@@ -60,4 +60,3 @@
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
- {}⎕SE.UCMD'acre.projects [ messages←''on'' ]'
