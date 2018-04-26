@@ -25,12 +25,12 @@
          syntax←'name | "expression"'
          type←'shared'
          ][
-         command←'LoadProject'
-         help←'Load project code into ws'
-         options←'hmdt'
-         syntax←'folder [space]'
-         type←'shared'
-         ][
+⍝         command←'LoadProject'
+⍝         help←'Load project code into ws'
+⍝         options←'hmdt'
+⍝         syntax←'folder [space]'
+⍝         type←'shared'
+⍝         ][
          command←'OpenProject'
          help←'Load project code into ws for development'
          options←'hmtd'

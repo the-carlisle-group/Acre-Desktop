@@ -1,6 +1,9 @@
- OpenProject←{⍺←⊢ ⍝ monad from UCMD - dyad is subsid
-     0=dat←⍺ openProject MS.FW ⍵:''
-     dat.nspath⊣dataSpaces dat ⍝ remember
+ OpenProject←{⍺←⊢
+     2<≢⍵:MS.DM
+     tk←yes OPT.track
+     dp←yes OPT.dependencies
+     0=dat←openProject tk dp ⍵:''
+     dat.nspath⊣dataSpaces⍣tk⊢dat ⍝ remember
 ⍝ ⍵ folder [space]
 ⍝ ← projectname projectspace
 ⍝   project is open

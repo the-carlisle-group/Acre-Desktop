@@ -1,10 +1,7 @@
- openProject←{⍺←⊢ ⋄ top←1≡⍺ 1 ⍝ monad from sharedMethod - dyad is subsid
-     2<≢1⊃what proj←⍵:0⊣showMsg MS.DM,SX.⍎1⊃⎕SI
-     which←⊃MS.ER MS.EQ/⍨open load←MS.FW MS.FY∊⊂what
-     null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:{
-         0}showMsg open⊃SX.(LoadProject OpenProject)
-     dat.changed←''⊣dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     dat.folder←fPath src,'/'
+ openProject←{⍺←⊢ ⋄ top←1≡⍺ 1 ⋄ dflt←⍺⊣1 1
+     trk dep←dflt∧2⍴z z proj←⍵
+     null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:0
+     (dat←⎕NS'').(changed folder loadtime)←''(fPath src,'/'),DT.ts2dt ⎕TS
      dat.(config source code changes sourcereg)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
      ~∨/2⍴src cnf cde←⎕NEXISTS¨dat.(source config changes):{
@@ -13,9 +10,9 @@
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}showMsg MS.DC
-     ~dat openLoad open:0 ⍝ load subsids
+     ~dat openLoad trk dep:0 ⍝ load subsids
 
-     z←showMsg(which,MS.EY),dat.folder
+     z←showMsg(MS.ER,MS.EY),dat.folder
      space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
      cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←≢/Cc dat.keephistory MS.GB
      cfg.CaseCode←MS.GB MS.GA⊃⍨dat.case←≢/Cc dat.casecode MS.GB
@@ -27,9 +24,10 @@
      z←dat getSource'' ⍝ gets, fixes, writes chgs and dels
      dat.changed←dat changes''
      z←space∘{0::⊢showMsg UT.bx MS.DN,MS.DP,⍵
-         ⊢⍺.⍎UT.ep ⍵}if(open∧top>null)dat.startup
+         ⊢⍺.⍎UT.ep ⍵}if(trk∧top>null)dat.startup ⍝ trk?
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS
-⍝ ⍵ ('Open'|'Load') folder
+⍝ [⍺] trk dep
+⍝ ⍵ trk dep (folder [space])
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
 ⍝ Phil 2018-01-28 00.15
  }

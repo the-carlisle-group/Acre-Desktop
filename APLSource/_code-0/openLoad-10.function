@@ -1,18 +1,24 @@
- openLoad←{dat←⍺ ⋄ open←⍵
-     ~null showMsg dat∘openConflict⍣open⊢'':0 ⍝ can't open this
+ openLoad←{dat←⍺ ⋄ trk dep←⍵ ⍝ as of caller
+     ~null showMsg dat∘openConflict⍣trk⊢'':0 ⍝ can't open this
+     ~dep:1 ⍝ ok but no deps
      pref←{
          p←('/',⍺)[('\',⍺)⍳⍺]
          (':'∘∊∨'/'=⊃)p:p ⍵                        ⍝ absolute path
          '.'=⊃p:(dat.folder,'../',p)⍵              ⍝ ../uncle/cousin/nephew
          (dat.folder,(⊃,/(1++/p∊'/\')/,/'../'),p)⍵ ⍝ uncle/cousin
      }
-     mix←{↑2↑¨~∘∊⍨⊂if≡¨⊂if≡⍵}
-     z←LoadProject/(⊂MS.FY),⍪pref/mix dat.load
-     z←OpenProject/(⊂MS.FW),⍪pref/mix dat.open
-     ~null showMsg dat∘openConflict⍣open⊢'':0⊣showMsg dat.config MS.CB
+     0∊⍴these←~∘∊⍨⊂if≡dat.open:1
+     nss←(⎕NEW ⎕SE.Parser(optionFields'dt')).Parse¨these
+     args←nss.Arguments
+     track←trk∧yes¨nss.track
+     depend←dep∧yes¨nss.dependencies
+     dts←(⊂trk dep)openProject¨↓track,depend,⍪pref/↑2↑¨args
+     dts track depend/⍨←⊂dts≠0 ⍝ only opened
+     z←dataspaces track/dts    ⍝ keep only tracked dependants
+     ~null showMsg dat∘openConflict⍣trk⊢'':0⊣showMsg dat.config MS.CB
      1:1
-⍝ dyadic calls to OpenProject and LoadProject tell them NOT to run Startup
-⍝ Load and Open dependent projects
+⍝ dyadic calls to openProject tell it NOT to run Startup
+⍝ Open dependent projects
 ⍝ this is potentially endlessly recursive
 ⍝ Phil 2018-02-09 07.34
  }

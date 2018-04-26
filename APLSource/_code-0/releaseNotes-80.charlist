@@ -1,9 +1,27 @@
-Acre 4.2.0 2018-04-20
+Acre 4.3.0 2018-04-26
 
 Release Notes
 
 Acre Desktop
 
+"LoadProject" is removed.
+"OpenProject" now honours modifiers "-track" and "-dependencies" both of 
+which are "on" by default.
+With "-track=off" it is equivalent to "LoadProject" as the project is 
+opened into the workspace but not monitored.
+The "Load" config parameter is ignored.
+With "-dependencies=off" the "Open" config parameter is ignored.
+The dependants of a project that is not tracked are not tracked.
+
+The format of the "Open" config parameter is simplified while its content
+may now include the modifiers to be applied to the specific dependants.
+Each dependant is represented as a simple string. A single dependant need
+not be enclosed.
+    open←'this/ #.here -t=off' 
+    open←'this/ #.here -t=off' 'and/ -d=off' 'that/ #.there'
+Thus an entry for "Open" is identical to the argument string for
+    ]acre.OpenProject ... or ⎕SE.UCMD 'openproject ...'
+- - - - - - - - - -
 New command
     ]acre.Refresh -h
  Update open project with changes to source 
@@ -16,14 +34,14 @@ If KeepHistory is On then also create change files for additions and
 The "acre." group prefix is mandatory because there is already a command
     ]salt.Refresh
 that appears to fulfil a similar role.
-
+- - - - - - -
     ]acre.Stats now includes:
 | Change History:    484kB in 22 files | size in Bytes with SI prefix
 |    or                                |
 | Change History:             is empty | after ]PurgeHistory
 |    or                                |
 | Change History                is Off | if KeepHistory is Off
-
+- - - - - -
 Script:
 .--------------------------------------------------------.
 |:Namespace quadVars                                     |
@@ -35,7 +53,7 @@ Script:
 '--------------------------------------------------------'
 is now added to the project by CreateProject if no item with that name
 exists.
-
+- - - - - -
 The "hooks" supplied by ⎕SE.acre.run now comprise:
 nameclass  - the source file extension for each item in its argument
 changefile - the change file name for each item in its argument
