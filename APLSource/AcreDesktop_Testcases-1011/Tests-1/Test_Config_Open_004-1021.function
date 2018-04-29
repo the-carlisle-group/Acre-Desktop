@@ -1,5 +1,5 @@
- R←Test_Config_Open_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects
-⍝ Create a project and check whether `acreconfig.txt[Open]` is honored. (Single project, simple "Open")
+ R←Test_Config_Open_004(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects;projectName3;ref3;projectPath3
+⍝ Create a project and check whether `acreconfig.txt[Open]` is honored. (Two projects)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -33,11 +33,24 @@
  :EndTrap
  →GoToTidyUp~0∊⍴#.AcreMessages
 
- #.⎕EX¨projectName projectName2
- #.⎕SHADOW'Temp'
+ projectName3←(⊃⎕SI),'_3'
+ projectPath3←F.EnforceSlash ∆PATH,'/',projectName3
+ #.⎕SHADOW projectName3
+ ref3←⍎projectName3 #.⎕NS''
+ ref3.⎕FX'r←Hello' 'r←''Galaxy'''
+
+ :Trap (~stopFlag)/0
+     {}⎕SE.UCMD'acre.Createproject "',projectPath3,'" #.',projectName3,' -messages=''off'''
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp~0∊⍴#.AcreMessages
+
+ #.⎕EX¨projectName projectName2 projectName3
+ #.⎕SHADOW¨'Temp' 'Temp2'
  buff←''
  buff,←⊂':Namespace'
- buff,←⊂'   Open←(''',projectPath2,' #.Temp'')'
+ buff,←⊂'   Open←(''',projectPath2,' #.Temp'')(''',projectPath3,' #.Temp2'')'
  buff,←⊂'   ProjectSpace←''#.',projectName,''''
  buff,←⊂':EndNamespace'
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
@@ -49,14 +62,20 @@
  :EndTrap
 
  →GoToTidyUp 9=#.⎕NC projectName2
+ →GoToTidyUp 9=#.⎕NC projectName3
  →GoToTidyUp 0=#.⎕NC'Temp'
+ →GoToTidyUp 0=#.⎕NC'Temp2'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
+ →GoToTidyUp 3≠#.Temp2.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 6≠⍴#.AcreMessages
- →GoToTidyUp 2≠(⊃⍴⎕SE.UCMD'Projects')-noOfProjects
+ →GoToTidyUp'Galaxy'≢#.Temp2.Hello
+ ⎕DL 0.2
+ →GoToTidyUp 9≠⍴#.AcreMessages
+ →GoToTidyUp 3≠(⊃⍴⎕SE.UCMD'Projects')-noOfProjects
 
  R←∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
+ :Trap 0 ⋄ F.RmDir projectPath3 ⋄ :EndTrap

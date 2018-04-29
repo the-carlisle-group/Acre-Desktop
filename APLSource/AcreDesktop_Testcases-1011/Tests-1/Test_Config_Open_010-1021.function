@@ -1,5 +1,5 @@
- R←Test_Config_Open_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects
-⍝ Create a project and check whether `acreconfig.txt[Open]` is honored. (Single project, simple "Open")
+ R←Test_Config_Open_010(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;list;projectName2;projectPath2;ref2;noOfProjects
+⍝ Create a project and check whether `Open` with `-track=off` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -14,11 +14,10 @@
  #.AcreMessages←''
 
  :Trap (~stopFlag)/0
-     {}⎕SE.UCMD'acre.Createproject "',projectPath,'" #.',projectName,' -messages=''off'''
+     {}⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
 
  projectName2←(⊃⎕SI),'_2'
  projectPath2←F.EnforceSlash ∆PATH,'/',projectName2
@@ -27,17 +26,16 @@
  ref2.⎕FX'r←Hello' 'r←''Universe'''
 
  :Trap (~stopFlag)/0
-     {}⎕SE.UCMD'acre.Createproject "',projectPath2,'" #.',projectName2,' -messages=''off'''
+     {}⎕SE.UCMD'acre.Createproject ',projectPath2,' #.',projectName2,' -messages=''off'''
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
 
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
  buff←''
  buff,←⊂':Namespace'
- buff,←⊂'   Open←(''',projectPath2,' #.Temp'')'
+ buff,←⊂'   Open←''',projectPath2,' #.Temp -track=off'''
  buff,←⊂'   ProjectSpace←''#.',projectName,''''
  buff,←⊂':EndNamespace'
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
@@ -53,7 +51,7 @@
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
  →GoToTidyUp 6≠⍴#.AcreMessages
- →GoToTidyUp 2≠(⊃⍴⎕SE.UCMD'Projects')-noOfProjects
+ →GoToTidyUp 1≠(⊃⍴⎕SE.UCMD'Projects')-noOfProjects
 
  R←∆OK
 

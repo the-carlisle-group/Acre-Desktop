@@ -1,6 +1,5 @@
 :Namespace
     CaseCode←'On'
-    Load←''
     Open←''
     ProjectSpace←'#.acre'
     StartUp←''

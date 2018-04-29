@@ -1,0 +1,37 @@
+ R←Test_Misc_008(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;sourceFilename;body
+⍝ Exercise the `]Refresh` command.
+⍝ acre should prevent the user from doing stupid stuff like this.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ ref.⎕FX'r←Hello2' 'r←''Universe'''
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Log←''
+
+ :Trap (~stopFlag)/0
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName
+
+ sourceFilename←⊃'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ body←##.APLTreeUtils.ReadUtf8File sourceFilename
+ (2⊃body)←'r←''Galaxy'''
+ ##.APLTreeUtils.WriteUtf8File sourceFilename body
+ result←⎕SE.UCMD'acre.Refresh #.',projectName,' -messages=#.TEMP.Log'
+ →GoToTidyUp 1≠⍴result                              ⍝ Should be a list of names of those objects that got resfreshed?!
+ →GoToTidyUp(,⊂'#.',projectName,'Hello')≢result
+ →GoToTidyUp'Galaxy'≢⍎'#.',projectName,'.Hello'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

@@ -1,4 +1,4 @@
- R←Test_Run_005(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;sourceFilename;sourcePath
+ R←Test_Run_005(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;sourceFilename;sourcePath;sourceFilenames
 ⍝ Exercise the `run` function on "sourcefile".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -10,14 +10,22 @@
  ref←⍎projectName #.⎕NS''
  {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' -messages=off'
 
- ref.⎕FX'r←Hello' 'r←''Whole universe'''
+ ref.⎕FX'r←Hello' 'r←''World'''
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
 
+ ref.⎕FX'r←Hello2' 'r←''Whole universe'''
+ result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello2'
+ →GoToTidyUp result≢,⊂'#.',projectName,'.Hello2'
+
  sourceFilename←⊃'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
  sourcePath←F.EnforceBackslash 1⊃⎕NPARTS sourceFilename
- →GoToTidyUp 2≠⍴⊃F.Dir sourcePath   ⍝ Quad-vars script is added automatically
+ →GoToTidyUp 3≠⍴⊃F.Dir sourcePath   ⍝ Quad-vars script is added automatically
  →GoToTidyUp~F.IsFile sourceFilename
+
+ sourceFilenames←'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello ','#.',projectName,'.Hello2'
+ →GoToTidyUp 2≠⍴sourceFilenames
+ →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨sourceFilenames
 
  R←∆OK
 
