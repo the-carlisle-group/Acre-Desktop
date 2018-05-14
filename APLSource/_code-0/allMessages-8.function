@@ -23,11 +23,12 @@
          ⍵.AN←'.charstring'    ⍝ apls
          ⍵.AL←'.*'             ⍝ set as filetype for unknown
          ⍵.AZ←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AK MS.AM MS.AN
+         ⍵.AY←'.apl'∘,¨'a' 'f' 'o' 'n' 'c' 'i' 'l' 'm' 's'
          ⍵.AU←nms.author
 
-         ⍵.BA←'Source '
-         ⍵.BC←'Code '
-         ⍵.BD←'folder '
+         ⍵.BA←''
+         ⍵.BC←''
+         ⍵.BD←''
          ⍵.BF←'Version '
          ⍵.BG←'Refresh'
          ⍵.BH←'quadVars'
@@ -44,7 +45,7 @@
          ⍵.BW←'Project not open'
          ⍵.BX←'Closed '
 
-         ⍵.CA←'! A project may not be opened inside another:'
+         ⍵.CA←'!!! A project may not be opened inside another:'
          ⍵.CB←' will need to be amended.'
          ⍵.CC←'please confirm within _ by restarting with this code: "_".'
 
@@ -58,7 +59,7 @@
          ⍵.DL←'Fixed: '
          ⍵.DM←'Syntax: '
          ⍵.DN←'!!! Trapped error in '
-         ⍵.DO←'options - '
+         ⍵.DO←''
          ⍵.DP←'Startup - '
 
          ⍵.EF←'Comparing '
@@ -67,7 +68,7 @@
          ⍵.EN←'Writing '
          ⍵.EO←'Reading '
          ⍵.EP←'Converting '
-         ⍵.EQ←'Loading'
+         ⍵.EQ←''
          ⍵.ER←'Opening'
          ⍵.ES←'Copying '
          ⍵.ET←'Deleting '
@@ -88,7 +89,7 @@
          ⍵.FH←'Time to load:'
          ⍵.FI←'Total items:'
          ⍵.FJ←'namespace namespaces'
-         ⍵.FK←'item items'
+         ⍵.FK←''
          ⍵.FL←'file files'
          ⍵.FM←'.gitignore'
          ⍵.FN←'update updates'
@@ -96,9 +97,9 @@
          ⍵.FP←' in '
          ⍵.FQ←' is '
          ⍵.FV←'AcreConfig'
-         ⍵.FW←'Open'
+         ⍵.FW←''
          ⍵.FX←'!!! Not fixed'
-         ⍵.FY←'Load'
+         ⍵.FY←''
          ⍵.FZ←'AcreDesktop_Testcases'
 
          ⍵.GA←'On'
@@ -114,7 +115,7 @@
          ⍵.GZ←'.txt'
 
          ⍵.HA←'! Project or folder already exists.'
-         ⍵.HB←'! Invalid path or not a project.'
+         ⍵.HB←'!!! Invalid path or not a project.'
          ⍵.HF←'sourcereg'
          ⍵.HG←':Namespace '
          ⍵.HH←':EndNamespace '
@@ -130,8 +131,10 @@
          ⍵.IE←'sourcefile'
          ⍵.IF←'itemname'
          ⍵.IG←'version'
-         ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF MS.IG
-         ⍵.IZ←'''method'' ⎕SE.',MS.AA,'.run args'
+         ⍵.IH←'casecode'
+         ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF MS.IG MS.IH
+         ⍵.IY←'''method'' ⎕SE.',MS.AA,'.run args'
+         ⍵.IZ←'where ''method'' is one of'
 
          ⍵.__←⊃⎕XSI
          ⍵

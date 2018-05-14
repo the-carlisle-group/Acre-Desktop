@@ -1,0 +1,7 @@
+ dix←{
+     ⍵(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}⍳⍴⍵
+⍝ dictionary of indices
+⍝   ∇ 'alpha' 'bravo' 'charlie'
+⍝ ns.[alpha←0 ⋄ bravo←1 ⋄ charlie←2]
+⍝ Phil 2018-05-08 18.26
+ }

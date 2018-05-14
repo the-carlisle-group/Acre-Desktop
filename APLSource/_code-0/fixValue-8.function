@@ -7,7 +7,7 @@
 
      fqn typ val←,∘⊂¨if(≡⊃)⍵
      fqn typ val{⍺[⍵]}←⊂⍋(≢sPath)¨fqn
-     z←(1↓¨nms)(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴nms←MS.AZ
+     ns←dix 1↓¨nms←MS.AZ
      nc←nms⍳typ
      nam←1↓¨1⊃spc nam←↓⍉↑namx¨fqn
      res←0⍴⍨⍴nam

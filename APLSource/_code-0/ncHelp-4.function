@@ -1,0 +1,28 @@
+ ncHelp←{⍺←⊢
+     z←⎕EX'temp'
+     z←{
+         ⍵.generalArray←⍳2 3
+         ⍵.listOfStrings←↓⍪⎕D
+         ⍵.characterMatrix←⎕FMT ⎕D
+         ⍵.characterString←⎕D
+         ⍵.directFunction←{⎕D}
+         ⍵.directOperator←{⍺⍺}
+         z←⍵.⎕FX'r←traditionalFunction w' ''
+         z←⍵.⎕FX'r←(f traditionalOperator)w' ''
+         ⍵.containerNamespace←⎕NS''
+         ⍵.scriptedNamespace←⎕FIX':namespace' ':endnamespace'
+         ⍵.class←⎕FIX':class' ':endclass'
+         ⍵.interface←⎕FIX':interface' ':endinterface'
+         ⍵.derivedFunction←+.×.-
+         ⍵.mixedArray←1 '2' 3 '4' 5 '6' 7 '8' 9 '0'
+         ⍵.numericArray←2 3⍴⍳9
+         ⍵.missingItem←''
+         ⍵
+     }⍎nn←'temp'⎕NS''
+     nms←~∘' '¨↓temp.⎕NL⍳11
+     r←UT.xc¨nms
+     z←temp.⎕EX'missingItem'
+     r,(nameClass,∘⍪⎕NC)(nn,'.')∘,¨nms
+⍝
+⍝ Phil 2018-05-10 08.42
+ }
