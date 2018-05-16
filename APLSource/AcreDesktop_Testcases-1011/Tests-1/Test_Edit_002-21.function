@@ -1,0 +1,58 @@
+ R←Test_Edit_002(stopFlag batchFlag);⎕TRAP;caption;rc;cmd;parms;wsh;_;acreDir;log
+⍝ Make changes via the editor and check whether acre takes appropriate action.
+⍝ For that to work we start an independent instance of Dyalog with a main windows that has
+⍝ a particular randomly generated caption so that we can send keystrokes to that session.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Inactive                ⍝ Because that kills this session, see bug report <01485>!
+ :Return
+
+ :If 'Win'≢3↑1⊃'#'⎕WG'APLVersion'
+     R←∆WindowsOnly
+     :Return
+ :EndIf
+
+ R←∆Failed
+
+ 'wsh'⎕WC'OLEClient' 'WScript.Shell'
+ caption←⎕A[?(⍴⎕A)⍴⍴⎕A]
+ cmd←'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'" '
+ cmd←'APL-64 17.0 '⎕R'APL-64 15.0 '⊣cmd
+ cmd,←'Captions\Editor=',caption,'-E '
+ cmd,←'Captions\Session=',caption,'-S '
+ cmd,←'Captions\ExitDyalog=',caption,'-X '
+ cmd,←'Captions\MessageBox=',caption,'-M '
+ cmd,←'confirm_Fix=0 '
+ cmd,←'"Edit.dws" '
+ acreDir←##.FilesAndDirs.GetTempPath,⊃⎕SI
+ ##.FilesAndDirs.RmDir acreDir
+ cmd,←'-acredir="',acreDir,'" '
+ cmd,←'-testfns="',(⊃⎕SI),'" '
+ :If 0
+     cmd,←'-lx '
+ :EndIf
+ parms←##.Execute.DefaultParms
+ parms.dir←F.PWD,'\Tests'
+ parms.hidden←0
+ parms.wait←0
+ rc←parms ##.Execute.Application cmd
+ ⎕DL 3
+ (caption,'-E')∆SendKeyStroke⊂'{Down}'
+ (caption,'-E')∆SendKeyStroke⊂'{End}'
+ (caption,'-E')∆SendKeyStroke⊂'{Left}'
+ (caption,'-E')∘∆SendKeyStroke' and all the rest'
+ ⎕DL 0.5
+ (caption,'-E')∆SendKeyStroke⊂'{Esc}'
+ ⎕DL 5      ⍝ Otherwise this APL instance will stop for some reason
+ :If ∆WaitForFile acreDir,'\acrelog.txt'
+     log←A.ReadUtf8File acreDir,'\acrelog.txt'
+     →GoToTidyUp 3≠⍴log   ⍝ [1]=acre version  [2]=Added script...  [3]=Change
+ :Else
+     →GoToTidyUp 1
+ :EndIf
+ .
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir acreDir

@@ -1,0 +1,17 @@
+ {r}←caption ∆SendKeyStroke keystrokes;keystroke
+⍝ Requires global `wsh` to be an instance of the Windows Scripting Host.
+⍝ Examples:
+⍝ 'windowCaption' ∆SendKeyStroke ⊂'{Esc}'
+⍝ 'windowCaption' ∆SendKeyStroke 'All these chars'
+ r←⍬
+ :If 2=≡keystrokes
+     {}wsh.AppActivate⊂caption      ⍝ Make sure the right Window gets the focus.
+     ⎕DL 0.05                       ⍝ Give it a moment
+     wsh.SendKeys keystrokes        ⍝ Send the keystroke
+ :Else
+     :For keystroke :In ,keystrokes
+         {}wsh.AppActivate⊂caption      ⍝ Make sure the right Window gets the focus.
+         ⎕DL 0.05                       ⍝ Give it a moment
+         wsh.SendKeys keystroke         ⍝ Send the keystroke
+     :EndFor
+ :EndIf

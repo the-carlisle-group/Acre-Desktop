@@ -1,4 +1,4 @@
- R←Test_Config_Open_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects
+ R←Test_Config_Open_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;projectName2;projectPath2;ref2;openProjects;noOfProjects
 ⍝ Create a project and check whether `acreconfig.txt[Open]` is honored. (Single project with blank in filename)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -14,11 +14,12 @@
  #.AcreMessages←''
 
  :Trap (~stopFlag)/0
-     {}⎕SE.UCMD'acre.Createproject "',projectPath,'" #.',projectName,' -messages=''off'''
+     result←⎕SE.UCMD'acre.Createproject "',projectPath,'" #.',projectName,' -messages=''off'''
  :Else
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp result≢'#.',projectName
 
  projectName2←(⊃⎕SI),'_2'
  projectPath2←F.EnforceSlash ∆PATH,'/',projectName2,' WithSpace'
@@ -27,11 +28,12 @@
  ref2.⎕FX'r←Hello' 'r←''Universe'''
 
  :Trap (~stopFlag)/0
-     {}⎕SE.UCMD'acre.Createproject "',projectPath2,'" #.',projectName2,' -messages=''off'''
+     result←⎕SE.UCMD'acre.Createproject "',projectPath2,'" #.',projectName2,' -messages=''off'''
  :Else
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp result≢'#.',projectName2
 
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
@@ -43,13 +45,13 @@
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
 
  :Trap (~stopFlag)/0
-     list←⎕SE.UCMD'acre.OpenProject ',projectPath,' -messages=''#.AcreMessages'''
+     result←⎕SE.UCMD'acre.OpenProject ',projectPath,' -messages=''#.AcreMessages'''
  :Else
      →GoToTidyUp 1
  :EndTrap
 
  →GoToTidyUp 0=∨/'! Invalid path or not a project.'⍷⊃#.AcreMessages
- →GoToTidyUp~0∊⍴list
+⍝TODO⍝  →GoToTidyUp result             ⍝ For the time being acre's behaviour in these cases in undefined!
 
  #.AcreMessages←''
  buff←''
@@ -60,11 +62,12 @@
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
 
  :Trap (~stopFlag)/0
-     list←⎕SE.UCMD'acre.OpenProject ',projectPath,' -messages=''#.AcreMessages'''
+     result←⎕SE.UCMD'acre.OpenProject ',projectPath,' -messages=''#.AcreMessages'''
  :Else
      →GoToTidyUp 1
  :EndTrap
 
+⍝TODO⍝  →GoToTidyUp result             ⍝ For the time being acre's behaviour in these cases in undefined!
  →GoToTidyUp 9=#.⎕NC projectName2
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'

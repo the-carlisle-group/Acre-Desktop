@@ -1,0 +1,53 @@
+ R←Test_Edit_001(stopFlag batchFlag);⎕TRAP;caption;rc;cmd;parms;wsh;_;acreDir;list
+⍝ Make changes via the editor and check whether acre takes appropriate action.
+⍝ For that to work we start an independent instance of Dyalog with a main windows that has
+⍝ a particular randomly generated caption so that we can send keystrokes to that session.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Inactive
+ :Return
+
+ :If 'Win'≢3↑1⊃'#'⎕WG'APLVersion'
+     R←∆WindowsOnly
+     :Return
+ :EndIf
+
+ R←∆Failed
+
+ caption←⎕A[?(⍴⎕A)⍴⍴⎕A]
+ cmd←'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'" '
+ cmd←'APL-64 17.0 '⎕R'APL-64 15.0 '⊣cmd
+ cmd,←'Captions\Editor=',caption,'-E '
+ cmd,←'Captions\Session=',caption,'-S '
+ cmd,←'Captions\ExitDyalog=',caption,'-X '
+ cmd,←'Captions\MessageBox=',caption,'-M '
+ cmd,←'confirm_Fix=0 '
+ cmd,←'"Edit.dws" '
+ acreDir←##.FilesAndDirs.GetTempPath,⊃⎕SI
+ ##.FilesAndDirs.RmDir acreDir
+ cmd,←'-acredir="',acreDir,'" '
+ parms←##.Execute.DefaultParms
+ parms.dir←F.PWD,'\Tests'
+ parms.hidden←0
+ parms.wait←0
+ rc←parms ##.Execute.Application cmd
+ ⎕DL 1
+⍝ By now there must be an acre project with a file for a function "Hello" in APLSource\
+ list←⊃F.Dir acreDir,'\APLSource\*'
+ →GoToTidyUp 2≠⍴list                ⍝ It's two because acre adds a script `quadVars` automatically
+⍝ Now we simulate a change via the editor and check for the change file:
+ →GoToTidyUp' r←Hello' ' r←''World'''≢(A.ReadUtf8File 1⊃list)~⊂''
+ 'wsh'⎕WC'OLEClient' 'WScript.Shell'
+ (caption,'-E')∆SendKeyStroke⊂'{Down}'
+ (caption,'-E')∆SendKeyStroke⊂'{End}'
+ (caption,'-E')∆SendKeyStroke⊂'{Left}'
+ (caption,'-E')∆SendKeyStroke' and all the rest'
+ ⎕DL 0.2
+ (caption,'-E')∆SendKeyStroke⊂'{Esc}'
+ ⎕DL 1
+ .
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir acreDir

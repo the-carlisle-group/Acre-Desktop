@@ -1,0 +1,14 @@
+ success←{seconds}∆WaitForFile filename;flag;i
+⍝ Waits until either `filename` makes an appearance or `seconds`.
+⍝ `seconds` defaults to 3.
+ seconds←{0<⎕NC ⍵:⍎⍵ ⋄ 3}'seconds'
+ success←i←0
+ :Repeat
+     :If F.IsFile filename
+         success←flag←1
+     :Else
+         ⎕DL 0.5
+         flag←(2×seconds)<i←i+1
+     :EndIf
+ :Until flag
+⍝Done
