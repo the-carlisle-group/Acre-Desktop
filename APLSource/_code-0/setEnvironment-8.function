@@ -2,6 +2,7 @@
      top←UT.rs⊢ici←⎕THIS              ⍝ child of # or ⎕SE
      ici.SV←top.⎕NS''
      SV.setupcomplete←0
+     SV.(errmsgs opened)←'' ''
      path ws name←SV.(inipath workspace systemname)←⍵
      ici.MS←allMessages name
      ici.EN←aplErrors''

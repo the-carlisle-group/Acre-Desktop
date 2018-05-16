@@ -1,6 +1,6 @@
  getValue←{
      type←nameClass⊢fqn←,⊂if≡⍵
-     z←(1↓¨nms)(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴nms←MS.AZ
+     ns←dix 1↓¨nms←MS.AZ
      nc←nms⍳type
      val←0⍴⍨⍴fqn
      (x/val)←⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist

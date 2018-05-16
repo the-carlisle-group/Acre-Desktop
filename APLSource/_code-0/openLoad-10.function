@@ -1,20 +1,22 @@
- openLoad←{dat←⍺ ⋄ trk dep←⍵ ⍝ as of caller
+ openLoad←{dat←⍺ ⋄ trk dep←⍵             ⍝ as of caller
      ~null showMsg dat∘openConflict⍣trk⊢'':0 ⍝ can't open this
-     ~dep:1 ⍝ ok but no deps
+     ~dep:1                              ⍝ ok but no deps
      pref←{
          p←('/',⍺)[('\',⍺)⍳⍺]
-         (':'∘∊∨'/'=⊃)p:p ⍵                        ⍝ absolute path
-         '.'=⊃p:(dat.folder,'../',p)⍵              ⍝ ../uncle/cousin/nephew
+         (':'∘∊∨'/'=⊃)p:p ⍵              ⍝ absolute path
+         '.'=⊃p:(dat.folder,'../',p)⍵    ⍝ ../uncle/cousin/nephew
          (dat.folder,(⊃,/(1++/p∊'/\')/,/'../'),p)⍵ ⍝ uncle/cousin
      }
      0∊⍴these←~∘∊⍨⊂if≡dat.open:1
      nss←(⎕NEW ⎕SE.Parser(optionFields'dt')).Parse¨these
      args←nss.Arguments
+     args nss/⍨←⊂~args∊SV.arguments      ⍝ this time
+     0∊⍴SV.arguments,←args:1
      track←trk∧yes¨nss.track
      depend←dep∧yes¨nss.dependencies
      dts←(⊂trk dep)openProject¨↓track,depend,⍪pref/↑2↑¨args
-     dts track depend/⍨←⊂dts≠0 ⍝ only opened
-     z←dataSpaces track/dts    ⍝ keep only tracked dependants
+     dts track depend/⍨←⊂dts≠0           ⍝ only opened
+     z←dataSpaces track/dts              ⍝ keep only tracked dependencies
      ~null showMsg dat∘openConflict⍣trk⊢'':0⊣showMsg dat.config MS.CB
      1:1
 ⍝ dyadic calls to openProject tell it NOT to run Startup

@@ -1,3 +1,21 @@
+Acre 4.3.1 2018-05-14
+
+Release Notes
+
+Acre Desktop
+
+Acre will now signal an error at the end of a command if any error msgs
+have been issued during the running of the command. This after re-issuing
+all such messages as a block. 
+
+This will affect OpenProject if, for instance, one of its dependencies
+fails to open. It will continue as far as it can so that any failed
+dependencies can then be loaded separately if possible afterwards.
+
+Circular dependencies are now prevented so that interdenpendent projects
+can now be loaded successfully.
+
+-----------------
 Acre 4.3.0 2018-04-26
 
 Release Notes

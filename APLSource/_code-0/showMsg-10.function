@@ -2,7 +2,8 @@
      (null ⍵):⍵                 ⍝ empty arg
      disp←OPT.messages
      data←ntbs ⎕FMT↑⍵
-     ≡/Cc disp MS.GB:data         ⍝ its NOT having been displayed!
+     SV.errmsgs,←data/⍨'!'=⊃¨data  ⍝ reset in userCmdRun
+     ≡/Cc disp MS.GB:data       ⍝ its NOT having been displayed!
      '#'∊disp:data⊣⍎disp,(2 0 3⍳#.⎕NC disp)↓',← data'
 ⍝    data⊣#.what← data          ⍝ named buffer - missing
 ⍝    data⊣#.what,← data         ⍝              - array
@@ -17,5 +18,5 @@
 ⍝   '#.path.to.missing' initialises buffer
 ⍝   '#.path.to.array' is buffer
 ⍝   '#.path.to.function' runs explicit function with arg - ignores result
-⍝ Phil Last ⍝ 2008-10-26 08:27
+⍝ Phil Last                     ⍝ 2008-10-26 08:27
  }

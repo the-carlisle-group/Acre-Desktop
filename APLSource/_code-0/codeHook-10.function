@@ -1,15 +1,25 @@
  codeHook←{⍺←⊢
-     null⊢fn←⊂Cc ⍺⊣'':''⊣showMsg MS.IZ
-     z←fns(ns←⎕NS'').{⍎⍕⍺,'←⍵'}⍳⍴fns←MS.IX ⍝ MS.__
+     null⊢fn←⊂Cc ⍺⊣'':''⊣showMsg MS.IY MS.IZ,MS.IX
+     ns←dix⊢fns←MS.IX ⍝ MS.__
      ix←fns⍳fn
      SV.space←'.',⍨(¯1+((⊂MS.AA)(∨/⍷)¨⎕XSI)⍳0)⊃⎕NSI
      arg←⊂if≡⍵
+     '?'∊⊃⊃arg:{
+         ix=ns.nameclass:
+         ix=ns.changefile:
+         ix=ns.deletefile:
+         ix=ns.sourcefile:
+         ix=ns.itemname:
+         ix=ns.version:
+         ix=ns.codehook:
+     }ix
      ix=ns.nameclass:nameClass prefSpace arg ⍝ itemMethod does this
      ix=ns.changefile:getChangeFilenames itemMethod arg
      ix=ns.deletefile:,∘MS.EX¨(-≢MS.HN)↓¨getChangeFilenames itemMethod arg
      ix=ns.sourcefile:getSourceFilenames itemMethod arg
      ix=ns.itemname:itemName¨arg
      ix=ns.version:' 'sep⊃releaseNotes⊣''
+     ix=ns.codehook:''
      ''
 ⍝ Marilyn Last named this fn
 ⍝ Phil 2018-03-22 20.37

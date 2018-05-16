@@ -1,6 +1,6 @@
  getSource←{dat←⍺
      src tgt←dat.(source nspath),¨'' '.'         ⍝ ../APLSource/
-     fresh←⍵≡MS.BG ⋄ last←⌈/dat.loadtime
+     ref←⍵≡MS.BG ⋄ last←⌈/dat.loadtime
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src     ⍝ all files
      path date/⍨←⊂~∨/'/.'⍷↑path                  ⍝ ignore all /.*/
@@ -8,14 +8,14 @@
      path date file type/⍨←∊/Cc type MS.AZ       ⍝ only valid types
      name←'/.'decodeCaps file
      now←⎕NS(sourceFields'').⎕NL-2.1             ⍝ name file date
-     path date file name type/⍨←⊂fresh≤new←date>last  ⍝ new or not refresh
+     path date file name type/⍨←⊂ref≤new←date>last  ⍝ new or not refresh
      dup←(⊢∊⊢(/⍨)⍳⍨≠⍳∘≢)name
      z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
      z←showMsg MS.AC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,src
      val←read/0,⍪path ⋄ tnam←tgt∘,¨name
      fqn type val←fixValue tnam type val         ⍝ type-change fix-fail
      dat.loadtime,←DT.ts2dt ⎕TS
-     ~dat.hist:⍵
+     ~dat.hist:fqn if ref⊢⍵
 
      was←now if{null ⍵.name}dat sourceReg''      ⍝ what was last time
      del←⎕EX dat erase tgt∘,¨was.name~now.name   ⍝ file missing
@@ -24,13 +24,14 @@
      msg←MS.EN,((+/diff)UT.pl MS.FN),MS.EZ,¯30 UT.tm dat.changes
      z←showMsg msg showList diff/fqn
      fqn←dat putChange diff∘/¨fqn val type
-     ⍵⊣now UT.aw dat.sourcereg
+     fqn if ref⊢⍵⊣now UT.aw dat.sourcereg
 ⍝ ⍺ dat
-⍝ ⍵ ?
-⍝ ← ⍵
+⍝ ⍵ ? or MS.BG ('Refresh')
+⍝ ← ⍵ or fqns of refreshed items
 ⍝ get source and fix
+⍝ if refresh compare last Open or Refresh date and fetch only changed since
 ⍝ if hist rename missing changes to delete
-⍝ append or create changefiles
-⍝ record what exists
+⍝    append or create changefiles
+⍝    record what exists
 ⍝ Phil 2018-02-16 23.10
  }
