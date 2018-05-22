@@ -1,0 +1,4 @@
+ ∆GetAcreMessage←{
+     ms←⎕SE.acre._code.allMessages'acre'
+     ms⍎⍵
+ }

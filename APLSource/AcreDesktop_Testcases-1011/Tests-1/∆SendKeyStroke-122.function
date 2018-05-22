@@ -6,7 +6,7 @@
  r←⍬
  :If 2=≡keystrokes
      {}wsh.AppActivate⊂caption      ⍝ Make sure the right Window gets the focus.
-     ⎕DL 0.05                       ⍝ Give it a moment
+     ⎕DL 0.25                       ⍝ Give it a moment
      wsh.SendKeys keystrokes        ⍝ Send the keystroke
  :Else
      :For keystroke :In ,keystrokes

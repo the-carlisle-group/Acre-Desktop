@@ -23,7 +23,8 @@
  →GoToTidyUp 3≠⍴⊃F.Dir sourcePath   ⍝ Quad-vars script is added automatically
  →GoToTidyUp~F.IsFile sourceFilename
 
- sourceFilenames←'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello ','#.',projectName,'.Hello2'
+ sourceFilenames←'sourcefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
+ →GoToTidyUp 1 1≢≡sourceFilenames
  →GoToTidyUp 2≠⍴sourceFilenames
  →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨sourceFilenames
 

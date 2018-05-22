@@ -5,4 +5,7 @@
  (rc en more)←F.RmDir ∆PATH
  Assert 0=rc  ⍝ If this fails then somebody might look into the directory, or a file inside is tied etc.
  Assert'CREATE!'F.CheckPath ∆PATH
+ ∆DEBUGSTATE←{⍵↓⍨⍵⍳' '}⎕SE.UCMD'udebug'
+ {}⎕SE.UCMD'udebug off'
+ {}⎕SE.UCMD'acre.Projects' ⍝ Enforce acre to be loaded
 ⍝Done

@@ -1,5 +1,7 @@
  Cleanup
  :Trap 0 ⋄ F.RmDir ∆PATH ⋄ :EndTrap
+ :Trap 0 ⋄ {}⎕SE.UCMD'udebug ',∆DEBUGSTATE ⋄ :EndTrap  ⍝ Restore debug state to what it was
  ⎕EX¨'AF'
  ⎕EX'∆PATH'
+ ⎕EX'∆DEBUGSTATE'
 ⍝Done

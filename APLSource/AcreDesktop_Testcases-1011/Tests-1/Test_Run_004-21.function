@@ -24,7 +24,8 @@
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
  →GoToTidyUp 2≠⍴⊃F.Dir changePath
  →GoToTidyUp~F.IsFile deleteFilename
- deleteFilenames←'deletefile'⎕SE.acre.run'#.',projectName,'.Hello ','#.',projectName,'.Hello2'
+ deleteFilenames←'deletefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
+ →GoToTidyUp 1 1≢≡¨deleteFilenames
  →GoToTidyUp 2≠⍴deleteFilenames
  →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨deleteFilenames
 

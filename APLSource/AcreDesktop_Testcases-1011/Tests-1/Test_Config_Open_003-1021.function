@@ -44,14 +44,12 @@
  buff,←⊂':EndNamespace'
  A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
 
- :Trap (~stopFlag)/0
+ :Trap 0
      result←⎕SE.UCMD'acre.OpenProject ',projectPath,' -messages=''#.AcreMessages'''
- :Else
      →GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp 0=∨/'! Invalid path or not a project.'⍷⊃#.AcreMessages
-⍝TODO⍝  →GoToTidyUp result             ⍝ For the time being acre's behaviour in these cases in undefined!
+ →GoToTidyUp 0=∨/(∆GetAcreMessage'HB')⍷⊃#.AcreMessages
 
  #.AcreMessages←''
  buff←''
@@ -67,7 +65,6 @@
      →GoToTidyUp 1
  :EndTrap
 
-⍝TODO⍝  →GoToTidyUp result             ⍝ For the time being acre's behaviour in these cases in undefined!
  →GoToTidyUp 9=#.⎕NC projectName2
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
@@ -80,3 +77,4 @@
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
+⍝Done

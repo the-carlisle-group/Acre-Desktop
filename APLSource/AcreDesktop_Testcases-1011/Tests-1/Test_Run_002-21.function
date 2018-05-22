@@ -20,11 +20,13 @@
  →GoToTidyUp 1≠⍴⊃F.Dir changeFilename
  aplsourcePath←('Expand'F.NormalizePath changePath,'..\..'),'\APLSource'
  →GoToTidyUp 3≠⍴⊃F.Dir aplsourcePath,'\*'       ⍝ Quad-Vars script is added automatically
- changeFilenames←'changefile'⎕SE.acre.run'#.',projectName,'.Hello ','#.',projectName,'.Hello2'
+ changeFilenames←'changefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
  →GoToTidyUp 2≠⍴changeFilenames
+ →GoToTidyUp 1 1≢≡¨changeFilenames
  →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨changeFilenames
 
- changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello_DoesNotExist'
+ changeFilename←'changefile'⎕SE.acre.run'#.',projectName,'.Hello_DoesNotExist'
+ →GoToTidyUp 1≠≡changeFilename
  →GoToTidyUp~changePath{⍺≡(⍴⍺)↑⍵}changeFilename
  →GoToTidyUp'.*.change'{⍺≢(-⍴⍺)↑⍵}(⍴changePath)↓changeFilename
 
