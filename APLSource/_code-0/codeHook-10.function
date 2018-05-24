@@ -16,7 +16,7 @@
      }ix
      ix=ns.nameclass:nameClass prefSpace arg ⍝ itemMethod does this
      ix=ns.changefile:⊃getChangeFilenames itemMethod 1⍴arg
-     ix=ns.deletefile:,∘MS.EX(-≢MS.HN)↓⊃getChangeFilenames itemMethod 1⍴arg
+     ix=ns.deletefile:,∘MS.EX⊢(-≢MS.HN)↓⊃getChangeFilenames itemMethod 1⍴arg
      ix=ns.sourcefile:⊃getSourceFilenames itemMethod 1⍴arg
      ix=ns.itemname:itemName¨arg
      ix=ns.version:' 'sep⊃releaseNotes⊣''
