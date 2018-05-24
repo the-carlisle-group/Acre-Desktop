@@ -1,5 +1,5 @@
  previous←{cat←⍺ ⋄ arg←⍵
-     cat≢res←cat.(((≢key)|key⍳⊂⍵)⊃val):res ⍝ been there! done that!
+     cat≢res←cat.(((≢key)|key⍳⊂⍵)⊃val):res ⍝ been there, done that,
      cat⊣cat.(key val),←⊂¨⍵ cat.def        ⍝ this is NOT the tee-shirt
 ⍝ ⍺ cat - see catalog
 ⍝ ⍵ arg which might or might not be in cat.key

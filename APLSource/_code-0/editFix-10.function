@@ -2,7 +2,7 @@
      (⍵≡'Start'):{                                   ⍝ from Start
          SV.eventnumber←enum←3611                    ⍝ 26⊥⎕A⍳'FIX'
          (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
-         SV.fixandafter←UT.ds¨qed.(onFix onAfterFix) ⍝ oddity! extra nesting!
+         SV.fixandafter←UT.ds¨qed.(onFix onAfterFix) ⍝ odd extra nesting!
          qed.(onFix onAfterFix)←(evarg←0⊃⎕XSI)0
          ⎕SE.Event,←⊂enum,⊂evarg ⋄ ⎕SE.⎕WX←wx        ⍝ reset ⎕WX
          {0}SV.itemvalue←editStore ⎕NS''             ⍝ create value store

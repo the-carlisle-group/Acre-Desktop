@@ -1,5 +1,5 @@
  ws←{
-     nsn←{⊃⍵~⍨'f'∘,∘⍕¨⍳1+⍴⍵}~∘' '¨↓#.⎕NL⍳10 ⍝ named in root! e.g. 'f0'
+     nsn←{⊃⍵~⍨'f'∘,∘⍕¨⍳1+⍴⍵}~∘' '¨↓#.⎕NL⍳10 ⍝ named in root e.g. 'f0'
      cpy←⍎nsn ⎕NS''                       ⍝ create it - cpy is ref
      sws sns←⍵                              ⍝ source ws & ns
      z←sns{6::0 ⋄ +{}⍺ cpy.⎕CY ⍵}sws        ⍝ ← populate ref

@@ -2,7 +2,7 @@
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
      ∨/nil 2⍴folder nspath case←3↑⊂if≡⍵:0⊣showMsg MS.DM,SX.CreateProject
      dat.folder←fPath folder,'/'
-     ⎕NEXISTS dat.folder:0⊣showMsg MS.HA
+     ⎕NEXISTS dat.folder:0⊣showMsg MS.DF
      dat.nspath←⊃prefSpace⊂nspath
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
 

@@ -21,12 +21,12 @@
      (x/res)←(↑x∘/¨spc val)∘fixClss 1/⍨+/x←nc∊ns.(class interface)
 
      res←res>MS.AL''∊⍨now←nameClass fqn ⍝ no error on fix and not unknown
-     z←showMsg MS.FX showList fqn/⍨~res ⍝ not fixed
+     z←showMsg MS.DJ showList fqn/⍨~res ⍝ not fixed
      fqn typ now val/⍨←⊂res
      chg←typ≢¨now
      z←showMsg MS.AD showList chg/,/fqn,' ',typ,'>',⍪now ⍝ type change
      fqn now val
 ⍝ ⍵ fqn type value
 ⍝ ← ⍵ fixed
-⍝ Phil 2018-02-02 18.48
+⍝ Phil 2018-05-23 21.39
  }
