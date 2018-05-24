@@ -20,7 +20,8 @@
      ix=ns.sourcefile:⊃getSourceFilenames itemMethod 1⍴arg
      ix=ns.itemname:itemName¨arg
      ix=ns.version:' 'sep⊃releaseNotes⊣''
-     ix=ns.casecode:⊃{'-'∊⍵:'..'decodeCaps ⍵ ⋄ '..'encodeCaps ⍵}1⍴arg
+     ix=ns.casecode:'#.'∘,⍣x⊃{'-'∊⍵:'..'decodeCaps ⍵
+         '..'encodeCaps ⍵}(2×x←'#.'≡2⍴z)↓z←⊃arg
      ''
 ⍝ Marilyn Last named this fn
 ⍝ Phil 2018-05-21 11.34
