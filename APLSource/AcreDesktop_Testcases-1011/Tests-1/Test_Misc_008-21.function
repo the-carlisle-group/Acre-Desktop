@@ -22,7 +22,7 @@
  :EndTrap
  →GoToTidyUp result≢'#.',projectName
 
- sourceFilename←⊃'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ sourceFilename←'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
  body←##.APLTreeUtils.ReadUtf8File sourceFilename
  (2⊃body)←'r←''Galaxy'''
  ⎕DL 1  ⍝ Between "Create project" and a change made to the file we need a delay of at least one second so that acre's ]Refresh can spot the change.

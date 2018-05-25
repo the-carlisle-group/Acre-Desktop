@@ -17,14 +17,14 @@
  deleteFilename←⊃'deletefile'⎕SE.acre.run'#.',projectName,'.Hello'
  result←⎕SE.UCMD'acre.Erase #.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.Test_Run_004.Hello'
- deleteFilename←⊃'deletefile'⎕SE.acre.run'#.',projectName,'.Hello2'
+ deleteFilename←'deletefile'⎕SE.acre.run'#.',projectName,'.Hello2'
  result←⎕SE.UCMD'acre.Erase #.',projectName,'.Hello2'
  →GoToTidyUp result≢,⊂'#.Test_Run_004.Hello2'
  changePath←F.EnforceBackslash 1⊃⎕NPARTS deleteFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
  →GoToTidyUp 2≠⍴⊃F.Dir changePath
  →GoToTidyUp~F.IsFile deleteFilename
- deleteFilenames←'deletefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
+ deleteFilenames←##.FilesAndDirs.NormalizePath'deletefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
  →GoToTidyUp 1 1≢≡¨deleteFilenames
  →GoToTidyUp 2≠⍴deleteFilenames
  →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨deleteFilenames

@@ -14,7 +14,7 @@
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
 
- sourceFilename←⊃'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ sourceFilename←'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
  itemName←⊃'itemname'⎕SE.acre.run sourceFilename
  →GoToTidyUp itemName≢'#.',projectName,'.Hello'
 

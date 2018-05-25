@@ -18,13 +18,13 @@
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello2'
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello2'
 
- sourceFilename←⊃'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ sourceFilename←'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
  sourcePath←F.EnforceBackslash 1⊃⎕NPARTS sourceFilename
  →GoToTidyUp 3≠⍴⊃F.Dir sourcePath   ⍝ Quad-vars script is added automatically
  →GoToTidyUp~F.IsFile sourceFilename
 
- sourceFilenames←'sourcefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
- →GoToTidyUp 1 1≢≡sourceFilenames
+ sourceFilenames←##.FilesAndDirs.NormalizePath'sourcefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
+ →GoToTidyUp 1 1≢≡¨sourceFilenames
  →GoToTidyUp 2≠⍴sourceFilenames
  →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨sourceFilenames
 

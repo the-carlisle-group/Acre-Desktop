@@ -14,7 +14,7 @@
  {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
  ref.⎕FX'r←Hello2' 'r←''Whole universe'''
  {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello2'
- changeFilename←⊃'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ changeFilename←'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
  changePath←F.EnforceSlash 1⊃⎕NPARTS changeFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
  →GoToTidyUp 1≠⍴⊃F.Dir changeFilename
