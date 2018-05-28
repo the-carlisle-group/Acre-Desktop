@@ -1,5 +1,5 @@
  R←Test_Misc_004(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;projects;path;list
-⍝ Exercise `Erase` and `Restore`
+⍝ Exercise `Erase` and `Restore` on functions. See also Test_Misc_009.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed

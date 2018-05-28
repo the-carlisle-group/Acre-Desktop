@@ -1,0 +1,39 @@
+ R←Test_Misc_009(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;projects;path;list;ref2
+⍝ Exercise `Erase` and `Restore` on a namespace. See also Test_Misc_004.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ ref.⎕FX'r←Hello2' 'r←''World2'''
+ ref2←⍎'Sub'ref.⎕NS''
+ ref2.⎕FX'r←Hello3' 'r←''World 3'''
+ ref2.⎕FX'r←Hello4' 'r←''World 4'''
+
+ :Trap (~stopFlag)/0
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=off'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp result≢'#.',⊃⎕SI
+ projects←⎕SE.UCMD'Acre.Projects'
+ path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
+ list←⊃('recursive' 1)F.Dir path,'*'
+ →GoToTidyUp 6≠⍴list  ⍝ Quad-Vars script, one folder, 4 functions
+ result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Sub',' -messages=off'
+ →GoToTidyUp 0∊⍴result
+ . ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝
+
+ list←⊃('recursive' 1)F.Dir path,'*'
+ →GoToTidyUp 3≠⍴list  ⍝ Quad-Vars script, 2 functions
+ .  ⍝TODO⍝ ::::::::::::: Add a test for Undoing the delete operation of the whole namepsace.
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
