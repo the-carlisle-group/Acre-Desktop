@@ -8,7 +8,7 @@
          ok⊣showMsg ok/dat.nspath,MS.DA
      }0
                           ⍝ one item
-     dl←,∘MS.EX⊢(-≢MS.HN)↓fn←⊃dat getChangeFilenames⊂fqn←⊃validItem ⍵
+     dl←,∘MS.EX⊢(-≢MS.HN)↓fn←⊃dat getChangeFilenames⊂fqn←⊃validItems ⍵
      ok←1∊⎕NDELETE/1,⍪dl fn
      dat.changed~←⊂fqn
      ok⊣showMsg ok/fqn,MS.DA

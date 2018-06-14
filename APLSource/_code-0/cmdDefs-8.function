@@ -4,84 +4,98 @@
          command←'Changes'
          help←'List changed items in project or changes to one'
          options←'hm'
+         result←''
          syntax←'space | item'
          type←'item'
          ][
          command←'CreateProject'
          help←'Create a new project'
          options←'hm'
+         result←''
          syntax←'folder space [casecode]'
          type←'shared'
          ][
          command←'Erase'
-         help←'Erase an item or items from an open project'
-         options←'hm'
-         syntax←'item(s)'
+         help←'Erase an item, items or a space from a tracked project'
+         options←'chm'
+         result←''
+         syntax←'item(s) | space'
          type←'item'
          ][
          command←'FromAPLAN'
          help←'Evaluate an APLAN expression'
          options←'hm'
+         result←''
          syntax←'name | "expression"'
          type←'shared'
          ][
          command←'OpenProject'
          help←'Load project code into ws for development'
          options←'hmtd'
+         result←''
          syntax←'folder [space]'
          type←'shared'
          ][
          command←'Projects'
-         help←'List spaces & folders of all open projects.'
+         help←'List spaces & folders of all tracked projects.'
          options←'hm'
+         result←''
          syntax←''
          type←'shared'
          ][
          command←'PurgeHistory'
-         help←'Fix changes to an open project'
+         help←'Fix changes to a tracked project'
          options←'hm'
+         result←''
          syntax←'space | item'
          type←'item'
          ][
          command←'Redo'
          help←'Re-apply last undone change.'
          options←'hm'
+         result←''
          syntax←'item(s)'
          type←'item'
          ][
          command←'Refresh'
-         help←'Update open project with source changes since previous'
+         help←'Update tracked project with source changes since previous'
          options←'hm'
+         result←''
          syntax←'space'
          type←'project'
          ][
          command←'Restore'
          help←'Bring back items ]erased'
          options←'hm'
+         result←''
          syntax←'item'
          type←'item'
          ][
          command←'SetChanged'
          help←'Write items as if changed in the editor'
          options←'hm'
+         result←''
          syntax←'item(s)'
          type←'item'
          ][
          command←'Stats'
          help←'Project Statistics'
          options←'hm'
+         result←''
          syntax←'space'
          type←'project'
          ][
          command←'ToAPLAN'
          help←'Format a value as APLAN'
          options←'hm'
+         result←''
          syntax←'name | "expression"'
          type←'shared'
          ][
          command←'Undo'
          help←'Revert to previous version'
          options←'hm'
+         result←''
          syntax←'item(s)'
          type←'item'
          ])
@@ -92,5 +106,5 @@
      r.options←optionFields r.options
      UT.is r
 ⍝ see optionFields for valid options
-⍝ Phil 2018-04-02 09.53
+⍝ Phil 2018-06-07 09.23
  }

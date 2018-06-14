@@ -1,6 +1,7 @@
  optionFields←{⍺←⊢
 
-     opts←,⊂'dependencies:on'
+     opts←,⊂'confirm:'
+     opts,←⊂'dependencies:on'
      opts,←⊂'help'
      opts,←⊂'messages:on'
      opts,←⊂'track:on'

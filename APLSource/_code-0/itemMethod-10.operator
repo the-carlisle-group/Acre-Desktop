@@ -14,8 +14,8 @@
 ⍝ ⍵    args
 ⍝ args random list of items of possiby disparate projects
 ⍝ Run instance method ⍺⍺ for each subgroup of ⍵
-⍝   corresponding to an open project
+⍝   corresponding to a tracked project
 ⍝   Methods expected to take 1 or more names and return a subset
 ⍝ ← results per project, '' if none
-⍝ Phil Last 2018-01-10 21.54
+⍝ Phil 2018-06-06 21.11
  }

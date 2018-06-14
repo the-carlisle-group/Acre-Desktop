@@ -1,6 +1,6 @@
  codeHook←{⍺←⊢
 ⍝     null⊢fn←⊂Cc ⍺⊣'':''⊣showMsg MS.IY MS.IZ,MS.IX
-     null⊢fn←⊂Cc ⍺⊣'':⍪(''MS.IY)MS.IZ,MS.IX
+     null⊢fn←⊂Cc ⍺⊣'':⍪MS.IX
      ns←dix⊢fns←MS.IX ⍝ MS.__
      ix←fns⍳fn
      SV.space←'.',⍨(¯1+((⊂MS.AA)(∨/⍷)¨⎕XSI)⍳0)⊃⎕NSI
@@ -15,9 +15,9 @@
          ix=ns.casecode:MS.CD
      }ix
      ix=ns.nameclass:nameClass prefSpace arg ⍝ itemMethod does this
-     ix=ns.changefile:⊃getChangeFilenames itemMethod 1⍴arg
-     ix=ns.deletefile:,∘MS.EX⊢(-≢MS.HN)↓⊃getChangeFilenames itemMethod 1⍴arg
-     ix=ns.sourcefile:⊃getSourceFilenames itemMethod 1⍴arg
+     ix=ns.changefile:⊃if≢getChangeFilenames itemMethod 1⍴arg
+     ix=ns.deletefile:,∘MS.EX if nonul(-≢MS.HN)↓⊃if≢getChangeFilenames itemMethod 1⍴arg
+     ix=ns.sourcefile:⊃if≢getSourceFilenames itemMethod 1⍴arg
      ix=ns.itemname:itemName¨arg
      ix=ns.version:' 'sep⊃releaseNotes⊣''
      ix=ns.casecode:'#.'∘,⍣x⊃{'-'∊⍵:'..'decodeCaps ⍵

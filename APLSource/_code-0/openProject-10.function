@@ -6,7 +6,7 @@
          ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
      ~∨/2⍴src cnf cde←⎕NEXISTS¨dat.(source config changes):{
          0}showMsg MS.DG,' ',¯30 UT.tm dat.folder
-     z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config
+     z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config ⍝ see configFields
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}showMsg MS.DC
@@ -29,5 +29,5 @@
 ⍝ [⍺] trk dep
 ⍝ ⍵ trk dep (folder [space])
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
-⍝ Phil 2018-01-28 00.15
+⍝ Phil 2018-06-06 21.11
  }

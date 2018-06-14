@@ -1,14 +1,9 @@
  Erase←{dat←⍺ ⋄ nms←⍵
 
-⍝⍝ items and nss spec'd by name
-⍝     its←⍵~nss←⍵/⍨0 ssp ⍵
-⍝     nms←∪its,⊃,/{UT.na ⍵,'.*'}/0,⍪nss
-⍝⍝ items and anything spec'd by wildcard
-⍝     its←⍵~wcd←⍵/⍨'*'∊¨⍵
-⍝     nms←∪its,⊃,/⊢∘UT.na/0,wcd
-
-     nms←validItem nms
-
+     unc←50 ⍝ up to 50 unconfirmed
+     nms←validItems{(⍎⊃⍵)UT.li validAPLType''}if(≢=9.1=⊃∘⎕NC)nms
+     null nms:''⊣showMsg MS.DH
+     0={confirm 60,⊂MS.CA,⍵ UT.pl MS.FK}if(unc<⊢)≢nms:''
      ~dat.hist:(⊢⊣⎕EX)dat delSource nms
 
      fqn typ val←getValue nms
@@ -21,8 +16,9 @@
 
      (⊢⊣⎕EX)dat delSource fqn
 
-⍝ ⍵ items
-⍝ ← ⍵ of which erased
+⍝ ⍵ item(s)|space
+⍝ ← items in ⍵ of which erased
 ⍝   if .change exists just rename to .delete - else put and rename
-⍝ Phil 2018-02-17 23.14
+⍝ confirm if >50
+⍝ Phil 2018-05-29 20.37
  }

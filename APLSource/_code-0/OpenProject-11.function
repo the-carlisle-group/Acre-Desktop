@@ -5,8 +5,6 @@
      0=dat←openProject tk dp ⍵:''
      dat.nspath⊣dataSpaces⍣tk⊢dat ⍝ remember
 ⍝ ⍵ folder [space]
-⍝ ← projectname projectspace
-⍝   project is open
-⍝   see LoadProject
-⍝ Phil 2018-01-23 15.35
+⍝ ← projectspace
+⍝ Phil 2018-06-06 21.11
  }
