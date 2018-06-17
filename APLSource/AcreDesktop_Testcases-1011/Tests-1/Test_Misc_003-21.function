@@ -1,4 +1,4 @@
- R←Test_Misc_003(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+ R←Test_Misc_003(stopFlag batchFlag);noMsg;projectName;projectPath;ref;result;⎕TRAP
 ⍝ Exercise `Undo` and `Redo`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -10,9 +10,10 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
  ref.⎕FX'r←Hello2' 'r←''World2'''
+ noMsg←' -messages=off'
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName
+     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,noMsg
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -20,10 +21,11 @@
  →GoToTidyUp result≢'#.',⊃⎕SI
  →GoToTidyUp'World'≢ref.Hello
  ref.⎕FX'r←Hello' 'r←''Universe'''
- result←⎕SE.UCMD'Acre.SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0∊⍴result~' '
+ result←⎕SE.UCMD'Acre.SetChanged #.',projectName,'.Hello',noMsg
+ →GoToTidyUp(,⊂'#.Test_Misc_003.Hello')≢result
+ →GoToTidyUp 1≠⍴⊃##.FilesAndDirs.Dir projectPath,'/.acre/changes/'
  →GoToTidyUp'Universe'≢ref.Hello
- result←⎕SE.UCMD'Acre.Undo #.',projectName,'.Hello -messages=''off'''
+ result←⎕SE.UCMD'Acre.Undo #.',projectName,'.Hello',noMsg
   ⍝TODO  Add after fix:
   ⍝ 1. Check `result`
   ⍝ 2. Execute function and check for "World"

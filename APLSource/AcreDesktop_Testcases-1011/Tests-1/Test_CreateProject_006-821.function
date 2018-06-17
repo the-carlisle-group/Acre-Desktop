@@ -1,5 +1,5 @@
  R←Test_CreateProject_006(stopFlag batchFlag);⎕TRAP;result
-⍝ Tryn to create a project with just one argument.
+⍝ Try to create a project with just one argument.
 ⍝ Is only executed when the acre project is open.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

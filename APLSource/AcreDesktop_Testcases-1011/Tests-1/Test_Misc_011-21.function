@@ -1,0 +1,41 @@
+ R←Test_Misc_011(stopFlag batchFlag);a;b;c
+⍝ Exercise the "SetChanged" command on a project that was just opened. See also Test_Misc_006.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+
+ a←1
+
+
+
+
+
+
+
+
+ b←2
+
+
+
+
+
+
+
+
+ c←3
+
+
+
+
+
+
+
+
+
+
+
+
+
+ R←∆OK
+⍝Done
