@@ -1,0 +1,7 @@
+ code←{
+     {⍵[(≢⍵){((1+⌊⍺⍟1⌈⌈/|⍵)⍴⍺)⊤⍵}⌊2⊃⎕AI÷1000]}819⌶⎕A,⎕D
+⍝ ⍵ ?
+⍝ ←  the alpha code that confirm would issue at this time.
+⍝   .`. supplying this obviates the need for confirmation.
+⍝ Phil 2018-06-07 09.23
+ }

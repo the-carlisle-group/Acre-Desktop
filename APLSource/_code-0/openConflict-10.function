@@ -13,9 +13,9 @@
 ⍝ ← null or msgs
 ⍝   The order in this function is paramount.
 ⍝   implements rule:
-⍝       A project may not be opened inside another
-⍝ if same, space is expunged and closed before open
-⍝ if over, spaces are expunged and closed before open
+⍝       A project may not be tracked inside another
+⍝ if same, space is expunged and closed before loading
+⍝ if over, spaces are expunged and closed before loading
 ⍝ if under, would be in conflict with parent
-⍝ Phil Last 2017-12-09 18.57
+⍝ Phil 2018-06-06 21.11
  }

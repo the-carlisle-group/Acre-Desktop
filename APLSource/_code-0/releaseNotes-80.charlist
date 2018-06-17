@@ -1,3 +1,55 @@
+Acre 4.3.1.001 2018-06-14
+
+Release Notes
+
+Acre Desktop  
+
+First I hope adding a build number to the version number above doesn't 
+break anyone's code.
+
+This commit corrects a few obscure bugs but its main purpose is enhancing 
+]Erase to delete the entire contents of a namespace in a tracked project.
+    ]?acre.erase
+Command "acre.Erase". Syntax:                            
+Accepts modifiers -confirm= -help -messages=             
+The default value of modifier 'messages' is "on"         
+                                                         
+ Erase an item, items or a space from a tracked project  
+ Syntax: ]acre.Erase item(s) | space                     
+
+The -confirm modifier kicks in when the number of items to be erased exceeds 
+50
+e.g.
+    ]erase #.dfns.notes
+This will erase 327 items
+please restart within 1 minute with code: -confirm=dn9
+ 
+after which
+    ]erase #.dfns.notes -c=dn9
+will do the deed.
+If you know in advance that it's likely to ask for confirmation and
+you don't want it to or even if it won't you can preclude it with 
+    ]erase #.dfns.notes -c=off
+and it won't stop.
+
+Added another hook to ⎕SE.acre.run
+      ⎕se.acre.run'?'
+ nameclass  
+ changefile 
+ deletefile 
+ sourcefile 
+ itemname   
+ version    
+ casecode   
+      'casecode'⎕se.acre.run'?'
+Toggle between names with and without case-codes
+
+Adds case-codes to a name without; corrects the casing and removes case-
+codes to a name containing at least one hyphen.
+
+A number of changes to acre's messages generally replacing "open project"
+with "tracked project". Changes also reflected in the on-line wiki.
+-------------------
 Acre 4.3.1 2018-05-14
 
 Release Notes

@@ -4,10 +4,10 @@
          ⍵.KeepHistory←'On'  ⍝ store .change- and .delete-files
          ⍵.ProjectSpace←''   ⍝ #[.path]
          ⍵.Open←''           ⍝ Open with this project
-⍝         ⍵.Load←''           ⍝ Load with this project
          ⍵.StartUp←''        ⍝ executed after OpenProject
          ⍵
      }#.⎕NS''
 ⍝ ⍵ ?
 ⍝ ← config space
+⍝ Phil 2018-06-06 21.11
  }

@@ -9,7 +9,9 @@
      dat.(hist case)←1,≢/Cc case MS.GB  ⍝ not Off
      dat.(config source code changes sourcereg)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
-     z←fixQV⊢space←⍎dat.nspath ⎕NS''⊣openProjects''
+⍝    rem prev version if existed
+     z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
+     z←fixQV⊢space←⍎dat.nspath ⎕NS''
      z←3 ⎕MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.CaseCode←dat.case⊃MS.GB MS.GA
@@ -17,7 +19,7 @@
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
      z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
      z←MS.AB ⎕NPUT dat.folder,MS.FM ⍝ git specific -
-     fqn←validItem space UT.li validAPLType''
+     fqn←validItems space UT.li validAPLType''
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''

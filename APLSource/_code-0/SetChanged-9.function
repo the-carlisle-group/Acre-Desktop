@@ -1,7 +1,7 @@
  SetChanged←{⍺←⊢
      dat←⍺
 
-     dat setChange getValue validItem{(⍎⊃⍵)UT.li⍳10}if(⊃0∘ssp∧1=≢)⍵
+     dat setChange getValue validItems{(⍎⊃⍵)UT.li⍳10}if(⊃0∘ssp∧1=≢)⍵
 ⍝
 ⍝ Phil 2018-02-18 21.42
  }

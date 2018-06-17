@@ -1,8 +1,8 @@
  openProjects←{
-     0∊⍴ids←dataSpaces'':⍬                               ⍝ open
+     0∊⍴ids←dataSpaces'':⍬                               ⍝ none
      missing←ids/⍨(((0∊⍴#.⎕NL⍳10)∧1=≢¨)∨0=⎕NC)ids.nspath ⍝ path missing
      1:⊢ids←dataSpaces missing                           ⍝ remove
-⍝ ensure open projects still in ws
+⍝ ensure tracked projects still in ws
 ⍝ remove any ids where nspath no longer a space.
-⍝ Phil Last 2018-01-17 23.16
+⍝ Phil 2018-06-06 21.11
  }

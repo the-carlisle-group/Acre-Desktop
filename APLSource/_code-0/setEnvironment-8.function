@@ -15,6 +15,7 @@
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
 ⍝ ⍵ ?
-⍝   there should be no open instances when this runs
+⍝   there should be no tracked instances when this runs
 ⍝ ← 1
+⍝ Phil 2018-06-06 21.11
  }
