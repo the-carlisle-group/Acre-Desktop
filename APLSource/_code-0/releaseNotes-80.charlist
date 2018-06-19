@@ -1,12 +1,12 @@
-Acre 4.3.1.001 2018-06-14
+Acre 4.4.0.002 2018-06-14
 
 Release Notes
 
 Acre Desktop  
-
+============
 First I hope adding a build number to the version number above doesn't 
 break anyone's code.
-
+=================
 This commit corrects a few obscure bugs but its main purpose is enhancing 
 ]Erase to delete the entire contents of a namespace in a tracked project.
     ]?acre.erase
@@ -31,7 +31,17 @@ If you know in advance that it's likely to ask for confirmation and
 you don't want it to or even if it won't you can preclude it with 
     ]erase #.dfns.notes -c=off
 and it won't stop.
-
+==========  
+Added modifier "-when" to "]Changes" command.
+    ]changes space -when
+adds the saved dates for each item changed. e.g.:
+    ]changes space
+ #.space.fn0
+ #.space.var1
+    ]changes space -when
+ #.space.fn0   2018-06-19 09:18:23
+ #.space.var1  2018-06-18 23:03:32
+============
 Added another hook to ⎕SE.acre.run
       ⎕se.acre.run'?'
  nameclass  
@@ -46,7 +56,7 @@ Toggle between names with and without case-codes
 
 Adds case-codes to a name without; corrects the casing and removes case-
 codes to a name containing at least one hyphen.
-
+==============
 A number of changes to acre's messages generally replacing "open project"
 with "tracked project". Changes also reflected in the on-line wiki.
 -------------------

@@ -12,8 +12,8 @@
      args←nss.Arguments
      args nss/⍨←⊂~args∊SV.arguments      ⍝ this time
      0∊⍴SV.arguments,←args:1
-     track←trk∧yes¨nss.track
-     depend←dep∧yes¨nss.dependencies
+     track←trk∧nOff¨nss.track
+     depend←dep∧nOff¨nss.dependencies
      dts←(⊂trk dep)openProject¨↓track,depend,⍪pref/↑2↑¨args
      dts track depend/⍨←⊂dts≠0           ⍝ only opened
      z←dataSpaces track/dts              ⍝ keep only tracked dependencies

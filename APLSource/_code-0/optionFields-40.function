@@ -1,10 +1,11 @@
  optionFields←{⍺←⊢
-
+     unused←'abefgijklnopqrsuvxyz'
      opts←,⊂'confirm:'
      opts,←⊂'dependencies:on'
      opts,←⊂'help'
      opts,←⊂'messages:on'
      opts,←⊂'track:on'
+     opts,←⊂'when[=]'
 
      in←⊃¨opts
      opts←' -'∘,¨opts

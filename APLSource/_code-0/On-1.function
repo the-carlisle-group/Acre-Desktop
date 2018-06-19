@@ -1,0 +1,5 @@
+ On←{⍺←⊢
+     ≡/Cc MS.GA(⍕⍵)
+⍝ only if ⍵ is 'on', 'On', 'oN' or 'ON'.
+⍝ Phil 2018-06-17 15.38
+ }

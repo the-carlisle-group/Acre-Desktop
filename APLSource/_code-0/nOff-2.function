@@ -1,0 +1,5 @@
+ nOff←{⍺←⊢
+     ≢/Cc MS.GB(⍕⍵)
+⍝ not if ⍵ is 'off', 'Off', 'OFF' &c.
+⍝ Phil 2018-06-18 12.32
+ }
