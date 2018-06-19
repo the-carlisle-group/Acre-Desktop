@@ -1,4 +1,4 @@
- R←Test_CreateProject_002(stopFlag batchFlag);⎕TRAP;path;rc;en;more;projectPath;ref;projectName;result;list;errMsg
+ R←Test_CreateProject_002(stopFlag batchFlag);⎕TRAP;path;rc;en;more;projectPath;ref;projectName;result;list;errMsg;dmx;a
 ⍝ Tries to create a project on an invalid path.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -14,11 +14,14 @@
      ref.⎕FX'r←Hello' 'r←''World'''
 
      :Trap 0
-         result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=off'
+         result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName ⍝,' -messages=off'
          →FailsIf 1
+     :Else
+         a←1
+         dmx←⎕DMX
      :EndTrap
-
-     errMsg←1⊃⎕DM
+     →PassesIf~0∊⍴dmx.DM
+     errMsg←1⊃dmx.DM
      →PassesIf∨/'FILE NAME ERROR'⍷errMsg~⎕UCS 8
      R←∆OK
 

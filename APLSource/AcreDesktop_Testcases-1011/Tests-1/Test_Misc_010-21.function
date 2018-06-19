@@ -12,38 +12,17 @@
  result←⎕SE.UCMD'acre.CreateProject ',projectPath,' #.',projectName,' -messages=''off'''
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
-
-
-
-
-
-
-
-
-
-
-
-
  result←⎕SE.UCMD'acre.OpenProject ',projectPath,' #.',projectName,' -messages=''off'''
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
  ref←#.⍎projectName
 
-
-
-
-
-
-
-
-
  ref.⎕FX'r←Hello' 'r←''World'''
  result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
-
-
-
-
-
  →GoToTidyUp 0∊⍴result
+ ref.⎕FX'r←Hello' 'r←''Universe'''
+ result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp 0∊⍴result
+
  →GoToTidyUp 1≠⍴list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
  tno←(⊃list)⎕FTIE 0
  →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno   ⍝ Orig, change, pointer

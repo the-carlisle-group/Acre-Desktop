@@ -25,13 +25,16 @@
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
  list←⊃('recursive' 1)F.Dir path,'*'
  →GoToTidyUp 6≠⍴list  ⍝ Quad-Vars script, one folder, 4 functions
+ →GoToTidyUp 3≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
  result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Sub',' -messages=off'
  →GoToTidyUp 0∊⍴result
- . ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝
+ →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'   ⍝ The namespace should not survive!
 
  list←⊃('recursive' 1)F.Dir path,'*'
  →GoToTidyUp 3≠⍴list  ⍝ Quad-Vars script, 2 functions
- .  ⍝TODO⍝ ::::::::::::: Add a test for Undoing the delete operation of the whole namepsace.
+ result←projectName∘{⎕SE.UCMD'acre.Restore #.',⍺,'.',⍵,' -messages=off'}¨'Sub' 'Sub.Hello3' 'Sub.Hello4' 'DoesNotExist'
+ →GoToTidyUp 0 1 1 0≢⊃∘⍴¨result
+ →GoToTidyUp 2≠⊃+/0<⎕NC¨projectName{⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
 
  R←∆OK
 
