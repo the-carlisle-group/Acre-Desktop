@@ -3,7 +3,7 @@
          ([
          command←'Changes'
          help←'List changed items in project or changes to one'
-         options←'hm'
+         options←'hmw'
          result←''
          syntax←'space | item'
          type←'item'

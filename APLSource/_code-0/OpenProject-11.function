@@ -1,7 +1,7 @@
  OpenProject←{⍺←⊢
      2<≢⍵:MS.DM
-     tk←yes OPT.track
-     dp←yes OPT.dependencies
+     tk←nOff OPT.track
+     dp←nOff OPT.dependencies
      0=dat←openProject tk dp ⍵:''
      dat.nspath⊣dataSpaces⍣tk⊢dat ⍝ remember
 ⍝ ⍵ folder [space]
