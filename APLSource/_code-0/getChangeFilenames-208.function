@@ -3,7 +3,7 @@
      ~dat.hist:(≢f)⍴⊂''
 
      s t←dat.(nspath changes)
-     n←'..'encodeCaps(1+≢s)↓¨f
+     n←'..'encodeCaps⍣dat.case⊢(1+≢s)↓¨f ⍝ else leave as is
      c←nameClass f   ⍝ may be MS.AL ".*" dealt with elsewhere
      ,/(⊂t),n,(⍪c),⊂MS.HN
 

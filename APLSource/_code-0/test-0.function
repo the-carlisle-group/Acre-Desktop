@@ -3,7 +3,7 @@
      tests←##.⍎MS.FZ
      fns←tests.Tests.⎕NL-3
      z←tests.(Tester.EstablishHelpersIn Tests)
-     z←(1∊⍵)tests.Tests.RunDebug ie{tests.Tests.Run⊣⍵}0
+     z←(1∊⍵)tests.Tests.RunDebug else{tests.Tests.Run⊣⍵}0
      z←tests.Tests.{⎕EX(⎕NL-3)~⍵}fns
 ⍝ Phil 2018-01-31 16.02
  }

@@ -28,7 +28,7 @@
  →GoToTidyUp 3≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
  result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Sub',' -messages=off'
  →GoToTidyUp 0∊⍴result
- →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'   ⍝ The namespace should not survive!
+ →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName∘{'#.',⍺,'.Sub',⍵}¨'' '.Hello3' '.Hello4'   ⍝ The namespace should not survive!
 
  list←⊃('recursive' 1)F.Dir path,'*'
  →GoToTidyUp 3≠⍴list  ⍝ Quad-Vars script, 2 functions

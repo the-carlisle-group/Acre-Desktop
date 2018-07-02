@@ -1,6 +1,6 @@
  getSource←{dat←⍺
      src tgt←dat.(source nspath),¨'' '.'         ⍝ ../APLSource/
-     ref←⍵≡MS.BG ⋄ last←⌈/dat.loadtime
+     ref←⍵≡MS.BG ⋄ last←⌈/dat.loadtime           ⍝ refresh
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src     ⍝ all files
      path date/⍨←⊂~∨/'/.'⍷↑path                  ⍝ ignore all /.*/
@@ -14,7 +14,7 @@
      z←showMsg MS.AC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,src
      val←read/0,⍪path ⋄ tnam←tgt∘,¨name
      fqn type val←fixValue tnam type val         ⍝ type-change fix-fail
-     dat.loadtime,←DT.ts2dt ⎕TS
+     dat.loadtime,←ref/DT.ts2dt ⎕TS
      ~dat.hist:fqn if ref⊢⍵
 
      was←now if{null ⍵.name}dat sourceReg''      ⍝ what was last time
@@ -29,7 +29,8 @@
 ⍝ ⍵ ? or MS.BG ('Refresh')
 ⍝ ← ⍵ or fqns of refreshed items
 ⍝ get source and fix
-⍝ if refresh compare last Open or Refresh date and fetch only changed since
+⍝ if refresh compare last Open or Refresh date,
+⍝    fetch only changed since and append refresh date to loadtime
 ⍝ if hist rename missing changes to delete
 ⍝    append or create changefiles
 ⍝    record what exists

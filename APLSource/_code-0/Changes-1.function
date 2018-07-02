@@ -2,8 +2,14 @@
      ~dat.hist:⍪''⊣dat noHistMsg''
      null⊢all←(⊢(/⍨)0<⎕NC)dat changes'':⍪''
      dat.nspath≡⊃⍵:{         ⍝ project changes
-         x←⍒date←(dat sourceReg'').(date name)UT.co(1+≢dat.nspath)↓¨⍵
-         ⍵[x],(OPT.when≢0)/⍪↓DT.dt2fm date[x]
+         date←(dat sourceReg'').(date name)UT.co(1+≢dat.nspath)↓¨⍵
+         name date←(⊂⊂⍒date)⌷¨⍵ date
+         dt←OPT.when
+         dt≡0:⍪name
+         res←name,⍪↓DT.dt2fm date
+         dt≡1:res
+         lt←1∊'<≤'∊dt
+         res⌿⍨lt≠date≥DT.fm2dt dt~'<≤≥>'
      }all
 
      null⊢item←⍬⍴⍵∩all:⍪''   ⍝ item change

@@ -1,0 +1,5 @@
+ since←{⍺←⊢
+     build←DT.ts2dt⊃⊃3 ⎕NINFO⍠1⊢⎕SE.acre._code.SV.workspace,'*'
+     {⍵⌿⍨build<DT.fm2dt↑⊢/⍵}⎕SE.UCMD'changes #.acre -w'
+⍝ Phil 2018-06-21 22.25
+ }

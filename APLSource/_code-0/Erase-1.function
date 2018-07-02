@@ -1,24 +1,26 @@
- Erase←{dat←⍺ ⋄ nms←⍵
-
-     unc←50 ⍝ up to 50 unconfirmed
-     nms←validItems{(⍎⊃⍵)UT.li validAPLType''}if(≢=9.1=⊃∘⎕NC)nms
+ Erase←{dat←⍺ ⋄ unc←50 ⍝ up to 50 unconfirmed
+     ns←(,1)≡0 ssp⊢arg←⍵  ⍝ non-scriptus
+     endx←(⎕EX(ns/arg),⊢)⊢⊢
+     nms←validItems{(⍎⊃⍵)UT.li validAPLType''}if ns⊢arg
      null nms:''⊣showMsg MS.DH
+
      0={confirm 60,⊂MS.CA,⍵ UT.pl MS.FK}if(unc<⊢)≢nms:''
-     ~dat.hist:(⊢⊣⎕EX)dat delSource nms
+
+     ~dat.hist:endx dat delSource nms
 
      fqn typ val←getValue nms
      null fqn:''⊣showMsg MS.DH
+
      new←~old←⎕NEXISTS¨fns←dat getChangeFilenames fqn
      res←{⍺⊣⎕FUNTIE(((-≢MS.HN)↓⍵),MS.EX)⎕FRENAME ⍵ ⎕FTIE 0}/old⌿fqn,⍪fns
-     ∧/old:(⊢⊣⎕EX)res⊣dat delSource fqn
+     ∧/old:endx dat delSource res
 
      z←dat putChange(new∘/¨fqn val typ),⊂MS.EX
-
-     (⊢⊣⎕EX)dat delSource fqn
+     endx dat delSource fqn
 
 ⍝ ⍵ item(s)|space
 ⍝ ← items in ⍵ of which erased
 ⍝   if .change exists just rename to .delete - else put and rename
 ⍝ confirm if >50
-⍝ Phil 2018-05-29 20.37
+⍝ Phil 2018-06-20 11.04
  }
