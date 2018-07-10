@@ -1,0 +1,39 @@
+ R←Test_SetChanged_003(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+⍝ Exercise the "SetChanged" command on a project that was opened with -track=off: should have no effect.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName
+
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ ref.⎕FX'r←Hello' 'r←''Universe'''
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ #.⎕EX projectName
+ result←∆RunUcmd'OpenProject ',projectPath,' -track=off'
+ →GoToTidyUp result≢'#.',projectName
+ ref.⎕FX'r←Hello' 'r←''Rubbish'''
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp~0∊⍴result
+ #.⎕EX projectName
+ ∆RunUcmd'OpenProject ',projectPath,' -track=off'
+ →GoToTidyUp'Universe'≢ref.Hello
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+⍝Done

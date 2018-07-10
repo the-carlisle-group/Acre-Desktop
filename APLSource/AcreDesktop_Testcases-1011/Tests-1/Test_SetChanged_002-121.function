@@ -1,5 +1,5 @@
- R←Test_Misc_006(stopFlag batchFlag);list;projectName;projectPath;ref;result;tno;⎕TRAP
-⍝ Exercise the "SetChanged" command on a project that was just created. See also Test_Misc_010
+ R←Test_SetChanged_002(stopFlag batchFlag);list;projectName;projectPath;ref;result;tno;⎕TRAP
+⍝ Exercise the "SetChanged" command on a project that was just opened. See also Test_Misc_006.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -7,10 +7,14 @@
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
- ref←⍎projectName #.⎕NS''
+ projectName #.⎕NS''
 
- result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+
+ result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName
+ →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ ref←#.⍎projectName
 
  ref.⎕FX'r←Hello' 'r←''World'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
@@ -28,3 +32,4 @@
 ∆TidyUp:
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
  F.RmDir projectPath
+⍝Done
