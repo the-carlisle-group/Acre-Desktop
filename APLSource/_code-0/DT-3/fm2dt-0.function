@@ -1,0 +1,9 @@
+ fm2dt←{
+     (¯1↓⍴⍵)⍴{⍵÷10*¯7+⌊10⍟⍵+⍵=0}1⊃⎕VFI⊃,/,' 0'∘,¨~∘' -:/.'¨↓⍵
+
+⍝ ⍵ formatted array 'yyyy mm dd [hh[mm[ss]]]' - rank>0
+⍝   permitted separators '-/ :.' first eight digits are yyyymmdd
+⍝ ← date.time  yyyymmdd.hhmmss      - shape ¯1↓⍴⍵
+⍝ for dates twixt 1 Jan 1000 and 31 Dec 9999
+⍝ Phil 2018-06-21 09.27
+ }

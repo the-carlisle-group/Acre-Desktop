@@ -3,7 +3,8 @@
      name←(1+≢src)↓¨fqn←,⊂if≡⍵
      reg←dat sourceReg''
      x←∊∘'#'⊢file←reg.((file,'#')name)UT.co name
-     (x/file)←'./'encodeCaps x/name
+     alt←{1↓'#'sep⊃,/'/',¨'.'sep⊃,/'#',¨⍵}
+     (x/file)←dat.case('./'∘encodeCaps)else alt x/name
      tgt∘,¨file,¨nameClass fqn
 
 ⍝ ⍺ dat
