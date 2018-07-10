@@ -28,7 +28,7 @@
  →GoToTidyUp 3≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
  result←∆RunUcmd'Erase #.',projectName,'.Sub'
  →GoToTidyUp 0∊⍴result
- →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺,'Sub'),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'   ⍝ The namespace should not survive!
+ →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName∘{'#.',⍺,'.Sub',⍵}¨'' '.Hello3' '.Hello4'   ⍝ The namespace should not survive!
 
  list←⊃('recursive' 1)F.Dir path,'*'
  →GoToTidyUp 4≠⍴list  ⍝ Quad-Vars script, 2 functions and what once as a namespace (folder): it survives!
