@@ -8,7 +8,7 @@
          (dat.folder,(⊃,/(1++/p∊'/\')/,/'../'),p)⍵ ⍝ uncle/cousin
      }
      0∊⍴these←~∘∊⍨⊂if≡dat.open:1        ⍝ ex config
-     nss←(⎕NEW ⎕SE.Parser(optionFields'dt')).Parse¨these
+     nss←(⎕NEW ⎕SE.Parser(optionFields'dep track')).Parse¨these
      args←nss.Arguments
      args nss/⍨←⊂~args∊SV.arguments      ⍝ this time
      0∊⍴SV.arguments,←args:1

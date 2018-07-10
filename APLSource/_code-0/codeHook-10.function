@@ -3,7 +3,7 @@
      null⊢fn←⊂Cc ⍺⊣'':⍪MS.IX
      ns←dix⊢fns←MS.IX ⍝ MS.__
      ix←fns⍳fn
-     SV.space←'.',⍨(¯1+((⊂MS.AA)(∨/⍷)¨⎕XSI)⍳0)⊃⎕NSI
+     SV.space←'.',⍨(¯1+((⊂MS.NA)(∨/⍷)¨⎕XSI)⍳0)⊃⎕NSI
      arg←⊂if≡⍵
      '?'∊⊃arg:{
          ix=ns.nameclass:ncHelp''

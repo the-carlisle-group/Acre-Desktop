@@ -1,7 +1,15 @@
- dix←{
-     ⍵(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}⍳⍴⍵
+ dix←{⍺←⊢
+     ns←⎕NS''
+     z←ns.(⍎⍕⍵,'←⍳⍴⍵')
+     1≡⍺ 1:ns
+     ns⊣ns.(⍎⍕⍺,'←',⍵)
 ⍝ dictionary of indices
-⍝   ∇ 'alpha' 'bravo' 'charlie'
+⍝ ⍵ names
+⍝ ⍺ synonyms
+⍝ ← space
+⍝       dix 'alpha' 'bravo' 'charlie'
 ⍝ ns.[alpha←0 ⋄ bravo←1 ⋄ charlie←2]
-⍝ Phil 2018-05-08 18.26
+⍝       'delta' 'foxtrot' 'golf' dix 'alpha' 'bravo' 'charlie'
+⍝ ns.[alpha←0 ⋄ bravo←1 ⋄ charlie←2 ⋄ delta←0 ⋄ foxtrot←1 ⋄ golf←2]
+⍝ Phil 2018-07-10 12.37
  }

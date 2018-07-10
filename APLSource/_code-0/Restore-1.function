@@ -3,7 +3,7 @@
      (null∨0<⎕NC)fqn←⊃⍵∩dat deleted'':''
      tgt src←MS.EX MS.HN
      file←MS.EX,⍨(-≢MS.HN)↓chg←⊃dat getChangeFilenames fqn
-⍝    type will be MS.AL ".*"
+⍝    type will be MS.AX ".*"
      null⊢del←⊃⊃0 ⎕NINFO⍠1⊢file:''
      name type←namx sPath del ⍝ file is path.name.type.delete
      chg←MS.HN,⍨(-≢MS.EX)↓del
