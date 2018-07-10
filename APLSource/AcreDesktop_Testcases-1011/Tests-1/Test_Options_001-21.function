@@ -10,17 +10,17 @@
  'AcreFunctionResult'#.⎕NS''
  #.AcreFunctionResult.Buffer←''
 
- {}⎕SE.UCMD'acre.Projects -messages=''#.AcreMessages'''
+ {}∆RunUcmd'Projects -messages=''#.AcreMessages'''
  →PassesIf 0∊⍴#.AcreMessages            ⍝ Nothing to tell
  #.AcreMessages←''
 
- {}⎕SE.UCMD'acre.Stats -messages=''#.AcreMessages'''
+ {}∆RunUcmd'Stats -messages=''#.AcreMessages'''
  →PassesIf~0∊⍴#.AcreMessages            ⍝ Should be syntax hint (project is missing)
 
  #.AcreFunctionResult.⎕FX'Collect←{' 'Buffer,←⊂⍵' '⍬' '}'
- {}⎕SE.UCMD'acre.Projects -messages=''#.AcreFunctionResult.Collect'''
+ {}∆RunUcmd'Projects -messages=''#.AcreFunctionResult.Collect'''
  →PassesIf 0∊⍴#.AcreFunctionResult.Buffer
- {}⎕SE.UCMD'acre.Stats -messages=''#.AcreFunctionResult.Collect'''
+ {}∆RunUcmd'Stats -messages=''#.AcreFunctionResult.Collect'''
  →PassesIf~0∊⍴#.AcreFunctionResult.Buffer
 
  R←∆OK

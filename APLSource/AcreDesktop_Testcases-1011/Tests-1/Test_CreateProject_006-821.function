@@ -9,7 +9,7 @@
  '#.AcreMessage'#.⎕NS''
  #.AcreMessage.buffer←''
 
- result←⎕SE.UCMD'acre.CreateProject "C:\Users\All Users\AppData\Roaming\',(##.APLTreeUtils.Last⊃⎕XSI),'" -messages=''#.AcreMessage.buffer'''
+ result←∆RunUcmd'CreateProject "C:\Users\All Users\AppData\Roaming\',(##.APLTreeUtils.Last⊃⎕XSI),'" -messages=''#.AcreMessage.buffer'''
  →PassesIf 0∊⍴result
  →PassesIf 1=⍴#.AcreMessage.buffer
  →PassesIf'Syntax:'{⍺≡(⍴⍺)↑⍵}⊃#.AcreMessage.buffer

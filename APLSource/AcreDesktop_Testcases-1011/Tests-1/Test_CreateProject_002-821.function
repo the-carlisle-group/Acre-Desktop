@@ -1,4 +1,4 @@
- R←Test_CreateProject_002(stopFlag batchFlag);⎕TRAP;path;rc;en;more;projectPath;ref;projectName;result;list;errMsg;dmx;a
+ R←Test_CreateProject_002(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;dmx;errMsg;debugWas
 ⍝ Tries to create a project on an invalid path.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -7,6 +7,7 @@
  :Else
      R←∆Failed
 
+     debugWas←⎕SE.UCMD'UDebug on'
      projectName←⊃⎕SI
      projectPath←'QWE:/This_does_almost_certainly_Not_Exist/aa/bb/cc/dd'
      #.⎕SHADOW projectName
@@ -14,15 +15,19 @@
      ref.⎕FX'r←Hello' 'r←''World'''
 
      :Trap 0
-         result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName ⍝,' -messages=off'
-         →FailsIf 1
+         result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+         →GoToTidyUp 1
      :Else
-         a←1
          dmx←⎕DMX
      :EndTrap
-     →PassesIf~0∊⍴dmx.DM
+     →GoToTidyUp 0∊⍴dmx.DM
      errMsg←1⊃dmx.DM
-     →PassesIf∨/'FILE NAME ERROR'⍷errMsg~⎕UCS 8
+     →GoToTidyUp~∨/'FILE NAME ERROR'⍷errMsg~⎕UCS 8
+
      R←∆OK
 
  :EndIf
+
+∆TidyUp:
+ ⎕SE.UCMD'UDebug ',{⍵↓⍨⍵⍳' '}debugWas
+⍝Done

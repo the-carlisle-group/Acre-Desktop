@@ -1,0 +1,128 @@
+ {r}←oldName RenameTestFnsTo newName;body;rc;header;comment;res;name;right;left;newParent;oldParent;delFilanme;A
+⍝ Renames a test function and tells acre.
+⍝ r ← ⍬
+ :If 9=#.⎕NC'APLTreeUtils'
+     A←#.APLTreeUtils
+ :ElseIf 9=⎕NC'APLTreeUtils'
+     A←APLTreeUtils
+ :ElseIf 9=##.⎕NC'APLTreeUtils'
+     A←##.APLTreeUtils
+ :ElseIf 9∊{⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.⎕NC⊂'APLTreeUtils'
+     A←({⎕ML←1 ⋄ ⊃⍵}(9={⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.⎕NC⊂'APLTreeUtils')/⎕RSI).APLTreeUtils
+ :ElseIf 9∊{⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.##.⎕NC⊂'APLTreeUtils'
+     A←({⎕ML←1 ⋄ ⊃⍵}(9={⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.##.⎕NC⊂'APLTreeUtils')/⎕RSI.##).APLTreeUtils
+ :Else
+     'Missing: APLTreeUtils'⎕SIGNAL 6
+ :EndIf
+ r←⍬
+ (oldName newName)←oldName newName~¨' '
+ :If '.'∊oldName
+     (oldParent oldName)←¯1 0↓¨'.'A.SplitPath oldName
+     oldParent←⍎oldParent
+ :ElseIf 3=⎕NC oldName
+     oldParent←⎕THIS
+ :Else
+     oldParent←{⎕ML←1 ⋄ ⊃⍵}⎕RSI
+ :EndIf
+ :If '.'∊newName
+     (newParent newName)←¯1 0↓¨'.'A.SplitPath newName
+     newParent←⍎newParent
+ :ElseIf oldParent≡⎕THIS
+     newParent←⎕THIS
+ :Else
+     newParent←{⎕ML←1 ⋄ ⊃⍵}⎕RSI
+ :EndIf
+ 'Check parent!'⎕SIGNAL 11/⍨oldParent≢newParent
+ 'Function to be renamed not found'⎕SIGNAL 11/⍨3≠oldParent.⎕NC oldName
+ 'New name is already used'⎕SIGNAL 11/⍨0<newParent.⎕NC newName
+ 'New name is invalid'⎕SIGNAL 11/⍨¯1=newParent.⎕NC newName
+ body←oldParent.⎕NR oldName
+ header←⎕IO⊃body
+ (header comment)←header{⎕IO←0 ⋄ ⍺{(⍵↑⍺)(⍵↓⍺)}⍵⍳'⍝'}header
+ :If (oldParent.⎕NC⊂oldName)∊3.2   ⍝ Dfns
+     :If 1=⍴body
+         (oldName body)←{⎕IO←0 ⋄ ⍵{(⍵↑⍺)(⍵↓⍺)}⍵⍳'←'}⎕IO⊃body
+         body←,⊂newName,body
+         oldName~←' '
+     :Else
+         (⎕IO⊃body)←newName,'←{'
+     :EndIf
+ :Else
+     (res header)←header{⎕IO←0 ⋄ ⍺{~'←'∊⍺:''⍺ ⋄ ((1+⍵)↑⍺)((1+⍵)↓⍺)}⍵⍳'←'}header
+     :If '('∊header
+         (header right)←header{⎕IO←0 ⋄ ⍺{(⍵↑⍺)(⍵↓⍺)}⍵⍳'('}header
+         header←{⎕ML←3 ⋄ ⍵⊂⍨' '≠⍵}header
+         :Select ⍬⍴⍴header
+         :Case 1       ⍝ Monadic fns
+             name←header
+             left←''
+         :Case 2        ⍝ Dyadic fns
+             (left name)←header
+         :Else
+             .          ⍝ ?!
+         :EndSelect
+     :Else
+         header←{⎕ML←3 ⋄ ⍵⊂⍨' '≠⍵}header
+         :Select ⍬⍴⍴header
+         :Case 1        ⍝ Niladic fns
+             name←header
+             left←right←''
+         :Case 2        ⍝ Monadic fns
+             (name right)←header
+             left←''
+         :Case 3        ⍝ Dyadic fns
+             (name right left)←header
+         :Else
+             .          ⍝ ?!
+         :EndSelect
+     :EndIf
+     name←newName
+     (⎕IO⊃body)←res,left,' ',name,' ',right,comment
+ :EndIf
+ :If ' '≠1↑0⍴rc←newParent.⎕FX{⎕ML←1 ⋄ ↑⍵}body
+     . ⍝ something went wrong
+ :EndIf
+ :If (0=#.⎕NC'acre')∧0=⎕SE.⎕NC'acre'
+     ⎕←'acre not found in the workspace'
+     oldParent.⎕EX oldName
+ :Else
+     (oldName newName)←{(⍕newParent),'.',⍵}¨oldName newName
+     :If 0<⎕SE.⎕NC'acre'
+         :If 3=⎕SE.acre.⎕NC'run'  ⍝ acre 4?!
+             delFilanme←({⎕ML←1 ⋄ ⊃⍵}'changefile'⎕SE.acre.run newName),'.DEL'
+             :If ⎕NEXISTS delFilanme
+                 ⎕NDELETE delFilanme
+             :EndIf
+             :If 0∊⍴rc←∆RunUcmd'SetChanged ',newName
+                 ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
+             :EndIf
+             :If 0∊⍴rc←∆RunUcmd'Erase ',oldName
+                 ⎕←'acre was told about the deletion of a test fns but it was not interested.'
+             :EndIf
+         :Else
+             delFilanme←({⎕ML←1 ⋄ ⊃⍵}∆RunUcmd'getchangefilename ',newName),'.DEL'
+             :If ⎕NEXISTS delFilanme
+                 ⎕NDELETE delFilanme
+             :EndIf
+             :If 0∊⍴rc←∆RunUcmd'setchanged ',newName
+                 ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
+             :EndIf
+             :If 0∊⍴rc←∆RunUcmd'Erase ',oldName
+                 ⎕←'acre was told about the deletion of a test fns but it was not interested.'
+             :EndIf
+         :EndIf
+     :Else
+         delFilanme←({⎕ML←1 ⋄ ⊃⍵}#.acre.GetChangeFileName newName),'.DEL'
+         :If ⎕NEXISTS delFilanme
+             ⎕NDELETE delFilanme
+         :EndIf
+         :If 0∊⍴rc←#.acre.SetChanged newName
+             ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
+         :EndIf
+         :If 0∊⍴rc←#.acre.Erase oldName
+             ⎕←'acre was told about the deletion of a test fns but it was not interested.'
+         :EndIf
+     :EndIf
+     ⎕EX oldName
+     ⎕←'***Done'
+ :EndIf

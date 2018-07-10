@@ -1,0 +1,8 @@
+ {r}←{messageFlag}∆RunUcmd cmd
+ :If ∨/' -m'⍷cmd
+     r←⎕SE.UCMD'acre.',cmd
+ :Else
+     messageFlag←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'messageFlag'
+     r←⎕SE.UCMD'acre.',cmd,' -messages="',((messageFlag+⎕IO)⊃'off' 'on'),'"'
+ :EndIf
+⍝Done

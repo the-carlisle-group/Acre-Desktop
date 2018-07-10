@@ -8,12 +8,12 @@
  projectPath←F.EnforceSlash ∆PATH,'\',projectName
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
- {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' -messages=off'
+ {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName
 
  ref.⎕FX'r←Hello' 'r←''World'''
- {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ {}∆RunUcmd'SetChanged #.',projectName,'.Hello'
  ref.⎕FX'r←Hello2' 'r←''Whole universe'''
- {}⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello2'
+ {}∆RunUcmd'SetChanged #.',projectName,'.Hello2'
  changeFilename←'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
  changePath←F.EnforceSlash 1⊃⎕NPARTS changeFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath

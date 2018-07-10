@@ -13,9 +13,9 @@
  ref←⍎projectName #.⎕NS''
  ref.APLtreeUtils←#.APLTreeUtils
  ref.Foo←'Hello←{''World''}'
- noOf←⊃⍴⎕SE.UCMD'acre.Projects'
+ noOf←⊃⍴∆RunUcmd'Projects'
 
- result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'

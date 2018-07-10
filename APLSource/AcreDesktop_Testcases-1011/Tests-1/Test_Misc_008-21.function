@@ -1,6 +1,5 @@
  R←Test_Misc_008(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;sourceFilename;body
 ⍝ Exercise the `]Refresh` command.
-⍝ acre should prevent the user from doing stupid stuff like this.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -16,7 +15,7 @@
  #.TEMP.Log←''
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -27,7 +26,7 @@
  (2⊃body)←'r←''Galaxy'''
  ⎕DL 1  ⍝ Between "Create project" and a change made to the file we need a delay of at least one second so that acre's ]Refresh can spot the change.
  ##.APLTreeUtils.WriteUtf8File sourceFilename body
- result←⎕SE.UCMD'acre.Refresh #.',projectName,' -messages=#.TEMP.Log'
+ result←∆RunUcmd'Refresh #.',projectName,' -messages=#.TEMP.Log'
  →GoToTidyUp 1≠⍴result                              ⍝ Should be a list of names of those objects that got resfreshed?!
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
  →GoToTidyUp'Galaxy'≢⍎'#.',projectName,'.Hello'

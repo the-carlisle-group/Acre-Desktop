@@ -1,13 +1,9 @@
- R←Test_Config_CaseCode_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list
-⍝ Create a project and check whether `acreconfig.txt[CaseCode]` is honored   (not active yet)
+ R←Test_Config_CaseCode_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list
+⍝ Create a project and check whether `acreconfig.txt[CaseCode]` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-
- R←∆Inactive
- :Return
 
  R←∆Failed
 
- .  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝    Do we really need this? I don't think so!
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
@@ -15,26 +11,27 @@
  ref.⎕FX'r←Hello' 'r←''World'''
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' # -messages=''off'''
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap
+ →GoToTidyUp result≢'#.',projectName
+ →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello-1.function'
+ F.RmDir projectPath
+ {}∆RunUcmd'Projects'
 
- buff←;;
- buff,←⊂':Namespace'
- buff,←⊂'   CaseCode←''On'''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File(projectPath,'acreconfig.txt')buff
 
  :Trap (~stopFlag)/0
-     list←⎕SE.UCMD'acre.Projects'
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -CaseCode=off'
  :Else
      →GoToTidyUp 1
  :EndTrap
-
- .
+ →GoToTidyUp result≢'#.',projectName
+ →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello.function'
+ F.RmDir projectPath
 
  R←∆OK
 
 ∆TidyUp:
  F.RmDir projectPath
+⍝Done

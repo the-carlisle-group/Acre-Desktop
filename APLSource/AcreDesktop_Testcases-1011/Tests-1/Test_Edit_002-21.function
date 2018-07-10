@@ -7,6 +7,11 @@
 ⍝ a file "acrelog.txt" so that we check what acre actually did.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
+ :If 1
+     R←∆Inactive        ⍝ One some machines this test always failes, on some rarely, on some it makes APL disappear
+     :Return
+ :EndIf
+
  :If 'Win'≢3↑1⊃'#'⎕WG'APLVersion'
      R←∆WindowsOnly
      :Return
@@ -40,7 +45,7 @@
  parms.wait←0
  rc←parms ##.Execute.Application cmd
  'Could not start second APL instance'Assert 0=⊃rc
- ⎕DL 3
+ ⎕DL 5
 ⍝ (caption,'-E')∆SendKeyStroke⊂'{Down}'         ⍝ Sometimes ignored, therefore we settle for a variable
  (caption,'-E')∆SendKeyStroke⊂'{End}'
 ⍝ (caption,'-E')∆SendKeyStroke⊂'{Left}'         ⍝ Sometimes ignored, therefore we settle for a variable

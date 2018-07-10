@@ -9,14 +9,14 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
 
- result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
  ref.⎕FX'r←Hello' 'r←''World'''
- result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp 0∊⍴result
  ref.⎕FX'r←Hello' 'r←''Universe'''
- result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp 0∊⍴result
 
  →GoToTidyUp 1≠⍴list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'

@@ -10,7 +10,7 @@
  ref.⎕FX'r←Hello' 'r←''World'''
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=off'
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap

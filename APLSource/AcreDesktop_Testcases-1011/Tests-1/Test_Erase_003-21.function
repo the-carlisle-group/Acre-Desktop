@@ -1,0 +1,36 @@
+ R←Test_Erase_003(stopFlag batchFlag);list;path;projectName;projectPath;projects;ref;ref2;result;⎕TRAP
+⍝ Erase an ordinary namespace and then use the same name to create a namespace script
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref2←⍎'Sub'ref.⎕NS''
+ ref2.⎕FX'r←Hello3' 'r←''World 3'''
+ ref2.⎕FX'r←Hello4' 'r←''World 4'''
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp result≢'#.',⊃⎕SI
+ projects←∆RunUcmd'Projects'
+ path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
+ list←⊃('recursive' 1)F.Dir path,'*'
+ →GoToTidyUp 4≠⍴list  ⍝ Quad-Vars script, one folder, 2 functions
+ result←∆RunUcmd'Erase #.',projectName,'.Sub'
+ →GoToTidyUp 0∊⍴result
+ result←ref.⎕FIX':Namespace Sub' '∇r←Hello' 'r←''World''' '∇' ':EndNamespace'
+ →GoToTidyUp 0∊⍴result
+ result←1 ∆RunUcmd'SetChanged #.',projectName,'.Sub'
+
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath

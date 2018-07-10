@@ -10,13 +10,13 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
 
- result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
 
  ref.⎕FX'r←Hello' 'r←''World2'''
- result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 1≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
- →GoToTidyUp 1≠⎕SE.UCMD'acre.PurgeHistory #.',projectName,' -messages=''off'''
+ →GoToTidyUp 1≠∆RunUcmd'PurgeHistory #.',projectName
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
  R←∆OK

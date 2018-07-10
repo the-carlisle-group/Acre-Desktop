@@ -8,14 +8,14 @@
  projectPath←∆PATH,'\',projectName
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
- {}⎕SE.UCMD'CreateProject  "',projectPath,'" #.',projectName,' -messages=off'
+ {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName
 
  ref.⎕FX'r←Hello' 'r←''World'''
- result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello'
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
 
  ref.⎕FX'r←Hello2' 'r←''Whole universe'''
- result←⎕SE.UCMD'acre.SetChanged #.',projectName,'.Hello2'
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello2'
 
  sourceFilename←'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'

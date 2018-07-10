@@ -1,5 +1,5 @@
- R←Test_Misc_009(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;projects;path;list;ref2
-⍝ Exercise `Erase` and `Restore` on a namespace. See also Test_Misc_004.
+ R←Test_Erase_002(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;projects;path;list;ref2
+⍝ Exercise `Erase` and `Restore` on a namespace.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -15,24 +15,24 @@
  ref2.⎕FX'r←Hello4' 'r←''World 4'''
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=off'
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap
 
  →GoToTidyUp result≢'#.',⊃⎕SI
- projects←⎕SE.UCMD'Acre.Projects'
+ projects←∆RunUcmd'Projects'
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
  list←⊃('recursive' 1)F.Dir path,'*'
  →GoToTidyUp 6≠⍴list  ⍝ Quad-Vars script, one folder, 4 functions
  →GoToTidyUp 3≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
- result←⎕SE.UCMD'Acre.Erase #.',projectName,'.Sub',' -messages=off'
+ result←∆RunUcmd'Erase #.',projectName,'.Sub'
  →GoToTidyUp 0∊⍴result
- →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'   ⍝ The namespace should not survive!
+ →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺,'Sub'),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'   ⍝ The namespace should not survive!
 
  list←⊃('recursive' 1)F.Dir path,'*'
- →GoToTidyUp 3≠⍴list  ⍝ Quad-Vars script, 2 functions
- result←projectName∘{⎕SE.UCMD'acre.Restore #.',⍺,'.',⍵,' -messages=off'}¨'Sub' 'Sub.Hello3' 'Sub.Hello4' 'DoesNotExist'
+ →GoToTidyUp 4≠⍴list  ⍝ Quad-Vars script, 2 functions and what once as a namespace (folder): it survives!
+ result←projectName∘{∆RunUcmd'Restore #.',⍺,'.',⍵}¨'Sub' 'Sub.Hello3' 'Sub.Hello4' 'DoesNotExist'
  →GoToTidyUp 0 1 1 0≢⊃∘⍴¨result
  →GoToTidyUp 2≠⊃+/0<⎕NC¨projectName{⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
 

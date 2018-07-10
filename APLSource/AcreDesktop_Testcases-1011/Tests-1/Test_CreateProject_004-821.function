@@ -11,10 +11,10 @@
  ref.⎕FIX':Namespace Foo' '∇r←Hello' 'r←''World''' '∇' ':EndNamespace'
  'Sub'ref.⎕NS''
  ref.Sub.Goo←⍎'#.',projectName,'.Foo'
- noOf←⊃⍴⎕SE.UCMD'acre.Projects'
+ noOf←⊃⍴∆RunUcmd'Projects'
 
  :Trap (~stopFlag)/0
-     result←⎕SE.UCMD'acre.Createproject ',projectPath,' #.',projectName,' -messages=''off'''
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap

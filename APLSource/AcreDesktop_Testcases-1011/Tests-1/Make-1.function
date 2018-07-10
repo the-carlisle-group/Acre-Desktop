@@ -1,6 +1,6 @@
  Make;path;NL
  ⎕IO←1 ⋄ ⎕ML←1
- path←⊃{(⍵[;1]≡¨⊂'#.AcreDesktop_Testcases')⌿⍵[;2]}⎕SE.UCMD'acre.projects'
+ path←⊃{(⍵[;1]≡¨⊂'#.AcreDesktop_Testcases')⌿⍵[;2]}∆RunUcmd'projects'
  NL←⎕UCS 13
  ⎕LX←'#.AcreDesktop_Testcases.Tester.EstablishHelpersIn #.AcreDesktop_Testcases ⋄ ⎕←''Run:',NL
  ⎕LX,←'      ⎕IO⊃#.AcreDesktop_Testcases.Run          ⍝ For just running the tests (0 = okay)',NL
