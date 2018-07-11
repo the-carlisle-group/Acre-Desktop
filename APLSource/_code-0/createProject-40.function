@@ -1,14 +1,14 @@
  createProject←{
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     ∨/nil 2⍴folder nspath case←3↑⊂if≡⍵:0⊣showMsg MS.DM,SX.CreateProject
+     ∨/nil⊢folder nspath←2↑⊂if≡⍵:0⊣showMsg MS.DM,SX.CreateProject
      dat.folder←fPath folder,'/'
      ⎕NEXISTS dat.folder:0⊣showMsg MS.DF
      dat.nspath←⊃prefSpace⊂nspath
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
 
-     dat.(hist case)←1,nOff case
+     dat.(hist case)←1,nOff OPT.casecode
      dat.(config source code changes sourcereg)←{
-         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
+         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.NB∘,¨''MS.EU MS.HF
 ⍝    rem prev version if existed
      z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
      z←fixQV⊢space←⍎dat.nspath ⎕NS''
@@ -18,7 +18,7 @@
      z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
      z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
-     z←MS.AB ⎕NPUT dat.folder,MS.FM ⍝ git specific -
+     z←MS.NB ⎕NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems space UT.li validAPLType''
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val

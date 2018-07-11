@@ -8,32 +8,32 @@
      }⎕NS''
 
      ⊢{                        ⍝ return ns
-         ⍵.AA←nms.name
-         ⍵.AB←'.',MS.AA,'/'
-         ⍵.AC←'Please wait - '
-         ⍵.AD←'Type changed'
-         ⍵.AE←'.array'         ⍝ apla
-         ⍵.AF←'.function'      ⍝ aplf
-         ⍵.AG←'.operator'      ⍝ aplo
-         ⍵.AH←'.script'        ⍝ apln
-         ⍵.AI←'.class'         ⍝ aplc
-         ⍵.AJ←'.interface'     ⍝ apli
-         ⍵.AK←'.charlist'      ⍝ apll
-         ⍵.AM←'.charmat'       ⍝ aplm
-         ⍵.AN←'.charstring'    ⍝ apls
-         ⍵.AL←'.*'             ⍝ set as filetype for unknown
-         ⍵.AZ←MS.AE MS.AF MS.AG MS.AH MS.AI MS.AJ MS.AK MS.AM MS.AN
-         ⍵.AY←'.apl'∘,¨'a' 'f' 'o' 'n' 'c' 'i' 'l' 'm' 's'
-         ⍵.AU←nms.author
+         ⍵.NA←nms.name
+         ⍵.NB←'.',MS.NA,'/'
+         ⍵.NU←nms.author
 
-         ⍵.BA←''
-         ⍵.BC←''
-         ⍵.BD←''
+         ⍵.AA←'.array'         ⍝ apla
+         ⍵.AF←'.function'      ⍝ aplf
+         ⍵.AO←'.operator'      ⍝ aplo
+         ⍵.AN←'.script'        ⍝ apln
+         ⍵.AC←'.class'         ⍝ aplc
+         ⍵.AI←'.interface'     ⍝ apli
+         ⍵.AL←'.charlist'      ⍝ apll
+         ⍵.AM←'.charmat'       ⍝ aplm
+         ⍵.AS←'.charstring'    ⍝ apls
+         ⍵.AX←'.*'             ⍝ set as filetype for unknown
+         ⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
+         ⍝ above MS.AZ and below MS.AY MUST correspond!
+         ⍵.AY←'.apl'∘,¨'a' 'f' 'o' 'n' 'c' 'i' 'l' 'm' 's'
+
+         ⍵.BA←'⎕SE.SALTUtils.EditorFix' ⍝ this is SALT callback on Fix
+         ⍵.BC←'Please wait - '
+         ⍵.BD←'Type changed'
          ⍵.BF←'Version '
          ⍵.BG←'Refresh'
          ⍵.BH←'quadVars'
          ⍵.BI←'⎕IO ⎕ML ⎕WX'
-         ⍵.BJ←'⍝ This script was fixed by ',MS.AA
+         ⍵.BJ←'⍝ This script was fixed by ',MS.NA
          ⍵.BK←'⍝ it can be kept, cloned, renamed, amended or ]erased.'
          ⍵.BL←'⍝ its purpose is to set the environment for the project.'
          ⍵.BM←''
@@ -130,8 +130,7 @@
          ⍵.HH←':EndNamespace '
          ⍵.HI←'UTF-8'
          ⍵.HJ←'GetBuildID'
-         ⍵.HL←'.',MS.AA,'/'
-         ⍵.HM←MS.AA,MS.EW,MS.GZ
+         ⍵.HM←MS.NA,MS.EW,MS.GZ
          ⍵.HN←'.change'
 
          ⍵.IB←'nameclass'
@@ -141,9 +140,9 @@
          ⍵.IF←'itemname'
          ⍵.IG←'version'
          ⍵.IH←'casecode'
-         ⍵.IW←MS.AA,' version as: '
+         ⍵.IW←MS.NA,' version as: '
          ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF MS.IG MS.IH
-         ⍵.IY←'''method'' ⎕SE.',MS.AA,'.run args'
+         ⍵.IY←'''method'' ⎕SE.',MS.NA,'.run args'
          ⍵.IZ←'where ''method'' is one of'
 
          ⍵.__←⊃⎕XSI

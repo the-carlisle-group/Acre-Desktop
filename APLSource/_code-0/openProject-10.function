@@ -3,7 +3,7 @@
      null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:0
      (dat←⎕NS'').(changed folder loadtime)←''(fPath src,'/'),DT.ts2dt ⎕TS
      dat.(config source code changes sourcereg)←{
-         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.HL∘,¨''MS.EU MS.HF
+         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.NB∘,¨''MS.EU MS.HF
      ~∨/2⍴src cnf cde←⎕NEXISTS¨dat.(source config changes):{
          0}showMsg MS.DG,' ',¯30 UT.tm dat.folder
      z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config ⍝ see configFields
@@ -20,7 +20,7 @@
      z←showMsg MS.EZ,dat.nspath
      z←deleteFolder⍣(cde>dat.hist)⊢dat.code
      z←⎕MKDIR/3,⍪dat.(source changes)/⍨(~src),cde<dat.hist
-     z←MS.AB∘⎕NPUT if(~⎕NEXISTS)dat.folder,MS.FM  ⍝ git specific -
+     z←MS.NB∘⎕NPUT if(~⎕NEXISTS)dat.folder,MS.FM  ⍝ git specific -
      z←dat getSource'' ⍝ gets, fixes, writes chgs and dels
      dat.changed←dat changes''
      z←space∘{0::⊢showMsg UT.bx MS.DN,MS.DP,⍵

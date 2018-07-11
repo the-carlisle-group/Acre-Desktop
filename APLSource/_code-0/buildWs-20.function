@@ -1,7 +1,7 @@
  buildWs←{⍺←⊢
      sc←⎕SE UT.fr'.'UT.nn sPath⊃⎕XSI                        ⍝ ⎕SE equiv
      z←⎕EX(,(/⍨)(≢/⊢,⍕∘⍎¨))⍪## UT.li 9                      ⍝ anon refs
-     aa fz←sc.(MS.AA MS.FZ)
+     aa fz←sc.(MS.NA MS.FZ)
      wsid←sc.SV.workspace
      sc←⍴sc.dataSpaces⍣2⊢''                                 ⍝ close all
      z←#.⎕EX~∘aa''~∘' '¨↓#.⎕NL⍳11                           ⍝ clean

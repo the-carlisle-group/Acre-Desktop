@@ -1,7 +1,7 @@
  getValue←{
      type←nameClass⊢fqn←,⊂if≡⍵
-     ns←dix 1↓¨nms←MS.AZ
-     nc←nms⍳type
+     ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
+     nc←⊃⌊/MS.AY MS.AZ⍳¨⊂type
      val←0⍴⍨⍴fqn
      (x/val)←⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist
      (x/val)←⊢∘ntbs∘⍎/0,⍪fqn/⍨x←nc=ns.charmat
