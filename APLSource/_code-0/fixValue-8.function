@@ -4,16 +4,15 @@
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
      nc←⊃⌊/MS.AY MS.AZ⍳¨⊂typ
      nam←1↓¨1⊃spc nam←↓⍉↑namx¨fqn
-     res←0⍴⍨⍴nam
+     ers←⍳0 2⊣res←0⍴⍨⍴nam
      fixNs←⍎''⎕NS⍨⍕
      fixSrc←{0::0 ⋄ 1⊣(fixNs ⍺).⎕FIX ⍵}
      (x/res)←fixSrc⌿↑spc val/¨⍨⊂x←nc=ns.script
      spc←fixNs eu spc
-     data←↓⍉↑nam spc val
-
-     fixVar←{0::0 ⋄ n s v←⍵ ⋄ 1⊣n s.{⍎⍺,'←⍵'}⍺⍺ v}
-     fixFn←{0::0 ⋄ n s v←⍵ ⋄ n≡s.⎕FX v}
-     fixSrc←{0::0 ⋄ n s v←⍵ ⋄ 1⊣s.⎕FIX v}
+     data←↓⍉↑(⍳⍴nam)nam spc val
+     fixVar←{0::0 ⋄ x n s v←⍵ ⋄ 1⊣n s.{⍎⍺,'←⍵'}⍺⍺ v}
+     fixFn←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←s.⎕FX v:1 ⋄ 0∊∊r:0 ⋄ 1⊣ers⍪←x r}
+     fixSrc←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←'.'UT.nn⍕s.⎕FIX v:1 ⋄ 1⊣ers⍪←x r}
      fixClss←~{⍵\~1↓0,fixSrc/0,⍪⍵/⍺}⍣≡
 
      (x/res)←AN.decode fixVar/0,⍪data/⍨x←nc=ns.array
@@ -21,15 +20,15 @@
      (x/res)←↑fixVar/0,⍪data/⍨x←nc=ns.charmat
      (x/res)←{1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
-     (x/res)←(x/data)∘fixClss 1/⍨+/x←nc∊ns.(class interface)
+     (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
 
-     res←res>MS.AX''∊⍨now←nameClass fqn ⍝ no error on fix and not unknown
-     z←showMsg MS.DJ showList fqn/⍨~res ⍝ not fixed
-     fqn typ now val/⍨←⊂res
-     chg←typ≢¨now
-     z←showMsg MS.BD showList chg/,/fqn,' ',typ,'>',⍪now ⍝ type change
-     fqn now val
+     z←{p←⊃'.'UT.pn⊢f←⍺⊃fqn ⋄ t←⍺⊃typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
+         0⊣showMsg'* ',t,' ',f,MS.DO,c,' ',n
+     }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨now←nameClass fqn
+     z←showMsg,/(⊂MS.DJ),⍪fqn/⍨~res
+     fqn typ val/⍨←⊂res
+     fqn typ val
 ⍝ ⍵ fqn type value
 ⍝ ← ⍵ fixed
-⍝ Phil 2018-07-06 14.52
+⍝ Phil 2018-07-12 17.44
  }

@@ -22,7 +22,7 @@
 
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -CaseCode=off'
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=off'
  :Else
      →GoToTidyUp 1
  :EndTrap
