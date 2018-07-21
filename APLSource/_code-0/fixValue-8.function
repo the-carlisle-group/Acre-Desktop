@@ -1,4 +1,5 @@
  fixValue←{null ⍵:'' '' ''
+     ⍺←⊢ ⋄ ren←⍺⊣0
      fqn typ val←,∘⊂¨if(≡⊃)⍵
      fqn typ val{⍺[⍵]}←⊂⍋(≢sPath)¨fqn
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
@@ -21,14 +22,12 @@
      (x/res)←{1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
-
-     z←{p←⊃'.'UT.pn⊢f←⍺⊃fqn ⋄ t←⍺⊃typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
-         0⊣showMsg'* ',t,' ',f,MS.DO,c,' ',n
-     }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨now←nameClass fqn
-     z←showMsg,/(⊂MS.DJ),⍪fqn/⍨~res
-     fqn typ val/⍨←⊂res
-     fqn typ val
+     ers←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
+         f n⊣showMsg'* ',t,' ',f,MS.DO,c,' ',n
+     }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨nameClass fqn
+     z←showMsg,/(⊂MS.DJ),⍉↑typ' 'fqn/¨⍨⊂~res
+     (res∘/¨fqn typ val),ren/⊂ers
 ⍝ ⍵ fqn type value
-⍝ ← ⍵ fixed
+⍝ ← ⍵ fixed - reordered, corrected and filtered
 ⍝ Phil 2018-07-12 17.44
  }

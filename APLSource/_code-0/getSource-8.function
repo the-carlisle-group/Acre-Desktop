@@ -3,7 +3,7 @@
      ref←⍵≡MS.BG ⋄ last←⌈/dat.loadtime            ⍝ refresh
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src      ⍝ all files
-     path date/⍨←⊂~∨/'/.'⍷↑path                   ⍝ ignore all /.*/
+     path date/⍨←⊂~∨/'/.'⍷(≢src)↓⍤1↑path          ⍝ ignore all /.*/
      file type←↓⍉↑(UT.px(≢src)↓⊢)¨path            ⍝ 'ns/path/file' '.type'
      path date file type/⍨←∊/Cc type(MS.AZ,MS.AY) ⍝ only valid types
      name←'/.'decodeCaps file
@@ -13,7 +13,9 @@
      z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
      z←showMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,src
      val←read/0,⍪path ⋄ tnam←tgt∘,¨name
-     fqn type val←fixValue tnam type val          ⍝ type-change fix-fail
+     fqn type val ren←1 fixValue tnam type val    ⍝ name/type-change
+     z←{on nn←⍵ ⋄ of←(tnam⍳⊂on)⊃path ⋄ nf←⊃dat getSourceFilenames nn
+         t←of ⎕NTIE 0 ⋄ 0::⎕NUNTIE t ⋄ ⊢⎕NUNTIE nf ⎕NRENAME t}/0,⍪ren
      dat.loadtime,←ref/DT.ts2dt ⎕TS
      ~dat.hist:fqn if ref⊢⍵
 
@@ -28,11 +30,6 @@
 ⍝ ⍺ dat
 ⍝ ⍵ ? or MS.BG ('Refresh')
 ⍝ ← ⍵ or fqns of refreshed items
-⍝ get source and fix
-⍝ if refresh compare last Open or Refresh date,
-⍝    fetch only changed since and append refresh date to loadtime
-⍝ if hist rename missing changes to delete
-⍝    append or create changefiles
-⍝    record what exists
-⍝ Phil 2018-02-16 23.10
+⍝ get source and fix; if refresh fetch only changes
+⍝ Phil 2018-07-18 19.47
  }
