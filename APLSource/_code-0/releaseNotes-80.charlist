@@ -1,3 +1,38 @@
+Acre 4.5.0.013 2018-07-30
+
+Release Notes
+
+Acre Desktop  
+============
+
+Since v4.4.0.002 significant changes have all been concerned with the 
+recognition, recording and renaming of changes to sourcefiles by OpenProject 
+and Refresh both of which call the same low-level code to take account of 
+the "casecode=" configuration parameter and the renaming of files in the OS 
+and/or changing of file content in and by external editors. 
+
+Along with this comes the first pass at converting from the original 
+Acre-Desktop filetypes: .array, .function, .operator &c. to an extended list 
+of those proposed by Dyalog: .apla, .aplf, .aplo &c.
+
+The current state is such that files are selected as having one of either 
+set of filetypes. They are then subset according as they fall within the
+following groups:
+.array                         .apla
+.charlist .charmat .charstring .apll .aplm .apls
+.class    .interface           .aplc .apli
+.function .operator            .aplf .aplo
+.script                        .apln
+
+All members of a group undergo similar processing. If the actual name and/or
+type fixed differs from that expected after casecode resolution the file is
+renamed to reflect the actual name and type, casecodes are added if that is 
+the option and the change is reported. 
+
+The original acre filetypes are still being used at present. Acre requires a 
+single bit change '0'→'1' to a single function to enforce the ".apl_" 
+filetypes.
+---------------------------------
 Acre 4.4.0.002 2018-06-14
 
 Release Notes

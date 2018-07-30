@@ -1,8 +1,11 @@
  fPath←{r←⍵
      r←⊃,/1 ⎕NPARTS r
      ~∨/'/../'⍷r:r ⍝ ← Windows ...
-     ⊃(⊣,'/',⊢)/{⍵/⍨(⊢⍱¯1⌽⊢)0 1⍷⍵∊⊂'..'}⍣≡'/'sep r
-⍝     ⊃{⍺,'/',⍵}/{⍵/⍨1,⍨2⍱/⍵∊⊂'..'}'/'sep r
-⍝ file path
-⍝ Phil 2018-04-12 08.01
+⍝    {⍵,'/'/⍨0∊⍴⍵}1↓⊃,/'/',¨(⊢(/⍨){1=+/⍵∘.=⍵}∘(⍳∘⍴+⊢×1-2×+\)∘{⍵∊⊂'..'})'/'sep r
+     1↓⊃,/'/',¨~∘(⊂'..'){⍵/⍨(⊢⍱¯1⌽⊢)2 0⍷'..' ''⍳⍵}⍣≡'/'sep r
+⍝    1↓⊃,/'/',¨~∘(⊂'..'){⍵/⍨(⊢⍱¯1⌽⊢)0 1⍷⍵∊⊂'..'}⍣≡'/'sep r
+⍝ ⍵ file path absolute or relative ending in '/' or '\'
+⍝ ← absolute with '/' throughout
+⍝ windows resolves '/a/b/../' to '/a/' where apparently unix doesn't
+⍝ Phil 2018-07-24 22.37
  }
