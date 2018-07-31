@@ -1,4 +1,4 @@
- fixValue←{null ⍵:'' '' ''
+ fixValue←{null ⍵:'' '' '' ''
      ⍺←⊢ ⋄ ren←⍺⊣0
      fqn typ val←,∘⊂¨if(≡⊃)⍵
      fqn typ val{⍺[⍵]}←⊂⍋(≢sPath)¨fqn
