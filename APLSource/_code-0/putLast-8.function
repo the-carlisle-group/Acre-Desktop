@@ -1,0 +1,8 @@
+ putLast←{dat←⍺
+     dat.loadtime,←now←DT.ts2dt ⎕TS
+     ~dat.hist:now
+     0::now
+     now⊣(6⍕now+0.000001)⎕NPUT dat.latest 1  ⍝ file as plus 1 sec
+⍝ see getLast
+⍝ Phil 2018-08-07 14.27
+ }

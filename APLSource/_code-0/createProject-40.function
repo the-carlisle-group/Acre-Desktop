@@ -7,8 +7,8 @@
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
 
      dat.(hist case)←1,nOff OPT.casecode
-     dat.(config source code changes sourcereg)←{
-         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.NB∘,¨''MS.EU MS.HF
+     dat.(config source code changes latest)←{
+         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.NB∘,¨''MS.EU MS.HE
 ⍝    rem prev version if existed
      z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
      z←fixQV⊢space←⍎dat.nspath ⎕NS''

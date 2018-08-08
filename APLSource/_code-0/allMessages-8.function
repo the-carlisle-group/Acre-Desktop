@@ -125,7 +125,7 @@
 
          ⍵.HA←''
          ⍵.HB←''
-         ⍵.HF←'sourcereg'
+         ⍵.HE←'latest'
          ⍵.HG←':Namespace '
          ⍵.HH←':EndNamespace '
          ⍵.HI←'UTF-8'

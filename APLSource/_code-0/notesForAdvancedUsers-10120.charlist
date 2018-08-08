@@ -11,20 +11,42 @@ The sections below might well apply to either or both.
 
 Messages
 
-Acre's messages are all contained in a single function - allMessages - that
-is run at the start of a session. It produces an unnamed namespace that is
-assigned internally to the name "MS". Wherever they are used the messages
-are coded as "MS." followed by a particular but arbitrary two letter name
-assigned by allMessages.
+You will find few uncommented quoted strings scattered among acre code apart 
+from very simple literal strings as '..', '#.', '/\' &c. Almost all 
+alphabetic text is stored as messages contained in a single function - 
+allMessages - that is run at the start of a session. It produces an unnamed 
+namespace that is assigned internally to the name "MS". Wherever they are 
+used the messages are coded as "MS." followed by a particular but arbitrary 
+two letter name assigned by allMessages.
 
 If a programmer wants to know whence in acre a message is issued then
-choose a key substring from it not containing the word "acre" or any noun
-associated with a number and search for it in the "allMessages" function.
-Search for "MS." followed by its associated two letter name.
+choose a key substring from it not containing the word "acre", a number or
+a name or path of an item or file and search for it in the "allMessages" 
+function.
 
-Please add new messages using the same protocol.
+Having found it, search for "MS." followed by its associated two letter name.
+
+Please add new messages using the same protocol. 
 
 ----
+
+Installation
+
+All acre's methods are implemented as user commands. Each is a function 
+whose name is reflected in the command. The commands are all defined in a
+single script that is created by the Install function. This is run by the 
+buildWs function in the development environment but is also the ⎕LX of the 
+acre workspace that can be loaded from the installation folder if the link
+between that folder and the user command framework is lost. Creating that 
+link is the other task performed by Install. 
+
+Acre is not permanently installed in ⎕SE although it runs from there.
+Invoking an acre user command first checks to see if acre is in ⎕SE. If 
+not it is copied from the workspace in the installation folder, 
+initialisation is performed and acre remains available for the rest of the 
+session.
+
+-----
 
 ⎕SE.acre.run
 

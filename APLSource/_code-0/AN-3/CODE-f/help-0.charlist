@@ -1,6 +1,8 @@
 APL Array Notation (APLAN)
 
-APL Array Notation is APL code syntax including nested array (or strand) notation but with a relaxation in the rules that permits unquoted line-ends or diamonds within square brackets and parentheses thus:
+APL Array Notation is APL code syntax including nested array (or strand) 
+      notation but with a relaxation in the rules that permits unquoted 
+      line-ends or diamonds within square brackets and parentheses thus:
    [
      ]
    (
@@ -8,19 +10,22 @@ APL Array Notation is APL code syntax including nested array (or strand) notatio
    [⋄]
    (⋄)
 
-"Broken" bracket or parenthesis pairs thus formed denote and delimit arrays of rank two or higher or lists wherein each separate non-null expression denotes a cell or an item.
+"Broken" bracket or parenthesis pairs thus formed denote and delimit arrays 
+      of rank two or higher or lists wherein each separate non-null 
+      expression denotes a cell or an item.
 
-Between brackets each line-end or diamond separated expression defines a major cell of at least rank one in an array of at least rank two.
-    ⍴a←[0 1 2 ⋄ 3 4 5]
+Between brackets each line-end or diamond separated expression defines a 
+      major cell of at least rank one in an array of at least rank two.
+      ⍴a←[0 1 2 ⋄ 3 4 5]
 (2 3)
-    a
+      a
 [
   0 1 2
   3 4 5
 ]
-    ⍴b←[7 ⋄ 6 ⋄ 5]
+      ⍴b←[7 ⋄ 6 ⋄ 5]
 (3 1)
-    b
+      b
 [
   7
   6
@@ -28,9 +33,9 @@ Between brackets each line-end or diamond separated expression defines a major c
 ]
 
 A cell delimited by further nested brackets defines a higher ranked cell.
-    ⍴c←[[0  1  2 ⋄ 3  4  5] ⋄ [6  7  8 ⋄ 9 10 11]]
+      ⍴c←[[0  1  2 ⋄ 3  4  5] ⋄ [6  7  8 ⋄ 9 10 11]]
 (2 2 3)
-    c
+      c
 [
   [
     0  1  2
@@ -42,10 +47,13 @@ A cell delimited by further nested brackets defines a higher ranked cell.
   ]
 ]
 
-The rank of the resultant array is one greater than that of the cell with the greatest rank, all cells having been augmented with leading unit dimensions and overtaken to the greatest rank and shape where necessary.
-    ⍴d←['this string' ⋄ ['this two row' ⋄ 'matrix']]
+The rank of the resultant array is one greater than that of the cell with
+      the greatest rank, all cells having been augmented with leading unit 
+      dimensions and overtaken to the greatest rank and shape where 
+      necessary.
+      ⍴d←['this string' ⋄ ['this two row' ⋄ 'matrix']]
 (2 2 12)
-    d
+      d
 [
   [
     'this string '
@@ -57,23 +65,25 @@ The rank of the resultant array is one greater than that of the cell with the gr
   ]
 ]
 
-Between parentheses each line-end or diamond separated expression defines an item of a list.
-    (≡,⍴)e←(2 1 0 ⋄ 5 4 3)
+Between parentheses each line-end or diamond separated expression defines an
+      item of a list.
+      (≡,⍴)e←(2 1 0 ⋄ 5 4 3)
 2 2
-    e
+      e
 (
   2 1 0
   5 4 3
 )
-    ]disp e
+      ]disp e
 ┌→────┬─────┐
 │2 1 0│5 4 3│
 └~───→┴~───→┘
 
-The depth of the resultant list is one greater than that of the item with the greatest depth.
-    (≡,⍴)f←('abc' ⋄ ('def' ⋄ 'ghi') ⋄ 'jkl')
+The depth of the resultant list is one greater than that of the item with
+      the greatest depth.
+      (≡,⍴)f←('abc' ⋄ ('def' ⋄ 'ghi') ⋄ 'jkl')
 (3 3)
-    f
+      f
 (
   'abc'
   (
@@ -84,9 +94,9 @@ The depth of the resultant list is one greater than that of the item with the gr
 )
 
 Any item of a parenthesised list can be a bracketed array.
-    (≡,⍴)g←('abcd' ⋄ [0 1 2 ⋄ 3 4 5] ⋄ 'efghij')
+      (≡,⍴)g←('abcd' ⋄ [0 1 2 ⋄ 3 4 5] ⋄ 'efghij')
 (2 3)
-    g
+      g
 (
   'abcd'
   [ 
@@ -95,22 +105,22 @@ Any item of a parenthesised list can be a bracketed array.
   ]
   'efghij'
 )
-    ]disp g
+      ]disp g
 ┌→───┬─────┬──────┐
 │abcd│0 1 2│efghij│
 │    │3 4 5↓      │
 └───→┴~───→┴─────→┘
 
 Any cell of a bracketed array can be a parenthesised list.
-    (≡,⍴)h←['abc' ⋄ (0 1 2 ⋄ 3 4 5) ⋄ 'def']
+      (≡,⍴)h←['abc' ⋄ (0 1 2 ⋄ 3 4 5) ⋄ 'def']
 (2 3 3)
-    h
+      h
 [
   'a' 'b' 'c'            
   (0 1 2) (3 4 5) (0 0 0)
   'd' 'e' 'f'            
 ]
-    ]disp h
+      ]disp h
 ┌→────┬─────┬─────┐
 ↓a    │b    │c    │
 ├─────┼─────┼─────┤
@@ -122,17 +132,18 @@ Any cell of a bracketed array can be a parenthesised list.
 --------------------------------------------
 
 A bracket pair that contains assignments defines a space.
-    ≢e←[a←0 ⋄ b←1 ⋄ c←2]
+      ≢e←[a←0 ⋄ b←1 ⋄ c←2]
 1
-    e
+      e
 [
     a←0
     b←1
     c←2
 ]
 
-In a space definition each expression defines a member that may be an array or a space.
-    ⊢f←[scalar←'A' ⋄ array←⍳2 3 ⋄ ns←[zero←0 ⋄ one←'One']
+In a space definition each expression defines a member that may be an array
+      or a space.
+      ⊢f←[scalar←'A' ⋄ array←⍳2 3 ⋄ ns←[zero←0 ⋄ one←'One']
 [
     array←([
         (0 0) (0 1) (0 2)
@@ -146,10 +157,11 @@ In a space definition each expression defines a member that may be an array or a
 ]
 
 In the present implementation:
-Assignments are not permitted `in an array definition except inside further brackets defining an item as a space.
-    ⍴g←['zero' 'one' 'two' ⋄ [a←3 ⋄ b←4 ⋄ c←5] 6 7]
+Assignments are not permitted in an array definition except inside further
+      brackets defining an item as a space.
+      ⍴g←['zero' 'one' 'two' ⋄ [a←3 ⋄ b←4 ⋄ c←5] 6 7]
 (2 3) 
-    g
+      g
 ([
     'zero' 'one' 'two'
     [
@@ -159,9 +171,13 @@ Assignments are not permitted `in an array definition except inside further brac
     ]6 7
 ])
 
-Unassigned expressions and function or operator definitions are not permitted in a space definition.
+Unassigned expressions and function or operator definitions are not 
+      permitted in a space definition.
 
-Almost all arrays and spaces can be formatted as APLAN reversibly in that decoding the result produces an identical clone of the original.
-Exceptions are results of ⎕OR, scripted spaces and classes; cross-referenced spaces; and spaces that contain defined or derived operations.
+Almost all arrays and spaces can be formatted as APLAN reversibly in that
+      decoding the result produces an identical clone of the original,
+      exceptions being results of ⎕OR; scripted spaces and classes; 
+      cross-referenced spaces; and spaces that contain defined or derived 
+      operations.
 
 ⍝ Phil Last 2018-03-22 11.36

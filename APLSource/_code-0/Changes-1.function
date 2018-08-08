@@ -1,18 +1,17 @@
  Changes←{dat←⍺
      ~dat.hist:⍪''⊣dat noHistMsg''
-     null⊢all←(⊢(/⍨)0<⎕NC)dat changes'':⍪''
+     null⊢name date←⊃{⍺ ⍵/¨⍨⊂0<⎕NC ⍺}/dat changes'':⍪''
      dat.nspath≡⊃⍵:{         ⍝ project changes
-         date←(dat sourceReg'').(date name)UT.co(1+≢dat.nspath)↓¨⍵
-         name date←(⊂⊂⍒date)⌷¨⍵ date
+         name date←(⊂⊂⍒date)⌷¨name date
          dt←OPT.when
          dt≡0:⍪name
          res←name,⍪↓DT.dt2fm date
          dt≡1:res
          lt←1∊'<≤'∊dt
          res⌿⍨lt≠date≥DT.fm2dt dt~'<≤≥>'
-     }all
+     }0
 
-     null⊢item←⍬⍴⍵∩all:⍪''   ⍝ item change
+     null⊢item←⍬⍴⍵∩name:⍪''   ⍝ item change
      file←⊃dat getChangeFilenames item
      cmp←⌽1↓⍳1⊃⎕FSIZE⊢tie←file ⎕FTIE 0
      ptr val←UT.ht ⎕FREAD tie,⊂cmp
@@ -23,5 +22,5 @@
      ⍪⊃,/,(⊂⊂''),(⊂¨↓⍕((cmp=ptr)\⊂'>>>'),(⊂MS.BF),cmp,⍪date),⍪val
 ⍝ list changed items of project
 ⍝ or dates and values of item
-⍝ Phil 2018-06-19 09.01
+⍝ Phil 2018-08-07 17.23
  }

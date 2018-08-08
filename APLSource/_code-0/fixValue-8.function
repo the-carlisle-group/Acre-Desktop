@@ -1,5 +1,5 @@
- fixValue←{null ⍵:'' '' '' ''
-     ⍺←⊢ ⋄ ren←⍺⊣0
+ fixValue←{⍺←⊢ ⋄ ren←⍺⊣0
+     null ⍵:(3+ren)⍴⊂''
      fqn typ val←,∘⊂¨if(≡⊃)⍵
      fqn typ val{⍺[⍵]}←⊂⍋(≢sPath)¨fqn
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
@@ -27,7 +27,9 @@
      }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨nameClass fqn
      z←showMsg,/(⊂MS.DJ),⍉↑typ' 'fqn/¨⍨⊂~res
      (res∘/¨fqn typ val),ren/⊂ers
+⍝ [⍺] 0|1 - monitoring file/name/class discrepances - dflt 0
 ⍝ ⍵ fqn type value
 ⍝ ← ⍵ fixed - reordered, corrected and filtered
+⍝     with oldname newname for each rename item if ⍺=1
 ⍝ Phil 2018-07-12 17.44
  }

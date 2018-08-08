@@ -1,0 +1,7 @@
+ getLast←{dat←⍺ ⋄ res←⌈/dat.loadtime
+     ~dat.hist:res
+     0::res
+     res⌊⊃1⊃⎕VFI~∘⎕TC⊃⎕NGET dat.latest
+⍝ see putLast
+⍝ Phil 2018-08-08 18.02
+ }
