@@ -36,7 +36,7 @@
          ⍵.BJ←'⍝ This script was fixed by ',MS.NA
          ⍵.BK←'⍝ it can be kept, cloned, renamed, amended or ]erased.'
          ⍵.BL←'⍝ its purpose is to set the environment for the project.'
-         ⍵.BM←''
+         ⍵.BM←'* Cannot rename file '
          ⍵.BN←MS.BJ MS.BK MS.BL
          ⍵.BO←'Added script "',MS.BH,'"'
          ⍵.BP←''

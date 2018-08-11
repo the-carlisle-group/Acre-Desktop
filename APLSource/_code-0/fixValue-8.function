@@ -1,7 +1,7 @@
  fixValue←{⍺←⊢ ⋄ ren←⍺⊣0
      null ⍵:(3+ren)⍴⊂''
      fqn typ val←,∘⊂¨if(≡⊃)⍵
-     fqn typ val{⍺[⍵]}←⊂⍋(≢sPath)¨fqn
+     fqn typ val{⍺[⍵]}←⊂ord←⍋(≢sPath)¨fqn
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
      nc←⊃⌊/MS.AY MS.AZ⍳¨⊂typ
      nam←1↓¨1⊃spc nam←↓⍉↑namx¨fqn
@@ -22,14 +22,13 @@
      (x/res)←{1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
-     ers←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
-         f n⊣showMsg'* ',t,' ',f,MS.DO,c,' ',n
+     z←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
+         showMsg'* ',t,' ',f,MS.DO,c,' ',n
      }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨nameClass fqn
      z←showMsg,/(⊂MS.DJ),⍉↑typ' 'fqn/¨⍨⊂~res
-     (res∘/¨fqn typ val),ren/⊂ers
-⍝ [⍺] 0|1 - monitoring file/name/class discrepances - dflt 0
+     (⍋ord)∘{⍵[⍺]}¨⍣ren⊢((res∨ren)∘/¨fqn typ val),ren/⊂res
+⍝ [⍺] 0|1 - compress or return fixed flags - dflt 0
 ⍝ ⍵ fqn type value
-⍝ ← ⍵ fixed - reordered, corrected and filtered
-⍝     with oldname newname for each rename item if ⍺=1
+⍝ ← ⍵ fixed - compressed if ⍺=0 or with mask attached if ⍺=1
 ⍝ Phil 2018-07-12 17.44
  }

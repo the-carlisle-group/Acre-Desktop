@@ -3,7 +3,7 @@
      src tgt←dat.(nspath source)
      path←dat getSourceFilenames fqn
      (b/path)←{⍺ UT.re MS.AX ⍵}⌿↑path type/¨⍨⊂b←(1∊MS.AX⍷⊢)¨path
-     tree←⎕MKDIR/3,⍪∪⊃∘⎕NPARTS¨path         ⍝ ensure folders
+     tree←⎕MKDIR/3,⍪∪folder¨path         ⍝ ensure folders
      z←(,∘⊂if≡¨value){(,⍺)MS.HI ⎕NPUT ⍵ 1}¨path
      fqn type value
 

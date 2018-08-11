@@ -1,11 +1,7 @@
  validItems←{
-⍝ also needs to remove refs and items whose parents are refs
      {⍵(/⍨)(1∘ssp⍱ref)uniq sPath¨⍵}(⊢(/⍨)0∘ssp<ref<⎕NC∊validAPLType),∘⊂if≡⍵
-
-     ref←(UT.df∘⍎≢⊢)¨ ⋄ scr←1∘ssp ⋄ nsc←0∘ssp
-     {⍵(/⍨)(ref⍱scr)uniq sPath¨⍵}(⊢(/⍨)nsc<⎕NC∊validAPLType),∘⊂if≡⍵
-
-     {⍵(/⍨)~1 ssp uniq sPath¨⍵}(⊢(/⍨)0∘ssp<⎕NC∊validAPLType),∘⊂if≡⍵
-⍝ no labels, derived fns, container spaces, instances or script members
-⍝ Phil 2018-02-18 21.26
+⍝ ⍵ list of fqns
+⍝ ← ⍵ filtered to include only extant items with no labels; derived fns;
+⍝     container spaces; instances; refs; or children of scripts or refs.
+⍝ Phil 2018-08-09 08.35
  }

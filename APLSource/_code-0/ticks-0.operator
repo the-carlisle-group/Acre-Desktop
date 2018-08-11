@@ -1,0 +1,15 @@
+ ticks←{⍺←⊢ ⋄ p←⍺⊣1
+     s←⌈(≢⍵)×p÷100
+     t←⎕AI
+     r←⊢∘⍺⍺/0,⍪s↑⍵
+     1000>2⊃⎕AI-t:r,⊢∘⍺⍺/0,⍪s↓⍵
+     r,⊢∘⍺⍺/UT.tk 0,⍪s↓⍵
+⍝ [⍺] required percentage (dflt 1%) to run in one second to avoid ticks
+⍝ ⍵ vector
+⍝ ⍵⍵ fn to run on each item of ⍵
+⍝ ← ⍵⍵¨⍵
+⍝   display 1 second ticks if it takes more than one second
+⍝   to process the first a% of items
+⍝
+⍝ Phil 2018-08-09 12.25
+ }

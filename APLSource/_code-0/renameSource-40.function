@@ -1,0 +1,15 @@
+ renameSource←{dat←⍺
+     ren←(⊢(⌿⍨)≢/)⊃{⍺,⍪dat getSourceFilenames ⍵}/⍵
+     z←0⊣⎕MKDIR/3,⍪∪folder¨,ren
+     msg←{
+         t←⊃{~∘⍵-1+⍳1+≢⍵}⎕NNUMS
+         0::⊃,/MS.BM'"'⍺'"'MS.EZ'"'⍵'"'⊣⎕NUNTIE t
+         0⊣⎕NUNTIE ⍵ ⎕NRENAME ⍺ ⎕NTIE t
+     }/ren
+     0⊣showMsg msg~0
+⍝ ⍺ dat
+⍝ ⍵ paths fqns
+⍝   if source filename for fqn ≢ path then rename path
+⍝ ← 0 - having messaged any failures
+⍝ Phil 2018-08-10 11.36
+ }

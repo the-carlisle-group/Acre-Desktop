@@ -1,3 +1,42 @@
+Acre 4.5.2.017 2018-08-11
+
+Release Notes
+
+Acre Desktop  
+============
+
+It is hoped that this release fulfils, in spirit but not in detail, the 
+   ideas set out in the Acre-Desktop wiki under "Item Names and File Names",
+   "Resolving inconsistent names and case codes".
+
+What I've done doesn't quite tally with the guidelines in the wiki:
+
+This is what it does:
+
+   All files with recognised types are read. File paths with case-codes are
+      decoded strictly (i) and those without are left as-is, irrespective of 
+      the casecode configuration setting.
+   According to type, items are fixed with ⎕FX, ⎕FIX, APLAN or direct
+      assignment.
+   For those fixed the actual name and type are recorded while items
+      failing to fix are reported (ii).
+   Taking the casecode setting and the actual name & type into account,
+      correct file paths are generated for each item fixed.
+   Any differences are reported and cause a quiet attempt to rename (iii) 
+      the file/folder accordingly.
+   Renaming failures are reported (iiii).
+
+(i) The casecode is always honoured if present but is unnecessary in almost 
+    all cases.
+(ii) Failures to fix will generally be caused by a faulty definition or 
+    incompatible file type.
+(iii) Under Dyalog V16 renaming of folders is currently achieved by creating
+    the target folder and renaming the files into it.
+(iiii) Failures to rename will generally be by an attempt to rename a file 
+    to that of an existing one, for instance by setting casecode=off while 
+    files 'abc-0.aplf' and 'Abc-1.aplf' both exist in the same windows 
+    folder.
+--------------------------
 Acre 4.5.1.014 2018-07-31
 
 Release Notes

@@ -5,7 +5,7 @@
      name type←↓⍉↑namx¨file.Path
      name date←name file.Date/¨⍨⊂type∊⊂MS.HN
      name←(dat.nspath,'.')∘,¨'..'decodeCaps UT.sp¨name ⍝ lose class
-     name date/¨⍨⊂(⍳⍨=⍳∘≢)name
+     name date/¨⍨⊂nub name
 ⍝ ← fqn date of all items in .change files
 ⍝ Phil 2018-08-06 22.10
  }

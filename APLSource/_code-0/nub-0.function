@@ -1,0 +1,4 @@
+ nub←nub
+ nub←⍳⍨=⍳∘≢
+⍝ nub sieve
+⍝ Phil 2018-08-09 17.33
