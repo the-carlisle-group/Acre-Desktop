@@ -15,9 +15,9 @@
          fqn val⊣showMsg fqn excRep⍕{⍺,'of',⍵}/q x-f-1
      }
      fqn val←↓⍉↑~∘∊⍨doit/fqn,⍪fil
-     typ←nameClass fqn
-     null⊢fqn typ val←fixValue fqn typ val:''
-     fqn⊣dat putSource fqn typ val
+     type←nameClass fqn
+     null⊢fqn type val←fixValue fqn type val:''
+     fqn⊣dat putSource fqn type val
 ⍝ ⍺ dat
 ⍝ ⍵ fqns
 ⍝ ← fqns where changed

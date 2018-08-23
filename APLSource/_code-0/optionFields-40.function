@@ -3,6 +3,7 @@
      opts←,⊂'casecode:on'
      opts,←⊂'confirm:'
      opts,←⊂'dependencies:on'
+     opts,←⊂'encoding:aplan'
      opts,←⊂'help'
      opts,←⊂'messages:on'
      opts,←⊂'track:on'

@@ -9,16 +9,17 @@
      path date file name type/⍨←⊂ref≤new←date>prev ⍝ new or not refresh
      dup←(⊢∊⊢(/⍨)~∘nub)name
      z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
-     z←showMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,src
+     z←showMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,¯4 tPath src
      val←3 read ticks path ⋄ fqn←tgt∘,¨name
      fqn type val msk←1 fixValue fqn type val      ⍝ name/type-change?
+     z←showMsg MS.FW∘,¨(¯4 tPath¨path/⍨~msk),¨⊂MS.BP ⍝ file needs att'n
      fqn type val path date/⍨←⊂msk                 ⍝ remove unfixed
      z←dat renameSource path fqn                   ⍝ if different
      z←dat putTime''
      ~dat.hist:fqn if ref⊢⍵
      chgs←⊃(⊣(/⍨)prev<⊢)/dat changes''             ⍝ new in acre
      diff←(fqn∊chgs)<prev<date                     ⍝ new in OS
-     msg←MS.EN,((+/diff)UT.pl MS.FN),MS.EZ,¯30 UT.tm dat.changes
+     msg←MS.EN,((+/diff)UT.pl MS.FN),MS.EZ,¯4 tPath dat.changes
      z←showMsg msg showList diff/fqn
      fqn←dat putChange diff∘/¨fqn val type
      fqn if ref⊢⍵

@@ -1,0 +1,5 @@
+ tPath←{
+     1↓⊃,/'/',¨⍺ UT.tm~∘∊⍨'/'sep ⍵
+⍝ truncate path
+⍝ Phil 2018-08-21 21.18
+ }

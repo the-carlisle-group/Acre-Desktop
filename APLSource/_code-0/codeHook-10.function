@@ -13,6 +13,7 @@
          ix=ns.itemname:MS.CE
          ix=ns.version:MS.IW,UT.fm' 'sep⊃releaseNotes⊣''
          ix=ns.casecode:MS.CD
+         ⍪'?'
      }ix
      ix=ns.nameclass:nameClass prefSpace arg ⍝ itemMethod does this
      ix=ns.changefile:⊃if≢getChangeFilenames itemMethod 1⍴arg
@@ -24,5 +25,5 @@
          '..'encodeCaps ⍵}(2×x←'#.'≡2⍴z)↓z←⊃arg
      ''
 ⍝ Marilyn Last named this fn
-⍝ Phil 2018-05-21 11.34
+⍝ Phil 2018-08-20 22.19
  }

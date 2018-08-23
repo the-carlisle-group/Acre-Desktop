@@ -12,7 +12,7 @@
          ⍵.NB←'.',MS.NA,'/'
          ⍵.NU←nms.author
 
-         ⍵.AA←'.array'         ⍝ apla
+         ⍵.AA←'.array'         ⍝ aplan
          ⍵.AF←'.function'      ⍝ aplf
          ⍵.AO←'.operator'      ⍝ aplo
          ⍵.AN←'.script'        ⍝ apln
@@ -24,7 +24,7 @@
          ⍵.AX←'.*'             ⍝ set as filetype for unknown
          ⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
          ⍝ above MS.AZ and below MS.AY MUST correspond!
-         ⍵.AY←'.apl'∘,¨'a' 'f' 'o' 'n' 'c' 'i' 'l' 'm' 's'
+         ⍵.AY←'.apl'∘,¨'an' 'f' 'o' 'n' 'c' 'i' 'l' 'm' 's'
 
          ⍵.BA←'⎕SE.SALTUtils.EditorFix' ⍝ this is SALT callback on Fix
          ⍵.BC←'Please wait - '
@@ -39,7 +39,7 @@
          ⍵.BM←'* Cannot rename file '
          ⍵.BN←MS.BJ MS.BK MS.BL
          ⍵.BO←'Added script "',MS.BH,'"'
-         ⍵.BP←''
+         ⍵.BP←' may require attention.'
          ⍵.BU←'History is disabled for '
          ⍵.BV←'No change'
          ⍵.BW←'Project not tracked'
@@ -106,7 +106,7 @@
          ⍵.FP←' in '
          ⍵.FQ←' is '
          ⍵.FV←'AcreConfig'
-         ⍵.FW←''
+         ⍵.FW←'File: '
          ⍵.FX←''
          ⍵.FY←''
          ⍵.FZ←'AcreDesktop_Testcases'

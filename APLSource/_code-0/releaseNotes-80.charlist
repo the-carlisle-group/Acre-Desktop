@@ -1,9 +1,24 @@
-Acre 4.5.2.017 2018-08-11
+Acre 4.5.2.022 2018-08-23
 
 Release Notes
 
 Acre Desktop  
 ============
+
+Alternative filetypes now have .aplan for general arrays instead of .apla.
+
+New command ]EditArray
+    Edit array in tracked project.
+    If not regular text then in APLAN or JSON acc'g "-encoding=".
+    Syntax: ]acre.EditArray item
+
+Non-fixed items now give file attention warning msg.
+
+Paths in msgs are now truncated to only three or four nodes as:
+    .../folder/subfolder/filename
+
+-------------
+Acre 4.5.2.017 2018-08-11
 
 It is hoped that this release fulfils, in spirit but not in detail, the 
    ideas set out in the Acre-Desktop wiki under "Item Names and File Names",

@@ -5,7 +5,7 @@
      dat.(config source code changes latest)←{
          ⍵}dat.folder∘,¨MS.HM MS.GY,MS.NB∘,¨''MS.EU MS.HE
      ~∨/2⍴src cnf cde←⎕NEXISTS¨dat.(source config changes):{
-         0}showMsg MS.DG,' ',¯30 UT.tm dat.folder
+         0}showMsg MS.DG,' ',¯4 tPath dat.folder
      z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config ⍝ see configFields
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{

@@ -15,6 +15,13 @@
          syntax←'folder space'
          type←'shared'
          ][
+         command←'EditArray'
+         help←'Edit array in tracked project. In APLAN if not regular text.'
+         options←'help mess enco'
+         result←''
+         syntax←'item'
+         type←'item'
+         ][
          command←'Erase'
          help←'Erase an item, items or a space from a tracked project'
          options←'conf help mess'

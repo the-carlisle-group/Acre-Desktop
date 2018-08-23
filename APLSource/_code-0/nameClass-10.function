@@ -1,25 +1,22 @@
  nameClass←{⍺←⊢
      null⊢fqn←,⊂if≡⍵:''
      type←⍺⊣0          ⍝ 0 (default) .array ... - 1 .apla ...
-⍝  array function operator script class interface list  matrix string unknown
-⍝  MS.AA   MS.AF    MS.AO  MS.AN  MS.AC   MS.AI   MS.AL MS.AM  MS.AS  MS.AX
-⍝   2       3        4      9.1    9.4     9.5      2       2   2      0
-     nms←,¨1 Cc⊢/↑MS.AY
-     ns←nms(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}type⊃MS.AZ MS.AY
+⍝ array function operator script class interface list  matrix string unknown
+⍝ 2     3        4        9.1    9.4   9.5       2     2      2      0
+     ns←(1↓¨MS.AZ)(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}type⊃MS.AZ MS.AY
      c←9(⊢-1|>×⊢)(⎕NC fqn)(⊣×∊)validAPLType'' ⍝ floor < 9
-     t←ns.A ns.F ns.O ns.N ns.C ns.I MS.AX
-⍝ subset of MS.AZ and not necessarily in the same order
+     t←ns.(array function operator script class interface),⊂MS.AX
      r←t[2 3 4 9.1 9.4 9.5⍳c]
      (a/r)←{
-         r←(≡v),≢⍴v←#.⍎⍵
-         r≡2 1:ns.A ns.L⊃⍨∧/(''≡0∘/)¨v ⍝ charlist
-         r≡1 2:ns.A ns.M⊃⍨1=0=10|⎕DR v ⍝ charmat
-         r≡1 1:ns.A ns.S⊃⍨1=0=10|⎕DR v ⍝ charstring
-         ns.A
+         dr←(≡v),≢⍴v←#.⍎⍵
+         dr≡2 1:ns.array ns.charlist⊃⍨∧/(''≡0∘/)¨v
+         dr≡1 2:ns.array ns.charmat⊃⍨1=0=10|⎕DR v
+         dr≡1 1:ns.array ns.charstring⊃⍨1=0=10|⎕DR v
+         ns.array
      }/0,⍪fqn/⍨a←c=2
      (a/r)←{
-         0::''          ⍝ bluebell
-         ns.N⊣⎕SRC #.⍎⍵ ⍝ script
+         0::''               ⍝ bluebell
+         ns.script⊣⎕SRC #.⍎⍵ ⍝ script
      }/0,⍪fqn/⍨a←c=9.1
      r
 ⍝ return identifier also used as filetype

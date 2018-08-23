@@ -1,5 +1,5 @@
  erase←{dat←⍺ ⋄ del←⍵
-     z←showMsg(×z)/((z←≢del)UT.pl MS.FL),MS.EV,MS.EY,dat.source
+     z←showMsg(×z)/((z←≢del)UT.pl MS.FL),MS.EV,MS.EY,¯4 tPath dat.source
      fnm←~∘∊⍨(⊃∘⊃0 ⎕NINFO⍠1⊢)¨dat getChangeFilenames del  ⍝ ".*"
      ⍝ rename existing .change to ↓ .delete ELSE FORGET!!
      z←showMsg(×z)/MS.EP,((z←≢fnm)UT.pl MS.EG),MS.EZ,MS.EX

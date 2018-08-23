@@ -1,21 +1,24 @@
- EditArray←{⍺←⊢
+ EditArray←{dat←⍺
+     2.1≠#.⎕NC⊂fqn←⊃⍵:'' ⍝ one item
+     ⎕THIS.(sandbox←⎕NS'').(string←,matrix←↑list←'' '')
+     pref←(⍕⎕THIS),'.sandbox.'
+     txt←⊃∊/1(↑_↓)nameClass(⊂fqn),pref∘,¨↓sandbox.⎕NL 2
+     txt:⎕ED&fqn
 
- ⍝    DO NOT USE
+     enc←'j'∊Cc OPT.encoding
+     else←{⍵:⍺⍺⊣⍺ ⋄ ⍵⍵⊣⍺}
+     export←1∘(⎕JSON⍠'Compact' 0)else(2∘AN.format)∘enc
+     import←⎕JSON else AN.decode∘enc
 
-     mon←1≡⍺ 1
-     2≠#.⎕NC fqn←⊃⊂if≡⍵:''
-     value←⍎fqn ⍝ original
-     fqn type val←⊃¨getValue fqn
-     ed←(#.⎕NS'').{⍎⍵⊣⍵ ⎕NS''}1↓type
+     new←export⊢old←#.⍎fqn
+     ed←#.⎕NS''
      name←'.'UT.nn fqn
-     z←name ed.{⍎⍺,'←⍵'}val
+     z←name ed.{⍎⍺,'←⍵'}new
      null ed.⎕ED name:''
-     val←ed.⍎name
-     type←fixValue fqn type val
-     value≡⍎fqn:''
-     0=⊃dat←⍺⊣whichProject if mon⊢fqn:MS.DL,fqn
-     r←⊃dat setChange fqn type val
-     r⊣showMsg MS.DK,r
-⍝
-⍝ Phil Last 2018-01-17 14.32
+     new←import ed.⍎name
+     new≡old:''
+     z←fqn #.{⍎⍺,'←⍵'}new
+     r⊣showMsg(nonul r)/MS.DK,r←⊃dat SetChanged,⊂fqn
+
+⍝ Phil 2018-08-22 23.01
  }

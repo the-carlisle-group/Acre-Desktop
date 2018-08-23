@@ -1,5 +1,5 @@
  noHistMsg←{dat←⍺
-     showMsg MS.BU,dat.nspath,' ',⊃,/,∘'/'¨¯3 UT.tm~∘∊⍨'/'sep dat.folder
+     showMsg MS.BU,dat.nspath,' ',¯4 tPath dat.folder
 ⍝
 ⍝ Phil 2018-03-11 20.49
  }
