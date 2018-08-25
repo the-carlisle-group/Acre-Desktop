@@ -24,8 +24,15 @@
  'Hello'ref.⎕NS''                               ⍝ Create a namespace with the name of that function - that's a name clash.
  ref.Hello.⎕FX'r←Foo' 'r←''Universe'''          ⍝ acre does not care about empty namespaces, so we need to populate it with something, anything.
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello.Foo -messages=#.TEMP.Log'
- →GoToTidyUp~0∊⍴result
+ →GoToTidyUp 0∊⍴result
  →GoToTidyUp~0∊⍴#.TEMP.Log
+ :Trap 911
+     result←∆RunUcmd'OpenProject ',projectPath,' -messages=#.TEMP.Log'
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp 1≠⍴result
+ →GoToTidyUp 1≠∨/' Not fixed '⍷∊#.TEMP.Log
+ →GoToTidyUp 1≠⍴'File: .* may require attention.'⎕S 0⍠('Mode' 'D')⊣#.TEMP.Log
 
  R←∆OK
 
