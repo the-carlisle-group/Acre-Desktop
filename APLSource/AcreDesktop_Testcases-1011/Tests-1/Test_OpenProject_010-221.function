@@ -1,0 +1,84 @@
+ R←Test_OpenProject_010(stopFlag batchFlag);⎕TRAP;result;projectName1;projectName2;refMain;projectPath1;projectPath2;configFile;projectName3;projectPath3;ref_A;ref_B;code
+⍝ Exercise `]OpenProject` with a dependency that cannot be fulfilled.
+⍝ Although acre will throw an error eventually it should open the main project and one of the two dependencies.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+⍝ Prepare the main project
+ projectName1←(⊃⎕SI),'_Main'
+ #.⎕SHADOW projectName1
+ projectPath1←∆PATH,'/',projectName1
+ refMain←⍎projectName1 #.⎕NS''
+ refMain.⎕FX'r←Hello' 'r←''Main'''
+
+⍝ Prepare the first project "Main" depends on
+ projectName2←(⊃⎕SI),'_Dependency_A'
+ #.⎕SHADOW projectName2
+ projectPath2←∆PATH,'/',projectName2
+ ref_A←⍎projectName2 #.⎕NS''
+ ref_A.⎕FX'r←Hello' 'r←''Dependency A'''
+
+⍝ Prepare the second project "Main" depends on
+ projectName3←(⊃⎕SI),'_Dependency_B'
+ #.⎕SHADOW projectName3
+ projectPath3←∆PATH,'/',projectName3
+ ref_B←⍎projectName3 #.⎕NS''
+
+⍝ Create a namespace that holds the variable used to collect acre's messages for analyzing purposes
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Log←''
+
+⍝ Create the "Main" project
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath1,' #.',projectName1
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName1
+
+⍝ Create Main's config file which defines the dependencies:
+ configFile←⊂':Namespace'
+ configFile,←⊂'    Open←''',projectPath2,''' ''',projectPath3,''''
+ configFile,←⊂'    ProjectSpace←''#.',projectName1,''''
+ configFile,←⊂':EndNamespace '
+ ##.APLTreeUtils.WriteUtf8File(projectPath1,'\acreconfig.txt')configFile
+
+⍝ Create the first dependency project
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath2,' #.',projectName2
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName2
+
+⍝ Create the second dependency project
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath3,' #.',projectName3
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName3
+
+ ⍝ So far this project does not contain anything. We now create a file in the
+ ⍝ APLSource\ folder that won't fix due a syntax problem.
+ code←⊂':Class Foo'
+ ##.APLTreeUtils.WriteUtf8File(projectPath3,'/APLSource/foo.class')code
+
+ #.{⎕EX ⍵}¨projectName1 projectName2 projectName3
+ result←∆RunUcmd'Projects'
+ →GoToTidyUp~(⊃⍴result)∊0 1             ⍝ acre itself might or might not be open by now.
+
+ :Trap 911
+     {}∆RunUcmd'OpenProject ',projectPath1,' #.',projectName1
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp 9∨.≠#.{⊃⎕NC ⍵}¨projectName1 projectName2 projectName3
+ →GoToTidyUp 0≠≢⍴(' '~¨⍨↓(#.⍎projectName3).⎕NL⍳16)~'AcreConfig' 'quadVars'   ⍝ Fails because of Dyalog bug <01547>!
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir¨projectPath1 projectPath2 projectPath3
+⍝Done
