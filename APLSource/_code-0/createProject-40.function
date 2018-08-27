@@ -18,7 +18,7 @@
      z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
      z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
-     z←MS.NB ⎕NPUT dat.folder,MS.FM ⍝ git specific -
+     z←(⊂MS.NB MS.FX)⎕NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems space UT.li validAPLType''
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val

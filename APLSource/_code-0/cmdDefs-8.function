@@ -16,7 +16,7 @@
          type←'shared'
          ][
          command←'EditArray'
-         help←'Edit array in tracked project. In APLAN if not regular text.'
+         help←'Edit an array in a tracked project. In APLAN if not regular text.'
          options←'help mess enco'
          result←''
          syntax←'item'

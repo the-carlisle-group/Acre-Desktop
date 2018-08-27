@@ -1,9 +1,10 @@
  EditArray←{dat←⍺
-     2.1≠#.⎕NC⊂fqn←⊃⍵:'' ⍝ one item
+     null⊢fqn←⊃{⍵/⍨2.1=#.⎕NC ⍵}arg←⊂if≡⍵:0⍴showMsg MS.DR
+     z←showMsg(1<≢arg)/MS.DQ,fqn  ⍝ one item
      ⎕THIS.(sandbox←⎕NS'').(string←,matrix←↑list←'' '')
      pref←(⍕⎕THIS),'.sandbox.'
      txt←⊃∊/1(↑_↓)nameClass(⊂fqn),pref∘,¨↓sandbox.⎕NL 2
-     txt:⎕ED&fqn
+     txt:0 0⍴⎕ED&fqn
 
      enc←'j'∊Cc OPT.encoding
      else←{⍵:⍺⍺⊣⍺ ⋄ ⍵⍵⊣⍺}
@@ -20,5 +21,5 @@
      z←fqn #.{⍎⍺,'←⍵'}new
      r⊣showMsg(nonul r)/MS.DK,r←⊃dat SetChanged,⊂fqn
 
-⍝ Phil 2018-08-22 23.01
+⍝ Phil 2018-08-27 07.53
  }

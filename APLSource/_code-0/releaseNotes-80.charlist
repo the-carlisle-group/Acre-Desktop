@@ -1,9 +1,29 @@
-Acre 4.5.2.022 2018-08-23
+Acre 4.6.0.026 2018-08-27
 
 Release Notes
 
 Acre Desktop  
-============
+============   
+
+]Changes now fully responds to -when modifier.
+      ]changes #.space
+returns name of each item changed
+      ]changes #.space -w
+returns name and date-time of each item changed
+      ]changes #.space -w=date.time
+returns name and date-time of items changed since date.time
+      ]changes #.space.item
+returns version, date-time and value of each change to item
+      ]changes #.space.item -w
+returns version and date-time of each change to item
+      ]changes #.space.item -w=date.time
+returns version, date-time and value of each change since date.time
+
+]CreateProject adds "aplcore" to ".gitignore" file
+
+]EditArray messages and documentation clarified
+-------------------
+Acre 4.6.0.023 2018-08-23
 
 Alternative filetypes now have .aplan for general arrays instead of .apla.
 

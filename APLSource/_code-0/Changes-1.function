@@ -1,26 +1,28 @@
  Changes←{dat←⍺
      ~dat.hist:⍪''⊣dat noHistMsg''
      null⊢name date←⊃{⍺ ⍵/¨⍨⊂0<⎕NC ⍺}/dat changes'':⍪''
+     when←{⍵≡1≡⍵:⍵ ⋄ DT.fm2dt ⍵}OPT.when
      dat.nspath≡⊃⍵:{         ⍝ project changes
          name date←(⊂⊂⍒date)⌷¨name date
-         dt←OPT.when
-         dt≡0:⍪name
+         when=0:⍪name
          res←name,⍪↓DT.dt2fm date
-         dt≡1:res
-         lt←1∊'<≤'∊dt
-         res⌿⍨lt≠date≥DT.fm2dt dt~'<≤≥>'
+         when=1:res
+         res⌿⍨date≥when
      }0
 
      null⊢item←⍬⍴⍵∩name:⍪''   ⍝ item change
      file←⊃dat getChangeFilenames item
-     cmp←⌽1↓⍳1⊃⎕FSIZE⊢tie←file ⎕FTIE 0
-     ptr val←UT.ht ⎕FREAD tie,⊂cmp
-     cmp←1↓cmp
-     date←↓MS.DK,⍤1 DT.(dt2fm∘ts2dt∘fd2ts)⊢/∘⎕FRDCI¨tie,¨cmp
+     ptr cmp←UT.ht⌽1↓⍳1⊃⎕FSIZE⊢tie←file ⎕FTIE 0
+     date←DT.(ts2dt∘fd2ts)⊢/∘⎕FRDCI¨tie,¨cmp
+     head←↓MS.DK,⍤1 DT.dt2fm date
+     ptr val←UT.ht ⎕FREAD tie,⊂ptr,cmp/⍨when≠1
+     head←↓⍕((cmp=ptr)\⊂'>>>'),(⊂MS.BF),cmp,⍪head
      z←⎕FUNTIE tie
-     ⍪⍪¨' ',¨(⊂¨↓⍕((cmp=ptr)\⊂'>>>'),(⊂MS.BF),cmp,⍪date),¨val
-     ⍪⊃,/,(⊂⊂''),(⊂¨↓⍕((cmp=ptr)\⊂'>>>'),(⊂MS.BF),cmp,⍪date),⍪val
+     when=1:⍪head
+     res←⍪⍪¨' ',¨(⊂¨head),¨val
+     when=0:res
+     res⌿⍨date≥when
 ⍝ list changed items of project
 ⍝ or dates and values of item
-⍝ Phil 2018-08-07 17.23
+⍝ Phil 2018-08-24 20.38
  }
