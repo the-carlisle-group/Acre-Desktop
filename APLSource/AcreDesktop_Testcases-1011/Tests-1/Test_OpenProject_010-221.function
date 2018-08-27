@@ -75,7 +75,7 @@
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp 9∨.≠#.{⊃⎕NC ⍵}¨projectName1 projectName2 projectName3
- →GoToTidyUp 0≠≢⍴(' '~¨⍨↓(#.⍎projectName3).⎕NL⍳16)~'AcreConfig' 'quadVars'   ⍝ Fails because of Dyalog bug <01547>!
+ →GoToTidyUp 0≠≢(' '~¨⍨↓(#.⍎projectName3).⎕NL 9.4)   ⍝ Fails because of Dyalog bug <01547> - why is there a class?!
 
  R←∆OK
 
