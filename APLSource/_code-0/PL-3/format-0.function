@@ -1,0 +1,10 @@
+ format←{⍺←⊢
+     SV←zcode.start 0
+     SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
+     res←⍺ zcode.format ⍵
+     res
+⍝ [⍺] indent [dflt 1]
+⍝  ⍵  APL array or space
+⍝  ←  pretty aplan formatted string
+⍝ Phil 2018-09-04 14.57
+ }

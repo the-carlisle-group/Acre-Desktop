@@ -1,0 +1,9 @@
+ decode←{
+     SV←zcode.start 0
+     SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
+     res←zcode.decode ⍵
+     res
+⍝ ⍵ aplan formatted string, matrix or list
+⍝ ← array or space represented by ⍵
+⍝ Phil 2018-09-12 11.16
+ }

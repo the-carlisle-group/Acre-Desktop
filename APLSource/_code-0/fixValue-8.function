@@ -16,10 +16,10 @@
      fixSrc←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←'.'UT.nn⍕s.⎕FIX v:1 ⋄ 1⊣ers⍪←x r}
      fixClss←~{⍵\~1↓0,fixSrc/0,⍪⍵/⍺}⍣≡
 
-     (x/res)←AN.decode fixVar/0,⍪data/⍨x←nc=ns.array
-     (x/res)←⊢fixVar/0,⍪data/⍨x←nc=ns.charlist
-     (x/res)←↑fixVar/0,⍪data/⍨x←nc=ns.charmat
-     (x/res)←{1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
+     (x/res)←PL.decode fixVar/0,⍪data/⍨x←nc=ns.array
+     (x/res)←PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charlist
+     (x/res)←↑∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charmat
+     (x/res)←{PL.scrape 1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
      z←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵

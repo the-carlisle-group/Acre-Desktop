@@ -1,4 +1,4 @@
- ia←{⍺←⊢
+ az←{⍺←⊢
      ~∘' '¨(⊢(⌿⍨)0≤⎕NC)⎕NR⊃⎕SI
      alpha
      bravo

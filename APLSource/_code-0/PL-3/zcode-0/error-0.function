@@ -1,0 +1,18 @@
+ error←{ptr←<\⊃ptr scan code ern erm←⍵
+     c p←code ptr/¨⍨⊂scan∊¯1 0 1+ptr/scan
+     m←(⎕EM ern),' ',erm,⊃,/(7↑SV.CR)∘,¨c(p\'^')
+     m ⎕SIGNAL ern
+⍝ ⍵ ptr scan code ern erm
+⍝ e.g.
+⍝ code [⋄1 2⋄[⋄3 4⋄5 6)⋄7 8]
+⍝ scan 111111222222222333334
+⍝ ptr  000000000000000100000
+⍝ ern  11
+⍝ erm  interwoven brackets
+⍝ composed msg:
+⍝ SYNTAX ERROR interwoven brackets
+⍝       [⋄3 4⋄5 6)⋄7 8]
+⍝                ^
+⍝ signal to caller with composed message
+⍝ Phil 2018-09-21 07.32
+ }

@@ -1,0 +1,32 @@
+ start←{
+     ⍵<×⎕NC'SV':SV
+     { ⍝ dervs
+         ns←{⍵⊣⍵.⎕ML←3}⎕NS''
+         ⍵.c_←ns.⊂
+         ⍵.e_←ns.∊
+         ⍵.i_←⍳∘⍴(/⍨)⊢
+         ⍵._←{⍺ ⍵}
+         ⍵.quoted←≠\''''=⊢
+         ⍵.sqz←⊢(/⍨)quoted≥2∧/0,⍨' '=⊢
+         ⍵.rase←(1⌽'][',(trim'⋄',⊢))⍤2 while(1<≢∘⍴)
+       ⍝ vars
+         ⍵.SV←{
+             ⍵.debug←0
+             ⍵.cref←'CIRCULAR REFERENCE'
+             ⍵.non←16 ⍝ nonce error
+             ⍵.syn←2  ⍝ syntax error
+             ⍵.cher←'character error'
+             ⍵.int←'interwoven delimiters'
+             ⍵.uno←'unopened delimiter'
+             ⍵.unc←'unclosed delimiter'
+             ⍵.unx←'unexpected lineend'
+             ⍵.CR←⎕UCS 13
+             ⍵.sqz←'[(←⍴,⊂⋄/⍬)]'
+             ⍵.unq←⍵.sqz,'''¯.',{⍵/⍨0≤⎕NC'_',,[⍬]⍵}⎕UCS⍳9999
+             ⍵.special←'\0btnfr'{⍵ ⍺}'\',⎕UCS 0 8 9 10 12 13
+             ⍵}⎕NS''
+         SV
+     }⎕THIS
+⍝ ⍵ - 0 - only; 1 - force
+⍝ Phil 2018-10-04 20.50
+ }

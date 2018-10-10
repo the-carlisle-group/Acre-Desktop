@@ -1,0 +1,59 @@
+APL Array Notation (aplan)
+
+value:   scalar | list | array | space
+
+scalar:  number | character | space | ⊂ value
+
+list:    (⋄ value ⋄ value ⋄ ... )
+    :    (
+           value
+           value
+           ...)
+
+array:   [⋄ cell ⋄ cell ⋄ ... ]
+     :   [
+           cell
+           cell
+           ...]
+
+cell:    list | array | space
+
+space:   [⋄ pair ⋄ pair ⋄ ... ]
+     :   [
+           pair
+           pair
+           ...]
+
+pair:    name ← value
+
+Previously prohibited unquoted line-ends and diamonds are
+permitted between and at the same level of nesting of 
+brackets and parentheses. They separate cells of an array of
+rank two or more between brackets - wherein scalars are 
+treated as one-item vectors - and items of a vector between 
+parentheses. No existing features of Dyalog APL are altered 
+or nullified by these enhancements. 
+
+Implementation is by a namespace containing a number of
+functions to convert arrays and spaces to and from aplan:
+encode converts an array or space into an aplan expression
+    instantiated as a simple string.
+format encodes the data but then replaces diamonds with line-
+    ends and indentations. Its optional left argument can 
+    specify the indentation and target width of the result.
+decode takes an aplan expression as a simple string with
+    diamond or line-end separators; a character matrix; or a
+    nested list; and converts it into a clone of the array or
+    space represented by the expression.
+The present implementation includes redundant parentheses
+around simple scalars and strings when included in relatively
+short nested lists.
+It adds control-character encoding as: CR ←→ "\r"; BS ←→ "\b"
+LF ←→ "\n"; FF ←→ "\f"; HT ←→ "\t"; NUL ←→ "\o" & "\" ←→ "\\" 
+Certain nested structures including NUL cause a SYNTAX ERROR
+in decode. 
+Functions, operators, scripted spaces, classes, interfaces
+⎕NULL and results of ⎕OR are either not rendered properly or
+cause errors.
+Syntax errors found in aplan expressions to be decoded signal
+specific errors and pinpoint the offending section of code.

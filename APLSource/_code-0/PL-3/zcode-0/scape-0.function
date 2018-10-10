@@ -1,0 +1,8 @@
+ scape←{arg←⍵
+     ~∨/s←arg∊⊃SV.special:arg
+     rep←,'\',⍪⊃(s/arg){⍵[⍺⍳⍺⍺]}/SV.special
+     arg s/⍨←⊂1+s
+     arg⊣(s/arg)←rep
+⍝ escape control chars - inv is scrape
+⍝ Phil 2018-10-08 13.04
+ }

@@ -1,4 +1,4 @@
-Acre 4.6.0.026 2018-08-27
+Acre 4.6.0.028 2018-08-29
 
 Release Notes
 
@@ -21,7 +21,7 @@ returns version, date-time and value of each change since date.time
 
 ]CreateProject adds "aplcore" to ".gitignore" file
 
-]EditArray messages and documentation clarified
+]EditArray messages and documentation clarified and all edit modal.
 -------------------
 Acre 4.6.0.023 2018-08-23
 

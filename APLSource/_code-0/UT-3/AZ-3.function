@@ -1,4 +1,4 @@
- Ia←{⍺←⊢
-     (⎕A,¨1↓¨⊢)ia''
+ AZ←{⍺←⊢
+     (⎕A,¨1↓¨⊢)az''
 ⍝ ICAO (International Civil Aviation Organization) Alphabet
  }

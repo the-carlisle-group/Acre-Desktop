@@ -1,0 +1,5 @@
+ decomment←{
+     (,⍵)/⍨,∧\(quoted∨'⍝'≠⊢)⍵
+⍝ decomment
+⍝ Phil 2018-09-14 12.24
+ }

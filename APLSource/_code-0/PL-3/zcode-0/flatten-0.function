@@ -1,0 +1,13 @@
+ flatten←{⍺←⊢
+     arg←sqz SV.CR{⍺∊⍵:1↓⊃,/'⋄',¨decomment¨(1↓¨(⊢=⊃)⊂⊢)⍺,⍵
+         2=|≡⍵:1↓⊃,/'⋄',¨decomment¨⍵
+         1=⍴⍴⍵:decomment ⍵
+         2=⍴⍴⍵:1↓decomment'⋄',⍵
+     }⍵
+     q←quoted arg
+     res←arg/⍨q≥(arg=' ')∧⊃∨/¯1 1⌽¨⊂arg∊SV.sqz
+     res
+⍝ ⍵ cr- or ⋄-charstring, charlist or charmat
+⍝ ← uncommented squeezed ⋄-charstring
+⍝ Phil 2018-09-12 11.16
+ }

@@ -1,0 +1,8 @@
+ push←{
+     dix key←⍺
+     ⊢((dix.key⍳⊂key)⊃dix.val)←⍵
+⍝ val← dix key push val
+⍝   there will be a waiting slot.
+⍝   see dix, pull
+⍝ Phil 2018-09-06 09.10
+ }

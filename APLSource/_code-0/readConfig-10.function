@@ -7,7 +7,7 @@
      cl←Cc⊢cu←{⍵.⎕NL-2}cfg←t{                     ⍝ actuals
          ⍺='{':7159⌶1↓⊃,/(⎕UCS 13),¨⍵                 ⍝ JSON
          ⍺=':':0 ⎕FIX ⍵                               ⍝ APLscript
-         ⍺='[':AN.decode ⍵                            ⍝ APLAN
+         ⍺='[':PL.decode ⍵                            ⍝ APLAN
          ⎕NS''                                        ⍝ none of the above
      }r↓d
      null⊢int←rl∩cl:res                           ⍝ supplied

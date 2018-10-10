@@ -1,0 +1,9 @@
+ encode←{
+     SV←zcode.start 0
+     SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
+     res←zcode.encode ⍵
+     res
+⍝ ⍵ APL array or space
+⍝ ← aplan formatted string
+⍝ Phil 2018-09-04 14.57
+ }

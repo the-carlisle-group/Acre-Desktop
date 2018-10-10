@@ -1,0 +1,9 @@
+ scrape←{
+     SV←zcode.start 0
+     SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
+     res←⊃⍣s zcode.scrape¨⊂⍣(s←1=≡⍵)⊢⍵
+     res
+⍝ ⍵ string(s) may contain '\\' and '\c'
+⍝ ← ⍵ with '\' and ctrl-chrs instead
+⍝ Phil 2018-10-03 17.55
+ }

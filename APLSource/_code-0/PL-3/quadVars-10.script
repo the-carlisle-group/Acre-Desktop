@@ -1,0 +1,7 @@
+:Namespace quadVars
+    ##.(⎕IO ⎕ML ⎕WX)←0 0 3
+    ##.⎕PP←{0::⎕pp ⋄ ∇⎕pp+←1}0
+⍝ This script was fixed by acre
+⍝ it can be kept, cloned, renamed, amended or ]erased.
+⍝ its purpose is to set the environment for the project.
+:EndNamespace

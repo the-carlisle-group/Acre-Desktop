@@ -45,7 +45,7 @@
          ][
          command←'Projects'
          help←'List spaces & folders of all tracked projects.'
-         options←'help mess'
+         options←'help mess when'
          result←''
          syntax←''
          type←'shared'
@@ -107,7 +107,7 @@
          type←'item'
          ])
      }
-     r←AN.decode 1↓¯1↓⎕NR'f'
+     r←PL.decode 1↓¯1↓⎕NR'f'
      r.group←⊂name
      r.syntax←,/(⊂']',name,'.'),r.command,' ',⍪r.syntax
      r.options←optionFields r.options
