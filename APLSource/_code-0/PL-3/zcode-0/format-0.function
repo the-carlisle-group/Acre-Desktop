@@ -2,6 +2,8 @@
      dic←dix 1
      o w←2↑⍺,(≢⍺)↓dic.(off wid)
      dic.(off wid)←o,w-o×(≢∘⍴+|∘≡)⍵
+⍝     w b/⍨←⊂1+b←(']'=w)>≠\''''=w←dic encode ⍵
+⍝     (b/w)←'⋄]'⍴⍨+/b
      s←('⋄'=w)>q←≠\''''=w←dic encode ⍵
      d←dic.off×0,s/-⌿+\q<⍤1⊢'[]()'∘.=w
      1↓⊃,/SV.CR,¨(d⍴¨' '),¨1↓¨(1,s)⊂'⋄',w

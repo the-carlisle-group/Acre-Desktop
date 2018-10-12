@@ -29,6 +29,13 @@
          syntax←'item(s) | space'
          type←'item'
          ][
+         command←'FixChars'
+         help←'convert array sourcefiles to new ctrl-char encoding'
+         options←'help mess'
+         result←''
+         syntax←'folder'
+         type←'shared'
+         ][
          command←'FromAPLAN'
          help←'Evaluate an APLAN expression'
          options←'help mess'

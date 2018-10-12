@@ -1,9 +1,10 @@
  scape←{
      SV←zcode.start 0
      SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
-     res←⊃⍣s zcode.scape¨⊂⍣(s←1=≡⍵)⊢⍵
+     res←zcode.{1=≡⍵:scape ⍵ ⋄ ∇¨⍵}⍵
      res
+
 ⍝ ⍵ string(s) may contain '\' and ctrl-chrs
 ⍝ ← ⍵ with '\\' and '\c' instead
-⍝ Phil 2018-10-03 17.55
+⍝ Phil 2018-10-12 08.29
  }

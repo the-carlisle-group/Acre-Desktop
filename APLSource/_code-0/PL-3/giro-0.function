@@ -1,9 +1,9 @@
- giro←{
+ giro←{⍺←⊢
      SV←zcode.start 0
      SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
-     e←zcode.format ⍵
+     e←⍺ zcode.format ⍵
      ⍵≡d←zcode.decode e:2
-     e≡zcode.format d
+     e≡⍺ zcode.format d
 ⍝ ← 2 identical
 ⍝   1 after round trip (space clone)
 ⍝   0 different

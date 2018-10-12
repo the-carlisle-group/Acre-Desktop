@@ -12,19 +12,19 @@
          ⍵.NB←'.',MS.NA,'/'
          ⍵.NU←nms.author
 
-         ⍵.AA←'.array'         ⍝ aplan
-         ⍵.AF←'.function'      ⍝ aplf
-         ⍵.AO←'.operator'      ⍝ aplo
-         ⍵.AN←'.script'        ⍝ apln
-         ⍵.AC←'.class'         ⍝ aplc
-         ⍵.AI←'.interface'     ⍝ apli
-         ⍵.AL←'.charlist'      ⍝ apll
-         ⍵.AM←'.charmat'       ⍝ aplm
-         ⍵.AS←'.charstring'    ⍝ apls
+         ⍵.AA←'.array'         ⍝ array
+         ⍵.AF←'.function'      ⍝ aplf              ⍝ Dylog
+         ⍵.AO←'.operator'      ⍝ aplo              ⍝ preferred
+         ⍵.AN←'.script'        ⍝ apln              ⍝ item
+         ⍵.AC←'.class'         ⍝ aplc              ⍝ file
+         ⍵.AI←'.interface'     ⍝ apli              ⍝ types
+         ⍵.AL←'.charlist'      ⍝ charlist
+         ⍵.AM←'.charmat'       ⍝ charmat
+         ⍵.AS←'.charstring'    ⍝ charstring
          ⍵.AX←'.*'             ⍝ set as filetype for unknown
-         ⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
+         ⍵.AY←⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
          ⍝ above MS.AZ and below MS.AY MUST correspond!
-         ⍵.AY←'.apl'∘,¨'an' 'f' 'o' 'n' 'c' 'i' 'l' 'm' 's'
+         ⍵.AY[⍵.AY⍳⍵.(AF AO AN AC AI)]←'.apl'∘,¨'f' 'o' 'n' 'c' 'i'
 
          ⍵.BA←'⎕SE.SALTUtils.EditorFix' ⍝ this is SALT callback on Fix
          ⍵.BC←'Please wait - '

@@ -8,28 +8,28 @@ list:    (⋄ value ⋄ value ⋄ ... )
     :    (
            value
            value
-           ...)
-
+           ...
+           )
 array:   [⋄ cell ⋄ cell ⋄ ... ]
      :   [
            cell
            cell
-           ...]
-
+           ...
+           ]
 cell:    list | array | space
 
 space:   [⋄ pair ⋄ pair ⋄ ... ]
      :   [
            pair
            pair
-           ...]
-
+           ...
+           ]
 pair:    name ← value
 
 Previously prohibited unquoted line-ends and diamonds are
 permitted between and at the same level of nesting of 
 brackets and parentheses. They separate cells of an array of
-rank two or more between brackets - wherein scalars are 
+rank two or more between brackets - wherein scalar cells are
 treated as one-item vectors - and items of a vector between 
 parentheses. No existing features of Dyalog APL are altered 
 or nullified by these enhancements. 
@@ -45,11 +45,11 @@ decode takes an aplan expression as a simple string with
     diamond or line-end separators; a character matrix; or a
     nested list; and converts it into a clone of the array or
     space represented by the expression.
-The present implementation includes redundant parentheses
-around simple scalars and strings when included in relatively
-short nested lists.
-It adds control-character encoding as: CR ←→ "\r"; BS ←→ "\b"
-LF ←→ "\n"; FF ←→ "\f"; HT ←→ "\t"; NUL ←→ "\o" & "\" ←→ "\\" 
+The present implementation adds redundant parentheses around 
+simple scalars, strings and multi-d arrays when included in 
+relatively short nested lists.
+It adds control-character encoding as: CR ←→ "\\r"; BS ←→ "\\b"
+LF ←→ "\\n"; FF ←→ "\\f"; HT ←→ "\\t"; NUL ←→ "\\0" & "\\" ←→ "\\\\" 
 Certain nested structures including NUL cause a SYNTAX ERROR
 in decode. 
 Functions, operators, scripted spaces, classes, interfaces
@@ -57,3 +57,4 @@ Functions, operators, scripted spaces, classes, interfaces
 cause errors.
 Syntax errors found in aplan expressions to be decoded signal
 specific errors and pinpoint the offending section of code.
+
