@@ -1,0 +1,8 @@
+ {r}←∆WaitAndProcess waitingTime;ref
+⍝ Creates a form, ⎕DQs it and waits for waitingTime seconds.
+⍝ Hopefully this lets the interpreter do some things we are waiting for.
+ r←⍬
+ ref←⎕NEW'Form'(('Caption' 'WaitAndProcess')('Visible' 0)('Event'(9999 1)))
+ {}ref{_←⎕DL ⍵ ⋄ 0⊣⎕NQ ref 9999}waitingTime
+ ⎕DQ ref
+⍝Done

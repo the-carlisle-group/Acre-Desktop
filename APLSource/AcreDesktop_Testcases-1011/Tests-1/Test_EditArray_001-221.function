@@ -1,0 +1,31 @@
+ R←Test_EditArray_001(stopFlag batchFlag);⎕TRAP;rc;_;acreDir;log;result;txt;list;filename
+⍝ Make changes to a text vector via ]editarray and check whether acre takes appropriate action.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ :If 'Win'≢3↑1⊃'#'⎕WG'APLVersion'
+     R←∆WindowsOnly
+     :Return
+ :EndIf
+ :If batchFlag
+     R←∆NoBatchTest
+ :Else
+     R←∆Failed
+     #.⎕SHADOW'TEMP'
+     'TEMP'#.⎕NS''
+     #.TEMP.Hello←txt←'Please make a change and then press <escape> in this window'
+     acreDir←##.FilesAndDirs.GetTempPath,⊃⎕SI
+     result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP'
+     →GoToTidyUp'#.TEMP'≢result
+     result←∆RunUcmd'EditArray #.TEMP.Hello'
+     ⎕←'   Press <Enter> when you have changed the variable "Hello" and then closed the edit window.'
+     {}⍞
+     'Variable was not changed?!'Assert #.TEMP.Hello≢txt
+     ∆WaitAndProcess 0.2
+     list←##.FilesAndDirs.ListFiles acreDir,'\.acre\changes\'
+     →GoToTidyUp 1≠≢list
+     filename←2⊃##.APLTreeUtils.SplitPath⊃list
+     →GoToTidyUp filename≢'Hello-1.charstring.change'
+     R←∆OK
+
+∆TidyUp:
+     F.RmDir acreDir
+ :EndIf

@@ -70,7 +70,7 @@
  result←∆RunUcmd'Projects'
  →GoToTidyUp~(⊃⍴result)∊0 1             ⍝ acre itself might or might not be open by now.
 
- :Trap 911
+ :Trap 11
      {}∆RunUcmd'OpenProject ',projectPath1,' #.',projectName1
      →GoToTidyUp 1
  :EndTrap
