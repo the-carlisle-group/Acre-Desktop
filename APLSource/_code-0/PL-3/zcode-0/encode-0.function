@@ -1,0 +1,16 @@
+ encode←{⍺←dix 1                        ⍝ or from format or recursive
+     ⍵≢r←⍺ pull ⍵:r
+     put←⍺ ⍵ push⊢
+     0∊⍴⍵:put(⍕⍴⍵),'⍴⊂',⍺ ∇⊃⍵           ⍝ empty
+     nt←∨/n t←1 0=2 10|⎕DR ⍵            ⍝ simple num txt
+     nt∧ss←0=≡⍵:put t quote else⍕⍵      ⍝ simple scalar
+     ss:put ⍺ ∇ space ⍵                 ⍝ space
+     nt∧(,1)≡⍴⍵:put',',t quote⍤1 else⍕⍵ ⍝ simple singleton
+     nt:put rase t quote⍤1 else⍕⍵       ⍝ simple homogeneous
+     0=≢⍴⍵:put'⊂',⍺ ∇⊃⍵                 ⍝ scalar
+     r←⍺ ∇¨⍵
+     r←put rase ⍺.wid ravel⍤1⊢r
+     r
+⍝
+⍝ Phil 2018-09-04 14.57
+ }

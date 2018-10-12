@@ -1,0 +1,6 @@
+ session←{
+     SV←zcode.start 1
+     '→'∊z←(+/∧\z=(⍴z)↑p)↓z←⍞,0⍴⍞←p←'aplan: ':'bye'
+     ∇{0::⎕←⊃⎕DM ⋄ ⎕←format decode ⍵}⍣(z∨.≠' ')⊢z
+⍝ Phil 2018-10-09 23.24
+ }

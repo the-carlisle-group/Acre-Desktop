@@ -15,7 +15,7 @@
      z←3 ⎕MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.CaseCode←dat.case⊃MS.GB MS.GA
-     z←(1⌽MS.HH MS.HG,1↓¯1↓2 AN.format cfg)MS.HI ⎕NPUT dat.config
+     z←(1⌽MS.HH MS.HG,1↓¯1↓UT.CR sep PL.format cfg)MS.HI ⎕NPUT dat.config
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
      z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
      z←(⊂MS.NB MS.FX)⎕NPUT dat.folder,MS.FM ⍝ git specific -

@@ -1,6 +1,6 @@
  FromAPLAN←{
      null ⍵:''
-     AN.decode #.⍎if(2=⎕NC)⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
+     PL.decode #.⍎if(2=⎕NC)⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
 ⍝ decode APLAN expression as array or space
 ⍝ see ToAPLAN
 ⍝ expression requires "double quotes" if it contains [brackets].

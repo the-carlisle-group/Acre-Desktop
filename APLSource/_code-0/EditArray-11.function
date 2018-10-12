@@ -4,22 +4,21 @@
      ⎕THIS.(sandbox←⎕NS'').(string←,matrix←↑list←'' '')
      pref←(⍕⎕THIS),'.sandbox.'
      txt←⊃∊/1(↑_↓)nameClass(⊂fqn),pref∘,¨↓sandbox.⎕NL 2
-     txt:0 0⍴⎕ED&fqn
+     txt:fqn/⍨nonul ⎕ED fqn
 
-     enc←'j'∊Cc OPT.encoding
-     else←{⍵:⍺⍺⊣⍺ ⋄ ⍵⍵⊣⍺}
-     export←1∘(⎕JSON⍠'Compact' 0)else(2∘AN.format)∘enc
-     import←⎕JSON else AN.decode∘enc
+     js←'j'∊Cc OPT.encoding
+     export←0 1∘(7160⌶)else(2∘PL.format)
+     import←7159⌶else PL.decode
 
-     new←export⊢old←#.⍎fqn
+     new←js export⊢old←#.⍎fqn
      ed←#.⎕NS''
      name←'.'UT.nn fqn
      z←name ed.{⍎⍺,'←⍵'}new
      null ed.⎕ED name:''
-     new←import ed.⍎name
+     new←js import ed.⍎name
      new≡old:''
      z←fqn #.{⍎⍺,'←⍵'}new
      r⊣showMsg(nonul r)/MS.DK,r←⊃dat SetChanged,⊂fqn
 
-⍝ Phil 2018-08-27 07.53
+⍝ Phil 2018-08-31 07.20
  }

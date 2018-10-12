@@ -1,5 +1,8 @@
  Projects←{
      0::0 2⍴''⊣showMsg MS.GX
-     {↑⍵.(nspath folder)}openProjects''
-⍝ Phil Last 2018-01-15 15.35
+     p←openProjects''
+     r←↑p.(nspath folder)
+     1≢OPT.when:r
+     r,↓DT.dt2fm p getTime¨0
+⍝ Phil 2018-08-31 22.16
  }

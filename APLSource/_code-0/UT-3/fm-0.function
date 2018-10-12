@@ -1,5 +1,5 @@
  fm←{⍺←⊢
      0::⎕SIGNAL/⌽⎕EN,⎕DM
-     ⍺ ##.AN.format ⍵
+     ⍺ ##.PL.format ⍵
 ⍝ APLAN format ⍵
  }

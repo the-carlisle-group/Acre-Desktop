@@ -1,0 +1,13 @@
+ scrape←{
+     ~∨/b←'\'=r←⍵:r                             ⍝ b r all '\'s
+     s←b>¯1↓0,b                                 ⍝ start b
+     e←b>1↓b,0                                  ⍝ end b
+     c←2|1+⊃-/i_¨e s                            ⍝ parity
+     e\←c                                       ⍝ only odd
+     b r/⍨←⊂~e                                  ⍝ ~ odd
+     e←(~e)/¯1↓0,e                              ⍝ ~ pre-odd
+     (e/r)←⊃(e/r){(⍺,⍺⍺)[(⍵,⍺⍺)⍳⍺⍺]}/SV.special ⍝ odd → ctrl
+     (⊢⍴⍨1~⍨⍴)r/⍨b≤b\0 1⍴⍨+/b                   ⍝ ~ alt even
+⍝ decode ctrl chars escaped by `scape`
+⍝ Phil 2018-10-11 08.31
+ }

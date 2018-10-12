@@ -1,0 +1,14 @@
+ dix←{
+     ⍵{
+         key←''''''(,'⍬')
+         val←''⍬
+         ⍵.(key val)←⍺⌽key val
+         ⍵.(off wid)←2,⎕PW
+         ⍵
+     }⎕NS''
+⍝ ⍵ 1 encode - 0 decode
+⍝ ← dix
+⍝ assume no identity element between key and val
+⍝ see push, pull
+⍝ Phil 2018-09-05 12.33
+ }

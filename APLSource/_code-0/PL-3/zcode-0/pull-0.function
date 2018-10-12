@@ -1,0 +1,13 @@
+ pull←{erm←⊂SV.cref
+     res←(⍺.key⍳⊂⍵)⊃⍺.val,⊂⍵
+     res≡erm:(⊃erm)⎕SIGNAL 11 ⍝ 1⌽'][',SV.cref ⍝
+     res≢⍵:res
+     ⍵⊣⍺.(key val),←⊂¨⍵ erm
+⍝ val ← dix pull key
+⍝ if key in dix
+⍝    if val is erm, signal
+⍝    else return val
+⍝ else add erm to dix, return key
+⍝ see dix, push
+⍝ Phil 2018-09-06 09.10
+ }

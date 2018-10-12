@@ -1,0 +1,6 @@
+ trim←{⍺←⊢
+     (,⍵)/⍨,⌽∨\' '≠⌽⍵
+⍝ ntbs←{(+/∨\' '≠⌽⍵)↑¨↓⍵}
+⍝ this is ravel rather than split
+⍝ Phil 2018-09-19 11.28
+ }

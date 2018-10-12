@@ -1,0 +1,15 @@
+ part←{⍺←⊢
+     q←quoted ⍵
+     d←(q<'⋄'=⍵)∧t←1=-⌿+\q<⍤1⊢'[]()'∘.=⍵
+     ~∨/d:⍺⍺ 1↓¯1↓⍵        ⍝ redundant (...)
+     pts←(1↓¯1↓~d)c_ 1↓¯1↓⍵
+     ∨/t∧q<'←'=⍵:⍺⍺ assign pts
+     res←⍺⍺¨pts
+     '('=⊃⍵:res
+     ↑1/¨res ⍝     ↑s(1∘/)else(1∘/¨)res
+
+⍝ ⍺⍺ recall dix∘decode
+⍝ ⍵ '(...⋄...)' or '[⋄...⋄...]' or '[⋄a←...⋄b←...]'
+⍝ ← vec or mat
+⍝ Phil 2018-09-26 13.09
+ }

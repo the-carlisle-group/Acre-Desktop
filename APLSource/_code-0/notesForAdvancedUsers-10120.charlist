@@ -50,7 +50,7 @@ session.
 
 ⎕SE.acre.run
 
-The "run" function provides some of the basic functionality that acre uses 
+The "run" function exposes some of the basic functionality that acre uses 
 itself internally to fulfil the roles of saving editor changes and the 
 exposed user commands. They are services that a user in a normal development 
 session would not normally require.

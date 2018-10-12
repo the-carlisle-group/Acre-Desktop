@@ -1,0 +1,10 @@
+ FixChars←{⍺←⊢
+     2<≢⍵:MS.DM
+     tk←0 ⍝ nOff OPT.track
+     dp←0 ⍝ nOff OPT.dependencies
+     fixChars tk dp ⍵
+
+⍝ ⍵ folder [space]
+⍝ ← projectspace
+⍝ Phil 2018-06-06 21.11
+ }

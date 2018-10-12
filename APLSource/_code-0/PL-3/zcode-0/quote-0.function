@@ -1,0 +1,5 @@
+ quote←{
+     scape q,(t⌿⍨1+q=t←⍕⍵),q←''''
+⍝ - double existing and escape ctrl-chrs
+⍝ Phil 2018-10-08 13.04
+ }

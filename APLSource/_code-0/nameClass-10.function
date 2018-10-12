@@ -10,8 +10,8 @@
      (a/r)←{
          dr←(≡v),≢⍴v←#.⍎⍵
          dr≡2 1:ns.array ns.charlist⊃⍨∧/(''≡0∘/)¨v
-         dr≡1 2:ns.array ns.charmat⊃⍨1=0=10|⎕DR v
-         dr≡1 1:ns.array ns.charstring⊃⍨1=0=10|⎕DR v
+         dr≡1 2:ns.array ns.charmat⊃⍨0=10|⎕DR v
+         dr≡1 1:ns.array ns.charstring⊃⍨0=10|⎕DR v
          ns.array
      }/0,⍪fqn/⍨a←c=2
      (a/r)←{
