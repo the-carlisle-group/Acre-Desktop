@@ -2,15 +2,15 @@
      dic←dix 1
      o w←2↑⍺,(≢⍺)↓dic.(off wid)
      dic.(off wid)←o,w-o×(≢∘⍴+|∘≡)⍵
-⍝     w b/⍨←⊂1+b←(']'=w)>≠\''''=w←dic encode ⍵
-⍝     (b/w)←'⋄]'⍴⍨+/b
-     s←('⋄'=w)>q←≠\''''=w←dic encode ⍵
+     w b/⍨←⊂1+b←(']'=w)>≠\''''=w←dic encode ⍵
+     (b/w)←'⋄]'⍴⍨+/b
+     s←('⋄'=w)>q←≠\''''=w
      d←dic.off×0,s/-⌿+\q<⍤1⊢'[]()'∘.=w
-     1↓⊃,/SV.CR,¨(d⍴¨' '),¨1↓¨(1,s)⊂'⋄',w
+     1↓⊃,/SV.CR,¨(⍴∘' '¨d-o×']'=⊃¨z),¨z←1↓¨(1,s)⊂'⋄',w
 ⍝ [⍺] offset & width - dflt - see dix
 ⍝       specified width reduced by offset -
 ⍝       - times sum of arg rak and depth
 ⍝  ⍵  array or space
 ⍝     offset at each new [⋄ or (⋄ produced by encode
-⍝ Phil 2018-10-06 23.28
+⍝ Phil 2018-10-18 08.57
  }

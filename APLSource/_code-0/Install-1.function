@@ -31,7 +31,9 @@
 ⍝:     r←{⎕NS''}¨⍳⍴cmds
 ⍝:     r.(Name Desc Group Parse)←↓⍉↑cmds help group parse
 ⍝:   ∇
-⍝:    Help←{⍕⍪'' 'Syntax: ',¨help syn⊃¨⍨cmds⍳⊂⍵
+⍝:    Help←{r←'' 'Syntax: ',¨help syn⊃¨⍨cmds⍳⊂⍵
+⍝:          0≥⎕SE.⎕NC name:⍕⍪r
+⍝:          ⍕⍪r,⊂⎕SE.<n>._code.(MS.HA,Cc ⍵)
 ⍝:    }
 ⍝:    Run←{cmd arg←⍵
 ⍝:     arg.help:Help cmd

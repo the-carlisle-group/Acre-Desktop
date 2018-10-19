@@ -16,8 +16,8 @@
          type←'shared'
          ][
          command←'EditArray'
-         help←'Edit an array in a tracked project. In APLAN if not regular text.'
-         options←'help mess enco'
+         help←'Edit any array in a tracked project. In APLAN if not regular text.'
+         options←'help mess'
          result←''
          syntax←'item'
          type←'item'
@@ -120,5 +120,5 @@
      r.options←optionFields r.options
      UT.is r
 ⍝ see optionFields for valid options
-⍝ Phil 2018-06-07 09.23
+⍝ Phil 2018-10-13 08.23
  }

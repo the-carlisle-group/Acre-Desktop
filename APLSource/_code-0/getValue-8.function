@@ -6,7 +6,8 @@
      (x/val)←PL.scape⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist
      (x/val)←PL.scape⊢∘ntbs∘⍎/0,⍪fqn/⍨x←nc=ns.charmat
      (x/val)←PL.scape sep∘⍎/UT.CR,⍪fqn/⍨x←nc=ns.charstring
-     (x/val)←(UT.CR sep PL.format)∘⍎/2,⍪fqn/⍨x←nc=ns.array
+⍝     (x/val)←(UT.CR sep PL.format)∘⍎/2,⍪fqn/⍨x←nc=ns.array
+     (x/val)←PL.scape(UT.CR sep PL.format)∘⍎/2,⍪fqn/⍨x←nc=ns.array
      (x/val)←⊢∘⎕NR/0,⍪fqn/⍨x←nc∊ns.(function operator)
      (x/val)←{0::0 ⋄ ⎕SRC⍎⍵}/0,⍪fqn/⍨x←nc∊ns.(script class interface)
      fqn type val/¨⍨⊂~val∊0                   ⍝ remove anything else
@@ -14,6 +15,6 @@
 ⍝ ← fqn type val - of only arrays, defined fns and ops and scripts
 ⍝   filtered and re-ordered
 ⍝   vals are lists of strings
-⍝ see fix Values
+⍝ see fixValue
 ⍝ Phil Last 2017-11-22 22.38
  }

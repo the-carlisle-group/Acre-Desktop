@@ -126,7 +126,7 @@
          ⍵.GY←'APLSource/'
          ⍵.GZ←'.txt'
 
-         ⍵.HA←''
+         ⍵.HA←'https://github.com/the-carlisle-group/Acre-Desktop/wiki/Command-Reference#'
          ⍵.HB←''
          ⍵.HE←'latest'
          ⍵.HG←':Namespace '

@@ -5,23 +5,21 @@
      put←⍺ arg push⊢                        ⍝ fn to store val
      next←⍺ ∇⊢
      d←(arg='⋄')>q←quoted arg               ⍝ diamonds / quotes
-     ∧/q∨arg='''':put scrape⍎arg
+⍝     ∧/q∨arg='''':put scrape⍎arg
+     ∧/q∨arg='''':put⍎arg
      z b x bp←↓-⍀+\q<⍤1⊢'[]()'∘.=arg
      p s←(bp-b)(+\2≠/0,bp)
      0⊣errors⍣mon⊢arg b bp d p q s:         ⍝ checking syntax
      x b p bp s d q arg/⍨←⊂1+x←q<>⌿0 1⌽'[⋄'∘.=arg
      (x/arg)←'[⋄'⍴⍨+/x                      ⍝ '⋄' after '['
      (x/d)←0 1⍴⍨+/x
-     ~∨/d:put⍎scrape arg
+⍝     ~∨/d:put⍎scrape arg
+     ~∨/d:put⍎arg
      pt←((2</⊢)∨¯1⌽2>/⊢)¯1,1⌊bp
      exec←arg⊣arg d bp q⊂⍨←⊂pt
      (x/exec)←{'(',⍵,'⊃arg)'}∘⍕¨x/⍳⍴x←1∊¨d
      (x/arg)←next part¨x/arg
      put⍎⊃,/exec
-⍝     arg d bp q⊂⍨←⊂pt
-⍝     (x/arg)←next part¨arg/⍨x←1∊¨d
-⍝     ((~x)/arg)←⊢∘scrape∘⍎/0,⍪arg/⍨~x
-⍝     put⊃⍣((,1)≡⍴arg)⊢arg
 
 ⍝ ⍵ ⋄-charstring - no comments
 ⍝ ← represented array or space

@@ -3,7 +3,7 @@
          key←''''''(,'⍬')
          val←''⍬
          ⍵.(key val)←⍺⌽key val
-         ⍵.(off wid)←2,⎕PW
+         ⍵.(off wid)←2 80
          ⍵
      }⎕NS''
 ⍝ ⍵ 1 encode - 0 decode
