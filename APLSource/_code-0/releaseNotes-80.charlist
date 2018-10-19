@@ -1,9 +1,35 @@
-Acre 4.6.0.028 2018-08-29
-
+Acre 4.7.0.033 2018-10-19
+  
 Release Notes
 
 Acre Desktop  
-============   
+============
+
+New version of APLAN. Adds broken parentheses that can delimit vectors of
+any length and depth.
+Short nested and mixed vectors are still dispayed as strand notation albeit 
+that all items are parenthesised, many redundantly:
+(1)('2')(,3)(,'4')('five')(1 2 3 4 5 6)
+Vectors whose formatted length would exceed a stated length (default 80) are
+encoded with diamonds instead of the parentheses:
+(1⋄'2'⋄,3⋄,'4'⋄'five'⋄1 2 3 4 5 6)
+or formatted with line-breaks and indentations:
+(
+  1
+  '2'
+  ,3
+  ,'4'
+  'five'
+  1 2 3 4 5 6
+)
+]EditArray now displays all arrys identically to the equivalent source file
+content.
+Ctrl-char escaping is now moved to acre read and write rather than APLAN
+'though this change might not immediately be visible.
+User command help - ]?acre.command no includes a link to the Acre-Desktop
+GitHub Wiki. 
+------------------------
+Acre 4.6.0.028 2018-08-29
 
 ]Changes now fully responds to -when modifier.
       ]changes #.space
