@@ -70,12 +70,12 @@
  result←∆RunUcmd'Projects'
  →GoToTidyUp~(⊃⍴result)∊0 1             ⍝ acre itself might or might not be open by now.
 
- :Trap 11
+ :Trap 11 911
      {}∆RunUcmd'OpenProject ',projectPath1,' #.',projectName1
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp 9∨.≠#.{⊃⎕NC ⍵}¨projectName1 projectName2 projectName3
- →GoToTidyUp 0≠≢(' '~¨⍨↓(#.⍎projectName3).⎕NL 9.4)   ⍝ Fails because of Dyalog bug <01547> - why is there a class?!
+ →GoToTidyUp 0≠≢(' '~¨⍨↓(#.⍎projectName3).⎕NL 9.4)   ⍝ Fails because of Dyalog bug <01546> (Mantis 16354) - there should not be a class!
 
  R←∆OK
 

@@ -18,14 +18,14 @@
      result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP'
      →GoToTidyUp'#.TEMP'≢result
      result←∆RunUcmd'EditArray #.TEMP.Hello'
-     ∆WaitAndProcess ⍬
+     ∆WaitAndProcess 0.2
      ⎕←'   Press <Enter> when you have changed the variable "Hello" and then closed the edit window.'
      {}⍞
      'Variable was not changed?!'Assert #.TEMP.Hello≢txt
      list←##.FilesAndDirs.ListFiles acreDir,'\.acre\changes\'
      →GoToTidyUp 1≠≢list
      filename←2⊃##.APLTreeUtils.SplitPath⊃list
-     →GoToTidyUp filename≢'Hello-1.charstring.change'
+     →GoToTidyUp filename≢'Hello-1.array.change'
 
      R←∆OK
 
