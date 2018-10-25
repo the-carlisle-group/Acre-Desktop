@@ -1,10 +1,18 @@
-Acre 4.7.0.033 2018-10-19
+Acre 4.8.0.035 2018-10-25
   
 Release Notes
 
 Acre Desktop  
 ============
+Acre and SALT
 
+If an edited item is not in a tracked project acre now passes control to
+SALT to see if it can handle the item. The only difference that will be seen
+is that no "No tracked project can handle item" message will be issued on
+exiting the editor. SALT may issue its own messages.
+----------------------
+Acre 4.7.0.033 2018-10-19
+============
 New version of APLAN. Adds broken parentheses that can delimit vectors of
 any length and depth.
 Short nested and mixed vectors are still dispayed as strand notation albeit 

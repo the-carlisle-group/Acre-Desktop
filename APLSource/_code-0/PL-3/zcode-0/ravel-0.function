@@ -1,7 +1,5 @@
  ravel←{wid←⍺
-⍝     1=≢⍵:'1/⊂',⊃⍵
      1=≢⍵:',⊂',⊃⍵
-⍝     1=≢⍵:'⊂',⊃⍵
      (wid<0⊥⍴⍕⍵){1⌽')(',⊃,/'⋄'∘,¨⍵}else{1⌽⊃,/')('∘,¨⍵}⍵
 ⍝ ⍺ target width?
 ⍝ ⍵ nested vector of already encoded data

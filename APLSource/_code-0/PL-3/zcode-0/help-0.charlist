@@ -8,14 +8,13 @@ list:    (⋄ value ⋄ value ⋄ ... )
     :    (
            value
            value
-           ...
-           )
+           ... )
 array:   [⋄ cell ⋄ cell ⋄ ... ]
      :   [
            cell
            cell
            ...
-           ]
+         ]
 cell:    list | array | space
 
 space:   [⋄ pair ⋄ pair ⋄ ... ]
@@ -23,8 +22,10 @@ space:   [⋄ pair ⋄ pair ⋄ ... ]
            pair
            pair
            ...
-           ]
+         ]
 pair:    name ← value
+
+"scalar", "number", "character" and "name" are as defined for APL.
 
 Previously prohibited unquoted line-ends and diamonds are permitted between 
 and at the same level of nesting of brackets and parentheses. They separate 
@@ -53,14 +54,9 @@ short nested lists. Many of these are redundant as with simple scalars and
 strings but the author decided it was easier and quicker than the additional 
 processing that would be necessary to avoid them.
 
-It permits control-character encoding as: 
-CR:"\\r"; BS:"\\b"; LF:"\\n"; FF:"\\f"; HT:"\\t"; NUL:"\\0" & "\\":"\\\\".
-
-Certain nested structures including NUL cause a SYNTAX ERROR in decode.
-
 Functions, operators, scripted spaces, classes, interfaces, ⎕NULL and 
 results of ⎕OR are either not rendered properly or cause errors.
 Syntax errors found in aplan expressions to be decoded signal specific 
 errors and pinpoint the offending section of code.
 
-⍝ Phil 2018-10-17 12.53     
+⍝ Phil 2018-10-23 22.31

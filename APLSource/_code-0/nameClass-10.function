@@ -1,6 +1,6 @@
  nameClass←{⍺←⊢
      null⊢fqn←,⊂if≡⍵:''
-     type←⍺⊣0          ⍝ 0 (default) .array ... - 1 .apla ...
+     type←⍺⊣0          ⍝ 0 (default) .function ... - 1 .aplf ...
 ⍝ array function operator script class interface list  matrix string unknown
 ⍝ 2     3        4        9.1    9.4   9.5       2     2      2      0
      ns←(1↓¨MS.AZ)(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}type⊃MS.AZ MS.AY

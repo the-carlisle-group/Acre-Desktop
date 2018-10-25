@@ -1,0 +1,35 @@
+ EditFix←{⍺←⊢
+     (⍵≡'Start'):{                                   ⍝ from Start
+         SV.eventnumber←enum←3611                    ⍝ 26⊥⎕A⍳'FIX'
+         (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
+         SV.fixandafter←UT.ds¨qed.(onFix onAfterFix) ⍝ odd extra nesting!
+         qed.(onFix onAfterFix)←(evarg←0⊃⎕XSI)0
+         ⎕SE.Event,←⊂enum,⊂evarg ⋄ ⎕SE.⎕WX←wx        ⍝ reset ⎕WX
+         {0}SV.itemvalue←editStore ⎕NS''             ⍝ create value store
+     }''
+     (⍵≡'Close'):{                                   ⍝ from Close
+         qed←'⎕SE'⎕WG'Editor'
+         (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed.(onFix onAfterFix)←SV.fixandafter
+         ⎕SE.⎕WX←wx ⋄ {0}'⎕SE'∘⎕WS UT.ep'Event'SV.eventnumber 0}''
+     {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:
+     enum←SV.eventnumber
+     (editor event value space name new)←6↑⍵         ⍝ so long as onFix unchanged
+     first←event≢enum ⋄ sn←1 ssp⊂⍕space              ⍝ is space scripted?
+     fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(≢∘∊⍨new)∧2≠space.⎕NC name
+     (('⎕'∊fqn)≥(⎕NC⊂fqn)∊0,validAPLType''):
+     first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
+         z←SV.itemvalue editStore nv
+         z←⎕NQ'⎕SE'enum value space name new}''
+     new←MS.GU≡oldval←SV.itemvalue editStore fqn
+     ('⎕'∘∊∨0≥#.⎕NC∘⊂)fqn:                           ⍝ doesn't exist or bad name
+     (oldval≡newval←⊃2⊃getValue,⊂fqn):               ⍝ unchanged
+     0=dat←whichProject fqn:{}{
+         ⍵}showMsg(~'['∊fqn)/UT.bx MS.DI,' "',fqn,'".'
+     type←⊃nameClass fqn
+     z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
+     z←showMsg MS.DK,⊃dat setChange fqn type newval
+⍝ ⍺ probably missing
+⍝ ⍵ 'Start' or 'Close' or callback argument
+⍝ ← 0 for 'Start' and 'Close' - else none
+⍝ Phil Last                                          ⍝ 2008-05-18 07:48
+ }

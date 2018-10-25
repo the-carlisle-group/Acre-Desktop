@@ -1,6 +1,5 @@
  quote←{
-⍝     scape q,(t⌿⍨1+q=t←⍕⍵),q←''''
      ''''{1⌽⍺ ⍺,⍵/⍨1+⍺=⍵}⍕⍵
-⍝ - double existing and escape ctrl-chrs
+⍝ - and double existing
 ⍝ Phil 2018-10-08 13.04
  }

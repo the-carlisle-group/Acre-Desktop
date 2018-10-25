@@ -5,7 +5,7 @@
      0≠0⊥bp:error(⌽∧\⌽bp≥0⊥bp)s arg SV.syn SV.unc   ⍝ [] (
      z←x\¯1⌽⊃∨/'[)' '(]'⍷¨⊂arg/⍨x←q<arg∊'[]()'
      ∨/z:error z s arg SV.syn SV.int                ⍝ [(])
- ⍝    ∨/z←q⍱arg∊SV.unq:error z s arg SV.non SV.cher  ⍝
+⍝    ∨/z←q⍱arg∊SV.unq:error z s arg SV.non SV.cher  ⍝
      0
 ⍝ arg    - flattened arg to decode
 ⍝ q      - where quoted (excluding closing quote)

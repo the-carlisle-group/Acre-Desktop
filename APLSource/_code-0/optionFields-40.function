@@ -1,15 +1,16 @@
  optionFields←{⍺←⊢
+     dflt←,''
      opts←,⊂'casecode:on'
      opts,←⊂'confirm:'
      opts,←⊂'dependencies:on'
-     opts,←⊂'help'
-     opts,←⊂'messages:on'
+     dflt,←opts,←⊂'help'
+     dflt,←opts,←⊂'messages:on'
      opts,←⊂'track:on'
      opts,←⊂'when[=]'
 
      in←3⍴¨opts
      opts←' -'∘,¨opts
-     {1↓⊃,/opts[in⍳in∩3⍴¨' 'sep ⍵]}¨⊂if≡⍵
+     {1↓⊃,/opts[in⍳in∩3⍴¨dflt,' 'sep ⍵]}¨⊂if≡⍵
 ⍝ convert strings of initials to option specs
 ⍝ see cmdDefs
 ⍝ Phil 2018-04-03 12.16

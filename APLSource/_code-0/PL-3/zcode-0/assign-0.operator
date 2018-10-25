@@ -1,5 +1,5 @@
  assign←{
-     ns←⎕NS''
+     ns←#.⎕NS''
      d←{⍵⌿⍨(0=ns.⎕NC⊣/⍵)>∊∘∊⍨⊢/⍵}↑(2↑((~<\)'←'=⊢)c_⊢)¨⍵
      ns⊣ns.{⍎⍺,'←⍵'}∘⍺⍺/d
 ⍝ ⍺⍺ recall dix∘decode

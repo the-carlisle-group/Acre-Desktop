@@ -6,7 +6,7 @@
      ∨/t∧q<'←'=⍵:⍺⍺ assign pts
      res←⍺⍺¨pts
      '('=⊃⍵:res
-     ↑1/¨res ⍝     ↑s(1∘/)else(1∘/¨)res
+     ↑1/¨res
 
 ⍝ ⍺⍺ recall dix∘decode
 ⍝ ⍵ '(...⋄...)' or '[⋄...⋄...]' or '[⋄a←...⋄b←...]'
