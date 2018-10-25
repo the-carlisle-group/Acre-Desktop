@@ -1,6 +1,6 @@
  nameClass←{⍺←⊢
      null⊢fqn←,⊂if≡⍵:''
-     type←⍺⊣0          ⍝ 0 (default) .function ... - 1 .aplf ...
+     type←⍺⊣1          ⍝ 0 .function ... - 1 (dflt) .aplf ...
 ⍝ array function operator script class interface list  matrix string unknown
 ⍝ 2     3        4        9.1    9.4   9.5       2     2      2      0
      ns←(1↓¨MS.AZ)(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}type⊃MS.AZ MS.AY
@@ -20,5 +20,5 @@
      }/0,⍪fqn/⍨a←c=9.1
      r
 ⍝ return identifier also used as filetype
-⍝ Phil Last 2018-01-15 15.35
+⍝ Phil 2018-10-25 22.09
  }
