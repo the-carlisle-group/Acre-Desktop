@@ -89,7 +89,7 @@
          help←'Write items as if changed in the editor'
          options←''
          result←''
-         syntax←'item(s)'
+         syntax←'item(s) | space'
          type←'item'
          ][
          command←'Stats'
@@ -120,5 +120,5 @@
      r.options←optionFields r.options
      UT.is r
 ⍝ see optionFields for valid options
-⍝ Phil 2018-10-13 08.23
+⍝ Phil 2018-10-29 14.07
  }

@@ -1,10 +1,10 @@
  configFields←{⍺←⊢
      {
-         ⍵.CaseCode←'On'     ⍝ integer suffix to name elements
-         ⍵.KeepHistory←'On'  ⍝ store .change- and .delete-files
-         ⍵.ProjectSpace←''   ⍝ #[.path]
-         ⍵.Open←''           ⍝ Open with this project
-         ⍵.StartUp←''        ⍝ executed after OpenProject
+         ⍵.CaseCode←'Off'     ⍝ integer suffix to name elements
+         ⍵.KeepHistory←'Off'  ⍝ store .change- and .delete-files
+         ⍵.ProjectSpace←''    ⍝ #[.path]
+         ⍵.Open←''            ⍝ Open with this project
+         ⍵.StartUp←''         ⍝ executed after OpenProject
          ⍵
      }#.⎕NS''
 ⍝ ⍵ ?

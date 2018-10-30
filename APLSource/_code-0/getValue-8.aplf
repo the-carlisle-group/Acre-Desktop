@@ -3,14 +3,16 @@
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
      nc←⊃⌊/MS.AY MS.AZ⍳¨⊂type
      val←0⍴⍨⍴fqn
-     (x/val)←PL.scape⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist
-     (x/val)←PL.scape⊢∘ntbs∘⍎/0,⍪fqn/⍨x←nc=ns.charmat
-     (x/val)←PL.scape sep∘⍎/UT.CR,⍪fqn/⍨x←nc=ns.charstring
-⍝     (x/val)←(UT.CR sep PL.format)∘⍎/2,⍪fqn/⍨x←nc=ns.array
-     (x/val)←PL.scape(UT.CR sep PL.format)∘⍎/2,⍪fqn/⍨x←nc=ns.array
+     esc←PL.scape
+     fmt←{0::0 ⋄ PL.format ⍵}
+     (x/val)←esc⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist
+     (x/val)←esc⊢∘ntbs∘⍎/0,⍪fqn/⍨x←nc=ns.charmat
+     (x/val)←esc sep∘⍎/UT.CR,⍪fqn/⍨x←nc=ns.charstring
+     (x/val)←esc(UT.CR sep fmt)∘⍎/2,⍪fqn/⍨x←nc=ns.array
      (x/val)←⊢∘⎕NR/0,⍪fqn/⍨x←nc∊ns.(function operator)
      (x/val)←{0::0 ⋄ ⎕SRC⍎⍵}/0,⍪fqn/⍨x←nc∊ns.(script class interface)
-     fqn type val/¨⍨⊂~val∊0                   ⍝ remove anything else
+     z←(~∨/e)qed MS.DL'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)fqn/⍨e←val∊0
+     fqn type val/¨⍨⊂~e
 ⍝ ⍵ fqns
 ⍝ ← fqn type val - of only arrays, defined fns and ops and scripts
 ⍝   filtered and re-ordered

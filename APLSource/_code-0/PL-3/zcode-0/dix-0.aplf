@@ -3,12 +3,12 @@
          key←''''''(,'⍬')
          val←''⍬
          ⍵.(key val)←⍺⌽key val
-         ⍵.(off wid)←2 80
+         ⍵.(off wid)←3 80
          ⍵
      }⎕NS''
 ⍝ ⍵ 1 encode - 0 decode
 ⍝ ← dix
 ⍝ assume no identity element between key and val
 ⍝ see push, pull
-⍝ Phil 2018-09-05 12.33
+⍝ Phil 2018-10-29 14.07
  }

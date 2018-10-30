@@ -17,14 +17,16 @@
      cfg.CaseCode←dat.case⊃MS.GB MS.GA
      z←(1⌽MS.HH MS.HG,1↓¯1↓UT.CR sep PL.format cfg)MS.HI ⎕NPUT dat.config
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
-     z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
      z←(⊂MS.NB MS.FX)⎕NPUT dat.folder,MS.FM ⍝ git specific -
-     fqn←validItems space UT.li validAPLType''
+     nms~←fqn←validItems⊢nms←space UT.li⍳11 ⍝ validAPLType''
+     nms/⍨←~z\{⍵≡⍕⍎⍵}/0,⍪nms/⍨z←9.1=⎕NC nms
+     z←(null nms)qed MS.BD'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)nms
+     z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0
 ⍝ see openProject CreateProject
-⍝ Phil Last 2018-01-15 22.16
+⍝ Phil 2018-10-30 14.59
  }

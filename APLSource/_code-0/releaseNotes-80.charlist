@@ -1,10 +1,23 @@
-Acre 4.8.1.036 2018-10-25
-Acre 4.8.0.035 2018-10-25
-  
+Acre 4.8.1.040 2018-10-30
+
 Release Notes
 
 Acre Desktop  
-============
+============       
+CaseCode and KeepHistory now default to 'Off' for a new project.
+Call CreateProject with the -casecode='on' flag to reverse that.
+Either can still be edited in the config file and will take effect at the
+following OpenProject.
+CreateProject will now pop up windows giving the names and ⎕NC of all items 
+NOT saved in the project whether by design or error.
+APLAN is now capable of encoding and decoding arrays containing ⎕NULLs 
+'though not ⎕ORs or ⎕UCS 0.
+But now prohibits the evaluation of expressions containing unquoted 
+characters other than '[(←⍴,⊂⋄/⍬⎕)]', ⎕D and name chars.
+-------------------
+Acre 4.8.1.036 2018-10-25
+Acre 4.8.0.035 2018-10-25
+  
 Acre and SALT
 
 If an edited item is not in a tracked project acre now passes control to

@@ -21,7 +21,7 @@
              ⍵.unc←'unclosed delimiter'
              ⍵.unx←'unexpected lineend'
              ⍵.CR←⎕UCS 13
-             ⍵.sqz←'[(←⍴,⊂⋄/⍬)]'
+             ⍵.sqz←'[(←⍴,⊂⋄/⍬⎕)]'
              ⍵.unq←⍵.sqz,'''¯.',{⍵/⍨0≤⎕NC'_',,[⍬]⍵}⎕UCS⍳9999
              ⍵.special←'\0btnfr'{⍵ ⍺}'\',⎕UCS 0 8 9 10 12 13
              ⍵}⎕NS''

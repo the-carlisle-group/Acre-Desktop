@@ -28,7 +28,7 @@
 
          ⍵.BA←'⎕SE.SALTUtils.EditorFix' ⍝ this is SALT callback on Fix
          ⍵.BC←'Please wait - '
-         ⍵.BD←''
+         ⍵.BD←'Invalid items'
          ⍵.BF←'Version '
          ⍵.BG←'Refresh'
          ⍵.BH←'quadVars'
@@ -65,7 +65,7 @@
          ⍵.DI←'No tracked project can handle item'
          ⍵.DJ←'!!! Not fixed '
          ⍵.DK←'Saved: '
-         ⍵.DL←''
+         ⍵.DL←'Can`t format'
          ⍵.DM←'Syntax: '
          ⍵.DN←'!!! Trapped error in '
          ⍵.DO←' fixed as '
