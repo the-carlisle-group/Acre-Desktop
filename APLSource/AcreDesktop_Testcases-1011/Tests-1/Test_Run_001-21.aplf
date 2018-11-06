@@ -27,10 +27,10 @@
  {}∆RunUcmd'Projects -messages=''#.AcreMessages'''  ⍝ Make sure that at least one acre command was executed before doing a `run`.
  →PassesIf 0∊⍴#.AcreMessages
 
- →PassesIf'.function'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
- →PassesIf'.script'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'
- →PassesIf'.class'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Goo'
- →PassesIf'.interface'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Boo'
+ →PassesIf'.aplf'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
+ →PassesIf'.apln'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'
+ →PassesIf'.aplc'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Goo'
+ →PassesIf'.apli'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Boo'
  →PassesIf'.charlist'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.vtv'
  →PassesIf'.charmat'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.charmat'
  →PassesIf'.charstring'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.charvector'
@@ -40,7 +40,7 @@
  →PassesIf'.array'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.empty1'
  →PassesIf'.charstring'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.empty2'
  →PassesIf'.*'≡⊃'nameclass'⎕SE.acre.run'Certainly_unknown'
- →PassesIf'.script' '.class' '.interface'≡'nameclass'⎕SE.acre.run(⊂'#.',projectName),¨'.Foo' '.Goo' '.Boo'
+ →PassesIf'.apln' '.aplc' '.apli'≡'nameclass'⎕SE.acre.run(⊂'#.',projectName),¨'.Foo' '.Goo' '.Boo'
  →PassesIf 0∊⍴⊃'nameclass'⎕SE.acre.run'#.',projectName,'.container'
  →PassesIf'.*'≡⊃'nameclass'⎕SE.acre.run'#.DoesNotExist'
 

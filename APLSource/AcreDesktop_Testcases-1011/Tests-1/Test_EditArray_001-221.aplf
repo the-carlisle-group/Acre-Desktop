@@ -13,7 +13,7 @@
      'TEMP'#.⎕NS''
      #.TEMP.Hello←txt←'Please make a change and then press <escape> in this window'
      acreDir←##.FilesAndDirs.GetTempPath,⊃⎕SI
-     result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP'
+     result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP -casecode=on'
      →GoToTidyUp'#.TEMP'≢result
      result←∆RunUcmd'EditArray #.TEMP.Hello'
      ⎕←'   Press <Enter> when you have changed the variable "Hello" and then closed the edit window.'

@@ -1,20 +1,21 @@
  R←Test_CreateProject_004(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list;noOf
-⍝ Create a project with a nested namespace. Top level has namespace script, sub level a ref pointing to this.
+⍝ Create a project with a function. Acre once produced (wrongly) a message that "Hello" is an invalid item.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
+
+ R←∆Inactive      ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝ Check the error message once we've drawn a conclusion
+ :Return
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FIX':Namespace Foo' '∇r←Hello' 'r←''World''' '∇' ':EndNamespace'
- 'Sub'ref.⎕NS''
- ref.Sub.Goo←⍎'#.',projectName,'.Foo'
  noOf←⊃⍴∆RunUcmd'Projects'
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -22,7 +23,7 @@
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
  →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
- →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.script')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
+ →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.apln')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
  R←∆OK
 

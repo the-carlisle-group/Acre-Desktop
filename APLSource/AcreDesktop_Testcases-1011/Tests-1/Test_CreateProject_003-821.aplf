@@ -12,7 +12,7 @@
  noOf←⊃⍴∆RunUcmd'Projects'
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -20,7 +20,7 @@
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
  →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
- →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.script')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
+ →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.apln')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
  R←∆OK
 

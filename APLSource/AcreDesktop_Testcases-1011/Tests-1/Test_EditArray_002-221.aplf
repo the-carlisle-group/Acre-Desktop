@@ -15,7 +15,7 @@
      'TEMP'#.⎕NS''
      #.TEMP.Hello←txt←'Please make a change and then press <escape> in this window'(1 2 3(40 50))
      acreDir←##.FilesAndDirs.GetTempPath,⊃⎕SI
-     result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP'
+     result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP -casecode=on'
      →GoToTidyUp'#.TEMP'≢result
      result←∆RunUcmd'EditArray #.TEMP.Hello'
      ∆WaitAndProcess 0.2

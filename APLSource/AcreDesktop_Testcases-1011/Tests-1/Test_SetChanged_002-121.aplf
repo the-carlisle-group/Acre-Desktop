@@ -9,7 +9,7 @@
  #.⎕SHADOW projectName
  projectName #.⎕NS''
 
- result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName
+ result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName,' -casecode=on -keephistory=on'
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
  result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName

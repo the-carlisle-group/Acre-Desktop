@@ -10,7 +10,7 @@
  ref.⎕FX'r←Hello' 'r←''World'''
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -18,7 +18,7 @@
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
  →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
- →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Hello-1.function')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
+ →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Hello-1.aplf')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
  R←∆OK
 

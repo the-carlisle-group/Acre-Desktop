@@ -11,12 +11,12 @@
  ref.⎕FX'r←Hello' 'r←''World'''
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
  :Else
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello-1.function'
+ →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello-1.aplf'
  F.RmDir projectPath
  {}∆RunUcmd'Projects'
 
@@ -27,7 +27,16 @@
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello.function'
+ →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello.aplf'
+ F.RmDir projectPath
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName  ⍝ Default is "off"
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName
+ →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello.aplf'
  F.RmDir projectPath
 
  R←∆OK

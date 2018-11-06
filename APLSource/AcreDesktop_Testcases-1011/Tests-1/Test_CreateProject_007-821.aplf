@@ -1,25 +1,26 @@
  R←Test_CreateProject_007(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list;noOf;expected
-⍝ Create a project with a nested namespace. Top level owns a class, sub level a ref pointing to this.
+⍝ Create a project with a public method in a class.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
+
+ R←∆Inactive      ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝ Check the error message once we've drawn a conclusion
+ :Return
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FIX':Class Foo' '∇r←Hello' ':Access Public Shared' 'r←''World''' '∇' ':EndClass'
- 'Sub'ref.⎕NS''
- ref.Sub.Goo←⍎'#.',projectName,'.Foo'
  noOf←⊃⍴∆RunUcmd'Projects'
 
- result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
  →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
  list←'/'##.APLTreeUtils.Last¨F.EnforceSlash¨⊃F.Dir projectPath,'/APLSource/*'
- expected←'Foo-1.class' 'quadVars-10.script'  ⍝ The latter is added automatically!
+ expected←'Foo-1.aplc' 'quadVars-10.apln'  ⍝ The latter is added automatically!
  →GoToTidyUp~list ∆LazyMatch expected
 
  R←∆OK
