@@ -1,0 +1,19 @@
+ R←Test_APLAN_003(stopFlag batchFlag);⎕TRAP
+⍝ Check simple matrices.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+
+ #.TEMP.vars←2 2⍴⍳4
+ #.TEMP.aplan←∆RunUcmd'toaplan #.TEMP.vars'
+ →PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
+
+ #.TEMP.vars←2 2⍴'a'
+ #.TEMP.aplan←∆RunUcmd'toaplan #.TEMP.vars'
+ →PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
+
+ R←∆OK
+⍝Done

@@ -1,0 +1,19 @@
+ R←Test_APLAN_002(stopFlag batchFlag);⎕TRAP
+⍝ Check simple vectors.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+
+ #.TEMP.vars←1 2 3
+ #.TEMP.aplan←∆RunUcmd'toaplan #.TEMP.vars'
+ →PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
+
+ #.TEMP.vars←'aa' 'bb' 'cc'
+ #.TEMP.aplan←∆RunUcmd'toaplan #.TEMP.vars'
+ →PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
+
+ R←∆OK
+⍝Done

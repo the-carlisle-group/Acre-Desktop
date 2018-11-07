@@ -1,0 +1,15 @@
+ R←Test_APLAN_005(stopFlag batchFlag);⎕TRAP
+⍝ Check mixed matrix.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+
+ #.TEMP.vars←2 2⍴1 2 'c' 'foo'
+ #.TEMP.aplan←∆RunUcmd'toaplan #.TEMP.vars'
+ →PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
+
+ R←∆OK
+⍝Done
