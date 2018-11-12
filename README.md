@@ -43,11 +43,11 @@ However, a project may be instantiated in any namespace by specifying an additio
 Items (functions, operators, classes, variables, etc.) in an open project are added and edited using the IDE as one normally would.
 Acre Desktop saves all changes. There is no concept of saving a project.  The traditional system command )SAVE is not used.
 A typical work session thus involves starting up the interpreter, opening one or more projects, editing and creating items and then )OFF.
-While Opening a project brings the project code into the workspace and tells AcreDesktop to monitor the project,
-a project may also be loaded, rather than opened using the Load command:
+By default Opening a project brings the project code into the workspace and tells AcreDesktop to monitor the project however
+a project may also be opened with the `-track=off` option:
 
 ~~~
-]acre.LoadProject   c:/Projects/MyProject
+]acre.OpenProject   c:/Projects/MyProject -track=off
 ~~~
 
 This brings the code into the workspace, but Acre Desktop does not monitor it.
