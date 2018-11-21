@@ -11,12 +11,11 @@
      (x/res)←fixSrc⌿↑spc val/¨⍨⊂x←nc=ns.script
      spc←fixNs eu spc
      data←↓⍉↑(⍳⍴nam)nam spc val
-     fixVar←{0::0 ⋄ x n s v←⍵ ⋄ 1⊣n s.{⍎⍺,'←⍵'}⍺⍺ v}
+     fixVar←{0::0 ⋄ x n s v←⍵ ⋄ 1⊣s n is ⍺⍺ v}
      fixFn←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←s.⎕FX v:1 ⋄ 0∊∊r:0 ⋄ 1⊣ers⍪←x r}
      fixSrc←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←'.'UT.nn⍕s.⎕FIX v:1 ⋄ 1⊣ers⍪←x r}
      fixClss←~{⍵\~1↓0,fixSrc/0,⍪⍵/⍺}⍣≡
 
-⍝     (x/res)←PL.decode fixVar/0,⍪data/⍨x←nc=ns.array
      (x/res)←PL.(decode scrape)fixVar/0,⍪data/⍨x←nc=ns.array
      (x/res)←PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charlist
      (x/res)←↑∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charmat
@@ -24,9 +23,9 @@
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
      z←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
-         showMsg'* ',t,' ',f,MS.DO,c,' ',n
+         logMsg'* ',t,' ',f,MS.DO,c,' ',n
      }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨nameClass fqn
-     z←showMsg,/(⊂MS.DJ),⍉↑typ' 'fqn/¨⍨⊂~res
+     z←logMsg,/(⊂MS.DJ),⍉↑typ' 'fqn/¨⍨⊂~res
      (⍋ord)∘{⍵[⍺]}¨⍣ren⊢((res∨ren)∘/¨fqn typ val),ren/⊂res
 ⍝ [⍺] 0|1 - compress or return fixed flags - dflt 0
 ⍝ ⍵ fqn type value

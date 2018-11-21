@@ -1,0 +1,7 @@
+ {r}←∆GetLog no;debugFlag
+ :If 0∊⍴no
+     r←⎕SE.UCMD'acre.log 1000'
+ :Else
+     r←⎕SE.UCMD'acre.log ',⍕no
+ :EndIf
+⍝Done

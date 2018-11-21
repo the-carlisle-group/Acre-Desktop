@@ -28,7 +28,7 @@
 
          ⍵.BA←'⎕SE.SALTUtils.EditorFix' ⍝ this is SALT callback on Fix
          ⍵.BC←'Please wait - '
-         ⍵.BD←'Invalid items'
+         ⍵.BD←'Not stored by ',MS.NA
          ⍵.BF←'Version '
          ⍵.BG←'Refresh'
          ⍵.BH←'quadVars'
@@ -38,7 +38,7 @@
          ⍵.BL←'⍝ its purpose is to set the environment for the project.'
          ⍵.BM←'* Cannot rename file '
          ⍵.BN←MS.BJ MS.BK MS.BL
-         ⍵.BO←'Added script "',MS.BH,'"'
+         ⍵.BO←'Add suffix ".*" to include space and contents'
          ⍵.BP←' may require attention.'
          ⍵.BU←'History is disabled for '
          ⍵.BV←'No change'
@@ -53,6 +53,7 @@
          ⍵.CF←'Return a change-file-name from an item-name'
          ⍵.CG←'Return a source-file-name from an item-name'
          ⍵.CH←'Return a delete-file-name from an item-name'
+         ⍵.CI←'Log file - `hide` | `show` | `clear` | `all` | no. of rows to get'
 
          ⍵.DA←' - Local history purged'
          ⍵.DB←'! Problem reading '
@@ -79,7 +80,7 @@
          ⍵.EN←'Writing '
          ⍵.EO←'Reading '
          ⍵.EP←'Converting '
-         ⍵.EQ←''
+         ⍵.EQ←'Can`t write duplicate files'
          ⍵.ER←'Opening'
          ⍵.ES←'Copying '
          ⍵.ET←'Deleting '
@@ -110,7 +111,7 @@
          ⍵.FV←'AcreConfig'
          ⍵.FW←'File: '
          ⍵.FX←'aplcore'
-         ⍵.FY←''
+         ⍵.FY←'acreAPI'
          ⍵.FZ←'AcreDesktop_Testcases'
 
          ⍵.GA←'On'
@@ -127,7 +128,7 @@
          ⍵.GZ←'.txt'
 
          ⍵.HA←'https://github.com/the-carlisle-group/Acre-Desktop/wiki/Command-Reference#'
-         ⍵.HB←''
+         ⍵.HB←' not yet implemented'
          ⍵.HE←'latest'
          ⍵.HG←':Namespace '
          ⍵.HH←':EndNamespace '
@@ -135,6 +136,7 @@
          ⍵.HJ←'GetBuildID'
          ⍵.HM←MS.NA,MS.EW,MS.GZ
          ⍵.HN←'.change'
+         ⍵.HO←MS.NA,'.',MS.EW
 
          ⍵.IB←'nameclass'
          ⍵.IC←'changefile'

@@ -1,0 +1,5 @@
+ deletefile←{⍺←⊢
+     ##.(,∘MS.EX if nonul(-≢MS.HN)↓⊃if≢getChangeFilenames itemMethod 1⍴⊂if≡⍵)
+⍝ ##.codeHook
+⍝ Phil 2018-11-14 16.43
+ }

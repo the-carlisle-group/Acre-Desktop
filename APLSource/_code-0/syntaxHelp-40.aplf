@@ -1,5 +1,5 @@
  syntaxHelp←{
-     CD.command(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}CD.syntax
+     ⊃(⎕NS'')CD.command is CD.syntax
 ⍝ ns of command syntax uses CD ex setEnvironment & cmdDefs
 ⍝ Phil 2018-03-31 17.53
  }

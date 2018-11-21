@@ -1,7 +1,11 @@
- SetChanged←{⍺←⊢
-     dat←⍺
-
-     dat setChange getValue validItems{(⍎⊃⍵)UT.li⍳10}if(⊃0∘ssp∧1=≢)⍵
+ SetChanged←{dat←⍺ ⋄ arg←⍵
+     space←⊃0∘ssp∧1=≢
+     space arg:''⊣logMsg MS.BO
+     arg←¯2∘↓¨if('.*'≡¯2↑⊃)if(1=≢)arg
+     s←space arg
+     src←⍎s⊃dat.nspath(⊃arg)
+     nms←src UT.li⍳11
+     dat setChange getValue nms(dat caseOK)validItems s⊃arg nms
 ⍝
-⍝ Phil 2018-02-18 21.42
+⍝ Phil 2018-11-14 00.15
  }

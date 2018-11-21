@@ -1,0 +1,6 @@
+ changes←{⍺←⊢
+     ##.OPT.when←0 ⍝    ##.MS.HB
+     ##.(⊃∘whichProject Changes⊢),⊂⍕⍵
+⍝      ##.Changes
+⍝ Phil 2018-11-16 10.37
+ }

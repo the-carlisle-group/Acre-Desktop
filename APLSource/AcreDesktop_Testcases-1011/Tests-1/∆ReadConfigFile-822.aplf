@@ -1,0 +1,15 @@
+ (data configFilename)←∆ReadConfigFile projectName
+⍝ For the time being the name of the acre config file might be either
+⍝ * acreconfig.txt  (old)
+⍝ * acre.config     (new)
+⍝ We try the olf ojne and then the new and return the correct filename.
+⍝ If we cannot find either we generate an error.
+ configFilename←projectName,'\acreconfig.txt'
+ :If 0=##.FilesAndDirs.IsFile configFilename
+     configFilename←projectName,'\acre.config'
+     :If 0=##.FilesAndDirs.IsFile configFilename
+         'No acre config file found'⎕SIGNAL 6
+     :EndIf
+ :EndIf
+ data←A.ReadUtf8File configFilename
+⍝Done

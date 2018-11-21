@@ -1,17 +1,21 @@
  setEnvironment←{⍺←⊢                  ⍝ only if no projects
-     top←UT.rs⊢ici←⎕THIS              ⍝ child of # or ⎕SE
-     ici.SV←top.⎕NS''
-     SV.setupcomplete←0
-     SV.(errmsgs opened)←'' ''
-     path ws name←SV.(inipath workspace systemname)←⍵
-     ici.MS←allMessages name
-     ici.EN←aplErrors''
-     ici.CD←cmdDefs name
-     ici.SX←syntaxHelp name
+     z←⍵{path←⍺
+         top←UT.rs ⍵            ⍝ child of # or ⎕SE
+         ⍵.SV←top.⎕NS''
+         SV.setupcomplete←0
+         SV.(errmsgs opened)←'' ''
+         path ws name←SV.(inipath workspace systemname)←path
+         ⍵.MS←allMessages name
+         ⍵.CD←cmdDefs name
+         ⍵.SX←syntaxHelp name
+         ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
+         ⍵
+     }⎕THIS
      SV.sessionstart←sessionStart''
      z←editFix'Start'                 ⍝ sets other stuff in SV
-⍝     ici.OPT←{⍵⊣⍵.messages←'on'}⎕NS'' ⍝ pro-tem as this runs
-     z←showMsg⍕3⍴getVersion''
+     z←logMsg⍕getVersion''
+     z←MP.⎕ED⍠('ReadOnly' 1)&'log'
+     z←⍴⎕SE MS.FY is setAPI''
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
 ⍝ ⍵ ?

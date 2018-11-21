@@ -1,0 +1,5 @@
+ itemname←{⍺←⊢
+     ##.(itemName¨⊂if≡⍵)
+⍝ ##.codeHook
+⍝ Phil 2018-11-14 16.43
+ }

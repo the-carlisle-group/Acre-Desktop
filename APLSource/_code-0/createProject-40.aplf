@@ -1,27 +1,25 @@
  createProject←{
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     ∨/nil⊢folder nspath←2↑⊂if≡⍵:0⊣showMsg MS.DM,SX.CreateProject
+     ∨/nil⊢folder nspath←2↑⊂if≡⍵:0⊣logMsg MS.DM,SX.CreateProject
      dat.folder←fPath folder,'/'
-     ⎕NEXISTS dat.folder:0⊣showMsg MS.DF
-     dat.nspath←⊃prefSpace⊂nspath
-     ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:0⊣showMsg MS.DC ⍝ 1=≢ => ,'#'
+     ⎕NEXISTS dat.folder:0⊣logMsg MS.DF
+     '⎕'∊dat.nspath←⊃prefSpace⊂nspath:0⊣logMsg MS.DC
+     ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:0⊣logMsg MS.DC ⍝ 1=≢ => ,'#'
 
-     dat.(hist case)←1,nOff OPT.casecode
+     dat.(case hist)←On¨OPT.(casecode keephistory)
      dat.(config source code changes latest)←{
-         ⍵}dat.folder∘,¨MS.HM MS.GY,MS.NB∘,¨''MS.EU MS.HE
-⍝    rem prev version if existed
+         ⍵}dat.folder∘,¨MS.HO MS.GY,MS.NB∘,¨''MS.EU MS.HE
      z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
      z←fixQV⊢space←⍎dat.nspath ⎕NS''
      z←3 ⎕MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
-     cfg.CaseCode←dat.case⊃MS.GB MS.GA
-     z←(1⌽MS.HH MS.HG,1↓¯1↓UT.CR sep PL.format cfg)MS.HI ⎕NPUT dat.config
+     cfg.(CaseCode KeepHistory)←dat.(case hist)⊃¨⊂MS.GB MS.GA
+     z←(UT.CR sep PL.format cfg)MS.HI ⎕NPUT dat.config
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
      z←(⊂MS.NB MS.FX)⎕NPUT dat.folder,MS.FM ⍝ git specific -
-     nms~←fqn←validItems⊢nms←space UT.li⍳11 ⍝ validAPLType''
-     nms/⍨←~z\{⍵≡⍕⍎⍵}/0,⍪nms/⍨z←9.1=⎕NC nms
-     z←(null nms)qed MS.BD'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)nms
-     z←MS.FV space.{⍎⍺,'←⍵'}cfg⊣cfg.ProjectFolder←dat.folder
+     fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11
+     fqn(dat caseOK⍨)←fqn⊣notStored nms~fqn
+     z←space MS.FV is cfg⊣cfg.ProjectFolder←dat.folder
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''

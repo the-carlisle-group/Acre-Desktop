@@ -13,6 +13,7 @@
      #.⎕SHADOW projectName
      ref←⍎projectName #.⎕NS''
      ref.⎕FX'r←Hello' 'r←''World'''
+     ∆ClearLog
 
      :Trap 0
          result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
@@ -30,4 +31,5 @@
 
 ∆TidyUp:
  ⎕SE.UCMD'UDebug ',{⍵↓⍨⍵⍳' '}debugWas
+ ∆ClearLog
 ⍝Done

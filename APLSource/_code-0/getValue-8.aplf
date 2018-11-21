@@ -11,7 +11,8 @@
      (x/val)←esc(UT.CR sep fmt)∘⍎/2,⍪fqn/⍨x←nc=ns.array
      (x/val)←⊢∘⎕NR/0,⍪fqn/⍨x←nc∊ns.(function operator)
      (x/val)←{0::0 ⋄ ⎕SRC⍎⍵}/0,⍪fqn/⍨x←nc∊ns.(script class interface)
-     z←(~∨/e)qed MS.DL'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)fqn/⍨e←val∊0
+     msg←(∨/e)/↓⍕MS.DL'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)fqn/⍨e←(val∊0)>0=⎕NC fqn
+     z←⍴logMsg/UT.ht msg
      fqn type val/¨⍨⊂~e
 ⍝ ⍵ fqns
 ⍝ ← fqn type val - of only arrays, defined fns and ops and scripts

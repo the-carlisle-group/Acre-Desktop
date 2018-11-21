@@ -1,8 +1,8 @@
- {r}←{messageFlag}∆RunUcmd cmd
- :If ∨/' -m'⍷cmd
-     r←⎕SE.UCMD'acre.',cmd
+ {r}←∆RunUcmd cmd;debugFlag
+ debugFlag←' -'≡¯2↑cmd
+ :If 'createproject'{⍺≡##.APLTreeUtils.Lowercase(⍴,⍺)↑⍵}cmd
+     r←⎕SE.UCMD'acre.',((¯2×debugFlag)↓cmd),' -keephistory=on ',debugFlag/' -'
  :Else
-     messageFlag←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'messageFlag'
-     r←⎕SE.UCMD'acre.',cmd,' -messages="',((messageFlag+⎕IO)⊃'off' 'on'),'"'
+     r←⎕SE.UCMD'acre.',((¯2×debugFlag)↓cmd),debugFlag/' -'
  :EndIf
 ⍝Done

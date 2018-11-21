@@ -1,0 +1,5 @@
+ version←{⍺←⊢
+     ##.(' 'sep⊃releaseNotes⊣'')
+⍝ ##.codeHook
+⍝ Phil 2018-11-14 16.43
+ }

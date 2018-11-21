@@ -6,7 +6,7 @@
          0::⊃,/MS.BM'"'⍺'"'MS.EZ'"'⍵'"'⊣⎕NUNTIE t
          0⊣⎕NUNTIE ⍵ ⎕NRENAME ⍺ ⎕NTIE t
      }/ren
-     0⊣showMsg msg~0
+     0⊣logMsg msg~0
 ⍝ ⍺ dat
 ⍝ ⍵ paths fqns
 ⍝   if source filename for fqn ≢ path then rename path

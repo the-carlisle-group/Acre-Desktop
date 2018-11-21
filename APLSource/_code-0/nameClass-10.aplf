@@ -3,7 +3,7 @@
      type←⍺⊣1          ⍝ 0 .function ... - 1 (dflt) .aplf ...
 ⍝ array function operator script class interface list  matrix string unknown
 ⍝ 2     3        4        9.1    9.4   9.5       2     2      2      0
-     ns←(1↓¨MS.AZ)(⎕NS'').{⎕THIS⊣⍎⍕⍺,'←⍵'}type⊃MS.AZ MS.AY
+     ns←⊃(⎕NS'')(1↓¨MS.AZ)is type⊃MS.AZ MS.AY
      c←9(⊢-1|>×⊢)(⎕NC fqn)(⊣×∊)validAPLType'' ⍝ floor < 9
      t←ns.(array function operator script class interface),⊂MS.AX
      r←t[2 3 4 9.1 9.4 9.5⍳c]

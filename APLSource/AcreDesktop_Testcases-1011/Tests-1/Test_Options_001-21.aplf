@@ -4,23 +4,14 @@
 
  R←∆Failed
 
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
- #.⎕SHADOW'AcreFunctionResult'
- 'AcreFunctionResult'#.⎕NS''
- #.AcreFunctionResult.Buffer←''
+ ∆ClearLog
 
- {}∆RunUcmd'Projects -messages=''#.AcreMessages'''
- →PassesIf 0∊⍴#.AcreMessages            ⍝ Nothing to tell
- #.AcreMessages←''
+ {}∆RunUcmd'Projects'
+ →PassesIf 0∊⍴∆GetLog ⍬                 ⍝ Nothing to tell yet
 
- {}∆RunUcmd'Stats -messages=''#.AcreMessages'''
- →PassesIf~0∊⍴#.AcreMessages            ⍝ Should be syntax hint (project is missing)
-
- #.AcreFunctionResult.⎕FX'Collect←{' 'Buffer,←⊂⍵' '⍬' '}'
- {}∆RunUcmd'Projects -messages=''#.AcreFunctionResult.Collect'''
- →PassesIf 0∊⍴#.AcreFunctionResult.Buffer
- {}∆RunUcmd'Stats -messages=''#.AcreFunctionResult.Collect'''
- →PassesIf~0∊⍴#.AcreFunctionResult.Buffer
+ {}∆RunUcmd'Stats'
+ →PassesIf 0≠≢∆GetLog ⍬                 ⍝ Should be syntax hint (project is missing)
 
  R←∆OK
+ ∆ClearLog
+⍝Done

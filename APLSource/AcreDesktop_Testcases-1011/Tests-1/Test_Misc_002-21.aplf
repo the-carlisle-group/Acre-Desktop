@@ -9,12 +9,11 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
+ ∆ClearLog
 
  noOfOpenProjects←⊃⍴∆RunUcmd'Projects'
  {}∆RunUcmd'CreateProject ',projectPath,' #.',projectName
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp 0≠≢∆GetLog ⍬
  result←∆RunUcmd'Projects'
  →GoToTidyUp 1≠(⊃⍴result)-noOfOpenProjects
 
@@ -22,4 +21,5 @@
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir projectPath ⋄ :EndTrap
+ ∆ClearLog
 ⍝Done

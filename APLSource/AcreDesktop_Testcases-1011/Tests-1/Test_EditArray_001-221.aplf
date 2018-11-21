@@ -29,3 +29,5 @@
 ∆TidyUp:
      F.RmDir acreDir
  :EndIf
+ ∆ClearLog
+⍝Done

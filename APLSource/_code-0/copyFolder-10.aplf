@@ -2,14 +2,14 @@
      source target←'/'UT.nn¨src tgt←¯1↓¨fPath¨⍵,¨'/'
      n←≢/Cc source target
      tgt,←n/'/',source
-     z←showMsg MS.EI
+     z←logMsg MS.EI
      sp tp←{
          s←fileTree src
          z←3 ⎕MKDIR tgt
          t←fileTree tgt
          (s t).Path
      }UT.tk 0
-     z←showMsg MS.EF,(≢sp)UT.pl MS.FL
+     z←logMsg MS.EF,(≢sp)UT.pl MS.FL
      del copy←{
          sp←(⍴src)↓¨sp
          tp←(⍴tgt)↓¨tp
@@ -22,9 +22,9 @@
          del(miss,diff)
      }UT.tk 0
      del/⍨←era
-     z←showMsg era/MS.ET,(≢del)UT.pl MS.FL
+     z←logMsg era/MS.ET,(≢del)UT.pl MS.FL
      z←⎕NDELETE⍨/UT.tk del,1
-     z←showMsg MS.ES,(≢copy)UT.pl MS.FL
+     z←logMsg MS.ES,(≢copy)UT.pl MS.FL
      z←(copyFile⊣)/UT.tk copy,0
      ⊢/↑copy
 ⍝ copy only missing and different.

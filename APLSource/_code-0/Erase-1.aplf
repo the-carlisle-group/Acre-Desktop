@@ -1,15 +1,18 @@
  Erase←{dat←⍺ ⋄ unc←50 ⍝ up to 50 unconfirmed
-     ns←(,1)≡0 ssp⊢arg←⍵  ⍝ non-scriptus
+     space←⊃0∘ssp∧1=≢
+     space ⍵:''⊣logMsg MS.BO
+     ns←space⊢arg←¯2∘↓¨if('.*'≡¯2↑⊃)if(1=≢)⍵
+
      endx←(⎕EX(ns/arg),⊢)⊢⊢
-     nms←validItems{(⍎⊃⍵)UT.li validAPLType''}if ns⊢arg
-     null nms:''⊣showMsg MS.DH
+     nms←validItems{(⍎⊃⍵)UT.li⍳11}if ns⊢arg
+     null nms:''⊣logMsg MS.DH
 
      0={confirm 60,⊂MS.CA,⍵ UT.pl MS.FK}if(unc<⊢)≢nms:''
 
      ~dat.hist:endx dat delSource nms
 
      fqn typ val←getValue nms
-     null fqn:''⊣showMsg MS.DH
+     null fqn:''⊣logMsg MS.DH
 
      new←~old←⎕NEXISTS¨fns←dat getChangeFilenames fqn
      res←{⍺⊣⎕FUNTIE(((-≢MS.HN)↓⍵),MS.EX)⎕FRENAME ⍵ ⎕FTIE 0}/old⌿fqn,⍪fns

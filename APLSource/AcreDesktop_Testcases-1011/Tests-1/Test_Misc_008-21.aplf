@@ -13,6 +13,7 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.Log←''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
@@ -26,7 +27,7 @@
  (2⊃body)←'r←''Galaxy'''
  ⎕DL 1  ⍝ Between "Create project" and a change made to the file we need a delay of at least one second so that acre's ]Refresh can spot the change.
  ##.APLTreeUtils.WriteUtf8File sourceFilename body
- result←∆RunUcmd'Refresh #.',projectName,' -messages=#.TEMP.Log'
+ result←∆RunUcmd'Refresh #.',projectName
  →GoToTidyUp 1≠⍴result                              ⍝ Should be a list of names of those objects that got refreshed?!
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
  →GoToTidyUp'Galaxy'≢⍎'#.',projectName,'.Hello'
@@ -35,4 +36,5 @@
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
 ⍝Done

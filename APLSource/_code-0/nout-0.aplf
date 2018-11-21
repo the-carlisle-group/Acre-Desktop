@@ -1,0 +1,6 @@
+ nout←nout
+ nout←~∘∊⍨
+⍝ nulls out
+⍝ nout 0 2 '' 'a' ' ' 'bcd' '   ' (1 0 2) (0 0 0)
+⍝        2    'a'     'bcd'       (1 0 2)
+⍝ Phil 2018-11-10 07.23

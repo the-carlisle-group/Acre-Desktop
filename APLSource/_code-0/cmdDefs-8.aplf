@@ -10,17 +10,17 @@
          ][
          command←'CreateProject'
          help←'Create a new project'
-         options←'case'
+         options←'case keep'
          result←''
          syntax←'folder space'
          type←'shared'
          ][
          command←'EditArray'
-         help←'Edit any array in a tracked project. In APLAN if not regular text.'
+         help←'Edit any array. In APLAN if not regular text.'
          options←''
          result←''
          syntax←'item'
-         type←'item'
+         type←'shared'
          ][
          command←'Erase'
          help←'Erase an item, items or a space from a tracked project'
@@ -41,6 +41,13 @@
          options←''
          result←''
          syntax←'name | "expression"'
+         type←'shared'
+         ][
+         command←'Log'
+         help←'Hide, show, clear or request all or n msgs from the log'
+         options←''
+         result←''
+         syntax←'"hide" | "show" | "clear" | "all" | number '
          type←'shared'
          ][
          command←'OpenProject'

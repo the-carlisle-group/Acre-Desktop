@@ -19,8 +19,6 @@
      →GoToTidyUp'#.TEMP'≢result
      result←∆RunUcmd'EditArray #.TEMP.Hello'
      ∆WaitAndProcess 0.2
-     ⎕←'   Press <Enter> when you have changed the variable "Hello" and then closed the edit window.'
-     {}⍞
      'Variable was not changed?!'Assert #.TEMP.Hello≢txt
      list←##.FilesAndDirs.ListFiles acreDir,'\.acre\changes\'
      →GoToTidyUp 1≠≢list
@@ -31,5 +29,6 @@
 
 ∆TidyUp:
      F.RmDir acreDir
+     ∆ClearLog
 
  :EndIf

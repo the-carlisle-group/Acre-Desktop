@@ -10,7 +10,7 @@
          res⌿⍨date≥when
      }0
 
-     null⊢item←⍬⍴⍵∩name:⍪''   ⍝ item change
+     null⊢name∩item←⍬⍴⍵:⍪''⊣logMsg MS.BV excRep⊃item   ⍝ item change
      file←⊃dat getChangeFilenames item
      ptr cmp←UT.ht⌽1↓⍳1⊃⎕FSIZE⊢tie←file ⎕FTIE 0
      date←DT.(ts2dt∘fd2ts)⊢/∘⎕FRDCI¨tie,¨cmp

@@ -9,8 +9,8 @@
      vars←'.array' '.charlist' '.charmat' '.charstring'
      path date file name type/⍨←⊂type∊vars
 ⍝     dup←(⊢∊⊢(/⍨)~∘nub)name
-⍝     z←showMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
-     z←showMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,¯4 tPath src
+⍝     z←logMsg MS.DD showList,/(tgt∘,¨dup/name),'=',⍪dup/type
+     z←logMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,¯4 tPath src
      read←{⊃MS.HI ⎕NGET ⍵ 1}
      val←read¨UT.tk path
      chg val←↓⍉↑{
@@ -20,7 +20,8 @@
      ~∨/chg:'none'MS.BV
      val path name/⍨←⊂chg
      write←{⍺ MS.HI ⎕NPUT ⍵ 1}
-     z←showMsg(MS.EN,(≢name)UT.pl MS.FN)showList name
+⍝     z←logMsg(MS.EN,(≢name)UT.pl MS.FN)showList name
+     z←(MS.EN,(≢name)UT.pl MS.FN)showmsg name
      'done'⊣val write¨UT.tk path
 
 ⍝ ⍺ dat

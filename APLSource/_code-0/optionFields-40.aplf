@@ -1,10 +1,11 @@
  optionFields←{⍺←⊢
-     dflt←,''
-     opts←,⊂'casecode:off'
-     opts,←⊂'confirm:'
-     opts,←⊂'dependencies:on'
+     dflt←,opts←,''
      dflt,←opts,←⊂'help'
      dflt,←opts,←⊂'messages:on'
+     opts,←⊂'casecode:off'
+     opts,←⊂'confirm:'
+     opts,←⊂'dependencies:on'
+     opts,←⊂'keephistory:off'
      opts,←⊂'track:on'
      opts,←⊂'when[=]'
 

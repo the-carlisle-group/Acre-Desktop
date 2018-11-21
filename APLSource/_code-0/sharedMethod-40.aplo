@@ -1,7 +1,7 @@
  sharedMethod←{
      arg←⍵
 ⍝    ↓↓↓
-     MS.DM≡res←⍺⍺ arg:''⊣showMsg MS.DM,SX.⍎⍺
+     MS.DM≡res←⍺⍺ arg:''⊣logMsg MS.DM,SX.⍎⍺
      res
 
 ⍝ nothing special - they have to do it all themselves except

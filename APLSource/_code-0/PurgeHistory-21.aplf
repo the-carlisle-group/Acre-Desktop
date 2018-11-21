@@ -5,13 +5,13 @@
          files←⊃(⊣(/⍨)2=⊢)/0 1 ⎕NINFO⍠1⊢dat.changes,'*'
          ok←∧/⎕NDELETE/1,⍪files
          dat.changed←''
-         ok⊣showMsg ok/dat.nspath,MS.DA
+         ok⊣logMsg ok/dat.nspath,MS.DA
      }0
                           ⍝ one item
      dl←,∘MS.EX⊢(-≢MS.HN)↓fn←⊃dat getChangeFilenames⊂fqn←⊃validItems ⍵
      ok←1∊⎕NDELETE/1,⍪dl fn
      dat.changed~←⊂fqn
-     ok⊣showMsg ok/fqn,MS.DA
+     ok⊣logMsg ok/fqn,MS.DA
 ⍝ Purge history for project or one item.
 ⍝ Phil 2018-03-13 00.51
  }

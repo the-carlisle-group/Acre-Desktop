@@ -12,4 +12,5 @@
  →PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
 
  R←∆OK
+ ∆ClearLog
 ⍝Done

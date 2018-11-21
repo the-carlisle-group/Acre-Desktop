@@ -8,6 +8,7 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
@@ -17,10 +18,12 @@
 
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
- →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
+ →GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Hello-1.aplf')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
  R←∆OK
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
+⍝Done

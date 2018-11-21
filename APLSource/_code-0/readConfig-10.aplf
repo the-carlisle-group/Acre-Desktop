@@ -1,8 +1,11 @@
  readConfig←{cnf←⍵
      rl←Cc⊢ru←{⍵.⎕NL-2}res←configFields''
-     0::res⊣showMsg UT.bx MS.DB,cnf
+     0::res⊣logMsg UT.bx MS.DB,cnf
+     cnf←{⎕NEXISTS ⍵:⍵          ⍝ new name 2018-11-12
+         (⊃'/'UT.pn ⍵),MS.HM    ⍝ try old name
+     }cnf
      ~⎕NEXISTS cnf:res
-     d←~∘∊⍨⊃MS.HI ⎕NGET cnf 1                     ⍝ lose blank rows
+     d←nout⊃MS.HI ⎕NGET cnf 1                     ⍝ lose blank rows
      r t←0{'⍝'=z←⊃~∘' '⊃⍵:(1+⍺)∇ 1↓⍵ ⋄ ⍺ z}d      ⍝ lose comment rows
      cl←Cc⊢cu←{⍵.⎕NL-2}cfg←t{                     ⍝ actuals
          ⍺='{':7159⌶1↓⊃,/(⎕UCS 13),¨⍵                 ⍝ JSON
@@ -11,9 +14,10 @@
          ⎕NS''                                        ⍝ none of the above
      }r↓d
      null⊢int←rl∩cl:res                           ⍝ supplied
-     res⊣ru[rl⍳int]res.{⍎⍕⍺,'←⍵'}cfg.⍎⍕cu[cl⍳int] ⍝ merge
+     ⊃res(ru[rl⍳int])is cfg.⍎⍕cu[cl⍳int] ⍝ merge
 ⍝ ⍵ config filename
-⍝ config is JSON, APLscript or APLAN
+⍝ config is JSON or APLAN and deprecated APLScript
 ⍝ result is namespace with all and only expected fields
 ⍝   with "proper" case restored
+⍝ Phil 2018-11-12 10.05
  }

@@ -1,5 +1,5 @@
  R←Test_OpenProject_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;code
-⍝ Exercise `]OpenProject` with somehting that should not fix at all
+⍝ Exercise `]OpenProject` with something that should not fix at all
 ⍝ Although acre will throw an error eventually it should open the main project and one of the two dependencies.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -10,6 +10,7 @@
  #.⎕SHADOW projectName
  projectPath←∆PATH,'/',projectName
  ref←⍎projectName #.⎕NS''
+ ∆ClearLog
 
 ⍝ Create a namespace that holds the variable used to collect acre's messages for analyzing purposes
  #.⎕SHADOW'TEMP'
@@ -44,4 +45,5 @@
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
 ⍝Done

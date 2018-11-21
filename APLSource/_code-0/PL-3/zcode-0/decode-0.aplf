@@ -8,7 +8,7 @@
      ∧/q∨arg='''':put⍎arg
      z b x bp←↓-⍀+\q<⍤1⊢'[]()'∘.=arg
      p s←(bp-b)(+\2≠/0,bp)
-     0⊣errors⍣mon⊢arg b bp d p q s:         ⍝ checking syntax
+     0⊣errors⍣mon⊢arg b bp d p q s:         ⍝ check syntax once
      x b p bp s d q arg/⍨←⊂1+x←q<>⌿0 1⌽'[⋄'∘.=arg
      (x/arg)←'[⋄'⍴⍨+/x                      ⍝ '⋄' after '['
      (x/d)←0 1⍴⍨+/x

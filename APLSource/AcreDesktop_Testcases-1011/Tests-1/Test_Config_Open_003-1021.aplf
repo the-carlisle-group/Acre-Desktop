@@ -1,5 +1,5 @@
- R←Test_Config_Open_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;projectName2;projectPath2;ref2;openProjects;noOfProjects
-⍝ Create a project and check whether `acreconfig.txt[Open]` is honored. (Single project with blank in filename)
+ R←Test_Config_Open_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;projectName2;projectPath2;ref2;openProjects;noOfProjects;bin;configFilename
+⍝ Create a project and check whether `acre.config[Open]` is honored. (Single project with blank in filename)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -10,15 +10,14 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject "',projectPath,'" #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp 0≠≢∆GetLog ⍬
  →GoToTidyUp result≢'#.',projectName
 
  projectName2←(⊃⎕SI),'_2'
@@ -32,35 +31,35 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp 0≠≢∆GetLog ⍬
  →GoToTidyUp result≢'#.',projectName2
 
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
+ (bin configFilename)←∆ReadConfigFile projectPath
  buff←''
  buff,←⊂':Namespace'
- buff,←⊂'   Open←(⊂''',projectPath2,' #.Temp'')'
+ buff,←⊂'   Open←(⊂''"',projectPath2,'" "#.Temp"'')'
  buff,←⊂'   ProjectSpace←''#.',projectName,''''
  buff,←⊂':EndNamespace'
- A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
+ A.WriteUtf8File configFilename buff
 
- :Trap 0
-     result←∆RunUcmd'OpenProject ',projectPath,' -messages=''#.AcreMessages'''
-     →GoToTidyUp 1
- :EndTrap
+ result←∆RunUcmd'OpenProject ',projectPath
 
- →GoToTidyUp 0=∨/(∆GetAcreMessage'HB')⍷⊃#.AcreMessages
+ →GoToTidyUp 0=#.⎕NC projectName
+ →GoToTidyUp 0=#.⎕NC'Temp'
 
- #.AcreMessages←''
+ ∆ClearLog
+ (bin configFilename)←∆ReadConfigFile projectPath
  buff←''
  buff,←⊂':Namespace'
  buff,←⊂'   Open←(⊂''"',projectPath2,'" #.Temp'')'
  buff,←⊂'   ProjectSpace←''#.',projectName,''''
  buff,←⊂':EndNamespace'
- A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
+ A.WriteUtf8File configFilename buff
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'OpenProject ',projectPath,' -messages=''#.AcreMessages'''
+     result←∆RunUcmd'OpenProject ',projectPath
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -69,7 +68,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 6≠⍴#.AcreMessages
+ →GoToTidyUp 4≠⍴∆GetLog ⍬
  →GoToTidyUp 2≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK
@@ -77,4 +76,5 @@
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
+ ∆ClearLog
 ⍝Done

@@ -10,6 +10,7 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FIX':Namespace Foo' '∇r←Hello' 'r←''World''' '∇' ':EndNamespace'
  noOf←⊃⍴∆RunUcmd'Projects'
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
@@ -19,10 +20,12 @@
 
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
- →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
+ →GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.apln')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
  R←∆OK
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
+⍝Done

@@ -1,5 +1,5 @@
  ni←{⍺←⊢ ⋄ ⍵≡⍺ ⍵:∇/⍵ ⋄ {⍵._Inst}{
-         (⍵._Inst.⍎⍺,'←⍵∘{0::(⊃⍬⍴⎕DM)⎕SIGNAL ⎕EN ⋄ ⍺ ⍺._Class.',⍺,'⍵}')/⍵
+         (⍵._Inst.⍎⍺,'←⍵∘{0::⎕SIGNAL/⌽⎕EN,⎕DM ⋄ ⍺ ⍺._Class.',⍺,'⍵}')/⍵
      }/⍵,⍺{⍵⊣⍵.(_Class _Inst)←⍺,#.⎕NS''}#.⎕NS''
 ⍝ ⍵ (class)(methods)
 ⍝ ← instance

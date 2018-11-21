@@ -1,5 +1,5 @@
  openLoad←{dat←⍺ ⋄ trk dep←⍵             ⍝ as of caller
-     ~null showMsg dat∘openConflict⍣trk⊢'':0 ⍝ can't open this
+     ~null MS.DE logMsg dat∘openConflict⍣trk⊢'':0 ⍝ can't open this
      ~dep:1                              ⍝ ok but no deps
      pref←{
          p←('/',⍺)[('\',⍺)⍳⍺]
@@ -7,7 +7,7 @@
          '.'=⊃p:(dat.folder,'../',p)⍵    ⍝ ../uncle/cousin/nephew
          (dat.folder,(⊃,/(1++/p∊'/\')/,/'../'),p)⍵ ⍝ uncle/cousin
      }
-     0∊⍴these←~∘∊⍨⊂if≡dat.open:1        ⍝ ex config
+     0∊⍴these←nout⊂if≡dat.open:1        ⍝ ex config
      nss←(⎕NEW ⎕SE.Parser(optionFields'dep track')).Parse¨these
      args←nss.Arguments
      args nss/⍨←⊂~args∊SV.arguments      ⍝ this time
@@ -17,7 +17,7 @@
      dts←(⊂trk dep)openProject¨↓track,depend,⍪pref/↑2↑¨args
      dts track depend/⍨←⊂dts≠0           ⍝ only opened
      z←dataSpaces track/dts              ⍝ keep only tracked dependencies
-     ~null showMsg dat∘openConflict⍣trk⊢'':0⊣showMsg dat.config MS.CB
+     ~null MS.DE logMsg dat∘openConflict⍣trk⊢'':0⊣logMsg dat.config MS.CB
      1:1
 ⍝ dyadic calls to openProject tell it NOT to run Startup
 ⍝ Open dependent projects

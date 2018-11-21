@@ -6,7 +6,7 @@
      path∊paths:''                    ⍝ same space - ok
      ∨/⊃¨path⍷¨paths:''               ⍝ over - ok
      b←⊃¨paths⍷¨path                  ⍝ new in old - forbidden
-     ∨/b:MS.DE showList(new,b/old).nspath
+     ∨/b:⍕⊃{⍺'|'⍵}/(new,b/old).nspath
      ⍬
 
 ⍝ ⍺ dat

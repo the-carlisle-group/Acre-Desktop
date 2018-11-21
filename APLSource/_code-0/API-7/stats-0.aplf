@@ -1,0 +1,7 @@
+ stats←{⍺←⊢
+     nm←{9=⎕NC'⍵':##.UT.df ⍵ ⋄ ,⍕⍵}⍵
+     0=dat←##.whichProject nm:⍪''
+     dat ##.Stats''
+⍝
+⍝ Phil 2018-11-16 10.21
+ }

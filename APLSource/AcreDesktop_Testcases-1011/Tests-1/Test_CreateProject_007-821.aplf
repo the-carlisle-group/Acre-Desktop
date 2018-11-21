@@ -13,12 +13,13 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FIX':Class Foo' '∇r←Hello' ':Access Public Shared' 'r←''World''' '∇' ':EndClass'
  noOf←⊃⍴∆RunUcmd'Projects'
+ ∆ClearLog
 
  result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'
- →GoToTidyUp 0=F.IsFile projectPath,'/acreconfig.txt'
+ →GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  list←'/'##.APLTreeUtils.Last¨F.EnforceSlash¨⊃F.Dir projectPath,'/APLSource/*'
  expected←'Foo-1.aplc' 'quadVars-10.apln'  ⍝ The latter is added automatically!
  →GoToTidyUp~list ∆LazyMatch expected
@@ -27,3 +28,5 @@
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
+⍝Done

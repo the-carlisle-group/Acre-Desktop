@@ -13,6 +13,7 @@
  ref2←⍎'Sub'ref.⎕NS''
  ref2.⎕FX'r←Hello3' 'r←''World 3'''
  ref2.⎕FX'r←Hello4' 'r←''World 4'''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
@@ -26,7 +27,7 @@
  list←⊃('recursive' 1)F.Dir path,'*'
  →GoToTidyUp 6≠⍴list  ⍝ Quad-Vars script, one folder, 4 functions
  →GoToTidyUp 3≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
- result←∆RunUcmd'Erase #.',projectName,'.Sub'
+ result←∆RunUcmd'Erase #.',projectName,'.Sub.*'
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName∘{'#.',⍺,'.Sub',⍵}¨'' '.Hello3' '.Hello4'   ⍝ The namespace should not survive!
 
@@ -40,3 +41,5 @@
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
+⍝Done

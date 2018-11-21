@@ -10,6 +10,7 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
  ref.⎕FX'r←Hello2' 'r←''World2'''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
@@ -36,4 +37,5 @@
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
 ⍝Done

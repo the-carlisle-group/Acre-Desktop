@@ -1,0 +1,6 @@
+ multi←multi
+ multi←⊢∊⊢(/⍨)~∘nub
+⍝ flags all multiples
+⍝ multi 1 2 3 4 2 3 5 6
+⍝       0 1 1 0 1 1 0 0
+⍝ Phil 2018-11-09 15.41

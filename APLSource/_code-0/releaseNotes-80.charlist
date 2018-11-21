@@ -1,19 +1,33 @@
-Acre 4.8.1.040 2018-10-30
+Acre 4.8.1.067 2018-11-17 23.52
 
-Release Notes
-
-Acre Desktop  
-============       
-CaseCode and KeepHistory now default to 'Off' for a new project.
-Call CreateProject with the -casecode='on' flag to reverse that.
-Either can still be edited in the config file and will take effect at the
-following OpenProject.
-CreateProject will now pop up windows giving the names and ⎕NC of all items 
-NOT saved in the project whether by design or error.
-APLAN is now capable of encoding and decoding arrays containing ⎕NULLs 
-'though not ⎕ORs or ⎕UCS 0.
-But now prohibits the evaluation of expressions containing unquoted 
-characters other than '[(←⍴,⊂⋄/⍬⎕)]', ⎕D and name chars.
+Acre Desktop - Release Notes 
+============================
+New projects are now created with CaseCode and KeepHistory 'Off'. Use the
+"-c=on" or "-k=on" flags to reverse them or they can then be edited in 
+the config file. Its default name has changed from "acreconfig.txt" to 
+"acre.config" and the default encoding is now APLAN.
+All messages now appear, not in the session or a nominated array, but in 
+a separate window which can be hidden, restored, cleared and queried. Now 
+reports all items NOT written by CreateProject and any items that cannot be 
+written if casecoding is Off because they would produce duplicate files.
+Items not written by CreateProject and SetChanged are now listed.
+There is an experimental protocol:
+    ⎕SE.acreAPI.casecode
+                changefile
+                changes
+                deletefile
+                fromaplan
+                itemname
+                log
+                nameclass
+                projects
+                sourcefile
+                stats
+                toaplan
+                version
+that is a namespace containing functions that reproduce all the facility 
+of ⎕SE.acre.run and a growing list of acre's user commands.
+Acre now hands over to SALT if an edited item is not in any tracked project.
 -------------------
 Acre 4.8.1.036 2018-10-25
 Acre 4.8.0.035 2018-10-25
@@ -122,10 +136,8 @@ This is what it does:
 --------------------------
 Acre 4.5.1.014 2018-07-31
 
-Release Notes
-
-Acre Desktop  
-============
+Acre Desktop - Release Notes 
+============================
 
 Since v4.4.0.002 significant changes have all been concerned with the 
 recognition, recording and renaming of changes to sourcefiles by OpenProject 
@@ -157,10 +169,8 @@ filetypes.
 ---------------------------------
 Acre 4.4.0.002 2018-06-14
 
-Release Notes
-
-Acre Desktop  
-============
+Acre Desktop - Release Notes
+============================
 First I hope adding a build number to the version number above doesn't 
 break anyone's code.
 =================
@@ -219,10 +229,8 @@ with "tracked project". Changes also reflected in the on-line wiki.
 -------------------
 Acre 4.3.1 2018-05-14
 
-Release Notes
-
-Acre Desktop
-
+Acre Desktop - Release Notes
+============================
 Acre will now signal an error at the end of a command if any error msgs
 have been issued during the running of the command. This after re-issuing
 all such messages as a block. 
@@ -237,10 +245,8 @@ can now be loaded successfully.
 -----------------
 Acre 4.3.0 2018-04-26
 
-Release Notes
-
-Acre Desktop
-
+Acre Desktop - Release Notes
+============================
 "LoadProject" is removed.
 "OpenProject" now honours modifiers "-track" and "-dependencies" both of 
 which are "on" by default.
@@ -301,10 +307,8 @@ version    - the name, release number and date of the installed acre
 ---------------------
 Acre 4.2.0 2018-04-04
 
-Release Notes
-
-Acre DeskTop
-
+Acre Desktop - Release Notes
+============================
 The "[option←'value']" specification is no longer supported.
 
 Acre now uses the inbuilt "-option=value" specification.
@@ -326,10 +330,8 @@ ignored in any case.
 -----------------
 Acre 4.1.3 2018-03-20
 
-Release Notes
-
-Acre DeskTop
-
+Acre Desktop - Release Notes
+============================
 Corrects the bifurcated folder structure of the test cases that was caused
 manually by my oversight in importing them.
 
@@ -350,10 +352,8 @@ officially released.
  -------------------
 Acre 4.1.2 2018-03-11
 
-Release Notes
-
-Acre DeskTop
-
+Acre Desktop - Release Notes
+============================
 For a new project acreConfig.txt is now created with
     KeepHistory←'On'
 
@@ -388,10 +388,8 @@ affect them. The user can erase the unwanted ones in the OS.
 --------------------
 Acre 4.1.1 2018-02-27
 
-Release Notes
-
-Acre DeskTop
-
+Acre Desktop - Release Notes
+============================
 Almost identical to 4.1.0 which was never properly released but a very few
 minor changes force this to be 4.1.1           
 

@@ -1,5 +1,5 @@
- R←Test_Config_Open_004(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects;projectName3;ref3;projectPath3
-⍝ Create a project and check whether `acreconfig.txt[Open]` is honored. (Two projects)
+ R←Test_Config_Open_004(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;projectName3;projectPath3;ref3;bin;configFilename;buff;list
+⍝ Create a project and check whether `acre.config[Open]` is honored. (Two projects)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -10,15 +10,14 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      {}∆RunUcmd'Createproject "',projectPath,'" #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp 0≠≢∆GetLog ⍬
 
  projectName2←(⊃⎕SI),'_2'
  projectPath2←F.EnforceSlash ∆PATH,'/',projectName2
@@ -31,7 +30,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp 0≠≢∆GetLog ⍬
 
  projectName3←(⊃⎕SI),'_3'
  projectPath3←F.EnforceSlash ∆PATH,'/',projectName3
@@ -44,19 +43,20 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp 0≠≢∆GetLog ⍬
 
  #.⎕EX¨projectName projectName2 projectName3
  #.⎕SHADOW¨'Temp' 'Temp2'
+ (bin configFilename)←∆ReadConfigFile projectPath
  buff←''
  buff,←⊂':Namespace'
  buff,←⊂'   Open←(''',projectPath2,' #.Temp'')(''',projectPath3,' #.Temp2'')'
  buff,←⊂'   ProjectSpace←''#.',projectName,''''
  buff,←⊂':EndNamespace'
- A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
+ A.WriteUtf8File configFilename buff
 
  :Trap (~stopFlag)/0
-     list←∆RunUcmd'OpenProject ',projectPath,' -messages=''#.AcreMessages'''
+     list←∆RunUcmd'OpenProject ',projectPath
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -70,7 +70,7 @@
  →GoToTidyUp'Universe'≢#.Temp.Hello
  →GoToTidyUp'Galaxy'≢#.Temp2.Hello
  ⎕DL 0.2
- →GoToTidyUp 9≠⍴#.AcreMessages
+ →GoToTidyUp 6≠⍴∆GetLog ⍬
  →GoToTidyUp 3≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK
@@ -79,3 +79,5 @@
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath3 ⋄ :EndTrap
+ ∆ClearLog
+⍝Done

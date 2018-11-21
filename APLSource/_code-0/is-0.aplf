@@ -1,0 +1,5 @@
+ is←{
+     ⊃⍵{⍺ ⍺⍺⊣⍺.⍎⍕⍵,'←⍺⍺'}/⍺
+⍝ ns value ← ns name is value
+⍝ Phil 2018-11-16 22.37
+ }

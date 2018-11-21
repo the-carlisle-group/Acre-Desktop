@@ -9,13 +9,12 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
+ ∆ClearLog
 
  {}∆RunUcmd'CreateProject ',projectPath,' #.',projectName
- result←∆RunUcmd'Stats',' -messages=''#.AcreMessages'''
+ result←∆RunUcmd'Stats'
  →GoToTidyUp~0∊⍴result
- →GoToTidyUp'Syntax: ]acre.Stats space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}#.AcreMessages
+ →GoToTidyUp'Syntax: ]acre.Stats space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}∆GetLog ⍬
  result←∆RunUcmd'Stats #.',projectName
  →GoToTidyUp 2≠⍴⍴result
  →GoToTidyUp 14≠⊃⍴result
@@ -24,4 +23,5 @@
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir projectPath ⋄ :EndTrap
+ ∆ClearLog
 ⍝Done

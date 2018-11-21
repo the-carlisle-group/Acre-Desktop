@@ -1,6 +1,6 @@
- EditArray←{dat←⍺
-     null⊢fqn←⊃{⍵/⍨2.1=#.⎕NC ⍵}arg←⊂if≡⍵:0⍴showMsg MS.DR
-     z←showMsg(1<≢arg)/MS.DQ,fqn  ⍝ one item
+ EditArray←{
+     null⊢fqn←⊃{⍵/⍨2.1=#.⎕NC ⍵}arg←prefSpace ⍵:0⍴logMsg MS.DR
+     z←logMsg(1<≢arg)/MS.DQ,fqn  ⍝ one item
      ds←~∘' '⍕'.rank_' '.depth_',¨(|⍴∘⍴,≡)old←⍎fqn
      fqn type val←⊃¨getValue fqn
      name←'.','.'UT.nn fqn
@@ -12,7 +12,8 @@
      val≡new←⍎nn:''
      z←fixValue fqn type new
      old≡⍎fqn:''
-     fqn⊣showMsg MS.DK,⊃if≢dat setChange fqn type new
+     0=dat←whichProject fqn:fqn
+     fqn⊣logMsg MS.DK,⊃if≢dat setChange fqn type new
 
 ⍝ Phil 2018-10-17 12.53
  }

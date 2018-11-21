@@ -1,4 +1,4 @@
- su←{ft'⍝- '
+ su←{{(+/∨\' '≠⌽⍵)↑¨↓⍵}ft'⍝- '
 ⍝- :Class suicide
 ⍝-     ∇ inst←New(fn arg)
 ⍝-       :Access public shared

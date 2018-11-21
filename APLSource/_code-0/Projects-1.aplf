@@ -1,5 +1,5 @@
  Projects←{
-     0::0 2⍴''⊣showMsg MS.GX
+     0::0 2⍴''⊣logMsg MS.GX
      p←openProjects''
      r←↑p.(nspath folder)
      1≢OPT.when:r

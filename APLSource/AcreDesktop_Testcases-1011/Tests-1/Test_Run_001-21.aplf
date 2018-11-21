@@ -4,6 +4,7 @@
 
  R←∆Failed
 
+ ∆ClearLog
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
@@ -23,9 +24,8 @@
  ref.⎕FIX':Class Goo' '∇r←Hello4' ':Access Public Shared' 'r←''All the rest''' '∇' ':EndClass'
  ref.⎕FIX':Interface Boo' '∇r←Hello5' '∇' ':EndInterface'
  #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
- {}∆RunUcmd'Projects -messages=''#.AcreMessages'''  ⍝ Make sure that at least one acre command was executed before doing a `run`.
- →PassesIf 0∊⍴#.AcreMessages
+ {}∆RunUcmd'Projects'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
+ →PassesIf 0=≢∆GetLog ⍬
 
  →PassesIf'.aplf'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
  →PassesIf'.apln'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'
@@ -45,3 +45,5 @@
  →PassesIf'.*'≡⊃'nameclass'⎕SE.acre.run'#.DoesNotExist'
 
  R←∆OK
+ ∆ClearLog
+⍝Done

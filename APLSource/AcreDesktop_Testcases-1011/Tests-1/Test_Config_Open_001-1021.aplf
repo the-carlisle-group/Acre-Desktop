@@ -1,5 +1,5 @@
- R←Test_Config_Open_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects
-⍝ Create a project and check whether `acreconfig.txt[Open]` is honored. (Single project, simple "Open")
+ R←Test_Config_Open_001(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;configFilename;bin;buff;list
+⍝ Create a project and check whether `acre.config[Open]` is honored. (Single project, simple "Open")
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -10,15 +10,14 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
- #.⎕SHADOW'AcreMessages'
- #.AcreMessages←''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      {}∆RunUcmd'Createproject "',projectPath,'" #.',projectName
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp~0∊⍴messages←∆GetLog ⍬
 
  projectName2←(⊃⎕SI),'_2'
  projectPath2←F.EnforceSlash ∆PATH,'/',projectName2
@@ -31,19 +30,20 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp~0∊⍴#.AcreMessages
+ →GoToTidyUp~0∊⍴∆GetLog ⍬
 
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
+ (bin configFilename)←∆ReadConfigFile projectPath
  buff←''
  buff,←⊂':Namespace'
  buff,←⊂'   Open←(''',projectPath2,' #.Temp'')'
  buff,←⊂'   ProjectSpace←''#.',projectName,''''
  buff,←⊂':EndNamespace'
- A.WriteUtf8File(projectPath,'/acreconfig.txt')buff
+ A.WriteUtf8File configFilename buff
 
  :Trap (~stopFlag)/0
-     list←∆RunUcmd'OpenProject ',projectPath,' -messages=''#.AcreMessages'''
+     list←∆RunUcmd'OpenProject ',projectPath
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -52,7 +52,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 6≠⍴#.AcreMessages
+ →GoToTidyUp 4≠⍴∆GetLog ⍬
  →GoToTidyUp 2≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK
@@ -60,3 +60,5 @@
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
+ ∆ClearLog
+⍝Done

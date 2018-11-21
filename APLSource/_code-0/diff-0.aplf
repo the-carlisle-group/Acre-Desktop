@@ -1,0 +1,7 @@
+ diff←{
+     z x←(⎕SE.acre._code.whichProject⊃⎕XSI)changes''
+     y←'⎕se'∘,¨1↓¨z
+     z/⍨≢/⎕CR¨z,⍪y
+⍝ changed since latest build
+⍝ Phil 2018-11-11 09.45
+ }

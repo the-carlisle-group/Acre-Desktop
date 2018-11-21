@@ -9,12 +9,12 @@
          f(n x)←0(¯1 ¯2)+2⍴⎕FSIZE t←fil ⎕FTIE 0
          p←⎕FREAD t,n
          q←f⌈x⌊p sig 1
-         p=q:'' ''⊣showMsg fqn excRep MS.BV⊣⎕FUNTIE t
+         p=q:'' ''⊣logMsg fqn excRep MS.BV⊣⎕FUNTIE t
          n←q ⎕FREPLACE t,n
          val←(⎕FUNTIE t)⊢⎕FREAD t,q
-         fqn val⊣showMsg fqn excRep⍕{⍺,'of',⍵}/q x-f-1
+         fqn val⊣logMsg fqn excRep⍕{⍺,'of',⍵}/q x-f-1
      }
-     fqn val←↓⍉↑~∘∊⍨doit/fqn,⍪fil
+     fqn val←↓⍉↑nout doit/fqn,⍪fil
      type←nameClass fqn
      null⊢fqn type val←fixValue fqn type val:''
      fqn⊣dat putSource fqn type val

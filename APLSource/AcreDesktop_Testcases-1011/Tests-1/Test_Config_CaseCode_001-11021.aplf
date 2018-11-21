@@ -1,5 +1,5 @@
  R←Test_Config_CaseCode_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list
-⍝ Create a project and check whether `acreconfig.txt[CaseCode]` is honored.
+⍝ Create a project and check whether `acre.config[CaseCode]` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -9,6 +9,7 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
+ ∆ClearLog
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
@@ -43,4 +44,5 @@
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆ClearLog
 ⍝Done
