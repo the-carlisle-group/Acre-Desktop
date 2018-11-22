@@ -1,10 +1,10 @@
- logCtrl←{⍺←⊢ ⋄ arg←⍬⍴⍵
+ logCtrl←{⍺←⊢ ⋄ arg←⍬⍴⊂if≡⍵
      (,1)≡⊃v f←(1,≢MP.log)⌊0⌈⌊⎕VFI⊃arg:f↑MP.log
      ix←⊃⍳/⌽arg nms←1(↑_↓)Cc arg,(⊢(/⍨)2|⍳∘≢)'`'sep MS.CI
 ⍝ Log file - `hide` | `show` | `clear` | `all` | no. of rows to get
      ns←dix nms
      ix=ns.hide:''⊣MP.log←z⊣MP.⎕EX'log'⊣z←MP.log
-     ix=ns.show:''⊣MP.⎕ED&'log'
+     ix=ns.show:''⊣MP.⎕ED⍠('ReadOnly' 1)&'log'
      ix=ns.clear:''⊣MP.log←0/MP.log
      ix=ns.all:MP.log
      ''

@@ -14,7 +14,7 @@
      SV.sessionstart←sessionStart''
      z←editFix'Start'                 ⍝ sets other stuff in SV
      z←logMsg⍕getVersion''
-     z←MP.⎕ED⍠('ReadOnly' 1)&'log'
+     z←logCtrl'show'
      z←⍴⎕SE MS.FY is setAPI''
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns

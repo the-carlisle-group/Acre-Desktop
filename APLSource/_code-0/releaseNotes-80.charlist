@@ -1,4 +1,4 @@
-Acre 4.8.1.067 2018-11-17 23.52
+Acre 5.0.0.072 2018-11-22 10.27
 
 Acre Desktop - Release Notes 
 ============================
@@ -8,9 +8,9 @@ the config file. Its default name has changed from "acreconfig.txt" to
 "acre.config" and the default encoding is now APLAN.
 All messages now appear, not in the session or a nominated array, but in 
 a separate window which can be hidden, restored, cleared and queried. Now 
-reports all items NOT written by CreateProject and any items that cannot be 
-written if casecoding is Off because they would produce duplicate files.
-Items not written by CreateProject and SetChanged are now listed.
+reports all items NOT written by CreateProject or SetChanged and any items 
+that cannot be written if casecoding is Off because they would produce 
+duplicate files.
 There is an experimental protocol:
     ⎕SE.acreAPI.casecode
                 changefile

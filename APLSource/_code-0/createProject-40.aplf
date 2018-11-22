@@ -18,7 +18,7 @@
      z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
      z←(⊂MS.NB MS.FX)⎕NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11
-     fqn(dat caseOK⍨)←fqn⊣notStored nms~fqn
+     fqn(dat caseOK⍨)←fqn⊣notStored{⍵/⍨0=0 ssp ⍵}nms~fqn
      z←space MS.FV is cfg⊣cfg.ProjectFolder←dat.folder
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val
