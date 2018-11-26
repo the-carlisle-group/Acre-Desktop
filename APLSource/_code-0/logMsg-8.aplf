@@ -3,11 +3,11 @@
      head←nout{⍵(⍵⊢¨'=')}⍺⊣''
      data←head,msgs
      SV.errmsgs,←data/⍨'!'=⊃¨data  ⍝ reset in userCmdRun
-     ⍵⊣MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←data
+     ⍵⊣MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←(20↑DT.(dt2fm ts2dt)⎕TS)∘,¨data
 
 ⍝   MP←{⍵⊣⍵._←,¨''}⎕SE.⎕NS'' ⍝ setEnvironment
 ⍝ [⍺]   header to be underlined if present
 ⍝  ⍵    msg(s) string, list or mat
-⍝  ←    ⍵ having displayed in log window
+⍝  ←    ⍵ having displayed date,⍵ in log window
 ⍝ Phil 2018-11-14 15.58
  }

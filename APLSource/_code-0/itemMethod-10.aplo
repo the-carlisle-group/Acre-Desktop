@@ -3,7 +3,6 @@
      0∊⍴ids←openProjects'':''⊣logMsg MS.GX
      items←prefSpace items   ⍝ prefix non-FQNs
      no←0=dat←whichProject items
-⍝     z←logMsg MS.DI showList no/items
      z←MS.DI logMsg no/items
      items dat/⍨←⊂~no
      0∊⍴items:''⊣logMsg MS.DH
