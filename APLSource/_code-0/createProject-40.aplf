@@ -19,7 +19,7 @@
      z←(⊂MS.NB MS.FX)⎕NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11
      fqn(dat caseOK⍨)←fqn⊣notStored{⍵/⍨0=0 ssp ⍵}nms~fqn
-     z←space MS.FV is cfg⊣cfg.ProjectFolder←dat.folder
+     dat.cfg←⎕NS cfg⊣space MS.FV is cfg⊣cfg.ProjectFolder←dat.folder
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''

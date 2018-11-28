@@ -11,7 +11,7 @@
          ix=ns.deletefile:MS.CH
          ix=ns.sourcefile:MS.CG
          ix=ns.itemname:MS.CE
-         ix=ns.version:MS.IW,UT.fm' 'sep⊃releaseNotes⊣''
+         ix=ns.version:MS.IW,PL.encode getVersion''
          ix=ns.casecode:MS.CD
          ⍪'?'
      }ix
@@ -20,7 +20,7 @@
      ix=ns.deletefile:,∘MS.EX if nonul(-≢MS.HN)↓⊃if≢getChangeFilenames itemMethod 1⍴arg
      ix=ns.sourcefile:⊃if≢getSourceFilenames itemMethod 1⍴arg
      ix=ns.itemname:itemName¨arg
-     ix=ns.version:' 'sep⊃releaseNotes⊣''
+     ix=ns.version:getVersion''
      ix=ns.casecode:'#.'∘,⍣x⊃{'-'∊⍵:'..'decodeCaps ⍵
          '..'encodeCaps ⍵}(2×x←'#.'≡2⍴z)↓z←⊃arg
      ''
