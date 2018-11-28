@@ -8,6 +8,7 @@
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
          ⍵.SX←syntaxHelp name
+         SV.logfile←localFolder'/',MS.CJ
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵
      }⎕THIS
