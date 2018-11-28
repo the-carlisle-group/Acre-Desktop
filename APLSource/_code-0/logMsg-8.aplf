@@ -6,12 +6,12 @@
      SV.errmsgs,←da/⍨'!'=⊃¨da  ⍝ reset in userCmdRun
      dd←MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←dt∘,¨da
      ~⎕NEXISTS SV.logfile:ms
-     fd←⊃,/,∘UT.(CR LF),¨dd
+     fd←⊃,/,∘UT.(CR LF)¨dd
      ms⊣⎕NUNTIE fd(⊢⊣⎕NAPPEND)SV.logfile ⎕NTIE 0
 
 ⍝   MP←{⍵⊣⍵._←,¨''}⎕SE.⎕NS'' ⍝ setEnvironment
 ⍝ [⍺]   header to be underlined if present
 ⍝  ⍵    msg(s) string, list or mat
 ⍝  ←    ⍵ having displayed date,⍵ in log window
-⍝ Phil 2018-11-14 15.58
+⍝ Phil 2018-11-28 23.41
  }
