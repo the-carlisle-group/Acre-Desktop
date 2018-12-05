@@ -14,7 +14,7 @@
  {}∆RunUcmd'CreateProject ',projectPath,' #.',projectName
  result←∆RunUcmd'Stats'
  →GoToTidyUp~0∊⍴result
- →GoToTidyUp'Syntax: ]acre.Stats space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}∆GetLog ⍬
+ →GoToTidyUp'Syntax: ]acre.Stats space'{⍺≢(⍴⍺)↑⊃¯1↑⍵}(⍴'YYYY-MM-DD hh:mm:ss ')↓¨∆GetLog ⍬
  result←∆RunUcmd'Stats #.',projectName
  →GoToTidyUp 2≠⍴⍴result
  →GoToTidyUp 14≠⊃⍴result
