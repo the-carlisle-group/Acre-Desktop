@@ -4,9 +4,9 @@
      (dat←⎕NS'').(changed folder loadtime)←''(fPath src,'/'),DT.ts2dt ⎕TS
      dat.(config source code changes latest)←{
          ⍵}dat.folder∘,¨MS.HO MS.GY,MS.NB∘,¨''MS.EU MS.HE
-     ~∨/2⍴src cnf cde←⎕NEXISTS¨dat.(source config changes):{
+     ~∨/2⍴src cnf cde←_NEXISTS¨dat.(source config changes):{
          0}logMsg MS.DG,' ',¯4 tPath dat.folder
-     z←'dat'⎕NS UT.lc⊢cfg←readConfig dat.config ⍝ see configFields
+     z←'dat'⎕NS lcNs⊢cfg←readConfig dat.config ⍝ see configFields
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}logMsg MS.DC
@@ -16,11 +16,10 @@
      space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
      cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←≢/Cc dat.keephistory MS.GB
      cfg.CaseCode←MS.GB MS.GA⊃⍨dat.case←≢/Cc dat.casecode MS.GB
-⍝     z←space MS.FV is cfg⊣cfg.ProjectFolder←dat.folder
-     dat.cfg←⎕NS cfg⊣space MS.FV is cfg⊣cfg.ProjectFolder←dat.folder
+     dat.cfg←⎕NS cfg⊣space MS.FV _is_ cfg⊣cfg.ProjectFolder←dat.folder
      z←deleteFolder⍣(cde>dat.hist)⊢dat.code
-     z←⎕MKDIR/3,⍪dat.(source changes)/⍨(~src),cde<dat.hist
-     z←MS.NB∘⎕NPUT if(~⎕NEXISTS)dat.folder,MS.FM  ⍝ git specific -
+     z←_MKDIR/3,⍪dat.(source changes)/⍨(~src),cde<dat.hist
+     z←MS.NB∘_NPUT if(~_NEXISTS)dat.folder,MS.FM  ⍝ git specific -
      z←dat getSource''
      dat.changed←⊃dat changes''
      z←space∘{0::⊢logMsg UT.bx MS.DN,MS.DP,⍵
@@ -29,5 +28,5 @@
 ⍝ [⍺] trk dep
 ⍝ ⍵ trk dep (folder [space])
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
-⍝ Phil 2018-06-06 21.11
+⍝ Phil 2018-12-30 23.50
  }

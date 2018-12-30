@@ -1,4 +1,4 @@
- getValue←{
+ getValue←{⍺←⊢ ⍝ only in dev
      type←nameClass⊢fqn←,⊂if≡⍵
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
      nc←⊃⌊/MS.AY MS.AZ⍳¨⊂type
@@ -12,8 +12,9 @@
      (x/val)←⊢∘⎕NR/0,⍪fqn/⍨x←nc∊ns.(function operator)
      (x/val)←{0::0 ⋄ ⎕SRC⍎⍵}/0,⍪fqn/⍨x←nc∊ns.(script class interface)
      msg←(∨/e)/↓⍕MS.DL'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)fqn/⍨e←(val∊0)>0=⎕NC fqn
-     z←⍴logMsg/UT.ht msg
+     z←⍴logMsg/(⍺⊣0)↓UT.ht msg
      fqn type val/¨⍨⊂~e
+⍝ [⍺] 1 if no msgs in dev
 ⍝ ⍵ fqns
 ⍝ ← fqn type val - of only arrays, defined fns and ops and scripts
 ⍝   filtered and re-ordered

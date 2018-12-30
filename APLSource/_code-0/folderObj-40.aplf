@@ -1,6 +1,6 @@
  folderObj←{⍺←⊢
      dir←fPath ⍵,'/'
-     p t s d←0 1 2 3 ⎕NINFO⍠1⊢dir,'*'
+     p t s d←0 1 2 3 _NINFO dir,'*'
      p s d/⍨←⊂t=2
      r⊣(r←⎕NS'').(Path Size Date)←p s(DT.ts2dt↑d)
 ⍝ folder object - ignore subfolders - see fileTree

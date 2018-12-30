@@ -1,5 +1,6 @@
  Install←{
-     path wsid←2⍴,\1 ⎕NPARTS(⍵≡∊⍵)⊃⍵ ⎕WSID
+     z←setAplVer''
+     path wsid←2⍴,\1 _NPARTS(⍵≡∊⍵)⊃⍵ ⎕WSID
      name←1↓{⍵/⍨1=+\⍵='.'}⊃⎕XSI
      apo←'"'∘(qu←UT.qu)
      sep←⊃~∘'∘'⊢⎕SE.SALT.PATHDEL                           ⍝ thanks Gil
@@ -13,10 +14,11 @@
      data←(name)(grp)(cmds)(opt)(help)(type)(syn)
      code←'<n>' '<g>' '<c>' '<o>' '<h>' '<t>' '<s>'
      script←,(⎕UCS 10),{0 3↓⍵⌿⍨>/'⍝: '⍷⍵}⎕CR⊃⎕SI
-     script←⊂(⎕UCS 10){1↓¨⍵⊂⍨⍵=⍺}⊃re/(↓code,⍪data),⊂script
-     z←script ⎕NPUT(path,name,'.dyalog')1    ⍝ 1=rewrite
+⍝    script←⊂(⎕UCS 10){1↓¨⍵⊂⍨⍵=⍺}⊃re/(↓code,⍪data),⊂script
+     script←(⎕UCS 10){1↓¨⍵⊂⍨⍵=⍺}⊃re/(↓code,⍪data),⊂script
+     z←script _NPUT path,name,'.dyalog'
      rel←path,'releaseNotes','.txt'
-     z←(⊂{⍵/⍨∧\(⍵∊∊⍵)∨⍵∨.≠¨'-'}releaseNotes⊣'')⎕NPUT rel 1
+     z←({⍵/⍨∧\(⍵∊∊⍵)∨⍵∨.≠¨'-'}releaseNotes⊣'')_NPUT rel
      ⍪'Installed at ' ']open ',∘apo¨path rel
 ⍝:  :namespace <n>Init
 ⍝:     ⎕io ⎕ml←0
@@ -37,7 +39,8 @@
 ⍝:    }
 ⍝:    Run←{cmd arg←⍵
 ⍝:     arg.help:Help cmd
-⍝:     (path wsid)←,\2⍴1 ⎕NPARTS ##.SourceFile
+⍝:     ⍝ (path wsid)←,\2⍴1 _NPARTS ##.SourceFile
+⍝:     (path wsid)←,\{⍵(↑{⍺⍵}↓)⍨(1+⊢⍳⌈/)+\⍵∊'\/'}##.SourceFile
 ⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC name
 ⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY ⍵}⍣new⊢wsid
 ⍝:     nsi←((⎕XSI+.=¨'.')⍳1)⊃⎕NSI  ⍝ whence called

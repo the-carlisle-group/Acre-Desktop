@@ -14,7 +14,6 @@
          proj:⍺(⍎⍺)projMethod ⍵              ⍝ first item is project
          share:⍺(⍎⍺)sharedMethod ⍵           ⍝ arg is specific to method
      }arg.Arguments
-     OPT.messages←'On'                       ⍝ for editFix
      z←⎕SIGNAL/(,/(⎕UCS 13),¨SV.errmsgs),11/⍨×≢SV.errmsgs
      res
 ⍝ ⍵ new; method; arg ns; type of fn; whence called; whence loaded; system.

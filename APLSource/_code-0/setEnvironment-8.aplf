@@ -1,14 +1,16 @@
  setEnvironment←{⍺←⊢                  ⍝ only if no projects
      z←⍵{path←⍺
-         top←UT.rs ⍵            ⍝ child of # or ⎕SE
-         ⍵.SV←top.⎕NS''
+         ⍵.SV←##.⎕NS''
          SV.setupcomplete←0
          SV.(errmsgs opened)←'' ''
          path ws name←SV.(inipath workspace systemname)←path
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
          ⍵.SX←syntaxHelp name
+         z←setEmulators''
          SV.logfile←localFolder'/',MS.CJ
+         SV.upper←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ'
+         SV.lower←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûü'
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵
      }⎕THIS
@@ -16,11 +18,11 @@
      z←editFix'Start'                 ⍝ sets other stuff in SV
      z←logMsg⍕getVersion''
      z←logCtrl'show'
-     z←⍴⎕SE MS.FY is setAPI''
+     z←⍴⎕SE MS.FY _is_ setAPI''
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
 ⍝ ⍵ ?
 ⍝   there should be no tracked instances when this runs
 ⍝ ← 1
-⍝ Phil 2018-06-06 21.11
+⍝ Phil 2018-12-22 19.07
  }

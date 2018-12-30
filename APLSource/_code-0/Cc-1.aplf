@@ -1,4 +1,8 @@
- Cc←Cc
- Cc←819⌶
-⍝ case folding
-⍝ nilad returning ambivalent
+ Cc←{⍺←⊢
+     15≤⊃SV.aplver:⍺(819⌶)⍵
+     r←⍺⊣0
+     i o←r⌽SV.(upper lower)
+     ⊃if(≡⍵){(o,,⍵)[(i,,⍵)⍳⍵]}¨⊂if≡⍵
+⍝ case folding - see setEmulators, setEnvironment
+⍝ Phil 2018-12-22 19.07
+ }

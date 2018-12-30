@@ -1,6 +1,6 @@
  itemName←{
      f←(id←openProjects'').source
-     null⊢b←{⊃∊/Cc f p}if null f∊p←(≢¨f)↑¨⊂fp←⊃,/2⍴1 ⎕NPARTS ⍵:''⊣logMsg fp
+     null⊢b←{⊃∊/Cc f p}if null f∊p←(≢¨f)↑¨⊂fp←⊃,/2⍴1 _NPARTS ⍵:''⊣logMsg fp
      id←⊃b/id
      id.nspath,'.',⊃'/.'decodeCaps(≢⊃b/f)↓fp
 ⍝ itemname from source filepath

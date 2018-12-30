@@ -1,10 +1,10 @@
  newSession←{
-     0::1                ⍝ if we error on SV.setupcomplete it must be new
+     0::1                ⍝ if no setupcomplete it must be new
      ~SV.setupcomplete:1 ⍝ if setup incomplete it must be new
      0.000116<|SV.sessionstart-sessionStart''
 ⍝ ⍵ ignored
 ⍝ Is this a new session? yes/no
 ⍝ If setup isn't complete or if saved session start is ≥10s
-⍝    before actual because ws has been saved with CMS open
+⍝    before actual because ⎕SE has been saved with us in it
 ⍝ called with userCmdRun in Run under ⎕SE.UCMD
  }

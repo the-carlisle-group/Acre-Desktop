@@ -1,0 +1,20 @@
+ buildWsVersion←{
+     ⎕IO←⎕ML←0 ⋄ LF CR BOM←⎕UCS 10 13 65279
+     len←≢CD←(⊃⎕CMD'cd'),'/APLSource/'
+     src←⎕CMD'dir "',CD,'_code-0/" /S'
+     src⊢←(⊢(/⍨)1<≢¨)(⊢⊂⍨' '=⊃¨)(⊢(/⍨)0='<'∊¨⊢)~∘∊⍨src
+⍝        lose single, partition,  lose <DIR>,  lose blank
+     fns dir←⊢∘⊃¨\⌽↓⍉↑1(↑{⍺ ⍵}↓)¨src
+     drop←{+/⍺≥+\2</0,' '≠⍵}
+     dir⊢←(2 drop⊃dir)↓¨dir
+     fns⊢←(3 drop⊃⊃fns)↓¨¨fns
+     read←{CR(1↓¨=⊂⊢)CR,~∘(LF,BOM)⊢'UTF-8'⎕UCS ⎕UCS ⎕NREAD ⍵,80,⎕NSIZE ⍵}
+     get←((⎕NUNTIE⊢read)0 ⎕NTIE⍨,)
+     data←(dir,¨'/'){⍺∘get¨⍵}¨fns
+     ns←(⍎''⎕NS⍨⊢)¨{{('..',⍵)[('\/',⍵)⍳⍵]}~∘('-',⎕D)⊢'#.acre.',len↓⍵}¨dir
+     fns←ns.(⎕FX¨)data
+     #.⎕LX←'#.acre._code.Install'''''
+     .
+⍝ this fn runs in a clear ws.
+⍝ ⊃⎕CMD'cd' is assumed to be the acre development folder
+ }

@@ -1,5 +1,5 @@
  buildWs←{⍺←⊢
-     sc←⎕SE UT.fr'.'UT.nn sPath⊃⎕XSI                        ⍝ ⎕SE equiv
+     sc←⎕SE UT.fr'.'UT.nn UT.sp⊃⎕XSI                        ⍝ ⎕SE equiv
      z←⎕EX(,(/⍨)(≢/⊢,⍕∘⍎¨))⍪## UT.li 9                      ⍝ anon refs
      aa fz←sc.(MS.NA MS.FZ)
      wsid←sc.SV.workspace

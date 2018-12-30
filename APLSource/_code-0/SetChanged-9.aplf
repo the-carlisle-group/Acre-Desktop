@@ -1,4 +1,4 @@
- SetChanged←{dat←⍺ ⋄ arg←⍵
+ SetChanged←{dat←⍺ ⋄ arg←∪⍵
      space←⊃0∘ssp∧1=≢
      space arg:''⊣logMsg MS.BO
      arg←¯2∘↓¨if('.*'≡¯2↑⊃)if(1=≢)arg

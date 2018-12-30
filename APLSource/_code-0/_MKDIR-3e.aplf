@@ -1,0 +1,8 @@
+ _MKDIR←{⍺←⊢
+     15≤⊃SV.aplver:⊢3 ⎕MKDIR ⍵
+     path←('\',⍵)[('/',⍵)⍳⍵]~'"'
+     z←⎕CMD'mkdir "',path,'"'
+     ' '∨.≠⊃¨⎕CMD'dir "',path,'"'
+⍝   - see setEmulators
+⍝ Phil 2018-12-16 21.18
+ }

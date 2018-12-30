@@ -1,0 +1,8 @@
+ _NDELETE←{⍺←⊢
+     15≤⊃SV.aplver:⊢1 ⎕NDELETE ⍵
+     path←('\',⍵)[('/',⍵)⍳⍵]~'"'
+     z←⎕CMD'del "',path,'"'
+     ' '∧.=⊃¨⎕CMD'dir "',path,'"'     ⍝ gone?
+⍝  - see setEmulators
+⍝ Phil 2018-12-30 23.02
+ }

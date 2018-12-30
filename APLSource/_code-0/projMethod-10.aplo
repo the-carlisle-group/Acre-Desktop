@@ -1,6 +1,6 @@
  projMethod←{⍺←⊢ ⋄ mon←1≡⍺ 1
      args←⍵
-     proj arg←1(↑_↓)args
+     proj arg←1(↑__↓)args
      mon<(null proj)∨0∊⍴dats←openProjects'':''⊣logMsg MS.DM,SX.⍎⍺
      msk←dats.nspath∊prefSpace proj
      0=dat←⊃1↓0,msk/dats:''⊣logMsg MS.BW

@@ -1,11 +1,12 @@
  copyFolder←{⍺←⊢ ⋄ era←1=⍺⊣0
+     .......................not used
      source target←'/'UT.nn¨src tgt←¯1↓¨fPath¨⍵,¨'/'
      n←≢/Cc source target
      tgt,←n/'/',source
      z←logMsg MS.EI
      sp tp←{
          s←fileTree src
-         z←3 ⎕MKDIR tgt
+         z←3 ⎕ MKDIR tgt
          t←fileTree tgt
          (s t).Path
      }UT.tk 0
@@ -23,7 +24,7 @@
      }UT.tk 0
      del/⍨←era
      z←logMsg era/MS.ET,(≢del)UT.pl MS.FL
-     z←⎕NDELETE⍨/UT.tk del,1
+     z←⎕ NDELETE⍨/UT.tk del,1
      z←logMsg MS.ES,(≢copy)UT.pl MS.FL
      z←(copyFile⊣)/UT.tk copy,0
      ⊢/↑copy

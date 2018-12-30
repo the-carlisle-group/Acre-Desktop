@@ -1,6 +1,6 @@
  caseOK←{⍺←⊢ ⋄ dat←⍺⍺
      null⊢nms←nout⊂if≡⍵:nms
-     dat.case≥∧/⎕NEXISTS¨0 1 Cc¨⊂dat.source:nms ⍝ ok
+     dat.case≥∧/_NEXISTS¨0 1 Cc¨⊂dat.source:nms ⍝ ok
      space←⍎dat.nspath
      it←⍺⊣space∘{validItems ⍺ UT.li⍳11}if⊢1=⍺ 1
      null nms∩dup←it/⍨multi(Cc,¨nameClass)it:nms

@@ -4,8 +4,8 @@
      tgt src←MS.EX MS.HN
      file←MS.EX,⍨(-≢MS.HN)↓chg←⊃dat getChangeFilenames fqn
 ⍝    type will be MS.AX ".*"
-     null⊢del←⊃⊃0 ⎕NINFO⍠1⊢file:''
-     name type←namx sPath del ⍝ file is path.name.type.delete
+     null⊢del←⊃⊃0 _NINFO file:''
+     name type←namx UT.sp del ⍝ file is path.name.type.delete
      chg←MS.HN,⍨(-≢MS.EX)↓del
      tie←del ⎕FTIE 0
      val←currentChange tie

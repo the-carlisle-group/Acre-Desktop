@@ -1,6 +1,0 @@
- run←{⍺←⊢
-     (OPT.messages was)←'off'OPT.messages
-     0::⎕SIGNAL ⎕EN⊣OPT.messages←was
-     (OPT.messages←was)⊢⍺ codeHook ⍵
-⍝ Phil Last 2018-01-17 23.16
- }

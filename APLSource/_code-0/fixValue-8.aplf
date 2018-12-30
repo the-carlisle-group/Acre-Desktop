@@ -1,7 +1,7 @@
  fixValue←{⍺←⊢ ⋄ ren←⍺⊣0
      null ⍵:(3+ren)⍴⊂''
      fqn typ val←,∘⊂¨if(≡⊃)⍵
-     fqn typ val{⍺[⍵]}←⊂ord←⍋(≢sPath)¨fqn
+     fqn typ val{⍺[⍵]}←⊂ord←⍋(≢UT.sp)¨fqn
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
      nc←⊃⌊/MS.AY MS.AZ⍳¨⊂typ
      nam←1↓¨1⊃spc nam←↓⍉↑namx¨fqn
@@ -11,7 +11,7 @@
      (x/res)←fixSrc⌿↑spc val/¨⍨⊂x←nc=ns.script
      spc←fixNs eu spc
      data←↓⍉↑(⍳⍴nam)nam spc val
-     fixVar←{0::0 ⋄ x n s v←⍵ ⋄ 1⊣s n is ⍺⍺ v}
+     fixVar←{0::0 ⋄ x n s v←⍵ ⋄ 1⊣s n _is_ ⍺⍺ v}
      fixFn←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←s.⎕FX v:1 ⋄ 0∊∊r:0 ⋄ 1⊣ers⍪←x r}
      fixSrc←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←'.'UT.nn⍕s.⎕FIX v:1 ⋄ 1⊣ers⍪←x r}
      fixClss←~{⍵\~1↓0,fixSrc/0,⍪⍵/⍺}⍣≡

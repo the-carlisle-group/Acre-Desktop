@@ -1,12 +1,13 @@
  logMsg←{⍺←⊢
      null⊢ms←ntbs if≡⍵:ms
-     hd←nout{⍵(⍵⊢¨'=')}⍺⊣''
+⍝    hd←nout{⍵(⍵⊢¨'=')}⍺⊣''
+     hd←nout{⍵((⍵≠' ')\'=')}⍺⊣''
      da←hd,ms
      dt←DT.(dt2fm ts2dt ⎕TS),' '
      SV.errmsgs,←da/⍨'!'=⊃¨da  ⍝ reset in userCmdRun
      dd←MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←dt∘,¨da
-     ~⎕NEXISTS SV.logfile:ms
-     fd←⊃,/,∘UT.(CR LF)¨dd
+     ~_NEXISTS SV.logfile:ms
+     fd←⎕UCS MS.HI ⎕UCS⊃,/,∘UT.(CR LF)¨dd
      ms⊣⎕NUNTIE fd(⊢⊣⎕NAPPEND)SV.logfile ⎕NTIE 0
 
 ⍝   MP←{⍵⊣⍵._←,¨''}⎕SE.⎕NS'' ⍝ setEnvironment

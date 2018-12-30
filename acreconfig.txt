@@ -1,7 +1,0 @@
-﻿[
-   KeepHistory←'On'
-   CaseCode←'On'
-   Open←''
-   ProjectSpace←'#.acre'
-   StartUp←'#.acre._code.refs⍬'
-]

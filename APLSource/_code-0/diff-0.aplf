@@ -1,8 +1,8 @@
  diff←{
-     z x←(⎕SE.acre._code.whichProject⊃⎕XSI)changes''
-     y←'⎕se'∘,¨1↓¨z
-     z/⍨≢⌿↑(2⊃getValue)¨z y
-     z/⍨≢/⎕CR¨z,⍪y
+     s←⍎(⎕SE.acre._code.whichProject⊃⎕XSI).nspath
+     b←0<⎕NC c←'⎕se'∘,¨1↓¨a←validItems s UT.li⍳10
+     (b/a)/⍨{≢/2↑2⊃1 getValue ⍺ ⍵}/b⌿a,⍪c
+
 ⍝ changed since latest build
-⍝ Phil 2018-11-11 09.45
+⍝ Phil 2018-12-28 17.31
  }

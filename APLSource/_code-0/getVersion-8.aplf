@@ -1,11 +1,11 @@
  getVersion←{
      1:' 'sep⊃releaseNotes⊣''
 ⍝ see releaseNotes wherein first line should be
-⍝       name ver date compat
+⍝       name ver date time
 ⍝ name   - system name
-⍝ ver    - as maj.mid.min
-⍝ date   - when code released
-⍝ compat - earliest data-compatible ver
+⍝ ver    - as maj.mid.min.build
+⍝ date   - when code built
+⍝ time   - ditto
 ⍝
 ⍝ notes on the present release should be terminated
 ⍝ with a line containing only hyphens.

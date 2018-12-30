@@ -1,18 +1,13 @@
  optionFields←{⍺←⊢
-     dflt←,opts←,''
-     dflt,←opts,←⊂'help'
-     dflt,←opts,←⊂'messages:on'
-     opts,←⊂'casecode:off'
-     opts,←⊂'confirm:'
-     opts,←⊂'dependencies:on'
-     opts,←⊂'keephistory:off'
-     opts,←⊂'track:on'
-     opts,←⊂'when[=]'
+     opts←,dflt←,⊂'help'
+     opts,←'track:on' 'confirm:' 'dependencies:on'
+     opts,←'casecode:off' 'when[=]' 'keephistory:off'
 
-     in←3⍴¨opts
+     len←3 ⍝ min unique width of above
+     in←len⍴¨opts
      opts←' -'∘,¨opts
-     {1↓⊃,/opts[in⍳in∩3⍴¨dflt,' 'sep ⍵]}¨⊂if≡⍵
-⍝ convert strings of initials to option specs
+     {1↓⊃,/opts[in⍳in∩len⍴¨dflt,' 'sep ⍵]}¨⊂if≡⍵
+⍝ convert strings of initial abbreviations to option specs
 ⍝ see cmdDefs
 ⍝ Phil 2018-10-29 14.07
  }

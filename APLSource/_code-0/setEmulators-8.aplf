@@ -1,0 +1,25 @@
+ setEmulators←{⍺←⊢
+     z←setAplVer''
+     f←{
+         [
+         15 'Cc' '(819⌶)'
+         15 '_MKDIR' '⊢{3 ⎕MKDIR ⍵}'
+         15 '_NDELETE' '⊢{1 ⎕NDELETE ⍵}'
+         15 '_NEXISTS' '⎕NEXISTS'
+         15 '_NGET'('⊢{⊃''UTF-8''⎕NGET ⍵ 1}')
+         15 '_NINFO' '⊢{⍺←⊢ ⋄ ⍺ ⎕NINFO⍠1⊢⍵}'
+         15 '_NPARTS' '⎕NPARTS'
+         15 '_NPUT'('⊢{⍺''UTF-8''⎕NPUT ⍵ 1}')
+         16 'a_' '{⍺←⊢ ⋄ ⍺(⍺⍺@⍵⍵)⍵ ⋄ ''DO NOT EDIT''}'
+         16 'c_' '⊆'
+         16 'i_' '⍸'
+         ]
+     }
+     d←PL.decode 1↓¯1↓⎕NR'f'
+     r←(⊣/d)≤⊃SV.aplver
+     ⎕THIS{⍺⍺.⍎⍺,'←',⍵,' ⋄ ⍺'}/r⌿0 1↓d
+⍝ called at start, this swaps in the primitive itself
+⍝ or a much lighter cover than the v14.0 emulator
+⍝ if run in a Dyalog version late enough to use it.
+⍝ Phil 2018-12-17 17.56
+ }

@@ -2,14 +2,14 @@
      ~dat.hist:0⊣dat noHistMsg''
 
      dat.nspath≡⊃⍵:{      ⍝ all for project
-         files←⊃(⊣(/⍨)2=⊢)/0 1 ⎕NINFO⍠1⊢dat.changes,'*'
-         ok←∧/⎕NDELETE/1,⍪files
+         files←⊃(⊣(/⍨)2=⊢)/0 1 _NINFO dat.changes,'*'
+         ok←∧/_NDELETE/1,⍪files
          dat.changed←''
          ok⊣logMsg ok/dat.nspath,MS.DA
      }0
                           ⍝ one item
      dl←,∘MS.EX⊢(-≢MS.HN)↓fn←⊃dat getChangeFilenames⊂fqn←⊃validItems ⍵
-     ok←1∊⎕NDELETE/1,⍪dl fn
+     ok←1∊_NDELETE/1,⍪dl fn
      dat.changed~←⊂fqn
      ok⊣logMsg ok/fqn,MS.DA
 ⍝ Purge history for project or one item.

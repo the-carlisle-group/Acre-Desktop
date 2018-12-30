@@ -1,7 +1,8 @@
  copyFile←{
+     .......................not used
      src tgt←⍵
      st←src ⎕NTIE 0
-     z←3 ⎕MKDIR⊃⎕NPARTS tgt
+     z←3 ⎕ MKDIR⊃⎕ NPARTS tgt
      tt←tgt{22::⊢0 ⎕NRESIZE ⍺ ⎕NTIE ⍵ ⋄ ⍺ ⎕NCREATE ⍵}0
      lim←⌊0.5×⎕WA
      (⎕NUNTIE st tt)⊢{(⎕NREAD st,83,lim)⎕NAPPEND tt,83}⍣=¯1

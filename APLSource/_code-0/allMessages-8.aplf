@@ -53,7 +53,7 @@
          ⍵.CF←'Return a change-file-name from an item-name'
          ⍵.CG←'Return a source-file-name from an item-name'
          ⍵.CH←'Return a delete-file-name from an item-name'
-         ⍵.CI←'Log file - `hide` | `show` | `clear` | `all` | no. of rows to get'
+         ⍵.CI←'Log file - `hide` | `show` | `file` | `clear` | `all` | no. of rows to get'
          ⍵.CJ←MS.NA,'/',MS.NA,'.log'
 
          ⍵.DA←' - Local history purged'

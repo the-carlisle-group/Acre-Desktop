@@ -1,0 +1,12 @@
+ _is_←{
+     ⊃⍵{⍺ ⍺⍺⊣⍺.⍎⍕⍵,'←⍺⍺'}/⍺
+⍝ assign into name
+⍝   ns value ← ns name _is_ value
+⍝ ⍺     - ns name
+⍝ ⍵     - value
+⍝ ←     - ns value
+⍝ ns    - ref of target space
+⍝ name  - simple name(s) of var(s)
+⍝ value - value(s) of var(s)
+⍝ Phil 2018-12-17 08.50
+ }

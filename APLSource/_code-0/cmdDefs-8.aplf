@@ -8,6 +8,13 @@
          syntax←'space | item'
          type←'item'
          ][
+         command←'Close'
+         help←'Close (stop tracking) a tracked project'
+         options←''
+         result←''
+         syntax←'space'
+         type←'project'
+         ][
          command←'CreateProject'
          help←'Create a new project'
          options←'case keep'
@@ -40,7 +47,7 @@
          help←'Hide, show, clear or request all or n msgs from the log'
          options←''
          result←''
-         syntax←'"hide" | "show" | "clear" | "all" | number '
+         syntax←'"hide" | "show" | "file" | "clear" | "all" | number ' ⍝ MS.CI
          type←'shared'
          ][
          command←'OpenProject'

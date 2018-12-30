@@ -1,15 +1,15 @@
  getSource←{dat←⍺ ⋄ ref←⍵≡MS.BG ⋄ prev←dat getTime''
      src tgt←dat.(source nspath),¨'' '.'           ⍝ ../APLSource/
-     read←{⊃MS.HI ⎕NGET ⍵ 1}
      (path date)←{⍵.(Path Date)}fileTree⊢src       ⍝ all files
      path date/⍨←⊂~∨/'/.'⍷(≢src)↓⍤1↑path           ⍝ ignore all /.*/
-     file type←↓⍉↑(UT.px(≢src)↓⊢)¨path             ⍝ 'ns/path/file' '.type'
+     file type←↓⍉↑(px(≢src)↓⊢)¨path             ⍝ 'ns/path/file' '.type'
      path date file type/⍨←∊/Cc type(MS.AZ,MS.AY)  ⍝ only valid types
      name←'/.'decodeCaps file
      path date file name type/⍨←⊂ref≤new←date>prev ⍝ new or not refresh
      z←MS.DD logMsg,/(tgt∘,¨dn/name),'=',⍪type/⍨dn←multi name
      z←logMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,¯4 tPath src
-     val←3 read ticks path ⋄ fqn←tgt∘,¨name
+    ⍝ val←3 read ticks path ⋄ fqn←tgt∘,¨name
+     val←3 _NGET ticks path ⋄ fqn←tgt∘,¨name
      fqn type val msk←1 fixValue fqn type val      ⍝ name/type-change?
      z←logMsg MS.FW∘,¨(¯4 tPath¨path/⍨~msk),¨⊂MS.BP ⍝ file needs att'n
      fqn type val path date/⍨←⊂msk                 ⍝ remove unfixed

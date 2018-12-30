@@ -1,0 +1,9 @@
+ i_←{⍺←⊢
+     16≤⊃SV.aplver:⍺⍸⍵
+     1≡⍺ 1:(,⍵)/,⍳⍴⍵
+     'Not implemented - interval index'⎕SIGNAL 16
+⍝  - see setEmulators
+⍝ ⍸ - m: where
+⍝ ⍸ - d: interval index - 16+ only
+⍝ Phil 2018-12-05 19.44
+ }

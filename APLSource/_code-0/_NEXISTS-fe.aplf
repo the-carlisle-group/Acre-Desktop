@@ -1,0 +1,9 @@
+ _NEXISTS←{⍺←⊢
+     15≤⊃ver←SV.aplver:⊢⎕NEXISTS ⍵
+     path←'\'a_(=∘'/')⍵~'"'
+     ' '∨.≠⊃¨⎕CMD'dir "',path,'"'
+⍝  - see setEmulators
+⍝ ⍵ file|folder
+⍝ ← 0|1
+⍝ Phil 2018-12-30 23.02
+ }

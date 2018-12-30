@@ -1,6 +1,6 @@
  config←{⍺←⊢
      0=dat←⊃##.whichProject⍕⍵:#.⎕NS''
-     #.⎕NS dat.cfg   ⍝ readonly
+     #.⎕NS dat.cfg   ⍝ clone into #
 ⍝
-⍝ Phil 2018-11-28 13.35
+⍝ Phil 2018-12-04 11.20
  }

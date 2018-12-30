@@ -1,0 +1,18 @@
+ _NINFO←{⍺←⊢ ⋄ key←⍺⊣0
+     15≤⊃SV.aplver:⊢⍺ ⎕NINFO⍠1⊢⍵
+     path←'\'a_(=∘'/')⍵~'"'
+     dir←'\*'≡¯2↑path ⍝ else file
+     data←(dir×2)↓(⊢(/⍨)' '≠⊃¨)⎕CMD'dir "',path,'" /A/-C'
+     null data:0⍴∘⊂¨key⊃¨⊂'' 0 0(⍳7)
+     info name←↓⍉↑data(↑__↓)¨⍨+/3≥+\2</0,' '≠⊃data
+     name←dirMap¨name⊣dirMap''
+     path←({⍵/⍨⌽∨\⌽'/'=⍵}'/'a_(=∘'\')path)∘,¨name
+     date time size←↓⍉↑(' '∘≠c_⊢)¨info
+     date←7↑¨⊢/'- :'∘⎕VFI⍤1⍕date,⍪time
+     size←⊃(⊢-2-⊣)/type size←1 0+⎕VFI⍕size
+     key⊃¨⊂path type size date
+⍝  - see setEmulators
+⍝ ⍺ 0 1 2 3 - path type size date - only
+⍝ ⍵ path - end in /* or \* for dir
+⍝ Phil 2018-12-30 23.02
+ }

@@ -1,7 +1,7 @@
- namx←namx
- namx←1↓⎕NPARTS
+ namx←{
+     px ⍵/⍨z<(⊢=⌈/)+\z←⍵∊'/\'
 ⍝ name, extension
 ⍝ nilad returning monad
-⍝ 'zero/one/two.three.four'
-⍝ → 'two.three' '.four'
-⍝ ⎕NPARTS is far and away the fastest I can achieve.
+⍝ 'zero/one/two.three.four' → 'two.three' '.four'
+⍝ Phil 2018-12-29 19.50
+ }

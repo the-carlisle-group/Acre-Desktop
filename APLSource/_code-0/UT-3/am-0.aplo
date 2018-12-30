@@ -1,8 +1,11 @@
- am←{⍺←⊢
-     W⊣W[i]←⍺ ⍺⍺⊣W[i←(⊂⍴W)|⍵⍵⊣⍳⍴W←⍵]
+ am←{⍺←⊢ ⋄ W←⍵ ⋄ r←⍵⍵
+     2=⎕NC'r':W⊣W[i]←⍺ ⍺⍺⊣W[i←(⊂⍴W)|r] ⍝ array ⍵⍵ is indices
+     W⊣(m/,W)←⍺ ⍺⍺⊣(m←,r W)/,W         ⍝ function ⍵⍵ returns mask
+⍝     W⊣W[i]←⍺ ⍺⍺⊣W[i←(⊂⍴W)|⍵⍵⊣⍳⍴W←⍵]
 ⍝ amend - [⍺](mod amend sel)⍵
 ⍝ [⍺] larg to ⍺⍺
-⍝ ⍺⍺  modifier of selection of ⍵ or replacement thereof
-⍝ ⍵⍵  selection function on ⍳⍴⍵ or selection thereof
+⍝ ⍺⍺  modifier of selection of ⍵      or replacement thereof
+⍝ ⍵⍵  boolean function on ⍵       or index selection thereof
 ⍝ ⍵   data to be amended
+⍝ ←   amended ⍵
  }

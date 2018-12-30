@@ -1,8 +1,0 @@
- sPath←sPath
- sPath←1⊃⎕NPARTS
-⍝ space path
-⍝ monad
-⍝ '#.a.b.c' → '#.a.b'
-⍝ '#.a.b'   → '#.a'
-⍝ '#.a'     → '#'
-⍝ '#'       → '#'

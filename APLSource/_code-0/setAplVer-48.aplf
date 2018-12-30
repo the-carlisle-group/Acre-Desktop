@@ -1,0 +1,9 @@
+ setAplVer←{⍺←⊢
+     ⎕THIS.SV←{9=⎕NC'SV':SV ⋄ ##.⎕NS''}0
+     2=SV.⎕NC'aplver':SV.aplver
+     ⊢SV.aplver←((0.1×10⊥2↑1⊃'.'⎕VFI 1⊃⊢),⊃∘⊃)'.'⎕WG'APLVersion'
+⍝ Dyalog vernum as maj.min and OS as capital initial
+⍝ leave as is if set already
+⍝ controls emulators
+⍝ Phil 2018-12-19 10.58
+ }

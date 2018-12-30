@@ -2,7 +2,7 @@
      root←fPath ⍵,'/.'
      file←{⍵⊣⍵.(Path Size Date)←''⍬ ⍬}⎕NS''
      tree←{file dir←⍺ ⍵
-         p t s d←0 1 2 3 ⎕NINFO⍠1⊢dir,'/*'
+         p t s d←0 1 2 3 _NINFO dir,'/*'
          (sub z z)(p s d)←↓¨(1 2=⊂t)/¨⊂↑p s d
          file.(Path Size Date),←p s d
          ∇⍨/sub,file

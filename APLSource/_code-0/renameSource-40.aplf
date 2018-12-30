@@ -1,6 +1,6 @@
  renameSource←{dat←⍺
      ren←(⊢(⌿⍨)≢/)⊃{⍺,⍪dat getSourceFilenames ⍵}/⍵
-     z←0⊣⎕MKDIR/3,⍪∪folder¨,ren
+     z←0⊣_MKDIR/3,⍪∪folder¨,ren
      msg←{
          t←⊃{~∘⍵-1+⍳1+≢⍵}⎕NNUMS
          0::⊃,/MS.BM'"'⍺'"'MS.EZ'"'⍵'"'⊣⎕NUNTIE t

@@ -2,7 +2,7 @@
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
      ∨/nil⊢folder nspath←2↑⊂if≡⍵:0⊣logMsg MS.DM,SX.CreateProject
      dat.folder←fPath folder,'/'
-     ⎕NEXISTS dat.folder:0⊣logMsg MS.DF
+     _NEXISTS dat.folder:0⊣logMsg MS.DF
      '⎕'∊dat.nspath←⊃prefSpace⊂nspath:0⊣logMsg MS.DC
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:0⊣logMsg MS.DC ⍝ 1=≢ => ,'#'
 
@@ -11,20 +11,20 @@
          ⍵}dat.folder∘,¨MS.HO MS.GY,MS.NB∘,¨''MS.EU MS.HE
      z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
      z←fixQV⊢space←⍎dat.nspath ⎕NS''
-     z←3 ⎕MKDIR¨dat.(source changes)
+     z←3 _MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.(CaseCode KeepHistory)←dat.(case hist)⊃¨⊂MS.GB MS.GA
-     z←(UT.CR sep PL.format cfg)MS.HI ⎕NPUT dat.config
-     z←'dat'⎕NS UT.lc cfg ⍝ ← into dat ↑ write
-     z←(⊂MS.NB MS.FX)⎕NPUT dat.folder,MS.FM ⍝ git specific -
+     z←(UT.CR sep PL.format cfg)_NPUT dat.config
+     z←'dat'⎕NS lcNs cfg ⍝ ← into dat ↑ write
+     z←(MS.NB MS.FX)_NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11
      fqn(dat caseOK⍨)←fqn⊣notStored{⍵/⍨0=0 ssp ⍵}nms~fqn
-     dat.cfg←⎕NS cfg⊣space MS.FV is cfg⊣cfg.ProjectFolder←dat.folder
+     dat.cfg←⎕NS cfg⊣space MS.FV _is_ cfg⊣cfg.ProjectFolder←dat.folder
      fqn type val←getValue fqn
      fqn type val←dat putSource fqn type val
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0
 ⍝ see openProject CreateProject
-⍝ Phil 2018-10-30 14.59
+⍝ Phil 2018-12-30 23.50
  }

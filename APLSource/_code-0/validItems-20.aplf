@@ -1,5 +1,5 @@
  validItems←{
-     {⍵(/⍨)(1∘ssp⍱ref)uniq sPath¨⍵}(⊢(/⍨)0∘ssp<ref<⎕NC∊validAPLType),∘⊂if≡⍵
+     {⍵(/⍨)(1∘ssp⍱ref)uniq UT.sp¨⍵}(⊢(/⍨)0∘ssp<ref<⎕NC∊validAPLType),∘⊂if≡⍵
 ⍝ ⍵ list of fqns
 ⍝ ← ⍵ filtered to include only extant items with no labels; derived fns;
 ⍝     container spaces; instances; refs; or children of scripts or refs.

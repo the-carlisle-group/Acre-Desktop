@@ -4,7 +4,7 @@
      sig←⍺⍺    ⍝ Undo - , Redo +
      fqn←{⍵/⍨(#.⎕NC ⍵)∊validAPLType''},∘⊂if≡⍵
      fil←dat getChangeFilenames fqn
-     null⊢fqn fil/⍨←⊂⎕NEXISTS¨fil:''
+     null⊢fqn fil/⍨←⊂_NEXISTS¨fil:''
      doit←{fqn fil←⍺ ⍵
          f(n x)←0(¯1 ¯2)+2⍴⎕FSIZE t←fil ⎕FTIE 0
          p←⎕FREAD t,n

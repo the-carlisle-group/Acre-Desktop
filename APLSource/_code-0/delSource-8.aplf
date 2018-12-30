@@ -1,7 +1,7 @@
  delSource←{dat←⍺ ⋄ fqn←⍵
      src←dat.nspath
      file←dat getSourceFilenames fqn
-     gone←⎕NDELETE/1,⍪file
+     gone←_NDELETE/1,⍪file
      gone/fqn
 
 ⍝ ⍺ dat
