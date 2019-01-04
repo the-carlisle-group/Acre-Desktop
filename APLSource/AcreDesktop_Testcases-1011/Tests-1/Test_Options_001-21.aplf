@@ -6,12 +6,11 @@
 
  ∆ClearLog
 
- {}∆RunUcmd'Projects'
- →PassesIf 0∊⍴∆GetLog ⍬                 ⍝ Nothing to tell yet
+⍝ Make sure that the `-messages` option is tolerated until it is finally retired.
+⍝ Currently it's just deprecated!
 
- {}∆RunUcmd'Stats'
- →PassesIf 0≠≢∆GetLog ⍬                 ⍝ Should be syntax hint (project is missing)
+ {}'-messages=on'∆RunUcmd'Projects'
+ ∆ClearLog
 
  R←∆OK
- ∆ClearLog
 ⍝Done
