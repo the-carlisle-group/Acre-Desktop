@@ -9,8 +9,7 @@
          ⍵.SX←syntaxHelp name
          z←setEmulators''
          SV.logfile←localFolder'/',MS.CJ
-         SV.upper←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ'
-         SV.lower←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûü'
+         z←setCase''
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵
      }⎕THIS
@@ -19,6 +18,7 @@
      z←logMsg⍕getVersion''
      z←logCtrl'show'
      z←⍴⎕SE MS.FY _is_ setAPI''
+     ##.run←⎕THIS.codeHook
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
 ⍝ ⍵ ?

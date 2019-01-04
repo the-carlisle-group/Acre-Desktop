@@ -1,5 +1,5 @@
  optionFields←{⍺←⊢
-     opts←,dflt←,⊂'help'
+     opts←,dflt←'help' 'messages[=]'
      opts,←'track:on' 'confirm:' 'dependencies:on'
      opts,←'casecode:off' 'when[=]' 'keephistory:off'
 
@@ -9,5 +9,5 @@
      {1↓⊃,/opts[in⍳in∩len⍴¨dflt,' 'sep ⍵]}¨⊂if≡⍵
 ⍝ convert strings of initial abbreviations to option specs
 ⍝ see cmdDefs
-⍝ Phil 2018-10-29 14.07
+⍝ Phil 2019-01-03 19.10
  }

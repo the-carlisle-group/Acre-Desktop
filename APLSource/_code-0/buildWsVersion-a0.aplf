@@ -1,5 +1,5 @@
  buildWsVersion←{
-     ⎕IO←⎕ML←0 ⋄ LF CR BOM←⎕UCS 10 13 65279
+     (⎕THIS #).(⎕IO ⎕ML ⎕WX)←⊂0 0 3 ⋄ LF CR BOM←⎕UCS 10 13 65279
      len←≢CD←(⊃⎕CMD'cd'),'/APLSource/'
      src←⎕CMD'dir "',CD,'_code-0/" /S'
      src⊢←(⊢(/⍨)1<≢¨)(⊢⊂⍨' '=⊃¨)(⊢(/⍨)0='<'∊¨⊢)~∘∊⍨src
@@ -17,4 +17,6 @@
      .
 ⍝ this fn runs in a clear ws.
 ⍝ ⊃⎕CMD'cd' is assumed to be the acre development folder
+⍝ the ws will be the intallation acre ws that is copied into ⎕SE
+⍝ Phil 2019-01-03 10.45
  }

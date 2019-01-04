@@ -1,4 +1,0 @@
- run←{⍺←⊢
-     ⍺ _code.codeHook ⍵
-⍝ Phil Last 2018-01-17 21.24
- }

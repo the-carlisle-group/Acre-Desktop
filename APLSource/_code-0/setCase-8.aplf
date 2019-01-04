@@ -1,0 +1,8 @@
+ setCase←{⍺←⊢
+     ⎕THIS.SV←{9=⎕NC'SV':SV ⋄ ##.⎕NS''}0
+     SV.upper←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ'
+     SV.lower←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûü'
+     SV
+⍝ different cased name characters only
+⍝ Phil 2019-01-03 17.41
+ }

@@ -1,4 +1,5 @@
  buildWs←{⍺←⊢
+     (# ⎕THIS).(⎕IO ⎕ML ⎕WX)←⊂0 0 3
      sc←⎕SE UT.fr'.'UT.nn UT.sp⊃⎕XSI                        ⍝ ⎕SE equiv
      z←⎕EX(,(/⍨)(≢/⊢,⍕∘⍎¨))⍪## UT.li 9                      ⍝ anon refs
      aa fz←sc.(MS.NA MS.FZ)
@@ -11,5 +12,6 @@
      #.(⍎⎕LX)
 ⍝ from within dev project, close self using running ⎕SE clone
 ⍝ clean ws - see refs
-⍝ Phil 2018-01-31 16.02
+⍝ this will ruin the ws
+⍝ Phil 2019-01-03 10.45
  }
