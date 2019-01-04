@@ -12,4 +12,5 @@
 *.class linguist-language=apl
 *.script linguist-language=apl
 *.charstring linguist-language=apl
-*.charList linguist-language=apl
+*.charlist linguist-language=apl
+*.charmat linguist-language=apl
