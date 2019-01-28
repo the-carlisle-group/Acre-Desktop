@@ -13,7 +13,9 @@
      ~dat openLoad trk dep:0 ⍝ load subsids
 
      z←logMsg(MS.ER,MS.EY),(¯4 tPath dat.folder),MS.EZ,dat.nspath
-     space←⍎dat.nspath #.⎕NS''⊣openProjects⊣⎕EX{# UT.nl⍳10}if≢dat.nspath
+     empty←{0=⎕NC ⍵:⍵ ⋄ ⍵/⍨~∧/ref↓(⍎⍵)UT.nl⍳10}
+     z←⎕EX empty if(≢⍴){# UT.nl⍳10}if≢dat.nspath
+     space←⍎dat.nspath #.⎕NS''⊣openProjects''
      cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←nOff dat.keephistory
      cfg.CaseCode←MS.GB MS.GA⊃⍨dat.case←≢/Cc dat.casecode MS.GB
      dat.cfg←⎕NS cfg⊣space MS.FV _is_ cfg⊣cfg.ProjectFolder←dat.folder
@@ -29,5 +31,5 @@
 ⍝ [⍺] trk dep
 ⍝ ⍵ trk dep (folder [space])
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
-⍝ Phil 2018-12-30 23.50
+⍝ Phil 2019-01-17 16.32
  }

@@ -1,7 +1,7 @@
  editFix←{⍺←⊢
      (⍵≡'Start'):{                                     ⍝ from Start
          (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
-         SV.fixandafter←UT.ds¨qed.(onFix onAfterFix)   ⍝ odd extra nesting!
+         SV.fixandafter←⊃if≢¨qed.(onFix onAfterFix)    ⍝ odd extra nesting!
          qed.(onFix onAfterFix)←⍬⍴⎕XSI ⋄ ⎕SE.⎕WX←wx    ⍝ reset ⎕WX
          {0}SV.itemvalue←editStore ⎕NS''               ⍝ create value store
      }''

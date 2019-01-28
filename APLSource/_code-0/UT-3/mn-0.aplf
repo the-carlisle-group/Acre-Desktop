@@ -2,7 +2,7 @@
      ⍺←''
 ⍝    mu below is ⎕ucs 181
      m n←'yzafpnµm' 'kMGTPEZY'
-     (⊂⍺),¨⍨⍵{(m,(⊂''),n)[⍵+8],¨⍨⍕¨3 sg ⍺÷1000*⍵}⌊1000⍟|⍵+⍵=0
+     (⊂⍺),¨⍨⍵{(m,EN,n)[⍵+8],¨⍨⍕¨3 sg ⍺÷1000*⍵}⌊1000⍟|⍵+⍵=0
 ⍝ magnitute
 ⍝ ⍺ unit
 ⍝ ⍵ simple number array

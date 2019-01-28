@@ -1,4 +1,4 @@
- _NPUT←{⍺←⎕SIGNAL 2 ⋄ enc←'UTF-8' ⋄ data←,⊃if≢⍺ ⍝ ≡ 1 or 2 string or list
+ _NPUT←{enc←'UTF-8' ⋄ data←,⊃if≢⍺ ⍝ ≡ 1 or 2 string or list
      15≤⊃SV.aplver:⊢data enc ⎕NPUT ⍵ 1
      d←⎕UCS enc ⎕UCS⊃,/,∘(⎕UCS 13 10)¨⊂if≡data  ⍝ one only CRLF if string
      t←{22::⍵ ⎕NCREATE 0 ⋄ 0 ⎕NRESIZE ⍵ ⎕NTIE 0}⍵

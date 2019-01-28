@@ -32,8 +32,8 @@
 ⍝ and at the same level of nesting of brackets and parentheses. They separate
 ⍝ cells of an array of rank two or more between brackets - wherein scalar
 ⍝ cells are treated as one-item vectors - and items of a vector between
-⍝ parentheses. No existing features of Dyalog APL are altered or nullified by
-⍝ these enhancements.
+⍝ parentheses. No existing features of Dyalog APL are compromised by these
+⍝ enhancements.
 ⍝
 ⍝ Implementation is by a namespace containing a number of functions to convert
 ⍝ arrays and spaces to and from aplan:

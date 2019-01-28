@@ -1,4 +1,4 @@
- _NDELETE←{⍺←⊢
+ _NDELETE←{
      15≤⊃SV.aplver:⊢1 ⎕NDELETE ⍵
      path←('\',⍵)[('/',⍵)⍳⍵]~'"'
      z←⎕CMD'del "',path,'"'

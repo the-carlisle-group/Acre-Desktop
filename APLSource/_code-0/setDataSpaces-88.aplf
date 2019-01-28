@@ -1,5 +1,6 @@
  setDataSpaces←{
-     ⎕THIS.dataSpaces←({⍵⊣⍵.ids←⍬}⎕NS'')∘{⊢⍺.ids←⍺.ids{(⍺~⍵)∪⍵~⍺}⍵}
+⍝    ⎕THIS.dataSpaces←({⍵⊣⍵.ids←⍬}⎕NS'')∘{⊢⍺.ids←⍺.ids{(⍺~⍵)∪⍵~⍺}⍵}
+     ⎕THIS.dataSpaces←({⍵⊣⍵.ids←⍬}⎕NS'')∘{⊢⍺.ids←⍺.ids(~∪~⍨)⍵}
      1:⍵
 ⍝ ←⍵ returned untouched
 ⍝ Runs once in new session.

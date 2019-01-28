@@ -1,5 +1,5 @@
  tPath←{
-     1↓⊃,/'/',¨⍺ UT.tm nout'/'sep ⍵
+     1↓⊃,/UT.EN,'/',¨⍺ UT.tm nout'/'sep ⍵
 ⍝ truncate path
 ⍝ Phil 2018-08-21 21.18
  }

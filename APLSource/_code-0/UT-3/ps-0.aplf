@@ -1,7 +1,7 @@
  ps←{
      def←'⍺⍺'(cr'')
      ⍺←def
-     arg←,es ⍺
+     arg←,⊂if≡⍺
      fnx exc←2⍴arg,(⍴arg)↓def
      ⍺{
          ⊃,/,⍉↑{{'(',fnx,'''',⍵,''')'}¨⍵

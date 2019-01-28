@@ -1,4 +1,4 @@
- _NEXISTS←{⍺←⊢
+ _NEXISTS←{
      15≤⊃ver←SV.aplver:⊢⎕NEXISTS ⍵
      path←'\'a_(=∘'/')⍵~'"'
      ' '∨.≠⊃¨⎕CMD'dir "',path,'"'

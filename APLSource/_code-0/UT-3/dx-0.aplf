@@ -1,6 +1,6 @@
  dx←{
      ⍺←⎕THIS
-     ⍺.(⎕NS''){⍺⍺⊣⍺⍺.⍎⍕'(',⍺,')←⍵'}/ds\⍵
+     ⍺.(⎕NS''){⍺⍺⊣⍺⍺.⍎⍕'(',⍺,')←⍵'}/⊃if≢\⍵
 ⍝ dictionary
 ⍝ ⍺   space - dflt here
 ⍝ ⍵   names values

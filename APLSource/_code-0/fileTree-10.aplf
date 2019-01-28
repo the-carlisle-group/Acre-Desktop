@@ -1,14 +1,29 @@
  fileTree←{⍺←⊢
-     root←fPath ⍵,'/.'
-     file←{⍵⊣⍵.(Path Size Date)←''⍬ ⍬}⎕NS''
-     tree←{file dir←⍺ ⍵
-         p t s d←0 1 2 3 _NINFO dir,'/*'
-         (sub z z)(p s d)←↓¨(1 2=⊂t)/¨⊂↑p s d
-         file.(Path Size Date),←p s d
-         ∇⍨/sub,file
-     }
-     r←file tree root
-     r⊣r.Date←DT.ts2dt↑r.Date
+     15≤⊃SV.aplver:{
+         root←fPath ⍵,'/.'
+         file←{⍵⊣⍵.(Path Size Date)←''⍬ ⍬}⎕NS''
+         tree←{file dir←⍺ ⍵
+             p t s d←0 1 2 3 _NINFO dir,'/*'
+             (sub z z)(p s d)←↓¨(1 2=⊂t)/¨⊂↑p s d
+             file.(Path Size Date),←p s d
+             ∇⍨/sub,file
+         }
+         r←file tree root
+         r⊣r.Date←DT.ts2dt↑r.Date
+     }⍵
+
+     src←⎕CMD'dir "',⍵,'" /A/S/-C'
+     src⊢←(⊢(/⍨)1<≢¨)(⊢⊂⍨' '=⊃¨)(⊢(/⍨)0='<'∊¨⊢)~∘∊⍨src
+     fns len←((⊃,/)__≢¨)⊃fns dir←⊢∘⊃¨\⌽↓⍉↑1(↑{⍺ ⍵}↓)¨src
+     drop←{+/⍺≥+\2</0,' '≠⍵}
+     swap←{⊃⍵{(⍺,⍺⍺)[(⍵,⍺⍺)⍳⍺⍺]}/⍺}
+     dir⊢←dirMap¨(2 drop⊃dir)(('/'a_(=∘'\'),∘'/')↓)¨dir⊣dirMap''
+     info fns←↓⍉↑(3 drop⊃fns)(↑__↓)¨fns
+     fns←(len/dir),¨dirMap¨fns
+     size←⊢/date←(+/len)6⍴1⊃':- '⎕VFI⊃,/info
+     date←DT.ts2dt(7↑5↑⊢)⍤1⊢date
+     {⍵⊣⍵.(Path Date Size)←fns date size}⎕NS''
+
 ⍝ file object - complete tree - see folderObj
 ⍝ ⍵ string - file root path
 ⍝ ← scalar space with [Path Size Date] for all files in tree

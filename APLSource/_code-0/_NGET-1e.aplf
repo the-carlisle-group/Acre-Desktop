@@ -1,8 +1,8 @@
- _NGET←{⍺←⊢ ⋄ z←⊢∘⎕SIGNAL/⍺ 2 ⋄ enc←'UTF-8'
+ _NGET←{enc←'UTF-8'
      15≤⊃SV.aplver:⊃enc ⎕NGET ⍵ 1
      LF CR BOM←⎕UCS 10 13 65279 ⍝ 65279 is UTF-8 byte order mark
      read←{CR(1↓¨=⊂⊢)CR,~∘(LF,BOM)⊢enc ⎕UCS ⎕UCS ⎕NREAD ⍵,80,⎕NSIZE ⍵}
-     (⎕NUNTIE t)⊢read⊢t←⍵ ⎕NTIE 0
+     {⍵↓⍨-0∊⍴⊃⌽⍵}(⎕NUNTIE t)⊢read⊢t←⍵ ⎕NTIE 0
 ⍝   - see setEmulators
 ⍝ ⍵ filepath
 ⍝ ← content of UTF-8 file as charlist

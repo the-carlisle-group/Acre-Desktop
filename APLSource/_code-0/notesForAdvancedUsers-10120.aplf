@@ -1,4 +1,4 @@
- notesForAdvancedUsers←{2↓¨1↓¯1↓⎕NR⊃⎕SI
+ notesForAdvancedUsers←{{(⎕NS'').(⎕ED&'_'⊣_←⍵)}2↓¨1↓¯1↓⎕NR⊃⎕SI
 ⍝ Notes For Advanced Users.
 ⍝
 ⍝ The above title might not be perfectly applicable. The target audience for

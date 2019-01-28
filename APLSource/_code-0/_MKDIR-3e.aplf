@@ -1,4 +1,4 @@
- _MKDIR←{⍺←⊢
+ _MKDIR←{
      15≤⊃SV.aplver:⊢3 ⎕MKDIR ⍵
      path←('\',⍵)[('/',⍵)⍳⍵]~'"'
      z←⎕CMD'mkdir "',path,'"'

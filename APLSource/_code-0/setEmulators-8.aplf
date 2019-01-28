@@ -6,10 +6,10 @@
          15 '_MKDIR' '⊢{3 ⎕MKDIR ⍵}'
          15 '_NDELETE' '⊢{1 ⎕NDELETE ⍵}'
          15 '_NEXISTS' '⎕NEXISTS'
-         15 '_NGET'('⊢{⊃''UTF-8''⎕NGET ⍵ 1}')
+         15 '_NGET' '⊢{⊃''UTF-8''⎕NGET ⍵ 1}'
          15 '_NINFO' '⊢{⍺←⊢ ⋄ ⍺ ⎕NINFO⍠1⊢⍵}'
          15 '_NPARTS' '⎕NPARTS'
-         15 '_NPUT'('⊢{⍺''UTF-8''⎕NPUT ⍵ 1}')
+         15 '_NPUT' '⊢{⍺''UTF-8''⎕NPUT ⍵ 1}'
          16 'a_' '{⍺←⊢ ⋄ ⍺(⍺⍺@⍵⍵)⍵ ⋄ ''DO NOT EDIT''}'
          16 'c_' '⊆'
          16 'i_' '⍸'
