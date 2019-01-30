@@ -1,16 +1,18 @@
  buildWsFromSource←{
      (⎕THIS #).(⎕IO ⎕ML ⎕WX)←⊂0 0 3 ⋄ LF CR BOM←⎕UCS 10 13 65279
      path←{⍵/⍨⌽∨\⌽⍵∊'/\'}⎕WSID
-     len←≢src←path,'APLSource/'
+     src←path,'APLSource/'
      cde←⎕CMD'dir "',src,'_code-0/" /S'
      dat←(⊢(/⍨)1<≢¨)(⊢⊂⍨' '=⊃¨)(⊢(/⍨)0='<'∊¨⊢)~∘∊⍨cde
      fns dir←⊢∘⊃¨\⌽↓⍉↑1(↑{⍺ ⍵}↓)¨dat
      drop←{+/⍺≥+\2</0,' '≠⍵}
      dir⊢←(2 drop⊃dir)↓¨dir
+     len←+/∨\⌽(⊃dir)∊'/\'
      fns⊢←(3 drop⊃⊃fns)↓¨¨fns
-     read←{CR(1↓¨=⊂⊢)CR,~∘(LF,BOM)⊢'UTF-8'⎕UCS ⎕UCS ⎕NREAD ⍵,80,⎕NSIZE ⍵}
-     get←{⍵↓⍨-0∊⍴⊃⌽⍵}((⎕NUNTIE⊢read)0 ⎕NTIE⍨,)
-     data←(dir,¨'/'){⍺∘get¨⍵}¨fns
+     read←((⎕NUNTIE⊢(⎕NREAD⊢,80,⎕NSIZE))0 ⎕NTIE⍨,)
+     tran←{CR LF(1↓¨∊⍨⊂⊢)CR,{⍵~BOM,LF/⍨CR∊⍵}'UTF-8'⎕UCS ⎕UCS ⍵}
+     get←{⍵↓⍨-0∊⍴⊃⌽⍵}tran∘read
+     data←dir{get∘((⍺,'/')∘,)¨⍵}¨fns
      ns←(⍎''⎕NS⍨⊢)¨{{('..',⍵)[('\/',⍵)⍳⍵]}~∘('-',⎕D)⊢'#.acre.',len↓⍵}¨dir
      fns←ns.(⎕FX¨)data
      #.⎕LX←'#.acre._code.Install'''''
@@ -28,5 +30,5 @@
 ⍝ whence it can be )LOADed to associate the user commands with that
 ⍝ folder or copied to wherever the user requires acre installation
 ⍝ to reside and )LOADed thence.
-⍝ Phil 2019-01-23 10.00
+⍝ Phil 2019-01-30 14.46
  }
