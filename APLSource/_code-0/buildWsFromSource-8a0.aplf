@@ -20,7 +20,7 @@
      ver←local,'acre',{⍵/⍨∧\2>+\⍵='.'}1⊃'.'⎕WG'APLVersion'
      z←⎕CMD'md "',ver,'"'
      #.⎕WSID←ver,'\acre.dws'
-     ⎕WSID⊣0 ⎕SAVE #.⎕WSID⊣⎕EX⊃⎕XSI
+     '?     )LOAD "',⎕WSID,'"'⊣0 ⎕SAVE #.⎕WSID⊣⎕EX⊃⎕XSI
 ⍝ This ws, stored in and loaded from the acre development folder
 ⍝ as "build.dws", creates the intallation ws, that's copied into
 ⍝ ⎕SE each session, in whatever Dyalog version ≥14.0 into which

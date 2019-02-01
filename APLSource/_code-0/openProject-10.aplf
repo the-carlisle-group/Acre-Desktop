@@ -13,8 +13,7 @@
      ~dat openLoad trk dep:0 ⍝ load subsids
 
      z←logMsg(MS.ER,MS.EY),(¯4 tPath dat.folder),MS.EZ,dat.nspath
-     empty←{0=⎕NC ⍵:⍵ ⋄ ⍵/⍨~∧/ref↓(⍎⍵)UT.nl⍳10}
-     z←⎕EX empty if(≢⍴){# UT.nl⍳10}if≢dat.nspath
+     z←⎕EX''if missing if(≢⍴){# UT.nl⍳10}if≢dat.nspath
      space←⍎dat.nspath #.⎕NS''⊣openProjects''
      cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←nOff dat.keephistory
      cfg.CaseCode←MS.GB MS.GA⊃⍨dat.case←≢/Cc dat.casecode MS.GB

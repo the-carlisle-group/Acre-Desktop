@@ -1,7 +1,7 @@
  openProjects←{
-     0∊⍴ids←dataSpaces'':⍬                               ⍝ none
-     missing←ids/⍨(((0∊⍴#.⎕NL⍳10)∧1=≢¨)∨0=⎕NC)ids.nspath ⍝ path missing
-     1:⊢ids←dataSpaces missing                           ⍝ remove
+     0∊⍴ids←dataSpaces'':⍬                    ⍝ none
+     kill←ids/⍨missing¨ids.nspath             ⍝ path missing
+     1:⊢ids←dataSpaces kill                   ⍝ remove
 ⍝ ensure tracked projects still in ws
 ⍝ remove any ids where nspath no longer a space.
 ⍝ Phil 2018-06-06 21.11
