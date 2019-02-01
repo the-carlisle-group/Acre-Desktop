@@ -5,8 +5,9 @@
  R←∆Failed
 
  version←2⊃'version'⎕SE.acre.run''
- →PassesIf 3='.'+.=version
- →PassesIf 4=⍴'.'##.APLTreeUtils.Split version
+ →PassesIf 2≤'.'+.=version
+ →PassesIf 3=⍴'.'##.APLTreeUtils.Split version
+ →PassesIf 2=⍴'+'##.APLTreeUtils.Split version
 
  R←∆OK
 ⍝Done
