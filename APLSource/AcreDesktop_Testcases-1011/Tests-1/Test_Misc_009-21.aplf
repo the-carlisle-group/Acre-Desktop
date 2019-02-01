@@ -1,0 +1,30 @@
+ R←Test_Misc_009(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;list;noOf
+⍝ Exercise the `]acre.Close` command.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ noOf←≢∆RunUcmd'Projects'
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName
+
+ →PassesIf(noOf+1)=≢∆RunUcmd'Projects'
+ result←∆RunUcmd'Close #.',projectName
+ →PassesIf noOf=≢∆RunUcmd'Projects'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆ClearLog
+⍝Done
