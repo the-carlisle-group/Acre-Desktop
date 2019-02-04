@@ -14,7 +14,6 @@
      data←(name)(grp)(cmds)(opt)(help)(type)(syn)
      code←'<n>' '<g>' '<c>' '<o>' '<h>' '<t>' '<s>'
      script←,(⎕UCS 10),{0 3↓⍵⌿⍨>/'⍝: '⍷⍵}⎕CR⊃⎕SI
-⍝    script←⊂(⎕UCS 10){1↓¨⍵⊂⍨⍵=⍺}⊃re/(↓code,⍪data),⊂script
      script←(⎕UCS 10){1↓¨⍵⊂⍨⍵=⍺}⊃re/(↓code,⍪data),⊂script
      z←script _NPUT path,name,'.dyalog'
      rel←path,'releaseNotes','.txt'
@@ -39,7 +38,6 @@
 ⍝:    }
 ⍝:    Run←{cmd arg←⍵
 ⍝:     arg.help:Help cmd
-⍝:     ⍝ (path wsid)←,\2⍴1 _NPARTS ##.SourceFile
 ⍝:     (path wsid)←,\{⍵(↑{⍺⍵}↓)⍨(1+⊢⍳⌈/)+\⍵∊'\/'}##.SourceFile
 ⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC name
 ⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY ⍵}⍣new⊢wsid

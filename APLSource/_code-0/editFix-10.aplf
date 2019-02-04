@@ -9,9 +9,9 @@
          qed←'⎕SE'⎕WG'Editor' ⋄ (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1
          qed.(onFix onAfterFix)←SV.fixandafter ⋄ {0}⎕SE.⎕WX←wx
      }''
-     {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:
      (editor event value space name new)←6↑⍵           ⍝ so long as onFix unchanged
      first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space               ⍝ is space scripted?
+     {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:(⍎first⊃⌽SV.fixandafter)⍵
      fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(≢∘∊⍨new)∧2≠space.⎕NC name
      0=dat←whichProject fqn:(⍎first⊃⌽SV.fixandafter)⍵
      (('⎕'∊fqn)≥(⎕NC⊂fqn)∊0,validAPLType''):
