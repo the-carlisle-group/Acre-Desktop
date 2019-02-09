@@ -1,19 +1,14 @@
  buildWsFromSource←{
      (⎕THIS #).(⎕IO ⎕ML ⎕WX)←⊂0 0 3 ⋄ LF CR BOM←⎕UCS 10 13 65279
-     path←{⍵/⍨⌽∨\⌽⍵∊'/\'}⎕WSID
-     src←path,'APLSource/'
-     cde←⎕CMD'dir "',src,'_code-0/" /S'
-     dat←(⊢(/⍨)1<≢¨)(⊢⊂⍨' '=⊃¨)(⊢(/⍨)0='<'∊¨⊢)~∘∊⍨cde
-     fns dir←⊢∘⊃¨\⌽↓⍉↑1(↑{⍺ ⍵}↓)¨dat
-     drop←{+/⍺≥+\2</0,' '≠⍵}
-     dir⊢←(2 drop⊃dir)↓¨dir
-     len←+/∨\⌽(⊃dir)∊'/\'
-     fns⊢←(3 drop⊃⊃fns)↓¨¨fns
+     path←{⍵↑⍨+/∨\⌽⍵∊'/\'}⎕WSID
+     src←path,'APLSource/_code-0/'
+     fns←⎕CMD'dir /s /b /a-d "',src,'"'
+     len←≢⊃⊃dir fns←↓⍉({⍵↑⍨¯1++/∨\⌽⍵∊'\/'}¨fns),∘⊂⌸fns
      read←((⎕NUNTIE⊢(⎕NREAD⊢,80,⎕NSIZE))0 ⎕NTIE⍨,)
      tran←{CR LF(1↓¨∊⍨⊂⊢)CR,{⍵~BOM,LF/⍨CR∊⍵}'UTF-8'⎕UCS ⎕UCS ⍵}
      get←{⍵↓⍨-0∊⍴⊃⌽⍵}tran∘read
-     data←dir{get∘((⍺,'/')∘,)¨⍵}¨fns
-     ns←(⍎''⎕NS⍨⊢)¨{{('..',⍵)[('\/',⍵)⍳⍵]}~∘('-',⎕D)⊢'#.acre.',len↓⍵}¨dir
+     data←get¨¨fns
+     ns←⍎¨⎕NS∘''¨{{('..',⍵)[('\/',⍵)⍳⍵]}~∘('-',⎕D)⊢'#.acre._code',len↓⍵}¨dir
      fns←ns.(⎕FX¨)data
      #.⎕LX←'#.acre._code.Install'''''
      local←(2 ⎕NQ'.' 'GetEnvironment' 'localappdata'),'\acre\'
@@ -30,5 +25,5 @@
 ⍝ whence it can be )LOADed to associate the user commands with that
 ⍝ folder or copied to wherever the user requires acre installation
 ⍝ to reside and )LOADed thence.
-⍝ Phil 2019-01-30 14.46
+⍝ Phil 2019-02-08 23.09
  }
