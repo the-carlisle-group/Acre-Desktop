@@ -1,39 +1,11 @@
  releaseNotes←{2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.4+123 2019-02-09 09.16
+⍝ Acre 5.0.5+125 2019-02-12 23.37
 ⍝
 ⍝ Acre Desktop - Release Notes
 ⍝ ============================
-⍝ All required emulations should now be fully compatible back to
-⍝ Dyalog 14.0.21929.0 for Windows-64.
+⍝ Bug in _NPUT. Only apparent in v14.0 & v14.1 after which Dyalog
+⍝ implemented  ⊂⍬ ←→ ,/⍬  &  ⊂'' ←→ ,/''  &c.
 ⍝
-⍝ The acre project folder now contains "build.dws", a Dyalog v14.0 workspace
-⍝ containing only a single function that can be )LOADed into any Dyalog 14.0
-⍝ and up, reads and fixes all relevant code into the active workspace, sets
-⍝ ⎕LX and ranames and saves the workspace as:
-⍝       "[localappdata]/acre/acre[ver]/acre.dws"
-⍝ where [localappdata] is the result of
-⍝       2 ⎕NQ'.' 'GetEnvironment' 'localappdata'
-⍝ and [ver] is the major and minor nodes of the Dyalog version number from
-⍝       '.'⎕WG'APLVersion'
-⍝ e.g:
-⍝       "16.0" from 'Windows-64' '16.0.34994.0' 'W' 'Development'
-⍝ This "acre.dws" can be )LOADed to complete installation by associating its
-⍝ folder as source for the user commands or it can be copied or moved
-⍝ elsewhere before being )LOADed.
-⍝
-⍝ Via this protocol any future enhancements to acre will be automatically
-⍝ available to any supported Dyalog version. There will be only one
-⍝ "production" version of the acre source 'though in future it may become
-⍝ necessary to have more than one version of "build.dws" if a later Dyalog
-⍝ version becomes incapable of )LOADing a v14.0 workspace.
-⍝
-⍝ Alternatively the "#.acre._code.buildWs" function can be run directly from
-⍝ the open development project in an existing installation as now but should
-⍝ be used in all installations other than Windows in conjuncion with the
-⍝ supplied acre installation folder - Dyalog v16.0 at present.
-⍝
-⍝ The reason different installations are necessary for different Dyalog
-⍝ versions are given at
-⍝       https://forums.dyalog.com/viewtopic.php?f=30&t=1451#p5753
+⍝ Fixed
 ⍝-----------------------------
  }
