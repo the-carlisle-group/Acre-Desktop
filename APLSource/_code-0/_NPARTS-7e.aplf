@@ -1,16 +1,22 @@
  _NPARTS←{⍺←⊢
-     15≤⊃SV.aplver:⊢⍺ ⎕NPARTS ⍵
-     ch←a_(∊∘'/\')
-     p f←(+/∨\⌽⍵∊'/\')(↑__↓)⍵
-     p←'/'ch p
-     f e←{(-1+⊥⍨⍵≠'.')(↓__↑)⍵}∘⊃if('.'∊1↓f)⊢f''
-     0=⍺⊣0:p f e
-     b←(':'∊p)⍱'//'≡2↑p
-     p←{⍵/⍨1,1↓~'//'⍷⍵}'/'ch{(⊃⎕CMD'cd'),'\',⍵}if b⊢p
-     ~∨/'./'⍷p:p f e
-     p←1⌽⊃,/'/',¨~∘(⊂'..'){⍵/⍨(⊢⍱¯1⌽⊢)2 0⍷'..' ''⍳⍵}⍣≡~∘(⊂,'.')(≠∘'/'c_⊢)p
+⍝     15≤⊃SV.aplver:⊢⍺ ⎕NPARTS ⍵
+
+     ch←{('/',⍵)[('\',⍵)⍳⍵]}
+     p f←'/'((-⍳⍨∘⌽)(↓__↑)⊢)((¯2×'/.'≡¯2↑⊢)↓⊢){
+         {⍵↓⍨-+/∧\(⌽⍵)∊'/.'}⍣('.'=⊢/⍵)⊢⍵}ch ⍵
+     f e←'.'((¯1-⍳⍨∘⌽)(↓__↑)⊢)∘⊃⍣('.'∊1↓f)⊢f''
+
+     p←(⊢,'/'~⊢/)ch FS.GetAbsolutePathName⊂p
      p f e
 
 ⍝  - see setEmulators
-⍝ Phil 2018-12-30 23.02
+⍝ ⍺=0:
+⍝   'path\file.ext'      → 'path\' 'file' '.ext'
+⍝   'path\file.more.ext' → 'path\' 'file.more' '.ext'
+⍝   'path\.file'         → 'path\' '.file' ''
+⍝   'path\file'          → 'path\' 'file' ''
+⍝
+⍝ ⍺=1:
+⍝   'path/file.ext'      → '[drive:]/fullpath/' 'file' '.ext'
+⍝ Phil 2019-02-15 13.32
  }

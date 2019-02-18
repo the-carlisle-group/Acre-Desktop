@@ -1,0 +1,5 @@
+ fso←{
+     o⊣'o'⎕WC⊢o←'OLECLIENT' 'Scripting.FileSystemObject'
+⍝ File System Object
+⍝ Phil 2019-02-14 11.13
+ }

@@ -1,18 +1,27 @@
  _NINFO←{⍺←⊢ ⋄ key←⍺⊣0
-     15≤⊃SV.aplver:⊢⍺ ⎕NINFO⍠1⊢⍵
-     path←'\'a_(=∘'/')⍵~'"'
-     dir←'\*'≡¯2↑path ⍝ else file
-     data←(dir×2)↓(⊢(/⍨)' '≠⊃¨)⎕CMD'dir "',path,'" /A/-C'
-     null data:0⍴∘⊂¨key⊃¨⊂'' 0 0(⍳7)
-     info name←↓⍉↑data(↑__↓)¨⍨+/3≥+\2</0,' '≠⊃data
-     name←dirMap¨name⊣dirMap''
-     path←({⍵/⍨⌽∨\⌽'/'=⍵}'/'a_(=∘'\')path)∘,¨name
-     date time size←↓⍉↑(' '∘≠c_⊢)¨info
-     date←7↑¨⊢/'- :'∘⎕VFI⍤1⍕date,⍪time
-     size←⊃(⊢-2-⊣)/type size←1 0+⎕VFI⍕size
-     key⊃¨⊂path type size date
+⍝     15≤⊃SV.aplver:⊢⍺ ⎕NINFO⍠1⊢⍵
+
+     ss←{('/',⍵)[('\',⍵)⍳⍵]}¨¨a_ 0
+     FS.FileExists⊂⍵:key⊃¨⊂ss{
+         f←FS.GetFile⊂⍵
+         ,∘⊂¨f.(Path 2 Size DateLastModified)
+     }⍵
+     folder←{
+         f←FS.GetFolder⊂⍵
+         m←≢d←⌷f.SubFolders
+         n←≢f←⌷f.Files
+         0=m+n:0⍴∘⊂¨'' 0 0(⍳7)
+         ss↓⍉↑(d,f).{Path ⍵ Size DateLastModified}m n/1 2
+     }
+     FS.FolderExists⊂⍵:key⊃¨⊂folder ⍵
+     p←('/',⍵)[('\',⍵)⍳⍵]
+     '/*'≡¯2↑p:key⊃¨⊂folder ¯2↓p
+     '*'∊p:key⊃¨⊂{((↑⊃⍵)UT.wi p,f)∘/¨⍵
+     }folder 0⊃p f←(⊃,/)¨1 1 0⊂1 _NPARTS p
+     key⊃¨⊂0⍴∘⊂¨'' 0 0(⍳7)
+
 ⍝  - see setEmulators
 ⍝ ⍺ 0 1 2 3 - path type size date - only
-⍝ ⍵ path - end in /* or \* for dir
+⍝ ⍵ path (inc wildcards)
 ⍝ Phil 2018-12-30 23.02
  }

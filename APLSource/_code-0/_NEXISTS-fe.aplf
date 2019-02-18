@@ -1,7 +1,11 @@
  _NEXISTS←{
-     15≤⊃ver←SV.aplver:⊢⎕NEXISTS ⍵
-     path←'\'a_(=∘'/')⍵~'"'
-     ' '∨.≠⊃¨⎕CMD'dir "',path,'"'
+⍝     15≤⊃ver←SV.aplver:⊢⎕NEXISTS ⍵
+
+     {
+         FS.FileExists ⍵:1
+         FS.FolderExists ⍵
+     }⊂⍵
+
 ⍝  - see setEmulators
 ⍝ ⍵ file|folder
 ⍝ ← 0|1

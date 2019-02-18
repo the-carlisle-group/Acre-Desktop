@@ -1,5 +1,5 @@
  Install←{
-     z←setCase setAplVer''
+     ⎕THIS.FS←fso''⊣setCase setAplVer''
      path wsid←2⍴,\1 _NPARTS(⍵≡∊⍵)⊃⍵ ⎕WSID
      name←1↓{⍵/⍨1=+\⍵='.'}⊃⎕XSI
      apo←'"'∘(qu←UT.qu)

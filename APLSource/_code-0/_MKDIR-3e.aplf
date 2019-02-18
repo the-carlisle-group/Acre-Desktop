@@ -1,8 +1,11 @@
  _MKDIR←{
-     15≤⊃SV.aplver:⊢3 ⎕MKDIR ⍵
-     path←('\',⍵)[('/',⍵)⍳⍵]~'"'
-     z←⎕CMD'mkdir "',path,'"'
-     ' '∨.≠⊃¨⎕CMD'dir "',path,'"'
+⍝     15≤⊃SV.aplver:⊢3 ⎕MKDIR ⍵
+
+     {
+         0::FS.FolderExists ⍵    ⍝ ... then check existence
+         ⊢{}FS.CreateFolder ⍵ ⍝ force error en tout cas ...
+     }⊂⍵
+
 ⍝   - see setEmulators
 ⍝ Phil 2018-12-16 21.18
  }

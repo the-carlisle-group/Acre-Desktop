@@ -1,11 +1,9 @@
  releaseNotes←{2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.5+125 2019-02-12 23.37
+⍝ Acre 5.0.6+133 2019-02-18 16.54
 ⍝
 ⍝ Acre Desktop - Release Notes
 ⍝ ============================
-⍝ Bug in _NPUT. Only apparent in v14.0 & v14.1 after which Dyalog
-⍝ implemented  ⊂⍬ ←→ ,/⍬  &  ⊂'' ←→ ,/''  &c.
-⍝
-⍝ Fixed
+⍝ Various bugs showing up in Dialog 14.0 for (some installations of) Windows
+⍝ Fixed - maybe
 ⍝-----------------------------
  }

@@ -7,6 +7,7 @@
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
          ⍵.SX←syntaxHelp name
+         ⍵.FS←fso''
          z←setEmulators''
          SV.logfile←localFolder'/',MS.CJ
          z←setCase''
