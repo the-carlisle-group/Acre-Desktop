@@ -1,9 +1,7 @@
  fPath←{r←⍵
      r←⊃,/1 _NPARTS r
      ~∨/'/../'⍷r:r ⍝ ← Windows ...
-⍝    {⍵,'/'/⍨0∊⍴⍵}1↓⊃,/'/',¨(⊢(/⍨){1=+/⍵∘.=⍵}∘(⍳∘⍴+⊢×1-2×+\)∘{⍵∊⊂'..'})'/'sep r
      1↓⊃,/'/',¨~∘(⊂'..'){⍵/⍨(⊢⍱¯1⌽⊢)2 0⍷'..' ''⍳⍵}⍣≡'/'sep r
-⍝    1↓⊃,/'/',¨~∘(⊂'..'){⍵/⍨(⊢⍱¯1⌽⊢)0 1⍷⍵∊⊂'..'}⍣≡'/'sep r
 ⍝ ⍵ file path absolute or relative ending in '/' or '\'
 ⍝ ← absolute with '/' throughout
 ⍝ windows resolves '/a/b/../' to '/a/' where apparently unix doesn't

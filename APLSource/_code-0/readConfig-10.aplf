@@ -1,10 +1,10 @@
  readConfig←{cnf←⍵
-     rl←Cc⊢ru←{⍵.⎕NL-2}res←configFields''
-     0::res⊣logMsg UT.bx MS.DB,cnf
+     rl←Cc⊢ru←{⍵.⎕NL-2}dft←configFields''
+     0::dft⊣logMsg UT.bx MS.DB,cnf
      cnf←{_NEXISTS ⍵:⍵          ⍝ new name 2018-11-12
          (⊃'/'UT.pn ⍵),MS.HM    ⍝ try old name
      }cnf
-     ~_NEXISTS cnf:res
+     ~_NEXISTS cnf:dft
      d←nout _NGET cnf                             ⍝ lose blank rows
      r t←0{'⍝'=z←⊃~∘' '⊃⍵:(1+⍺)∇ 1↓⍵ ⋄ ⍺ z}d      ⍝ lose comment rows
      cl←Cc⊢cu←{⍵.⎕NL-2}cfg←t{                     ⍝ actuals
@@ -13,11 +13,11 @@
          ⍺='[':PL.decode ⍵                            ⍝ APLAN
          ⎕NS''                                        ⍝ none of the above
      }r↓d
-     null⊢int←rl∩cl:res                           ⍝ supplied
-     ⊃res(ru[rl⍳int])_is_ cfg.⍎⍕cu[cl⍳int] ⍝ merge
+     0⊣dft('⎕io',cu[cl⍳exc])_is_ cfg.⍎⍕0,cu[cl⍳exc←cl~rl]: ⍝ custom to dft
+     0⊃dft('⎕io',ru[rl⍳int])_is_ cfg.⍎⍕0,cu[cl⍳int←rl∩cl]  ⍝ supplied to dft
 ⍝ ⍵ config filename
 ⍝ config is APLAN or JSON or deprecated APLScript
-⍝ result is namespace with all and only expected fields
-⍝   with "proper" case restored
+⍝ result is namespace including all expected fields
+⍝    having "proper" case restored
 ⍝ Phil 2018-11-12 10.05
  }

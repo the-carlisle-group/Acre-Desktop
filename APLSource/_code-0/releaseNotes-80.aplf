@@ -1,9 +1,12 @@
  releaseNotes←{2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.6+133 2019-02-18 16.54
+⍝ Acre 5.0.6+135 2019-02-24 23.08
 ⍝
 ⍝ Acre Desktop - Release Notes
 ⍝ ============================
-⍝ Various bugs showing up in Dialog 14.0 for (some installations of) Windows
-⍝ Fixed - maybe
+⍝ Contents of a project's config file "acre.config" are now reflected in the
+⍝ space "AcreConfig" that is injected into the project.
+⍝ Keys required by acre are still "corrected" for case but others remain as
+⍝ typed. However, required or not, multiple keys that resolve to the same
+⍝ name when case is ignored will be reduced to the first alphabetically.
 ⍝-----------------------------
  }
