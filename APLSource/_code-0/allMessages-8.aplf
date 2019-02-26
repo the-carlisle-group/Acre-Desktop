@@ -75,6 +75,7 @@
          ⍵.DP←'Startup - '
          ⍵.DQ←'Editing first valid item only: '
          ⍵.DR←'No valid items supplied'
+         ⍵.DS←'⎕Saved: '
 
          ⍵.EF←'Comparing '
          ⍵.EG←'change changes'

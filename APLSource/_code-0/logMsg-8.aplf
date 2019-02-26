@@ -4,7 +4,8 @@
      hd←nout{⍵((⍵≠' ')\'=')}⍺⊣''
      da←hd,ms
      dt←DT.(dt2fm ts2dt ⎕TS),' '
-     SV.errmsgs,←da/⍨'!'=⊃¨da  ⍝ reset in userCmdRun
+     SV.errmsgs,←da/⍨'!'=⊃¨da           ⍝ reset in userCmdRun
+     (z/da)←{⎕←1↓⍵}/0,⍪da/⍨z←'⎕'=⊃¨da   ⍝ to session
      dd←MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←dt∘,¨da
      ~_NEXISTS SV.logfile:ms
      fd←⎕UCS MS.HI ⎕UCS⊃,/UT.EN,,∘UT.(CR LF)¨dd

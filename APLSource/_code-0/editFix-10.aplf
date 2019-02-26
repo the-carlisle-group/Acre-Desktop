@@ -24,7 +24,7 @@
      (oldval≡newval←⊃2⊃getValue,⊂fqn):                 ⍝ unchanged
      type←⊃nameClass fqn
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
-     z←logMsg MS.DK,⊃dat setChange fqn type newval
+     z←logMsg MS.DS,⊃dat setChange fqn type newval
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or 'Close' or callback argument
 ⍝ ← 0 for 'Start' and 'Close' - else none

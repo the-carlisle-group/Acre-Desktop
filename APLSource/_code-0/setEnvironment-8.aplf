@@ -17,7 +17,6 @@
      SV.sessionstart←sessionStart''
      z←editFix'Start'                 ⍝ sets other stuff in SV
      z←logMsg⍕getVersion''
-     z←logCtrl'show'
      z←⍴⎕SE MS.FY _is_ setAPI''
      ##.run←⎕THIS.codeHook
      1:SV.setupcomplete←1
