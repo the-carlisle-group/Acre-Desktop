@@ -27,7 +27,7 @@
          ⍵.AY[⍵.AY⍳⍵.(AF AO AN AC AI)]←'.apl'∘,¨'f' 'o' 'n' 'c' 'i'
 
          ⍵.BA←''
-         ⍵.BC←'Please wait - '
+         ⍵.BC←'⎕Please wait - '
          ⍵.BD←'Not stored by ',MS.NA
          ⍵.BF←'Version '
          ⍵.BG←'Refresh'
@@ -36,7 +36,7 @@
          ⍵.BJ←'⍝ This script was fixed by ',MS.NA
          ⍵.BK←'⍝ it can be kept, cloned, renamed, amended or ]erased.'
          ⍵.BL←'⍝ its purpose is to set the environment for the project.'
-         ⍵.BM←'* Cannot rename file '
+         ⍵.BM←'⎕Cannot rename file '
          ⍵.BN←MS.BJ MS.BK MS.BL
          ⍵.BO←'Add suffix ".*" to include space and contents'
          ⍵.BP←' may require attention.'

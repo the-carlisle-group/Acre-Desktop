@@ -1,23 +1,11 @@
- releaseNotes←{2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.6+137 2019-02-26 12.45
+ releaseNotes←{UT.cq 2↓¨1↓¯1↓⎕NR⊃⎕SI
+⍝ Acre 5.0.7+139 2019-03-04 11.51
 ⍝
-⍝ Acre Desktop - Release Notes
-⍝ ============================
-⍝ Contents of a project's config file "acre.config" are now reflected in the
-⍝ space "AcreConfig" that is injected into the project.
-⍝ Keys required by acre are still "corrected" for case but others remain as
-⍝ typed. However, required or not, multiple keys that resolve to the same
-⍝ name when case is ignored will be reduced to the first alphabetically.
+⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ The "Saved: #.project.whatever" message issued from an edit is now sent
-⍝ to the session in addition to the log window and file.
+⍝ This and another information source, `#.acre._code.PL.zcode.help` have
+⍝ → been converted to _markdown_ format.
 ⍝
-⍝ The default state of the message log window is now hidden.
-⍝       ]acre.log show
-⍝       ⎕UCMD'acre.log show'
-⍝ or
-⍝       ⎕SE.acreAPI.log'show'
-⍝ bring it into view and can be added to the "StartUp" parameter in
-⍝ "acre.config" or a function already called thence.
-⍝-----------------------------
+⍝ Fixed: A bug wherein an error signalled during an acre command shows only
+⍝ → the first line of a potential list of messages.
  }

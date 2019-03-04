@@ -1,62 +1,43 @@
- notesForAdvancedUsers←{{(⎕NS'').(⎕ED&'_'⊣_←⍵)}2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Notes For Advanced Users.
+ notesForAdvancedUsers←{2↓¨1↓¯1↓⎕NR⊃⎕SI
+⍝ ## Notes For Advanced Users.
 ⍝
-⍝ The above title might not be perfectly applicable. The target audience for
-⍝ this document is those users who might want to apply their skills to
-⍝ enhancing the experience of using acre.
+⍝ The above title might not be perfectly applicable.
+⍝ The target audience for this document is those users who might want to apply their skills to enhancing the experience of using acre.
 ⍝ These might fall into two camps:
-⍝ Those who produce code to become a part of acre.
-⍝ Those who produce code to to work alongside acre.
-⍝ The sections below might well apply to either or both.
-⍝ ----
+⍝ * Those who produce code to become a part of acre.
+⍝ * Those who produce code to to work alongside acre.
+⍝ * The sections below might well apply to either or both.
 ⍝
-⍝ Messages
+⍝ ### Messages
 ⍝
-⍝ You will find few uncommented quoted strings scattered among acre code apart
-⍝ from very simple literal strings as '..', '#.', '/' &c. Almost all
-⍝ alphabetic text is stored as messages contained in a single function -
-⍝ allMessages - that is run at the start of a session. It produces an unnamed
-⍝ namespace that is assigned internally to the name "MS". Wherever they are
-⍝ used the messages are coded as "MS." followed by a particular but arbitrary
-⍝ two letter name assigned by allMessages.
+⍝ You will find few uncommented quoted strings scattered among acre code apart from very simple literal strings as '..', '#.', '/' &c.
+⍝ Almost all alphabetic text is stored as messages contained in a single function - _allMessages_ - that is run at the start of a session.
+⍝ It produces an unnamed namespace that is assigned internally to the name "MS".
+⍝ Wherever they are used the messages are coded as "MS." followed by a particular but arbitrary two letter name assigned by _allMessages_.
 ⍝
-⍝ If a programmer wants to know whence in acre a message is issued then
-⍝ choose a key substring from it not containing the word "acre", a number or
-⍝ a name or path of an item or file and search for it in the "allMessages"
-⍝ function.
+⍝ If a programmer wants to know whence in acre a message is issued then choose a key substring from it not containing the word "acre",
+⍝ a number or a name or path of an item or file and search for it in the _allMessages_ function.
 ⍝
 ⍝ Having found it, search for "MS." followed by its associated two letter name.
 ⍝
 ⍝ Please add new messages using the same protocol.
 ⍝
-⍝ ----
+⍝ ### Installation
 ⍝
-⍝ Installation
+⍝ All acre's methods are implemented as user commands. Each is a function whose name is reflected in the command.
+⍝ The commands are all defined in a single script that is created by the Install function.
+⍝ This is run by the buildWs function in the development environment but is also the ⎕LX of the acre installation workspace.
+⍝ That can be loaded from the installation folder if the link between that folder and the user command framework is lost.
+⍝ Creating that link is the other task performed by Install.
 ⍝
-⍝ All acre's methods are implemented as user commands. Each is a function
-⍝ whose name is reflected in the command. The commands are all defined in a
-⍝ single script that is created by the Install function. This is run by the
-⍝ buildWs function in the development environment but is also the ⎕LX of the
-⍝ acre workspace that can be loaded from the installation folder if the link
-⍝ between that folder and the user command framework is lost. Creating that
-⍝ link is the other task performed by Install.
+⍝ Acre is not permanently installed in `⎕SE` although it runs from there. Invoking an acre user command first checks to see if acre is in `⎕SE`.
+⍝ If not it is copied from the workspace in the installation folder, initialisation is performed and acre remains available for the rest of the session.
 ⍝
-⍝ Acre is not permanently installed in ⎕SE although it runs from there.
-⍝ Invoking an acre user command first checks to see if acre is in ⎕SE. If
-⍝ not it is copied from the workspace in the installation folder,
-⍝ initialisation is performed and acre remains available for the rest of the
-⍝ session.
+⍝ ### ⎕SE.acre.run
 ⍝
-⍝ -----
+⍝ The _run_ function exposes some of the basic functionality that acre uses itself internally to fulfil the roles of saving editor changes and the commands.
+⍝ They are services that a user in a development environment would not normally require.
 ⍝
-⍝ ⎕SE.acre.run
-⍝
-⍝ The "run" function exposes some of the basic functionality that acre uses
-⍝ itself internally to fulfil the roles of saving editor changes and the
-⍝ exposed user commands. They are services that a user in a normal development
-⍝ session would not normally require.
-⍝
-⍝ It takes a string left argment - one of: 'nameclass', 'changefile',
-⍝ 'deletefile', 'sourcefile', 'itemname', 'version' & 'casecode' - and a
-⍝ right argument applicable to the particular left.
+⍝ It takes a string left argument - one of: 'nameclass', 'changefile', 'deletefile', 'sourcefile', 'itemname', 'version' & 'casecode' -
+⍝ and a right argument applicable to the particular left.
  }

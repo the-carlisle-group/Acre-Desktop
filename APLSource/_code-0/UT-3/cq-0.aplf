@@ -1,0 +1,8 @@
+ cq←{⍺←⊢
+     (⊃,/)¨⍵{⍵⊂⍺↓⍨¨~⍵}'→'≠⊃¨⍵
+⍝ continuation
+⍝ join list where prefixed with '→'
+⍝    'alpha' 'bravo' '→ charlie' 'delta'
+⍝ ←→ 'alpha' 'bravo charlie' 'delta'
+⍝ Phil 2019-03-02 00.09
+ }

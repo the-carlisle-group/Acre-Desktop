@@ -1,64 +1,57 @@
- help←{2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ APL Array Notation (aplan)
+ help←{{(⊃,/)¨⍵{⍵⊂⍺↓⍨¨~⍵}'→'≠⊃¨⍵}2↓¨1↓¯1↓⎕NR⊃⎕SI
+⍝ ## APL Array Notation (aplan)
+⍝ ```
+⍝ value:      scalar | list | array | space
+⍝ scalar:     number | character | space | ⊂ value
+⍝ number:     as defined for APL
+⍝ character:  as defined for APL
+⍝ space:      [⋄ pair ⋄ ... ]
+⍝      :      [  pair
+⍝                ...  ]
+⍝ pair:       name ← value
+⍝ name:       as defined for APL
+⍝ list:       (⋄ value ⋄ ... )
+⍝     :       (  value
+⍝                ...   )
+⍝ array:      [⋄ cell ⋄ ... ]
+⍝      :      [  cell
+⍝                ...  ]
+⍝ cell:       list | array | space
+⍝ ```
+⍝ Previously prohibited unquoted line-ends and diamonds are permitted
+⍝ → between and at the same level of nesting of brackets and parentheses.
+⍝ → They separate cells of a multi-dimensional array between brackets -
+⍝ → wherein scalar cells are treated as one-item vectors - and items of a
+⍝ → vector between parentheses.
+⍝ No existing features of Dyalog APL are compromised by these enhancements.
 ⍝
-⍝ value:   scalar | list | array | space
+⍝ Implementation is by a namespace containing a number of functions to
+⍝ → convert arrays and spaces to and from aplan:
+⍝ * _encode_ converts an array or space into an aplan expression
+⍝ → instantiated as a simple string.
+⍝ * _format_ encodes the data but then replaces diamonds with line-ends and
+⍝ → indentations. Its optional left argument can specify the indentation
+⍝ → and target width of the result.
+⍝ * _decode_ takes an aplan expression as a simple string; a character
+⍝ → matrix; or a nested list; and converts it into a clone of the array or
+⍝ → space represented by the expression.
 ⍝
-⍝ scalar:  number | character | space | ⊂ value
+⍝ _Encode_ and _format_ could be implemented by Dyalog as extensions to
+⍝ → either `⍕` or `⎕FMT` or as the copy and pasting of a named array into
+⍝ → some code. While _decode_ would be an enhanced `⍎` though normally the
+⍝ → notation wouldn't be expected to require it and would just be parsed as
+⍝ → any other code.
 ⍝
-⍝ list:    (⋄ value ⋄ value ⋄ ... )
-⍝     :    (
-⍝            value
-⍝            value
-⍝            ... )
-⍝ array:   [⋄ cell ⋄ cell ⋄ ... ]
-⍝      :   [
-⍝            cell
-⍝            cell
-⍝            ...
-⍝          ]
-⍝ cell:    list | array | space
+⍝ The present implementation adds parentheses around all members of
+⍝ → relatively short nested lists. Many of these are redundant as with
+⍝ → simple scalars and strings but preferable to the additional processing
+⍝ → that would be necessary to avoid them.
 ⍝
-⍝ space:   [⋄ pair ⋄ pair ⋄ ... ]
-⍝      :   [
-⍝            pair
-⍝            pair
-⍝            ...
-⍝          ]
-⍝ pair:    name ← value
-⍝
-⍝ "scalar", "number", "character" and "name" are as defined for APL.
-⍝
-⍝ Previously prohibited unquoted line-ends and diamonds are permitted between
-⍝ and at the same level of nesting of brackets and parentheses. They separate
-⍝ cells of an array of rank two or more between brackets - wherein scalar
-⍝ cells are treated as one-item vectors - and items of a vector between
-⍝ parentheses. No existing features of Dyalog APL are compromised by these
-⍝ enhancements.
-⍝
-⍝ Implementation is by a namespace containing a number of functions to convert
-⍝ arrays and spaces to and from aplan:
-⍝   encode: converts an array or space into an aplan expression instantiated
-⍝     as a simple string.
-⍝   format: encodes the data but then replaces diamonds with line-ends and
-⍝     indentations. Its optional left argument can specify the indentation and
-⍝     target width of the result.
-⍝   decode: takes an aplan expression as a simple string with diamond or
-⍝     line-end separators; a character matrix; or a nested list; and converts
-⍝     it into a clone of the array or space represented by the expression.
-⍝ Encode and format could be implemented by Dyalog as extensions to either ⍕
-⍝ or ⎕FMT or as the copy and pasting of a named array into some code. Decode
-⍝ would be an enhanced ⍎ though normally the notation wouldn't be expected to
-⍝ require it and would just be parsed as any other code.
-⍝
-⍝ The present implementation adds parentheses around all members of relatively
-⍝ short nested lists. Many of these are redundant as with simple scalars and
-⍝ strings but the author decided it was easier and quicker than the additional
-⍝ processing that would be necessary to avoid them.
-⍝
-⍝ Functions, operators, scripted spaces, classes, interfaces, ⎕NULL and
-⍝ results of ⎕OR are either not rendered properly or cause errors.
+⍝ Attempts to encode functions, operators, scripted spaces, classes,
+⍝ → interfaces and results of `⎕OR` are either not rendered properly or
+⍝ → cause errors.
 ⍝ Syntax errors found in aplan expressions to be decoded signal specific
-⍝ errors and pinpoint the offending section of code.
+⍝ → errors and pinpoint the offending section of code.
 ⍝
-⍝ ⍝ Phil 2018-10-23 22.31
+⍝ Phil 2019-02-27 09.42
  }

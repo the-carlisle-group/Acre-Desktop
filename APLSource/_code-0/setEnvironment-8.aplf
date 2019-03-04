@@ -2,7 +2,7 @@
      z←⍵{path←⍺
          ⍵.SV←##.⎕NS''
          SV.setupcomplete←0
-         SV.(errmsgs opened)←'' ''
+         SV.(error opened)←0 ''
          path ws name←SV.(inipath workspace systemname)←path
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name

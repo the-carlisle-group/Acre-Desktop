@@ -2,7 +2,7 @@
      ⎕AN≢'Phil':0 0⍴''
      z←#.ac.MS←allMessages 1⊃'.'sep⊃⎕XSI⊣#.(pl ut)←{⍵.(PL UT)}#.ac←⎕THIS
      #.⎕WSID←{'V',1⊃'.'⎕WG'APLVersion'}if(MS.CK∘≡)#.⎕WSID
-     0 0⍴keys''
+     0 0⍴keys''⊣⎕SE.acreAPI.log'show'
 ⍝ see buildWs
 ⍝ Phil 2019-01-10 18.26
  }

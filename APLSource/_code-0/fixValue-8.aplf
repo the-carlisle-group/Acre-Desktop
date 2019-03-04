@@ -23,7 +23,7 @@
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
      z←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
-         logMsg'* ',t,' ',f,MS.DO,c,' ',n
+         logMsg'⎕',t,' ',f,MS.DO,c,' ',n ⍝ force to session
      }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨nameClass fqn
      z←logMsg,/(⊂MS.DJ),⍉↑typ' 'fqn/¨⍨⊂~res
      (⍋ord)∘{⍵[⍺]}¨⍣ren⊢((res∨ren)∘/¨fqn typ val),ren/⊂res

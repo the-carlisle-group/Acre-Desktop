@@ -4,7 +4,7 @@
      z←Start⍣new⊢path wsid name              ⍝ once
      SV.debug←1∊⎕SE.SALTUtils.DEBUG          ⍝ OK?
      SV.space←space,'.'                      ⍝ whence called
-     SV.errmsgs←''                           ⍝ new each cmd
+     SV.error←0
      SV.arguments←,⊂arg.Arguments            ⍝ ditto
      z←openProjects''                        ⍝ still open?
      (item proj share)←'i' 'p' 's'=⊃type     ⍝ see cmdDefs
@@ -14,7 +14,7 @@
          proj:⍺(⍎⍺)projMethod ⍵              ⍝ first item is project
          share:⍺(⍎⍺)sharedMethod ⍵           ⍝ arg is specific to method
      }arg.Arguments
-     z←⎕SIGNAL/⌽11,~∘∊⍨,/UT.EN,UT.CR,¨SV.errmsgs
+     z←' '⎕SIGNAL SV.error/11
      res
 ⍝ ⍵ new; method; arg ns; type of fn; whence called; whence loaded; system.
 ⍝ Phil 2018-01-28 00.43
