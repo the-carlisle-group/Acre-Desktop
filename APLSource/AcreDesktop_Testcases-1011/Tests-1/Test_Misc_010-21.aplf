@@ -1,0 +1,46 @@
+ R←Test_Misc_010(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;DM;log;expected
+⍝ Change a function to an operator.
+⍝ This must fail due to the fact that they have different file extensions
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello dummy' 'r←42'
+ ∆ClearLog
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp result≢'#.',projectName
+ ref.⎕FX'r←(fns Hello) dummy' 'r←42'
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp(,⊂'#.',projectName,'.Hello')≢result
+ result←∆RunUcmd'Close #.',projectName
+ →GoToTidyUp 1≠result
+ #.⎕EX projectName
+ #.⎕SHADOW projectName
+ ∆ClearLog
+
+ :Trap 911
+     result←∆RunUcmd'OpenProject ',projectPath
+     →GoToTidyUp 1
+ :EndTrap
+ log←(⍴'yyyy-mm-dd hh:mm:ss ')↓[2]↑∆RunUcmd'Log all'
+ expected←'Cannot rename'('.aplf #.',projectName,'.Hello fixed as .aplo')'Please wait - ' '!!! Multiple' '='
+ expected,←projectName∘{'#.',⍺,'.Hello=.apl',⍵}¨'fo'
+ expected,←⊂'Opening from '
+ →GoToTidyUp∨/expected{∨/(,⍺)≢(⍴,⍺)↑⍵}¨↓log
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆ClearLog
+⍝Done
