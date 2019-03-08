@@ -1,0 +1,11 @@
+ R←Test_API_003(stopFlag batchFlag);⎕TRAP;buff
+⍝ Exercise the API function `stats`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ buff←⎕SE.acreAPI.stats'#.acre'
+ →PassesIf 2=⍴⍴buff
+
+ R←∆OK
+⍝Done

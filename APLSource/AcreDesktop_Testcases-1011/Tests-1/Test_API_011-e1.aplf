@@ -1,0 +1,32 @@
+ R←Test_API_011(stopFlag batchFlag);⎕TRAP;buff;result;F;path;config
+⍝ Exercise the API function `config`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ F←##.FilesAndDirs
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Foo←{42}
+
+ path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
+ result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
+ Assert'#.TEMP'≡result
+
+ config←##.APLTreeUtils.ReadUtf8File path,'/acre.config'
+ config←(3↑config),('ABC←''Foo''' 'DOB←''1954-10-02'''),3↓config
+ ##.APLTreeUtils.WriteUtf8File(path,'/acre.config')config
+
+ {}∆RunUcmd'Close #.TEMP'
+ result←∆RunUcmd'OpenProject "',path,'"'
+ Assert'#.TEMP'≡result
+
+ buff←⎕SE.acreAPI.config'#.TEMP'
+ →GoToTidyUp'Foo'≢buff.ABC
+ →GoToTidyUp'1954-10-02'≢buff.DOB
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap
+⍝Done

@@ -1,0 +1,12 @@
+ R←Test_API_005(stopFlag batchFlag);⎕TRAP;buff
+⍝ Exercise the API function `projects`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ buff←⎕SE.acreAPI.projects''
+ →PassesIf 1=≢buff
+ →PassesIf 2=⍴⍴buff
+
+ R←∆OK
+⍝Done

@@ -1,0 +1,22 @@
+ R←Test_API_010(stopFlag batchFlag);⎕TRAP;buff;path;F;result
+⍝ Exercise the API function `deletefile`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ F←##.FilesAndDirs
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Foo←{42}
+
+ path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
+ result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
+
+ buff←⎕SE.acreAPI.deletefile'#.TEMP.Foo'
+ →GoToTidyUp'/Foo.aplf.delete'{⍺≢(-⍴,⍺)↑⍵}buff
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap
+⍝Done

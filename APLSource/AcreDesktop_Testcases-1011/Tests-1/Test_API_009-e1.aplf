@@ -1,0 +1,12 @@
+ R←Test_API_009(stopFlag batchFlag);⎕TRAP;buff;expected
+⍝ Exercise the API function `fromaplan`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ buff←⎕SE.acreAPI.fromaplan'[,⊂(1)(2)(3)(3 4)]'
+ expected←1 1⍴(1 2 3(3 4))'APL'
+ →PassesIf expected≡buff
+
+ R←∆OK
+⍝Done

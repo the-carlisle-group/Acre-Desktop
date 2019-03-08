@@ -1,0 +1,34 @@
+ R←Test_API_007(stopFlag batchFlag);⎕TRAP;F;path;result;buff
+⍝ Exercise the API function `log`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Foo←{42}
+ F←##.FilesAndDirs
+
+ {}⎕SE.acreAPI.log'clear'
+ →PassesIf 0=≢buff←⎕SE.acreAPI.log'all'
+
+ path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
+ result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
+ Assert'#.TEMP'≡result
+ ∆RunUcmd'Close #.TEMP'
+ result←∆RunUcmd'OpenProject "',path,'"'
+ Assert'#.TEMP'≡result
+
+ →GoToTidyUp 3≠≢buff←⎕SE.acreAPI.log'all'
+
+ #.TEMP.Foo2←{43}
+ ∆RunUcmd'SetChanged #.TEMP.Foo2'
+ →GoToTidyUp 4≠≢buff←⎕SE.acreAPI.log'all'
+
+ →GoToTidyUp 2≠≢buff←⎕SE.acreAPI.log 2
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir path
+⍝Done

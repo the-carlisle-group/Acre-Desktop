@@ -1,0 +1,12 @@
+ R←Test_API_002(stopFlag batchFlag);⎕TRAP;buff
+⍝ Exercise the API function `toaplan`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ buff←⎕SE.acreAPI.toaplan 2 2⍴(1 2 3(3 4))'APL'
+ →PassesIf'['=⊃buff
+ →PassesIf']'=⊃⌽buff
+
+ R←∆OK
+⍝Done

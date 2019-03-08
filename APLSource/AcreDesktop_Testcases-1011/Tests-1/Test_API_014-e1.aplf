@@ -1,0 +1,28 @@
+ R←Test_API_014(stopFlag batchFlag);⎕TRAP;F;path;result;buff
+⍝ Exercise the API function `casecode`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ F←##.FilesAndDirs
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Fooü←{42}
+
+ path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
+ result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
+
+ buff←⎕SE.acreAPI.casecode'#.TEMP.Fooü'
+ →GoToTidyUp'#.TEMP-f.Fooü-1'≢buff
+
+ buff←⎕SE.acreAPI.casecode'#.TEMP.Foo'
+ →GoToTidyUp'#.TEMP-f.Foo-1'≢buff
+
+ buff←⎕SE.acreAPI.casecode'#.TEMP.Foo #.TEMP.Fooü'
+ →GoToTidyUp'#.TEMP-f.Foo-1'≢buff
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap
+⍝Done

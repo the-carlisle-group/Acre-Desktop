@@ -1,0 +1,13 @@
+ R←Test_API_004(stopFlag batchFlag);⎕TRAP;buff
+⍝ Exercise the API function `sourcefile`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ buff←⎕SE.acreAPI.sourcefile⊃⎕XSI
+ →PassesIf'.aplf'{⍺≡(-⍴,⍺)↑⍵}buff
+ buff←⎕SE.acreAPI.sourcefile⊃⎕SI
+ →PassesIf'.aplf'{⍺≡(-⍴,⍺)↑⍵}buff
+
+ R←∆OK
+⍝Done

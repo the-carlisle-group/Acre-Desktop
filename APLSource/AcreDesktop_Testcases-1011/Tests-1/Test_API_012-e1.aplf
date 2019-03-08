@@ -1,0 +1,22 @@
+ R←Test_API_012(stopFlag batchFlag);⎕TRAP;F;path;result;buff
+⍝ Exercise the API function `changes`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ F←##.FilesAndDirs
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Foo←{42}
+
+ path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
+ result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
+
+ buff←⎕SE.acreAPI.changefile'#.TEMP.Foo'
+ →GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}buff
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap
+⍝Done
