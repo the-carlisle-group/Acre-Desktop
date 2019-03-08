@@ -1,11 +1,12 @@
  releaseNotes←{UT.cq 2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.7+139 2019-03-04 11.51
+⍝ Acre 5.0.8+143 2019-03-08 08.53
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ This and another information source, `#.acre._code.PL.zcode.help` have
-⍝ → been converted to _markdown_ format.
+⍝ Fixed: Bug. acre user command crashes in 15.0 **#153**
 ⍝
-⍝ Fixed: A bug wherein an error signalled during an acre command shows only
-⍝ → the first line of a potential list of messages.
+⍝ Dyalog pre-v16.0 `⎕SIGNAL` did not return a result.
+⍝ Now uses `⎕SIGNAL/` that always has when not triggered!
+⍝
+⍝ Install now names the _releaseNotes_ as `releaseNotes.md`.
  }

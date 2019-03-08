@@ -23,6 +23,7 @@
 ⍝ → They separate cells of a multi-dimensional array between brackets -
 ⍝ → wherein scalar cells are treated as one-item vectors - and items of a
 ⍝ → vector between parentheses.
+⍝
 ⍝ No existing features of Dyalog APL are compromised by these enhancements.
 ⍝
 ⍝ Implementation is by a namespace containing a number of functions to

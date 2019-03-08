@@ -14,7 +14,7 @@
          proj:⍺(⍎⍺)projMethod ⍵              ⍝ first item is project
          share:⍺(⍎⍺)sharedMethod ⍵           ⍝ arg is specific to method
      }arg.Arguments
-     z←' '⎕SIGNAL SV.error/11
+     z←⎕SIGNAL/' ',SV.error/11
      res
 ⍝ ⍵ new; method; arg ns; type of fn; whence called; whence loaded; system.
 ⍝ Phil 2018-01-28 00.43
