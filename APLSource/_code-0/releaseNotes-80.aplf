@@ -1,12 +1,16 @@
  releaseNotes←{UT.cq 2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.8+143 2019-03-08 08.53
+⍝ Acre 5.0.8+145 2019-03-09 12.18
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Fixed: Bug. acre user command crashes in 15.0 **#153**
+⍝ Fixed: Bug. API function sourcefile has a problem with names that are not
+⍝ → fully qualified **#154**
 ⍝
-⍝ Dyalog pre-v16.0 `⎕SIGNAL` did not return a result.
-⍝ Now uses `⎕SIGNAL/` that always has when not triggered!
+⍝ The same bug hit:
+⍝ * acreAPI.changefile
+⍝ * acreAPI.deletefile
+⍝ * acreAPI.sourcefile
+⍝ * acreAPI.nameclass
 ⍝
-⍝ Install now names the _releaseNotes_ as `releaseNotes.md`.
+⍝ now all fixed
  }
