@@ -16,8 +16,6 @@
      result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP -casecode=on'
      →GoToTidyUp'#.TEMP'≢result
      result←∆RunUcmd'EditArray #.TEMP.Hello'
-     ⎕←'   Press <Enter> when you have 1) changed the variable and 2) closed the edit window.'
-     {}⍞
      'Variable was not changed?!'Assert #.TEMP.Hello≢txt
      ∆WaitAndProcess 0.2
      list←##.FilesAndDirs.ListFiles acreDir,'\.acre\changes\'

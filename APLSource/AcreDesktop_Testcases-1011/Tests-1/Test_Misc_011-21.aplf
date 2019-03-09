@@ -1,0 +1,38 @@
+ R←Test_Misc_011(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;projects;filename;config
+⍝ When "CaseCode" is changed to "off" (enforcing a rename) and a namespace script is changed then acre crashed once.
+⍝ This must fail due to the fact that they have different file extensions
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FIX':Namespace Foo' '∇r←Hello dummy' 'r←42' '∇' ':EndNamespace'
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ →GoToTidyUp result≢'#.',projectName
+ projects←⎕SE.acreAPI.projects''
+ filename←(2⊃projects[projects[;1]⍳⊂'#.',projectName;]),'acre.config'
+ config←##.APLTreeUtils.ReadUtf8File filename
+ config←'CaseCode←''Off'''⎕R'CaseCode←''Off'''⊣config
+ ##.APLTreeUtils.WriteUtf8File filename config
+ ref.⎕FIX':Namespace Foo' '∇r←Hello dummy' 'r←43' '∇' ':EndNamespace'
+ result←∆RunUcmd'SetChanged #.',projectName,'.Foo'
+ →GoToTidyUp'#.Test_Misc_011.Foo'≢∊result
+ {}∆RunUcmd'Close #.',projectName
+ result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName
+ →GoToTidyUp('#.',projectName)≢result
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆ClearLog
+⍝Done

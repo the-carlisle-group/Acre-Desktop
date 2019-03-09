@@ -1,0 +1,4 @@
+ {r}←∆Show msg
+ r←⍬
+ {}⍞,0/⍞←msg,'; press <enter> to continue. '
+⍝Done
