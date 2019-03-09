@@ -9,7 +9,7 @@
  #.TEMP.Foo←{42}
  F←##.FilesAndDirs
 
- {}⎕SE.acreAPI.log'clear'
+ ∆ClearLog
  →PassesIf 0=≢buff←⎕SE.acreAPI.log'all'
 
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
@@ -23,7 +23,7 @@
 
  #.TEMP.Foo2←{43}
  ∆RunUcmd'SetChanged #.TEMP.Foo2'
- →GoToTidyUp 4≠≢buff←⎕SE.acreAPI.log'all'
+ →GoToTidyUp 4≠≢buff←⎕SE.acreAPI.log'all'    ⍝ #155
 
  →GoToTidyUp 2≠≢buff←⎕SE.acreAPI.log 2
 
