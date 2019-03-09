@@ -4,9 +4,6 @@
 
  R←∆Failed
 
- R←∆Inactive      ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝ Check the error message once we've drawn a conclusion
- :Return
-
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
