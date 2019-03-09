@@ -19,7 +19,10 @@
  →GoToTidyUp'#.TEMP-f.Foo-1'≢buff
 
  buff←⎕SE.acreAPI.casecode'#.TEMP.Foo #.TEMP.Fooü'
- →GoToTidyUp'#.TEMP-f.Foo-1'≢buff # 157
+ →GoToTidyUp''≢buff ⍝⍝TODO⍝ #157
+
+ buff←⎕SE.acreAPI.casecode'#.TEMP.Foo' '#.TEMP.Fooü'
+ →GoToTidyUp'#.TEMP-f.Foo-1'≢buff
 
  R←∆OK
 
