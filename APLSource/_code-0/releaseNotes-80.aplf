@@ -1,10 +1,10 @@
  releaseNotes←{UT.cq 2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.8+145 2019-03-09 12.18
+⍝ Acre 5.0.8+148 2019-03-15 15.25
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Fixed: Bug. API function sourcefile has a problem with names that are not
-⍝ → fully qualified **#154**
+⍝ Fixed: Bug. _API function sourcefile has a problem with names that are
+⍝ → not fully qualified **#154**_
 ⍝
 ⍝ The same bug hit:
 ⍝ * acreAPI.changefile
@@ -13,4 +13,16 @@
 ⍝ * acreAPI.nameclass
 ⍝
 ⍝ now all fixed
+⍝
+⍝ All commands are now preceded by a log message that attempts to mirror
+⍝ → the command as entered by the user.
+⍝
+⍝ `SetChanged` now messages _SetChanged wrote 1 file_ or _SetChanged wrote N
+⍝ → files_.
+⍝
+⍝ Previous two changes cause an additional nine tests to fail.
+⍝
+⍝ Acre's internal emulator for `⍸` which was monad only now includes
+⍝ → Roger's interval index algorithm. Not that I'm currently aware of
+⍝ → anywhere it can be used even in the light of Paul's enthusiasm.
  }

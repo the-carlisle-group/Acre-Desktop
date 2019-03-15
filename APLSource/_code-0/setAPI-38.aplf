@@ -2,7 +2,7 @@
      API{src←⍺⍺ ⋄ tgt←⍵
          z←tgt.⍎⍺,'←⍺⍺{0::⎕signal/⌽⎕en,⎕dm⋄⍺←⊢⋄⍺ ⍺⍺.',⍺,'⍵}'
          tgt
-     }/⌽(⎕SE.⎕NS''),↓API.⎕NL 3
-⍝
-⍝ Phil 2018-11-28 10.59
+     }/⌽(⎕SE.⎕NS''),↓API.⎕NL 3.2
+⍝ specifically ⎕NL 3.2 to exclude ops and dervs
+⍝ Phil 2019-03-15 12.44
  }

@@ -1,6 +1,11 @@
  casecode←{⍺←⊢
-     ##.{'#.'∘,⍣x⊃{'-'∊⍵:'..'decodeCaps ⍵
-             '..'encodeCaps ⍵}(2×x←'#.'≡2⍴z)↓z←⊃⊂if≡⍵}⍵
+     0>⎕NC z←⊃⊂if≡⍵:''⊣##.(logMsg MS.DR)
+     ##.{
+         '#.'∘,⍣x⊃{
+             '-'∊⍵:'..'decodeCaps ⍵
+             '..'encodeCaps ⍵
+         }(2×x←'#.'≡2⍴⍵)↓⍵
+     }z
 ⍝ ##.codeHook
 ⍝ Phil 2018-11-14 16.43
  }

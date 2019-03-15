@@ -8,6 +8,7 @@
      SV.arguments←,⊂arg.Arguments            ⍝ ditto
      z←openProjects''                        ⍝ still open?
      (item proj share)←'i' 'p' 's'=⊃type     ⍝ see cmdDefs
+     z←logMsg']',method,⍕⊃SV.arguments
 ⍝         ↓↓↓↓↓
      res←method{
          item:⍺(⍎⍺)itemMethod ⍵              ⍝ items of arg are names
@@ -17,5 +18,5 @@
      z←⎕SIGNAL/' ',SV.error/11
      res
 ⍝ ⍵ new; method; arg ns; type of fn; whence called; whence loaded; system.
-⍝ Phil 2018-01-28 00.43
+⍝ Phil 2019-03-15 12.44
  }

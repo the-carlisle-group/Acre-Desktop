@@ -1,9 +1,8 @@
  i_←{⍺←⊢
 ⍝     16≤⊃SV.aplver:⍺⍸⍵
-     1≡⍺ 1:(,⍵)/,⍳⍴⍵
-     'Not implemented - interval index'⎕SIGNAL 16
+     1≡⍺ 1:(,⍵)/,⍳⍴⍵              ⍝ m: where
+     ¯1+(≢⍺)↓i⊣i[i]←+\(≢⍺)>i←⍋⍺⍪⍵ ⍝ d: interval index
 ⍝  - see setEmulators
-⍝ ⍸ - m: where
-⍝ ⍸ - d: interval index - 16+ only
-⍝ Phil 2018-12-05 19.44
+⍝ interval index - Roger Hui - http://www.jsoftware.com/papers/50/
+⍝ Phil 2019-03-11 10.57
  }

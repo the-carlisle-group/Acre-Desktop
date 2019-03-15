@@ -1,9 +1,7 @@
  a_←{⍺←⊢
 ⍝     16≤⊃SV.aplver:⍺(⍺⍺@⍵⍵)⍵
+     ⍺(⍺⍺ UT.am ⍵⍵)⍵ ⍝ modify array ⍵ with [⍺]⍺⍺ at ⍵⍵
+⍝ maybe not identical to @ but seems to work
 ⍝  - see setEmulators
-⍝ @ - modify array ⍵ with [⍺]⍺⍺ at ⍵⍵
-⍝ maybe not identical to @
-⍝ - but seems to work
-     ⍺(⍺⍺ UT.am ⍵⍵)⍵
 ⍝ Phil 2018-12-05 20.11
  }

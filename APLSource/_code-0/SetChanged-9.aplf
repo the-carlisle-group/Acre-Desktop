@@ -5,7 +5,8 @@
      s←space arg
      src←⍎s⊃dat.nspath(⊃arg)
      nms←src UT.li⍳11
-     dat setChange getValue nms(dat caseOK)validItems s⊃arg nms
+     res←dat setChange getValue nms(dat caseOK)validItems s⊃arg nms
+     res⊣logMsg(⊃⎕SI),MS.EE,(≢res)UT.pl MS.FL
 ⍝
-⍝ Phil 2018-11-14 00.15
+⍝ Phil 2019-03-15 12.44
  }
