@@ -1,5 +1,8 @@
- releaseNotes←{UT.cq 2↓¨1↓¯1↓⎕NR⊃⎕SI
-⍝ Acre 5.0.8+148 2019-03-15 15.25
+ releaseNotes←{⍺←⊢
+     z←UT.cq ntbs UT.ft'⍝ '
+     ⍺≡⍺ 1:z
+     z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
+⍝ Acre 5.0.9+155 2019-03-19 16.22
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
@@ -17,10 +20,13 @@
 ⍝ All commands are now preceded by a log message that attempts to mirror
 ⍝ → the command as entered by the user.
 ⍝
-⍝ `SetChanged` now messages _SetChanged wrote 1 file_ or _SetChanged wrote N
-⍝ → files_.
+⍝ `SetChanged` now messages _"SetChanged wrote 1 file"_ or _"SetChanged wrote N
+⍝ → files"_.
 ⍝
-⍝ Previous two changes cause an additional nine tests to fail.
+⍝ The previously deprecated switch/modifier _-messages[=]_ has been removed.
+⍝
+⍝ Previous three changes fix bug #155 and fulfil various decisions but cause
+⍝ → twelve tests to fail.
 ⍝
 ⍝ Acre's internal emulator for `⍸` which was monad only now includes
 ⍝ → Roger's interval index algorithm. Not that I'm currently aware of

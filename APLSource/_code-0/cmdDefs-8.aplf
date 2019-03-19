@@ -47,7 +47,7 @@
          help←'Hide, show, clear or request all or n msgs from the log'
          options←''
          result←''
-         syntax←'"hide" | "show" | "file" | "clear" | "all" | number ' ⍝ MS.CI
+         syntax←'"hide" | "show" | "file" | "clear" | "all" | number' ⍝ MS.CI
          type←'shared'
          ][
          command←'OpenProject'
@@ -123,8 +123,8 @@
      }
      r←PL.decode 1↓¯1↓⎕NR'f'
      r.group←⊂name
-     r.syntax←,/(⊂']',name,'.'),r.command,' ',⍪r.syntax
      r.options←optionFields r.options
+     r.syntax←,/(⊂']',name,'.'),r.command,' ',r.syntax,' ',⍪r.options
      UT.is r
 ⍝ see optionFields for valid options
 ⍝ Phil 2018-10-29 14.07
