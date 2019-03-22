@@ -25,7 +25,7 @@
  ref.⎕FIX':Interface Boo' '∇r←Hello5' '∇' ':EndInterface'
  #.⎕SHADOW'AcreMessages'
  {}∆RunUcmd'Projects'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
- →PassesIf 0=≢∆GetLog ⍬
+ →PassesIf 1=≢∆GetLog ⍬
 
  →PassesIf'.aplf'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
  →PassesIf'.apln'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'

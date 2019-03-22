@@ -1,2 +1,3 @@
  {r}←∆ClearLog
- r←⎕SE.UCMD'acre.log clear'
+ r←⎕SE.acreAPI.log'clear'
+⍝ r←⎕SE.UCMD'acre.log clear'

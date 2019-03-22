@@ -1,7 +1,9 @@
  {r}←∆GetLog no;debugFlag
  :If 0∊⍴no
-     r←⎕SE.UCMD'acre.log 1000'
+     r←⎕SE.acreAPI.log 1000
+⍝     r←⎕SE.UCMD'acre.log 1000'
  :Else
-     r←⎕SE.UCMD'acre.log ',⍕no
+     r←⎕SE.acreAPI.log no
+⍝     r←⎕SE.UCMD'acre.log ',⍕no
  :EndIf
 ⍝Done

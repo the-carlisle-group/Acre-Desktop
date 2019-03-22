@@ -50,7 +50,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 4≠⍴∆GetLog ⍬
+ →GoToTidyUp 7≠⍴∆GetLog ⍬
  →GoToTidyUp 1≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK

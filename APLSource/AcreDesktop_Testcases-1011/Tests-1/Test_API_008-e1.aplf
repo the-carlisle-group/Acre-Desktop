@@ -1,12 +1,14 @@
- R←Test_API_008(stopFlag batchFlag);⎕TRAP
+ R←Test_API_008(stopFlag batchFlag);⎕TRAP;file
 ⍝ Exercise the API function `itemname`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
  →PassesIf 0=≢¨⎕SE.acreAPI.itemname'DoesNotExistForSure'
- →PassesIf(⊂'#.acre._code.EditArray')≡⎕SE.acreAPI.itemname'APLSource\_code-0\EditArray-11.aplf'
- →PassesIf(⊂'#.acre._code.OpenProject')≡⎕SE.acreAPI.itemname'APLSource\_code-0\OpenProject-11.aplf'
+ file←⎕SE.acreAPI.sourcefile'#.acre._code.EditArray'
+ →PassesIf(⊂'#.acre._code.EditArray')≡⎕SE.acreAPI.itemname file
+ file←⎕SE.acreAPI.sourcefile'#.acre._code.OpenProject'
+ →PassesIf(⊂'#.acre._code.OpenProject')≡⎕SE.acreAPI.itemname file
 
  R←∆OK
 ⍝Done

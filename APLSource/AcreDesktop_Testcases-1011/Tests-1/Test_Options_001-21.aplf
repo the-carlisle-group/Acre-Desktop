@@ -2,6 +2,11 @@
 ⍝ Test setting "messages"
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
+ :If 1
+     R←∆Inactive ⍝ `-messages` option now gone
+     :Return
+ :EndIf
+
  R←∆Failed
 
  ∆ClearLog
