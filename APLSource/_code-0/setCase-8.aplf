@@ -3,6 +3,6 @@
      SV.upper←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ'
      SV.lower←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûü'
      SV
-⍝ different cased name characters only
-⍝ Phil 2019-01-03 17.41
+⍝ differently cased name characters only
+⍝ Phil 2019-04-05 07.11
  }

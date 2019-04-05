@@ -1,5 +1,6 @@
  fso←{
+     15≤⊃SV.aplver:'' ⍝ don't need it after 14.x
      o⊣'o'⎕WC⊢o←'OLECLIENT' 'Scripting.FileSystemObject'
 ⍝ File System Object
-⍝ Phil 2019-02-14 11.13
+⍝ Phil 2019-04-05 07.11
  }

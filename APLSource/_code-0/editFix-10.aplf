@@ -14,7 +14,7 @@
      {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:(⍎first⊃⌽SV.fixandafter)⍵
      fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(≢∘∊⍨new)∧2≠space.⎕NC name
      0=dat←whichProject fqn:(⍎first⊃⌽SV.fixandafter)⍵
-     (('⎕'∊fqn)≥(⎕NC⊂fqn)∊0,validAPLType''):
+     (null validItems fqn):
      first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
          z←SV.itemvalue editStore nv
      }''
@@ -23,6 +23,8 @@
      null dat caseOK fqn:
      (oldval≡newval←⊃2⊃getValue,⊂fqn):                 ⍝ unchanged
      type←⊃nameClass fqn
+⍝ here be Norbert's mod.
+     0 1∊⍨⊂r←dat callSCM fqn oldval newval,dat getSourceFilenames fqn:r
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←logMsg MS.DS,⊃dat setChange fqn type newval
 ⍝ ⍺ probably missing

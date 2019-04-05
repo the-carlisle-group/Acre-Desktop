@@ -7,7 +7,6 @@
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
          ⍵.SX←syntaxHelp name
-         ⍵.FS←fso''
          z←setEmulators''
          SV.logfile←localFolder'/',MS.CJ
          z←setCase''
@@ -24,5 +23,5 @@
 ⍝ ⍵ ?
 ⍝   there should be no tracked instances when this runs
 ⍝ ← 1
-⍝ Phil 2018-12-22 19.07
+⍝ Phil 2019-04-05 07.11
  }

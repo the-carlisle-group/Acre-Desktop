@@ -2,36 +2,23 @@
      z←UT.cq ntbs UT.ft'⍝ '
      ⍺≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.0.9+156 2019-03-22 09.43
+⍝ Acre 5.0.11+165 2019-04-05 23.40
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Fixed: Bug. _API function sourcefile has a problem with names that are
-⍝ → not fully qualified **#154**_
+⍝ Changes to processing of edited items
 ⍝
-⍝ The same bug hit:
-⍝ * acreAPI.changefile
-⍝ * acreAPI.deletefile
-⍝ * acreAPI.sourcefile
-⍝ * acreAPI.nameclass
-⍝
-⍝ now all fixed
-⍝
-⍝ All commands are now preceded by a log message that attempts to mirror
-⍝ → the command as entered by the user.
-⍝
-⍝ `SetChanged` now messages _"SetChanged wrote 1 file"_ or _"SetChanged
-⍝ → wrote N files"_.
-⍝
-⍝ The previously deprecated switch/modifier _-messages[=]_ has been removed.
-⍝
-⍝ Previous three changes fix bug #155 and fulfil various decisions but cause
-⍝ → twelve tests to fail.
-⍝
-⍝ Acre's internal emulator for `⍸` which was monad only now includes
-⍝ → Roger's interval index algorithm. Not that I'm currently aware of
-⍝ → anywhere it can be used even in the light of Paul's enthusiasm.
-⍝
-⍝ Tests changed to accommodate changes above which added more messages to
-⍝ → the log.
+⍝ New config parameter _SCMexit_ - dflt: '' - a string that may contain the
+⍝ → full path of a monadic/ambivalent explicit function.
+⍝ ```
+⍝ ⍵    fqn old new path
+⍝ fqn  fully qualified name of edited item
+⍝ old  original value of item
+⍝ new  changed value of item
+⍝ path full file path of item - incl casecodes where applicable
+⍝ ←    0: stay in editor
+⍝      1: exit editor omitting normal acre processing
+⍝   else: normal acre processing
+⍝ ```
+⍝ Bug: Installation fails on non-windows platforms #165 - fixed.
  }
