@@ -1,24 +1,18 @@
  releaseNotes←{⍺←⊢
      z←UT.cq ntbs UT.ft'⍝ '
-     ⍺≡⍺ 1:z
+     1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.0.11+165 2019-04-05 23.40
+⍝ Acre 5.0.11+167 2019-04-09 22.39
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Changes to processing of edited items
+⍝ As an attempt to implement Enhancement: #166 _Change of item-type in editor. e.g. Fn→Op_, a subfunction - called by the editor callback and the commands:
+⍝ `]SetChanged`, `]Undo`, `]Redo` and `]Restore` - now checks to see if the _type_ of any item affected has changed and renames the source-file accordingly.
 ⍝
-⍝ New config parameter _SCMexit_ - dflt: '' - a string that may contain the
-⍝ → full path of a monadic/ambivalent explicit function.
+⍝ Causes test Misc_010
 ⍝ ```
-⍝ ⍵    fqn old new path
-⍝ fqn  fully qualified name of edited item
-⍝ old  original value of item
-⍝ new  changed value of item
-⍝ path full file path of item - incl casecodes where applicable
-⍝ ←    0: stay in editor
-⍝      1: exit editor omitting normal acre processing
-⍝   else: normal acre processing
+⍝ Change a function to an operator.
+⍝ This must fail due to the fact that they have different file extensions
 ⍝ ```
-⍝ Bug: Installation fails on non-windows platforms #165 - fixed.
+⍝ to fail because `]openProject` doesn't.
  }

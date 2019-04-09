@@ -2,6 +2,9 @@
      null⊢fqn type value←,∘⊂¨if(≡⊃)⍵:⍵
      src tgt←dat.(nspath source)
      path←dat getSourceFilenames fqn
+     old←×≢⊃_NINFO tgt,'*'
+     z←{fn←{⊃⊃_NINFO(UT.sp ⍵),MS.AX}¨path
+         dat renameSource(~nil fn)∘/¨fn fqn}⍣old⊢0
      (b/path)←{⍺ UT.re MS.AX ⍵}⌿↑path type/¨⍨⊂b←(1∊MS.AX⍷⊢)¨path
      tree←_MKDIR/3,⍪∪((-'/'⍳⍨⌽)↓⊢)¨path         ⍝ ensure folders
      z←(,∘⊂if≡¨value){(,⍺)_NPUT ⍵}¨path
