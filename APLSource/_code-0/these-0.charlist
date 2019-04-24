@@ -1,0 +1,10 @@
+which vars to store
+
+CreateProject           -vars=On
+)ED ⎕ED [Ctrl+Enter]    Vars←'On' or source file
+SetChanged              deliberate action
+EditArray               ditto
+Undo                    must have existed
+Redo                    ditto
+Restore                 ditto
+

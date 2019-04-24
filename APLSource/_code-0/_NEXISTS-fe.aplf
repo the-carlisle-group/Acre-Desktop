@@ -1,5 +1,5 @@
  _NEXISTS←{
-⍝     15≤⊃ver←SV.aplver:⊢⎕NEXISTS ⍵
+     15≤⊃ver←SV.aplver:⊢⎕NEXISTS ⍵
 
      {
          FS.FileExists ⍵:1

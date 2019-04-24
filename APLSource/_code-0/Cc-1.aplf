@@ -1,5 +1,5 @@
  Cc←{⍺←⊢
-⍝     15≤⊃SV.aplver:⍺(819⌶)⍵
+     15≤⊃SV.aplver:⍺(819⌶)⍵
      r←⍺⊣0
      i o←r⌽SV.(upper lower)
      ⊃if(≡⍵){(o,,⍵)[(i,,⍵)⍳⍵]}¨⊂if≡⍵

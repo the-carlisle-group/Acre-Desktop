@@ -15,8 +15,8 @@
      z←logMsg(MS.ER,MS.EY),(¯4 tPath dat.folder),MS.EZ,dat.nspath
      z←⎕EX''if missing if(≢⍴){# UT.nl⍳10}if≢dat.nspath
      space←⍎dat.nspath #.⎕NS''⊣openProjects''
-     cfg.KeepHistory←MS.GB MS.GA⊃⍨dat.hist←nOff dat.keephistory
-     cfg.CaseCode←MS.GB MS.GA⊃⍨dat.case←≢/Cc dat.casecode MS.GB
+     dat.(hist case vars)←On¨dat.(keephistory casecode variables)
+     cfg.(KeepHistory CaseCode Variables)←dat.(hist case vars)⊃¨⊂MS.GB MS.GA
      dat.cfg←⎕NS cfg⊣space MS.FV _is_ cfg⊣cfg.ProjectFolder←dat.folder
      z←deleteFolder⍣(cde>dat.hist)⊢dat.code  ⍝ turned off
      z←_MKDIR/3,⍪dat.(source changes)/⍨(~src),on←cde<dat.hist

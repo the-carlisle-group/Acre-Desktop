@@ -6,6 +6,7 @@
          ⍵.Open←''            ⍝ Open with this project
          ⍵.SCMexit←''         ⍝ #.full.path.function - see callSCM
          ⍵.StartUp←''         ⍝ executed after OpenProject
+         ⍵.Variables←'Off'    ⍝ on: all vars | off: already or on request
          ⍵
      }#.⎕NS''
 ⍝ ⍵ ?

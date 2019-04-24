@@ -17,7 +17,7 @@
      fqn val←↓⍉↑nout doit/fqn,⍪fil
      type←nameClass fqn
      null⊢fqn type val←fixValue fqn type val:''
-     fqn⊣dat putSource fqn type val
+     ⊃dat putSource fqn type val
 ⍝ ⍺ dat
 ⍝ ⍵ fqns
 ⍝ ← fqns where changed

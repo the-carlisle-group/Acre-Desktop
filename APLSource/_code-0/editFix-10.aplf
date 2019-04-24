@@ -1,16 +1,16 @@
  editFix←{⍺←⊢
-     (⍵≡'Start'):{                                     ⍝ from Start
+     (⍵≡'Start'):{                                  ⍝ from Start
          (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
-         SV.fixandafter←⊃if≢¨qed.(onFix onAfterFix)    ⍝ odd extra nesting!
-         qed.(onFix onAfterFix)←⍬⍴⎕XSI ⋄ ⎕SE.⎕WX←wx    ⍝ reset ⎕WX
-         {0}SV.itemvalue←editStore ⎕NS''               ⍝ create value store
+         SV.fixandafter←⊃if≢¨qed.(onFix onAfterFix) ⍝ odd extra nesting!
+         qed.(onFix onAfterFix)←⍬⍴⎕XSI ⋄ ⎕SE.⎕WX←wx ⍝ reset ⎕WX
+         {0}SV.itemvalue←editStore ⎕NS''            ⍝ create value store
      }''
-     (⍵≡'Close'):{                                     ⍝ from Close
+     (⍵≡'Close'):{                                  ⍝ from Close
          qed←'⎕SE'⎕WG'Editor' ⋄ (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1
          qed.(onFix onAfterFix)←SV.fixandafter ⋄ {0}⎕SE.⎕WX←wx
      }''
-     (editor event value space name new)←6↑⍵           ⍝ so long as onFix unchanged
-     first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space               ⍝ is space scripted?
+     (editor event value space name new)←6↑⍵        ⍝ so long as onFix unchanged
+     first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space            ⍝ is space scripted?
      {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:(⍎first⊃⌽SV.fixandafter)⍵
      fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(≢∘∊⍨new)∧2≠space.⎕NC name
      0=dat←whichProject fqn:(⍎first⊃⌽SV.fixandafter)⍵
@@ -21,10 +21,14 @@
      new←MS.GU≡oldval←SV.itemvalue editStore fqn
      (0≥#.⎕NC∘⊂)fqn:
      null dat caseOK fqn:
-     (oldval≡newval←⊃2⊃getValue,⊂fqn):                 ⍝ unchanged
+     (oldval≡newval←⊃2⊃getValue,⊂fqn):              ⍝ unchanged
+     file←⊃dat getSourceFilenames fqn
+     var←2∊⌊⎕NC fqn
+     old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1     ⍝ .array .charlist &c.
+     old<dat.vars<var:                              ⍝ don't save
      type←⊃nameClass fqn
 ⍝ here be Norbert's mod.
-     0 1∊⍨⊂r←dat callSCM fqn oldval newval,dat getSourceFilenames fqn:r
+     0 1∊⍨⊂r←dat callSCM fqn oldval newval file:r
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←logMsg MS.DS,⊃dat setChange fqn type newval
 ⍝ ⍺ probably missing

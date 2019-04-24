@@ -1,5 +1,5 @@
  _MKDIR←{
-⍝     15≤⊃SV.aplver:⊢3 ⎕MKDIR ⍵
+     15≤⊃SV.aplver:⊢3 ⎕MKDIR ⍵
 
      {
          0::FS.FolderExists ⍵    ⍝ ... then check existence

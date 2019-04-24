@@ -1,7 +1,7 @@
  optionFields←{⍺←⊢
      opts←,dflt←,⊂'help' ⍝ 'messages[=]' ⍝ Phil 2019-03-18 21.40
-     opts,←'track:on' 'confirm:' 'dependencies:on'
-     opts,←'casecode:off' 'when[=]' 'keephistory:off'
+     opts,←'dependencies:on' 'when[=]' 'confirm:' 'track:on'
+     opts,←'casecode:off' 'variables:off' 'keephistory:off'
 
      len←3 ⍝ min unique width of above
      in←len⍴¨opts

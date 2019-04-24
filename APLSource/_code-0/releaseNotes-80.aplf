@@ -2,17 +2,24 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.0.11+167 2019-04-09 22.39
+⍝ Acre 5.0.12+173 2019-04-24 15.20
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ As an attempt to implement Enhancement: #166 _Change of item-type in editor. e.g. Fn→Op_, a subfunction - called by the editor callback and the commands:
-⍝ `]SetChanged`, `]Undo`, `]Redo` and `]Restore` - now checks to see if the _type_ of any item affected has changed and renames the source-file accordingly.
+⍝ The choice of enhanced or emulator code had previously been removed from the individual emulators to be decided in the framework at start-up.
 ⍝
-⍝ Causes test Misc_010
-⍝ ```
-⍝ Change a function to an operator.
-⍝ This must fail due to the fact that they have different file extensions
-⍝ ```
-⍝ to fail because `]openProject` doesn't.
+⍝ The functions are also used by `Install` before such a decision can be taken so the guards have been restored temporarily, slowing each call made to the
+⍝ → emulators by a few milliseconds.
+⍝
+⍝ Another way will be found to remove them again without disabling `Install`.
+⍝
+⍝ A modifier `-variables=On|Off` with default `Off` has been added to `]CreateProject`. The immediate effect of `On` is that all variables in the project
+⍝ → namespace tree will be stored - and of `Off` that none will be.
+⍝
+⍝ After `]CreateProject` the modifier will have been stored also as a configuration parameter `Variables←'On'|'Off'` with default `Off` and will determine
+⍝ → whether or not newly created variables will be stored from the editor.
+⍝
+⍝ `]SetChanged` will honour a request irrespective of the setting and once a variable has a presence in a sourcefile all edits will continue to be stored.
+⍝
+⍝ Bug fixed: _#168 ⎕SE.acreAPI.itemname can produce a syntax error when it should not._ - when no projects were open.
  }

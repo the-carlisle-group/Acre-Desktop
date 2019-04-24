@@ -11,7 +11,7 @@
      val←currentChange tie
      tie←⎕FUNTIE chg ⎕FRENAME tie
      null⊢fqn type val←fixValue fqn type val:''
-     fqn⊣dat putSource fqn type val
+     ⊃dat putSource fqn type val
 ⍝ Rename ONE ONLY .delete to .change
 ⍝ Replace in source
 ⍝ Refix in ws

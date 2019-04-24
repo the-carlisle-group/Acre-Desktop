@@ -21,6 +21,7 @@
          ⍵.AL←'.charlist'      ⍝ charlist
          ⍵.AM←'.charmat'       ⍝ charmat
          ⍵.AS←'.charstring'    ⍝ charstring
+         ⍵.AW←'.*ar*'          ⍝ array of any type
          ⍵.AX←'.*'             ⍝ set as filetype for unknown
          ⍵.AY←⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
          ⍝ above MS.AZ and below MS.AY MUST correspond!

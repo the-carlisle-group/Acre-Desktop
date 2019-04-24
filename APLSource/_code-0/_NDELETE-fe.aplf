@@ -1,5 +1,5 @@
  _NDELETE←{
-⍝     15≤⊃SV.aplver:⊢1 ⎕NDELETE ⍵
+     15≤⊃SV.aplver:⊢1 ⎕NDELETE ⍵
 
      df←1
      ok←{0::0 ⋄ 6::1

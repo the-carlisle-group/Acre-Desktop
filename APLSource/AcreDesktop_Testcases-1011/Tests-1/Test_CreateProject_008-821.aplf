@@ -16,7 +16,7 @@
  noOf←⊃⍴∆RunUcmd'Projects'
  ∆ClearLog
 
- result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -v=on'
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 0=F.IsDir projectPath,'/.acre'

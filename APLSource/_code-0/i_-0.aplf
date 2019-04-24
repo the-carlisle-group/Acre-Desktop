@@ -1,5 +1,5 @@
  i_←{⍺←⊢
-⍝     16≤⊃SV.aplver:⍺⍸⍵
+     16≤⊃SV.aplver:⍺⍸⍵
      1≡⍺ 1:(,⍵)/,⍳⍴⍵              ⍝ m: where
      ¯1+(≢⍺)↓i⊣i[i]←+\(≢⍺)>i←⍋⍺⍪⍵ ⍝ d: interval index
 ⍝  - see setEmulators

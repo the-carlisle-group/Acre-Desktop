@@ -17,7 +17,7 @@
          ][
          command←'CreateProject'
          help←'Create a new project'
-         options←'case keep'
+         options←'case keep vari'
          result←''
          syntax←'folder space'
          type←'shared'

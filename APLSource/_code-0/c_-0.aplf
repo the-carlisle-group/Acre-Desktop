@@ -1,5 +1,5 @@
  c_←{⍺←⊢
-⍝     16≤⊃SV.aplver:⍺⊆⍵
+     16≤⊃SV.aplver:⍺⊆⍵
      1≡⍺ 1:⊂⍣(1=≡⍵)⊢⍵ ⍝ m: enclose if simple
      ⎕ML←3 ⋄ ⍺⊂⍵      ⍝ d: partition as per ⎕ML←3
 ⍝  - see setEmulators
