@@ -2,24 +2,18 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.0.12+173 2019-04-24 15.20
+⍝ Acre 5.0.12+174 2019-04-30 20.36
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ The choice of enhanced or emulator code had previously been removed from the individual emulators to be decided in the framework at start-up.
+⍝ Mainly fixing bugs but significant changes regard:
+⍝ * modifier `-variables='Off'|'On'` and config option `Variables←'Off'|'On'` to restrict or permit the saving of variables.
+⍝ * automatic renaming of files when an item's type changes to prevent the most common cause of multiple files representing the same named item.
+⍝ * config option `SCMexit←'#.function.name` to include a hook (user exit) to permit intervention regarding an external source code manager.
 ⍝
-⍝ The functions are also used by `Install` before such a decision can be taken so the guards have been restored temporarily, slowing each call made to the
-⍝ → emulators by a few milliseconds.
+⍝ Henceforth any significant commit will also give rise to a new release.
+⍝ )LOADing `acre.dws` from that release, which can be unzipped anywhere, will install acre in any Windows Dyalog v14.0+ and non-windows v16.0+.
 ⍝
-⍝ Another way will be found to remove them again without disabling `Install`.
-⍝
-⍝ A modifier `-variables=On|Off` with default `Off` has been added to `]CreateProject`. The immediate effect of `On` is that all variables in the project
-⍝ → namespace tree will be stored - and of `Off` that none will be.
-⍝
-⍝ After `]CreateProject` the modifier will have been stored also as a configuration parameter `Variables←'On'|'Off'` with default `Off` and will determine
-⍝ → whether or not newly created variables will be stored from the editor.
-⍝
-⍝ `]SetChanged` will honour a request irrespective of the setting and once a variable has a presence in a sourcefile all edits will continue to be stored.
-⍝
-⍝ Bug fixed: _#168 ⎕SE.acreAPI.itemname can produce a syntax error when it should not._ - when no projects were open.
+⍝ A user wishing to build the system in advance of the next release can do so in Windows Dyalog v14.0+ by )LOADing `build.dws` from the acre project folder.
+⍝ This produces the installation folder containing `acre.dws` in `LocalAppData` for the present user whence it can be moved prior to installation as above.
  }
