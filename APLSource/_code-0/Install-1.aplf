@@ -1,5 +1,5 @@
  Install←{
-     ⎕THIS.FS←fso''⊣setCase setAplVer''
+     z←setEmulators setCase setAplVer''
      path wsid←2⍴,\1 _NPARTS(⍵≡∊⍵)⊃⍵ ⎕WSID
      name←1↓{⍵/⍨1=+\⍵='.'}⊃⎕XSI
      apo←'"'∘(qu←UT.qu)

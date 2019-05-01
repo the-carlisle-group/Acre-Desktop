@@ -1,8 +1,5 @@
  setAplVer←{⍺←⊢
-     ⎕THIS.SV←{
-         9=⎕NC'SV':SV
-         ##.⎕NS''
-     }0
+     ⎕THIS.SV←{9=⎕NC'SV':SV ⋄ ##.⎕NS''}0
      2=SV.⎕NC'aplver':SV.aplver
      ⊢SV.aplver←(({⍎⍵/⍨∧\2>+\⍵='.'}1⊃⊢),⊃∘⊃)'.'⎕WG'APLVersion'
 ⍝ Dyalog vernum as maj.min and OS as capital initial

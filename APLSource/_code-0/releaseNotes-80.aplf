@@ -2,18 +2,16 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.0.12+174 2019-04-30 20.36
+⍝ Acre 5.0.13+177 2019-05-01 18.23
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Mainly fixing bugs but significant changes regard:
-⍝ * modifier `-variables='Off'|'On'` and config option `Variables←'Off'|'On'` to restrict or permit the saving of variables.
-⍝ * automatic renaming of files when an item's type changes to prevent the most common cause of multiple files representing the same named item.
-⍝ * config option `SCMexit←'#.function.name` to include a hook (user exit) to permit intervention regarding an external source code manager.
+⍝ Fixed bug #169 in Install. Emulators/Enhancements now set in `Install`.
+⍝ As described in release `v5.0.12+174`:
+⍝ > Henceforth any significant commit will also give rise to a new release.
+⍝ >)LOADing acre.dws from that release, which can be unzipped anywhere, will install acre in any Windows Dyalog v14.0+ and non-windows v16.0+.
 ⍝
-⍝ Henceforth any significant commit will also give rise to a new release.
-⍝ )LOADing `acre.dws` from that release, which can be unzipped anywhere, will install acre in any Windows Dyalog v14.0+ and non-windows v16.0+.
-⍝
-⍝ A user wishing to build the system in advance of the next release can do so in Windows Dyalog v14.0+ by )LOADing `build.dws` from the acre project folder.
-⍝ This produces the installation folder containing `acre.dws` in `LocalAppData` for the present user whence it can be moved prior to installation as above.
+⍝ > A user wishing to build the system in advance of the next release can do so in Windows Dyalog v14.0+ by )LOADing build.dws from the acre project folder.
+⍝ > This produces the installation folder containing acre.dws in LocalAppData for the present user whence it can be moved prior to installation as above.
+
  }
