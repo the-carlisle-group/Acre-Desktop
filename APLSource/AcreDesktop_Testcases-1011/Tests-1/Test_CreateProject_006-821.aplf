@@ -9,7 +9,7 @@
 
  result←∆RunUcmd'CreateProject "C:\Users\All Users\AppData\Roaming\',(##.APLTreeUtils.Last⊃⎕XSI),'"'
  →PassesIf 0∊⍴result
- →PassesIf 2=⍴log←∆GetLog ⍬
+ →PassesIf 2=≢log←∆GetLog ⍬
  →PassesIf'Syntax:'{⍺≡(⍴⍺)↑⍵}(⍴'YYYY-MM-DD hh:mm:ss ')↓⊃log
 
  R←∆OK

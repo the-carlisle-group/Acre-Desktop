@@ -28,7 +28,7 @@
  ref←#.⍎projectName
  ref.⎕FX'r←Hello' 'r←''Rubbish'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp~0∊⍴result
+ →GoToTidyUp 0≠≢result
  #.⎕EX projectName
  ∆RunUcmd'OpenProject ',projectPath,' -track=off'
  ref←#.⍎projectName

@@ -30,7 +30,7 @@
  →GoToTidyUp~changePath{⍺≡(⍴⍺)↑⍵}changeFilename
  →GoToTidyUp'.*.change'{⍺≢(-⍴⍺)↑⍵}(⍴changePath)↓changeFilename
 
- →GoToTidyUp~0∊⍴'changefile'⎕SE.acre.run'#.DoesNotExistAtAll'
+ →GoToTidyUp 0≠≢'changefile'⎕SE.acre.run'#.DoesNotExistAtAll'
 
  R←∆OK
 

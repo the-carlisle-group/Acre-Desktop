@@ -1,4 +1,4 @@
- R←Test_Config_Open_004(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;projectName3;projectPath3;ref3;bin;configFilename;buff;list
+ R←Test_Config_Open_004(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;projectName3;projectPath3;ref3;bin;configFilename;buff;list;messages
 ⍝ Create a project and check whether `acre.config[Open]` is honored. (Two projects)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -17,7 +17,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 1≠≢∆GetLog ⍬
+ →GoToTidyUp 2≠≢messages←∆GetLog ⍬
 
  projectName2←(⊃⎕SI),'_2'
  projectPath2←F.EnforceSlash ∆PATH,'/',projectName2
@@ -30,7 +30,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 2≠≢∆GetLog ⍬
+ →GoToTidyUp 4≠≢messages←∆GetLog ⍬
 
  projectName3←(⊃⎕SI),'_3'
  projectPath3←F.EnforceSlash ∆PATH,'/',projectName3
@@ -43,7 +43,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 3≠≢∆GetLog ⍬
+ →GoToTidyUp 6≠≢messages←∆GetLog ⍬
 
  #.⎕EX¨projectName projectName2 projectName3
  #.⎕SHADOW¨'Temp' 'Temp2'
@@ -70,7 +70,7 @@
  →GoToTidyUp'Universe'≢#.Temp.Hello
  →GoToTidyUp'Galaxy'≢#.Temp2.Hello
  ⎕DL 0.2
- →GoToTidyUp 10≠⍴∆GetLog ⍬
+ →GoToTidyUp 14≠≢messages←∆GetLog ⍬
  →GoToTidyUp 3≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK

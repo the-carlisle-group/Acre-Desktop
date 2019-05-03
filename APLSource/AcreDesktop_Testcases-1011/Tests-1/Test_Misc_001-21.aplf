@@ -1,4 +1,4 @@
- R←Test_Misc_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+ R←Test_Misc_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;messages
 ⍝ Exercise the `Stats` command
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -13,8 +13,9 @@
 
  {}∆RunUcmd'CreateProject ',projectPath,' #.',projectName
  result←∆RunUcmd'Stats'
- →GoToTidyUp~0∊⍴result
- →GoToTidyUp'Syntax: ]acre.Stats space'{⍺≢(⍴⍺)↑⍵}(⍴'YYYY-MM-DD hh:mm:ss ')↓⊃∆GetLog 1
+ →GoToTidyUp 0≠≢result
+ messages←∆GetLog ⍬
+ →GoToTidyUp 1≠+/∨/¨'Syntax: ]acre.Stats space'∘⍷¨messages
  result←∆RunUcmd'Stats #.',projectName
  →GoToTidyUp 2≠⍴⍴result
  →GoToTidyUp 14≠⊃⍴result

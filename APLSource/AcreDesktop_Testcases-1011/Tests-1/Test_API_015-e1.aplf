@@ -1,0 +1,22 @@
+ R←Test_API_015(stopFlag batchFlag);⎕TRAP;F;path;result;buff;openList
+⍝ Exercise the API function `close`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ F←##.FilesAndDirs
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.Fooü←{42}
+
+ openList←⎕SE.acreAPI.projects''
+
+ path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
+ result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
+
+ →PassesIf({⍵[;1]}⎕SE.acreAPI.projects'')≡openList[;1],⊂result
+ →PassesIf(≢openList)≡⎕SE.acreAPI.close result
+ →PassesIf({⍵[;1]}⎕SE.acreAPI.projects'')≡openList[;1]
+
+ R←∆OK
+⍝Done

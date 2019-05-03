@@ -1,4 +1,4 @@
- R←Test_Config_Open_002(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects;configFilename;bin
+ R←Test_Config_Open_002(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;projectName2;projectPath2;ref2;openProjects;noOfProjects;configFilename;bin;messages
 ⍝ Create a project and check whether `acre.config[Open]` is honored. (Single project, enclosed "Open")
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -17,7 +17,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 1≠≢∆GetLog ⍬
+ →GoToTidyUp 2≠≢messages←∆GetLog ⍬
 
  projectName2←(⊃⎕SI),'_2'
  projectPath2←F.EnforceSlash ∆PATH,'/',projectName2
@@ -30,7 +30,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 2≠≢∆GetLog ⍬
+ →GoToTidyUp 4≠≢messages←∆GetLog ⍬
 
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
@@ -52,7 +52,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 7≠≢∆GetLog ⍬
+ →GoToTidyUp 10≠≢messages←∆GetLog ⍬
  →GoToTidyUp 2≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK

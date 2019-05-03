@@ -1,4 +1,4 @@
- R←Test_Config_Open_010(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;list;projectName2;projectPath2;ref2;noOfProjects;bin;configFilename
+ R←Test_Config_Open_010(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;list;projectName2;projectPath2;ref2;noOfProjects;bin;configFilename;messages
 ⍝ Create a project and check whether `Open` with `-track=off` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -50,7 +50,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 7≠⍴∆GetLog ⍬
+ →GoToTidyUp 8≠≢messages←∆GetLog ⍬
  →GoToTidyUp 1≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK

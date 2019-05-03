@@ -29,7 +29,7 @@
  →GoToTidyUp 2≠⍴deleteFilenames
  →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨deleteFilenames
 
- →GoToTidyUp~0∊⍴'Deletefile'⎕SE.acre.run'#.DoesNotExistAtAll'
+ →GoToTidyUp 0≠≢'Deletefile'⎕SE.acre.run'#.DoesNotExistAtAll'
 
  R←∆OK
 

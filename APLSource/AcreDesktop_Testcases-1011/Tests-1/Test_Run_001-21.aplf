@@ -1,4 +1,4 @@
- R←Test_Run_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref
+ R←Test_Run_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;messages
 ⍝ Exercise the `run` function on "nameclass".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -25,7 +25,7 @@
  ref.⎕FIX':Interface Boo' '∇r←Hello5' '∇' ':EndInterface'
  #.⎕SHADOW'AcreMessages'
  {}∆RunUcmd'Projects'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
- →PassesIf 1=≢∆GetLog ⍬
+ →PassesIf 2=≢messages←∆GetLog ⍬
 
  →PassesIf'.aplf'≡⊃'nameclass'⎕SE.acre.run⊃⎕XSI
  →PassesIf'.apln'≡⊃'nameclass'⎕SE.acre.run'#.',projectName,'.Foo'

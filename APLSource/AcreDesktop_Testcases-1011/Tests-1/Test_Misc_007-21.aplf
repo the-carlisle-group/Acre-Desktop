@@ -26,7 +26,7 @@
  ref.Hello.⎕FX'r←Foo' 'r←''Universe'''          ⍝ acre does not care about empty namespaces, so we need to populate it with something, anything.
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello.Foo'
  →GoToTidyUp 0∊⍴result
- →GoToTidyUp~0∊⍴#.TEMP.Log
+ →GoToTidyUp 0≠≢#.TEMP.Log
  :Trap 11 911
      result←∆RunUcmd'OpenProject ',projectPath
      →GoToTidyUp 1
