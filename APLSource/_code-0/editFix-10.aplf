@@ -28,7 +28,7 @@
      old<dat.vars<var:                              ⍝ don't save
      type←⊃nameClass fqn
 ⍝ here be Norbert's mod.
-     0 1∊⍨⊂r←dat callSCM fqn oldval newval file:r
+     0 1∊⍨⊂r←(⎕NS dat.cfg)callSCM fqn oldval newval file:r
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←logMsg MS.DS,⊃dat setChange fqn type newval
 ⍝ ⍺ probably missing

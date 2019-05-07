@@ -1,8 +1,13 @@
  itemName←{
-     f←(id←openProjects'').source
-     null⊢b←{⊃∊/Cc f p}if null f∊p←(≢¨f)↑¨⊂fp←⊃,/2⍴1 _NPARTS ⍵:''⍝⊣logMsg fp
-     id←⊃b/id
-     id.nspath,'.',⊃'/.'decodeCaps(≢⊃b/f)↓fp
+     id←openProjects''
+     f←{⍵.source}/0,⍪id
+     b←{⊃∊/Cc f p}if null f∊p←(≢¨f)↑¨⊂fp←⊃,/2⍴1 _NPARTS ⍵
+     1∊b:(⊃b/id).nspath,'.',⊃'/.'decodeCaps(≢⊃b/f)↓fp
+
+     s p←'/',¨MS.GY _⊢⊃,/2⍴0 _NPARTS ⍵
+     b←{⊃⍷/Cc s p}if null s⍷p
+     p←((1∊b)×(≢s)+b⍳1)↓p
+     {(+/∧\⍵='.')↓⍵}⊃'/.'decodeCaps p
 ⍝ itemname from source filepath
-⍝ Phil 2019-04-16 08.57
+⍝ Phil 2019-05-06 08.19
  }

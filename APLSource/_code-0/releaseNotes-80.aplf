@@ -2,16 +2,14 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.0.13+177 2019-05-01 18.23
+⍝ Acre 5.0.14+179 2019-05-07 12.05
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Fixed bug #169 in Install. Emulators/Enhancements now set in `Install`.
-⍝ As described in release `v5.0.12+174`:
-⍝ > Henceforth any significant commit will also give rise to a new release.
-⍝ >)LOADing acre.dws from that release, which can be unzipped anywhere, will install acre in any Windows Dyalog v14.0+ and non-windows v16.0+.
+⍝ Fixes Bug #173 _putSource error_ - by ensuring namespace associated folders exist.
 ⍝
-⍝ > A user wishing to build the system in advance of the next release can do so in Windows Dyalog v14.0+ by )LOADing build.dws from the acre project folder.
-⍝ > This produces the installation folder containing acre.dws in LocalAppData for the present user whence it can be moved prior to installation as above.
-
+⍝ Implements Enhancement #169 _Best way to translate file system path to workspace path without an open project_ - by decoding as much as is available.
+⍝
+⍝ Now follows description of SCMexit in the [wiki](https://github.com/the-carlisle-group/Acre-Desktop/wiki/The-Project-Configuration-File#SCMexit)
+⍝ including access to the other config parameter values both reserved and non-reserved.
  }
