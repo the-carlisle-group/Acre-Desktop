@@ -17,7 +17,7 @@
  ref.⎕FX'r←Hello' '⍝ PLEASE: make a change to this funtion!' 'r←''World'''
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- #.TEMP.⎕FX↑'UserExit arg' '⎕←''***''' '⎕←arg' '⎕←''***''' '∆FLAG←1'
+ #.TEMP.⎕FX↑'r←{a}UserExit arg' '⎕←''***''' '⎕←r←arg' '⎕←''***''' '∆FLAG←1'
  #.TEMP.∆FLAG←0
  ∆ClearLog
 

@@ -4,6 +4,8 @@
 
  R←∆Failed
 
+ openList←⎕SE.acreAPI.projects'' ⍝ in case was open from prev test
+
  F←##.FilesAndDirs
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''

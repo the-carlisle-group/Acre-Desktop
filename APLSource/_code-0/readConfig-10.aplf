@@ -1,9 +1,9 @@
- readConfig←{cnf←⍵
-     rl←Cc⊢ru←{⍵.⎕NL-2}dft←configFields''
-     0::dft⊣logMsg UT.bx MS.DB,cnf
-     cnf←{_NEXISTS ⍵:⍵          ⍝ new name 2018-11-12
-         (⊃'/'UT.pn ⍵),MS.HM    ⍝ try old name
-     }cnf
+ readConfig←{⍺←⊢ ⋄ cnf←⍵
+     rl←Cc⊢ru←{⍵.⎕NL-2}dft←configFields if(0=⊢)⍺⊣0
+     0::dft⊣logMsg MS.DB,cnf
+⍝     cnf←{_NEXISTS ⍵:⍵          ⍝ new name 2018-11-12
+⍝         (⊃'/'UT.pn ⍵),MS.HM    ⍝ try old name
+⍝     }cnf
      ~_NEXISTS cnf:dft
      d←nout _NGET cnf                             ⍝ lose blank rows
      r t←0{'⍝'=z←⊃~∘' '⊃⍵:(1+⍺)∇ 1↓⍵ ⋄ ⍺ z}d      ⍝ lose comment rows
@@ -15,6 +15,7 @@
      }r↓d
      0⊣dft('⎕io',cu[cl⍳exc])_is_ cfg.⍎⍕0,cu[cl⍳exc←cl~rl]: ⍝ custom to dft
      0⊃dft('⎕io',ru[rl⍳int])_is_ cfg.⍎⍕0,cu[cl⍳int←rl∩cl]  ⍝ supplied to dft
+⍝ [⍺] default space
 ⍝ ⍵ config filename
 ⍝ config is APLAN or JSON or deprecated APLScript
 ⍝ result is namespace including all expected fields

@@ -6,7 +6,8 @@
          ⍵}dat.folder∘,¨MS.HO MS.GY,MS.NB∘,¨''MS.EU MS.HE
      ~∨/2⍴src cnf cde←_NEXISTS¨dat.(source config changes):{
          0}logMsg MS.DG,' ',¯4 tPath dat.folder
-     z←'dat'⎕NS lcNs⊢cfg←readConfig dat.config ⍝ see configFields
+     cfg←(dft←configFields'')readConfig dat.config ⍝ #171 SV.config
+     z←'dat'⎕NS lcNs cfg.⎕NS dft.⎕NL 2 ⍝ reserved to dat
      nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath←⊃prefSpace nspath:{
          0}logMsg MS.DC
@@ -16,7 +17,7 @@
      z←⎕EX''if missing if(≢⍴){# UT.nl⍳10}if≢dat.nspath
      space←⍎dat.nspath #.⎕NS''⊣openProjects''
      dat.(hist case vars)←On¨dat.(keephistory casecode variables)
-     cfg.(KeepHistory CaseCode Variables)←dat.(hist case vars)⊃¨⊂MS.GB MS.GA
+     cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
      dat.cfg←⎕NS cfg⊣space MS.FV _is_ cfg⊣cfg.ProjectFolder←dat.folder
      z←deleteFolder⍣(cde>dat.hist)⊢dat.code  ⍝ turned off
      z←_MKDIR/3,⍪dat.(source changes)/⍨(~src),on←cde<dat.hist

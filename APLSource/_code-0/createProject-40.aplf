@@ -13,7 +13,7 @@
      z←fixQV⊢space←⍎dat.nspath ⎕NS''
      z←3 _MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
-     cfg.(KeepHistory CaseCode Variables)←dat.(hist case vars)⊃¨⊂MS.GB MS.GA
+     cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
      z←(UT.CR sep PL.format cfg)_NPUT dat.config
      z←'dat'⎕NS lcNs cfg ⍝ ← into dat ↑ write
      z←(MS.NB MS.FX)_NPUT dat.folder,MS.FM ⍝ git specific -

@@ -1,7 +1,7 @@
  callSCM←{dat←⍺
      exit←dat.SCMexit
      fqn old new path←⍵
-     (#.⍎⍣(3∊#.⎕NC exit)⊢exit)⍵
+     ⍺(#.⍎⍣(3∊#.⎕NC exit)⊢exit)⍵
 ⍝ calls external routine with ⍵ to override acme's own
 ⍝ ⍺ dat
 ⍝ ⍵ fqn old new path

@@ -47,7 +47,7 @@
          help←'Hide, show, clear or request all or n msgs from the log'
          options←''
          result←''
-         syntax←'"hide" | "show" | "file" | "clear" | "all" | number' ⍝ MS.CI
+         syntax←'hide | show | file | clear | all | find "string" | number' ⍝ MS.CI
          type←'shared'
          ][
          command←'OpenProject'

@@ -8,7 +8,8 @@
          ⍵.CD←cmdDefs name
          ⍵.SX←syntaxHelp name
          z←setEmulators''
-         SV.logfile←localFolder'/',MS.CJ
+         SV.logfile←localFolder,MS.CJ
+⍝         SV.config←localFolder MS.HO   ⍝ #171
          z←setCase''
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵

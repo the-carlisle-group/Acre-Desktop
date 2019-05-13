@@ -2,14 +2,14 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.0.14+179 2019-05-07 12.05
+⍝ Acre 5.1.0+185 2019-05-13 17.50
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Fixes Bug #173 _putSource error_ - by ensuring namespace associated folders exist.
+⍝ Related to question: #174 _acre.log tracks every acre call?_
 ⍝
-⍝ Implements Enhancement #169 _Best way to translate file system path to workspace path without an open project_ - by decoding as much as is available.
+⍝ An additional option for the `]Log` command and API function `log` allows selection of log messages.
+⍝ `]Log find "this string"` or `⎕SE.acreAPI.log 'find' 'this string'` will return all log messages containing _'this string'_.
 ⍝
-⍝ Now follows description of SCMexit in the [wiki](https://github.com/the-carlisle-group/Acre-Desktop/wiki/The-Project-Configuration-File#SCMexit)
-⍝ including access to the other config parameter values both reserved and non-reserved.
+⍝ To facilitate the selection of all changes the `]SetChanged` command now issues the same "Saved: " message as does the editor for all items thus saved.
  }
