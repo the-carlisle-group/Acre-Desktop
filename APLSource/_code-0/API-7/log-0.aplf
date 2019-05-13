@@ -1,5 +1,5 @@
  log←{⍺←⊢
-     ⍺ ##.logCtrl⍕⍵ ⍝ {⍵.Arguments}(⎕NEW ⎕SE.Parser'').Parse⍕⍵
+     ⍺ ##.logCtrl⍕if≢⍵ ⍝ {⍵.Arguments}(⎕NEW ⎕SE.Parser'').Parse⍕⍵
 ⍝
-⍝ Phil 2019-05-10 14.34
+⍝ Phil 2019-05-13 20.45
  }
