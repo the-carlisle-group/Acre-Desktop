@@ -9,7 +9,7 @@ it has tremendous value as a simple addition to the IDE, eliminating many of the
 while keeping all of the benefits.
 
 ## Installation
-Acre Desktop is distributed as a compressed folder that contains a folder named acre.  Dyalog APL 15.0 Unicode is the minimum supported version of Dyalog APL.
+Acre Desktop is distributed as a compressed folder that contains a folder named acre.  Dyalog APL 14.0 Unicode is the minimum supported version of Dyalog APL.
 To install, [download](https://github.com/the-carlisle-group/Acre-Desktop/releases/latest) the latest release, uncompress, and put the acre folder anywhere.
 Inside this folder is a workspace named acre.dws.
 Load this workspace once, and restart the APL session.
@@ -63,7 +63,7 @@ Most of the time, however, this folder is created for you by the CreateProject c
 
 The second reserved folder is **.acre**. This folder contains Acre Desktop related stuff. In general, there are no user serviceable parts in this folder, and you cannot create it yourself.
 
-The reserved file is **acreconfig.txt**. This is a text file (JSON or scripted namespace),
+The reserved file is **acre.config**. This is a text file (JSON, scripted namespace or APLAN),
 that contains configuration parameters for the project. This file is created for you when the CreateProject command is used to create the project, but it is easy to create it by hand.
 
 Thus it is simple to create a project outside of the Dyalog IDE and Acre Desktop if you so choose. 
@@ -86,7 +86,6 @@ This text file contains acre parameters specific to the project. It may be JSON 
 { 
      "ProjectSpace": "#.Library.MyProject"
      "Open":         ["MyOtherProject1","MyOtherProject2"]
-     "Load":         ["../APLTeam/Utils","../APLTeam/LogDog"]
      "StartUp":      "Initialize"    
 }
 ~~~
@@ -97,8 +96,6 @@ If not present, this defaults to a root level namespace named for last node of t
 For example, if the project folder is c:\CarlisleGroup\FlipDB, the default project space is #.FlipDB. 
 
 The Open parameter is a list of additional projects to open. 
-
-The Load parameter is a list of additional projects to load. 
 
 An item in either list is the project folder alone, or a project folder and a project space. 
 Together, the two lists are **included** projects.
