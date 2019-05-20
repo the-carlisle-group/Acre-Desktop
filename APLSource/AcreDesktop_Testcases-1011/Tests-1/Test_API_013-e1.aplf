@@ -19,4 +19,5 @@
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap
+ ∆RunUcmd'Close #.TEMP'
 ⍝Done

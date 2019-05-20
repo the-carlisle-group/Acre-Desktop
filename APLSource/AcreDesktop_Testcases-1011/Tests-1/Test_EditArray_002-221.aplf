@@ -30,5 +30,5 @@
 ∆TidyUp:
      F.RmDir acreDir
      ∆ClearLog
-
+     ∆RunUcmd'Close #.TEMP'
  :EndIf

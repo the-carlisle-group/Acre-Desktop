@@ -1,4 +1,4 @@
- R←Test_Config_UserExit_002(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;configFilename;bin;buff;list;messages
+ R←Test_Config_UserExit_002(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath
 ⍝ Create a project and check whether `acre.config[SCMexit]` is honored.
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
@@ -9,31 +9,30 @@
 
  R←∆Failed
 
- noOfProjects←⊃⍴∆RunUcmd'Projects'
- projectName←⊃⎕SI
- projectPath←F.EnforceSlash ∆PATH,'/',projectName
- #.⎕SHADOW projectName
- ref←⍎projectName #.⎕NS''
- ref.⎕FX'r←Hello' '⍝ PLEASE: make a change to this funtion!' 'r←''World'''
+ ∆ClearLog
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- #.TEMP.⎕FX↑'r←{a}UserExit arg' '⎕←''***''' '⎕←r←arg' '⎕←''***''' '∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←{a}UserExit arg' '⎕←''***''' '⎕←r←arg' '⎕←''***''' '∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ PLEASE: change me!'
  #.TEMP.∆FLAG←0
- ∆ClearLog
+ projectPath←F.GetTempPath,⊃⎕SI
+ F.RmDir projectPath
 
  :Trap (~stopFlag)/0
-     {}∆RunUcmd'Createproject "',projectPath,'" #.',projectName
+     {}'-variables=on'∆RunUcmd'Createproject "',projectPath,'" #.TEMP'
  :Else
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp 2≠≢messages←∆GetLog ⍬
 
- #.⎕EX projectName
+ ∆RunUcmd'Close #.TEMP'
+ #.⎕EX'TEMP'
+
  (bin configFilename)←∆ReadConfigFile projectPath
  buff←''
  buff,←⊂':Namespace'
  buff,←⊂'   Open←'''''
- buff,←⊂'   ProjectSpace←''#.',projectName,''''
+ buff,←⊂'   ProjectSpace←''#.TEMP'''
  buff,←⊂'   SCMexit←''#.TEMP.UserExit'''
  buff,←⊂':EndNamespace'
  A.WriteUtf8File configFilename buff
@@ -44,7 +43,7 @@
      →GoToTidyUp 1
  :EndTrap
 
- ref.⎕ED'Hello'
+ #.TEMP.⎕ED'Hello'
  →PassesIf #.TEMP.∆FLAG  ⍝ Modified by the user exit?
 
  R←∆OK
@@ -52,4 +51,5 @@
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  ∆ClearLog
+ ∆RunUcmd'Close #.TEMP'
 ⍝Done

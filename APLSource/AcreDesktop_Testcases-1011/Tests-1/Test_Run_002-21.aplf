@@ -36,4 +36,5 @@
 
 ∆TidyUp:
  F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
 ⍝Done

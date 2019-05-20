@@ -28,4 +28,5 @@
      F.RmDir acreDir
  :EndIf
  ∆ClearLog
+ ∆RunUcmd'Close #.TEMP'
 ⍝Done

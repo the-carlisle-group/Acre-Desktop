@@ -20,6 +20,7 @@
  →GoToTidyUp 1≠⍴F.ListFiles projectPath,'\.acre\changes\'
  →GoToTidyUp 1≠⍴list←F.ListFiles projectPath,'\.acre\changes\'
  F.DeleteFile list
+ ∆RunUcmd'Close #.',projectName
 
  F.RmDir projectPath
  result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
@@ -37,4 +38,5 @@
 ∆TidyUp:
  F.RmDir projectPath
  ∆ClearLog
+ ∆RunUcmd'Close #.',projectName
 ⍝Done

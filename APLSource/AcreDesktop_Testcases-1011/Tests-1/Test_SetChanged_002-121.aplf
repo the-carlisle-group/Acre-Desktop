@@ -32,4 +32,5 @@
 ∆TidyUp:
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
  F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
 ⍝Done

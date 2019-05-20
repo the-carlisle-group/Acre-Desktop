@@ -16,9 +16,12 @@
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
 
- →PassesIf({⍵[;1]}⎕SE.acreAPI.projects'')≡openList[;1],⊂result
- →PassesIf(≢openList)≡⎕SE.acreAPI.close result
- →PassesIf({⍵[;1]}⎕SE.acreAPI.projects'')≡openList[;1]
+ →GoToTidyUp({⍵[;1]}⎕SE.acreAPI.projects'')≢openList[;1],⊂result
+ →GoToTidyUp(≢openList)≢⎕SE.acreAPI.close result
+ →GoToTidyUp({⍵[;1]}⎕SE.acreAPI.projects'')≢openList[;1]
 
  R←∆OK
+
+∆TidyUp:
+ ∆RunUcmd'Close #.TEMP'
 ⍝Done
