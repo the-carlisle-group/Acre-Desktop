@@ -1,0 +1,42 @@
+ R←Test_Vars_002(stopFlag batchFlag);⎕TRAP;projectPath;messages;result;was;ts1;ts2
+⍝ Creates projects with -variables=on, asks the user for a change of the vars and checks accordingly afterwards.
+⍝ This must fail due to the fact that they have different file extensions
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ :If batchFlag
+     →0,R←∆NoBatchTest
+ :EndIf
+
+ R←∆Failed
+
+ ∆ClearLog
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.vars←'Hello world (Please change!)'
+ projectPath←F.GetTempPath,⊃⎕SI
+ F.RmDir projectPath
+
+ :Trap (~stopFlag)/0
+     {}∆RunUcmd'Createproject "',projectPath,'" #.TEMP -variables=on'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ messages←∆GetLog ⍬
+ →GoToTidyUp∨/⊃,/'Not stored by acre'∘⍷¨messages
+ →GoToTidyUp 2≠was←≢F.ListFiles projectPath,'\APLSource\'  ⍝ Saved was just `quadVars` and `vars`
+ ts1←⊃('type' 3)F.Dir projectPath,'\APLSource\*' ⍝ Timestamps
+
+ #.TEMP.⎕ED'vars'
+
+ →GoToTidyUp was≠≢F.ListFiles projectPath,'\APLSource\'
+ ts2←⊃('type' 3)F.Dir projectPath,'\APLSource\*' ⍝ Timestamps
+ →GoToTidyUp≢/≢¨ts1 ts2
+ →GoToTidyUp 1 0≢ts1≡¨ts2
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
+ ∆ClearLog
+ ∆RunUcmd'Close #.TEMP'
+⍝Done
