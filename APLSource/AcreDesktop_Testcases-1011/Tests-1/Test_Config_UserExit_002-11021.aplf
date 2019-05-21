@@ -12,7 +12,7 @@
  ∆ClearLog
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←{a}UserExit arg' '⎕←''***''' '⎕←r←arg' '⎕←''***''' '∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←{configNS}UserExit arg' 'r←⍬' 'configNS←{0<⎕nc ⍵:⍎⍵ ⋄ 0}''configNS''' '∆ConfigNS←configNS' '∆FLAG←1'
  Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ PLEASE: change me!'
  #.TEMP.∆FLAG←0
  projectPath←F.GetTempPath,⊃⎕SI
@@ -44,7 +44,8 @@
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →PassesIf #.TEMP.∆FLAG  ⍝ Modified by the user exit?
+ →PassesIf #.TEMP.∆FLAG             ⍝ Modified by the user exit?
+ →Prepare 0≢#.TEMP.∆ConfigNS        ⍝ Should be a namespace clone representing acre's config file
 
  R←∆OK
 
