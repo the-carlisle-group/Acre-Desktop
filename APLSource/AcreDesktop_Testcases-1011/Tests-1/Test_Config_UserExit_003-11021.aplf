@@ -1,0 +1,54 @@
+ R←Test_Config_UserExit_003(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath
+⍝ Create a project and check whether the result of a user's exit function (`config[SCMexit]`) is honored.
+⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ :If batchFlag
+     →0,R←∆NoBatchTest
+ :EndIf
+
+ R←∆Failed
+
+ ∆ClearLog
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.∆COUNTER←0
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←{configNS} UserExit arg' '#.TEMP.∆COUNTER+←1' 'r←#.TEMP.∆COUNTER=2'    ⍝TODO⍝ Remove the `{}` once the bug is fixed that no left argument is provided.
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ PLEASE perform the following steps:' '⍝ * Change the function and then press <escape>' '⍝ * Change the function AGAIN and then press <escape>'
+ projectPath←F.GetTempPath,⊃⎕SI
+ F.RmDir projectPath
+
+ :Trap (~stopFlag)/0
+     {}'-variables=on'∆RunUcmd'Createproject "',projectPath,'" #.TEMP'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ ∆RunUcmd'Close #.TEMP'
+ #.⎕EX'TEMP'
+
+ (bin configFilename)←∆ReadConfigFile projectPath
+ buff←''
+ buff,←⊂':Namespace'
+ buff,←⊂'   Open←'''''
+ buff,←⊂'   ProjectSpace←''#.TEMP'''
+ buff,←⊂'   SCMexit←''#.TEMP.UserExit'''
+ buff,←⊂':EndNamespace'
+ A.WriteUtf8File configFilename buff
+
+ :Trap (~stopFlag)/0
+     list←∆RunUcmd'OpenProject ',projectPath
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ #.TEMP.⎕ED'Hello'
+ →PassesIf #.TEMP.∆COUNTER=2
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
+ ∆ClearLog
+ ∆RunUcmd'Close #.TEMP'
+⍝Done
