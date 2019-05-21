@@ -2,14 +2,12 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.1.0+186 2019-05-13 20.45
+⍝ Acre 5.2.0+188 2019-05-20 23.15
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Related to question: #174 _acre.log tracks every acre call?_
+⍝ All API functions - `⎕SE.acreAPI...` are now reported in the log as
+⍝ `2019-05-20 23:06:27 [acreAPI].function argument ...`
 ⍝
-⍝ An additional option for the `]Log` command and API function `log` allows selection of log messages.
-⍝ `]Log find "this string"` or `⎕SE.acreAPI.log 'find' 'this string'` will return all log messages containing _'this string'_.
-⍝
-⍝ To facilitate the selection of all changes the `]SetChanged` command now issues the same "Saved: " message as does the editor for all items thus saved.
+⍝ More repurcussions from issue #174
  }

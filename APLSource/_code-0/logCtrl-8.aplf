@@ -1,5 +1,6 @@
  logCtrl←{⍺←⊢ ⋄ cmd str←1(1↑¨↑_↓)⊂if≡⍵
-     (,1)≡⊃v f←(1,≢MP.log)⌊0⌈⌊⎕VFI⊃cmd:f↑MP.log
+     (,1)≡⊃v f←(1,¯1+≢MP.log)⌊0⌈⌊⎕VFI⊃cmd:1↓(1+f)↑MP.log
+     ⍝ offset above as current function has already been logged.
      ix←⊃⍳/⌽cmd nms←1(↑__↓)Cc cmd,(⊢(/⍨)2|⍳∘≢)'`'sep MS.CI
 ⍝ Log file - `hide` | `show` | `file` | `clear` | `all` | `find` | number
      ns←dix nms

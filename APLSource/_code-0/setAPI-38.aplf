@@ -1,8 +1,11 @@
  setAPI←{⍺←⊢
-     API{src←⍺⍺ ⋄ tgt←⍵
-         z←tgt.⍎⍺,'←⍺⍺{0::⎕signal/⌽⎕en,⎕dm⋄⍺←⊢⋄⍺ ⍺⍺.',⍺,'⍵}'
+     ⎕SE MS.FY _is_ API{src←⍺⍺ ⋄ tgt←⍵ ⋄ fn←⍺
+⍝         log←'⋄z←⍺⍺.##.logMsg⍕⍺,''⎕SE.',MS.FY,'.',fn,' '',⍵⋄'
+         log←'⋄z←⍺⍺.##.logMsg⍕⍺,''[',MS.FY,'].',fn,' '',⍵⋄'
+         fn←'←⍺⍺{0::⎕signal/⌽⎕en,⎕dm⋄⍺←⊢⋄',log,'⍺ ⍺⍺.',fn,'⍵}'
+         z←tgt.⍎⍺,fn
          tgt
-     }/⌽(⎕SE.⎕NS''),↓API.⎕NL 3.2
+     }/⌽(⎕SE.⎕NS''),~∘' '¨↓API.⎕NL 3.2
 ⍝ specifically ⎕NL 3.2 to exclude ops and dervs
 ⍝ Phil 2019-03-15 12.44
  }

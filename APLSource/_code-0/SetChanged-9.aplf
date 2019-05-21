@@ -6,7 +6,7 @@
      src←⍎s⊃dat.nspath(⊃arg)
      nms←src UT.li⍳11
      res←dat setChange getValue nms(dat caseOK)validItems s⊃arg nms
-     0⊣logMsg MS.DK∘,¨res:
+     z←logMsg MS.DK∘,¨res
      res⊣logMsg(⊃⎕SI),MS.EE,(≢res)UT.pl MS.FL
 ⍝
 ⍝ Phil 2019-03-15 12.44
