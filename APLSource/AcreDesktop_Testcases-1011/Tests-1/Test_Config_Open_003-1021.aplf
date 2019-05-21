@@ -17,7 +17,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 2≠≢messages←∆GetLog ⍬
+ →GoToTidyUp 1≠≢messages←∆GetLog ⍬
  →GoToTidyUp result≢'#.',projectName
 
  projectName2←(⊃⎕SI),'_2'
@@ -31,7 +31,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 4≠≢messages←∆GetLog ⍬
+ →GoToTidyUp 3≠≢messages←∆GetLog ⍬
  →GoToTidyUp result≢'#.',projectName2
 
  #.⎕EX¨projectName projectName2
@@ -68,7 +68,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 6≠≢messages←∆GetLog ⍬
+ →GoToTidyUp 5≠≢messages←∆GetLog ⍬
  →GoToTidyUp 2≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK

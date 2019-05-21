@@ -23,7 +23,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 2≠≢messages←∆GetLog ⍬
+ →GoToTidyUp 1≠≢messages←∆GetLog ⍬
 
  ∆RunUcmd'Close #.TEMP'
  #.⎕EX'TEMP'

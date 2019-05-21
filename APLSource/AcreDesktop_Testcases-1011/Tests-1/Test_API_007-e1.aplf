@@ -10,7 +10,7 @@
  F←##.FilesAndDirs
 
  ∆ClearLog
- →PassesIf 0=≢buff←⎕SE.acreAPI.log'all'
+ →PassesIf 1=≢buff←⎕SE.acreAPI.log'all'
 
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
@@ -19,7 +19,7 @@
  result←∆RunUcmd'OpenProject "',path,'"'
  Assert'#.TEMP'≡result
 
- →GoToTidyUp 6≠≢buff←⎕SE.acreAPI.log'all'
+ →GoToTidyUp 8≠≢buff←⎕SE.acreAPI.log'all'
 
  #.TEMP.Foo2←{43}
  ∆RunUcmd'SetChanged #.TEMP.Foo2'

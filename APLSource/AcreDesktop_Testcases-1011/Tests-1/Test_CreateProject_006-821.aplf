@@ -9,8 +9,8 @@
 
  result←∆RunUcmd'CreateProject "C:\Users\All Users\AppData\Roaming\',(##.APLTreeUtils.Last⊃⎕XSI),'"'
  →GoToTidyUp~0∊⍴result
- →GoToTidyUp 3≠≢log←∆GetLog ⍬    ⍝ [1]=Create Project, [2]= Syntax:, [3]=Log 1000
- →GoToTidyUp'Syntax:'{⍺≢(⍴⍺)↑⍵}(⍴'YYYY-MM-DD hh:mm:ss ')↓⊃1↓log
+ →GoToTidyUp 2≠≢log←∆GetLog ⍬    ⍝ [1]=Create Project, [2]= Syntax:, ⍝ [3]=Log 1000
+ →GoToTidyUp'Syntax:'{⍺≢(⍴⍺)↑⍵}(⍴'YYYY-MM-DD hh:mm:ss ')↓⊃log
 
  R←∆OK
 

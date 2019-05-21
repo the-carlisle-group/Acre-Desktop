@@ -1,7 +1,7 @@
  setAPI←{⍺←⊢
      ⎕SE MS.FY _is_ API{src←⍺⍺ ⋄ tgt←⍵ ⋄ fn←⍺
-⍝         log←'⋄z←⍺⍺.##.logMsg⍕⍺,''⎕SE.',MS.FY,'.',fn,' '',⍵⋄'
-         log←'⋄z←⍺⍺.##.logMsg⍕⍺,''[',MS.FY,'].',fn,' '',⍵⋄'
+⍝         log←'⋄z←⍺⍺.##.logMsg↓⍕⍺,''⎕SE.',MS.FY,'.',fn,' '',,⍵⋄'
+         log←'⋄z←⍺⍺.##.logMsg↓⍕⍺,''[',MS.FY,'].',fn,' '',,⍵⋄'
          fn←'←⍺⍺{0::⎕signal/⌽⎕en,⎕dm⋄⍺←⊢⋄',log,'⍺ ⍺⍺.',fn,'⍵}'
          z←tgt.⍎⍺,fn
          tgt
