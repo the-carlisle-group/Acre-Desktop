@@ -1,0 +1,22 @@
+ R←Test_APLAN_011(stopFlag batchFlag);⎕TRAP;dmx
+⍝ Check invalid syntax
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+
+ #.TEMP.vars←'[' 'CaseCode←''Off''' 'StartUp=''''' ']'
+
+ :Trap 16
+     ∆RunUcmd'fromaplan #.TEMP.aplan'
+     →FailsIf 1
+ :Else
+     dmx←⎕DMX
+     →PassesIf'NONCE ERROR character error'{⍺≡(≢⍺)↑⍵}⊃dmx.DM
+ :EndTrap
+
+ R←∆OK
+ ∆ClearLog
+⍝Done
