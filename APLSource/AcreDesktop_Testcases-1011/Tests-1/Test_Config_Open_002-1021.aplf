@@ -17,7 +17,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 2≠≢messages←∆GetLog ⍬
+ →GoToTidyUp 1≠≢messages←∆GetLog ⍬
 
  projectName2←(⊃⎕SI),'_2'
  projectPath2←F.EnforceSlash ∆PATH,'/',projectName2
@@ -30,7 +30,7 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 4≠≢messages←∆GetLog ⍬
+ →GoToTidyUp 3≠≢messages←∆GetLog ⍬
 
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
@@ -52,7 +52,7 @@
  →GoToTidyUp 0=#.⎕NC'Temp'
  →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
  →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 10≠≢messages←∆GetLog ⍬
+ →GoToTidyUp 9≠≢messages←∆GetLog ⍬
  →GoToTidyUp 2≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←∆OK

@@ -2,12 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.2.0+188 2019-05-20 23.15
+⍝ Acre 5.2.0+189 2019-05-21 11.41
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ All API functions - `⎕SE.acreAPI...` are now reported in the log as
-⍝ `2019-05-20 23:06:27 [acreAPI].function argument ...`
+⍝ One bug fixed in change to acreAPI creating log message.
 ⍝
-⍝ More repurcussions from issue #174
+⍝ Also lots of changes to test cases due to same changes.
  }

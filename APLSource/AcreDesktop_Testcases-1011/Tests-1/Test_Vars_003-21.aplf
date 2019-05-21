@@ -22,8 +22,8 @@
      →GoToTidyUp 1
  :EndTrap
  messages←∆GetLog ⍬
- →GoToTidyUp~∨/'Not stored by acre'⍷2⊃messages
- →GoToTidyUp~∨/' #.TEMP.vars '⍷4⊃messages
+ →GoToTidyUp~∨/'Not stored by acre'⍷1⊃messages
+ →GoToTidyUp~∨/' #.TEMP.vars '⍷3⊃messages
  →GoToTidyUp 1≠was←≢F.ListFiles projectPath,'\APLSource\'  ⍝ Saved was just `quadVars`
 
  ∆RunUcmd'SetChanged #.TEMP.vars'
