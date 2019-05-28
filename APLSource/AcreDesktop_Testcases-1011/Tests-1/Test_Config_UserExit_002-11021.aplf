@@ -45,7 +45,7 @@
 
  #.TEMP.⎕ED'Hello'
  →PassesIf #.TEMP.∆FLAG             ⍝ Modified by the user exit?
- →Prepare 0≢#.TEMP.∆ConfigNS        ⍝ Should be a namespace clone representing acre's config file
+ →PassesIf 0≢#.TEMP.∆ConfigNS        ⍝ Should be a namespace clone representing acre's config file
 
  R←∆OK
 

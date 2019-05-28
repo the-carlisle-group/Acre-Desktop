@@ -2,11 +2,28 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.2.0+189 2019-05-21 11.41
+⍝ Acre 5.2.0+191 2019-05-28 06.48
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ One bug fixed in change to acreAPI creating log message.
+⍝ Fixes most of the problems arising from Bugs #177, #178 and #179 re. the naming and encoding of the _acre.config_ file.
 ⍝
-⍝ Also lots of changes to test cases due to same changes.
+⍝ As previously, the alternative name for the file is once more _acreconfig.txt_. If no file exists all values assume their defaults.
+⍝
+⍝ Also as previously, the file may be encoded in APLScript `: ...`, APLAN `[ ...`, and, from Dyalog v14.1, JSON `{ ...` with I-beam `7159⌶`.
+⍝ The availability of JSON encoding has now been extended beyond Dyalog v16.0 with `⎕JSON`. JSON remains unavailable for Dyalog v14.0 but `]openproject`
+⍝ → will now terminate with an explicit message in the case of its being attempted.
+⍝
+⍝ Errors encountered during the decoding of the config file will now also cause `]openproject` to terminate with an explicit message rather than
+⍝ → attempting to continue with unintended and possibly destructive defaults.
+⍝
+⍝ ----
+⍝ The computation of the project space for `]openproject` has been tightened. The target is decided as the first satisfied of the following
+⍝ * supplied as the optional second item of the argument
+⍝ * supplied in the config file as - ***ProjectSpace***
+⍝ * the last node name of the folder
+⍝
+⍝ If the target does not begin with '#.', the space whence the command was called (most likely to be ***#***) is prefixed unless the command is called
+⍝ → from within `⎕SE` when '#.' is prefixed. If the resultant target is not a valid fully qualified name for a space `]openproject` terminates with an
+⍝ → error.
  }

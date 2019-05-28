@@ -35,8 +35,9 @@
      →GoToTidyUp 1
  :Else
      dmx←⎕DMX
-     →PassesIf 11=dmx.EN
-     . ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝      →PassesIf'NONCE ERROR character error'{⍺≡(≢⍺)↑⍵}⊃dmx.DM
+     →PassesIf dmx.EN∊11 911
+⍝     . ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝      →PassesIf'NONCE ERROR character error'{⍺≡(≢⍺)↑⍵}⊃dmx.DM
+     →PassesIf'Problem reading'(1∊⍷)⊃dmx.DM
  :EndTrap
 
  R←∆OK

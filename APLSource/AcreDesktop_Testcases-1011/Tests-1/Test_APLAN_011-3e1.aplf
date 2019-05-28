@@ -9,12 +9,12 @@
 
  #.TEMP.vars←'[' 'CaseCode←''Off''' 'StartUp=''''' ']'
 
- :Trap 16
-     ∆RunUcmd'fromaplan #.TEMP.aplan'
+ :Trap 16 911
+     ∆RunUcmd'fromaplan #.TEMP.vars'
      →FailsIf 1
  :Else
      dmx←⎕DMX
-     →PassesIf'NONCE ERROR character error'{⍺≡(≢⍺)↑⍵}⊃dmx.DM
+     →PassesIf'NONCE ERROR character error'(1∊⍷)⊃dmx.DM
  :EndTrap
 
  R←∆OK

@@ -59,7 +59,7 @@
          ⍵.CK←'CLEAR WS'
 
          ⍵.DA←' - Local history purged'
-         ⍵.DB←'! Problem reading '
+         ⍵.DB←'Problem reading '
          ⍵.DC←'! Invalid namespace name'
          ⍵.DD←'!!! Multiple source files exist for'
          ⍵.DE←'!!! A tracked project may not be opened inside another:'
@@ -77,6 +77,8 @@
          ⍵.DQ←'Editing first valid item only: '
          ⍵.DR←'No valid items supplied'
          ⍵.DS←'⎕Saved: '
+         ⍵.DT←'JSON not available before Dyalog v14.1 '
+         ⍵.DU←'Cannot ascertain encoding of '
 
          ⍵.EE←' wrote '
          ⍵.EF←'Comparing '

@@ -1,12 +1,12 @@
- callSCM←{dat←⍺
-     exit←dat.SCMexit
+ callSCM←{cfg←⍺
+     exit←cfg.SCMexit
      fqn old new path←⍵
-     ⍺(#.⍎⍣(3∊#.⎕NC exit)⊢exit)⍵
+     cfg(#.⍎⍣(3∊#.⎕NC exit)⊢exit)fqn old new path
 ⍝ calls external routine with ⍵ to override acme's own
-⍝ ⍺ dat
+⍝ ⍺ cfg
 ⍝ ⍵ fqn old new path
 ⍝ ←    0: exit with 0 - fails to leave editor
 ⍝      1: exit with 1 - leave editor - assume handled by SCM
 ⍝   else: continue with normal processing
-⍝ Phil 2019-05-02 20.20
+⍝ Phil 2019-05-21 13.56
  }
