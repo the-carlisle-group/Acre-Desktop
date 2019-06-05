@@ -21,14 +21,14 @@ In the workspace, a project is represented by a namespace. This is called the **
 On disk, a project is represented by a folder. This is called the **project folder**.
 A project is created from an existing namespace using the CreateProject command. For example:
 
-~~~
+~~~APL
 ]acre.CreateProject c:/Projects/MyProject #.MyProject
 ~~~
 
 This writes out the all of the code in the namespace #.MyProject into the folder c:/Projects/MyProject. 
 An existing project is opened using the OpenProject command:
 
-~~~
+~~~APL
 ]acre.OpenProject   c:/Projects/MyProject
 ~~~
 
@@ -36,7 +36,7 @@ This instantiates the namespace #.MyProject back into the workspace.
 Thus, the project folder knows its associated project namespace.
 However, a project may be instantiated in any namespace by specifying an additional parameter to the OpenProject command:
 
-~~~
+~~~APL
 ]acre.OpenProject c:/Projects/MyProject #.MyCompany.MyProject
 ~~~
 
@@ -46,7 +46,7 @@ A typical work session thus involves starting up the interpreter, opening one or
 By default Opening a project brings the project code into the workspace and tells AcreDesktop to monitor the project however
 a project may also be opened with the `-track=off` option:
 
-~~~
+~~~APL
 ]acre.OpenProject   c:/Projects/MyProject -track=off
 ~~~
 
@@ -82,7 +82,7 @@ In general, case-codes can be ignored by the programmer, but for details see the
 ## The Acre Config File
 This text file contains acre parameters specific to the project. It may be JSON or a Dyalog scripted namespace. For example:
 
-~~~
+~~~JSONC
 { 
      "ProjectSpace": "#.Library.MyProject"
      "Open":         ["MyOtherProject1","MyOtherProject2"]
