@@ -82,11 +82,33 @@ In general, case-codes can be ignored by the programmer, but for details see the
 ## The Acre Config File
 This text file contains acre parameters specific to the project. It may be JSON or a Dyalog scripted namespace. For example:
 
+~~~APL
+[
+      ProjectName←'FlipDB'
+      ProjectSpace←'#.CarlisleRumba'
+      Open←'Rumba' 'Utilities'
+      StartUp←'Initialize'
+      KeepHistory←'Off'
+      CaseCode←'On'
+      SCMexit←''
+      Variables←'Off'
+      MyCustomField←'possibly required by ancillary software'
+]
+~~~
+
+or
+
 ~~~JSONC
-{ 
-     "ProjectSpace": "#.Library.MyProject"
-     "Open":         ["MyOtherProject1","MyOtherProject2"]
-     "StartUp":      "Initialize"    
+{
+      "ProjectName": "FlipDB",
+      "ProjectSpace": "#.CarlisleRumba",
+      "Open": ["Rumba", "Utilities"],
+      "StartUp": "Initialize",
+      "KeepHistory": "Off",
+      "CaseCode": "On"
+      "SCMexit": "",
+      "Variables": "Off",
+      "MyCustomField": "possibly required by ancillary software"
 }
 ~~~
 
