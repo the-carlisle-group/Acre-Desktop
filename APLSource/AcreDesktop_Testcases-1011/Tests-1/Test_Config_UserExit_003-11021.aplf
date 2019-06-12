@@ -1,22 +1,21 @@
- R←Test_Config_UserExit_003(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath
-⍝ Create a project and check whether the result of a user's exit function (`config[SCMexit]`) is honored.
+ R←Test_Config_UserExit_003(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath;expected;body
+⍝ Checks whether the user's exit function does actually commit the changes.
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-
- :If batchFlag
-     →0,R←∆NoBatchTest
- :EndIf
-
+ →(0<≢R←batchFlag/∆NoBatchTest)/0
  R←∆Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- #.TEMP.∆COUNTER←0
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←{configNS} UserExit arg' '#.TEMP.∆COUNTER+←1' 'r←#.TEMP.∆COUNTER=2'    ⍝TODO⍝ Remove the `{}` once the bug is fixed that no left argument is provided.
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ PLEASE perform the following steps:' '⍝ * Change the function and then press <escape>' '⍝ * Change the function AGAIN and then press <escape>'
+ #.TEMP.∆CONFIGNS←0
+ #.TEMP.∆RESULT←⍬
  projectPath←F.GetTempPath,⊃⎕SI
- F.RmDir projectPath
+ #.TEMP.∆PATH←projectPath
+ body←'r←x UserExit y' 'f←∆PATH∘#.acre.AcreDesktop_Testcases.Tests.∆RunGitCommand' '{}f''add --all''' '∆RESULT←f ''commit -m''''...'''''' ' 'r←⍬'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑body
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ Change this function and then press <escape>'
+ {}⎕CMD'rd /s /q ',projectPath
 
  :Trap (~stopFlag)/0
      {}'-variables=on'∆RunUcmd'Createproject "',projectPath,'" #.TEMP'
@@ -24,6 +23,7 @@
      →GoToTidyUp 1
  :EndTrap
 
+ {}projectPath ∆RunGitCommand'init'
  ∆RunUcmd'Close #.TEMP'
  #.⎕EX'TEMP'
 
@@ -35,6 +35,10 @@
  buff,←⊂'   SCMexit←''#.TEMP.UserExit'''
  buff,←⊂':EndNamespace'
  A.WriteUtf8File configFilename buff
+ {}projectPath ∆RunGitCommand'add .'
+ {}projectPath ∆RunGitCommand'commit -m "Initial commit"'
+ expected←'On branch master' 'nothing to commit, working tree clean'
+ →PassesIf expected≡projectPath ∆RunGitCommand'status'
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath
@@ -43,12 +47,13 @@
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →PassesIf #.TEMP.∆COUNTER=2
+ →GoToTidyUp ⍬≡#.TEMP.∆RESULT
+ →GoToTidyUp expected≡#.TEMP.∆RESULT  ⍝ Because there was something to commit (if the user DID change the function)
 
  R←∆OK
 
 ∆TidyUp:
- :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
+ :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap
  ∆ClearLog
  ∆RunUcmd'Close #.TEMP'
 ⍝Done

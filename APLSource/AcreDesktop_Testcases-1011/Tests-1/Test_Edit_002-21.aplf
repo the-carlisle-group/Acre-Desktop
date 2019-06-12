@@ -9,6 +9,7 @@
 
  :If 1
      R←∆Inactive        ⍝ One some machines this test always failes, on some rarely, on some it makes APL disappear
+                        ⍝ To be re-written when the Ride protocol can be used to drive test cases.
      :Return
  :EndIf
 

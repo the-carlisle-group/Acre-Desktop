@@ -1,12 +1,6 @@
- R←Test_Misc_010(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;DM;log;expected
-⍝ Change a function to an operator.
-⍝ This must fail due to the fact that they have different file extensions
+ R←Test_Misc_010(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;DM
+⍝ Change a function to an operator. Acre now takes care of this by performing a rename operation.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-
- :If 1
-     R←∆Inactive   ⍝ this is now testing for an error that doesn't occur
-     :Return
- :EndIf
 
  R←∆Failed
 
@@ -24,6 +18,7 @@
  :EndTrap
 
  →GoToTidyUp result≢'#.',projectName
+ →PassesIf 1=+/,'Hello.aplf'⍷↑'Recursive'##.FilesAndDirs.ListFiles projectPath,'\APLSource\'
  ref.⎕FX'r←(fns Hello) dummy' 'r←42'
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp(,⊂'#.',projectName,'.Hello')≢result
@@ -33,15 +28,9 @@
  #.⎕SHADOW projectName
  ∆ClearLog
 
- :Trap 911
-     result←∆RunUcmd'OpenProject ',projectPath
-     →GoToTidyUp 1
- :EndTrap
- log←(⍴'yyyy-mm-dd hh:mm:ss ')↓[2]↑∆RunUcmd'Log all'
- expected←'Cannot rename'('.aplf #.',projectName,'.Hello fixed as .aplo')'Please wait - ' '!!! Multiple' '='
- expected,←projectName∘{'#.',⍺,'.Hello=.apl',⍵}¨'fo'
- expected,←⊂'Opening from '
- →GoToTidyUp∨/expected{∨/(,⍺)≢(⍴,⍺)↑⍵}¨↓log
+ result←∆RunUcmd'OpenProject ',projectPath
+ →PassesIf 1=+/,'Hello.aplo'⍷↑'Recursive'##.FilesAndDirs.ListFiles projectPath,'\APLSource\'
+ →PassesIf 0=+/,'Hello.aplf'⍷↑'Recursive'##.FilesAndDirs.ListFiles projectPath,'\APLSource\'
 
  R←∆OK
 

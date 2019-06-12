@@ -1,0 +1,9 @@
+ ∆RunGitCommand←{
+⍝ ⍵ ←→ command
+     folder←⍺
+     c←'git -C "',folder,'" ',⍵,' 2>&1'    ⍝ 2>&1 redirects errors to screen, otherwise we don't see them
+     f←{'UTF-8'⎕UCS ⎕UCS ⍵}
+     buff←⎕CMD c
+     ∨/'''git'' is not recognized as an internal or external command'⍷∊buff:'"Git" not recognized as a command?!'⎕SIGNAL 11
+     f¨buff
+ }

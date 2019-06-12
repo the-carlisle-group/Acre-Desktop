@@ -1,7 +1,9 @@
- R←Test_Config_UserExit_002(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath
-⍝ Create a project and check whether `acre.config[SCMexit]` is honored.
+ R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath
+⍝ Create a project and check whether the user's exit function is called correctly without a left argument.
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ →0,R←∆Inactive   ⍝ At the moment a niladic or monadic user exit function would freeze the APL session.
 
  :If batchFlag
      →0,R←∆NoBatchTest
@@ -12,9 +14,9 @@
  ∆ClearLog
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←x UserExit arg' 'r←⍬' '∆FLAG←1' '∆ConfigNS←x'
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ PLEASE: change me!'
  #.TEMP.∆FLAG←0
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit' '⍝ Niladic!' '#.TEMP.∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ Change the function and then press <escape>'
  projectPath←F.GetTempPath,⊃⎕SI
  F.RmDir projectPath
 
@@ -23,7 +25,6 @@
  :Else
      →GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 1≠≢messages←∆GetLog ⍬
 
  ∆RunUcmd'Close #.TEMP'
  #.⎕EX'TEMP'
@@ -44,9 +45,7 @@
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →PassesIf #.TEMP.∆FLAG                 ⍝ Modified by the user exit?
- →PassesIf 9=⎕NC'#.TEMP.∆ConfigNS'      ⍝ Should be a namespace clone representing acre's config file
- →PassesIf 5<≢#.TEMP.∆ConfigNS.⎕NL⍳16   ⍝ At least 5 config options
+ →GoToTidyUp #.TEMP.∆FLAG≠1
 
  R←∆OK
 
