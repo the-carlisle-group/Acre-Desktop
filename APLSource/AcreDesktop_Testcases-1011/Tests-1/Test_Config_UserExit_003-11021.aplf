@@ -53,7 +53,7 @@
  R←∆OK
 
 ∆TidyUp:
- :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap
+ :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap   ⍝ At this point RmDir fails with "ACCESS DENIED" but this works...
  ∆ClearLog
  ∆RunUcmd'Close #.TEMP'
 ⍝Done
