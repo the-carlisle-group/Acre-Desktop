@@ -1,6 +1,7 @@
  changes←{⍺←⊢ ⋄ z←##.setSpace''
      ##.OPT.when←0 ⍝    ##.MS.HB
-     ##.(⊃∘whichProject Changes⊢),⊂⍕⍵
+     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
+     dat ##.Changes arg
 ⍝      ##.Changes
-⍝ Phil 2019-03-09 11.52
+⍝ Phil 2019-06-14 07:31 5.2.0+192
  }

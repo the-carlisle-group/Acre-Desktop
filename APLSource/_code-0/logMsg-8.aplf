@@ -5,7 +5,8 @@
      da←hd,ms
      dt←DT.(dt2fm ts2dt ⎕TS),' '
      z←{⎕←⍵}/0,⍪da/⍨SV.error∨←'!'∊⊃¨da  ⍝ errors to session
-     (z/da)←{⎕←1↓⍵}/0,⍪da/⍨z←'⎕'=⊃¨da   ⍝ warning to session
+⍝     (z/da)←{⎕←1↓⍵}/0,⍪da/⍨z←'⎕'=⊃¨da   ⍝ warning to session
+     z←{⎕←⍵}¨⍣(∨/z)⊢da←da↓¨⍨z←'⎕'=⊃¨da   ⍝ warning to session
      dd←MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←dt∘,¨da
      ~_NEXISTS SV.logfile:ms
      fd←⎕UCS MS.HI ⎕UCS⊃,/UT.EN,,∘UT.(CR LF)¨dd

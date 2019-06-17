@@ -87,7 +87,7 @@
          ⍵.EN←'Writing '
          ⍵.EO←'Reading '
          ⍵.EP←'Converting '
-         ⍵.EQ←'Can`t write duplicate files'
+         ⍵.EQ←'⎕Can`t write duplicate files'
          ⍵.ER←'Opening'
          ⍵.ES←'Copying '
          ⍵.ET←'Deleting '

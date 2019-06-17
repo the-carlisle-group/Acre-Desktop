@@ -1,0 +1,9 @@
+ filterLog←{⍺←⊢
+     s←⎕SE.acre._code
+     v←s._NGET⊢f←s.SV.logfile
+     v/⍨←(∨/'  Acre  '⍷⊢)¨v
+     v/⍨←s.nub 20↓¨v
+     ≢v⊣v s._NPUT f
+⍝ keep only unique build version banners
+⍝ Phil 2019-06-12 21:47 5.2.0+192
+ }

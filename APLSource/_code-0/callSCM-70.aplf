@@ -1,6 +1,7 @@
  callSCM←{cfg←⍺
      exit←cfg.SCMexit
      fqn old new path←⍵
+     0::⊢⎕←(MS.DN,exit)'',⎕DM   ⍝ continue as if fn missing
      cfg(#.⍎⍣(3∊#.⎕NC exit)⊢exit)fqn old new path
 ⍝ calls external routine with ⍵ to override acme's own
 ⍝ ⍺ cfg
