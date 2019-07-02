@@ -1,8 +1,9 @@
  refs←{⍺←⊢
      ⎕AN≢'Phil':0 0⍴''
+     ⎕←0/'!!!! add aftersave to createProject !!!!'
      z←#.ac.MS←allMessages 1⊃'.'sep⊃⎕XSI⊣#.(pl ut)←{⍵.(PL UT)}#.ac←⎕THIS
      #.⎕WSID←{'V',1⊃'.'⎕WG'APLVersion'}if(MS.CK∘≡)#.⎕WSID
      0 0⍴keys''⊣⎕SE.acreAPI.log'show'
 ⍝ see buildWs
-⍝ Phil 2019-01-10 18.26
+⍝ Phil 2019-06-27 22:28 5.2.0+200
  }

@@ -1,10 +1,10 @@
  createProject←{
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     ∨/nil⊢folder nspath←2↑⊂if≡⍵:0⊣logMsg MS.DM,SX.CreateProject
+     ∨/nil⊢folder nspath←2↑⊂if≡⍵:{0}logMsg MS.DM,SX.CreateProject
      dat.folder←fPath folder,'/'
-     _NEXISTS dat.folder:0⊣logMsg MS.DF
-     '⎕'∊dat.nspath←⊃prefSpace⊂nspath:0⊣logMsg MS.DC
-     ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:0⊣logMsg MS.DC ⍝ 1=≢ => ,'#'
+     _NEXISTS dat.folder:{0}logMsg MS.DF
+     '⎕'∊dat.nspath←⊃prefSpace⊂nspath:{0}logMsg MS.DC
+     ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:{0}logMsg MS.DC ⍝ 1=≢ => ,'#'
 
      dat.(hist case vars)←On¨OPT.(keephistory casecode variables)
      dat.(config source code changes latest)←{
@@ -22,6 +22,7 @@
      fqn(dat caseOK⍨)←fqn⊣notStored{⍵/⍨0=0 ssp ⍵}nms~fqn
      dat.cfg←⎕NS cfg⊣space MS.FV _is_ cfg⊣cfg.ProjectFolder←dat.folder
      fqn←⊃dat putSource getValue fqn
+     dat.aftersave←SV.aftersave
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0

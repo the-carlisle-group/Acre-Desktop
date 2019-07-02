@@ -79,6 +79,8 @@
          ⍵.DS←'⎕Saved: '
          ⍵.DT←'JSON not available before Dyalog v14.1 '
          ⍵.DU←'Cannot ascertain encoding of '
+         ⍵.DV←'after saving '
+         ⍵.DW←'Argument should be a name'
 
          ⍵.EE←' wrote '
          ⍵.EF←'Comparing '
@@ -164,5 +166,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2018-01-23 15.35
+⍝ Phil 2019-06-25 09:16 5.2.0+198
  }

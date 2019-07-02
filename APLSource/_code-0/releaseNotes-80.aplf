@@ -2,9 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.2.0+197 2019-06-17 10.34
+⍝ Acre 5.2.0+203 2019-07-02 10.10
 ⍝
 ⍝ ## Acre Desktop - Release Notes
+⍝
+⍝ yet another attempt at user exit
 ⍝
 ⍝ Command `]Refresh` now added also as an API function `⎕SE.acreAPI.refresh`.
 ⍝

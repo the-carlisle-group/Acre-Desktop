@@ -17,7 +17,7 @@
      dts←(⊂trk dep)openProject¨↓track,depend,⍪pref/↑2↑¨args
      dts track depend/⍨←⊂dts≠0           ⍝ only opened
      z←dataSpaces track/dts              ⍝ keep only tracked dependencies
-     ~null MS.DE logMsg dat∘openConflict⍣trk⊢'':0⊣logMsg dat.config MS.CB
+     ~null MS.DE logMsg dat∘openConflict⍣trk⊢'':{0}logMsg dat.config MS.CB
      1:1
 ⍝ dyadic calls to openProject tell it NOT to run Startup
 ⍝ Open dependent projects

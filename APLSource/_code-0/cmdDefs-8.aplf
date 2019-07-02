@@ -1,6 +1,13 @@
  cmdDefs←{name←⍵
      f←{
          ([
+         command←'AfterSave'
+         help←'Specify or query callback to run after saving to file'
+         options←''
+         result←''
+         syntax←'#.function.name | '''''
+         type←'shared'
+         ][
          command←'Changes'
          help←'List changed items in project or changes to one'
          options←'when'
@@ -127,5 +134,5 @@
      r.syntax←,/(⊂']',name,'.'),r.command,' ',r.syntax,' ',⍪r.options
      UT.is r
 ⍝ see optionFields for valid options
-⍝ Phil 2018-10-29 14.07
+⍝ Phil 2019-06-27 22:28 5.2.0+200
  }

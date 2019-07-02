@@ -1,5 +1,5 @@
  PurgeHistory←{dat←⍺
-     ~dat.hist:0⊣dat noHistMsg''
+     ~dat.hist:{0}dat noHistMsg''
 
      dat.nspath≡⊃⍵:{      ⍝ all for project
          files←⊃(⊣(/⍨)2=⊢)/0 1 _NINFO dat.changes,'*'

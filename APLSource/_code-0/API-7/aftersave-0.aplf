@@ -1,0 +1,5 @@
+ aftersave←{⍺←⊢ ⋄ z←##.setSpace''
+     ##.AfterSave⊂if≡⍵
+⍝
+⍝ Phil 2019-06-28 053 5.2.0+201
+ }

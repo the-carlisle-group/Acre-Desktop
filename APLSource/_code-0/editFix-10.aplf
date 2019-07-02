@@ -27,10 +27,9 @@
      old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1     ⍝ .array .charlist &c.
      old<dat.vars<var:                              ⍝ don't save
      type←⊃nameClass fqn
-⍝ here be Norbert's mod.
-     0 1∊⍨⊂r←(⎕NS dat.cfg)callSCM fqn oldval newval file:r
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←logMsg MS.DS,⊃dat setChange fqn type newval
+     {}logMsg(⎕NS dat.cfg)afterSave fqn file
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or 'Close' or callback argument
 ⍝ ← 0 for 'Start' and 'Close' - else none

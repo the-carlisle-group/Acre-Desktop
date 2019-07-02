@@ -3,7 +3,7 @@
      wait←⊃⍵⍵,1
      rslt←this←⎕NS''
      tid←⍺⍺{6::
-         rslt∘←⍺⍺ ⍵
+         rslt⊢←⍺⍺ ⍵
      }&⍵
      {(tid∊⎕TNUMS)≤wait≤sofar:0
          ∇ sofar+←⎕DL inc

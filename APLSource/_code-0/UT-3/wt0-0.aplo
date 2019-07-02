@@ -4,7 +4,7 @@
      ns.wait←⊃⍵⍵,1
      ns.(rslt this)←⎕NS''
      ns.tid←⍺⍺{6::
-         ⍵⍵.rslt∘←⍺⍺ ⍵
+         ⍵⍵.rslt⊢←⍺⍺ ⍵
      }ns&⍵
      ns∘{(⍺.tid∊⎕TNUMS)≤⍺.wait≤⍺.sofar:0
          ∇ ⍺.sofar+←⎕DL ⍺.inc

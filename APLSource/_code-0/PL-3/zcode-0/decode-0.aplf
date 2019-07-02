@@ -1,6 +1,6 @@
  decode←{
-     mon←0⊣arg←1/⍵
-     ⍺←dix 0⊣arg←flatten arg⊣mon←1          ⍝ once
+     mon←{0}arg←1/⍵
+     ⍺←{dix 0}arg←flatten arg⊣mon←1          ⍝ once
      arg≢r←⍺ pull arg:r                     ⍝ done?
      put←⍺ arg push⊢                        ⍝ fn to store val
      next←⍺ ∇⊢

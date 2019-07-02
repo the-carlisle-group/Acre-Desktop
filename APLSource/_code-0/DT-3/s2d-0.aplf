@@ -1,18 +1,18 @@
  s2d←{⎕IO←⎕ML←0                   ⍝ origin 1 on 0001-01-01
      d←,⍵-1                       ⍝ proleptic gregorian days
      q c o y←0                    ⍝ local
-     q d∘←↓0 146097⊤d             ⍝ quadricentennium - 400 100 4 1+.×365 1 ¯1 1
-     c d∘←↓0 36524⊤d              ⍝ century          -    100 25 1+.×365 1 ¯1
+     q d⊢←↓0 146097⊤d             ⍝ quadricentennium - 400 100 4 1+.×365 1 ¯1 1
+     c d⊢←↓0 36524⊤d              ⍝ century          -    100 25 1+.×365 1 ¯1
      s←c=4                        ⍝ end of quadricentennium
-     o d∘←↓0 1461⊤d               ⍝ quadrennium      -         4 1+.×365 1
-     y d∘←↓0 365⊤d                ⍝ year & day
+     o d⊢←↓0 1461⊤d               ⍝ quadrennium      -         4 1+.×365 1
+     y d⊢←↓0 365⊤d                ⍝ year & day
      s∨←y=4                       ⍝ end of quadrennium
      y d+←1+¯1 365×⊂s             ⍝ end of century/quadricentennium
-     y∘←↑q c o y+.×400 100 4 1    ⍝ total years
+     y⊢←↑q c o y+.×400 100 4 1    ⍝ total years
      l←=⌿0=4 100 400∘.|y          ⍝ leap year
      m←(1 31 29,10⍴5⍴31 30)/⍳13   ⍝ a year of months
      d+←l<d>59                    ⍝ skip 29 Feb for non leap-year
-     m∘←m[d]                      ⍝ month
+     m⊢←m[d]                      ⍝ month
      n←+\0 0 31 29,10⍴5⍴31 30     ⍝ days to previous month end
      d-←n[m]                      ⍝ remainder
      ((⍴⍵),3)⍴⍉↑(⊂0≠⍵)×y m d               ⍝ yyyy mm dd - 2d

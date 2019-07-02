@@ -4,12 +4,11 @@
          ⍵.KeepHistory←'Off'  ⍝ store .change- and .delete-files
          ⍵.ProjectSpace←''    ⍝ #[.path]
          ⍵.Open←''            ⍝ Open with this project
-         ⍵.SCMexit←''         ⍝ #.full.path.function - see callSCM
          ⍵.StartUp←''         ⍝ executed after OpenProject
          ⍵.Variables←'Off'    ⍝ on: all vars | off: already or on request
          ⍵
      }#.⎕NS''
 ⍝ ⍵ ?
 ⍝ ← config space
-⍝ Phil 2018-06-06 21.11
+⍝ Phil 2019-06-28 11:34 5.2.0+201
  }
