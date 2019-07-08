@@ -1,0 +1,8 @@
+ comp←{⍺←⊢
+     cmd←819⌶(cmdDefs'').command
+     fns←~∘' '¨↓API.⎕NL 3
+     all←{⍵[⍋⍵]}cmd∪fns
+     ,∘⍪/(all∘∊¨cmd fns)\¨cmd fns
+⍝
+⍝ Phil 2019-07-04 14:41 5.2.0+204
+ }

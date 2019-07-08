@@ -1,0 +1,7 @@
+ erase←{⍺←⊢ ⋄ z←##.setSpace''
+     ##.OPT.confirm←⍺⊣''
+     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
+     dat ##.Erase arg
+⍝      ##.Erase
+⍝ Phil 2019-07-04 14:41 5.2.0+204
+ }

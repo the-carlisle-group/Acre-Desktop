@@ -1,0 +1,6 @@
+ setchanged←{⍺←⊢ ⋄ z←##.setSpace''
+     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
+     dat ##.SetChanged arg
+⍝      ##.SetChanged
+⍝ Phil 2019-07-04 18.08 5.2.0+204
+ }

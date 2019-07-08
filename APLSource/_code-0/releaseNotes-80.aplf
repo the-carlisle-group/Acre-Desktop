@@ -2,7 +2,7 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.2.0+203 2019-07-02 10.10
+⍝ Acre 5.2.0+206 2019-07-08 09.00
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝

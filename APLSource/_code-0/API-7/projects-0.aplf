@@ -1,5 +1,5 @@
  projects←{⍺←⊢
-     ##.OPT.when←1 ⍝    ##.MS.HB
+     ##.OPT.when←⍺⊣0 ⍝ default 0
      ⍺ ##.Projects''
 ⍝
 ⍝ Phil 2018-11-16 10.37

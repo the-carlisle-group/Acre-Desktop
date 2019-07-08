@@ -1,0 +1,6 @@
+ purgehistory←{⍺←⊢ ⋄ z←##.setSpace''
+     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
+     dat ##.PurgeHistory arg
+⍝      ##.PurgeHistory
+⍝ Phil 2019-07-03 13:33 5.2.0+204
+ }
