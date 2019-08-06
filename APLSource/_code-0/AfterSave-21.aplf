@@ -1,14 +1,11 @@
  AfterSave←{
      was←SV.aftersave
-     null ⍵:was
-     err←MS.DW ⎕SIGNAL⊢
-     (,1)≢⍴⍵:err 5  ⍝ length 1
-     ''≢0/⊃⍵:err 11 ⍝ string
-     0>⎕NC⊃⍵:err 11 ⍝ name
-     was⊣SV.aftersave←prefSpace ⍵
+     null⊢arg←⊃⊂if≡⍵:was
+     ''≢0/arg:MS.DW ⎕SIGNAL 11   ⍝ string
+     was⊣SV.aftersave←⊃prefSpace arg/⍨0≤⎕NC arg
 
 ⍝ query or set aftersave function
 ⍝ ⍵ null    or fqn
 ⍝ ← current or previous
-⍝ Phil 2019-06-28 11:19 5.2.0+201
+⍝ Phil 2019-07-21 07.54 5.2.0+207
  }

@@ -1,4 +1,4 @@
- deletefile←{⍺←⊢ ⋄ z←##.setSpace''
+ deletefile←{⍺←⊢
      ##.(,∘MS.EX if nonul(-≢MS.HN)↓⊃if≢getChangeFilenames itemMethod 1⍴⊂if≡⍵)
 ⍝ ##.codeHook
 ⍝ Phil 2019-03-09 11.52

@@ -1,12 +1,12 @@
  setAPI←{⍺←⊢ ⋄ name←MS.FY ⋄ df←'[',name,']'
-     one←{src←⍺⍺ ⋄ log←⍵⍵ ⋄ tgt←⍵ ⋄ fn←⍺
+     one←{src←⍺⍺ ⋄ pre←⍵⍵ ⋄ tgt←⍵ ⋄ fn←⍺
          msg←'⋄z←⍵⍵↓⍕⍺,''',df,'.',fn,' '',,⍵⋄'
          fn←'←⍺⍺{0::⎕signal/⌽⎕en,⎕dm⋄⍺←⊢',msg,'⍺ ⍺⍺.',fn,'⍵}⍵⍵'
          z←tgt.⍎⍺,fn
          tgt
      }
-     z←⎕SE name _is_(API one logMsg)/⌽(⎕SE.⎕NS''),~∘' '¨↓API.⎕NL 3.2
-     {⍵.⎕DF df}⎕SE.⍎name
+     s←1⊃⎕SE name _is_(API one runAPI)/⌽(⎕SE.⎕NS''),~∘' '¨↓API.⎕NL 3.2
+     s.⎕DF df
 ⍝ specifically ⎕NL 3.2 to exclude ops and dervs
-⍝ Phil 2019-05-29 06.21
+⍝ Phil 2019-08-06 21.09 5.2.0+226
  }

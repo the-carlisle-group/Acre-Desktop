@@ -51,7 +51,7 @@
          type←'shared'
          ][
          command←'Log'
-         help←'Hide, show, clear or request all or n msgs from the log'
+         help←'Hide, show, clear or query the log'
          options←''
          result←''
          syntax←'hide | show | file | clear | all | find "string" | number' ⍝ MS.CI
@@ -131,8 +131,8 @@
      r←PL.decode 1↓¯1↓⎕NR'f'
      r.group←⊂name
      r.options←optionFields r.options
-     r.syntax←,/(⊂']',name,'.'),r.command,' ',r.syntax,' ',⍪r.options
+     r.syntax←,/(⊂']',name,'.'),r.command,' ',r.syntax,' ',⍪r.options(⍳↓⊣)¨' '
      UT.is r
 ⍝ see optionFields for valid options
-⍝ Phil 2019-06-27 22:28 5.2.0+200
+⍝ Phil 2019-07-24 21.47 5.2.0+218
  }

@@ -1,6 +1,5 @@
- refresh←{⍺←⊢ ⋄ z←##.setSpace''
-     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
+ refresh←{⍺←⊢
+     0=dat←##.whichProject⊢arg←##.prefSpace⍕⍵:##.MS.BW ⎕SIGNAL 11
      dat ##.Refresh arg
-⍝      ##.Refresh
-⍝ Phil 2019-06-14 07:31 5.2.0+192
+⍝ Phil 2019-08-06 21.51 5.2.0+226
  }

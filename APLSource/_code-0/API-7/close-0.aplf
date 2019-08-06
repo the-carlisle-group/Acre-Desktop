@@ -1,7 +1,5 @@
  close←{⍺←⊢
-     nm←{9=⎕NC'⍵':##.UT.df ⍵ ⋄ ,⍕⍵}⍵
-     0=dat←##.whichProject nm:''
+     0=dat←##.whichProject⊢arg←##.prefSpace⍕⍵:##.MS.BW ⎕SIGNAL 11
      dat ##.Close''
-⍝
-⍝ Phil 2019-04-29 18.19
+⍝ Phil 2019-08-06 21.51 5.2.0+226
  }

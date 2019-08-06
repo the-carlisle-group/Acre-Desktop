@@ -1,5 +1,7 @@
  setSpace←{⍺←⊢
      ⊢SV.space←'.',⍨(((⊂MS.NA)(∨/⍷)¨⎕XSI)⍳0)⊃⎕NSI
-⍝ for API functions
-⍝ Phil 2019-03-08 23.05
+⍝ calling space for API functions
+⍝ ⍵ ??
+⍝ ← ??
+⍝ Phil 2019-07-22 10.31 5.2.0+208
  }

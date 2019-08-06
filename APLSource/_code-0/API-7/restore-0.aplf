@@ -1,6 +1,5 @@
- restore←{⍺←⊢ ⋄ z←##.setSpace''
-     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
+ restore←{⍺←⊢
+     0=dat←##.whichProject⊢arg←##.prefSpace⍕⍵:##.MS.DH ⎕SIGNAL 11
      dat ##.Restore arg
-⍝      ##.Restore
-⍝ Phil 2019-07-04 18.08 5.2.0+204
+⍝ Phil 2019-08-06 21.51 5.2.0+226
  }

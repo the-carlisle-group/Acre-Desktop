@@ -57,6 +57,7 @@
          ⍵.CI←'Log file - `hide` | `show` | `file` | `clear` | `all` | `find` "string" | no. of rows'
          ⍵.CJ←MS.NA,'.log'
          ⍵.CK←'CLEAR WS'
+         ⍵.CL←MS.NA,' saved in ⎕SE. Please run an ',MS.NA,' command to refresh.'
 
          ⍵.DA←' - Local history purged'
          ⍵.DB←'Problem reading '
@@ -166,5 +167,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2019-06-25 09:16 5.2.0+198
+⍝ Phil 2019-07-22 10.31 5.2.0+208
  }

@@ -1,0 +1,30 @@
+ R←Test_API_017(stopFlag batchFlag);⎕TRAP;fn;new;ns;nm
+⍝ Exercise the API function `editarray`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ fn←⎕SE.acreAPI.editarray
+ new←,∘'N'⍣{0=⎕NC ⍺}'#.'                 ⍝ non-existent #.N+
+ ns←⍎new ⎕NS''                           ⍝ create global space
+ ns.str←'please change this string'
+ ns.lst←'please' 'change' 'this' 'list'
+ ns.mat←⍕⍪'please change' 'this matrix'
+ ns.arr←2 2⍴'please' 'change' 'this' 'array'
+
+ ok←{
+     name≢fn⊢name⊣str←⍎name←new,'.str':0 ⍝ name not returned
+     str≡⍎name:0                         ⍝ array not changed
+     name≢fn⊢name⊣lst←⍎name←new,'.lst':0 ⍝ name not returned
+     lst≡⍎name:0                         ⍝ array not changed
+     name≢fn⊢name⊣mat←⍎name←new,'.mat':0 ⍝ name not returned
+     mat≡⍎name:0                         ⍝ array not changed
+     name≢fn⊢name⊣arr←⍎name←new,'.arr':0 ⍝ name not returned
+     arr≡⍎name:0                         ⍝ array not changed
+     1:1
+ }''
+ ⎕EX new
+ →PassesIf ok
+
+ R←∆OK
+⍝Done

@@ -1,6 +1,5 @@
- purgehistory←{⍺←⊢ ⋄ z←##.setSpace''
-     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
+ purgehistory←{⍺←⊢
+     0=dat←##.whichProject⊢arg←##.prefSpace⍕⍵:##.MS.DH ⎕SIGNAL 11
      dat ##.PurgeHistory arg
-⍝      ##.PurgeHistory
-⍝ Phil 2019-07-03 13:33 5.2.0+204
+⍝ Phil 2019-08-06 21.51 5.2.0+226
  }

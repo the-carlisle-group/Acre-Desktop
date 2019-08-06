@@ -1,5 +1,5 @@
- aftersave←{⍺←⊢ ⋄ z←##.setSpace''
-     ##.AfterSave⊂if≡⍵
+ aftersave←{⍺←⊢
+     ##.AfterSave ⍵
 ⍝
-⍝ Phil 2019-06-28 053 5.2.0+201
+⍝ Phil 2019-07-18 10.34 5.2.0+207
  }
