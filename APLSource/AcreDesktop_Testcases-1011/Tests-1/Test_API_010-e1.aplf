@@ -12,7 +12,7 @@
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
 
- buff←⎕SE.acreAPI.deletefile'#.TEMP.Foo'
+ buff←⊃⎕SE.acre.Deletefile'#.TEMP.Foo'
  →GoToTidyUp'/Foo.aplf.delete'{⍺≢(-⍴,⍺)↑⍵}buff
 
  R←∆OK

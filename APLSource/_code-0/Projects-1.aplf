@@ -1,8 +1,7 @@
  Projects←{
-     0::0 2⍴''⊣logMsg MS.GX
-     p←openProjects''
+     0∊⍴p←openProjects'':0 2⍴''⊣logMsg MS.GX
      r←↑p.(nspath folder)
      1≢OPT.when:r
      r,↓DT.dt2fm p getTime¨0
-⍝ Phil 2018-08-31 22.16
+⍝ Phil 2019-08-10 16.09 5.2.0+227
  }

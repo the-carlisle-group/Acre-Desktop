@@ -1,6 +1,6 @@
  ToAPLAN←{
      null ⍵:2⍴''''
-     PL.format #.⍎if(~null)⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
+     PL.format #.⍎if nonul⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
 ⍝ format value as APLAN expression
 ⍝ see FromAPLAN
 ⍝ expression requires "double quotes" if it contains [brackets].

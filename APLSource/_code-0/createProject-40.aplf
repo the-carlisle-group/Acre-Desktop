@@ -1,6 +1,6 @@
  createProject←{
      dat.loadtime←DT.ts2dt ⎕TS⊣dat←⎕NS''
-     ∨/nil⊢folder nspath←2↑⊂if≡⍵:{0}logMsg MS.DM,SX.CreateProject
+     ∨/nil⊢folder nspath←2↑⊂if≡⍵:{0}logMsg MS.DY
      dat.folder←fPath folder,'/'
      _NEXISTS dat.folder:{0}logMsg MS.DF
      '⎕'∊dat.nspath←⊃prefSpace⊂nspath:{0}logMsg MS.DC
@@ -14,7 +14,7 @@
      z←3 _MKDIR¨dat.(source changes)
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
-     z←(UT.CR sep PL.format cfg)_NPUT dat.config
+     z←(_JSON cfg)_NPUT dat.config
      z←'dat'⎕NS lcNs cfg ⍝ ← into dat ↑ write
      z←(MS.NB MS.FX)_NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11
@@ -27,5 +27,5 @@
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0
 ⍝ see openProject CreateProject
-⍝ Phil 2018-12-30 23.50
+⍝ Phil 2019-08-15 23.02 5.2.0+239
  }

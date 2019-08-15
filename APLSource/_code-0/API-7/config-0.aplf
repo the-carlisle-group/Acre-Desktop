@@ -1,5 +1,0 @@
- config←{⍺←⊢
-     0=dat←##.whichProject⊢arg←##.prefSpace⍕⍵:##.MS.BW ⎕SIGNAL 11
-     #.⎕NS dat.cfg   ⍝ clone into #
-⍝ Phil 2019-08-06 21.51 5.2.0+226
- }

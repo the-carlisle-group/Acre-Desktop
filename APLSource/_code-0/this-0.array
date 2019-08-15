@@ -5,12 +5,12 @@
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_016')
    (
-      ''
+      'CaseCode'
       'casecode'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_014')
    (
-      ''
+      'Changefile'
       'changefile'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_013')
@@ -25,17 +25,21 @@
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_015')
    (
-      ''
+      'Config'
       'config'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_011')
    ('CreateProject')('createproject')('createproject')('')
    (
-      ''
+      'Deletefile'
       'deletefile'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_010')
-   ('EditArray')('editarray')('')('#.acre.AcreDesktop_Testcases.Tests.Test_API_017')
+   (
+      'EditArray'
+      'editarray'
+      ''
+      '#.acre.AcreDesktop_Testcases.Tests.Test_API_017')
    ('Erase')('erase')('erase')('')
    (
       'FromAPLAN'
@@ -43,7 +47,7 @@
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_009')
    (
-      ''
+      'Itemname'
       'itemname'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_008')
@@ -53,7 +57,7 @@
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_007')
    (
-      ''
+      'Nameclass'
       'nameclass'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_006')
@@ -69,7 +73,7 @@
    ('Restore')('restore')('restore')('')
    ('SetChanged')('setchanged')('setchanged')('')
    (
-      ''
+      'Sourcefile'
       'sourcefile'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_004')
@@ -85,7 +89,7 @@
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_002')
    ('Undo')('undo')('undo')('')
    (
-      ''
+      'Version'
       'version'
       ''
       '#.acre.AcreDesktop_Testcases.Tests.Test_API_001')

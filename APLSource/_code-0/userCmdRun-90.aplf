@@ -1,22 +1,17 @@
  userCmdRun←{
      (new method arg type space path wsid name)←⍵
      ⎕THIS.OPT←⎕NS arg.(⎕NS'qwertyuiopasdfghjklzxcvbnm'⎕NL 2.1)
-     z←Start⍣new⊢path wsid name              ⍝ once
-     SV.debug←1∊⎕SE.SALTUtils.DEBUG          ⍝ OK?
-     SV.space←space,'.'                      ⍝ whence called
+     z←Start⍣new⊢path wsid name            ⍝ once
+     SV.debug←1∊⎕SE.SALTUtils.DEBUG        ⍝ OK?
+     SV.space←space,'.'                    ⍝ whence called
      SV.error←0
-     SV.arguments←,⊂arg.Arguments            ⍝ ditto
-     z←openProjects''                        ⍝ still open?
-     (item proj share)←'i' 'p' 's'=⊃type     ⍝ see cmdDefs
-     z←logMsg']',method,⍕⊃SV.arguments
+     SV.arguments←,⊂arg.Arguments          ⍝ ditto
+     z←openProjects''                      ⍝ still open?
+     z←logMsg']',name,'.',method,⍕⊃SV.arguments
 ⍝         ↓↓↓↓↓
-     res←method{
-         item:⍺(⍎⍺)itemMethod ⍵              ⍝ items of arg are names
-         proj:⍺(⍎⍺)projMethod ⍵              ⍝ first item is project
-         share:⍺(⍎⍺)sharedMethod ⍵           ⍝ arg is specific to method
-     }⍕¨arg.Arguments
+     res←(⍎method)runType type⍕¨arg.Arguments
      z←⎕SIGNAL/' ',SV.error/11
      res
 ⍝ ⍵ new; method; arg ns; type of fn; whence called; whence loaded; system.
-⍝ Phil 2019-03-15 12.44
+⍝ Phil 2019-08-11 22.00 5.2.0+227
  }

@@ -5,7 +5,6 @@
          path ws name←SV.(inipath workspace systemname)←path
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
-         ⍵.SX←syntaxHelp name
          z←setEmulators''
          SV.logfile←localFolder,MS.CJ
 ⍝         SV.config←localFolder MS.HO   ⍝ #171
@@ -16,9 +15,8 @@
      SV.sessionstart←sessionStart''
      z←editFix'Start' ⍝ ← sets other stuff in SV ⍝ ↓ en cas )LOAD )CLEAR
      z←⎕SE ⎕WS'Event'_(⎕SE ⎕WG'Event'),⊂'WorkspaceLoaded'_(⍕ici),'.openProjects'
-     z←logMsg⍕getVersion''
+     z←logMsg⍕Version''
      z←setAPI''
-     ##.run←⎕THIS.codeHook
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
 ⍝ ⍵ ?

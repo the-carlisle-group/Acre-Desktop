@@ -15,6 +15,7 @@
          16 'a_' '{⍺←⊢ ⋄ ⍺(⍺⍺@⍵⍵)⍵ ⊣ ''DO NOT EDIT''}'
          16 'c_' '⊆'
          16 'i_' '⍸'
+         17 '_JSON' '⎕JSON⍠(''Compact'' 0)↑'
          ]
      }
      d←PL.decode 1↓¯1↓⎕NR'f'

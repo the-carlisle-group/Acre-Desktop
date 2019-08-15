@@ -4,7 +4,7 @@
 
  R←∆Failed
 
- buff←⎕SE.acreAPI.toaplan 2 2⍴(1 2 3(3 4))'APL'
+ buff←⎕SE.acre.ToAPLAN'2 2⍴(1 2 3(3 4))''APL'''
  →PassesIf'['=⊃buff
  →PassesIf']'=⊃⌽buff
 

@@ -1,138 +1,219 @@
  cmdDefs←{name←⍵
-     f←{
-         ([
-         command←'AfterSave'
-         help←'Specify or query callback to run after saving to file'
-         options←''
-         result←''
-         syntax←'#.function.name | '''''
-         type←'shared'
-         ][
-         command←'Changes'
-         help←'List changed items in project or changes to one'
-         options←'when'
-         result←''
-         syntax←'space | item'
-         type←'item'
-         ][
-         command←'Close'
-         help←'Close (stop tracking) a tracked project'
-         options←''
-         result←''
-         syntax←'space'
-         type←'project'
-         ][
-         command←'CreateProject'
-         help←'Create a new project'
-         options←'case keep vari'
-         result←''
-         syntax←'folder space'
-         type←'shared'
-         ][
-         command←'EditArray'
-         help←'Edit any named array. In APLAN if not regular text.'
-         options←''
-         result←''
-         syntax←'item'
-         type←'shared'
-         ][
-         command←'Erase'
-         help←'Erase an item, items or a space from a tracked project'
-         options←'conf'
-         result←''
-         syntax←'item(s) | space'
-         type←'item'
-         ][
-         command←'FromAPLAN'
-         help←'Evaluate an APLAN expression'
-         options←''
-         result←''
-         syntax←'name | "expression"'
-         type←'shared'
-         ][
-         command←'Log'
-         help←'Hide, show, clear or query the log'
-         options←''
-         result←''
-         syntax←'hide | show | file | clear | all | find "string" | number' ⍝ MS.CI
-         type←'shared'
-         ][
-         command←'OpenProject'
-         help←'Load project code into ws for development'
-         options←'track dep'
-         result←''
-         syntax←'folder [space]'
-         type←'shared'
-         ][
-         command←'Projects'
-         help←'List spaces & folders of all tracked projects.'
-         options←'when'
-         result←''
-         syntax←''
-         type←'shared'
-         ][
-         command←'PurgeHistory'
-         help←'Fix changes to a tracked project'
-         options←''
-         result←''
-         syntax←'space | item'
-         type←'item'
-         ][
-         command←'Redo'
-         help←'Re-apply last undone change.'
-         options←''
-         result←''
-         syntax←'item(s)'
-         type←'item'
-         ][
-         command←'Refresh'
-         help←'Update tracked project with source changes since previous'
-         options←''
-         result←''
-         syntax←'space'
-         type←'project'
-         ][
-         command←'Restore'
-         help←'Bring back items ]erased'
-         options←''
-         result←''
-         syntax←'item'
-         type←'item'
-         ][
-         command←'SetChanged'
-         help←'Write items as if changed in the editor'
-         options←''
-         result←''
-         syntax←'item(s) | space'
-         type←'item'
-         ][
-         command←'Stats'
-         help←'Project Statistics'
-         options←''
-         result←''
-         syntax←'space'
-         type←'project'
-         ][
-         command←'ToAPLAN'
-         help←'Format a value as APLAN'
-         options←''
-         result←''
-         syntax←'name | "expression"'
-         type←'shared'
-         ][
-         command←'Undo'
-         help←'Revert to previous version'
-         options←''
-         result←''
-         syntax←'item(s)'
-         type←'item'
-         ])
-     }
-     r←PL.decode 1↓¯1↓⎕NR'f'
+     r←{name←⍵    ⍝ a list of nss
+         ({
+             ⍵.command←'AfterSave'
+             ⍵.help←'Specify or query callback to run after saving to file'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'#.function.name | '''''
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'CaseCode'
+             ⍵.help←'Toggle names between case-coded and not'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s)'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Changefile'
+             ⍵.help←'Putative changefile name(s) of item(s) in tracked project'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s)'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Changes'
+             ⍵.help←'List changed items in project or changes to one'
+             ⍵.options←'when'
+             ⍵.result←''
+             ⍵.syntax←'space | item'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Close'
+             ⍵.help←'Close (stop tracking) a tracked project'
+             ⍵.options←'all'
+             ⍵.result←''
+             ⍵.syntax←'space'
+             ⍵.type←'project'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Config'
+             ⍵.help←'Clone of project configuration namespace'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'space'
+             ⍵.type←'project'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'CreateProject'
+             ⍵.help←'Create a new project'
+             ⍵.options←'casecode keephistory variables'
+             ⍵.result←''
+             ⍵.syntax←'folder space'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Deletefile'
+             ⍵.help←'Putative deletefile name(s) of item(s) in tracked project'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s)'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'EditArray'
+             ⍵.help←'Edit any named array. In APLAN if not regular text.'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Erase'
+             ⍵.help←'Erase an item, items or a space from a tracked project'
+             ⍵.options←'confirm'
+             ⍵.result←''
+             ⍵.syntax←'item(s) | space'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'FromAPLAN'
+             ⍵.help←'Evaluate an APLAN expression'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'name | "expression"'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Itemname'
+             ⍵.help←'Full or relative ns path of item in putative sourcefile'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'sourcefile(s)'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Log'
+             ⍵.help←'Hide, show, clear or query the log'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'hide | show | file | clear | all | find "string" | number' ⍝ MS.CI
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Nameclass'
+             ⍵.help←'Nameclass of item(s)'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s)'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'OpenProject'
+             ⍵.help←'Load project code into ws for development'
+             ⍵.options←'track dependencies'
+             ⍵.result←''
+             ⍵.syntax←'folder [space]'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Projects'
+             ⍵.help←'List spaces & folders of all tracked projects.'
+             ⍵.options←'when'
+             ⍵.result←''
+             ⍵.syntax←''
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'PurgeHistory'
+             ⍵.help←'Fix changes to a tracked project'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'space | item'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Redo'
+             ⍵.help←'Re-apply last undone change.'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s)'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Refresh'
+             ⍵.help←'Update tracked project with source changes since previous'
+             ⍵.options←'all'
+             ⍵.result←''
+             ⍵.syntax←'space'
+             ⍵.type←'project'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Restore'
+             ⍵.help←'Bring back items ]erased'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'SetChanged'
+             ⍵.help←'Write items as if changed in the editor'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s) | space'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Sourcefile'
+             ⍵.help←'Putative sourcefile name(s) of item(s) in tracked project'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s)'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Stats'
+             ⍵.help←'Project Statistics'
+             ⍵.options←'all'
+             ⍵.result←''
+             ⍵.syntax←'space'
+             ⍵.type←'project'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'ToAPLAN'
+             ⍵.help←'Format a value as APLAN'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'name | "expression"'
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Undo'
+             ⍵.help←'Revert to previous version'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'item(s)'
+             ⍵.type←'item'
+             ⍵
+         }⎕NS'')({
+             ⍵.command←'Version'
+             ⍵.help←'Version of ',name,' in use'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←''
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')
+     }name
      r.group←⊂name
      r.options←optionFields r.options
      r.syntax←,/(⊂']',name,'.'),r.command,' ',r.syntax,' ',⍪r.options(⍳↓⊣)¨' '
      UT.is r
 ⍝ see optionFields for valid options
-⍝ Phil 2019-07-24 21.47 5.2.0+218
+⍝ Phil 2019-08-12 22.38 5.2.0+236
  }

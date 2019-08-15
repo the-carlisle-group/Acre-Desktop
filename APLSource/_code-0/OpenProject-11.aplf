@@ -1,5 +1,5 @@
  OpenProject←{⍺←⊢
-     2<≢⍵:MS.DM
+     2<≢⍵:''⊣logMsg MS.DZ
      tk←nOff OPT.track
      dp←nOff OPT.dependencies
      0=dat←openProject tk dp ⍵:''

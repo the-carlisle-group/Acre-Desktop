@@ -1,5 +1,0 @@
- openproject←{⍺←⊢
-     ##.OPT.(track dependencies)←##.(MS.GB MS.GA)[2⍴⍺,1]
-     ##.OpenProject⊂if≡⍵
-⍝ Phil 2019-07-06 10.06 5.2.0+205
- }

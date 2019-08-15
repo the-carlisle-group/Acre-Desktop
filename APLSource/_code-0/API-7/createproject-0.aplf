@@ -1,5 +1,0 @@
- createproject←{⍺←⊢
-     ##.OPT.(casecode keephistory variables)←##.(MS.GB MS.GA)[3↑⍺⊣0]
-     ##.CreateProject ⍵
-⍝ Phil 2019-07-06 10.06 5.2.0+205
- }

@@ -1,0 +1,4 @@
+ Sourcefile←{dat←⍺
+     dat getSourceFilenames ⍵
+⍝ Phil 2019-08-12 17.41 5.2.0+227
+ }

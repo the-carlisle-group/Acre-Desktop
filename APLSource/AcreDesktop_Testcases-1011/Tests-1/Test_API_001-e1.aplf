@@ -4,7 +4,7 @@
 
  R←∆Failed
 
- v←⎕SE.acreAPI.version ⍬
+ v←⎕SE.acre.Version ⍬
  →PassesIf 4=≢v
  →PassesIf'Acre'≡1⊃v
 

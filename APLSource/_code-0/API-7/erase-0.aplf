@@ -1,6 +1,0 @@
- erase←{⍺←⊢
-     ##.OPT.confirm←⍺⊣''
-     0=dat←##.whichProject⊢arg←##.prefSpace⍕⍵:##.MS.DH ⎕SIGNAL 11
-     dat ##.Erase arg
-⍝ Phil 2019-08-06 21.51 5.2.0+226
- }

@@ -15,7 +15,7 @@
          ns.array
      }/0,⍪fqn/⍨a←c=2
      (a/r)←{
-         0::''               ⍝ bluebell
+         0::''               ⍝ bluebell (hyacinthoides non-scripta)
          ns.script⊣⎕SRC #.⍎⍵ ⍝ script
      }/0,⍪fqn/⍨a←c=9.1
      r

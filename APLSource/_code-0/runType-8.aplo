@@ -1,0 +1,11 @@
+ runType←{item proj share←'ips'=⊃⍵⍵
+     item:⍺⍺ itemMethod ⍵
+     proj:⍺⍺ projMethod ⍵
+     ⍺⍺ sharedMethod ⍵
+⍝ [⍺] larg to method
+⍝  ⍺⍺ method
+⍝  ⍵⍵ type
+⍝   ⍵ rarg(s) to method
+⍝   ← see operators for each type
+⍝ Phil 2019-08-11 09.34 5.2.0+227
+ }

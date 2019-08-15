@@ -1,5 +1,5 @@
  keys←{⍺←⊢
-     sig←⎕AN,(,'G< 9999-99-99 99.99 >'⎕FMT 100⊥5⍴⎕TS),1⊃getVersion''
+     sig←⎕AN,(,'G< 9999-99-99 99:99 >'⎕FMT 100⊥5⍴⎕TS),1⊃Version''
      sig←'Z:L:R:U:⍝ ',sig,'L:'
      d←'E:←{⍺←⊢R:R:⍝R: }8:U:U:' '⎕NL¨⍳11'(']',MS.NA,'.')'⎕signal ' '' '→⎕lc'sig']changes ' '{(⎕NS'''').(⎕ED&''_''⊣_←⍵)}'
 ⍝                2                  3           4           5      6    7    8     9               10

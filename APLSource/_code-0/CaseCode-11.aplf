@@ -1,0 +1,6 @@
+ CaseCode←{null⊢arg←2↓¨prefSpace ⍵:arg
+     1∊'-'∊¨arg:'#.'∘,¨'..'decodeCaps arg
+     '#.'∘,¨'..'encodeCaps arg
+⍝
+⍝ Phil 2019-08-12 22.51 5.2.0+237
+ }

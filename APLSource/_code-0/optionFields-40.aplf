@@ -1,16 +1,25 @@
  optionFields←{⍺←⊢
-     opts←,dflt←'' ⍝ ,⊂'help' ⍝ 'messages[=]' ⍝ Phil 2019-03-18 21.40
-     opts,←'dependencies:on' 'when[=]' 'confirm:' 'track:on'
-     opts,←'casecode:off' 'variables:off' 'keephistory:off'
-     opts←opts[⍋↑opts]
+     ⎕THIS.DO←{
+         ⍵.all←''
+         ⍵.casecode←':off'
+         ⍵.confirm←':'
+         ⍵.dependencies←':on'
+         ⍵.keephistory←':off'
+         ⍵.track←':on'
+         ⍵.variables←':off'
+         ⍵.when←'[=]'
+         ⍵
+     }⎕NS''
+     opts←DO.(,∘⍎¨⍨⎕NL-2)
+     z←DO.({⍎⍵,'~←'':[=]'''}¨⎕NL-2)
      len←3 ⍝ min unique width of above
      in←len⍴¨opts
      opts←' -'∘,¨opts
      n←1+≢num←'999S'
-     res←{⊃,/num,opts[in⍳in∩len⍴¨dflt,' 'sep ⍵]}¨⊂if≡⍵
+     res←{⊃,/num,opts[in⍳in∩len⍴¨' 'sep ⍵]}¨⊂if≡⍵
      0=⍺⊣0:res
      (n↓⊃res)('nargs=',num) ⍝ see openLoad
 ⍝ convert strings of initial abbreviations to option specs
 ⍝ see cmdDefs
-⍝ Phil 2019-07-25 17.55 5.2.0+222
+⍝ Phil 2019-08-07 17.12 5.2.0+227
  }

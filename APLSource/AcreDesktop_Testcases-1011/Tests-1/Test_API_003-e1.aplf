@@ -4,7 +4,7 @@
 
  R←∆Failed
 
- buff←⎕SE.acreAPI.stats'#.acre'
+ buff←⎕SE.acre.Stats'#.acre'
  →PassesIf 2=⍴⍴buff
 
  R←∆OK

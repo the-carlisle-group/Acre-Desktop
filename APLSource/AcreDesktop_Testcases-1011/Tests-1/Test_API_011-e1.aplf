@@ -21,7 +21,7 @@
  result←∆RunUcmd'OpenProject "',path,'"'
  Assert'#.TEMP'≡result
 
- buff←⎕SE.acreAPI.config'#.TEMP'
+ buff←⎕SE.acre.Config'#.TEMP'
  →GoToTidyUp'Foo'≢buff.ABC
  →GoToTidyUp'1954-10-02'≢buff.DOB
 

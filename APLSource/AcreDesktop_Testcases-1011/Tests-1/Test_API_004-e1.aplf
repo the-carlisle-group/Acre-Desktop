@@ -4,9 +4,9 @@
 
  R←∆Failed
 
- buff←⎕SE.acreAPI.sourcefile⊃⎕XSI
+ buff←⊃⎕SE.acre.Sourcefile⊃⎕XSI
  →PassesIf'.aplf'{⍺≡(-⍴,⍺)↑⍵}buff
- buff←⎕SE.acreAPI.sourcefile⊃⎕SI
+ buff←⊃⎕SE.acre.Sourcefile⊃⎕SI ⍝ using prefSpace refuses ⎕SE
  →PassesIf'.aplf'{⍺≡(-⍴,⍺)↑⍵}buff
 
  R←∆OK
