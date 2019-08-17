@@ -12,22 +12,15 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.3.1' '2017-08-23'
+      r←(Last⍕⎕THIS)'1.4.2.5' '2019-02-18'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 1.3.1
-      ⍝   * Some glitches in the documentation fixed.
-      ⍝ * 1.3.0
-      ⍝   * Bug fixed in `KillPID`: did not always return a result.
-      ⍝   * Method `History` introduced.
-      ⍝   * Managed by acre 3 now.
-      ⍝ * 1.2.1
-      ⍝   * Fix in `ShellExecute`: when `rc` is not 0 then result should be empty and `more` shouldn't.
-      ⍝ * 1.2.0
-      ⍝   * Documentation improved.
-      ⍝   * Bug fix in `ShellExecute` (Linux and Mac OS only).
+      ⍝ * 1.4.2
+      ⍝   * `:Include APLTreeUtils` fixed.
+      ⍝\\
+      ⍝ For information regarding older versions see <https://github.com/aplteam/OS/releases>
     ∇
 
     ∇ (rc more result)←ShellExecute cmd;buff
@@ -73,24 +66,18 @@
       ⍝ * A text string typically specifying a document or an EXE, possibly with command line parameters.
       ⍝
       ⍝ In case a text string is passed and the name of the file (first parameter: the EXE/document) contains
-      ⍝ a space then this filename **must** be enclosed within double quotes.
-      ⍝
-      ⍝ Any other filename with spaces in the name must be enclosed by double-quotes as well.
-      ⍝
+      ⍝ a space then this filename **must** be enclosed within double quotes.\\
+      ⍝ Any other filename with spaces in the name must be enclosed by double-quotes as well.\\
       ⍝ A parameter space is usually created by calling `CreateParms_WinExecute`. You can then make
-      ⍝ amendments to it and pass it as right argument. See there for details.
-      ⍝
+      ⍝ amendments to it and pass it as right argument. See there for details.\\
       ⍝ If the defaults are fine for you and you want just start an EXE or, say, display an
-      ⍝ HTML file then you can just specify a path pointing either to the EXE or to the document.
-      ⍝
+      ⍝ HTML file then you can just specify a path pointing either to the EXE or to the document.\\
       ⍝ You can even specify command line parameters this way but you **must** then enclose `file` with
       ⍝ double quotes (") even if the file does not contain any blanks. (The `ShellExecute` Windows function
-      ⍝ does not like double quotes but they will be removed before it is called).
-      ⍝
+      ⍝ does not like double quotes but they will be removed before it is called).\\
       ⍝ The optional left argument defaults to 0 which makes the verb default to "OPEN". By specifying
       ⍝ a 1 here it's going to be "RUNAS" meaning that the application is executed in elevated mode
-      ⍝ (=with admin rights). Of course for this the user must have admin rights.
-      ⍝
+      ⍝ (=with admin rights). Of course for this the user must have admin rights.\\
       ⍝ See the test cases for examples.\\
       ⍝ The function returns a three-element vector:
       ⍝ 1. A Boolean flag, 1 indicating success.
@@ -158,7 +145,7 @@
       parms.lpDirectory←''
     ∇
 
-    ∇ (success rc result)←{adminFlag}WinExecBatch cmd;batFilename;tempFilename;en;more
+    ∇ (success rc result)←{adminFlag}WinExecBatch cmd;batFilename;tempFilename;en;more;parms;i;flag
     ⍝ This method executes a command and returns its standard output on `result`.\\
     ⍝ ** Don't** use this for programs that interact with a user! For example, don't use
     ⍝ this to fire up an APL session! This cannot work because standard output is redirected.\\
@@ -180,9 +167,20 @@
       ##.FilesAndDirs.DeleteFile tempFilename
       WriteUtf8File batFilename cmd
       adminFlag←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'adminFlag'
-      (success rc more)←adminFlag WinExecute batFilename
+      parms←CreateParms_WinExecute
+      parms.file←batFilename
+      parms.show←0
+      (success rc more)←adminFlag WinExecute parms
       :If success
-          result←{##.FilesAndDirs.IsFile ⍵:ReadUtf8File ⍵ ⋄ _←⎕DL 0.1 ⋄ ∇ ⍵}tempFilename
+          i←flag←0
+          :Repeat
+              i+←1
+              ⎕DL 0.01
+              :If ##.FilesAndDirs.IsFile tempFilename
+                  result←ReadUtf8File tempFilename
+                  flag←(100<i)∨0<⍴result
+              :EndIf
+          :Until flag
       :Else
           result←more
       :EndIf
@@ -274,4 +272,3 @@
     ∇
 
 :EndClass
-

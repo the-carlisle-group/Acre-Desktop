@@ -44,26 +44,15 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.8.1' '2017-08-23'
+      r←(Last⍕⎕THIS)'1.9.1.3' '2019-02-04'
     ∇
 
     ∇ History
       :Access Public Shared
-    ⍝ * 1.8.1
-    ⍝   * Glitches in the documentation fixed.
-    ⍝ * 1.8.0
-    ⍝   * Method `History` polished.
-    ⍝   * Now managed by acre 3.
-    ⍝ * 1.7.1
-    ⍝   * Syntax fix for new version of `FilesAndDirs`.
-    ⍝ * 1.7.0
-    ⍝   * Now requires at least Dyalog 15.0 Unicode
-    ⍝   * Uses `FilesAndDirs` rather than `WinFile`.
-    ⍝ * 1.6.0
-    ⍝   * Doc converted to Markdown (requires at least ADOC 5.0).
-    ⍝ * 1.5.0
-    ⍝   * `Version` is now returning just the name (no path).
-    ⍝   * For marking up inline APL code now ticks (`) are used.
+    ⍝ * 1.9.1
+    ⍝   * Bug fix: `:Include ##.APLTreeUtils` is now ':Include APLTreeUtils`.
+    ⍝\\
+    ⍝ For information regarding older versions see <https://github.com/aplteam/Execute/releases>
     ∇
 
     ∇ {(rc processInfo result more)}←{cs}Application program;⎕IO;⎕ML;NORMAL_PRIORITY_CLASS;nl;bool;startupInfo;processHandle;threadHandle;StillActive;Ctrl_C_Is;ProcessAborted;i;∆CreateProcess;∆GetCurrentDirectory;∆GetExitCodeProcess;∆GetExitCodeThread;∆WaitForSingleObject;∆TerminateProcess;∆TerminateThread
@@ -459,4 +448,3 @@
     ∇
 
 :EndClass
-

@@ -12,7 +12,8 @@
  #.TEMP.∆RESULT←⍬
  projectPath←F.GetTempPath,⊃⎕SI
  #.TEMP.∆PATH←projectPath
- body←'r←x UserExit y' 'f←∆PATH∘#.acre.AcreDesktop_Testcases.Tests.∆RunGitCommand' '{}f''add --all''' '∆RESULT←f ''commit -m''''...'''''' ' 'r←⍬'
+ #.TEMP.∆ExitFunctionDidRun←0
+ body←'r←x UserExit y' 'r←0/∆ExitFunctionDidRun←1' 'f←∆PATH∘#.acre.AcreDesktop_Testcases.Tests.∆RunGitCommand' '∆RESULT←f ''commit -a -m''''!'''''' '
  Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑body
  Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ Change this function and then press <escape>'
  {}⎕CMD'rd /s /q ',projectPath
@@ -48,12 +49,14 @@
 
  #.TEMP.⎕ED'Hello'
  →GoToTidyUp ⍬≡#.TEMP.∆RESULT
- →GoToTidyUp expected≡#.TEMP.∆RESULT  ⍝ Because there was something to commit (if the user DID change the function)
+ →GoToTidyUp(,1)≢,#.TEMP.∆ExitFunctionDidRun        ⍝ Did the function run at all?
+ →GoToTidyUp expected≡#.TEMP.∆RESULT                ⍝ Because there WAS something to commit (if the user DID change the function)!
+ →GoToTidyUp 0=∨/'1 file changed'⍷∊#.TEMP.∆RESULT   ⍝ We should see this
 
  R←∆OK
 
 ∆TidyUp:
- :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap   ⍝ At this point RmDir fails with "ACCESS DENIED" but this works...
+ :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap   ⍝ At this point RmDir fails with "ACCESS DENIED": Git is the culprit! However, rd works...
  ∆ClearLog
  ∆RunUcmd'Close #.TEMP'
 ⍝Done
