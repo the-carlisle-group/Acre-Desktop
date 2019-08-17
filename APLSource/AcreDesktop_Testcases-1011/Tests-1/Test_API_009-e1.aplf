@@ -4,8 +4,8 @@
 
  R←∆Failed
 
- buff←⎕SE.acreAPI.fromaplan'[,⊂(1)(2)(3)(3 4)]'
- expected←1 1⍴(1 2 3(3 4))'APL'
+ buff←⎕SE.acre.FromAPLAN'[,⊂(1)(2)(3)(3 4)]'
+ expected←1 1⍴⊂(1 2 3(3 4)) ⍝ ? 'APL'
  →PassesIf expected≡buff
 
  R←∆OK

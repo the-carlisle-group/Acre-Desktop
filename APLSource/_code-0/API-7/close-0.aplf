@@ -1,7 +1,0 @@
- close←{⍺←⊢
-     nm←{9=⎕NC'⍵':##.UT.df ⍵ ⋄ ,⍕⍵}⍵
-     0=dat←##.whichProject nm:''
-     dat ##.Close''
-⍝
-⍝ Phil 2019-04-29 18.19
- }

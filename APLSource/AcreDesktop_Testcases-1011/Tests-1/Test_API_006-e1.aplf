@@ -1,5 +1,5 @@
  R←Test_API_006(stopFlag batchFlag);⎕TRAP
-⍝ Exercise the API function `nameclass`.
+⍝ Exercise the API function `Nameclass`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -7,39 +7,39 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
 
- →PassesIf''≡1⊃⎕SE.acreAPI.nameclass'#.TEMP'
+ →PassesIf''≡1⊃⎕SE.acre.Nameclass'#.TEMP'
 
- →PassesIf'.*'≡1⊃⎕SE.acreAPI.nameclass'DoesNotExistForSure'
+ →PassesIf'.*'≡1⊃⎕SE.acre.Nameclass'DoesNotExistForSure'
 
  #.TEMP.Foo←'abc'
- →PassesIf'.charstring'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.charstring'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo←2 2⍴'abc'
- →PassesIf'.charmat'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.charmat'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo←'abc' 'def'
- →PassesIf'.charlist'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.charlist'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo←1 2 3 'abc' 'def'
- →PassesIf'.array'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.array'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo2←'abc'
- →PassesIf'.array' '.charstring'≡⎕SE.acreAPI.nameclass'#.TEMP.Foo' '#.TEMP.Foo2'
+ →PassesIf'.array' '.charstring'≡⎕SE.acre.Nameclass'#.TEMP.Foo' '#.TEMP.Foo2'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.Foo←{+/⍵}
- →PassesIf'.aplf'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.aplf'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.Foo←{⍺⍺+/⍵}
- →PassesIf'.aplo'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.aplo'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.⎕FIX':Class Foo' ':EndClass'
- →PassesIf'.aplc'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.aplc'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.⎕FIX':Namespace Foo' ':EndNamespace'
- →PassesIf'.apln'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.apln'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.⎕FIX':Interface Foo' ':EndInterface'
- →PassesIf'.apli'≡1⊃⎕SE.acreAPI.nameclass'#.TEMP.Foo'
+ →PassesIf'.apli'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  R←∆OK
 ⍝Done

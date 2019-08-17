@@ -12,9 +12,10 @@
          15 '_NINFO' '⊢{⍺←⊢ ⋄ ⍺ ⎕NINFO⍠1⊢⍵}'
          15 '_NPARTS' '⎕NPARTS'
          15 '_NPUT' '⊢{⍺''UTF-8''⎕NPUT ⍵ 1}'
-         16 'a_' '{⍺←⊢ ⋄ ⍺(⍺⍺@⍵⍵)⍵ ⋄ ''DO NOT EDIT''}'
+         16 'a_' '{⍺←⊢ ⋄ ⍺(⍺⍺@⍵⍵)⍵ ⊣ ''DO NOT EDIT''}'
          16 'c_' '⊆'
          16 'i_' '⍸'
+         17 '_JSON' '⎕JSON⍠(''Compact'' 0)↑'
          ]
      }
      d←PL.decode 1↓¯1↓⎕NR'f'

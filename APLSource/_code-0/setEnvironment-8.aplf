@@ -5,23 +5,22 @@
          path ws name←SV.(inipath workspace systemname)←path
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
-         ⍵.SX←syntaxHelp name
          z←setEmulators''
          SV.logfile←localFolder,MS.CJ
 ⍝         SV.config←localFolder MS.HO   ⍝ #171
          z←setCase''
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵
-     }⎕THIS
+     }ici←⎕THIS
      SV.sessionstart←sessionStart''
-     z←editFix'Start'                 ⍝ sets other stuff in SV
-     z←logMsg⍕getVersion''
+     z←editFix'Start' ⍝ ← sets other stuff in SV ⍝ ↓ en cas )LOAD )CLEAR
+     z←⎕SE ⎕WS'Event'_(⎕SE ⎕WG'Event'),⊂'WorkspaceLoaded'_(⍕ici),'.openProjects'
+     z←logMsg⍕Version''
      z←setAPI''
-     ##.run←⎕THIS.codeHook
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
 ⍝ ⍵ ?
 ⍝   there should be no tracked instances when this runs
 ⍝ ← 1
-⍝ Phil 2019-04-05 07.11
+⍝ Phil 2019-08-02 21.48 5.2.0+225
  }

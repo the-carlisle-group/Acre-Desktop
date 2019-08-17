@@ -1,6 +1,0 @@
- itemname←{⍺←⊢
-     0∊⍴##.openProjects'':''⊣##.(logMsg MS.GX)
-     ##.itemName¨⊂if≡⍵
-⍝ ##.codeHook
-⍝ Phil 2019-04-16 08.57
- }

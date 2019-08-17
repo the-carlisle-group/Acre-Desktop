@@ -1,12 +1,9 @@
- setAPI←{⍺←⊢ ⋄ name←MS.FY ⋄ df←'[',name,']'
-     one←{src←⍺⍺ ⋄ log←⍵⍵ ⋄ tgt←⍵ ⋄ fn←⍺
-         msg←'⋄z←⍵⍵↓⍕⍺,''',df,'.',fn,' '',,⍵⋄'
-         fn←'←⍺⍺{0::⎕signal/⌽⎕en,⎕dm⋄⍺←⊢',msg,'⍺ ⍺⍺.',fn,'⍵}⍵⍵'
-         z←tgt.⍎⍺,fn
-         tgt
-     }
-     z←⎕SE name _is_(API one logMsg)/⌽(⎕SE.⎕NS''),~∘' '¨↓API.⎕NL 3.2
-     {⍵.⎕DF df}⎕SE.⍎name
-⍝ specifically ⎕NL 3.2 to exclude ops and dervs
-⍝ Phil 2019-05-29 06.21
+ setAPI←{
+     tgt←UT.rs⊢ici←⎕THIS
+     fns←↓⍉↑CD.(command type)
+     {f←⍎'⍵.',(⊃⍺),'←ici.(',(⊃⍺),' callAPI ⍺)' ⋄ ⍵}/fns,tgt
+⍝ ⍺ ?
+⍝ ⍵ ?
+⍝ ← target space for API fns
+⍝ Phil 2019-08-12 21.13 5.2.0+230
  }

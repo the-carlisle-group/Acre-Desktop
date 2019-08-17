@@ -1,0 +1,15 @@
+            )clear
+clear ws
+      ⎕SE.NS←({ns←⎕se.⎕ns'' ⋄ ns.f00←{⍺ ⍵} ⋄ ns}0).⎕ns''
+      ⎕SE.NS
+⎕SE.[Namespace].[Namespace]
+      ⎕SE.NS.##
+⎕SE.[Namespace]
+      ⎕SE.NS.##.cbbot              ⍝ offered by autocomplete
+VALUE ERROR: Undefined name: cbbot
+      ⎕SE.NS.##.cbbot
+                ∧
+      ⎕SE.NS.##.f00                ⍝ NOT offered by autocomplete
+ ⎕SE.[Namespace] . ∇f00 
+      1 ⎕SE.NS.##.f00 2
+1 2

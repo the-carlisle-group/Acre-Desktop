@@ -1,5 +1,0 @@
- changefile←{⍺←⊢ ⋄ z←##.setSpace''
-     ⊃if≢##.(getChangeFilenames itemMethod)1⍴⊂if≡⍵
-⍝ ##.codeHook
-⍝ Phil 2019-03-09 11.52
- }

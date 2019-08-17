@@ -1,5 +1,0 @@
- editarray←{⍺←⊢ ⋄ z←##.setSpace''
-     ⍺ ##.EditArray ⍵
-⍝
-⍝ Phil 2019-07-02 13:39 5.2.0+203
- }

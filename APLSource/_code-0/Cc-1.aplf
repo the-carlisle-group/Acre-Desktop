@@ -2,7 +2,7 @@
      15≤⊃SV.aplver:⍺(819⌶)⍵
      r←⍺⊣0
      i o←r⌽SV.(upper lower)
-     ⊃if(≡⍵){(o,,⍵)[(i,,⍵)⍳⍵]}¨⊂if≡⍵
+     {(o,,⍵)[(i,,⍵)⍳⍵]}UT.ad 1⊢⍵
 ⍝ case folding - see setEmulators, setEnvironment
-⍝ Phil 2018-12-22 19.07
+⍝ Phil 2019-08-11 22.00 5.2.0+227
  }

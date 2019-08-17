@@ -1,5 +1,0 @@
- nameclass←{⍺←⊢ ⋄ z←##.setSpace''
-     ⍺ ##.nameClass ⍵
-⍝ ##.codeHook
-⍝ Phil 2019-03-09 11.52
- }

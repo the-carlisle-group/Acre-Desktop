@@ -1,0 +1,22 @@
+ R←Test_API_016(stopFlag batchFlag);⎕TRAP;fn;new;old;alt
+⍝ Exercise the API function `aftersave`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ fn←⎕SE.acreAPI.aftersave
+ old←fn''
+ new←,∘'N'⍣{0=⎕NC ⍺}'#.'  ⍝ non-existent #.N+
+ alt←,∘'M'⍣{0=⎕NC ⍺}'#.'  ⍝ non-existent #.M+
+
+⍝ tests only the functionality of adding, replacing and querying the name
+⍝ not whether the named function exists or runs.
+ →PassesIf{
+     old≢fn new:0         ⍝ swap and return previous
+     new≢fn'':0           ⍝ query
+     new≢fn alt:0         ⍝ swap and return previous
+     alt≡fn old           ⍝ query or restore if old non-null
+ }''
+
+ R←∆OK
+⍝Done

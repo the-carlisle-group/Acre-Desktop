@@ -12,20 +12,16 @@
 
          ⍺=':':0 ⎕FIX ⍵                      ⍝ APLscript
          ⍺='[':PL.decode ⍵                   ⍝ APLAN
-         ⍺≠'{':(MS.DU err cnf)               ⍝ Cannot ascertain encoding
-         ver←⊃SV.aplver                      ⍝ JSON
-         j←1↓⊃,/(⎕UCS 13),¨⍵                 ⍝ requires CR string
-         ver≥17:(⍎'⎕JSON')j
-         ver>14:7159⌶j
-         (MS.DT err cnf)                     ⍝ JSON not available < 14.1
+         ⍺='{':_JSON ⍵                       ⍝ JSON
+         MS.DU err cnf                       ⍝ Cannot ascertain encoding
 
      }r↓d
      z←dft('⎕io',cu[cl⍳exc])_is_ cfg.⍎⍕0,cu[cl⍳exc←cl~rl] ⍝ custom to dft
      0⊃dft('⎕io',ru[rl⍳int])_is_ cfg.⍎⍕0,cu[cl⍳int←rl∩cl] ⍝ supplied to dft
 ⍝ [⍺] default space
 ⍝ ⍵ config filename
-⍝ config is APLAN or JSON or deprecated APLScript
+⍝ config is APLAN or JSON or APLScript
 ⍝ result is namespace including all expected fields
 ⍝    having "proper" case restored
-⍝ Phil 2018-11-12 10.05
+⍝ Phil 2019-08-15 23.02 5.2.0+239
  }

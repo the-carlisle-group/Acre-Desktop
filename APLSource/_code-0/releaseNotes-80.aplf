@@ -2,22 +2,9 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 5.2.0+206 2019-07-08 09.00
+⍝ Acre 5.2.0+240 2019-08-15 23:39
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ yet another attempt at user exit
-⍝
-⍝ Command `]Refresh` now added also as an API function `⎕SE.acreAPI.refresh`.
-⍝
-⍝ `]CreateProject` will now message also to session, in addition to log, if differently cased homonyms are not written due to default `-casecode=off` in
-⍝ → Windows &c..
-⍝ ```
-⍝ Can`t write duplicate files
-⍝ ===== ===== ========= =====
-⍝  #.proj.item  #.proj.ITEM
-⍝ ```
-⍝
-⍝ Fix to bug #168 applied also to `changes` and `refresh` to avoid the
-⍝ → SYNTAX ERROR if the argument is not an open project or member thereof.
+⍝ Phil 2019-08-15 23:39 5.2.0+239
  }

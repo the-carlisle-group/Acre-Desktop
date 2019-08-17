@@ -1,7 +1,0 @@
- changes←{⍺←⊢ ⋄ z←##.setSpace''
-     ##.OPT.when←⍕if(⊢≢1=⊢)⍺⊣0 ⍝    ##.MS.HB
-     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
-     dat ##.Changes arg
-⍝      ##.Changes
-⍝ Phil 2019-06-14 07:31 5.2.0+192
- }

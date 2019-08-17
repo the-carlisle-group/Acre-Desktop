@@ -8,7 +8,7 @@
          (dat.folder,(⊃,/(1++/p∊'/\')/,/'../'),p)⍵ ⍝ uncle/cousin
      }
      0∊⍴these←nout⊂if≡dat.open:1        ⍝ ex config
-     nss←(⎕NEW ⎕SE.Parser(optionFields'dep track')).Parse¨these
+     nss←(⎕NEW ⎕SE.Parser(1 optionFields'dep track')).Parse¨these
      args←nss.Arguments
      args nss/⍨←⊂~args∊SV.arguments      ⍝ this time
      0∊⍴SV.arguments,←args:1
@@ -22,5 +22,5 @@
 ⍝ dyadic calls to openProject tell it NOT to run Startup
 ⍝ Open dependent projects
 ⍝ this is potentially endlessly recursive
-⍝ Phil 2018-06-06 21.11
+⍝ Phil 2019-07-25 13.41 5.2.0+220
  }

@@ -37,7 +37,6 @@
 ⍝:          ⍕⍪r,⊂⎕SE.<n>._code.(MS.HA,Cc ⍵)
 ⍝:    }
 ⍝:    Run←{cmd arg←⍵
-⍝:     arg.help:Help cmd
 ⍝:     (path wsid)←,\{⍵(↑{⍺⍵}↓)⍨(1+⊢⍳⌈/)+\⍵∊'\/'}##.SourceFile
 ⍝:     new←{⎕se.<n>._code. newSession''}⍣(~new)⊢new←0∊⎕SE.⎕NC name
 ⍝:     z←⎕SE.{6::0 ⋄ ⊢'#.<n>'∘⎕CY ⍵}⍣new⊢wsid

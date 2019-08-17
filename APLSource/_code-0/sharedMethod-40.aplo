@@ -1,10 +1,9 @@
  sharedMethod←{
      arg←⍵
 ⍝    ↓↓↓
-     MS.DM≡res←⍺⍺ arg:''⊣logMsg MS.DM,SX.⍎⍺
+     res←⍺⍺ arg
      res
 
-⍝ nothing special - they have to do it all themselves except
-⍝ returning MS.DM displays syntax help for command.
-⍝ Phil 2018-01-25 08.05
+⍝ nothing special - they have to do it all themselves
+⍝ Phil 2019-08-10 16.09 5.2.0+227
  }

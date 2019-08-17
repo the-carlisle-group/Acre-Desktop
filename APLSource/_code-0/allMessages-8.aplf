@@ -57,6 +57,7 @@
          ⍵.CI←'Log file - `hide` | `show` | `file` | `clear` | `all` | `find` "string" | no. of rows'
          ⍵.CJ←MS.NA,'.log'
          ⍵.CK←'CLEAR WS'
+         ⍵.CL←''
 
          ⍵.DA←' - Local history purged'
          ⍵.DB←'Problem reading '
@@ -70,7 +71,7 @@
          ⍵.DJ←'!!! Not fixed '
          ⍵.DK←'Saved: '
          ⍵.DL←'Can`t format'
-         ⍵.DM←'Syntax: '
+         ⍵.DM←''
          ⍵.DN←'!!! Trapped error in '
          ⍵.DO←' fixed as '
          ⍵.DP←'Startup - '
@@ -81,6 +82,9 @@
          ⍵.DU←'Cannot ascertain encoding of '
          ⍵.DV←'after saving '
          ⍵.DW←'Argument should be a name'
+         ⍵.DX←'Argument should be a string or list'
+         ⍵.DY←'Argument should be (folder path) (space path)'
+         ⍵.DZ←'Argument should be (folder path) [space path]'
 
          ⍵.EE←' wrote '
          ⍵.EF←'Comparing '
@@ -120,7 +124,7 @@
          ⍵.FV←'AcreConfig'
          ⍵.FW←'File: '
          ⍵.FX←'aplcore'
-         ⍵.FY←'acreAPI'
+         ⍵.FY←''
          ⍵.FZ←'AcreDesktop_Testcases'
 
          ⍵.GA←'On'
@@ -166,5 +170,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2019-06-25 09:16 5.2.0+198
+⍝ Phil 2019-08-07 20.28 5.2.0+227
  }

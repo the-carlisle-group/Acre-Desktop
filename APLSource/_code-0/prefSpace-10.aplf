@@ -1,5 +1,6 @@
  prefSpace←{
      null⊢nms←⊂if≡⍵:0/⊂''
+     ('#.'if('⎕'∘∊)SV.space)''[∊∘'#⎕'⊃¨nms],¨nms
      ('#.'if('⎕'∘∊)SV.space)''['#'=⊃¨nms],¨nms
 ⍝ ⍵ items or spaces
 ⍝ ← depth-2 list of items or space paths

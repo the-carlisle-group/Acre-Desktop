@@ -4,7 +4,7 @@
 
  R←∆Failed
 
- buff←⎕SE.acreAPI.projects''
+ buff←⎕SE.acre.Projects''
  →PassesIf 1=≢buff
  →PassesIf 2=⍴⍴buff
 

@@ -1,5 +1,0 @@
- sourcefile←{⍺←⊢ ⋄ z←##.setSpace''
-     ⊃if≢##.(getSourceFilenames itemMethod)⊂if≡⍵
-⍝ ##.codeHook
-⍝ Phil 2019-03-09 11.52
- }

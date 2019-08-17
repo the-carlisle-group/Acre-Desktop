@@ -1,0 +1,29 @@
+ f00←{⍺←⊢
+
+     setAPI←{
+         tgt←UT.rs ici←⎕THIS
+         fns←↓⍉↑CD.(command type)
+         {f←⍎'⍵.',(⊃⍺),'←ici.(',(⊃⍺),' callAPI ⍺)' ⋄ ⍵}/fns,tgt
+     }
+
+
+     callAPI←{
+         z←⎕SIGNAL/(⊂MS.DX),4/⍨1≠≢⍴1/⍵
+         ⍺←⊢ ⋄ fn←⍺⍺ ⋄ fnm type←⍵⍵ ⋄ nam←MS.NA
+         z←⎕SE.UCMD if(newSession'')⊢nam,'.Projects'     ⍝ sledgehammer
+         arg~←opt←(⊢(/⍨)1≠≡¨)arg←,∘⍕¨a_(0=≡¨),⊂if≡⍵  ⍝ fmt scalars & sep opts
+         z←logMsg⍕⍺,' [',nam,'].',fnm,' ',arg
+         ⎕THIS.OPT←⎕NS DO
+         z←OPT.{⍎⍺,'←⍵'}/↑2↑¨opt
+         z←setSpace''
+         ⍺ fn runType type⊢arg
+⍝ [⍺] - larg to fn
+⍝  ⍺⍺ - fn
+⍝  ⍵⍵ - fnname
+⍝  ⍵  - rarg to fn
+⍝  ←  - result of fn
+     }
+     should do what userCmdRun does
+⍝
+⍝ Phil 2019-08-12 22.12 5.2.0+235
+ }

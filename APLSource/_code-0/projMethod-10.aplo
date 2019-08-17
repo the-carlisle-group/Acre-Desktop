@@ -1,16 +1,17 @@
- projMethod←{⍺←⊢ ⋄ mon←1≡⍺ 1
-     args←⍵
-     proj arg←1(↑__↓)args
-     mon<(null proj)∨0∊⍴dats←openProjects'':''⊣logMsg MS.DM,SX.⍎⍺
-     msk←dats.nspath∊prefSpace proj
-     0=dat←⊃1↓0,msk/dats:''⊣logMsg MS.BW
+ projMethod←{
+     0∊⍴open←openProjects'':''⊣logMsg MS.GX
+     1∊1 '1'∊OPT.all:⍪⍺⍺/(⍪open),⊂''
+     null⊢proj←prefSpace ⍵:''
+     dat←(open,0)open.nspath UT.co proj
+     z←MS.BW logMsg(dat=0)/proj
 ⍝       ↓↓↓↓
-     dat ⍺⍺ arg
+     ⊃if≢⍺⍺/(⍪dat~0),⊂''
 
-⍝ [⍺]  name of method
 ⍝ ⍺⍺   method
-⍝ ⍵       args
-⍝ args    projectspace arg ...
-⍝ run instance method of project ref'd in first of args
-⍝ Phil Last 2018-01-10 21.54
+⍝ ⍵       nspath(s) - relative to calling space
+⍝ run instance method of projects
+⍝ ← as determined by method if single
+⍝   as a vector of above if multiple
+⍝   as a one column list if -all
+⍝ Phil 2019-08-10 09.53 5.2.0+227
  }

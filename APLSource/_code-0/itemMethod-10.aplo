@@ -1,7 +1,6 @@
- itemMethod←{⍺←⊢ ⋄ mon←1≡⍺ 1
-     mon<null⊢items←⍵:''⊣logMsg MS.DM,SX.⍎⍺
+ itemMethod←{
      0∊⍴ids←openProjects'':''⊣logMsg MS.GX
-     items←prefSpace items   ⍝ prefix non-FQNs
+     null⊢items←prefSpace ⍵:''
      no←0=dat←whichProject items
      z←MS.DI logMsg no/items
      items dat/⍨←⊂~no
@@ -9,7 +8,6 @@
 ⍝       ↓↓↓↓
      ⊃if≢⍺⍺/dat{⍺ ⍵}⌸items
 
-⍝ [⍺]  name of method
 ⍝ ⍺⍺   method to run - takes instance data space left arg
 ⍝ ⍵    args
 ⍝ args random list of items of possiby disparate projects
@@ -17,5 +15,5 @@
 ⍝   corresponding to a tracked project
 ⍝   Methods expected to take 1 or more names and return a subset
 ⍝ ← results per project, '' if none
-⍝ Phil 2018-06-06 21.11
+⍝ Phil 2019-08-10 16.09 5.2.0+227
  }

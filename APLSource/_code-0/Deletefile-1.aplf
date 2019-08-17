@@ -1,0 +1,5 @@
+ Deletefile←{dat←⍺
+     ,∘MS.EX¨(-≢MS.HN)↓¨nout dat getChangeFilenames ⍵
+⍝
+⍝ Phil 2019-08-12 09.08 5.2.0+227
+ }

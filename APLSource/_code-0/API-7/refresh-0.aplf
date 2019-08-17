@@ -1,6 +1,0 @@
- refresh←{⍺←⊢ ⋄ z←##.setSpace''
-     0=dat←⊃##.whichProject⊢arg←,⊂⍕⍵:''
-     dat ##.Refresh arg
-⍝      ##.Refresh
-⍝ Phil 2019-06-14 07:31 5.2.0+192
- }

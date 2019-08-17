@@ -12,7 +12,7 @@
      (editor event value space name new)←6↑⍵        ⍝ so long as onFix unchanged
      first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space            ⍝ is space scripted?
      {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:(⍎first⊃⌽SV.fixandafter)⍵
-     fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(≢∘∊⍨new)∧2≠space.⎕NC name
+     fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(nonul new)∧2≠space.⎕NC name
      0=dat←whichProject fqn:(⍎first⊃⌽SV.fixandafter)⍵
      (null validItems fqn):
      first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
