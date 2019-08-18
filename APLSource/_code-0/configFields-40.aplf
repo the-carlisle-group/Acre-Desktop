@@ -1,14 +1,15 @@
  configFields←{⍺←⊢
      {
          ⍵.CaseCode←'Off'     ⍝ integer suffix to name elements
+         ⍵.Dependencies←''    ⍝ open with this project
          ⍵.KeepHistory←'Off'  ⍝ store .change- and .delete-files
          ⍵.ProjectSpace←''    ⍝ #[.path]
-         ⍵.Open←''            ⍝ Open with this project
+         ⍵.Open←''            ⍝ deprecated
          ⍵.StartUp←''         ⍝ executed after OpenProject
          ⍵.Variables←'Off'    ⍝ on: all vars | off: already or on request
          ⍵
      }#.⎕NS''
 ⍝ ⍵ ?
 ⍝ ← config space
-⍝ Phil 2019-06-28 11:34 5.2.0+201
+⍝ Phil 2019-08-17 07:53 5.2.0+240
  }

@@ -1,8 +1,8 @@
  ToAPLAN←{
-     null ⍵:2⍴''''
+     0∊⍴⍵:2⍴''''
      PL.format #.⍎if nonul⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
 ⍝ format value as APLAN expression
 ⍝ see FromAPLAN
-⍝ expression requires "double quotes" if it contains [brackets].
-⍝ Phil 2018-01-25 08.05
+⍝ expression requires quotes if it contains [brackets].
+⍝ Phil 2019-08-16 16:51 5.2.0+240
  }

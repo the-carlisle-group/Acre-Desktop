@@ -43,7 +43,7 @@
          }⎕NS'')({
              ⍵.command←'Config'
              ⍵.help←'Clone of project configuration namespace'
-             ⍵.options←''
+             ⍵.options←'all'
              ⍵.result←''
              ⍵.syntax←'space'
              ⍵.type←'project'
@@ -214,6 +214,8 @@
      r.options←optionFields r.options
      r.syntax←,/(⊂']',name,'.'),r.command,' ',r.syntax,' ',⍪r.options(⍳↓⊣)¨' '
      UT.is r
+⍝ To add a new command clone from "}⎕NS'')({" to " ⍵ " and change the values
+⍝ Once installed run "]command -?" and follow the link to add the documentation
 ⍝ see optionFields for valid options
 ⍝ Phil 2019-08-12 22.38 5.2.0+236
  }
