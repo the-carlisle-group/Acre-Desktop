@@ -12,7 +12,7 @@
          ⍵.rase←(1⌽'][',(trim'⋄',⊢))⍤2 while(1<≢∘⍴)
        ⍝ vars
          ⍵.SV←{
-             ⍵.debug←0
+             ⍵.debug←1∊⎕SE.SALTUtils.DEBUG
              ⍵.cref←'CIRCULAR REFERENCE'
              ⍵.non←16 ⍝ nonce error
              ⍵.syn←2  ⍝ syntax error

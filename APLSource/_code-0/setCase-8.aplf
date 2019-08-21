@@ -1,8 +1,8 @@
  setCase←{⍺←⊢
      ⎕THIS.SV←{9=⎕NC'SV':SV ⋄ ##.⎕NS''}0
-     SV.upper←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ'
-     SV.lower←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûü'
+     SV.major←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ'
+     SV.minor←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûü'
      SV
 ⍝ differently cased name characters only
-⍝ Phil 2019-04-05 07.11
+⍝ Phil 2019-08-16 16:51 5.2.0+240
  }
