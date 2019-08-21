@@ -1,7 +1,7 @@
  projMethod←{
      0∊⍴open←openProjects'':''⊣logMsg MS.GX
      1∊1 '1'∊OPT.all:⍪⍺⍺/(⍪open),⊂''
-     null⊢proj←prefSpace ⍵:''
+     null⊢proj←prefSpace ⍵:''⊣logMsg MS.DH
      dat←(open,0)open.nspath UT.co proj
      z←MS.BW logMsg(dat=0)/proj
 ⍝       ↓↓↓↓

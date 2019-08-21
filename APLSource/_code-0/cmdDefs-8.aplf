@@ -10,7 +10,7 @@
              ⍵
          }⎕NS'')({
              ⍵.command←'CaseCode'
-             ⍵.help←'Toggle names between case-coded and not'
+             ⍵.help←'Toggle between names with and without case-codes'
              ⍵.options←''
              ⍵.result←''
              ⍵.syntax←'item(s)'
@@ -75,7 +75,7 @@
          }⎕NS'')({
              ⍵.command←'Erase'
              ⍵.help←'Erase an item, items or a space from a tracked project'
-             ⍵.options←'confirm'
+             ⍵.options←'confirm recursive'
              ⍵.result←''
              ⍵.syntax←'item(s) | space'
              ⍵.type←'item'

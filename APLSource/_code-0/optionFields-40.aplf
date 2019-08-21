@@ -5,6 +5,7 @@
          ⍵.confirm←':'
          ⍵.dependencies←':on'
          ⍵.keephistory←':off'
+         ⍵.recursive←''
          ⍵.track←':on'
          ⍵.variables←':off'
          ⍵.when←'[=]'

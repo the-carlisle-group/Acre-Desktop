@@ -1,7 +1,7 @@
  Erase←{dat←⍺ ⋄ unc←50 ⍝ up to 50 unconfirmed
      space←⊃0∘ssp∧1=≢
-     space ⍵:''⊣logMsg MS.BO
-     ns←space⊢arg←¯2∘↓¨if('.*'≡¯2↑⊃)if(1=≢)∪⍵
+     ns←space⊣arg←⍵
+     ns>OPT.recursive:''⊣logMsg MS.BO
 
      endx←(⎕EX(ns/arg),⊢)⊢⊢
      nms←validItems{(⍎⊃⍵)UT.li⍳11}if ns⊢arg
@@ -25,5 +25,5 @@
 ⍝ ← items in ⍵ of which erased
 ⍝   if .change exists just rename to .delete - else put and rename
 ⍝ confirm if >50
-⍝ Phil 2018-06-20 11.04
+⍝ Phil 2019-08-21 10:24 5.2.0+242
  }

@@ -1,5 +1,6 @@
  callAPI←{
      z←⎕SIGNAL/(⊂MS.DX),4/⍨1≠≢⍴1/⍵
+     SV.debug←⎕SE.SALTUtils.DEBUG
      SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
      ⍺←⊢ ⋄ fn←⍺⍺ ⋄ fnm type←⍵⍵ ⋄ nam←MS.NA
      z←⎕SE.UCMD if(newSession'')⊢nam,'.Projects' ⍝ sledgehammer

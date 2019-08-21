@@ -39,7 +39,7 @@
          ⍵.BL←'⍝ its purpose is to set the environment for the project.'
          ⍵.BM←'⎕Cannot rename file '
          ⍵.BN←MS.BJ MS.BK MS.BL
-         ⍵.BO←'Add suffix ".*" to include space and contents'
+         ⍵.BO←'add switch `-recursive` to include space and contents'
          ⍵.BP←' may require attention.'
          ⍵.BU←'History is disabled for '
          ⍵.BV←'No change'
@@ -48,16 +48,11 @@
 
          ⍵.CA←'This will erase '
          ⍵.CB←' will need to be amended.'
-         ⍵.CC←'please restart within _ with code: -confirm=_'
-         ⍵.CD←'Toggle between names with and without case-codes'
-         ⍵.CE←'Return an item-name from a source-file-name'
-         ⍵.CF←'Return a change-file-name from an item-name'
-         ⍵.CG←'Return a source-file-name from an item-name'
-         ⍵.CH←'Return a delete-file-name from an item-name'
+         ⍵.CC←'please restart within _ with code: `-confirm=_`'
          ⍵.CI←'Log file - `hide` | `show` | `file` | `clear` | `all` | `find` "string" | no. of rows'
          ⍵.CJ←MS.NA,'.log'
          ⍵.CK←'CLEAR WS'
-         ⍵.CL←''
+         ⍵.CL←'expression'
 
          ⍵.DA←' - Local history purged'
          ⍵.DB←'Problem reading '
@@ -71,7 +66,7 @@
          ⍵.DJ←'!!! Not fixed '
          ⍵.DK←'Saved: '
          ⍵.DL←'Can`t format'
-         ⍵.DM←''
+         ⍵.DM←'Argument should be '
          ⍵.DN←'!!! Trapped error in '
          ⍵.DO←' fixed as '
          ⍵.DP←'Startup - '
@@ -81,11 +76,12 @@
          ⍵.DT←'JSON not available before Dyalog v14.1 '
          ⍵.DU←'Cannot ascertain encoding of '
          ⍵.DV←'after saving '
-         ⍵.DW←'Argument should be a name'
-         ⍵.DX←'Argument should be a string or list'
-         ⍵.DY←'Argument should be (folder path) (space path)'
-         ⍵.DZ←'Argument should be (folder path) [space path]'
+         ⍵.DW←MS.DM,'a name'
+         ⍵.DX←MS.DM,'a string or list'
+         ⍵.DY←MS.DM,'(folder path) (space path)'
+         ⍵.DZ←MS.DM,'(folder path) [space path]'
 
+         ⍵.EA←'Invalid name(s)'
          ⍵.EE←' wrote '
          ⍵.EF←'Comparing '
          ⍵.EG←'change changes'
@@ -150,18 +146,6 @@
          ⍵.HM←MS.NA,MS.EW,MS.GZ
          ⍵.HN←'.change'
          ⍵.HO←MS.NA,'.',MS.EW
-
-         ⍵.IB←'nameclass'
-         ⍵.IC←'changefile'
-         ⍵.ID←'deletefile'
-         ⍵.IE←'sourcefile'
-         ⍵.IF←'itemname'
-         ⍵.IG←'version'
-         ⍵.IH←'casecode'
-         ⍵.IW←MS.NA,' version as: '
-         ⍵.IX←MS.IB MS.IC MS.ID MS.IE MS.IF MS.IG MS.IH
-         ⍵.IY←'''method'' ⎕SE.',MS.NA,'.run args'
-         ⍵.IZ←'where ''method'' is one of'
 
          ⍵.__←⊃⎕XSI
          ⍵

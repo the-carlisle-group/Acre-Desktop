@@ -19,7 +19,7 @@
      z←dft('⎕io',cu[cl⍳exc])_is_ cfg.⍎⍕0,cu[cl⍳exc←cl~rl] ⍝ custom to dft
      z←dft('⎕io',ru[rl⍳int])_is_ cfg.⍎⍕0,cu[cl⍳int←rl∩cl] ⍝ supplied to dft
 
-     dft⊣dft.⎕EX'Open'⊣dft.(Dependencies{⍺,⍵/⍨0∊⍴⍺}←Open) ⍝ pro-tem
+     dft⊣dft.⎕EX'Open'⊣dft.(Dependencies{⍺,⍵/⍨0∊⍴⍺}←Open) ⍝ remove ⍝TODO⍝
 
 ⍝ [⍺] default space
 ⍝ ⍵ config filename

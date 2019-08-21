@@ -1,8 +1,11 @@
  ToAPLAN←{
      0∊⍴⍵:2⍴''''
-     PL.format #.⍎if nonul⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
+     arg←⊃∘prefSpace if(0≤⎕NC)⊃(⊣,' ',⊢)/⍵
+     0::''⊣logMsg(⊂MS.DN,MS.CL),↓UT.bx↑⎕DM ⍝ show error
+     PL.format{#.⍎⍣(nonul ⍵)⊢⍵}arg
+
 ⍝ format value as APLAN expression
 ⍝ see FromAPLAN
 ⍝ expression requires quotes if it contains [brackets].
-⍝ Phil 2019-08-16 16:51 5.2.0+240
+⍝ Phil 2019-08-21 11:25 5.2.0+242
  }

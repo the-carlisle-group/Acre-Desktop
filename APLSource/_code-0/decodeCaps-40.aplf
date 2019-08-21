@@ -1,10 +1,11 @@
  decodeCaps←{⍺←⊢ ⋄ null ⍵:''
-     delta←{('∆⍙',⍵)[('+±',⍵)⍳⍵]}   ⍝ remove this in June or July
+⍝     delta←{('∆⍙',⍵)[('+±',⍵)⍳⍵]}   ⍝ remove this in June or July
      in out←'#-0' '#'(⊢,,)¨⍺⊣'/.'
      hd←⎕D,'abcdef',⎕D,'ABCDEF'
      one←{null 1⊃n c←2↑'-'sep ⍵:⍺,n
          ⍺,⊢⌿(↑1 0 Cc¨⊂n)⊖⍨(≢n)↑⌽,⍉(4⍴2)⊤16|hd⍳c}
-     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sep delta⊃,/in∘,¨⊂if≡⍵
+⍝    (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sep delta⊃,/in∘,¨⊂if≡⍵
+     (≢out)↓¨(⊢⊂⍨out⍷⊢)⊃,/(⊃out)∘one eu 1↓(⊃in)sep⊃,/in∘,¨⊂if≡⍵
 ⍝ ⍺ input output separators
 ⍝ ← (ns.path)+
 ⍝   'zero.One.tWo.THree.foUr.NinETynIne' +
@@ -12,4 +13,5 @@
 ⍝   'zero-0/One-1/tWo-2/THree-3/foUr-4/NinETynIne-99' +
 ⍝ see encodeCaps
 ⍝ Phil Last 2018-01-11 17.17
+⍝ Phil 2019-08-19 09:52 5.2.0+241
  }
