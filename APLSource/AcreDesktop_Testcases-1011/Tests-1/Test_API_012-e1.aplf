@@ -1,5 +1,5 @@
  R←Test_API_012(stopFlag batchFlag);⎕TRAP;F;path;result;buff
-⍝ Exercise the API function `changes`.
+⍝ Exercise the API function `ChangeFile`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -10,10 +10,15 @@
  #.TEMP.Foo←{42}
 
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
- result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
+ result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
 
- buff←⎕SE.acreAPI.changefile'#.TEMP.Foo'
- →GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}buff
+ buff←⎕SE.acre.Changefile'#.TEMP.Foo'
+ →GoToTidyUp 1≠≢buff
+ →GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}⊃buff
+
+ buff←⎕SE.acre.Changefile'#.TEMP.Foo' '#.TEMP.Foo'
+ →GoToTidyUp 2≠≢buff
+ →GoToTidyUp 0∊≢¨buff
 
  R←∆OK
 

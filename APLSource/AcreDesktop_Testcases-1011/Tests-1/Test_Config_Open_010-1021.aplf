@@ -1,4 +1,4 @@
- R←Test_Config_Open_010(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;list;projectName2;projectPath2;ref2;noOfProjects;bin;configFilename;messages
+ R←Test_Config_Open_010(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;configParms;list;projectName2;projectPath2;ref2;noOfProjects;bin;configFilename;messages
 ⍝ Create a project and check whether `Open` with `-track=off` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -33,12 +33,13 @@
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←''',projectPath2,' #.Temp -track=off'''
- buff,←⊂'   ProjectSpace←''#.',projectName,''''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂'  "Open": "',projectPath2,' #.Temp -track=off",'
+ configParms,←⊂'  "ProjectSpace": "#.',projectName,'"'
+ configParms,←⊂'}'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath

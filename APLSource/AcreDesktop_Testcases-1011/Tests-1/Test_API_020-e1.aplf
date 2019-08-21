@@ -1,5 +1,5 @@
- R←Test_Run_006(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;itemName;sourceFilename
-⍝ Exercise the `run` function on "itemname".
+ R←Test_API_020(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;itemName;sourceFilename
+⍝ Exercise the API function `ItemName`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -14,8 +14,8 @@
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
 
- sourceFilename←'sourcefile'⎕SE.acre.run'#.',projectName,'.Hello'
- itemName←⊃'itemname'⎕SE.acre.run sourceFilename
+ sourceFilename←⎕SE.acre.Sourcefile'#.',projectName,'.Hello'
+ itemName←⊃⎕SE.acre.Itemname sourceFilename
  →GoToTidyUp itemName≢'#.',projectName,'.Hello'
 
  R←∆OK

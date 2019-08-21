@@ -1,5 +1,5 @@
  R←Test_API_002(stopFlag batchFlag);⎕TRAP;buff
-⍝ Exercise the API function `toaplan`.
+⍝ Exercise the API function `ToAPLAN`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed

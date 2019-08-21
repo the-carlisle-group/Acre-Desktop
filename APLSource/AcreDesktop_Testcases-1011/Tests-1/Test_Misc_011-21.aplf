@@ -18,7 +18,7 @@
  :EndTrap
 
  →GoToTidyUp result≢'#.',projectName
- projects←⎕SE.acreAPI.projects''
+ projects←⎕SE.acre.Projects''
  filename←(2⊃projects[projects[;1]⍳⊂'#.',projectName;]),'acre.config'
  config←##.APLTreeUtils.ReadUtf8File filename
  config←'CaseCode←''Off'''⎕R'CaseCode←''Off'''⊣config

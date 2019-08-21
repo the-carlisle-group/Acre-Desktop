@@ -1,4 +1,4 @@
- R←Test_Config_Open_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;projectName2;projectPath2;ref2;openProjects;noOfProjects;bin;configFilename;messages
+ R←Test_Config_Open_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;configParms;result;projectName2;projectPath2;ref2;openProjects;noOfProjects;bin;configFilename;messages
 ⍝ Create a project and check whether `acre.config[Open]` is honored. (Single project with blank in filename)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -37,12 +37,13 @@
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←(⊂''"',projectPath2,'" "#.Temp"'')'
- buff,←⊂'   ProjectSpace←''#.',projectName,''''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂' "Open": "\"',projectPath2,'\" #.Temp",'
+ configParms,←⊂' "ProjectSpace": "#.',projectName,'"'
+ configParms,←⊂'}'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  result←∆RunUcmd'OpenProject ',projectPath
 
@@ -51,12 +52,13 @@
 
  ∆ClearLog
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←(⊂''"',projectPath2,'" #.Temp'')'
- buff,←⊂'   ProjectSpace←''#.',projectName,''''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂' "Open": "\"',projectPath2,'\" #.Temp",'
+ configParms,←⊂' "ProjectSpace": "#.',projectName,'"'
+ configParms,←⊂'}'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'OpenProject ',projectPath

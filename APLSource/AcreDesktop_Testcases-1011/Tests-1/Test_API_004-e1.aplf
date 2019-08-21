@@ -1,12 +1,10 @@
  R←Test_API_004(stopFlag batchFlag);⎕TRAP;buff
-⍝ Exercise the API function `sourcefile`.
+⍝ Exercise the API function `Sourcefile`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
  buff←⊃⎕SE.acre.Sourcefile⊃⎕XSI
- →PassesIf'.aplf'{⍺≡(-⍴,⍺)↑⍵}buff
- buff←⊃⎕SE.acre.Sourcefile⊃⎕SI ⍝ using prefSpace refuses ⎕SE
  →PassesIf'.aplf'{⍺≡(-⍴,⍺)↑⍵}buff
 
  R←∆OK

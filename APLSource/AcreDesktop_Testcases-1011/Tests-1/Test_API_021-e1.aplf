@@ -1,10 +1,10 @@
- R←Test_Run_003(stopFlag batchFlag);⎕TRAP;version
-⍝ Exercise the `run` function on `version`.
+ R←Test_API_021(stopFlag batchFlag);⎕TRAP;version
+⍝ Exercise the API function `Version`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
- version←2⊃'version'⎕SE.acre.run''
+ version←2⊃⎕SE.acre.Version''
  →PassesIf 2≤'.'+.=version
  →PassesIf 3=⍴'.'##.APLTreeUtils.Split version
  →PassesIf 2=⍴'+'##.APLTreeUtils.Split version

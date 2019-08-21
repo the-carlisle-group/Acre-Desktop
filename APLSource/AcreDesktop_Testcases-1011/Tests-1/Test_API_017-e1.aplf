@@ -1,10 +1,15 @@
  R←Test_API_017(stopFlag batchFlag);⎕TRAP;fn;new;ns;nm
-⍝ Exercise the API function `editarray`.
+⍝ Exercise the API function `EditArray`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ :If batchFlag
+     R←∆NoBatchTest
+     :Return
+ :EndIf
 
  R←∆Failed
 
- fn←⎕SE.acreAPI.editarray
+ fn←⎕SE.acre.EditArray
  new←,∘'N'⍣{0=⎕NC ⍺}'#.'                 ⍝ non-existent #.N+
  ns←⍎new ⎕NS''                           ⍝ create global space
  ns.str←'please change this string'

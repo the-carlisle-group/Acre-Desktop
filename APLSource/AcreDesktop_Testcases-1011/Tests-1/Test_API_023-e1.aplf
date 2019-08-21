@@ -1,0 +1,27 @@
+ R←Test_API_023(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+⍝ Exercise the API function `Stats`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'\',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName
+
+ ref.⎕FX'r←Hello' 'r←''World'''
+ {}∆RunUcmd'SetChanged #.',projectName,'.Hello'
+ result←⎕SE.acre.Stats''
+ →GoToTidyUp 0≠≢result
+ result←⎕SE.acre.Stats projectName
+ →GoToTidyUp 2≠⍴⍴result
+ result←⎕SE.acre.Stats'-all'
+ →GoToTidyUp 2 1≢⍴result
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
+⍝Done

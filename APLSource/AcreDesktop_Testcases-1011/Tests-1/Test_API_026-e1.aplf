@@ -1,5 +1,5 @@
- R←Test_API_010(stopFlag batchFlag);⎕TRAP;buff;path;F;result
-⍝ Exercise the API function `Deletefile`.
+ R←Test_API_026(stopFlag batchFlag);⎕TRAP;path;F;result
+⍝ Exercise the API function `PurgeHistory`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -13,9 +13,14 @@
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
  →GoToTidyUp'#.TEMP'≢result
 
- buff←⎕SE.acre.Deletefile'#.TEMP.Foo'
- →GoToTidyUp 0=≢buff
- →GoToTidyUp'/Foo.aplf.delete'{⍺≢(-⍴,⍺)↑⍵}⊃buff
+ #.TEMP.Foo←{42.123}
+ result←⎕SE.acre.SetChanged'#.TEMP.Foo'
+ →GoToTidyUp'#.TEMP.Foo'≢⊃result
+ →GoToTidyUp 1≠≢F.ListFiles path,'\.acre\changes\*'
+
+ result←⎕SE.acre.PurgeHistory'#.TEMP'
+ →GoToTidyUp 1≢result
+ →GoToTidyUp 0≠≢F.ListFiles path,'\.acre\changes\*'
 
  R←∆OK
 

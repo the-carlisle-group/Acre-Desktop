@@ -1,4 +1,4 @@
- R←Test_Config_Open_001(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;configFilename;bin;buff;list;messages
+ R←Test_Config_Open_001(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;configFilename;bin;configParms;list;messages
 ⍝ Create a project and check whether `acre.config[Open]` is honored. (Single project, simple "Open")
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -35,12 +35,13 @@
  #.⎕EX¨projectName projectName2
  #.⎕SHADOW'Temp'
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←(''',projectPath2,' #.Temp'')'
- buff,←⊂'   ProjectSpace←''#.',projectName,''''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂' "Open": "',projectPath2,' #.Temp",'
+ configParms,←⊂' "ProjectSpace": "#.',projectName,'"'
+ configParms,←⊂'}'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath

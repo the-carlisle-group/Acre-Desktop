@@ -1,5 +1,5 @@
- R←Test_Run_007(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;expected;list;names
-⍝ Exercise the `run` function on "nameclass".
+ R←Test_NameClass_002(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;aplsourcePath;result;expected;list;names
+⍝ Exercise the `nameclass` function.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -20,7 +20,7 @@
  ref.⎕FIX':Interface MyInterface' ':EndInterface'
  expected←'.aplf' '.aplo' '.charstring' '.charlist' '.charmat' '.array' '.aplc' '.apln' '.apli'
  names←'Hello' 'MyOp' 'varsSimple' 'varsVTV' 'varsMat' 'varsMixed' 'MyClass' 'MyNamespace' 'MyInterface'
- list←'NameClass'⎕SE.acre.run(⊂'#.',projectName,'.'),¨names
+ list←⎕SE.acre.Nameclass(⊂'#.',projectName,'.'),¨names
  →GoToTidyUp list≢expected
 
  R←∆OK

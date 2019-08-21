@@ -1,5 +1,5 @@
- R←Test_Config_StartUp_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;bin;configFilename
-⍝ Create a project and check whether `acre.config[StartUp]` is honored.
+ R←Test_Config_091(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list;configFilename;configParms;bin
+⍝ Create a project with a config file in APLAN format. Now deprecated and not documented but still supported.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -23,15 +23,16 @@
  #.Temp.Works←0
 
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   CaseCode←''On'''
- buff,←⊂'   Load←'''''
- buff,←⊂'   Open←'''''
- buff,←⊂'   ProjectSpace←'''''
- buff,←⊂'   StartUp←''#.Temp.Works←1'''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'['
+ configParms,←⊂' CaseCode←''On'''
+ configParms,←⊂' Load←'''''
+ configParms,←⊂' Open←'''''
+ configParms,←⊂' ProjectSpace←'''''
+ configParms,←⊂' StartUp←''#.Temp.Works←1'''
+ configParms,←⊂']'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName

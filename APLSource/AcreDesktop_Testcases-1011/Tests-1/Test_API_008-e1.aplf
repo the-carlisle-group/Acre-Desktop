@@ -1,11 +1,11 @@
- R←Test_API_008(stopFlag batchFlag);⎕TRAP;file
-⍝ Exercise the API function `itemname`.
+ R←Test_API_008(stopFlag batchFlag);⎕TRAP;file;buff
+⍝ Exercise the API function `Itemname`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
-⍝ →PassesIf 0=≢¨⎕SE.acre.Itemname'DoesNotExistForSure'
-⍝ due to enhancement #170 commit 5.0.14+179 everything now gives an answer
+ file←⎕SE.acre.Itemname buff←'DoesNotExistForSure'
+ →PassesIf buff≡1⊃file
  file←⎕SE.acre.Sourcefile'#.acre._code.EditArray'
  →PassesIf(,⊂'#.acre._code.EditArray')≡⎕SE.acre.Itemname file
  file←⎕SE.acre.Sourcefile'#.acre._code.OpenProject'

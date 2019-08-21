@@ -1,0 +1,22 @@
+ R←Test_API_025(stopFlag batchFlag);list;projectName;projectPath;ref;result;tno;⎕TRAP
+⍝ Exercise the API function `CreateProject`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+
+ result←⎕SE.acre.CreateProject projectPath('#.',projectName)
+ →GoToTidyUp result≢'#.',projectName
+ →GoToTidyUp~##.FilesAndDirs.IsDir projectPath
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
+ F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
+⍝Done

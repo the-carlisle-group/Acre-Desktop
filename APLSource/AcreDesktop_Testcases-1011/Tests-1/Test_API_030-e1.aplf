@@ -1,0 +1,43 @@
+ R←Test_API_030(stopFlag batchFlag);⎕TRAP;rc;cmd;parms;_;log;projectDir;result;path
+⍝ Exercise the API function `Refresh`.
+⍝ For that to work we start an independent instance of Dyalog that loads a workspace which
+⍝ via ⎕LX executes a function that opens a project, makes a changes and then executes )OFF.
+⍝ In the current test we then execute acre.Refresh and check whether the change made it into the current WS.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ :If 'Win'≢3↑1⊃'#'⎕WG'APLVersion'
+     R←∆WindowsOnly
+     :Return
+ :EndIf
+
+ R←∆Failed
+
+ projectDir←##.FilesAndDirs.GetTempPath,'AcreDesktop_Testcases\',⊃⎕SI
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.PI←{2.14}
+ result←∆RunUcmd'CreateProject "',projectDir,'" #.TEMP'
+ →GoToTidyUp'#.TEMP'≢result
+
+ path←∆GetPathToOldestAPL'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'" '
+ cmd←'"',path,'/dyalog.exe" '
+ cmd,←'"',F.PWD,'\Tests\Change.dws" '
+ cmd,←'dir="',projectDir,'" '
+ :If 0
+     cmd,←'-x '
+ :EndIf
+ parms←##.Execute.DefaultParms
+ parms.dir←F.PWD,'\Tests'
+ parms.hidden←0
+ parms.wait←1
+ rc←parms ##.Execute.Application cmd
+ 'Could not start second APL instance'Assert 0=⊃rc
+ result←⎕SE.acre.Refresh'#.TEMP'
+ →GoToTidyUp(,⊂'#.TEMP.PI')≢result
+ →GoToTidyUp 3.14≢#.TEMP.PI ⍬
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectDir
+⍝Done

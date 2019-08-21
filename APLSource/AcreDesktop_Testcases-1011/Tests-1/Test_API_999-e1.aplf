@@ -1,28 +1,21 @@
- R←{reportOnly}Test_API_999(stopFlag batchFlag);⎕TRAP;buff;covered;defined;list
+ R←{reportOnly}Test_API_999(stopFlag batchFlag);⎕TRAP;list;missing;comments
 ⍝ Check whether all API functions are covered by test cases
 ⍝ This functions finds out what methods are actually available and then checks all test functions of the "API" group.
 ⍝ It relies on a convention: the name of the function to be testet (but nothing else) is expected to mentioned
 ⍝ on line 2 of any of the test functions between two ticks (`).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-
  R←∆Failed
-
  reportOnly←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'reportOnly'
-
- covered←'Test_API'{¯1++/((⍴⍺)↑[1+⎕IO]⍵)∧.=⍺}'T'⎕NL 3
- defined←≢⎕SE.acreAPI.⎕NL 3
- :If covered≠defined
-     list←↓¯1↓'Test_API'{⍵⌿⍨((⍴⍺)↑[1+⎕IO]⍵)∧.=⍺}'T'⎕NL 3
-     list←{¯1↓1↓{⍵/⍨{⍵∨≠\⍵}⍵='`'}(1+⎕IO)⊃⎕NR ⍵}¨list
+ list←↓¯1↓'Test_API'{⍵⌿⍨((⍴⍺)↑[1+⎕IO]⍵)∧.=⍺}'T'⎕NL 3
+ comments←{(1+⎕IO)⊃⎕NR ⍵}¨list
+ comments←{1↓¯1↓⍵/⍨{⍵∨≠\⍵}⍵='`'}¨comments
+ list←⊃,/{0=+/b←'``'⍷⍵:⊂⍵ ⋄ '`'~¨⍨(1,b)⊂'`',⍵}¨comments
+ missing←(' '~¨⍨↓⎕SE.acre.⎕NL 3)~list
+ :If 0<≢missing
      ⎕←' *** API functions uncovered by test cases:'
-     ⎕←⍪(' '~¨⍨↓⎕SE.acreAPI.⎕NL 3)~list
- :EndIf
-
- :If reportOnly
-     R←''
+     ⎕←⍪(' '~¨⍨↓⎕SE.acre.⎕NL 3)~list
+     R←(~reportOnly)/R
  :Else
-     →PassesIf covered=defined
-
      R←∆OK
  :EndIf
 ⍝Done

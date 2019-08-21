@@ -1,5 +1,5 @@
- R←Test_API_011(stopFlag batchFlag);⎕TRAP;buff;result;F;path;config
-⍝ Exercise the API function `config`.
+ R←Test_API_011(stopFlag batchFlag);⎕TRAP;buff;result;F;path;config;CR
+⍝ Exercise the API function `Config`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -13,12 +13,13 @@
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
  Assert'#.TEMP'≡result
 
- config←##.APLTreeUtils.ReadUtf8File path,'/acre.config'
- config←(3↑config),('ABC←''Foo''' 'DOB←''1954-10-02'''),3↓config
+ config←'flat'##.APLTreeUtils.ReadUtf8File path,'/acre.config'
+ CR←⎕UCS 13
+ config←CR ⎕SE.APLTreeUtils.Split({⍵↑⍨¯1+⍵⍳'}'}config),',',CR,'  "ABC":"Foo",',CR,'  "DOB":"1954-10-02"',CR,'}'
  ##.APLTreeUtils.WriteUtf8File(path,'/acre.config')config
 
  {}∆RunUcmd'Close #.TEMP'
- result←∆RunUcmd'OpenProject "',path,'"'
+ result←∆RunUcmd'OpenProject "',path,'"' ⍝ ,' -'
  Assert'#.TEMP'≡result
 
  buff←⎕SE.acre.Config'#.TEMP'

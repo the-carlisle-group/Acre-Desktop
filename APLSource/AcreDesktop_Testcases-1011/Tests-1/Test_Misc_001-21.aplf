@@ -1,4 +1,4 @@
- R←Test_Misc_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;messages
+ R←Test_Misc_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;log
 ⍝ Exercise the `Stats` command
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -12,13 +12,15 @@
  ∆ClearLog
 
  {}∆RunUcmd'CreateProject ',projectPath,' #.',projectName
- result←∆RunUcmd'Stats'
- →GoToTidyUp 0≠≢result
- messages←∆GetLog ⍬
- →GoToTidyUp 1≠+/∨/¨'Syntax: ]acre.Stats space'∘⍷¨messages
+ result←∆RunUcmd'Stats -all'
+ →GoToTidyUp 2≠≢result
+ →GoToTidyUp 2 2≢⊃∘⍴∘⍴¨,result
+
  result←∆RunUcmd'Stats #.',projectName
  →GoToTidyUp 2≠⍴⍴result
- →GoToTidyUp 14≠⊃⍴result
+
+ result←∆RunUcmd'Stats'
+ →GoToTidyUp 0≠≢result
 
  R←∆OK
 

@@ -1,8 +1,12 @@
- R←Test_Config_Open_004(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;projectName3;projectPath3;ref3;bin;configFilename;buff;list;messages
-⍝ Create a project and check whether `acre.config[Open]` is honored. (Two projects)
+ R←Test_Config_Open_004(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;projectName2;projectPath2;ref2;projectName3;projectPath3;ref3;bin;configFilename;configParms;list;messages;json
+⍝ Create a project and check whether `acre.config[Dependencies]` is honored (two projects).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
+
+ :If 16>⊃(//)⎕VFI{⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion'
+     →0,R←∆InvalidAplVersion
+ :EndIf
 
  noOfProjects←⊃⍴∆RunUcmd'Projects'
  projectName←⊃⎕SI
@@ -48,12 +52,12 @@
  #.⎕EX¨projectName projectName2 projectName3
  #.⎕SHADOW¨'Temp' 'Temp2'
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←(''',projectPath2,' #.Temp'')(''',projectPath3,' #.Temp2'')'
- buff,←⊂'   ProjectSpace←''#.',projectName,''''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←⎕NS''
+ configParms.Dependencies←⊂'"',projectPath2,'" #.Temp'
+ configParms.Dependencies,←⊂,'"',projectPath3,'" #.Temp2'
+ configParms.ProjectSpace←'#.',projectName
+ json←⎕JSON configParms
+ A.WriteUtf8File configFilename json
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath
@@ -80,7 +84,7 @@
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath3 ⋄ :EndTrap
  ∆ClearLog
- ∆RunUcmd'Close #.',projectName
- ∆RunUcmd'Close #.',projectName2
- ∆RunUcmd'Close #.',projectName3
+ :Trap 0 ⋄ ∆RunUcmd'Close #.',projectName ⋄ :EndTrap
+ :Trap 0 ⋄ ∆RunUcmd'Close #.',projectName2 ⋄ :EndTrap
+ :Trap 0 ⋄ ∆RunUcmd'Close #.',projectName3 ⋄ :EndTrap
 ⍝Done

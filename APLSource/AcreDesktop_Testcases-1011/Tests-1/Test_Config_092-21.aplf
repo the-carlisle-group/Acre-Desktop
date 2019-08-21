@@ -1,0 +1,50 @@
+ R←Test_Config_092(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list;configFilename;configParms;bin
+⍝ Create a project with a config file in namespace script format. Now deprecated and not documented but still supported.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ ∆ClearLog
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+
+ #.⎕EX projectName
+ #.⎕SHADOW'Temp'
+ 'Temp'#.⎕NS''
+ #.Temp.Works←0
+
+ (bin configFilename)←∆ReadConfigFile projectPath
+ configParms←''
+ configParms,←⊂':Namespace'
+ configParms,←⊂' CaseCode←''On'''
+ configParms,←⊂' Load←'''''
+ configParms,←⊂' Open←'''''
+ configParms,←⊂' ProjectSpace←'''''
+ configParms,←⊂' StartUp←''#.Temp.Works←1'''
+ configParms,←⊂':EndNamespace'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp 1≠#.Temp.Works
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆ClearLog
+ ∆RunUcmd'Close #.',projectName
+⍝Done

@@ -10,7 +10,7 @@
  ref←⍎projectName #.⎕NS''
  ref.⎕FX'r←Hello' 'r←''World'''
 
- result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
 
  ref.⎕FX'r←Hello' 'r←''World2'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'

@@ -1,0 +1,49 @@
+ R←Test_NameClass_001(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;messages
+⍝ Exercise `NameClass` function.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ ∆ClearLog
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello' 'r←''World'''
+ ref.⎕FX'Hello2←{''Universe''}'
+ ref.vtv←'APL' 'Python' 'Ruby'
+ ref.charmat←↑'APL' 'Python' 'Ruby'
+ ref.charvector←'APL is great'
+ ref.int←1 2 3
+ ref.mat←?2 3⍴1200
+ ref.nested←⊂⊂⊂1 2 3
+ ref.empty1←⍬
+ ref.empty2←''
+ 'container'ref.⎕NS''
+ ref.⎕FIX,¨':Namespace Foo' '∇r←Hello3' 'r←''All the rest''' '∇' ':EndNamespace'
+ ref.⎕FIX':Class Goo' '∇r←Hello4' ':Access Public Shared' 'r←''All the rest''' '∇' ':EndClass'
+ ref.⎕FIX':Interface Boo' '∇r←Hello5' '∇' ':EndInterface'
+ #.⎕SHADOW'AcreMessages'
+ {}∆RunUcmd'Projects'  ⍝ Make sure that at least one acre command was executed before doing a `run`.
+ →PassesIf 1=≢messages←∆GetLog ⍬
+
+ →PassesIf'.aplf'≡⊃⎕SE.acre.Nameclass⊃⎕XSI
+ →PassesIf'.apln'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.Foo'
+ →PassesIf'.aplc'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.Goo'
+ →PassesIf'.apli'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.Boo'
+ →PassesIf'.charlist'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.vtv'
+ →PassesIf'.charmat'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.charmat'
+ →PassesIf'.charstring'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.charvector'
+ →PassesIf'.array'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.int'
+ →PassesIf'.array'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.mat'
+ →PassesIf'.array'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.nested'
+ →PassesIf'.array'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.empty1'
+ →PassesIf'.charstring'≡⊃⎕SE.acre.Nameclass'#.',projectName,'.empty2'
+ →PassesIf'.*'≡⊃⎕SE.acre.Nameclass'Certainly_unknown'
+ →PassesIf'.apln' '.aplc' '.apli'≡⎕SE.acre.Nameclass(⊂'#.',projectName),¨'.Foo' '.Goo' '.Boo'
+ →PassesIf 0∊⍴⊃⎕SE.acre.Nameclass'#.',projectName,'.container'
+ →PassesIf'.*'≡⊃⎕SE.acre.Nameclass'#.DoesNotExist'
+
+ R←∆OK
+ ∆ClearLog
+⍝Done

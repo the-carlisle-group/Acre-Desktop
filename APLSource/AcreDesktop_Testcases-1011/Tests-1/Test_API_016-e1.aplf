@@ -1,10 +1,10 @@
  R←Test_API_016(stopFlag batchFlag);⎕TRAP;fn;new;old;alt
-⍝ Exercise the API function `aftersave`.
+⍝ Exercise the API function `AfterSave`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
- fn←⎕SE.acreAPI.aftersave
+ fn←⎕SE.acre.AfterSave
  old←fn''
  new←,∘'N'⍣{0=⎕NC ⍺}'#.'  ⍝ non-existent #.N+
  alt←,∘'M'⍣{0=⎕NC ⍺}'#.'  ⍝ non-existent #.M+

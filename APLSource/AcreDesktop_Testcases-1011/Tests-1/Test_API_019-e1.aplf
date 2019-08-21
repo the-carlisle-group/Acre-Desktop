@@ -1,5 +1,5 @@
- R←Test_Run_002(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;changeFilename;changePath;aplsourcePath;changeFilenames
-⍝ Exercise the `run` function on "changefile".
+ R←Test_API_019(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;changeFilename;changePath;aplsourcePath;changeFilenames;result
+⍝ Exercise the API function `ChangeFile`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -8,29 +8,30 @@
  projectPath←F.EnforceSlash ∆PATH,'\',projectName
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
- {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName
+ result←∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName,' -keephistory=on'
+ →GoToTidyUp'#.Test_API_019'≢result
 
  ref.⎕FX'r←Hello' 'r←''World'''
  {}∆RunUcmd'SetChanged #.',projectName,'.Hello'
  ref.⎕FX'r←Hello2' 'r←''Whole universe'''
  {}∆RunUcmd'SetChanged #.',projectName,'.Hello2'
- changeFilename←'changefile'⎕SE.acre.run'#.',projectName,'.Hello'
+ changeFilename←⊃⎕SE.acre.Changefile'#.',projectName,'.Hello'
  changePath←F.EnforceSlash 1⊃⎕NPARTS changeFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
  →GoToTidyUp 1≠⍴⊃F.Dir changeFilename
  aplsourcePath←('Expand'F.NormalizePath changePath,'..\..'),'\APLSource'
  →GoToTidyUp 3≠⍴⊃F.Dir aplsourcePath,'\*'       ⍝ Quad-Vars script is added automatically
- changeFilenames←'changefile'∘⎕SE.acre.run¨('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
+ changeFilenames←⎕SE.acre.Changefile('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
  →GoToTidyUp 2≠⍴changeFilenames
  →GoToTidyUp 1 1≢≡¨changeFilenames
  →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨changeFilenames
 
- changeFilename←'changefile'⎕SE.acre.run'#.',projectName,'.Hello_DoesNotExist'
+ changeFilename←⊃⎕SE.acre.Changefile'#.',projectName,'.Hello_DoesNotExist'
  →GoToTidyUp 1≠≡changeFilename
  →GoToTidyUp~changePath{⍺≡(⍴⍺)↑⍵}changeFilename
  →GoToTidyUp'.*.change'{⍺≢(-⍴⍺)↑⍵}(⍴changePath)↓changeFilename
 
- →GoToTidyUp 0≠≢'changefile'⎕SE.acre.run'#.DoesNotExistAtAll'
+ →GoToTidyUp 0≠≢⎕SE.acre.Changefile'#.DoesNotExistAtAll'
 
  R←∆OK
 

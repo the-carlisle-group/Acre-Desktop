@@ -1,6 +1,7 @@
- {r}←oldName RenameTestFnsTo newName;body;rc;header;comment;res;name;right;left;newParent;oldParent;delFilanme;A
+ {r}←oldName RenameTestFnsTo newName;body;rc;header;comment;res;name;right;left;newParent;oldParent;delFilanme;A;⎕ML;⎕IO
 ⍝ Renames a test function and tells acre.
 ⍝ r ← ⍬
+ ⎕IO←0 ⋄ ⎕ML←3
  :If 9=#.⎕NC'APLTreeUtils'
      A←#.APLTreeUtils
  :ElseIf 9=⎕NC'APLTreeUtils'
@@ -8,9 +9,9 @@
  :ElseIf 9=##.⎕NC'APLTreeUtils'
      A←##.APLTreeUtils
  :ElseIf 9∊{⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.⎕NC⊂'APLTreeUtils'
-     A←({⎕ML←1 ⋄ ⊃⍵}(9={⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.⎕NC⊂'APLTreeUtils')/⎕RSI).APLTreeUtils
+     A←(⊃(9={⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.⎕NC⊂'APLTreeUtils')/⎕RSI).APLTreeUtils
  :ElseIf 9∊{⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.##.⎕NC⊂'APLTreeUtils'
-     A←({⎕ML←1 ⋄ ⊃⍵}(9={⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.##.⎕NC⊂'APLTreeUtils')/⎕RSI.##).APLTreeUtils
+     A←(⊃(9={⎕ML←1 ⋄ ⊃¨⍵}⎕RSI.##.⎕NC⊂'APLTreeUtils')/⎕RSI.##).APLTreeUtils
  :Else
      'Missing: APLTreeUtils'⎕SIGNAL 6
  :EndIf
@@ -19,20 +20,16 @@
  :If '.'∊oldName
      (oldParent oldName)←¯1 0↓¨'.'A.SplitPath oldName
      oldParent←⍎oldParent
- :ElseIf 3=⎕NC oldName
-     oldParent←⎕THIS
  :Else
      oldParent←{⎕ML←1 ⋄ ⊃⍵}⎕RSI
  :EndIf
  :If '.'∊newName
      (newParent newName)←¯1 0↓¨'.'A.SplitPath newName
      newParent←⍎newParent
- :ElseIf oldParent≡⎕THIS
-     newParent←⎕THIS
  :Else
-     newParent←{⎕ML←1 ⋄ ⊃⍵}⎕RSI
+     newParent←↑⎕RSI
  :EndIf
- 'Check parent!'⎕SIGNAL 11/⍨oldParent≢newParent
+ ⎕SIGNAL 11/⍨oldParent≢newParent
  'Function to be renamed not found'⎕SIGNAL 11/⍨3≠oldParent.⎕NC oldName
  'New name is already used'⎕SIGNAL 11/⍨0<newParent.⎕NC newName
  'New name is invalid'⎕SIGNAL 11/⍨¯1=newParent.⎕NC newName
@@ -87,39 +84,26 @@
      oldParent.⎕EX oldName
  :Else
      (oldName newName)←{(⍕newParent),'.',⍵}¨oldName newName
-     :If 0<⎕SE.⎕NC'acre'
-         :If 3=⎕SE.acre.⎕NC'run'  ⍝ acre 4?!
-             delFilanme←({⎕ML←1 ⋄ ⊃⍵}'changefile'⎕SE.acre.run newName),'.DEL'
-             :If ⎕NEXISTS delFilanme
-                 ⎕NDELETE delFilanme
-             :EndIf
-             :If 0∊⍴rc←∆RunUcmd'SetChanged ',newName
-                 ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
-             :EndIf
-             :If 0∊⍴rc←∆RunUcmd'Erase ',oldName
-                 ⎕←'acre was told about the deletion of a test fns but it was not interested.'
-             :EndIf
-         :Else
-             delFilanme←({⎕ML←1 ⋄ ⊃⍵}∆RunUcmd'getchangefilename ',newName),'.DEL'
-             :If ⎕NEXISTS delFilanme
-                 ⎕NDELETE delFilanme
-             :EndIf
-             :If 0∊⍴rc←∆RunUcmd'setchanged ',newName
-                 ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
-             :EndIf
-             :If 0∊⍴rc←∆RunUcmd'Erase ',oldName
-                 ⎕←'acre was told about the deletion of a test fns but it was not interested.'
-             :EndIf
-         :EndIf
-     :Else
-         delFilanme←({⎕ML←1 ⋄ ⊃⍵}#.acre.GetChangeFileName newName),'.DEL'
+     :If 3=⎕SE.acre.⎕NC'run'  ⍝ acre 4 or better?!
+         delFilanme←((-⍴'.change')↓'changefile'⎕SE.acre.run newName),'.delete'
          :If ⎕NEXISTS delFilanme
              ⎕NDELETE delFilanme
          :EndIf
-         :If 0∊⍴rc←#.acre.SetChanged newName
+         :If 0∊⍴rc←⎕SE.UCMD'acre.SetChanged ',newName
              ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
          :EndIf
-         :If 0∊⍴rc←#.acre.Erase oldName
+         :If 0∊⍴rc←⎕SE.UCMD'acre.Erase ',oldName
+             ⎕←'acre was told about the deletion of a test fns but it was not interested.'
+         :EndIf
+     :Else
+         delFilanme←((-⍴'.change')↓↑⎕SE.acre.Changefile,newName),'.DEL'
+         :If ⎕NEXISTS delFilanme
+             ⎕NDELETE delFilanme
+         :EndIf
+         :If 0∊⍴rc←⎕SE.UCMD'acre.setchanged ',newName
+             ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
+         :EndIf
+         :If 0∊⍴rc←⎕SE.UCMD'acre.Erase ',oldName
              ⎕←'acre was told about the deletion of a test fns but it was not interested.'
          :EndIf
      :EndIf

@@ -1,21 +1,20 @@
- R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath
-⍝ Create a project and check whether the user's exit function is called correctly without a left argument.
-⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
+ R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath
+⍝ A user exit function is supposed to return a result. If it does not a VALUE ERROR is reported but it is executed anyway.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- →0,R←∆Inactive   ⍝ At the moment a niladic or monadic user exit function would freeze the APL session.
+ R←∆Failed
+
+ →0,R←∆Inactive   ⍝ APL becomes unresponsive
 
  :If batchFlag
      →0,R←∆NoBatchTest
  :EndIf
 
- R←∆Failed
-
  ∆ClearLog
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.∆FLAG←0
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit' '⍝ Niladic!' '#.TEMP.∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit' '⍝ Niladic!' 'r←#.TEMP.∆FLAG←1'
  Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ Change the function and then press <escape>'
  projectPath←F.GetTempPath,⊃⎕SI
  F.RmDir projectPath
@@ -30,13 +29,14 @@
  #.⎕EX'TEMP'
 
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←'''''
- buff,←⊂'   ProjectSpace←''#.TEMP'''
- buff,←⊂'   SCMexit←''#.TEMP.UserExit'''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂' "Open": "",'
+ configParms,←⊂' "ProjectSpace": "#.TEMP",'
+ configParms,←⊂' "AfterSave": "#.TEMP.UserExit"'
+ configParms,←⊂'}'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath

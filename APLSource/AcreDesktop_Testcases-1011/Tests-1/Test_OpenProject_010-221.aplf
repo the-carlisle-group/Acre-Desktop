@@ -41,10 +41,11 @@
 
 ⍝ Create Main's config file which defines the dependencies:
  (bin configFilename)←∆ReadConfigFile projectPath1
- configParms←⊂':Namespace'
- configParms,←⊂'    Open←''',projectPath2,''' ''',projectPath3,''''
- configParms,←⊂'    ProjectSpace←''#.',projectName1,''''
- configParms,←⊂':EndNamespace '
+ configParms←⊂'{'
+ configParms,←⊂'  "Open": "',projectPath2,' ',projectPath3,'",'
+ configParms,←⊂'  "ProjectSpace" "#.',projectName1,'"'
+ configParms,←⊂'}'
+ configParms←,¨configParms
  ##.APLTreeUtils.WriteUtf8File configFilename configParms
 
 ⍝ Create the first dependency project

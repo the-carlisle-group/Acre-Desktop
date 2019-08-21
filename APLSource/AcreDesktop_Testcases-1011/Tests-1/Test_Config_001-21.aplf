@@ -1,4 +1,4 @@
- R←Test_Config_CaseCode_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list
+ R←Test_Config_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;result;list
 ⍝ Create a project and check whether `acre.config[CaseCode]` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 

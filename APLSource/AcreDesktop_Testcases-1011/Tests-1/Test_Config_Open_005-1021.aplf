@@ -1,6 +1,5 @@
- R←Test_Config_Open_005(stopFlag batchFlag);⎕TRAP;projectPath;bin;configFilename;buff;dmx
+ R←Test_Config_Open_005(stopFlag batchFlag);⎕TRAP;projectPath;bin;configFilename;dmx;configParms
 ⍝ Create a project and check whether an invalid config file makes acre signal an error (was once a bug)
-⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -22,13 +21,13 @@
  #.⎕EX'TEMP'
 
  configFilename←2⊃∆ReadConfigFile projectPath
- buff←''
- buff,←⊂'['
- buff,←⊂'   Open←'''''
- buff,←⊂'   ProjectSpace←''#.TEMP'''
- buff,←⊂'   StartUp='''''               ⍝ Watch out: invalid syntax!
- buff,←⊂']'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂'  "Open": ""'
+ configParms,←⊂'  "ProjectSpace": "#.TEMP"'
+ configParms,←⊂'  "StartUp" ""'               ⍝ Watch out: invalid syntax: missing `:`!
+ configParms,←⊂'}'
+ A.WriteUtf8File configFilename configParms
 
  :Trap 0
      {}∆RunUcmd'OpenProject ',projectPath
@@ -36,8 +35,7 @@
  :Else
      dmx←⎕DMX
      →PassesIf dmx.EN∊11 911
-⍝     . ⍝TODO⍝  ⍝TODO⍝  ⍝TODO⍝      →PassesIf'NONCE ERROR character error'{⍺≡(≢⍺)↑⍵}⊃dmx.DM
-     →PassesIf'Problem reading'(1∊⍷)⊃dmx.DM
+     →PassesIf'Command Execution Failed: Problem reading'(1∊⍷)⊃dmx.DM
  :EndTrap
 
  R←∆OK

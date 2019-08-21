@@ -30,11 +30,12 @@
 
  (bin configFilename)←∆ReadConfigFile projectPath
  buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←'''''
- buff,←⊂'   ProjectSpace←''#.TEMP'''
- buff,←⊂'   SCMexit←''#.TEMP.UserExit'''
- buff,←⊂':EndNamespace'
+ buff,←⊂'{'
+ buff,←⊂' "Open": "",'
+ buff,←⊂' "ProjectSpace": "#.TEMP",'
+ buff,←⊂' "AfterSave": "#.TEMP.UserExit"'
+ buff,←⊂'}'
+ buff←,¨buff
  A.WriteUtf8File configFilename buff
  {}projectPath ∆RunGitCommand'add .'
  {}projectPath ∆RunGitCommand'commit -m "Initial commit"'
@@ -56,7 +57,7 @@
  R←∆OK
 
 ∆TidyUp:
- :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap   ⍝ At this point RmDir fails with "ACCESS DENIED": Git is the culprit! However, rd works...
+ :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap   ⍝ At this point RmDir fails with "ACCESS DENIED": Git is the culprit! However, rd works. Reported as <01651>
  ∆ClearLog
  ∆RunUcmd'Close #.TEMP'
 ⍝Done

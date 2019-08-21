@@ -1,5 +1,5 @@
  R←Test_Config_UserExit_002(stopFlag batchFlag);⎕TRAP;configFilename;bin;buff;list;messages;projectPath
-⍝ Create a project and check whether `acre.config[SCMexit]` is honored.
+⍝ Create a project and check whether `acre.config[AfterSave]` is honored.
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -30,11 +30,12 @@
 
  (bin configFilename)←∆ReadConfigFile projectPath
  buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←'''''
- buff,←⊂'   ProjectSpace←''#.TEMP'''
- buff,←⊂'   SCMexit←''#.TEMP.UserExit'''
- buff,←⊂':EndNamespace'
+ buff,←⊂'{'
+ buff,←⊂'  "Open": "",'
+ buff,←⊂'  "ProjectSpace": "#.TEMP",'
+ buff,←⊂'  "AfterSave": "#.TEMP.UserExit"'
+ buff,←⊂'}'
+ buff←,¨buff
  A.WriteUtf8File configFilename buff
 
  :Trap (~stopFlag)/0

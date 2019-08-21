@@ -1,4 +1,4 @@
- R←Test_Config_ProjectSpace_001(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;buff;result;list;bin;configFilename
+ R←Test_Config_003(stopFlag batchFlag);⎕TRAP;projectPath;ref;projectName;configParms;result;list;bin;configFilename
 ⍝ Create a project and check whether `acre.config[ProjectSpace]` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -20,11 +20,12 @@
  #.⎕EX projectName
  #.⎕SHADOW'Temp'
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   ProjectSpace←''#.Temp'''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂' "ProjectSpace": "#.Temp"'
+ configParms,←⊂'}'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'Projects '

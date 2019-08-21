@@ -9,7 +9,7 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
 
- result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
  ref.⎕FX'r←Hello' 'r←''World'''

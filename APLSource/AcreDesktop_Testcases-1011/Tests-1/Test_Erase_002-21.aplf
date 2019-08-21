@@ -16,7 +16,7 @@
  ∆ClearLog
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
  :Else
      →GoToTidyUp 1
  :EndTrap
@@ -34,7 +34,7 @@
  list←⊃('recursive' 1)F.Dir path,'*'
  →GoToTidyUp 4≠⍴list  ⍝ Quad-Vars script, 2 functions and what once as a namespace (folder): it survives!
  result←projectName∘{∆RunUcmd'Restore #.',⍺,'.',⍵}¨'Sub' 'Sub.Hello3' 'Sub.Hello4' 'DoesNotExist'
- →GoToTidyUp 0 1 1 0≢⊃∘⍴¨result
+ →GoToTidyUp 0 1 1 0≢≢¨result
  →GoToTidyUp 2≠⊃+/0<⎕NC¨projectName{⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
 
  R←∆OK

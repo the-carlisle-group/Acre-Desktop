@@ -1,5 +1,5 @@
- R←Test_API_010(stopFlag batchFlag);⎕TRAP;buff;path;F;result
-⍝ Exercise the API function `Deletefile`.
+ R←Test_API_027(stopFlag batchFlag);⎕TRAP;path;F;result
+⍝ Exercise the API function `OpenProject`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -13,9 +13,14 @@
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
  →GoToTidyUp'#.TEMP'≢result
 
- buff←⎕SE.acre.Deletefile'#.TEMP.Foo'
- →GoToTidyUp 0=≢buff
- →GoToTidyUp'/Foo.aplf.delete'{⍺≢(-⍴,⍺)↑⍵}⊃buff
+ result←⎕SE.acre.Close'#.TEMP'
+ →GoToTidyUp 1≢result
+ #.⎕EX'TEMP'
+
+ ∘∘∘ ⍝ The next line crashes because acre cannot find the file .acre\latest  ⍝TODO⍝
+ result←∆RunUcmd'OpenProject "',path,'" #.TEMP'
+ →GoToTidyUp'#.TEMP'≢result
+ →GoToTidyUp 9≠⎕NC'#.TEMP'
 
  R←∆OK
 

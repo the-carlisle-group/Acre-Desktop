@@ -1,0 +1,48 @@
+ R←Test_API_022(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;deleteFilename;result;changePath;deleteFilenames
+⍝ Exercise the API functions `Deletefile`, `Erase` and `Restore`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'\',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName,' -keephistory=on'
+
+ ref.⎕FX'r←Hello' 'r←''World'''
+ {}∆RunUcmd'SetChanged #.',projectName,'.Hello'
+ ref.⎕FX'r←Hello2' 'r←''Whole universe'''
+ {}∆RunUcmd'SetChanged #.',projectName,'.Hello2'
+
+ deleteFilename←⊃⎕SE.acre.Deletefile'#.',projectName,'.Hello'
+ result←∆RunUcmd'Erase #.',projectName,'.Hello'
+ →GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello'
+ deleteFilename←⎕SE.acre.Deletefile'#.',projectName,'.Hello2'
+ result←∆RunUcmd'Erase #.',projectName,'.Hello2'
+ →GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello2'
+ changePath←F.EnforceBackslash 1⊃⎕NPARTS⊃deleteFilename
+ →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
+ →GoToTidyUp 2≠⍴⊃F.Dir changePath
+ →GoToTidyUp~F.IsFile⊃deleteFilename
+ deleteFilenames←##.FilesAndDirs.NormalizePath ⎕SE.acre.Deletefile('#.',projectName,'.Hello')('#.',projectName,'.Hello2 ')
+ →GoToTidyUp 1 1≢≡¨deleteFilenames
+ →GoToTidyUp 2≠⍴deleteFilenames
+ →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨deleteFilenames
+
+ →GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\.acre\changes\*.delete'
+ →GoToTidyUp 0≠≢(F.ListFiles projectPath,'\.acre\changes\')~list
+ →GoToTidyUp 0≠⎕NC'#.',projectName,'.Hello2'
+ result←⎕SE.acre.Restore'#.',projectName,'.Hello2'
+ →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\*.aplf.change'
+ →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\*.delete'
+ →GoToTidyUp 3≠⎕NC'#.',projectName,'.Hello2'
+
+ →GoToTidyUp 0≠≢⎕SE.acre.Deletefile'#.DoesNotExistAtAll'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
+⍝Done

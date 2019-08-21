@@ -1,0 +1,48 @@
+ R←Test_API_029(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;list;ts;cmd
+⍝ Exercise the API function `Changes`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'\',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName,' -keephistory=on'
+
+ ref.⎕FX'r←Hello' 'r←''World'''
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
+ →GoToTidyUp'#.Test_API_029.Hello'≢1⊃result
+ ref.⎕FX'r←Hello2' 'r←''Whole galaxy'''
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
+ →GoToTidyUp'#.Test_API_029.Hello2'≢1⊃result
+ ref.⎕FX'r←Hello2' 'r←''Whole universe'''
+ ⎕DL 1
+ ts←{(1000000 100 100⊥3↑⍵)+(0.00001×24 60 60⊥3↑3↓⍵)}⎕TS
+ ⎕DL 1
+ result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
+ →GoToTidyUp'#.Test_API_029.Hello2'≢1⊃result
+
+ list←⎕SE.acre.Changes'#.',projectName
+ →GoToTidyUp 2≠≢list
+ list←⎕SE.acre.Changes'#.',projectName,' Hello2'
+
+ list←⊃,/{⍵/⍨~'  '⍷⍵}¨,⊃,/,⎕SE.acre.Changes'#.',projectName,'.Hello2'
+ →GoToTidyUp 1≠+/'Version 2 '⍷list
+ →GoToTidyUp 1≠+/'Version 1 '⍷list
+ →GoToTidyUp 0≠+/'Version 3 '⍷list
+
+ list←⎕SE.acre.Changes'#.',projectName,'.Hello2 -when'
+ →GoToTidyUp 0=≢list
+ . ⍝TODO⍝  When it works check the result
+
+ list←⎕SE.acre.Changes cmd←'#.',projectName,'.Hello2 -when=',⍕ts
+ →GoToTidyUp 1≠≢list   ⍝ Does not work  ⍝TODO⍝
+
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
+⍝Done

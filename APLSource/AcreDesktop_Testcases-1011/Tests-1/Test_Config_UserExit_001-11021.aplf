@@ -1,5 +1,5 @@
- R←Test_Config_UserExit_001(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;configFilename;bin;buff;list;messages
-⍝ Create a project and check whether `acre.config[SCMexit]` is not causing problems when empty.
+ R←Test_Config_UserExit_001(stopFlag batchFlag);⎕TRAP;noOfProjects;projectName;projectPath;ref;configFilename;bin;configParms;list;messages
+⍝ Create a project and check whether `acre.config[AfterSave]` is not causing problems when empty.
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -23,13 +23,14 @@
  #.⎕EX projectName
  #.⎕SHADOW'Temp'
  (bin configFilename)←∆ReadConfigFile projectPath
- buff←''
- buff,←⊂':Namespace'
- buff,←⊂'   Open←'''''
- buff,←⊂'   ProjectSpace←''#.',projectName,''''
- buff,←⊂'   SCMexit←'''''
- buff,←⊂':EndNamespace'
- A.WriteUtf8File configFilename buff
+ configParms←''
+ configParms,←⊂'{'
+ configParms,←⊂' "Open": "",'
+ configParms,←⊂' "ProjectSpace": "#.',projectName,'",'
+ configParms,←⊂' "AfterSave": ""'
+ configParms,←⊂'}'
+ configParms←,¨configParms
+ A.WriteUtf8File configFilename configParms
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath

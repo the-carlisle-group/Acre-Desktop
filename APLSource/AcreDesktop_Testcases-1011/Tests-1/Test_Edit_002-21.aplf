@@ -1,4 +1,4 @@
- R←Test_Edit_002(stopFlag batchFlag);⎕TRAP;caption;rc;cmd;parms;wsh;_;acreDir;log
+ R←Test_Edit_002(stopFlag batchFlag);⎕TRAP;caption;rc;cmd;parms;_;acreDir;log
 ⍝ Make changes via the editor and check whether acre takes appropriate action.
 ⍝ For that to work we start an independent instance of Dyalog with a main windows that has
 ⍝ a particular randomly generated caption so that we can send keystrokes to that session.
@@ -23,7 +23,6 @@
  ⎕←'   This test starts a second instance of Dyalog and communicates with it.'
  ⎕←'   That''s why this requires some delays, and there is nothing we can do about this.'
 
- 'wsh'⎕WC'OLEClient' 'WScript.Shell'
  caption←⎕A[?(⍴⎕A)⍴⍴⎕A]
  cmd←'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'" '
  cmd←'APL-64 17.0 '⎕R'APL-64 15.0 '⊣cmd

@@ -1,5 +1,5 @@
  R←Test_API_007(stopFlag batchFlag);⎕TRAP;F;path;result;buff
-⍝ Exercise the API function `log`.
+⍝ Exercise the API function `Log`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed

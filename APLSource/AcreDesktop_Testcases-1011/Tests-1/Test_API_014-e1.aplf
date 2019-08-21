@@ -1,5 +1,5 @@
  R←Test_API_014(stopFlag batchFlag);⎕TRAP;F;path;result;buff
-⍝ Exercise the API function `casecode`.
+⍝ Exercise the API function `CaseCode`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -12,17 +12,21 @@
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
 
- buff←⎕SE.acreAPI.casecode'#.TEMP.Fooü'
- →GoToTidyUp'#.TEMP-f.Fooü-1'≢buff
+ buff←⎕SE.acre.CaseCode'#.TEMP.Fooü'
+ →GoToTidyUp 1≠≢buff
+ →GoToTidyUp'#.TEMP-f.Fooü-1'≢⊃buff
 
- buff←⎕SE.acreAPI.casecode'#.TEMP.Foo'
- →GoToTidyUp'#.TEMP-f.Foo-1'≢buff
+ buff←⎕SE.acre.CaseCode'#.TEMP.Foo'
+ →GoToTidyUp 1≠≢buff
+ →GoToTidyUp'#.TEMP-f.Foo-1'≢⊃buff
 
- buff←⎕SE.acreAPI.casecode'#.TEMP.Foo #.TEMP.Fooü'
+ buff←⎕SE.acre.CaseCode'#.TEMP.Foo #.TEMP.Fooü'
+ →GoToTidyUp 2≠≢buff
  →GoToTidyUp''≢buff ⍝⍝TODO⍝ #157
 
- buff←⎕SE.acreAPI.casecode'#.TEMP.Foo' '#.TEMP.Fooü'
- →GoToTidyUp'#.TEMP-f.Foo-1'≢buff
+ buff←⎕SE.acre.CaseCode'#.TEMP.Foo' '#.TEMP.Fooü'
+ →GoToTidyUp 1≠≢buff
+ →GoToTidyUp'#.TEMP-f.Foo-1'≢⊃buff
 
  R←∆OK
 
