@@ -17,7 +17,8 @@
  →GoToTidyUp 1≢result
  #.⎕EX'TEMP'
 
- ∘∘∘ ⍝ The next line crashes because acre cannot find the file .acre\latest  ⍝TODO⍝
+⍝ ∘∘∘ ⍝ The next line crashes because acre cannot find the file .acre\latest  ⍝TODO⍝
+⍝ it seems to have found it
  result←∆RunUcmd'OpenProject "',path,'" #.TEMP'
  →GoToTidyUp'#.TEMP'≢result
  →GoToTidyUp 9≠⎕NC'#.TEMP'

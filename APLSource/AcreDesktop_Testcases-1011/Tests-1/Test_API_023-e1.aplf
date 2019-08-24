@@ -16,7 +16,7 @@
  →GoToTidyUp 0≠≢result
  result←⎕SE.acre.Stats projectName
  →GoToTidyUp 2≠⍴⍴result
- result←⎕SE.acre.Stats'-all'
+ result←⎕SE.acre.Stats''('all' 1)
  →GoToTidyUp 2 1≢⍴result
 
  R←∆OK

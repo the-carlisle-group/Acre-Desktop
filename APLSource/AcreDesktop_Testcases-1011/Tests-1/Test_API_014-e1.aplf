@@ -21,12 +21,11 @@
  →GoToTidyUp'#.TEMP-f.Foo-1'≢⊃buff
 
  buff←⎕SE.acre.CaseCode'#.TEMP.Foo #.TEMP.Fooü'
- →GoToTidyUp 2≠≢buff
- →GoToTidyUp''≢buff ⍝⍝TODO⍝ #157
+ →GoToTidyUp''≢buff
 
  buff←⎕SE.acre.CaseCode'#.TEMP.Foo' '#.TEMP.Fooü'
- →GoToTidyUp 1≠≢buff
- →GoToTidyUp'#.TEMP-f.Foo-1'≢⊃buff
+ →GoToTidyUp 2≠≢buff
+ →GoToTidyUp buff≢'#.TEMP-f.Foo-1' '#.TEMP-f.Fooü-1'
 
  R←∆OK
 
