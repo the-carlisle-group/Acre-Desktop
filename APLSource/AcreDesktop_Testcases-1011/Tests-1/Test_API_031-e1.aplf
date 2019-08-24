@@ -1,0 +1,23 @@
+ R←Test_API_031(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result
+⍝ Exercise `Erase` on a non-existing item
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'\',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.PI←{42}
+ {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName
+ result←⎕SE.acre.Erase'#.',projectName,'.PI'
+ ⍝TODO⍝ Check the result
+ result←⎕SE.acre.Erase'#.',projectName,'.This_does_not_exist'
+ ⍝TODO⍝ Check tjhe result
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
+⍝Done
