@@ -11,7 +11,7 @@
          ⍵}dat.folder∘,¨MS.HO MS.GY,MS.NB∘,¨''MS.EU MS.HE
      z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
      z←fixQV⊢space←⍎dat.nspath ⎕NS''
-     z←3 _MKDIR¨dat.(source changes)
+     z←3 _MKDIR¨dat.(source changes)/⍨1,dat.hist
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
      z←(_JSON cfg)_NPUT dat.config⊣cfg.⎕EX'Open' ⍝ deprecated
@@ -27,5 +27,5 @@
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0
 ⍝ see openProject CreateProject
-⍝ Phil 2019-08-17 07:53 5.2.0+240
+⍝ Phil 2019-08-22 06:38 5.2.0+244
  }

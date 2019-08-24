@@ -4,7 +4,7 @@
          ⍵.Dependencies←''    ⍝ open with this project
          ⍵.KeepHistory←'Off'  ⍝ store .change- and .delete-files
          ⍵.ProjectSpace←''    ⍝ #[.path]
-         ⍵.Open←''            ⍝ deprecated
+         ⍵.Open←''            ⍝ deprecated ⍝TODO⍝
          ⍵.StartUp←''         ⍝ executed after OpenProject
          ⍵.Variables←'Off'    ⍝ on: all vars | off: already or on request
          ⍵

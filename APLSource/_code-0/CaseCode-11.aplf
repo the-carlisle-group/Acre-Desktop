@@ -1,4 +1,8 @@
- CaseCode←{null⊢arg←2↓¨prefSpace ⍵:arg
+ CaseCode←{
+     arg←{(+/∧\' '=⍵)↓⍵}∘⌽⍣2¨⍵
+     ok←0≤⎕NC arg~¨'-'
+     z←MS.EA logMsg arg/⍨~ok
+     null⊢arg←2↓¨prefSpace ok/arg:''⊣logMsg MS.DR
      1∊'-'∊¨arg:'#.'∘,¨'..'decodeCaps arg
      '#.'∘,¨'..'encodeCaps arg
 ⍝

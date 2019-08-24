@@ -5,14 +5,15 @@
          ⍵.confirm←':'
          ⍵.dependencies←':on'
          ⍵.keephistory←':off'
+         ⍵.recursive←''
          ⍵.track←':on'
          ⍵.variables←':off'
          ⍵.when←'[=]'
          ⍵
      }⎕NS''
-     opts←DO.(,∘⍎¨⍨⎕NL-2)
-     z←DO.({⍎⍵,'~←'':[=]'''}¨⎕NL-2)
-     len←3 ⍝ min unique width of above
+     len←⌊/≢¨nms←~∘' '¨↓DO.⎕NL 2
+     opts←DO.{⍵,∘⍎¨⍵}nms
+     z←DO.{{⍎⍵,'~←'':[=]'''}¨⍵}nms
      in←len⍴¨opts
      opts←' -'∘,¨opts
      n←1+≢num←'999S'
@@ -21,5 +22,5 @@
      (n↓⊃res)('nargs=',num) ⍝ see openLoad
 ⍝ convert strings of initial abbreviations to option specs
 ⍝ see cmdDefs
-⍝ Phil 2019-08-07 17.12 5.2.0+227
+⍝ Phil 2019-08-22 06:50 5.2.0+244
  }

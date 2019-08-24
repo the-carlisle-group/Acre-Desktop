@@ -1,8 +1,9 @@
  callAPI←{
      z←⎕SIGNAL/(⊂MS.DX),4/⍨1≠≢⍴1/⍵
+     SV.debug←⎕SE.SALTUtils.DEBUG
      SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
      ⍺←⊢ ⋄ fn←⍺⍺ ⋄ fnm type←⍵⍵ ⋄ nam←MS.NA
-     z←⎕SE.UCMD if(newSession'')⊢nam,'.Projects' ⍝ sledgehammer
+     z←⎕SE.UCMD if(newSession'')⊢nam,'.Version' ⍝ sledgehammer
      arg~←opt←(⊢(/⍨)1≠≡¨)arg←,∘⍕¨a_(0=≡¨),⊂if≡⍵  ⍝ fmt scalars & sep opts
      z←logMsg⍕⍺,'[',nam,'].',fnm,' ',arg
      ⎕THIS.OPT←⎕NS DO
@@ -14,5 +15,5 @@
 ⍝  ⍵⍵ - fnname
 ⍝  ⍵  - rarg to fn
 ⍝  ←  - result of fn
-⍝ Phil 2019-08-12 22.12 5.2.0+235
+⍝ Phil 2019-08-21 17:56 5.2.0+244
  }
