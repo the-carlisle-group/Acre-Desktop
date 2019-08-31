@@ -1,6 +1,6 @@
  pf←{⍺←⊢
-     c←'R:' 'D:' 'U:' 'E:' 'Z:' 'L:' '8:'
-     k←'ER' 'DC' 'UC' 'ED' 'DL' 'LL' 'F8'
+     c←'R:' 'D:' 'U:' 'E:' 'Z:' 'L:' '8:' 'l:'
+     k←'ER' 'DC' 'UC' 'ED' 'DL' 'LL' 'F8' 'LC'
      def←⍺ re fl↓c,⍪⊂¨k
      def ⎕PFKEY ⍵
 ⍝ ⍺ def - string wherein 'R:' 'D:' 'U:' 'E:'

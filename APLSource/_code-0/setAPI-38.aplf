@@ -1,9 +1,9 @@
  setAPI←{
      tgt←UT.rs⊢ici←⎕THIS
      fns←↓⍉↑CD.(command type)
-     {f←⍎'⍵.',(⊃⍺),'←ici.(',(⊃⍺),' callAPI ⍺)' ⋄ ⍵}/fns,tgt
+     tgt.{f←⍎(⊃⍺),'←⍵.(',(⊃⍺),' apiFunRun ⍺)' ⋄ ⍵}/fns,ici
 ⍝ ⍺ ?
 ⍝ ⍵ ?
 ⍝ ← target space for API fns
-⍝ Phil 2019-08-12 21.13 5.2.0+230
+⍝ Phil 2019-08-31 20:59 6.0.0+256
  }

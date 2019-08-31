@@ -7,7 +7,6 @@
          ⍵.CD←cmdDefs name
          z←setEmulators''
          SV.logfile←localFolder,MS.CJ
-⍝         SV.config←localFolder MS.HO   ⍝ #171
          z←setCase''
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵
@@ -16,11 +15,13 @@
      z←editFix'Start' ⍝ ← sets other stuff in SV ⍝ ↓ en cas )LOAD )CLEAR
      z←⎕SE ⎕WS'Event'_(⎕SE ⎕WG'Event'),⊂'WorkspaceLoaded'_(⍕ici),'.openProjects'
      z←logMsg⍕Version''
+     s←⊃'B'UT.mn⊃⊃2 _NINFO SV.logfile
+     z←logMsg('⎕'/⍨'M'∊s),s,MS.FP,SV.logfile
      z←setAPI''
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
 ⍝ ⍵ ?
 ⍝   there should be no tracked instances when this runs
 ⍝ ← 1
-⍝ Phil 2019-08-02 21.48 5.2.0+225
+⍝ Phil 2019-08-28 00:20 6.0.0+255
  }

@@ -26,18 +26,14 @@
 ⍝
 ⍝ All acre's methods are implemented as user commands. Each is a function whose name is reflected in the command.
 ⍝ The commands are all defined in a single script that is created by the Install function.
-⍝ This is run by the buildWs function in the development environment but is also the ⎕LX of the acre installation workspace.
+⍝ This is run by the buildWsFromSource function in the development environment but is also the ⎕LX of the acre installation workspace.
 ⍝ That can be loaded from the installation folder if the link between that folder and the user command framework is lost.
 ⍝ Creating that link is the other task performed by Install.
 ⍝
 ⍝ Acre is not permanently installed in `⎕SE` although it runs from there. Invoking an acre user command first checks to see if acre is in `⎕SE`.
 ⍝ If not it is copied from the workspace in the installation folder, initialisation is performed and acre remains available for the rest of the session.
 ⍝
-⍝ ### ⎕SE.acre.run
+⍝ ### API
 ⍝
-⍝ The _run_ function exposes some of the basic functionality that acre uses itself internally to fulfil the roles of saving editor changes and the commands.
-⍝ They are services that a user in a development environment would not normally require.
-⍝
-⍝ It takes a string left argument - one of: 'nameclass', 'changefile', 'deletefile', 'sourcefile', 'itemname', 'version' & 'casecode' -
-⍝ and a right argument applicable to the particular left.
+⍝ ....
  }
