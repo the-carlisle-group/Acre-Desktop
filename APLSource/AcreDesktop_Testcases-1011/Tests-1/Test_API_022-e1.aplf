@@ -16,10 +16,10 @@
  {}∆RunUcmd'SetChanged #.',projectName,'.Hello2'
 
  deleteFilename←⊃⎕SE.acre.Deletefile'#.',projectName,'.Hello'
- result←∆RunUcmd'Erase #.',projectName,'.Hello'
+ result←⎕SE.acre.Erase'#.',projectName,'.Hello'
  →GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello'
  deleteFilename←⎕SE.acre.Deletefile'#.',projectName,'.Hello2'
- result←∆RunUcmd'Erase #.',projectName,'.Hello2'
+ result←⎕SE.acre.Erase'#.',projectName,'.Hello2'
  →GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello2'
  changePath←F.EnforceBackslash 1⊃⎕NPARTS⊃deleteFilename
  →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
