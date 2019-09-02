@@ -15,10 +15,13 @@
  ref.⎕FX'r←Hello' 'r←''World'''
  result←⎕SE.acre.SetChanged'#.',projectName,'.Hello'
  →GoToTidyUp 0=≢result
+ ref.⎕FX'r←Hello' 'r←''Galaxy'''
+ result←⎕SE.acre.SetChanged'#.',projectName,'.Hello'
+ →GoToTidyUp 0=≢result
 
  →GoToTidyUp 1≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
  tno←(⊃list)⎕FTIE 0
- →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno   ⍝ Orig, change, pointer Phil: that's what the command does, but the API fns is different!  ⍝TODO⍝
+ →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno
 
  R←∆OK
 

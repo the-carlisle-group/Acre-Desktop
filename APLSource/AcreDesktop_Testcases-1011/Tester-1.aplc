@@ -16,24 +16,23 @@
 ⍝ * `RunBatchTests`
 ⍝ * `RunBatchTestsInDebugMode`
 ⍝ * `RunDebug`
-⍝ * `RunThese`\\
-⍝ All `Run*` functions return a **shy** result vedctor with two- or three elements:
+⍝ * `RunThese`
+⍝ * `RunGUI`\\
+⍝ All `Run*` functions return a **shy** result vector with two elements excepts `RunGUI`:
 ⍝ 1. Is a return code which has one of three values:
 ⍝    * 0 means all executed, all okay.
 ⍝    * 1 means that some test cases failed or crashed.
 ⍝    * 2 means that at least one test case has not been executed but those that were
-⍝      executed passed. Reasons for not being executed can be, among others, that a
+⍝      executed passed. Reasons for not being executed can be, among other things, that a
 ⍝      test case is inactive or cannot run on the current platform.
 ⍝ 2. A vector of text vectors. For every test function there is one item added to
 ⍝    this vector. In addition there is a summary at the end of the vector, reporting
 ⍝    how many test cases got executed, how many failed/broke or were not executed
 ⍝    and for what reason.\\
-⍝ 3. Some function also return a reference poiting to the GUI `Tester` might present
-⍝    to the user. You can interact with the GUI once the test cases are all processed:
-⍝    via the contect menu you can edit, re-run or re-run with a stop vector.\\
-⍝    `Run` and `RunBatchTests` are desiigned to run unde program control, therefore
-⍝    they do not provide a GUI.\\
-⍝    Note that `⎕WA` gets rid of the GUI.\\
+⍝ `RunGUI` returns a third item: a reference pointing to the GUI. You can interact with
+⍝ the GUI once the test cases are all processed:
+⍝ via the context menu you can edit, re-run or re-run with a stop vector.\\
+⍝ Note that `⎕WA` gets rid of the GUI in case the ref is not assigned.\\
 ⍝ ## Misc
 ⍝ This class is part of the APLTree Open Source project.\\
 ⍝ Home page: <https://github.com/aplteam/Tester>\\
@@ -46,26 +45,19 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'4.1.0.32' '2019-08-20'
+      r←(Last⍕⎕THIS)'5.0.0.37' '2019-09-02'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 4.1.0
-      ⍝   * Now compatibale with acre 6.
-      ⍝   * Helper `G` now returns not only the group names but also the number of test functions within each group.
-      ⍝   * The GUI now has a "Start" button in order to allow the user to make adjustments.
-      ⍝   * The GUI now has a "Pause" check box that can be used to temporarily halt the execution of the test cases.
-      ⍝   * The GUI may be closed now by pressing <escape>.
-      ⍝   * The column titles in the GUI can now be rezised.
-      ⍝   * The size of the column carrying the test case names is now properly calculated.
-      ⍝   * Field `TestFlag` introduced.
-      ⍝   * Documentation regarding the `Run*` helpers improved.
-      ⍝   * Return code added: ∆InvalidAplVersion
-      ⍝   * Bug fixes
-      ⍝     * Making the GUI significantly larger or smaller lead to some strange effects.
-      ⍝     * Closing the GUI let `Tester` crash.
-      ⍝     * `RunBatchTestsInDebugMode` did not show the GUI but should have.
+      ⍝ * 5.0.0
+      ⍝   * New function `RunGUI` introduced which is the only way now to invoke the (Windows-only) GUI.
+      ⍝   * The GUI got improved.
+      ⍝   * `RunDebug` and `RunThese` both are not running the GUI any more.
+      ⍝   * All `Run*` functions now return a two-element vector except `RunGUI` which returns a three-element vector.\\
+      ⍝     This is a potentially breaking change.
+      ⍝   * Bug fixes:
+      ⍝     `E` crashed under some circumstances.
       ⍝\\
       ⍝ For a full history (including older versions) see <https://github.com/aplteam/Tester/releases>
     ∇
@@ -82,7 +74,7 @@
       :Access Public Shared
       ⎕IO←1 ⋄ ⎕ML←3
       flags←1 0 0 0
-      (rc log ref2Gui)←refToTestNamespace Run__ flags,⍬ 0
+      (rc log)←refToTestNamespace Run__ flags,⍬ 0
      ⍝Done
     ∇
 
@@ -93,20 +85,20 @@
     ⍝ Returns 0 for okay or a 1 in case one or more test cases are broken or failed.\\
     ⍝ This method can run in a runtime as well as in an automated test environment.\\
     ⍝ The left argument defaults to 0 but can be set to 1. It sets both, `stopFlag`\\
-    ⍝ and `trapFlag` when specified. It can be a scalar or a two-item vector.\\
     ⍝ Note that no ref to the GUI is returned because by definition there is no GUI.
       :Access Public Shared
       ⎕IO←1 ⋄ ⎕ML←3
       trapAndDebugFlag←{(0<⎕NC ⍵):⍎⍵ ⋄ 1 0}'trapAndDebugFlag'
       (refToTestNamespace guiFlag)←y,(≢y)↓⍬ 0
       flags←(1↑trapAndDebugFlag),(¯1↑trapAndDebugFlag),1 0
-      (rc log ref2Gui)←refToTestNamespace Run__ flags,(⊂⍬),guiFlag
+      (rc log)←refToTestNamespace Run__ flags,(⊂⍬),guiFlag
     ∇
 
-    ∇ {(rc log ref2Gui)}←{x}RunDebug refToTestNamespace;flags;rc;stopAt;stop;⎕ML;⎕IO
+    ∇ {(rc log)}←{x}RunDebug refToTestNamespace;flags;rc;stopAt;stop;⎕ML;⎕IO
     ⍝ Runs all test cases in `refToTestNamespace` **without** error trapping.
-    ⍝ If a test case encounters an invalid result it stops. Use this function
-    ⍝ to investigate the details after `Run` detected a problem.\\
+    ⍝ If a test case encounters an invalid result it stops.\\
+    ⍝ See also `RunGUI` which does the same but with a GUI.
+    ⍝ Use this function to investigate the details after `Run` detected a problem.
     ⍝ This will work only if you use a particualar strategy when checking results
     ⍝ in a test case; see <http://aplwiki.com/Tester> for details.
       :Access Public Shared
@@ -120,11 +112,25 @@
               stop←x
           :EndIf
       :EndIf
-      flags←0 1 0,stop,stopAt,1
+      flags←0 1 0,stop,stopAt,0
+      (rc log)←2↑refToTestNamespace Run__ flags
+    ∇
+
+    ∇ {(rc log ref2Gui)}←{debugFlag}RunGUI(refToTestNamespace these);flags;rc;stop;⎕ML;⎕IO
+    ⍝ Runs all test cases in `refToTestNamespace` **without** error trapping.
+    ⍝ If a test case encounters an invalid result it stops.\\
+    ⍝ See also `RunDebug` which does the same but without a GUI.
+    ⍝ Use this function to investigate the details after `Run` detected a problem.
+    ⍝ This will work only if you use a particualar strategy when checking results
+    ⍝ in a test case; see <http://aplwiki.com/Tester> for details.
+      :Access Public Shared
+      ⎕IO←1 ⋄ ⎕ML←3
+      debugFlag←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'debugFlag'
+      flags←0,debugFlag,0 0,(⊂these),1
       (rc log ref2Gui)←refToTestNamespace Run__ flags
     ∇
 
-    ∇ {(rc log ref2Gui)}←these RunTheseIn refToTestNamespace;flags;rc;⎕ML;⎕IO;ref2Gui
+    ∇ {(rc log)}←these RunTheseIn refToTestNamespace;flags;rc;⎕ML;⎕IO;ref2Gui
     ⍝ Same as `RunDebug` but it runs just `these` in `refToTestNamespace`.\\
     ⍝ Example that executes `Test_special_02` and `Test_999`:\\
     ⍝ ~~~
@@ -138,7 +144,7 @@
       :Access Public Shared
       ⎕IO←1 ⋄ ⎕ML←3
       flags←0 1 0 0
-      (rc log ref2Gui)←refToTestNamespace Run__ flags,(⊂these),1
+      (rc log)←refToTestNamespace Run__ flags,(⊂these),0
     ∇
 
     ∇ EditAll refToTestNamespace;list
@@ -155,7 +161,7 @@
       :Access Public Shared
      ⍝ Returns the names of all test functions found in namespace `refToTestNamespace`
       r←''
-      :If ~0∊⍴buff←'T'refToTestNamespace.⎕NL 3
+      :If 0≠≢buff←'T'refToTestNamespace.⎕NL 3
           r←' '~¨⍨↓({∧/(↑¯1↑'_'Split ⍵~' ')∊⎕D}¨↓buff)⌿buff
           r←r[⍋Lowercase⊃Lowercase r]
       :EndIf
@@ -175,11 +181,11 @@
       r←''
       (refToTestNamespace full)←2↑y,(⍴,y)↓'' 1
       searchString←Lowercase{0<⎕NC ⍵:⍎⍵ ⋄ ''}'searchString'
-      :If ~0∊⍴list←'Test_'{⍵⌿⍨⍺∧.=⍨⍵↑[2]⍨⍴⍺}'T'refToTestNamespace.⎕NL 3
-      :AndIf ~0∊⍴list←' '~¨⍨↓('Test_'{∧/((⍴⍺)↓[2]⍵)∊' ',⎕D,⎕A,'_',Lowercase ⎕A}list)⌿list
+      :If 0≠≢list←'Test_'{⍵⌿⍨⍺∧.=⍨⍵↑[2]⍨⍴⍺}'T'refToTestNamespace.⎕NL 3
+      :AndIf 0≠≢list←' '~¨⍨↓('Test_'{∧/((⍴⍺)↓[2]⍵)∊' ',⎕D,⎕A,'_',Lowercase ⎕A}list)⌿list
           r←2⊃¨refToTestNamespace.⎕NR¨list
           r←{⍵↓⍨+/∧\⍵∊' ⍝'}¨{⍵↓⍨⍵⍳'⍝'}¨r
-          :If ~0∊⍴searchString
+          :If 0≠≢searchString
               b←∨/searchString⍷Lowercase⊃r          ⍝ Either in comment...
               b∨←∨/searchString⍷⊃Lowercase list     ⍝ ... or in the name.
               r←b⌿r
@@ -211,7 +217,7 @@
       r←⍬
       forceTestTemplate←{(0=⎕NC ⍵):0 ⋄ ⍎⍵}'forceTestTemplate'
       'Invalid left argument'⎕SIGNAL 11/⍨~{((,1)≡,⍵)∨((,0)≡,⍵)}forceTestTemplate
-      refToTestNamespace←⎕RSI{(0∊⍴⍵):⎕IO⊃⍺ ⋄ ⍵}refToTestNamespace
+      refToTestNamespace←⎕RSI{(0=≢⍵):⎕IO⊃⍺ ⋄ ⍵}refToTestNamespace
       'Invalid right argument'⎕SIGNAL 11/⍨#≡refToTestNamespace
       list←Helpers.GetListHelpers
       isScripted←⍬≢code←{16::⍬ ⋄ ⎕SRC ⍵}refToTestNamespace
@@ -223,7 +229,7 @@
       :EndFor
       :If 0=isScripted
           :If forceTestTemplate
-          :OrIf 0∊⍴refToTestNamespace.L''  ⍝ Not if there are already any test functions
+          :OrIf 0=≢refToTestNamespace.L''  ⍝ Not if there are already any test functions
               refToTestNamespace.⎕FX Helpers.GetCode'Test_000'
           :EndIf
       :EndIf
@@ -250,7 +256,7 @@
     :Field Private Shared ReadOnly ∆NoAcreTests←¯30
     :Field Private Shared ReadOnly ∆NotApplicable←¯31
 
-    ∇ {(rc log ref2Gui)}←ref Run__(trapFlag debugFlag batchFlag stopAt testCaseNos guiFlag);ps
+    ∇ {r}←ref Run__(trapFlag debugFlag batchFlag stopAt testCaseNos guiFlag);ps;rc;log;ref2Gui
     ⍝ Run all test cases to be found in "ref"
     ⍝ The right argument:
     ⍝ [1] trapFlag; controls error trapping:
@@ -276,10 +282,10 @@
       ref.Stop←debugFlag         ⍝ "Stop" is honored by "FailsIf" & "PassesIf"
       ref.⎕EX'INI'               ⍝ Get rid of any leftovers
       ps.(log trapFlag debugFlag batchFlag stopAt testCaseNos errCounter failedCounter guiFlag)←''trapFlag debugFlag batchFlag stopAt testCaseNos 0 0 guiFlag
-      ps.guiFlag∧←'Win'≡GetOperatingSystem ⍬  ⍝ Windows only, it at all
+      ps.guiFlag∧←'Win'≡GetOperatingSystem ⍬  ⍝ Windows only, if at all
       ref2Gui←⍬
-      :If debugFlag∨ps.guiFlag
-          ref2Gui←ps.gui←ref CreateGui ⎕NS''
+      :If ps.guiFlag
+          ref2Gui←ps.gui←ps CreateGui ref
       :EndIf
       ShowLog{'--- Test framework "Tester" version ',(2⊃⍵),' from ',(3⊃⍵),' ----'}Version
       ref←ProcessIniFiles ref ps
@@ -296,7 +302,8 @@
       :EndIf
       →(0=≢ps.list)/∆GetOutOfHere
       :If ps.guiFlag
-          ps.gui.∆n.Grid.CellWidths[2]←10+⌈/2⊃¨ps.gui.∆n.Grid.GetTextSize¨ps.list
+      :AndIf 0<≢ps.list
+          ps.gui.∆n.Grid.CellWidths[2]←10+2⊃ps.gui.∆n.Grid.GetTextSize(≢'Test_')↓{⍵⊃⍨{⍵⍳⌈/⍵}≢¨⍵}ps.list
       :EndIf
       ShowLog(,'--- Tests started at ',FormatDateTime ⎕TS),' on ',(⍕ref),' ---'
       ps.stopAt∨←¯1∊×ps.testCaseNos
@@ -315,9 +322,13 @@
       ShowLog'*** Tests done'
       log←ps.log
       :If ps.guiFlag
+          r←rc log ref2Gui
           ref2Gui.onClose←0
-      :AndIf ps.gui.∆n.∆Closed
-          2 ⎕NQ ref2Gui'Close'
+          :If ps.gui.∆n.∆Closed
+              {}{6::⍬ ⋄ 2 ⎕NQ ref2Gui'Close'}ref2Gui
+          :EndIf
+      :Else
+          r←rc log
       :EndIf
     ∇
 
@@ -338,7 +349,7 @@
           :Else
               ShowLog'  ...not found'
           :EndIf
-          :If ~0∊⍴iniFilenames
+          :If 0≠≢iniFilenames
               ref.INI←'flat'(⎕NEW ##.IniFiles(iniFilenames 1)).Convert ⎕NS''
               ShowLog'  INI file(s) "',(↑{⍺,',',⍵}/iniFilenames),'" found and instantiated as INI in ',⍕ref
               ShowLog(⍕⍴iniFilenames),' INI file',((1<⍴iniFilenames)/'s'),' instantiated'
@@ -416,18 +427,18 @@
                   :EndIf
               :EndIf
           :EndIf
-          :If 0∊⍴ps.list ⋄ →rc←0 ⋄ :EndIf
+          :If 0=≢ps.list ⋄ →rc←0 ⋄ :EndIf
           :If (,0)≡,ps.testCaseNos
               ps.testCaseNos←¯1
           :Else
-              :If ~0∊⍴ps.testCaseNos
-                  :If 0∊⍴ps.group
-                      :If 0∊⍴ps.list←(1={'_'+.=⍵}¨ps.list)/ps.list
+              :If 0≠≢ps.testCaseNos
+                  :If 0=≢ps.group
+                      :If 0=≢ps.list←(1={'_'+.=⍵}¨ps.list)/ps.list
                           →rc←0
                       :EndIf
                   :EndIf
                   ps.list←((GetTestNo¨ps.list)∊|ps.testCaseNos)/ps.list   ⍝ Now select the numbers
-                  :If 0∊⍴ps.list
+                  :If 0=≢ps.list
                       →rc←0
                   :EndIf
               :EndIf
@@ -435,21 +446,26 @@
       :EndIf
     ∇
 
-    ∇ ProcessTestCases(ref ps);width;i;noOf;this;testNo;rc;msg;length
-      width←⌈/⍴¨ps.list
+    ∇ ProcessTestCases(ref ps);i;noOf;this;testNo;rc;msg;length;cw;max;hdr_width;desc
       noOf←≢ps.list
-      length←1+⌈/≢¨ps.list
+      length←2+⌈/≢¨ps.list
       :If ps.guiFlag
-          ps.gui.∆n.Grid.Values←(noOf,1↓⍴ps.gui.∆n.Grid.Values)⍴ps.gui.∆n.Grid.Values
-          ps.gui.∆n.Grid.CellTypes←(noOf,1↓⍴ps.gui.∆n.Grid.Values)⍴ps.gui.∆n.Grid.CellTypes
-          ps.gui.∆n.Grid.Values[;2]←ps.list
-          ps.gui.∆n.Grid.Values[;3]←ref{{⍵↓⍨+/∧\' '=⍵}{⍵↓⍨⍵⍳'⍝'}2⊃⍺.⎕NR ⍵}¨ps.list
-          2 ⎕NQ ps.gui.∆n.Form'Flush'
-          {}⎕DQ⍣(0=TestFlag)⊣ps.gui.∆n.Form
+          :If 0<≢ps.list
+              ps.gui.∆n.Grid.Values←(noOf,1↓⍴ps.gui.∆n.Grid.Values)⍴ps.gui.∆n.Grid.Values
+              ps.gui.∆n.Grid.CellTypes←(noOf,1↓⍴ps.gui.∆n.Grid.Values)⍴ps.gui.∆n.Grid.CellTypes
+              ps.gui.∆n.Grid.Values[;2]←(≢'Test_')↓¨ps.list
+              ps.gui.∆n.Grid.Values[;3]←ref{{⍵↓⍨+/∧\' '=⍵}{⍵↓⍨⍵⍳'⍝'}2⊃⍺.⎕NR ⍵}¨ps.list
+              2 ⎕NQ ps.gui.∆n.Form'Flush'
+              {}⎕DQ⍣(0=TestFlag)⊣ps.gui.∆n.Form
+          :EndIf
           →(ps.gui.∆n.∆Closed)/0
           ps.gui.∆n.Form.on9998←0
           ps.gui.∆n.StartBtn.Active←0
+          ps.stopAt←ps.gui.∆n.StopFlag.State
+          ps.trapFlag←ps.gui.∆n.TrapErrors.State
       :EndIf
+      cw←≢max←⍕noOf
+      hdr_width←length+≢'(',max,'/',max,') #  '
       :For i :In ⍳noOf
           this←i⊃ps.list
           testNo←GetTestNo this
@@ -465,11 +481,12 @@
                   ps.returnCodes,←rc
               :EndIf
               msg←{⍵↓⍨+/∧\' '=⍵}{⍵↓⍨⍵⍳'⍝'}2⊃ref.⎕NR this
-              ShowLog(length↑this),' (',(⍕i),' of ',(⍕noOf),')'
+              desc←(⎕PW-hdr_width){⍺<≢⍵:'...',⍨⍵↑⍨⍺-4 ⋄ ⍵}⍣(~ps.guiFlag)⊢msg
+              ¯1 ShowLog(length↑this),'(',(cw 0⍕i),'/',max,') '
               :If rc∊0 1 ¯1
-                  2 ShowLog('*✓'[1+rc∊0 ¯1])this msg
+                  ¯2 ShowLog('*✓'[1+rc∊0 ¯1])(ps.guiFlag/this)desc
               :Else
-                  2 ShowLog'⍝'this msg
+                  ¯2 ShowLog'⍝'this desc
               :EndIf
               :If 0>rc
                   :If 0<ps.errCounter
@@ -484,6 +501,8 @@
           :EndTrap
           {}⎕WA  ⍝ Enforce a memory compaction in order to get rid of any rubbish.
           :If ps.guiFlag
+              ps.stopAt←ps.gui.∆n.StopFlag.State
+              ps.trapFlag←ps.gui.∆n.TrapErrors.State
               ProcessGuiEvents ps.gui.∆n
           :AndIf ps.gui.∆n.∆Closed
               :Return
@@ -510,7 +529,7 @@
       log,←⊂'  ',(⍕1⊃⍴ps.list),' test case',((1≠1⊃⍴ps.list)/'s'),' executed'
       log,←⊂'  ',(⍕ps.failedCounter),' test case',((1≠+/ps.failedCounter)/'s'),' failed',(0<ps.failedCounter)/' (flagged with leading "*")'
       log,←⊂'  ',(⍕ps.errCounter),' test case',((1≠+/ps.errCounter)/'s'),' broken',(0<ps.errCounter)/' (flagged with leading "#")'
-      :If ~0∊⍴ps.returnCodes
+      :If 0≠≢ps.returnCodes
           :If ∆NoBatchTest∊ps.returnCodes
               log,←⊂'  ',(⍕¯1+.=ps.returnCodes),' test cases not executed because they are not "batchable" (flagged with leading "-")'
           :EndIf
@@ -546,7 +565,7 @@
       :If 0<ps.failedCounter+ps.errCounter
           rc←1
       :Else
-          rc←2×~0∊⍴ps.returnCodes
+          rc←2×0≠≢ps.returnCodes
       :EndIf
     ∇
 
@@ -581,28 +600,35 @@
     IsScripted←{16::0 ⋄ 1⊣⎕SRC ⍵}
 
 
-    ∇ {r}←{type}ShowLog msg
-    ⍝ `type` may be 1 or 2:
+    ∇ {r}←{type}ShowLog msg;selog
+    ⍝ `type` may be (+/-)1 or 2:
     ⍝ * A 1 means an action message
-    ⍝ * A 2 means the result of the execution attempt of a test function.``
+    ⍝ * A 2 means the result of the execution attempt of a test function.
+    ⍝ * A negative means message with more to come
     ⍝ `ps` is a parameter space with `ps.log` being, well, the log.
       r←⍬
       type←{0<⎕NC ⍵:⍎⍵ ⋄ 1}'type'
-      'Invalid type'⎕SIGNAL 11/⍨~(⊂type)∊1 2
+      'Invalid type'⎕SIGNAL 11/⍨~(⊂|type)∊1 2
       :If batchFlag∧0=ps.guiFlag
           ps.log,←{1=≡⍵:⊂⍵ ⋄ '-'∧.=5↑↑⍵:⍵ ⋄ ⊂(1⊃⍵),' ',(2⊃⍵),' ',3⊃⍵}msg
       :ElseIf ps.guiFlag
-          type AddToGui msg
+          (|type)AddToGui msg
           :If type=1
               ps.log,←Nest msg
           :EndIf
       :Else
           ps.log,←{1=≡⍵:⊂⍵ ⋄ (3≠≢⍵)∨'---'≡3↑↑⍵:⍵ ⋄ ⊂(1⊃⍵),' ',(2⊃⍵),' ',(3⊃⍵)}msg
-          ⎕←{1=≡⍵:⍵ ⋄ (3≠≢⍵)∨'---'≡3↑↑⍵:⍪⍵ ⋄ (1⊃⍵),' ',(2⊃⍵),' ',(3⊃⍵)}msg
+          selog←{1=≡⍵:⍵ ⋄ (3≠≢⍵)∨'---'≡3↑↑⍵:⍪⍵ ⋄ (1⊃⍵),' ',(2⊃⍵),' ',(3⊃⍵)}msg
+          :If type<0
+              ⍞←selog,(type=¯2)/⎕UCS 13
+          :Else
+              ⎕←selog
+          :EndIf
       :EndIf
     ∇
 
-    ∇ {r}←sourceNamespace CreateGui n;∆;n
+    ∇ {r}←ps CreateGui sourceNamespace;∆;n
+      n←⎕NS''
       ∆←''
       ∆,←⊂'Caption'('Test cases in ',⍕{↑⍵~⊂↑⍵}⎕NSI)
       ∆,←⊂'Coord' 'Pixel'
@@ -619,6 +645,8 @@
      
       n.Font←⎕NEW'Font'(('PName' 'APL385 Unicode')('Size' 18))
       n.Form.FontObj←n.Font
+     
+      n.MyTipObj←⎕NEW⊂'TipField'
      
       n.SB←n.Form.⎕NEW'Statusbar'(,⊂'Attach'('Bottom' 'Left' 'Bottom' 'Right'))
       n.Info←n.SB.⎕NEW'StatusField'(('Coord' 'Prop')('Size'(⍬ 99))('Attach'('Bottom' 'Left' 'Bottom' 'Right')))
@@ -640,9 +668,39 @@
       n.PauseBtn.Posn←(n.StartBtn.Posn[1]),20++/2⊃+⌿⊃n.StartBtn.(Posn Size)
      
       ∆←''
-      ∆,←⊂'Posn'(3 0)
+      ∆,←⊂'Style' 'Check'
+      ∆,←⊂'Posn'(5 5)
+      ∆,←⊂'Caption' '&Trap errors'
+      ∆,←⊂'State'ps.trapFlag
+      ∆,←⊂'Attach'(4⍴'Top' 'Left')
+      ∆,←⊂'TipObj'n.MyTipObj
+      ∆,←⊂'Tip'('Trap all errors in tests and report them as crashing.' 'The setting does not influcence "Let failing tests crash"')
+      n.TrapErrors←n.Form.⎕NEW'Button'∆
+     
+      ∆←''
+      ∆,←⊂'Style' 'Check'
+      ∆,←⊂'Posn'(5,20+2⊃+⌿⊃n.TrapErrors.(Posn Size))
+      ∆,←⊂'Caption' '&Let failing tests crash'
+      ∆,←⊂'Attach'(4⍴'Top' 'Left')
+      ∆,←⊂'State'ps.debugFlag
+      ∆,←⊂'TipObj'n.MyTipObj
+      ∆,←⊂'Tip'('Crash at failing tests for investigation rather than just reporting them.' 'The setting does not influcence "Trap Errors"')
+      n.Debug←n.Form.⎕NEW'Button'∆
+     
+      ∆←''
+      ∆,←⊂'Style' 'Check'
+      ∆,←⊂'Posn'(5,20+2⊃+⌿⊃n.Debug.(Posn Size))
+      ∆,←⊂'Caption' 'Stop &before executing'
+      ∆,←⊂'Attach'(4⍴'Top' 'Left')
+      ∆,←⊂'State'ps.stopAt
+      ∆,←⊂'TipObj'n.MyTipObj
+      ∆,←⊂'Tip'('Stop just before any test gets executed.' 'Allows tracing the test case(s).')
+      n.StopFlag←n.Form.⎕NEW'Button'∆
+     
+      ∆←''
+      ∆,←⊂'Posn'((8+1⊃+⌿⊃n.StopFlag.(Posn Size))0)
       ∆,←⊂'Attach'('Top' 'Left' 'Bottom' 'Right')
-      ∆,←⊂'Size'((n.Form.Size[1]-15+(1⊃n.StartBtn.Size)+(1⊃n.SB.Size))⍬)
+      ∆,←⊂'Size'((n.Form.Size[1]-20+(1⊃n.StartBtn.Size)+(1⊃n.SB.Size)+1⊃+⌿⊃n.StopFlag.(Posn Size))⍬)
       ∆,←⊂'Event'('KeyPress' '##.OnKeyPress')
       n.TB←n.Form.⎕NEW'TabControl'∆
      
@@ -672,10 +730,10 @@
       n.Grid←n.SF2.⎕NEW'Grid'∆
      
       n.Grid.Coord←'Pixel'
-      n.Grid.BCol←(122 255 189)(246 157 175)(3↑255)(3⍴128)(3⍴255) ⍝ Okay, broken, failed, inactive, not run yet
-      n.Grid.FCol←(0 0 0)(3⍴255)(255 255 0)(3⍴255)(3⍴1) ⍝ Okay, broken, failed, inactive, place holder
+      n.Grid.BCol←(255 255 255)(122 255 189)(246 157 175)(3↑255)(3⍴128)(3⍴255) ⍝ Default, okay, broken, failed, inactive, not run yet
+      n.Grid.FCol←(0 0 0)(0 0 0)(3⍴255)(255 255 0)(3⍴255)(3⍴1) ⍝ Default, okay, broken, failed, inactive, place holder
       n.Grid.Values←2000 4⍴⊂''
-      n.Grid.CellTypes←2000 4⍴5
+      n.Grid.CellTypes←2000 4⍴6
       n.Grid.CellWidths←{⍵[1 2],(n.Form.Size[2]-20++/⍵),3⊃⍵}20 200 1
       n.Grid.TitleWidth←100
       n.Grid.CurCell←1 4
@@ -718,10 +776,11 @@
 
     ∇ r←OnClose msg;ref
       :Access Public Shared
-      r←0
+      r←1
       ref←1⊃,msg
       ⎕NQ ref 9998
       ref.∆n.∆Closed←1
+      ⍝Done
     ∇
 
     ∇ r←OnKeyPress msg;ref;key;form
@@ -729,7 +788,7 @@
       r←1
       :If 1<≢ref←1⊃,msg
          ⍝ For the TabControl we must use the old ('Event' ...) syntax, making it a name rather than a ref fur to bug <01655>
-         →(0=⎕nc'ps')/0
+          →(0=⎕NC'ps')/0
           ref←ps.gui.∆n.TB
       :EndIf
       :If ⍬≢form←{0::⍬ ⋄ 'Form'≡⍵.Type:⍵ ⋄ ∇ ⍵.##}ref
@@ -749,7 +808,7 @@
       :If n.∆Closed=0
           :If 1=type
               :If 2=⍴⍴n.Log.Text
-                  {⍵:.}~0∊⍴n.Log.Text
+                  {⍵:.}0≠≢,n.Log.Text
                   n.Log.Text←Nest msg
               :Else
                   n.Log.Text,←Nest msg
@@ -760,16 +819,16 @@
               :If ' '≡↑msg
                   msg[1]←'✓'
               :EndIf
-              n.Grid.Values[row;]←msg,⊂''
+              n.Grid.Values[row;]←{⍵[1],(⊂(≢'Test_')↓2⊃⍵),2↓⍵}msg,⊂''
               :Select ↑↑msg
               :Case '✓'
-                  n.Grid{2 ⎕NQ ⍺'SetCellType'row ⍵ 1}¨1 2 3
-              :Case '⍝'
-                  n.Grid{2 ⎕NQ ⍺'SetCellType'row ⍵ 4}¨1 2 3
-              :Case '#'
                   n.Grid{2 ⎕NQ ⍺'SetCellType'row ⍵ 2}¨1 2 3
-              :Case '*'
+              :Case '⍝'
+                  n.Grid{2 ⎕NQ ⍺'SetCellType'row ⍵ 5}¨1 2 3
+              :Case '#'
                   n.Grid{2 ⎕NQ ⍺'SetCellType'row ⍵ 3}¨1 2 3
+              :Case '*'
+                  n.Grid{2 ⎕NQ ⍺'SetCellType'row ⍵ 4}¨1 2 3
               :EndSelect
               n.Grid.CurCell←row 4
               colHeaderHeight←25
@@ -844,6 +903,26 @@
           r←debugFlag ref.Tester.RunDebug ⎕THIS
         ∇
 
+        ∇ {r}←RunGUI ids;ref;debugFlag
+          :Access Public Shared
+⍝ Run test cases with a GUI and the DEBUG flag on.\\
+⍝ `ids` can be one of:
+⍝ * An empty vector meaning all test cases shall be executed.
+⍝ * A scalar or vector of numbers identifying ungrouped test cases.
+⍝ * A text string that uniquily identifies a group.
+⍝ * A text string that ends with an asterisk (`*`) identifying one or more test groups.
+⍝ * A two-item vector with:
+⍝   * A text string identifying a group.
+⍝   * An integer vector identifying test cases within that group.
+⍝ The result:
+⍝ 1. A return code. 0 means all test cases passed successfully.
+⍝ 2. A vector of text vector with the log. The log contains detailed information about what was carried out.
+⍝ 3. A reference pointing to the GUI created by `Tester`.
+          ref←{9=#.⎕NC ⍵:# ⋄ 9=({⎕ML←1 ⋄ ⊃⍵}⎕RSI).⎕NC ⍵:{⎕ML←1 ⋄ ⊃⍵}⎕RSI ⋄ 9=##.⎕NC ⍵:## ⋄ 'Cannot find "Tester"'⎕SIGNAL 6}'Tester'
+          debugFlag←1   ⍝ This is required to be a semi-global by the `Tester` test cases!
+          r←debugFlag ref.Tester.RunGUI ⎕THIS ids
+        ∇
+
         ∇ {r}←RunBatchTestsInDebugMode;ref
           :Access Public Shared
 ⍝ Run all batch tests in debug mode (no error trapping) and with `stopFlag←1`.
@@ -899,7 +978,7 @@
           :If 0=≢list
               list←'T'⎕NL 3
           :ElseIf 2=⍴⍴list
-              :If 2=≡list
+              :If 2=|≡list
                   list←↑list[;1]
               :Else
                   list←↑{⍵↑⍨+/∧\⍵≠' '}¨{⍵↓⍨+/∧\' '=⍵}¨↓list
@@ -910,7 +989,7 @@
               list←,[0.5]list
           :EndIf
           :If 0<≢list←↓'Test_'{⍵⌿⍨⍺∧.=⍨(⍴,⍺)↑[1+⎕IO]⍵}list
-              {(0∊⍴⍵): ⋄ ⎕ML←1 ⋄ ⎕ED↑⍵}&list
+              {(0=≢⍵): ⋄ ⎕ML←1 ⋄ ⎕ED↑⍵}&list
           :EndIf
         ∇
 
@@ -1102,10 +1181,10 @@
                   :If ⎕NEXISTS delFilanme
                       ⎕NDELETE delFilanme
                   :EndIf
-                  :If 0∊⍴rc←⎕SE.UCMD'acre.SetChanged ',newName
+                  :If 0=≢rc←⎕SE.UCMD'acre.SetChanged ',newName
                       ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
                   :EndIf
-                  :If 0∊⍴rc←⎕SE.UCMD'acre.Erase ',oldName
+                  :If 0=≢rc←⎕SE.UCMD'acre.Erase ',oldName
                       ⎕←'acre was told about the deletion of a test fns but it was not interested.'
                   :EndIf
               :Else
@@ -1113,10 +1192,10 @@
                   :If ⎕NEXISTS delFilanme
                       ⎕NDELETE delFilanme
                   :EndIf
-                  :If 0∊⍴rc←⎕SE.UCMD'acre.setchanged ',newName
+                  :If 0=≢rc←⎕SE.UCMD'acre.setchanged ',newName
                       ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
                   :EndIf
-                  :If 0∊⍴rc←⎕SE.UCMD'acre.Erase ',oldName
+                  :If 0=≢rc←⎕SE.UCMD'acre.Erase ',oldName
                       ⎕←'acre was told about the deletion of a test fns but it was not interested.'
                   :EndIf
               :EndIf
@@ -1134,10 +1213,10 @@
           ⎕ML←1
           force←⎕THIS≡{⎕ML←1 ⋄ ⊃⍵}(1↓⎕RSI),⊂''
           r←0 2⍴' '
-          list←'Run' 'RunDebug' 'RunThese' 'RunBatchTests' 'RunBatchTestsInDebugMode' 'E' 'L' 'G' 'FailsIf' 'PassesIf'
-          list,←'GoToTidyUp' 'RenameTestFnsTo' 'ListHelpers' '∆OK' '∆Failed' '∆NoBatchTest' '∆Inactive' '∆NoAcreTests'
-          list,←'∆WindowsOnly' '∆LinuxOnly' '∆MacOnly' '∆LinuxOrMacOnly' '∆LinuxOrWindowsOnly' '∆MacOrWindowsOnly'
-          list,←'FindSpecialString' '∆NotApplicable' '∆InvalidAplVersion'
+          list←'Run' 'RunDebug' 'RunThese' 'RunBatchTests' 'RunBatchTestsInDebugMode' 'RunGUI' 'E' 'L' 'G' 'FailsIf'
+          list,←'PassesIf' 'GoToTidyUp' 'RenameTestFnsTo' 'ListHelpers' 'FindSpecialString'
+          list,←'∆OK' '∆Failed' '∆NoBatchTest' '∆Inactive' '∆NoAcreTests' '∆WindowsOnly' '∆LinuxOnly' '∆MacOnly' '∆LinuxOrMacOnly'
+          list,←'∆LinuxOrWindowsOnly' '∆MacOrWindowsOnly' '∆NotApplicable' '∆InvalidAplVersion'
           list←,¨list
           :If 'Tester.Helpers'≢{⍵↑⍨-+/∧\2>+\⌽'.'=⍵}⍕⊃⎕RSI
               list/⍨←force∨0<⊃∘⎕NC¨list   ⍝ List only those that are around
