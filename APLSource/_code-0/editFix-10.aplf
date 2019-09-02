@@ -25,7 +25,7 @@
      file←⊃dat getSourceFilenames fqn
      var←2∊⌊⎕NC fqn
      old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1     ⍝ .array .charlist &c.
-     old<dat.vars<var:                              ⍝ don't save
+     old<dat.vars<var:{}logMsg'⎕',MS.BD,'- ',fqn,' - ',MS.BB   ⍝ don't save
      type←⊃nameClass fqn
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←logMsg MS.DS,⊃dat setChange fqn type newval

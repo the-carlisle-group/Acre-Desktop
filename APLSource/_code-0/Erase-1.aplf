@@ -1,7 +1,7 @@
  Erase←{dat←⍺ ⋄ unc←50 ⍝ up to 50 unconfirmed
      space←⊃0∘ssp∧1=≢
-     ns←space⊣arg←⍵
-     ns>OPT.recursive:''⊣logMsg MS.BO
+     ns←space⊢arg←⍵
+     ns>1≡OPT.recursive:''⊣logMsg MS.BO
 
      endx←(⎕EX(ns/arg),⊢)⊢⊢
      nms←validItems{(⍎⊃⍵)UT.li⍳11}if ns⊢arg

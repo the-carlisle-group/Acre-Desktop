@@ -1,5 +1,5 @@
  notStored←{⍺←⊢
-     ⍴logMsg/UT.ht(nonul nms)/↓⍕MS.BD'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)nms←⍵
+     ⍴logMsg/UT.ht(nonul nms)/↓⍕MS.BE'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)nms←⍵
 ⍝
-⍝ Phil 2018-11-12 21.51
+⍝ Phil 2019-08-27 10:04 6.0.0+249
  }

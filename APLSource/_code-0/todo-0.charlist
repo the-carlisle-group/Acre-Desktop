@@ -1,0 +1,50 @@
+       Version   4  Saved: 2019-08-23 14:38:05                                                                                                                                           
+  * #.acre.AcreDesktop_Testcases.Tests.Test_API_014 Exercise the API function `CaseCode`.                                                                                                
+  * #.acre.AcreDesktop_Testcases.Tests.Test_API_023 Exercise the API function `Stats`                                                                                                    
+  * #.acre.AcreDesktop_Testcases.Tests.Test_API_024 Exercise the API function `SetChanged`                                                                                               
+  * #.acre.AcreDesktop_Testcases.Tests.Test_API_029 Exercise the API function `Changes`                                                                                                  
+  * #.acre.AcreDesktop_Testcases.Tests.Test_CreateProject_001 Create a project with a specified namespace, check that it is open as well as the number of files in `APLSource/`          
+  * #.acre.AcreDesktop_Testcases.Tests.Test_CreateProject_003 Create a project which has just a namespace script.                                                                        
+  * #.acre.AcreDesktop_Testcases.Tests.Test_CreateProject_004 Create a project with a function. Acre once produced (wrongly) a message that "Hello" is an invalid item.                  
+  * #.acre.AcreDesktop_Testcases.Tests.Test_CreateProject_007 Create a project with a public method in a class.                                                                          
+  * #.acre.AcreDesktop_Testcases.Tests.Test_CreateProject_008 Create a project that carries a link to a namespace script outside the project.                                            
+  * #.acre.AcreDesktop_Testcases.Tests.Test_Erase_002 Exercise `Erase` and `Restore` on a namespace.                                                                                     
+  * #.acre.AcreDesktop_Testcases.Tests.Test_Erase_003 Erase an ordinary namespace and then use the same name to create a namespace script                                                
+  # #.acre.AcreDesktop_Testcases.Tests.Test_API_011 Exercise the API function `Config`.                                                                                                  
+  # #.acre.AcreDesktop_Testcases.Tests.Test_API_027 Exercise the API function `OpenProject`                                                                                              
+  # #.acre.AcreDesktop_Testcases.Tests.Test_API_030 Exercise the API function `Refresh`.                                                                                                 
+  # #.acre.AcreDesktop_Testcases.Tests.Test_CreateProject_005 Create a root project. Due to its nature this test must run in a separate instance of Dyalog.                              
+  # #.acre.AcreDesktop_Testcases.Tests.Test_EditArray_002 Make changes to a nested array via ]editarray (APLAN) and check whether acre takes appropriate action.                         
+  ⍝ #.acre.AcreDesktop_Testcases.Tests.Test_Config_UserExit_004 A user exit function is supposed to return a result. If it does not a VALUE ERROR is reported but it is executed anyway. 
+  ⍝ #.acre.AcreDesktop_Testcases.Tests.Test_Edit_002 Make changes via the editor and check whether acre takes appropriate action.                                                        
+  ⍝ #.acre.AcreDesktop_Testcases.Tests.Test_OpenProject_010 Exercise `]OpenProject` with a dependency that cannot be fulfilled.                                                          
+                                                                                                                                                       
+       Version   5  Saved: 2019-08-23 15:16:47                                                                                                         
+  * Test_API_024 Exercise the API function `SetChanged`                                                                                                
+  * Test_CreateProject_001 Create a project with a specified namespace, check that it is open as well as the number of files in `APLSource/`           
+  * Test_CreateProject_003 Create a project which has just a namespace script.                                                                         
+  * Test_CreateProject_004 Create a project with a function. Acre once produced (wrongly) a message that "Hello" is an invalid item.                   
+  * Test_CreateProject_007 Create a project with a public method in a class.                                                                           
+  * Test_CreateProject_008 Create a project that carries a link to a namespace script outside the project.                                             
+  # Test_API_011 Exercise the API function `Config`.                                                                                                   
+  # Test_API_027 Exercise the API function `OpenProject`                                                                                               
+  # Test_API_029 Exercise the API function `Changes`                                                                                                   
+  # Test_API_030 Exercise the API function `Refresh`.                                                                                                  
+  # Test_CreateProject_005 Create a root project. Due to its nature this test must run in a separate instance of Dyalog.                               
+  # Test_EditArray_002 Make changes to a nested array via ]editarray (APLAN) and check whether acre takes appropriate action.                          
+  ⍝ Test_Config_UserExit_004 A user exit function is supposed to return a result. If it does not a VALUE ERROR is reported but it is executed anyway.  
+  ⍝ Test_Edit_002 Make changes via the editor and check whether acre takes appropriate action.                                                         
+  ⍝ Test_OpenProject_010 Exercise `]OpenProject` with a dependency that cannot be fulfilled.                                                           
+                                                                                                                                                                                          
+  >>>  Version   8  Saved: 2019-08-23 20:03:18                                                                                                                                            
+  * #.acre.AcreDesktop_Testcases.Tests.Test_API_024 Exercise the API function `SetChanged`                                                                                                
+  # #.acre.AcreDesktop_Testcases.Tests.Test_API_011 Exercise the API function `Config`.                                                                                                   
+  # #.acre.AcreDesktop_Testcases.Tests.Test_API_027 Exercise the API function `OpenProject`                                                                                               
+  # #.acre.AcreDesktop_Testcases.Tests.Test_API_029 Exercise the API function `Changes`                                                                                                   
+  # #.acre.AcreDesktop_Testcases.Tests.Test_API_030 Exercise the API function `Refresh`.                                                                                                  
+  # #.acre.AcreDesktop_Testcases.Tests.Test_CreateProject_005 Create a root project. Due to its nature this test must run in a separate instance of Dyalog.                               
+  # #.acre.AcreDesktop_Testcases.Tests.Test_EditArray_002 Make changes to a nested array via ]editarray (APLAN) and check whether acre takes appropriate action.                          
+  ⍝ #.acre.AcreDesktop_Testcases.Tests.Test_Config_UserExit_004 A user exit function is supposed to return a result. If it does not a VALUE ERROR is reported but it is executed anyway.  
+  ⍝ #.acre.AcreDesktop_Testcases.Tests.Test_Edit_002 Make changes via the editor and check whether acre takes appropriate action.                                                         
+  ⍝ #.acre.AcreDesktop_Testcases.Tests.Test_OpenProject_010 Exercise `]OpenProject` with a dependency that cannot be fulfilled.                                                           
+

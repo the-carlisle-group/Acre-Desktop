@@ -4,6 +4,6 @@
      z←#.ac.MS←allMessages 1⊃'.'sep⊃⎕XSI⊣#.(pl ut)←{⍵.(PL UT)}#.ac←⎕THIS
      #.⎕WSID←{'V',1⊃'.'⎕WG'APLVersion'}if(MS.CK∘≡)#.⎕WSID
      0 0⍴keys''⊣(#.ap←⎕SE.acre).Log'show'
-⍝ see buildWs
-⍝ Phil 2019-06-27 22:28 5.2.0+200
+⍝
+⍝ Phil 2019-08-29 07:38 6.0.0+256
  }

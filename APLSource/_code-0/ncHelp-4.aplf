@@ -19,6 +19,9 @@
          ⍵.MissingItem←''
          ⍵.GuiObject←⎕NEW'Form'(⊂'Visible' 0)
          ⍵.ClassInstance←⎕NEW ⎕FIX':Class' ':EndClass'
+         ⍵.Scalar←1
+         ⍵.PrimitiveFunction←⊢
+         ⍵.PrimitiveOperator←¨
          ⍵
      }⍎nn←'temp'⎕NS''
      nms←~∘' '¨↓temp.⎕NL⍳11

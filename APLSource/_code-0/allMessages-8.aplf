@@ -27,14 +27,16 @@
          ⍝ above MS.AZ and below MS.AY MUST correspond!
          ⍵.AY[⍵.AY⍳⍵.(AF AO AN AC AI)]←'.apl'∘,¨'f' 'o' 'n' 'c' 'i'
 
-         ⍵.BA←''
+         ⍵.BA←'by ',MS.NA
+         ⍵.BB←'Variables is Off'
          ⍵.BC←'⎕Please wait - '
-         ⍵.BD←'Not stored by ',MS.NA
+         ⍵.BD←'Not stored '
+         ⍵.BE←MS.BD,MS.BA
          ⍵.BF←'Version '
          ⍵.BG←'Refresh'
          ⍵.BH←'quadVars'
          ⍵.BI←'⎕IO ⎕ML ⎕WX'
-         ⍵.BJ←'⍝ This script was fixed by ',MS.NA
+         ⍵.BJ←'⍝ This script was fixed ',MS.BA
          ⍵.BK←'⍝ it can be kept, cloned, renamed, amended or ]erased.'
          ⍵.BL←'⍝ its purpose is to set the environment for the project.'
          ⍵.BM←'⎕Cannot rename file '

@@ -15,7 +15,7 @@
 
  config←'flat'##.APLTreeUtils.ReadUtf8File path,'/acre.config'
  CR←⎕UCS 13
- config←CR ⎕SE.APLTreeUtils.Split({⍵↑⍨¯1+⍵⍳'}'}config),',',CR,'  "ABC":"Foo",',CR,'  "DOB":"1954-10-02"',CR,'}'
+ config←CR ##.APLTreeUtils.Split({⍵↑⍨¯1+⍵⍳'}'}config),',',CR,'  "ABC":"Foo",',CR,'  "DOB":"1954-10-02"',CR,'}'
  ##.APLTreeUtils.WriteUtf8File(path,'/acre.config')config
 
  {}∆RunUcmd'Close #.TEMP'

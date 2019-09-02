@@ -19,6 +19,7 @@
  ref.⎕FX'r←Hello2' 'r←''Whole universe'''
  ⎕DL 1
  ts←{(1000000 100 100⊥3↑⍵)+(0.00001×24 60 60⊥3↑3↓⍵)}⎕TS
+ ts←1↓0⍕100⊥6⍴⎕TS
  ⎕DL 1
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
  →GoToTidyUp'#.Test_API_029.Hello2'≢1⊃result
@@ -32,13 +33,13 @@
  →GoToTidyUp 1≠+/'Version 1 '⍷list
  →GoToTidyUp 0≠+/'Version 3 '⍷list
 
- list←⎕SE.acre.Changes'#.',projectName,'.Hello2 -when'
+ list←⎕SE.acre.Changes('#.',projectName,'.Hello2')('when' 1)
  →GoToTidyUp 0=≢list
- . ⍝TODO⍝  When it works check the result
+⍝ checked . ⍝TODO⍝  When it works check the result
 
- list←⎕SE.acre.Changes cmd←'#.',projectName,'.Hello2 -when=',⍕ts
+ list←⎕SE.acre.Changes cmd←('#.',projectName,'.Hello2')('when'ts)
  →GoToTidyUp 1≠≢list   ⍝ Does not work  ⍝TODO⍝
-
+⍝ does now
 
  R←∆OK
 
