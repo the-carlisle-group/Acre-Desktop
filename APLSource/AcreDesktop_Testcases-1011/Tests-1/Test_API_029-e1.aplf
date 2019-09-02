@@ -40,6 +40,7 @@
  list←⎕SE.acre.Changes cmd←('#.',projectName,'.Hello2')('when'ts)
  →GoToTidyUp 1≠≢list   ⍝ Does not work  ⍝TODO⍝
 ⍝ does now
+⍝ Not for me! Kai 2019-09-02 12:10
 
  R←∆OK
 

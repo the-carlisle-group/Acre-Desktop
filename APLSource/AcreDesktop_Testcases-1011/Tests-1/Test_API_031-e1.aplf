@@ -13,7 +13,7 @@
  result←⎕SE.acre.Erase'#.',projectName,'.PI'
  ⍝TODO⍝ Check the result
  result←⎕SE.acre.Erase'#.',projectName,'.This_does_not_exist'
- ⍝TODO⍝ Check tjhe result
+ ⍝TODO⍝ Check the result
 
  R←∆OK
 

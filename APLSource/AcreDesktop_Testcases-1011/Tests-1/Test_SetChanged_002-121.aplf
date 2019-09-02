@@ -14,7 +14,7 @@
  →GoToTidyUp 0≠≢##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
  result←∆RunUcmd'Close #.',projectName
 
- result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName  ⍝ FILE NAME ERROR? file "Latest" is missing!  ⍝TODO⍝
+ result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName  ⍝ FILE NAME ERROR? file "Latest" is missing!  ⍝TODO⍝  Still crashes in 15.0 Kai 2019-09-02 11:13
  →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
  ref←#.⍎projectName
 

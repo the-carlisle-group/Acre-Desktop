@@ -19,7 +19,6 @@
  result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -variables=on'
  →GoToTidyUp 0∊⍴result
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
-⍝ →GoToTidyUp 0=F.IsDir projectPath,'/.acre' ⍝TODO⍝ /.acre/ now only exists if -keephistory is on
  →GoToTidyUp 2≠⍴⊃F.Dir projectPath,'/APLSource/*' ⍝ QuadVars script is added automatically!
 
  R←∆OK

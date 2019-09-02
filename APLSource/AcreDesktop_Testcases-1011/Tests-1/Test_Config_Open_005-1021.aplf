@@ -35,7 +35,7 @@
  :Else
      dmx←⎕DMX
      →PassesIf dmx.EN∊11 911
-     →PassesIf'Command Execution Failed: Problem reading'(1∊⍷)⊃dmx.DM
+     →PassesIf'Command Execution Failed: Problem reading'(1∊⍷)⊃dmx.DM   ⍝TODO⍝ It is now just DOMAIN ERROR?!  Kai 2019-09-02 11:12
  :EndTrap
 
  R←∆OK

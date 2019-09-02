@@ -17,7 +17,6 @@
  :EndTrap
 
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
-⍝ →GoToTidyUp 0=F.IsDir projectPath,'/.acre' ⍝TODO⍝ /.acre/ now only exists if -keephistory is on
  →GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Hello-1.aplf')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
