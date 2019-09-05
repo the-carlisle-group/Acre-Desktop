@@ -5,6 +5,7 @@
      f←{
          [
          15 'Cc' '(819⌶)'
+         17 '_JSON' '⎕JSON⍠(''Compact'' 0)↑'
          15 '_MKDIR' '⊢{3 ⎕MKDIR ⍵}'
          15 '_NDELETE' '⊢{1 ⎕NDELETE ⍵}'
          15 '_NEXISTS' '⎕NEXISTS'
@@ -15,7 +16,6 @@
          16 'a_' '{⍺←⊢ ⋄ ⍺(⍺⍺@⍵⍵)⍵ ⊣ ''DO NOT EDIT''}'
          16 'c_' '⊆'
          16 'i_' '⍸'
-         17 '_JSON' '⎕JSON⍠(''Compact'' 0)↑'
          ]
      }
      d←PL.decode 1↓¯1↓⎕NR'f'
@@ -24,5 +24,5 @@
 ⍝ called at start, this swaps in the primitive itself
 ⍝ or a much lighter cover than the v14.0 emulator
 ⍝ if run in a Dyalog version late enough to use it.
-⍝ Phil 2019-04-05 07.11
+⍝ Phil 2019-09-05 16:28 6.0.0+261
  }

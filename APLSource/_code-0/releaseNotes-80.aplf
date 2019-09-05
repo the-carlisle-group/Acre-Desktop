@@ -2,18 +2,17 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.0+261 2019-09-05 12.46
+⍝ Acre 6.0.1+263 2019-09-05 21.35
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * All acre commands and API functions have been consolidated such that both sets are comprised of the union of the two.
-⍝ * They are identically named in "PascalCase".
-⍝ * Their arguments, although formatted differently contain the same data.
-⍝ * Arguments, Options and Flags are specified
-⍝   * in commands as -   argument1   argument2   -option=value      -flag'
-⍝   * in functions as - 'argument1' 'argument2' ('option' 'value') ('flag' 1)
-⍝ * The API space is changed from "⎕SE.acreAPI" to "⎕SE.acre".
-⍝ * The config-file "acre.config" is now created in "JSON" which is supported in all Dyalog versions from 14.1 to present.
+⍝ * #196 SYNTAX ERROR starting acre in Dyalog 14.0 - introduced in Acre 6.0.0+248
+⍝ → - setting up API - namespace scope of locals in operators
+⍝ * DOMAIN ERROR in CreateProject creating config file in Dyalog 14.0 - introduced in Acre 5.2.0+239
+⍝ → - now created in APLAN as JSON is not available
+⍝ * #199 DOMAIN ERROR fixing a function in Dyalog 14.0 - cannot reproduce - proofed code against catenate reduction on empty
+⍝ * #198 ProjectSpace default - RFE - configuration or suppied to OpenProject can now specify [#.prefix.]*.* where the number
+⍝ → of asterisks defines how many trailing nodes of the project folder are appended to the project space path.
 ⍝
-⍝ Phil 2019-09-05 12:46 6.0.0+259
+⍝ Phil 2019-09-05 21.35 6.0.0+262
  }
