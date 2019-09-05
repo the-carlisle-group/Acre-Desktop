@@ -1,8 +1,14 @@
  setCase←{⍺←⊢
      ⎕THIS.SV←{9=⎕NC'SV':SV ⋄ ##.⎕NS''}0
      SV.major←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ'
+⍝    SV.major←'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ'
      SV.minor←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûü'
+⍝    SV.minor←'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþ'
      SV
+⍝     az←UT.ab''
+⍝     SV.major≡az/⍨az≠0 Cc az
+⍝     SV.minor≡az/⍨az≠1 Cc az
+
 ⍝ differently cased name characters only
-⍝ Phil 2019-08-16 16:51 5.2.0+240
+⍝ Phil 2019-09-04 11:18 6.0.0+259
  }

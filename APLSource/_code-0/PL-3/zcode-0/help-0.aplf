@@ -5,18 +5,19 @@
 ⍝ scalar:     number | character | space | ⊂ value
 ⍝ number:     as defined for APL
 ⍝ character:  as defined for APL
-⍝ space:      [⋄ pair ⋄ ... ]
-⍝      :      [  pair
-⍝                ...  ]
+⍝ space:      [ ⋄ pair ⋄ ... ]
+⍝      :      [   pair
+⍝                 ...  ]
 ⍝ pair:       name ← value
 ⍝ name:       as defined for APL
-⍝ list:       (⋄ value ⋄ ... )
-⍝     :       (  value
-⍝                ...   )
-⍝ array:      [⋄ cell ⋄ ... ]
-⍝      :      [  cell
-⍝                ...  ]
+⍝ list:       ( ⋄ value ⋄ ... )
+⍝     :       (   value
+⍝                 ...   )
+⍝ array:      [ ⋄ cell ⋄ ... ]
+⍝      :      [   cell
+⍝                 ...  ]
 ⍝ cell:       list | array | space
+⍝ n.b an empty space is notated as: [ ⋄ ← ]
 ⍝ ```
 ⍝ Previously prohibited unquoted line-ends and diamonds are permitted
 ⍝ → between and at the same level of nesting of brackets and parentheses.

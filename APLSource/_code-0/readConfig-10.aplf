@@ -1,7 +1,7 @@
  readConfig←{⍺←⊢ ⋄ cnf←⍵
      rl←Cc⊢ru←{⍵.⎕NL-2}dft←configFields if(0=⊢)⍺⊣0
      err←(11 ⎕SIGNAL⍨,)
-     0::(MS.DB err cnf)                      ⍝ Problem reading
+     0::(MS.DB err cnf,UT.CR,⊃⎕DM)           ⍝ Problem reading
      cnf←{_NEXISTS ⍵:⍵                       ⍝ new name 2018-11-12
          (⊃'/'UT.pn ⍵),MS.HM                 ⍝ try old name
      }cnf

@@ -2,7 +2,7 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.0+258 2019-08-31 21:51
+⍝ Acre 6.0.0+261 2019-09-05 12.46
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
@@ -15,5 +15,5 @@
 ⍝ * The API space is changed from "⎕SE.acreAPI" to "⎕SE.acre".
 ⍝ * The config-file "acre.config" is now created in "JSON" which is supported in all Dyalog versions from 14.1 to present.
 ⍝
-⍝ Phil 2019-08-31 21:51 6.0.0+257
+⍝ Phil 2019-09-05 12:46 6.0.0+259
  }

@@ -1,7 +1,7 @@
  getSourceFilenames←{dat←⍺
      src tgt←dat.(nspath source)
      name←(1+≢src)↓¨fqn←,⊂if≡⍵
-     alt←{1↓'#'sep⊃,/'/',¨'.'sep⊃,/'#',¨⍵}
+     alt←{1↓'#'sep⊃,/UT.EN,'/',¨'.'sep⊃,/UT.EN,'#',¨⍵}
      file←dat.case('./'∘encodeCaps)else alt name
      tgt∘,¨file,¨nameClass fqn
 

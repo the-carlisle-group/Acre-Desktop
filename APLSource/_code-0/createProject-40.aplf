@@ -14,8 +14,7 @@
      z←3 _MKDIR¨dat.(source changes)/⍨1,dat.hist
      (cfg←configFields'').ProjectSpace←dat.nspath
      cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
-     z←(_JSON cfg)_NPUT dat.config⊣cfg.⎕EX'Open' ⍝ deprecated
-     z←'dat'⎕NS lcNs cfg ⍝ ← into dat ↑ write
+     z←'dat'⎕NS lcNs cfg⊣dat writeConfig cfg⊣cfg.⎕EX'Open'
      z←(MS.NB MS.FX)_NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11
      fqn/⍨←dat.vars∨2≠⌊⎕NC fqn
@@ -27,5 +26,5 @@
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0
 ⍝ see openProject CreateProject
-⍝ Phil 2019-08-22 06:38 5.2.0+244
+⍝ Phil 2019-09-05 12:46 6.0.0+259
  }

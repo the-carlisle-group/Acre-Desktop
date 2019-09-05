@@ -1,0 +1,11 @@
+ writeConfig←{dat←⍺ ⋄ cfg←⍵
+     put←_NPUT∘dat.config
+     14.1≤⊃SV.aplver:put _JSON cfg
+     put PL.format cfg
+⍝ ⍺ dat
+⍝ ⍵ cfg (namespace)
+⍝   write representation to dat.config (file)
+⍝ Dyalog 14.0: APLAN; ≥14.1 JSON
+⍝ ← bytes written
+⍝ Phil 2019-09-05 12:46 6.0.0+259
+ }

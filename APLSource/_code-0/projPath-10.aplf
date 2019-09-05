@@ -1,0 +1,19 @@
+ projPath←{dat←⍺
+     ⊃prefSpace{
+         (⍵↑⍨⍵⍳'*'),(UT.ab''){('.',⍺,'_')[('/',⍺)⍳⍵]}⌽(+/⍵='*'){
+             ⍵/⍨⍺>+\⍵='/'}⌽¯1↓dat.folder
+     }if('*'∊⊢),'*'if null dat.projectspace if null ⍵
+
+     ⊃prefSpace{
+         (UT.ab''){('.',⍺,'_')[('/',⍺)⍳⍵]}⌽{⍵/⍨2>+\⍵='/'}⌽¯1↓dat.folder
+     }if null dat.projectspace if null ⍵
+
+     folder space←dat.(folder projectspace)
+     alpha←SV.(major,minor),⎕D
+     path←{⌽{⍵/⍨2>+\⍵='/'}⌽¯1↓folder}if null space if null ⍵
+     ⊃prefSpace'.'a_('/'=⊢)'_'a_{~⍵∊'/',alpha}path
+⍝ ⍺ dat
+⍝ ⍵ supplied (optional target project space
+⍝ ← project space
+⍝ Phil 2019-09-05 08:50 6.0.0+259
+ }
