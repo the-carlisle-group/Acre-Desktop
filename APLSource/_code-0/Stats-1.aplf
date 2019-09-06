@@ -2,7 +2,7 @@
      space←⍎dat.nspath ⎕NS''
      start←DT.dt2fm⊃s t←2⍴dat.loadtime
      time←~∘' ',{(×⍵)⌿1⌽⍕'ms',⍪⍵}0 60⊤⌈--/24×60×60×DT.dt2dd s t
-     s←b/⊃s b←{s __ 0 ssp⊃n s←n ⍵/¨⍨⊂(0<⎕NC)n←UT.df¨⍵}(∪⊢,UT.nt)space
+     s←b/⊃s b←{s _ 0 ssp⊃n s←n ⍵/¨⍨⊂(0<⎕NC)n←UT.df¨⍵}(∪⊢,UT.nt)space
      sub←,+/s.(≢⎕NL)2.1       ⍝ arrays
      sub,←+/s.(≢⎕NL)⊂3.1 3.2  ⍝ functions
      sub,←+/s.(≢⎕NL)4         ⍝ operators

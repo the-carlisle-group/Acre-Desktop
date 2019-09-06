@@ -2,7 +2,7 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.1+263 2019-09-05 21.35
+⍝ Acre 6.0.1+265 2019-09-06 16:35
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
@@ -14,5 +14,5 @@
 ⍝ * #198 ProjectSpace default - RFE - configuration or suppied to OpenProject can now specify [#.prefix.]*.* where the number
 ⍝ → of asterisks defines how many trailing nodes of the project folder are appended to the project space path.
 ⍝
-⍝ Phil 2019-09-05 21.35 6.0.0+262
+⍝ Phil 2019-09-06 16:35 6.0.1+264
  }

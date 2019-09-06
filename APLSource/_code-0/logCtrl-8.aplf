@@ -1,7 +1,7 @@
  logCtrl←{⍺←⊢ ⋄ cmd str←1(1↑¨↑_↓)⊂if≡⍵
      (,1)≡⊃v f←(1,¯1+≢MP.log)⌊0⌈⌊⎕VFI⊃cmd:1↓(1+f)↑MP.log
      ⍝ offset above as current function has already been logged.
-     ix←⊃⍳/⌽cmd nms←1(↑__↓)Cc cmd,(⊢(/⍨)2|⍳∘≢)'`'sep MS.CI
+     ix←⊃⍳/⌽cmd nms←1(↑_↓)Cc cmd,(⊢(/⍨)2|⍳∘≢)'`'sep MS.CI
 ⍝ Log file - `hide` | `show` | `file` | `clear` | `all` | `find` | number
      ns←dix nms
      ix=ns.hide:''⊣MP.log←z⊣MP.⎕EX'log'⊣z←MP.log

@@ -1,8 +1,10 @@
  diff←{
-     s←⍎(⎕SE.acre._code.whichProject⊃⎕XSI).nspath
-     b←0<⎕NC c←'⎕se'∘,¨1↓¨a←validItems s UT.li⍳10
-     ↑(b/a)/⍨{≢/2↑2⊃1 getValue ⍺ ⍵}/b⌿a,⍪c
-
+     null ⍵:{
+         s←⍎(⎕SE.acre._code.whichProject⊃⎕XSI).nspath
+         b←0<⎕NC c←'⎕se'∘,¨1↓¨a←validItems s UT.li⍳10
+         ↑(b/a)/⍨{≢/2↑2⊃1 getValue ⍺ ⍵}/b⌿a,⍪c
+     }''
+     UT.ed∘⍕∘⍪∘(↑¨a_ 2)¨↓⍉↑getValue'⎕se' '#',¨⊂1↓⍵
 ⍝ changed since latest build
-⍝ Phil 2019-04-10 08.42
+⍝ Phil 2019-09-06 06:40 6.0.1+263
  }
