@@ -41,14 +41,6 @@
              ⍵.type←'project'
              ⍵
          }⎕NS'')({
-             ⍵.command←'Config'
-             ⍵.help←'Clone of project configuration namespace'
-             ⍵.options←'all'
-             ⍵.result←''
-             ⍵.syntax←'space'
-             ⍵.type←'project'
-             ⍵
-         }⎕NS'')({
              ⍵.command←'CreateProject'
              ⍵.help←'Create a new project'
              ⍵.options←'casecode keephistory variables'

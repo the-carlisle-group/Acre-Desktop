@@ -2,17 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.1+265 2019-09-06 16:35
+⍝ Acre 6.0.2+266 2019-09-09 22:55
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * #196 SYNTAX ERROR starting acre in Dyalog 14.0 - introduced in Acre 6.0.0+248
-⍝ → - setting up API - namespace scope of locals in operators
-⍝ * DOMAIN ERROR in CreateProject creating config file in Dyalog 14.0 - introduced in Acre 5.2.0+239
-⍝ → - now created in APLAN as JSON is not available
-⍝ * #199 DOMAIN ERROR fixing a function in Dyalog 14.0 - cannot reproduce - proofed code against catenate reduction on empty
-⍝ * #198 ProjectSpace default - RFE - configuration or suppied to OpenProject can now specify [#.prefix.]*.* where the number
-⍝ → of asterisks defines how many trailing nodes of the project folder are appended to the project space path.
+⍝ * #200 log file problem. log file - if it exists - is now in the insttation folder
 ⍝
-⍝ Phil 2019-09-06 16:35 6.0.1+264
+⍝ Phil 2019-09-09 22:55 6.0.1+265
  }
