@@ -1,13 +1,12 @@
- SetChanged←{dat←⍺ ⋄ arg←∪⍵
+ SetChanged←{dat←⍺
      space←⊃0∘ssp∧1=≢
-     space arg:''⊣logMsg MS.BO
-     arg←¯2∘↓¨if('.*'≡¯2↑⊃)if(1=≢)arg
-     s←space arg
-     src←⍎s⊃dat.nspath(⊃arg)
+     ns←space⊢arg←∪⍵
+     ns>1≡OPT.recursive:''⊣logMsg MS.BO
+     src←⍎ns⊃dat.nspath(⊃arg)
      nms←src UT.li⍳11
-     res←dat setChange getValue nms(dat caseOK)validItems s⊃arg nms
+     res←dat setChange getValue nms(dat caseOK)validItems ns⊃arg nms
      z←logMsg MS.DK∘,¨res
      res⊣logMsg(⊃⎕SI),MS.EE,(≢res)UT.pl MS.FL
 ⍝
-⍝ Phil 2019-03-15 12.44
+⍝ Phil 2019-09-11 11:19 6.0.2+270
  }
