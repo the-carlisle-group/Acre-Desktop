@@ -1,7 +1,14 @@
- fixQV←{⍺←⊢
-     0≠⍵.⎕NC fn←MS.BH:''       ⍝ fn name
-     nms←MS.BI                 ⍝ which vars ?
-     ⊢⍵.⎕FIX(MS.HG,fn)('    ##.(',nms,')←',⍕⍵.⍎nms),MS.BN,⊂MS.HH
-⍝
-⍝ Phil 2018-04-04 21.06
+ fixQV←{⍺←⊢ ⋄ path←UT.df⊢space←⍵
+     all←⍎¨(⊢(/⍨)0∘ssp>ref)∪(⊂path),space UT.li 9.1
+     all/⍨←1,1↓⊃≢¨/(all all.##).(⎕IO ⎕ML ⎕WX)
+     ~∨/b←0=all.⎕NC⊂⊂nm←MS.BH:0
+     ns end text←MS.HG MS.HH MS.BN
+     fn←{
+         ⍵.⎕FIX(ns,nm)('    ##.(⎕io⎕ml⎕wx)←',⍕⍵.(⎕IO ⎕ML ⎕WX)),text,⊂end
+     }
+     0⊣fn¨b/all
+⍝ add "quadVars" script to top space and each subspace
+⍝   where any ⎕io⎕ml⎕wx differs from parent
+⍝   and it doesn't already exist
+⍝ Phil 2019-09-13 23:36 6.0.2+266
  }
