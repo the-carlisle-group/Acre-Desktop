@@ -155,7 +155,7 @@
          }⎕NS'')({
              ⍵.command←'SetChanged'
              ⍵.help←'Write items as if changed in the editor'
-             ⍵.options←''
+             ⍵.options←'recursive'
              ⍵.result←''
              ⍵.syntax←'item(s) | space'
              ⍵.type←'item'
