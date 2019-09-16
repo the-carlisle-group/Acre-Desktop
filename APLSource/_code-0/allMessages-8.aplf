@@ -84,6 +84,9 @@
          ⍵.DZ←MS.DM,'(folder path) [space path]'
 
          ⍵.EA←'Invalid name(s)'
+         ⍵.EB←'⎕Can`t write duplicate '
+         ⍵.EC←MS.EB,'files'
+         ⍵.ED←MS.EB,'folders'
          ⍵.EE←' wrote '
          ⍵.EF←'Comparing '
          ⍵.EG←'change changes'
@@ -91,7 +94,6 @@
          ⍵.EN←'Writing '
          ⍵.EO←'Reading '
          ⍵.EP←'Converting '
-         ⍵.EQ←'⎕Can`t write duplicate files'
          ⍵.ER←'Opening'
          ⍵.ES←'Copying '
          ⍵.ET←'Deleting '
@@ -156,5 +158,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2019-08-07 20.28 5.2.0+227
+⍝ Phil 2019-09-16 20:05 6.0.2+270
  }

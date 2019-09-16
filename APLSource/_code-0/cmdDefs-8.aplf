@@ -203,11 +203,11 @@
          }⎕NS'')
      }name
      r.group←⊂name
-     r.options←optionFields r.options
+     r.options←optionFields⊢r.options⊣r.opts←' 'sep¨r.options
      r.syntax←,/(⊂']',name,'.'),r.command,' ',r.syntax,' ',⍪r.options(⍳↓⊣)¨' '
      UT.is r
 ⍝ To add a new command clone from "}⎕NS'')({" to " ⍵ " and change the values
 ⍝ Once installed run "]command -?" and follow the link to add the documentation
 ⍝ see optionFields for valid options
-⍝ Phil 2019-08-12 22.38 5.2.0+236
+⍝ Phil 2019-09-10 13:21 6.0.2+270
  }

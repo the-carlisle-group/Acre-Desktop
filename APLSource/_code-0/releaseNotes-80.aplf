@@ -2,11 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+266 2019-09-09 22:55
+⍝ Acre 6.0.2+270 2019-09-10 13.13
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
 ⍝ * #200 log file problem. log file - if it exists - is now in the insttation folder
 ⍝
-⍝ Phil 2019-09-09 22:55 6.0.1+265
+⍝ Phil 2019-09-10 13:13 6.0.2+269
  }

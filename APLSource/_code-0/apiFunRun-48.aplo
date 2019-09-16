@@ -5,9 +5,12 @@
      ⍺←⊢ ⋄ fn←⍺⍺ ⋄ fnm type←⍵⍵ ⋄ nam←MS.NA
      z←⎕SE.UCMD if(newSession'')⊢nam,'.Version' ⍝ sledgehammer
      arg~←opt←(⊢(/⍨)1≠≡¨)arg←,∘⍕¨a_(0=≡¨),⊂if≡⍵  ⍝ fmt scalars & sep opts
-     z←logMsg⍕⍺,'[',nam,'].',fnm,' ',arg
      ⎕THIS.OPT←⎕NS DO
-     z←OPT.{⍎⍺,'←⍵'}/↑2↑¨opt
+     opts←⊃CD.{opts[command⍳⊂⍵]}fnm
+     opt←↑1↓(⊂'' 0),opt
+     opt[;0]←(opts,⊂'')[⍳∘1¨↓⊃¨opt[;0]∘.⍷opts]
+     z←OPT.{⍎⍺,'←⍵'}/opt←opt⌿⍨~nil⊣/opt  ⍝ resolve abbreviations
+     z←logMsg⍕⍺,'[',nam,'].',fnm,' ',{(2×',⊂'≡2↑⍵)↓⍵}PL.encode arg,↓opt
      z←setSpace''
      ⍺ ⍺⍺ runType type⊢arg
 ⍝ [⍺] - larg to fn
@@ -15,5 +18,5 @@
 ⍝  ⍵⍵ - fnname
 ⍝  ⍵  - rarg to fn
 ⍝  ←  - result of fn
-⍝ Phil 2019-08-21 17:56 5.2.0+244
+⍝ Phil 2019-09-10 13:13 6.0.2+269
  }

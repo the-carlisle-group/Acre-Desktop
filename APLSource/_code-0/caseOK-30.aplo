@@ -2,12 +2,17 @@
      null⊢nms←nout⊂if≡⍵:nms
      dat.case≥∧/_NEXISTS¨0 1 Cc¨⊂dat.source:nms ⍝ ok
      space←⍎dat.nspath
+
+     dup←spcs/⍨multi Cc⊢spcs←(⊢(/⍨)0∘ssp>ref)space UT.li 9.1
+     nms~←nms/⍨dup∊⍨spcs←UT.sp¨nms
+     z←MS.ED logMsg⍕¨{⍵/⍨⍵(∨/∊)¨⊂spcs}(Cc⊢∘⊂⌸⊢)dup
+
      it←⍺⊣space∘{validItems ⍺ UT.li⍳11}if⊢1=⍺ 1
      null nms∩dup←it/⍨multi(Cc,¨nameClass)it:nms
-     nms~dup⊣MS.EQ logMsg⍕¨{⍵/⍨⍵(∨/∊)¨⊂nms}(Cc⊢∘⊂⌸⊢)dup
+     nms~dup⊣MS.EC logMsg⍕¨{⍵/⍨⍵(∨/∊)¨⊂nms}(Cc⊢∘⊂⌸⊢)dup
 ⍝ [⍺]   ⍵ if ⍵ is ALL valid items (createProject)
 ⍝  ⍺⍺   dat
 ⍝  ⍵    validated items which might clash if casecode is Off
 ⍝  ←    non-clashing valid items having messaged exceptions
-⍝ Phil 2018-11-13 17.11
+⍝ Phil 2019-09-16 12:19 6.0.2+270
  }
