@@ -1,0 +1,11 @@
+defines a named space containing
+duplicate and non-duplicate nss
+containing
+duplicate and non-duplicate fns
+
+ 'ref'⎕ns''
+ ref.(fn0←{⍺←⊢ ⋄ ⍺ ⍵})
+ ref.(fn1←{⍺←⊢ ⋄ ⍺ ⍵})
+ ref.(FN1←{⍺←⊢ ⋄ ⍺ ⍵})
+ 'sp0' 'sp1' 'SP1'ref.⎕NS¨⊂'fn0' 'fn1' 'FN1'
+ ref.sp0.⎕io←~ref.⎕io

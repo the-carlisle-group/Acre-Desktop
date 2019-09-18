@@ -7,7 +7,7 @@
      name←'/.'decodeCaps file
      path date file name type/⍨←⊂ref≤new←date>prev ⍝ new or not refresh
      z←MS.DD logMsg,/(tgt∘,¨dn/name),'=',⍪type/⍨dn←multi name
-     z←logMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,¯4 tPath src
+     z←logMsg MS.BC,MS.EO,((≢path)UT.pl MS.FL),MS.EY,¯3 tPath dat.folder
      val←3 _NGET ticks path ⋄ fqn←tgt∘,¨name
      fqn type val msk←1 fixValue fqn type val      ⍝ name/type-change?
      z←logMsg MS.FW∘,¨(¯4 tPath¨path/⍨~msk),¨⊂MS.BP ⍝ file needs att'n
@@ -25,5 +25,5 @@
 ⍝ ⍵ ? or MS.BG ('Refresh')
 ⍝ ← ⍵ or fqns of refreshed items
 ⍝ get source and fix; if refresh fetch only changes
-⍝ Phil 2018-07-18 19.47
+⍝ Phil 2019-09-18 126 6.0.2+270
  }
