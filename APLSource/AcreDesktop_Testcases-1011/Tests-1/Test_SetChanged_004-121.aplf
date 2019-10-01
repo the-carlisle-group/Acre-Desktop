@@ -1,0 +1,30 @@
+ R←Test_SetChanged_004(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;list
+⍝ Exercise the "SetChanged" command with the -recursive flag
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
+ :Else
+     →GoToTidyUp 1
+ :EndTrap
+ →GoToTidyUp result≢'#.',projectName
+
+ ref.⎕FX'r←Hello' 'r←''World'''
+ result←∆RunUcmd'SetChanged #.',projectName,' -recursive'
+ →GoToTidyUp 0=≢result
+
+ →GoToTidyUp 1≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
+⍝Done
