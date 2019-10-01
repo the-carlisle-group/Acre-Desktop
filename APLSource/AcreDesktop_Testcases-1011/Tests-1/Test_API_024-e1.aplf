@@ -23,11 +23,10 @@
  tno←(⊃list)⎕FTIE 0
  →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno
 
- ref.⎕EX'Hello'
  ref.⎕FX'r←Hello2' 'r←''Universe'''
  ref.⎕FX'r←THE_Answer' 'r←42'
  result←⎕SE.acre.SetChanged'#.',projectName,' -recursive'
- →GoToTidyUp 2≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'  ⍝ One deleted, two added
+ →GoToTidyUp 3≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
 
  R←∆OK
 

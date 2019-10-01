@@ -20,7 +20,7 @@
  result←∆RunUcmd'SetChanged #.',projectName,' -recursive'
  →GoToTidyUp 0=≢result
 
- →GoToTidyUp 1≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ →GoToTidyUp 2≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'  ⍝ QuadVars is injected automatically
 
  R←∆OK
 
