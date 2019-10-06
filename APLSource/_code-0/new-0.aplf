@@ -1,6 +1,6 @@
  new←{⍺←⊢
      z←validItems ⎕THIS UT.li⍳11
-     z~'#',¨3↓¨⎕SE.acre._code UT.li⍳11
+     ⍪z~'#',¨3↓¨⎕SE.acre._code UT.li⍳11
 
 ⍝
 ⍝ Phil 2019-09-16 10:54 6.0.2+270

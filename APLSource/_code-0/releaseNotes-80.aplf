@@ -2,11 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+274 2019-09-18 18:26
+⍝ Acre 6.0.2+279 2019-09-27 20.18
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * #207 Session output on OpenProject
+⍝ * #212 A single backslash in a line in a charlist causes an error
 ⍝
-⍝ Phil 2019-09-18 18:26 6.0.2+270
+⍝ Phil 2019-10-06 20:18 6.0.2+278
  }
