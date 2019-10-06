@@ -12,5 +12,8 @@
      df=2:~FS.FileExists⊂⍵
 
 ⍝  - see setEmulators
-⍝ Phil 2018-12-30 23.02
+⍝ ignores ⍺
+⍝ permits non-existent items
+⍝ will not delete non-empty folder
+⍝ Phil 2019-09-19 10:31 6.0.2+274
  }

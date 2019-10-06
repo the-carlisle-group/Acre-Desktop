@@ -2,7 +2,7 @@
      2<≢⍵:''⊣logMsg MS.DZ
      tk←nOff OPT.track
      dp←nOff OPT.dependencies
-     0=dat←openProject tk dp ⍵:''
+     0=dat←MS.DP openProject tk dp ⍵:'' ⍝ run startup if not empty
      dat.nspath⊣dataSpaces⍣tk⊢dat ⍝ remember
 ⍝ ⍵ folder [space]
 ⍝ ← projectspace

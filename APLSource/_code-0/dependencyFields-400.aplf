@@ -1,15 +1,15 @@
  dependencyFields←{
-     {
+     r←{
          ⍵.group←''   ⍝ penultimate node of the folder path
          ⍵.name←''    ⍝ last name of the folder path
          ⍵.version←'' ⍝ semantic versioning - major.minor.patch
          ⍵.alias←''   ⍝ name of ref to be injected into main project
          ⍵.inject←''  ⍝ 'none' 'root' 'all' (spaces of the main project)
          ⍵
-     }#.⎕NS''
-⍝ ⍵ ?
-⍝ ← dependency sub-space
-⍝ z←dep{a w←⍺ ⍵ ⋄ ⊢'a'⎕NS w⊣'w'⎕NS a}¨dep⊢∘⎕NS¨dependencyFields''
+     }⎕NS''
+     r⊣'r'⎕NS ⍵
+⍝ ⍵ dependency sub-space
+⍝ ← clone with defaults where missing
 ⍝   the dependency parameter of the project config is a list of these
-⍝ Phil 2019-09-10 15:06 6.0.2+270
+⍝ Phil 2019-09-23 10:16 6.0.2+274
  }

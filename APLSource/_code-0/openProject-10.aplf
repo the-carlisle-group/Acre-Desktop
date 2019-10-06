@@ -1,4 +1,4 @@
- openProject←{⍺←⊢ ⋄ top←1≡⍺ 1 ⋄ dflt←⍺⊣1 1
+ openProject←{⍺←⊢ ⋄ top←MS.DP≡⍺⊣0 ⋄ dflt←⍺⊣1 1
      trk dep←dflt∧2⍴z z proj←⍵
      null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:0
      (dat←⎕NS'').(changed folder loadtime)←''(fPath src,'/'),DT.ts2dt ⎕TS
@@ -17,7 +17,8 @@
      space←⍎dat.nspath #.⎕NS''⊣openProjects''
      dat.(hist case vars)←On¨dat.(keephistory casecode variables)
      cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
-     dat.cfg←⎕NS cfg⊣space MS.FV _is_ cfg⊣cfg.ProjectFolder←dat.folder
+     dat.cfg←PL.encode cfg⊣cfg.ProjectFolder←dat.folder
+     z←space MS.FV _is_ PL.decode dat.cfg ⍝ ←↑ no JSON pre 14.1
      z←deleteFolder⍣(cde>dat.hist)⊢dat.code  ⍝ turned off
      z←_MKDIR/3,⍪dat.(source changes)/⍨(~src),on←cde<dat.hist
      z←dat∘putTime if⊢on                     ⍝ turned on

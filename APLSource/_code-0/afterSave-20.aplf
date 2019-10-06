@@ -1,11 +1,11 @@
- afterSave←{cfg←⍺
+ afterSave←{
      dat←whichProject⊃fqn path←⍵
      exit←dat.aftersave
      3≠#.⎕NC exit:''
      0::{''}logMsg(⊂MS.DN,exit),(↓UT.bx↑⎕DM),⊂MS.DV,fqn ⍝ show error
+     cfg←PL.decode dat.cfg ⍝ held as APLAN as no JSON pre 14.1
      cfg(#.⍎exit)fqn path
 ⍝ calls external routine with ⍵ after saving edited item
-⍝ ⍺ cfg
 ⍝ ⍵ fqn path
 ⍝ ← zero or more messages
 ⍝ Phil 2019-06-27 22:23 5.2.0+199

@@ -7,7 +7,7 @@
      arg~←opt←(⊢(/⍨)1≠≡¨)arg←,∘⍕¨a_(0=≡¨),⊂if≡⍵  ⍝ fmt scalars & sep opts
      ⎕THIS.OPT←⎕NS DO
      opts←⊃CD.{opts[command⍳⊂⍵]}fnm
-     opt←↑1↓(⊂'' 0),opt
+     opt←2↑⍤1↑opt,¨1
      opt[;0]←(opts,⊂'')[⍳∘1¨↓⊃¨opt[;0]∘.⍷opts]
      z←OPT.{⍎⍺,'←⍵'}/opt←opt⌿⍨~nil⊣/opt  ⍝ resolve abbreviations
      z←logMsg⍕⍺,'[',nam,'].',fnm,' ',{(2×',⊂'≡2↑⍵)↓⍵}PL.encode arg,↓opt
