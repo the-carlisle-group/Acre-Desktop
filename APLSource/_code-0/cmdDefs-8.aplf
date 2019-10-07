@@ -9,14 +9,6 @@
              ⍵.type←'shared'
              ⍵
          }⎕NS'')({
-             ⍵.command←'BuildWs'
-             ⍵.help←'Build workspace of currently open project and dependencies'
-             ⍵.options←'wsid quadlx reopen'
-             ⍵.result←''
-             ⍵.syntax←'space'
-             ⍵.type←'project'
-             ⍵
-         }⎕NS'')({
              ⍵.command←'CaseCode'
              ⍵.help←'Toggle between names with and without case-codes'
              ⍵.options←''
