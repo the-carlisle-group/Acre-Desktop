@@ -12,7 +12,7 @@
 
  R←∆Failed
 
- projectDir←##.FilesAndDirs.GetTempPath,'AcreDesktop_Testcases\',⊃⎕SI
+ projectDir←F.GetTempPath,'AcreDesktop_Testcases\',⊃⎕SI
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.PI←{2.14}

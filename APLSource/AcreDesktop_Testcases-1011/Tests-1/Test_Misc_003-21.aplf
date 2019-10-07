@@ -24,7 +24,7 @@
  ref.⎕FX'r←Hello' 'r←''Universe'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp(,⊂'#.Test_Misc_003.Hello')≢result
- →GoToTidyUp 1≠⍴⊃##.FilesAndDirs.Dir projectPath,'/.acre/changes/'
+ →GoToTidyUp 1≠⍴⊃F.Dir projectPath,'/.acre/changes/'
  →GoToTidyUp'Universe'≢ref.Hello
  result←∆RunUcmd'Undo #.',projectName,'.Hello'
  →GoToTidyUp 1≠⍴result

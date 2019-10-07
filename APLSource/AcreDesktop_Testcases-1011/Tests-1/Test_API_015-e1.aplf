@@ -1,4 +1,4 @@
- R←Test_API_015(stopFlag batchFlag);⎕TRAP;F;path;result;buff;openList
+ R←Test_API_015(stopFlag batchFlag);⎕TRAP;path;result;buff;openList
 ⍝ Exercise the API function `Close`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -6,7 +6,6 @@
 
  openList←⎕SE.acre.Projects'' ⍝ in case was open from prev test
 
- F←##.FilesAndDirs
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.Fooü←{42}

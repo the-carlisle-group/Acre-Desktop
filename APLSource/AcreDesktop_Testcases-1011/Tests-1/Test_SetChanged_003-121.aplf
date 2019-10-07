@@ -11,7 +11,7 @@
  ref.⎕FX'r←Hello' 'r←''World'''
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName ⍝ QuadVars is added automatically
  :Else
      →GoToTidyUp 1
  :EndTrap

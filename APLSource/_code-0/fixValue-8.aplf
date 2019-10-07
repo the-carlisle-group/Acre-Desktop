@@ -17,8 +17,8 @@
      fixClss←~{⍵\~1↓0,fixSrc/0,⍪⍵/⍺}⍣≡
 
      (x/res)←PL.(decode scrape)fixVar/0,⍪data/⍨x←nc=ns.array
-     (x/res)←PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charlist
-     (x/res)←↑∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charmat
+     (x/res)←,¨∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charlist
+     (x/res)←↑∘(,¨)∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charmat
      (x/res)←{PL.scrape 1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)

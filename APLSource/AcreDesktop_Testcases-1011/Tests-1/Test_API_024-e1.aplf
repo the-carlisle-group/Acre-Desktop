@@ -10,7 +10,8 @@
  ref←⍎projectName #.⎕NS''
 
  result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
- →GoToTidyUp 0≠≢##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ →GoToTidyUp 0=≢result
+ →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\APLSource\'
 
  ref.⎕FX'r←Hello' 'r←''World'''
  result←⎕SE.acre.SetChanged'#.',projectName,'.Hello'
@@ -19,19 +20,55 @@
  result←⎕SE.acre.SetChanged'#.',projectName,'.Hello'
  →GoToTidyUp 0=≢result
 
- →GoToTidyUp 1≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\'
  tno←(⊃list)⎕FTIE 0
  →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno
+ ⎕FUNTIE tno
 
  ref.⎕FX'r←Hello2' 'r←''Universe'''
- ref.⎕FX'r←THE_Answer' 'r←42'
- result←⎕SE.acre.SetChanged'#.',projectName,' -recursive'
- →GoToTidyUp 3≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ ref.TheAnswer←42
+ result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
+ →GoToTidyUp 4≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
+
+ ref.⎕FX'r←Hello3' 'r←''You'''
+ ref.Vars2←'More'
+ result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
+ →GoToTidyUp 6≠≢list←F.ListFiles projectPath,'\.acre\changes\'
+
+ ∆RunUcmd'Close #.',projectName
+ F.RmDir projectPath
+ #.⎕EX projectName
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on -variables=on'
+ →GoToTidyUp 0=≢result
+ ref.⎕FX'r←Hello' 'r←''There'''
+ ref.Vars←'Foo'
+ result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
+ →GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
+
+ ∆RunUcmd'Close #.',projectName
+ F.RmDir projectPath
+ #.⎕EX projectName
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on -variables=on'
+ →GoToTidyUp 0=≢result
+ ref.⎕FX'r←Hello' 'r←''There'''
+ ref.Vars←'Foo'
+ result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
+ →GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
 
  R←∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
- F.RmDir projectPath
  ∆RunUcmd'Close #.',projectName
+ F.RmDir projectPath
 ⍝Done

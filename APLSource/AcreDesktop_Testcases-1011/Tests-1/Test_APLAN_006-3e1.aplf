@@ -1,0 +1,16 @@
+ R←Test_APLAN_006(stopFlag batchFlag);⎕TRAP
+⍝ Check vector of vectors with control characters (\)
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+
+ #.TEMP.vars←'This is a paragraph' '\\' 'This is another paragraph'
+ #.TEMP.aplan←∆RunUcmd'toaplan #.TEMP.vars'
+ →PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
+
+ R←∆OK
+ ∆ClearLog
+⍝Done

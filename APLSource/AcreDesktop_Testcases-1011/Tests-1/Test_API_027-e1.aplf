@@ -1,10 +1,9 @@
- R←Test_API_027(stopFlag batchFlag);⎕TRAP;path;F;result
+ R←Test_API_027(stopFlag batchFlag);⎕TRAP;path;result
 ⍝ Exercise the API function `OpenProject`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
- F←##.FilesAndDirs
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.Foo←{42}

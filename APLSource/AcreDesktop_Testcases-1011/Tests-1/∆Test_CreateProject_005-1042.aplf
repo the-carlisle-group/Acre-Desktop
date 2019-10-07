@@ -6,8 +6,8 @@
  buff←∆RunUcmd'CreateProject ',path,' #'
  rc←NOT_OK
  :If (,'#')≡buff
- :AndIf 1=⊃⍴projects←∆RunUcmd'Projects'
- :ElseIf 2=⍴##.FilesAndDirs.Dir(⊃projects[1;2]),'APLSource/'
+ :AndIf 1=⊃≢projects←∆RunUcmd'Projects'
+ :ElseIf 2=≢F.Dir(⊃projects[1;2]),'APLSource/'
      rc←OK
  :EndIf
  ⎕OFF rc

@@ -1,4 +1,4 @@
- R←Test_SetChanged_004(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;list
+ R←Test_SetChanged_005(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;list
 ⍝ Exercise the "SetChanged" command with the -recursive flag
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -17,10 +17,11 @@
  →GoToTidyUp result≢'#.',projectName
 
  ref.⎕FX'r←Hello' 'r←''World'''
+ ref.vars←'# Markdown' '' 'APL is Great'
  result←∆RunUcmd'SetChanged #.',projectName,' -recursive'
  →GoToTidyUp 0=≢result
 
- →GoToTidyUp 2≠≢list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'  ⍝ QuadVars is injected automatically
+ →GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
 
  R←∆OK
 

@@ -10,16 +10,16 @@
  ref←⍎projectName #.⎕NS''
 
  result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
- →GoToTidyUp 0≠⍴##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ →GoToTidyUp 0≠≢list←F.ListFiles projectPath,'\.acre\changes\'
 
  ref.⎕FX'r←Hello' 'r←''World'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0∊⍴result
+ →GoToTidyUp 0=≢result
  ref.⎕FX'r←Hello' 'r←''Universe'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0∊⍴result
+ →GoToTidyUp 0=≢result
 
- →GoToTidyUp 1≠⍴list←##.FilesAndDirs.ListFiles projectPath,'\.acre\changes\'
+ →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\'
  tno←(⊃list)⎕FTIE 0
  →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno   ⍝ Orig, change, pointer
 

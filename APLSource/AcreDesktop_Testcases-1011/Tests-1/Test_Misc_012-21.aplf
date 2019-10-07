@@ -1,0 +1,30 @@
+ R←Test_Misc_012(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;list;buff
+⍝ Create a project with a vector of vectors with control characters (\). Was once a bug.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ∆ClearLog
+
+ ref.vars←buff←'* This' '* That' '\\' 'This is another paragraph'
+ result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName,' -variables=on'   ⍝ QuadVars is added automatically
+ →GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\APLSource\'
+ result←∆RunUcmd'Close #.',projectName
+ →GoToTidyUp 0=≢result
+ #.⎕EX projectName
+ result←∆RunUcmd'OpenProject ',projectPath
+ →GoToTidyUp 0=≢result
+ ref←#⍎projectName
+ →GoToTidyUp buff≢ref.vars
+
+ R←∆OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆RunUcmd'Close #.',projectName
+ ∆ClearLog
+⍝Done

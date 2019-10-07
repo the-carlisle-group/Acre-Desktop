@@ -1,10 +1,9 @@
- R←Test_API_014(stopFlag batchFlag);⎕TRAP;F;path;result;buff
+ R←Test_API_014(stopFlag batchFlag);⎕TRAP;path;result;buff
 ⍝ Exercise the API function `CaseCode`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
- F←##.FilesAndDirs
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.Fooü←{42}

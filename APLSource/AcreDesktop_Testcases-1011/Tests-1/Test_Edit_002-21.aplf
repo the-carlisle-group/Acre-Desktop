@@ -9,7 +9,7 @@
 
  :If 1
      R←∆Inactive        ⍝ One some machines this test always failes, on some rarely, on some it makes APL disappear
-                        ⍝ To be re-written when the Ride protocol can be used to drive test cases.
+                        ⍝ To be re-written when the Ride protocol can be used to drive test cases. ⍝TODO⍝
      :Return
  :EndIf
 
@@ -32,8 +32,8 @@
  cmd,←'Captions\MessageBox=',caption,'-M '
  cmd,←'confirm_Fix=0 '
  cmd,←'Edit.dws '
- acreDir←##.FilesAndDirs.GetTempPath,⊃⎕SI
- ##.FilesAndDirs.RmDir acreDir
+ acreDir←F.GetTempPath,⊃⎕SI
+ F.RmDir acreDir
  cmd,←'-acredir="',acreDir,'" '
  cmd,←'-testfns="',(⊃⎕SI),'" '
  :If 0

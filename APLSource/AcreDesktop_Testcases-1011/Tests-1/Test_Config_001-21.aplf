@@ -17,7 +17,7 @@
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello-1.aplf'
+ →GoToTidyUp 1≠F.IsFile projectPath,'\APLSource\Hello-1.aplf'
  F.RmDir projectPath
  ∆RunUcmd'Close #.',projectName
 
@@ -28,7 +28,7 @@
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello.aplf'
+ →GoToTidyUp 1≠F.IsFile projectPath,'\APLSource\Hello.aplf'
  F.RmDir projectPath
  ∆RunUcmd'Close #.',projectName
 
@@ -38,7 +38,7 @@
      →GoToTidyUp 1
  :EndTrap
  →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp 1≠##.FilesAndDirs.IsFile projectPath,'\APLSource\Hello.aplf'
+ →GoToTidyUp 1≠F.IsFile projectPath,'\APLSource\Hello.aplf'
  F.RmDir projectPath
 
  R←∆OK

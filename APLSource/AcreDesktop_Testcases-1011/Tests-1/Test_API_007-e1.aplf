@@ -1,4 +1,4 @@
- R←Test_API_007(stopFlag batchFlag);⎕TRAP;F;path;result;buff
+ R←Test_API_007(stopFlag batchFlag);⎕TRAP;path;result;buff
 ⍝ Exercise the API function `Log`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -7,7 +7,6 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.Foo←{42}
- F←##.FilesAndDirs
 
  ∆ClearLog
  →PassesIf 1=≢buff←⎕SE.acre.Log'all'

@@ -11,7 +11,7 @@
 
  result←⎕SE.acre.CreateProject projectPath('#.',projectName)
  →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp~##.FilesAndDirs.IsDir projectPath
+ →GoToTidyUp~F.IsDir projectPath
 
  R←∆OK
 

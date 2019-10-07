@@ -1,10 +1,9 @@
- R←Test_API_010(stopFlag batchFlag);⎕TRAP;buff;path;F;result
+ R←Test_API_010(stopFlag batchFlag);⎕TRAP;buff;path;result
 ⍝ Exercise the API function `Deletefile`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
 
- F←##.FilesAndDirs
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.Foo←{42}
