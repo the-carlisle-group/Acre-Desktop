@@ -5,12 +5,10 @@
 ⍝ invert space(s)
 ⍝ 0.
 ⍝   ⍵ space with named lists
-⍝   ← list of spaces with named items
-⍝     after lists overtaken to longest
+⍝   ← list of spaces with named items after lists overtaken to longest
 ⍝ 1.
 ⍝   ⍵ list of spaces with named items
-⍝   ← space with named lists
-⍝     of intersect of named items
+⍝   ← space with named lists of commonly named items
 ⍝ After normalisation "is" is self inverse.
 ⍝
 ⍝       space

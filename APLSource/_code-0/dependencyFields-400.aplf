@@ -5,11 +5,12 @@
          ⍵.version←'' ⍝ semantic versioning - major.minor.patch
          ⍵.alias←''   ⍝ name of ref to be injected into main project
          ⍵.inject←''  ⍝ 'none' 'root' 'all' (spaces of the main project)
+         ⍵.space←''   ⍝ where in ws
          ⍵
      }⎕NS''
      r⊣'r'⎕NS ⍵
 ⍝ ⍵ dependency sub-space
 ⍝ ← clone with defaults where missing
-⍝   the dependency parameter of the project config is a list of these
-⍝ Phil 2019-09-23 10:16 6.0.2+274
+⍝   overwrite defaults with supplied
+⍝ Phil 2019-10-10 10.30 6.0.2+279
  }

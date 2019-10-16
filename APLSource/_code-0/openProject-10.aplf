@@ -1,5 +1,5 @@
- openProject←{⍺←⊢ ⋄ top←MS.DP≡⍺⊣0 ⋄ dflt←⍺⊣1 1
-     trk dep←dflt∧2⍴z z proj←⍵
+ openProject←{⍺←⊢ ⋄ top←MS.DP≡⍺⊣0
+     trk dep proj←⍵
      null⊢src←{getFolder'/'}if null⊃src tgt←2↑proj:0
      (dat←⎕NS'').(changed folder loadtime)←''(fPath src,'/'),DT.ts2dt ⎕TS
      dat.(config source code changes latest)←{
