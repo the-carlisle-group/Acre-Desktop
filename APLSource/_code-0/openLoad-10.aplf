@@ -7,20 +7,19 @@
          '.'=⊃p:(dat.folder,'../',p)⍵    ⍝ ../uncle/cousin/nephew
          (dat.folder,(⊃,/(1++/p∊'/\')/,/'../'),p)⍵ ⍝ uncle/cousin
      }
-     0∊⍴these←nout⊂if≡dat.dependencies:1        ⍝ ex config
-     nss←(⎕NEW ⎕SE.Parser(1 optionFields'dep track')).Parse¨these
-     args←nss.Arguments
-     args nss/⍨←⊂~args∊SV.arguments      ⍝ this time
-     0∊⍴SV.arguments,←args:1
-     track←trk∧nOff¨nss.track
-     depend←dep∧nOff¨nss.dependencies
-     dts←(⊂trk dep)openProject¨↓track,depend,⍪pref/↑2↑¨args
-     dts track depend/⍨←⊂dts≠0           ⍝ only opened
-     z←dataSpaces track/dts              ⍝ keep only tracked dependencies
+     0∊⍴deps←~∘UT.EN⊂if(''≡0⍴⊢)dat.dependencies:1
+     strs←UT.EN∊0⍴¨deps
+     nss←{
+         dat.dependencies←deps←dependencyFields¨⍵ ⍝ incl dflts
+         nout dat.dependencies.(name space)
+         ...,
+     }
+     deps←strs(UT.sv¨)else(dat∘nss)deps
+     dts←openProject¨↓trk,dep,⍪pref/↑2↑¨deps ⍝ monadic
+     z←dataSpaces trk/dts                ⍝ keep deps only if tracked
      ~null MS.DE logMsg dat∘openConflict⍣trk⊢'':{0}logMsg dat.config MS.CB
      1:1
-⍝ dyadic calls to openProject tell it NOT to run Startup
 ⍝ Open dependent projects
 ⍝ this is potentially endlessly recursive
-⍝ Phil 2019-08-17 07:53 5.2.0+240
+⍝ Phil 2019-10-10 10:30 6.0.2+279
  }

@@ -3,7 +3,10 @@
      tests←##.⍎MS.FZ
      fns←tests.Tests.⎕NL-3
      z←tests.(Tester.EstablishHelpersIn Tests)
-     z←(1∊arg)tests.Tests.RunDebug else{tests.Tests.Run⊣⍵}0
+     z←{tests.Tests.Run⊣'nilad'}if null arg
+     z←{tests.Tests.RunThese ⍵}if nonul arg
      z←tests.Tests.{⎕EX(⎕NL-3)~⍵}fns
-⍝ Phil 2018-01-31 16.02
+⍝ ⍵ null - run all cleanly
+⍝   'group' (n n ...) - run these in debug mode
+⍝ Phil 2019-10-15 12.24 6.0.2+279
  }

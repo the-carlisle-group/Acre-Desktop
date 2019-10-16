@@ -1,5 +1,6 @@
  projMethod←{
      0∊⍴open←openProjects'':''⊣logMsg MS.GX
+     OPT.all←OPT.{0=⎕NC'all':0 ⋄ all}0
      1≡OPT.all:⍪⍺⍺/(⍪open),⊂''
      null⊢proj←prefSpace ⍵:''⊣logMsg MS.DH
      dat←(open,0)open.nspath UT.co proj
@@ -13,5 +14,5 @@
 ⍝ ← as determined by method if single
 ⍝   as a vector of above if multiple
 ⍝   as a one column list if -all
-⍝ Phil 2019-08-10 09.53 5.2.0+227
+⍝ Phil 2019-09-27 11:04 6.0.2+275
  }

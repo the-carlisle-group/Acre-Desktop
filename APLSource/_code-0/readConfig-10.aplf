@@ -19,12 +19,14 @@
      z←dft('⎕io',cu[cl⍳exc])_is_ cfg.⍎⍕0,cu[cl⍳exc←cl~rl] ⍝ custom to dft
      z←dft('⎕io',ru[rl⍳int])_is_ cfg.⍎⍕0,cu[cl⍳int←rl∩cl] ⍝ supplied to dft
 
-     dft⊣dft.⎕EX'Open'⊣dft.(Dependencies{⍺,⍵/⍨0∊⍴⍺}←Open) ⍝ remove ⍝TODO⍝
+     z←dft.⎕EX'Open'⊣dft.(Dependencies{⍺,⍵/⍨0∊⍴⍺}←Open) ⍝ remove ⍝TODO⍝
+     ((0∊⍴)∨UT.EN∊0⍴¨⊢)⊢dep←dft.Dependencies~UT.EN:dft
+     dft⊣dft.Dependencies←{s⊣'s'⎕NS ⍵⊣s←⎕NS''}¨dep ⍝ ensure not in #
 
 ⍝ [⍺] default space
 ⍝ ⍵ config filename
 ⍝ config is APLAN or JSON or APLScript
 ⍝ result is namespace including all expected fields
 ⍝    having "proper" case restored
-⍝ Phil 2019-08-17 07:53 5.2.0+240
+⍝ Phil 2019-09-27 18:03 6.0.2+276
  }

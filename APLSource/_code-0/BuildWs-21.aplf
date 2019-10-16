@@ -1,0 +1,15 @@
+ BuildWs←{dat←⍺                          ⍝ project is open
+     wsid←dat.folder∘{⍺,('/'UT.nn ¯1↓⍺),'.dws'}if null OPT.wsid
+     z←{OpenProject ⍵.(folder nspath)}if(1∊OPT.reopen)⊢dat
+     z←wsid quadlx #.⎕WSID #.⎕LX←#.⎕WSID #.⎕LX wsid OPT.quadlx
+     z←0 ⎕SAVE #.⎕WSID
+     2⍴wsid quadlx #.⎕WSID #.⎕LX←#.⎕WSID #.⎕LX wsid quadlx
+
+
+⍝ ⍺ dat
+⍝ ⍵ nspath
+⍝ ]buildws space -wsid='path' -quadlx='exec' -reopen
+⍝ ⎕SE.acre.BuildWs nspath ('wsid' 'path')('quadlx' 'exec')('reopen' 1))
+⍝   create ws of tracked project with dependencies in place.
+⍝ Phil 2019-09-24 08:57 6.0.2+274
+ }

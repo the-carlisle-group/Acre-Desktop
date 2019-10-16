@@ -1,4 +1,4 @@
- Erase←{dat←⍺ ⋄ unc←50 ⍝ up to 50 unconfirmed
+ Erase←{dat←⍺ ⋄ ⍝ unc←50 ⍝ up to 50 unconfirmed
      space←⊃0∘ssp∧1=≢
      ns←space⊢arg←⍵
      ns>1≡OPT.recursive:''⊣logMsg MS.BO
@@ -7,7 +7,7 @@
      nms←validItems{(⍎⊃⍵)UT.li⍳11}if ns⊢arg
      null nms:''⊣logMsg MS.DH
 
-     0={confirm 60,⊂MS.CA,⍵ UT.pl MS.FK}if(unc<⊢)≢nms:''
+⍝     0={confirm 60,⊂MS.CA,⍵ UT.pl MS.FK}if(unc<⊢)≢nms:''
 
      ~dat.hist:endx dat delSource nms
 
