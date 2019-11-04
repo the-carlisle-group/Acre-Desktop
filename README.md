@@ -114,7 +114,7 @@ This text file contains acre parameters specific to the project. For example:
       "Dependencies": ["Rumba", "Utilities"],
       "StartUp": "Initialize",
       "KeepHistory": "Off",
-      "CaseCode": "Off"
+      "CaseCode": "Off",
       "AfterFix": "",
       "Variables": "Off",
       "MyCustomField": "possibly required by ancillary software"
