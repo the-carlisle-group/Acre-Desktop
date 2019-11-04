@@ -1,5 +1,5 @@
  R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath
-⍝ A user exit function is supposed to accept a right argument. If it does not acre should react gracefully.
+⍝ A user exit function is supposed to be dyadic. If it does not acre should react gracefully.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
