@@ -1,5 +1,5 @@
- R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath
-⍝ A user exit function is supposed to accept a right argument. If it does not acre should react gracefully.
+ R←Test_Config_UserExit_005(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath
+⍝ A user exit function is supposed to return a result. If it does not acre should react gracefully.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -12,7 +12,7 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.∆FLAG←0
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit' '⍝ Niladic!' 'r←#.TEMP.∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'UserExit arg' '⍝ Does not return anything!' '#.TEMP.∆FLAG←1'
  Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ Change the function and then press <escape>'
  projectPath←F.GetTempPath,⊃⎕SI
  F.RmDir projectPath
@@ -43,7 +43,7 @@
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →GoToTidyUp #.TEMP.∆FLAG≠1
+ →GoToTidyUp #.TEMP.∆FLAG≠0
 
  R←∆OK
 

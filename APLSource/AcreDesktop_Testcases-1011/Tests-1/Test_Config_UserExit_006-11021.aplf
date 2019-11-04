@@ -1,5 +1,5 @@
- R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath
-⍝ A user exit function is supposed to accept a right argument. If it does not acre should react gracefully.
+ R←Test_Config_UserExit_006(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath
+⍝ A user exit function is supposed to by dyadic. If it monadic it won't be called but an error is logged.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←∆Failed
@@ -12,7 +12,7 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.∆FLAG←0
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit' '⍝ Niladic!' 'r←#.TEMP.∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit arg' '⍝ Monadic!' 'r←#.TEMP.∆FLAG←1'
  Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ Change the function and then press <escape>'
  projectPath←F.GetTempPath,⊃⎕SI
  F.RmDir projectPath
@@ -31,7 +31,8 @@
  configParms,←⊂'{'
  configParms,←⊂' "Open": "",'
  configParms,←⊂' "ProjectSpace": "#.TEMP",'
- configParms,←⊂' "AfterSave": "#.TEMP.UserExit"'
+ configParms,←⊂' "AfterSave": "#.TEMP.UserExit",'
+ configParms,←⊂' "Foo": 1'
  configParms,←⊂'}'
  configParms←,¨configParms
  A.WriteUtf8File configFilename configParms
@@ -43,7 +44,7 @@
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →GoToTidyUp #.TEMP.∆FLAG≠1
+ →GoToTidyUp #.TEMP.∆FLAG≠0
 
  R←∆OK
 
