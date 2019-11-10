@@ -1,0 +1,8 @@
+ Remove←{⍺←⊢
+     z←(⎕SE.⎕WG'Editor').(onFix onAfterFix)←⊂MS.FY ⍝ ⎕SE.SALTUtils.EditorFix
+     z←Log'hide'
+     z←logMsg'⎕',MS.GD ⍝ Now safe to save session without ...
+     0/⎕SE.⎕EX MS.NA
+⍝ Fix and AfterFix set by editFix
+⍝ Phil 2019-11-06 21.14 6.0.2+282
+ }

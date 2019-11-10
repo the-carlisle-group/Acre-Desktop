@@ -13,7 +13,7 @@
      }ici←⎕THIS
      SV.sessionstart←sessionStart''
      z←editFix'Start' ⍝ ← sets other stuff in SV ⍝ ↓ en cas )LOAD )CLEAR
-     z←⎕SE ⎕WS'Event'_(⎕SE ⎕WG'Event'),⊂'WorkspaceLoaded'_(⍕ici),'.openProjects'
+⍝    z←⎕SE ⎕WS'Event'_(⎕SE ⎕WG'Event'),⊂'WorkspaceLoaded'_(⍕ici),'.openProjects'
      z←logMsg⍕Version''
      s←⊃'B'UT.mn⊢m←⊃⊃2 _NINFO SV.logfile
      z←logMsg(×m)/('⎕'/⍨'M'∊s),s,MS.FP,SV.logfile

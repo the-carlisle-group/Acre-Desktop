@@ -145,6 +145,15 @@
              ⍵.type←'project'
              ⍵
          }⎕NS'')({
+             ⍵.command←cmd←'Remove',name
+             z←⎕THIS.⍎cmd,'←Remove'
+             ⍵.help←'Close all projects and remove ',name,' from ⎕SE resetting as found.'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←''
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
              ⍵.command←'Restore'
              ⍵.help←'Bring back items ]erased'
              ⍵.options←''
