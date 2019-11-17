@@ -2,11 +2,11 @@
 ⍝ Exercise the API function `Version`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  v←⎕SE.acre.Version ⍬
- →PassesIf 4=≢v
- →PassesIf'Acre'≡1⊃v
+ →T.PassesIf 4=≢v
+ →T.PassesIf'Acre'≡1⊃v
 
- R←∆OK
+ R←T.∆OK
 ⍝Done

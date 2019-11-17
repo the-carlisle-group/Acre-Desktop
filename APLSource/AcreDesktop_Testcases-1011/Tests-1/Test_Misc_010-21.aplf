@@ -2,7 +2,7 @@
 ⍝ Change a function to an operator. Acre now takes care of this by performing a rename operation.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -18,7 +18,7 @@
  :EndTrap
 
  →GoToTidyUp result≢'#.',projectName
- →PassesIf 1=+/,'Hello.aplf'⍷↑'Recursive'F.ListFiles projectPath,'\APLSource\'
+ →T.PassesIf 1=+/,'Hello.aplf'⍷↑'Recursive'F.ListFiles projectPath,'\APLSource\'
  ref.⎕FX'r←(fns Hello) dummy' 'r←42'
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp(,⊂'#.',projectName,'.Hello')≢result
@@ -29,10 +29,10 @@
  ∆ClearLog
 
  result←∆RunUcmd'OpenProject ',projectPath
- →PassesIf 1=+/,'Hello.aplo'⍷↑'Recursive'F.ListFiles projectPath,'\APLSource\'
- →PassesIf 0=+/,'Hello.aplf'⍷↑'Recursive'F.ListFiles projectPath,'\APLSource\'
+ →T.PassesIf 1=+/,'Hello.aplo'⍷↑'Recursive'F.ListFiles projectPath,'\APLSource\'
+ →T.PassesIf 0=+/,'Hello.aplf'⍷↑'Recursive'F.ListFiles projectPath,'\APLSource\'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

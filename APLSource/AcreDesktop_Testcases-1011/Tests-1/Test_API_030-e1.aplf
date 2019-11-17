@@ -10,7 +10,7 @@
      :Return
  :EndIf
 
- R←∆Failed
+ R←T.∆Failed
 
  projectDir←F.GetTempPath,'AcreDesktop_Testcases\',⊃⎕SI
  #.⎕SHADOW'TEMP'
@@ -36,7 +36,7 @@
  →GoToTidyUp(,⊂'#.TEMP.PI')≢result
  →GoToTidyUp 3.14≢#.TEMP.PI ⍬
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectDir

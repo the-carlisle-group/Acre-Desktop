@@ -2,7 +2,7 @@
 ⍝ Exercise the `nameclass` function.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'\',projectName
@@ -23,7 +23,7 @@
  list←⎕SE.acre.Nameclass(⊂'#.',projectName,'.'),¨names
  →GoToTidyUp list≢expected
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

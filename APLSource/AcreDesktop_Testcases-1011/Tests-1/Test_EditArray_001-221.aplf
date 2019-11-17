@@ -8,7 +8,7 @@
      R←∆NoBatchTest
      :Return
  :Else
-     R←∆Failed
+     R←T.∆Failed
      #.⎕SHADOW'TEMP'
      'TEMP'#.⎕NS''
      #.TEMP.Hello←txt←'Please make a change and then press <escape> in this window'
@@ -22,7 +22,7 @@
      →GoToTidyUp 1≠≢list
      filename←2⊃##.APLTreeUtils.SplitPath⊃list
      →GoToTidyUp filename≢'Hello-1.charstring.change'
-     R←∆OK
+     R←T.∆OK
 ∆TidyUp:
      ⊣F.RmDir acreDir
  :EndIf

@@ -1,2 +1,2 @@
  Prepare
- ##.Tester.EstablishHelpersIn ⎕THIS
+ T←⎕NEW ##.Tester2 ⎕THIS

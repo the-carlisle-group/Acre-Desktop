@@ -2,7 +2,7 @@
 ⍝ Exercise the "SetChanged" command on a project that was just created. See also Test_Misc_010
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -23,7 +23,7 @@
  tno←(⊃list)⎕FTIE 0
  →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno   ⍝ Orig, change, pointer
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap

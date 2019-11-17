@@ -2,7 +2,7 @@
 ⍝ Exercise `Undo` and `Redo`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -33,7 +33,7 @@
  →GoToTidyUp 1≠⍴result
  →GoToTidyUp'Universe'≢ref.Hello
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

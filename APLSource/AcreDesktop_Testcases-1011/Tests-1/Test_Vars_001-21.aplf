@@ -7,7 +7,7 @@
      →0,R←∆NoBatchTest
  :EndIf
 
- R←∆Failed
+ R←T.∆Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -30,7 +30,7 @@
 
  →GoToTidyUp was≠≢F.ListFiles projectPath,'\APLSource\'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

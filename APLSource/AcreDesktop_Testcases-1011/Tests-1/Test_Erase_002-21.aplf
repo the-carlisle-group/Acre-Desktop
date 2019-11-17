@@ -2,7 +2,7 @@
 ⍝ Exercise `Erase` and `Restore` on a namespace.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -37,7 +37,7 @@
  →GoToTidyUp 0 1 1 0≢≢¨result
  →GoToTidyUp 2≠⊃+/0<⎕NC¨projectName{⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

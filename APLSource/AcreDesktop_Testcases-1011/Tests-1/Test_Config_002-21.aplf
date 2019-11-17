@@ -2,7 +2,7 @@
 ⍝ Check whether `KeepHistory←'Off'` is honored but `]acre.SetChanged` keeps working.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'\',projectName
@@ -33,7 +33,7 @@
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →GoToTidyUp 0=≢result
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

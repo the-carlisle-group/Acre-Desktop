@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `ChangeFile`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←F.EnforceSlash ∆PATH,'\',projectName
@@ -33,7 +33,7 @@
 
  →GoToTidyUp 0≠≢⎕SE.acre.Changefile'#.DoesNotExistAtAll'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

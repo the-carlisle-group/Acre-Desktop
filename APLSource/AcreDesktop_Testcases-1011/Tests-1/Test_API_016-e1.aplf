@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `AfterSave`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  fn←⎕SE.acre.AfterSave
  old←fn''
@@ -11,12 +11,12 @@
 
 ⍝ tests only the functionality of adding, replacing and querying the name
 ⍝ not whether the named function exists or runs.
- →PassesIf{
+ →T.PassesIf{
      old≢fn new:0         ⍝ swap and return previous
      new≢fn'':0           ⍝ query
      new≢fn alt:0         ⍝ swap and return previous
      alt≡fn old           ⍝ query or restore if old non-null
  }''
 
- R←∆OK
+ R←T.∆OK
 ⍝Done

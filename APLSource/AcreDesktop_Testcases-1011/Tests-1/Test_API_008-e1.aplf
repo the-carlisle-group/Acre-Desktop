@@ -2,14 +2,14 @@
 ⍝ Exercise the API function `Itemname`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  file←⎕SE.acre.Itemname buff←'DoesNotExistForSure'
- →PassesIf buff≡1⊃file
+ →T.PassesIf buff≡1⊃file
  file←⎕SE.acre.Sourcefile'#.acre._code.EditArray'
- →PassesIf(,⊂'#.acre._code.EditArray')≡⎕SE.acre.Itemname file
+ →T.PassesIf(,⊂'#.acre._code.EditArray')≡⎕SE.acre.Itemname file
  file←⎕SE.acre.Sourcefile'#.acre._code.OpenProject'
- →PassesIf(,⊂'#.acre._code.OpenProject')≡⎕SE.acre.Itemname file
+ →T.PassesIf(,⊂'#.acre._code.OpenProject')≡⎕SE.acre.Itemname file
 
- R←∆OK
+ R←T.∆OK
 ⍝Done

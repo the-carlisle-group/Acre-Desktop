@@ -18,7 +18,7 @@
      :Return
  :EndIf
 
- R←∆Failed
+ R←T.∆Failed
 
  ⎕←'   This test starts a second instance of Dyalog and communicates with it.'
  ⎕←'   That''s why this requires some delays, and there is nothing we can do about this.'
@@ -60,7 +60,7 @@
      →GoToTidyUp 1
  :EndIf
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir acreDir

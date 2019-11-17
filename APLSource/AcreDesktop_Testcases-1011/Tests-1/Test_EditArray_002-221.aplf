@@ -10,7 +10,7 @@
      →0,R←∆NoBatchTest
  :EndIf
 
- R←∆Failed
+ R←T.∆Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -26,7 +26,7 @@
  filename←2⊃##.APLTreeUtils.SplitPath⊃list
  →GoToTidyUp filename≢'Hello-1.array.change'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir acreDir

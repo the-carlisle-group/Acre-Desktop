@@ -2,7 +2,7 @@
 ⍝ Create a project which has just a namespace script.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -22,7 +22,7 @@
  →GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.apln')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

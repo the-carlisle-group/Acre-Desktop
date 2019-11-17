@@ -2,10 +2,10 @@
 ⍝ Exercise the API function `Stats`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  buff←⎕SE.acre.Stats'#.acre'
- →PassesIf 2=⍴⍴buff
+ →T.PassesIf 2=⍴⍴buff
 
- R←∆OK
+ R←T.∆OK
 ⍝Done

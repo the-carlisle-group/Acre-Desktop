@@ -7,7 +7,7 @@
      →0,R←∆NoBatchTest
  :EndIf
 
- R←∆Failed
+ R←T.∆Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -45,11 +45,11 @@
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →PassesIf #.TEMP.∆FLAG                 ⍝ Modified by the user exit?
- →PassesIf 9=⎕NC'#.TEMP.∆ConfigNS'      ⍝ Should be a namespace clone representing acre's config file
- →PassesIf 5<≢#.TEMP.∆ConfigNS.⎕NL⍳16   ⍝ At least 5 config options
+ →T.PassesIf #.TEMP.∆FLAG                 ⍝ Modified by the user exit?
+ →T.PassesIf 9=⎕NC'#.TEMP.∆ConfigNS'      ⍝ Should be a namespace clone representing acre's config file
+ →T.PassesIf 5<≢#.TEMP.∆ConfigNS.⎕NL⍳16   ⍝ At least 5 config options
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

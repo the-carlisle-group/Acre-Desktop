@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `Stats`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'\',projectName
@@ -19,7 +19,7 @@
  result←⎕SE.acre.Stats''('all' 1)
  →GoToTidyUp 2 1≢⍴result
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

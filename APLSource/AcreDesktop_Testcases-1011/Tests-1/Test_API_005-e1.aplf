@@ -2,11 +2,11 @@
 ⍝ Exercise the API function `Projects`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  buff←⎕SE.acre.Projects''
- →PassesIf 1=≢buff
- →PassesIf 2=⍴⍴buff
+ →T.PassesIf 1=≢buff
+ →T.PassesIf 2=⍴⍴buff
 
- R←∆OK
+ R←T.∆OK
 ⍝Done

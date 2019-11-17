@@ -2,7 +2,7 @@
 ⍝ Create a project and check whether `Open` with `-track=off` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  noOfProjects←⊃⍴∆RunUcmd'Projects'
  projectName←⊃⎕SI
@@ -54,7 +54,7 @@
  →GoToTidyUp 7≠≢messages←∆GetLog ⍬
  →GoToTidyUp 1≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

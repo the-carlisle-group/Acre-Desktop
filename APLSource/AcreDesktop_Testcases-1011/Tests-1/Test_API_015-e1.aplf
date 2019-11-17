@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `Close`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  openList←⎕SE.acre.Projects'' ⍝ in case was open from prev test
 
@@ -19,7 +19,7 @@
  →GoToTidyUp(≢openList)≢⎕SE.acre.Close result
  →GoToTidyUp({⍵[;1]}⎕SE.acre.Projects'')≢openList[;1]
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  ∆RunUcmd'Close #.TEMP'

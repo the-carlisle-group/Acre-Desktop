@@ -2,7 +2,7 @@
 ⍝ Exercise the `Projects` command
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -17,7 +17,7 @@
  result←∆RunUcmd'Projects'
  →GoToTidyUp 1≠(⊃⍴result)-noOfOpenProjects
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir projectPath ⋄ :EndTrap

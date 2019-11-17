@@ -2,7 +2,7 @@
 ⍝ Create a project and check whether an invalid config file makes acre signal an error (was once a bug)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -34,11 +34,11 @@
      →GoToTidyUp 1
  :Else
      dmx←⎕DMX
-     →PassesIf dmx.EN∊11 911
-     →PassesIf'Command Execution Failed: Problem reading'(1∊⍷)⊃dmx.DM   ⍝TODO⍝ It is now just DOMAIN ERROR?!  Kai 2019-09-02 11:12
+     →T.PassesIf dmx.EN∊11 911
+     →T.PassesIf'Command Execution Failed: Problem reading'(1∊⍷)⊃dmx.DM   ⍝TODO⍝ It is now just DOMAIN ERROR?!  Kai 2019-09-02 11:12
  :EndTrap
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

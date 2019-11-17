@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `CaseCode`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -26,7 +26,7 @@
  →GoToTidyUp 2≠≢buff
  →GoToTidyUp buff≢'#.TEMP-f.Foo-1' '#.TEMP-f.Fooü-1'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap

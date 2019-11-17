@@ -2,7 +2,7 @@
 ⍝ Check invalid syntax
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -11,12 +11,12 @@
 
  :Trap 16 911
      ∆RunUcmd'fromaplan #.TEMP.vars'
-     →FailsIf 1
+     →T.FailsIf 1
  :Else
      dmx←⎕DMX
-     →PassesIf'NONCE ERROR character error'(1∊⍷)⊃dmx.DM
+     →T.PassesIf'NONCE ERROR character error'(1∊⍷)⊃dmx.DM
  :EndTrap
 
- R←∆OK
+ R←T.∆OK
  ∆ClearLog
 ⍝Done

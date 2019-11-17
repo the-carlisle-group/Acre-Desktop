@@ -2,7 +2,7 @@
 ⍝ Exercise the "SetChanged" command on a project that was opened with -track=off: should have no effect.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -34,7 +34,7 @@
  ref←#.⍎projectName
  →GoToTidyUp'Universe'≢ref.Hello
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

@@ -7,7 +7,7 @@
      →0,R←∆NoBatchTest
  :EndIf
 
- R←∆Failed
+ R←T.∆Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -35,7 +35,7 @@
  →GoToTidyUp≢/≢¨ts1 ts2
  →GoToTidyUp 1 0≢ts1≡¨ts2
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

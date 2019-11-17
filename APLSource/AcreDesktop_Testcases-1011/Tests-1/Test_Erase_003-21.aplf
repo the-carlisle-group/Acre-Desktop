@@ -2,7 +2,7 @@
 ⍝ Erase an ordinary namespace and then use the same name to create a namespace script
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -30,7 +30,7 @@
  →GoToTidyUp 0∊⍴result
  result←∆RunUcmd'SetChanged #.',projectName,'.Sub'
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

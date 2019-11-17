@@ -3,7 +3,7 @@
 ⍝ Is only executed when the acre project is open.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  old_WSID←⎕WSID
  old_LX←⎕LX
@@ -21,7 +21,7 @@
  Assert rc∊OK NOT_OK
  →GoToTidyUp rc=OK
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.DeleteFile newWsid ⋄ :EndTrap

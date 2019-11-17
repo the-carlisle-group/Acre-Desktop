@@ -1,0 +1,7 @@
+ RunTests
+ :If 0=⎕NC'T'
+     ⎕SHADOW'T'
+     T←⎕NEW ##.Tester2 ⎕THIS
+ :EndIf
+ T.Run 0
+⍝Done

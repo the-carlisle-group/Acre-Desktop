@@ -2,14 +2,14 @@
 ⍝ Exercise the API function `Log`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.Foo←{42}
 
  ∆ClearLog
- →PassesIf 1=≢buff←⎕SE.acre.Log'all'
+ →T.PassesIf 1=≢buff←⎕SE.acre.Log'all'
 
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
@@ -27,7 +27,7 @@
 
  →GoToTidyUp 2≠≢buff←⎕SE.acre.Log 2
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir path

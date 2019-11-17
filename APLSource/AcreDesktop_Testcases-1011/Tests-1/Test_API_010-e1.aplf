@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `Deletefile`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -16,7 +16,7 @@
  →GoToTidyUp 0=≢buff
  →GoToTidyUp'/Foo.aplf.delete'{⍺≢(-⍴,⍺)↑⍵}⊃buff
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap

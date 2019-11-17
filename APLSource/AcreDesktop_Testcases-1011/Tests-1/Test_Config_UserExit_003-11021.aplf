@@ -3,7 +3,7 @@
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  →(0<≢R←batchFlag/∆NoBatchTest)/0
- R←∆Failed
+ R←T.∆Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -40,7 +40,7 @@
  {}projectPath ∆RunGitCommand'add .'
  {}projectPath ∆RunGitCommand'commit -m "Initial commit"'
  expected←'On branch master' 'nothing to commit, working tree clean'
- →PassesIf expected≡projectPath ∆RunGitCommand'status'
+ →T.PassesIf expected≡projectPath ∆RunGitCommand'status'
 
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath
@@ -54,7 +54,7 @@
  →GoToTidyUp expected≡#.TEMP.∆RESULT                ⍝ Because there WAS something to commit (if the user DID change the function)!
  →GoToTidyUp 0=∨/'1 file changed'⍷∊#.TEMP.∆RESULT   ⍝ We should see this
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap   ⍝ At this point RmDir fails with "ACCESS DENIED": Git is the culprit! However, rd works. Reported as <01651>

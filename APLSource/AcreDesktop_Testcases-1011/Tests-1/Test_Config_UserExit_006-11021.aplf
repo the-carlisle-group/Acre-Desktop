@@ -2,7 +2,7 @@
 ⍝ A user exit function is supposed to by dyadic. If it monadic it won't be called but an error is logged.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  :If batchFlag
      →0,R←∆NoBatchTest
@@ -46,7 +46,7 @@
  #.TEMP.⎕ED'Hello'
  →GoToTidyUp #.TEMP.∆FLAG≠0
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

@@ -7,7 +7,7 @@
      :Return
  :EndIf
 
- R←∆Failed
+ R←T.∆Failed
 
  fn←⎕SE.acre.EditArray
  new←,∘'N'⍣{0=⎕NC ⍺}'#.'                 ⍝ non-existent #.N+
@@ -29,7 +29,7 @@
      1:1
  }''
  ⎕EX new
- →PassesIf ok
+ →T.PassesIf ok
 
- R←∆OK
+ R←T.∆OK
 ⍝Done

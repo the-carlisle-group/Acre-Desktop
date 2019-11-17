@@ -2,7 +2,7 @@
 ⍝ Create a project that carries a link to a namespace script outside the project.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  #.⎕SHADOW'APLTreeUtils'
  #.⎕FIX ⎕SRC ##.APLTreeUtils
@@ -21,7 +21,7 @@
  →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
  →GoToTidyUp 2≠⍴⊃F.Dir projectPath,'/APLSource/*' ⍝ QuadVars script is added automatically!
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

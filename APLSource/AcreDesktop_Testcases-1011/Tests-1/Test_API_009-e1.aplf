@@ -2,11 +2,11 @@
 ⍝ Exercise the API function `FromAPLAN`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  buff←⎕SE.acre.FromAPLAN'[,⊂(1)(2)(3)(3 4)]'
  expected←1 1⍴⊂(1 2 3(3 4)) ⍝ ? 'APL'
- →PassesIf expected≡buff
+ →T.PassesIf expected≡buff
 
- R←∆OK
+ R←T.∆OK
 ⍝Done

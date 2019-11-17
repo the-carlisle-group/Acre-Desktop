@@ -2,7 +2,7 @@
 ⍝ Exercise `Erase` and `Restore` on functions.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -50,7 +50,7 @@
  →GoToTidyUp 2≠⍴list
  →GoToTidyUp'change' 'change'≢A.Last¨list
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  F.RmDir projectPath

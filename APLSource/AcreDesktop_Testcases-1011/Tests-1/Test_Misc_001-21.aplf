@@ -2,7 +2,7 @@
 ⍝ Exercise the `Stats` command
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -22,7 +22,7 @@
  result←∆RunUcmd'Stats'
  →GoToTidyUp 0≠≢result
 
- R←∆OK
+ R←T.∆OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir projectPath ⋄ :EndTrap

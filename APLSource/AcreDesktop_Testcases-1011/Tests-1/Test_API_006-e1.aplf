@@ -2,44 +2,44 @@
 ⍝ Exercise the API function `Nameclass`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Failed
+ R←T.∆Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
 
- →PassesIf''≡1⊃⎕SE.acre.Nameclass'#.TEMP'
+ →T.PassesIf''≡1⊃⎕SE.acre.Nameclass'#.TEMP'
 
- →PassesIf'.*'≡1⊃⎕SE.acre.Nameclass'DoesNotExistForSure'
+ →T.PassesIf'.*'≡1⊃⎕SE.acre.Nameclass'DoesNotExistForSure'
 
  #.TEMP.Foo←'abc'
- →PassesIf'.charstring'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.charstring'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo←2 2⍴'abc'
- →PassesIf'.charmat'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.charmat'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo←'abc' 'def'
- →PassesIf'.charlist'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.charlist'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo←1 2 3 'abc' 'def'
- →PassesIf'.array'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.array'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo2←'abc'
- →PassesIf'.array' '.charstring'≡⎕SE.acre.Nameclass'#.TEMP.Foo' '#.TEMP.Foo2'
+ →T.PassesIf'.array' '.charstring'≡⎕SE.acre.Nameclass'#.TEMP.Foo' '#.TEMP.Foo2'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.Foo←{+/⍵}
- →PassesIf'.aplf'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.aplf'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.Foo←{⍺⍺+/⍵}
- →PassesIf'.aplo'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.aplo'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.⎕FIX':Class Foo' ':EndClass'
- →PassesIf'.aplc'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.aplc'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.⎕FIX':Namespace Foo' ':EndNamespace'
- →PassesIf'.apln'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.apln'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.⎕FIX':Interface Foo' ':EndInterface'
- →PassesIf'.apli'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.apli'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
- R←∆OK
+ R←T.∆OK
 ⍝Done
