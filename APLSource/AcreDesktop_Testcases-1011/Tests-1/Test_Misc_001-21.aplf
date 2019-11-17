@@ -13,14 +13,14 @@
 
  {}∆RunUcmd'CreateProject ',projectPath,' #.',projectName
  result←∆RunUcmd'Stats -all'
- →GoToTidyUp 2≠≢result
- →GoToTidyUp 2 2≢⊃∘⍴∘⍴¨,result
+ →T.GoToTidyUp 2≠≢result
+ →T.GoToTidyUp 2 2≢⊃∘⍴∘⍴¨,result
 
  result←∆RunUcmd'Stats #.',projectName
- →GoToTidyUp 2≠⍴⍴result
+ →T.GoToTidyUp 2≠⍴⍴result
 
  result←∆RunUcmd'Stats'
- →GoToTidyUp 0≠≢result
+ →T.GoToTidyUp 0≠≢result
 
  R←T.∆OK
 

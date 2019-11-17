@@ -3,5 +3,5 @@
      ⎕SHADOW'T'
      T←⎕NEW ##.Tester2 ⎕THIS
  :EndIf
- T.Run 0
+ T.Run 1
 ⍝Done

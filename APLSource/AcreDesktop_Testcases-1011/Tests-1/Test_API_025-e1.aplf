@@ -10,8 +10,8 @@
  ref←⍎projectName #.⎕NS''
 
  result←⎕SE.acre.CreateProject projectPath('#.',projectName)
- →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp~F.IsDir projectPath
+ →T.GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp~F.IsDir projectPath
 
  R←T.∆OK
 

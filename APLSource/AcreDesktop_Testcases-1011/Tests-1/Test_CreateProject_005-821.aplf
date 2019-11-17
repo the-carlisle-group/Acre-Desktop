@@ -19,7 +19,7 @@
  rc←3⊃##.Execute.Application cmd
  OK←128 ⋄ NOT_OK←129
  Assert rc∊OK NOT_OK
- →GoToTidyUp rc=OK
+ →T.GoToTidyUp rc=OK
 
  R←T.∆OK
 

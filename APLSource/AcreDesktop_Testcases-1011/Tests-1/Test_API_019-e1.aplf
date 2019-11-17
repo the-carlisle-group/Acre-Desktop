@@ -9,7 +9,7 @@
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
  result←∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName,' -keephistory=on'
- →GoToTidyUp'#.Test_API_019'≢result
+ →T.GoToTidyUp'#.Test_API_019'≢result
 
  ref.⎕FX'r←Hello' 'r←''World'''
  {}∆RunUcmd'SetChanged #.',projectName,'.Hello'
@@ -17,21 +17,21 @@
  {}∆RunUcmd'SetChanged #.',projectName,'.Hello2'
  changeFilename←⊃⎕SE.acre.Changefile'#.',projectName,'.Hello'
  changePath←F.EnforceSlash 1⊃⎕NPARTS changeFilename
- →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
- →GoToTidyUp 1≠⍴⊃F.Dir changeFilename
+ →T.GoToTidyUp projectPath≢(⍴projectPath)↑changePath
+ →T.GoToTidyUp 1≠⍴⊃F.Dir changeFilename
  aplsourcePath←('Expand'F.NormalizePath changePath,'..\..'),'\APLSource'
- →GoToTidyUp 3≠⍴⊃F.Dir aplsourcePath,'\*'       ⍝ Quad-Vars script is added automatically
+ →T.GoToTidyUp 3≠⍴⊃F.Dir aplsourcePath,'\*'       ⍝ Quad-Vars script is added automatically
  changeFilenames←⎕SE.acre.Changefile('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
- →GoToTidyUp 2≠⍴changeFilenames
- →GoToTidyUp 1 1≢≡¨changeFilenames
- →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨changeFilenames
+ →T.GoToTidyUp 2≠⍴changeFilenames
+ →T.GoToTidyUp 1 1≢≡¨changeFilenames
+ →T.GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨changeFilenames
 
  changeFilename←⊃⎕SE.acre.Changefile'#.',projectName,'.Hello_DoesNotExist'
- →GoToTidyUp 1≠≡changeFilename
- →GoToTidyUp~changePath{⍺≡(⍴⍺)↑⍵}changeFilename
- →GoToTidyUp'.*.change'{⍺≢(-⍴⍺)↑⍵}(⍴changePath)↓changeFilename
+ →T.GoToTidyUp 1≠≡changeFilename
+ →T.GoToTidyUp~changePath{⍺≡(⍴⍺)↑⍵}changeFilename
+ →T.GoToTidyUp'.*.change'{⍺≢(-⍴⍺)↑⍵}(⍴changePath)↓changeFilename
 
- →GoToTidyUp 0≠≢⎕SE.acre.Changefile'#.DoesNotExistAtAll'
+ →T.GoToTidyUp 0≠≢⎕SE.acre.Changefile'#.DoesNotExistAtAll'
 
  R←T.∆OK
 

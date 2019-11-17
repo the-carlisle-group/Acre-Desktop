@@ -8,9 +8,9 @@
  ∆ClearLog
 
  result←∆RunUcmd'CreateProject "C:\Users\All Users\AppData\Roaming\',(##.APLTreeUtils.Last⊃⎕XSI),'"'
- →GoToTidyUp 0≠≢result
- →GoToTidyUp 2≠≢log←∆GetLog ⍬    ⍝ [1]=Create Project, [2]= Syntax:, ⍝ [3]=Log 1000
- →GoToTidyUp 0=∨/'Argument should be'⍷⊃log
+ →T.GoToTidyUp 0≠≢result
+ →T.GoToTidyUp 2≠≢log←∆GetLog ⍬    ⍝ [1]=Create Project, [2]= Syntax:, ⍝ [3]=Log 1000
+ →T.GoToTidyUp 0=∨/'Argument should be'⍷⊃log
 
  R←T.∆OK
 

@@ -13,12 +13,12 @@
  ∆ClearLog
 
  result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
- →GoToTidyUp 0∊⍴result
- →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
- →GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
+ →T.GoToTidyUp 0∊⍴result
+ →T.GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →T.GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  list←'/'##.APLTreeUtils.Last¨F.EnforceSlash¨⊃F.Dir projectPath,'/APLSource/*'
  expected←'Foo-1.aplc' 'quadVars-10.apln'  ⍝ The latter is added automatically!
- →GoToTidyUp~list ∆LazyMatch expected
+ →T.GoToTidyUp~list ∆LazyMatch expected
 
  R←T.∆OK
 

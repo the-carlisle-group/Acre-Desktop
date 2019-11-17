@@ -15,7 +15,7 @@
  :Trap (~stopFlag)/0
      {}∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  projectName2←(⊃⎕SI),'_2'
@@ -27,7 +27,7 @@
  :Trap (~stopFlag)/0
      {}∆RunUcmd'Createproject ',projectPath2,' #.',projectName2
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  #.⎕EX¨projectName projectName2
@@ -44,15 +44,15 @@
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp 9=#.⎕NC projectName2
- →GoToTidyUp 0=#.⎕NC'Temp'
- →GoToTidyUp 3≠#.Temp.⎕NC'Hello'
- →GoToTidyUp'Universe'≢#.Temp.Hello
- →GoToTidyUp 7≠≢messages←∆GetLog ⍬
- →GoToTidyUp 1≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
+ →T.GoToTidyUp 9=#.⎕NC projectName2
+ →T.GoToTidyUp 0=#.⎕NC'Temp'
+ →T.GoToTidyUp 3≠#.Temp.⎕NC'Hello'
+ →T.GoToTidyUp'Universe'≢#.Temp.Hello
+ →T.GoToTidyUp 7≠≢messages←∆GetLog ⍬
+ →T.GoToTidyUp 1≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
  R←T.∆OK
 

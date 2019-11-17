@@ -19,11 +19,13 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'0.5.0.4' '2019-11-17'
+      r←(Last⍕⎕THIS)'0.5.1.5' '2019-11-17'
     ∇
 
     ∇ History
       :Access Public shared
+      ⍝ * 0.5.1
+      ⍝   * Bug fix in `Run` (`stopFlag` and `debugFlag` confused when assigning default to `trapFlag`)
       ⍝ * 0.5.0
       ⍝   This is the successor of the `Tester` class. `Tester2` requires to be instanticated, and
       ⍝   the contructor requires a ref pointing to the namepsace (scipted or ordinary) that hosts the tests.
@@ -74,7 +76,7 @@
       _parms←CreateParms ⍬
       _parms.debugFlag←debugFlag
       _parms.stopFlag←stopFlag
-      _parms.trapFlag←~stopFlag
+      _parms.trapFlag←~debugFlag
       (rc log)←Run__ _parms
      ⍝Done
     ∇
@@ -764,16 +766,16 @@
     ∇
 
     ∇ r←FailsIf y
-    ⍝ Usage : `→T.FailsIf x`, whith `x` being a boolean scalar.
+    ⍝ Usage : `→FailsIf x`, whith `x` being a boolean scalar.
       :Access Public Instance
       r←PassesIf~y                  ⍝ Just PassesIf on negation
     ∇
 
     ∇ r←PassesIf y
-    ⍝ Usage : `→T.PassesIf x`, whith `x` being a boolean scalar
+    ⍝ Usage : `→PassesIf x`, whith `x` being a boolean scalar
       :Access Public Instance
       r←⍬
-      :If ~y                        ⍝ Passes test, so →T.PassesIf x just continues
+      :If ~y                        ⍝ Passes test, so →PassesIf x just continues
           :If 2=_ref.⎕NC'stopFlag'  ⍝ Stop not defined, continue with test suite
           :AndIf ~_ref.stopFlag     ⍝ Do not stop, continue with test suite
               r←0

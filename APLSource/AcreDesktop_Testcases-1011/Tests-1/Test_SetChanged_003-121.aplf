@@ -13,26 +13,26 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName ⍝ QuadVars is added automatically
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp result≢'#.',projectName
 
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
  ref.⎕FX'r←Hello' 'r←''Universe'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
  #.⎕EX projectName
  result←∆RunUcmd'OpenProject ',projectPath,' -track=off'
- →GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp result≢'#.',projectName
  ref←#.⍎projectName
  ref.⎕FX'r←Hello' 'r←''Rubbish'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0≠≢result
+ →T.GoToTidyUp 0≠≢result
  #.⎕EX projectName
  ∆RunUcmd'OpenProject ',projectPath,' -track=off'
  ref←#.⍎projectName
- →GoToTidyUp'Universe'≢ref.Hello
+ →T.GoToTidyUp'Universe'≢ref.Hello
 
  R←T.∆OK
 

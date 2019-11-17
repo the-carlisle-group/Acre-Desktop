@@ -15,23 +15,23 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp result≢'#.',⊃⎕SI
- →GoToTidyUp'World'≢ref.Hello
+ →T.GoToTidyUp result≢'#.',⊃⎕SI
+ →T.GoToTidyUp'World'≢ref.Hello
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'   ⍝ Make sure we have the original version
  ref.⎕FX'r←Hello' 'r←''Universe'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp(,⊂'#.Test_Misc_003.Hello')≢result
- →GoToTidyUp 1≠⍴⊃F.Dir projectPath,'/.acre/changes/'
- →GoToTidyUp'Universe'≢ref.Hello
+ →T.GoToTidyUp(,⊂'#.Test_Misc_003.Hello')≢result
+ →T.GoToTidyUp 1≠⍴⊃F.Dir projectPath,'/.acre/changes/'
+ →T.GoToTidyUp'Universe'≢ref.Hello
  result←∆RunUcmd'Undo #.',projectName,'.Hello'
- →GoToTidyUp 1≠⍴result
- →GoToTidyUp'World'≢ref.Hello
+ →T.GoToTidyUp 1≠⍴result
+ →T.GoToTidyUp'World'≢ref.Hello
  result←∆RunUcmd'Redo #.',projectName,'.Hello'
- →GoToTidyUp 1≠⍴result
- →GoToTidyUp'Universe'≢ref.Hello
+ →T.GoToTidyUp 1≠⍴result
+ →T.GoToTidyUp'Universe'≢ref.Hello
 
  R←T.∆OK
 

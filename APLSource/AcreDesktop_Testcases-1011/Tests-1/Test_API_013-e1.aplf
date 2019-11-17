@@ -12,8 +12,8 @@
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
 
  buff←⎕SE.acre.Changefile'#.TEMP.Foo'
- →GoToTidyUp 0=≢buff
- →GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}⊃buff
+ →T.GoToTidyUp 0=≢buff
+ →T.GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}⊃buff
 
  R←T.∆OK
 

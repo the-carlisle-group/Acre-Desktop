@@ -16,9 +16,9 @@
 
  ref.⎕FX'r←Hello' 'r←''World2'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0=≢result
- →GoToTidyUp 1≠≢F.ListFiles projectPath,'\.acre\changes\'
- →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp 0=≢result
+ →T.GoToTidyUp 1≠≢F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\'
  F.DeleteFile list
  ∆RunUcmd'Close #.',projectName
 
@@ -28,10 +28,10 @@
  buff←'"KeepHistory": *"On"'⎕R'"KeepHistory": "Off"'⊣buff
  A.WriteUtf8File configFilename buff
  result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName
- →GoToTidyUp 0≠F.IsDir projectPath,'\.acre'
+ →T.GoToTidyUp 0≠F.IsDir projectPath,'\.acre'
  ref.⎕FX'r←Hello' 'r←''World2'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0=≢result
+ →T.GoToTidyUp 0=≢result
 
  R←T.∆OK
 

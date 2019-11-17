@@ -20,7 +20,7 @@
  :Trap (~stopFlag)/0
      {}'-variables=on'∆RunUcmd'Createproject "',projectPath,'" #.TEMP'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  ∆RunUcmd'Close #.TEMP'
@@ -40,11 +40,11 @@
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →GoToTidyUp #.TEMP.∆FLAG≠0
+ →T.GoToTidyUp #.TEMP.∆FLAG≠0
 
  R←T.∆OK
 

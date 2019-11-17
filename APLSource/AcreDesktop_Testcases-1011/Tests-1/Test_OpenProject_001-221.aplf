@@ -21,9 +21,9 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp result≢'#.',projectName
 
  ⍝ So far this project does not contain anything. We now create a file in the
  ⍝ APLSource\ folder that won't fix due a syntax problem.
@@ -32,14 +32,14 @@
 
  #.⎕EX projectName
  result←∆RunUcmd'Projects'
- →GoToTidyUp~(⊃⍴result)∊0 1             ⍝ acre itself might or might not be open by now.
+ →T.GoToTidyUp~(⊃⍴result)∊0 1             ⍝ acre itself might or might not be open by now.
 
  :Trap 11 911
      {}∆RunUcmd'OpenProject ',projectPath,' #.',projectName
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 9≠#.⎕NC projectName
- →GoToTidyUp'AcreConfig' 'quadVars'≢' '~¨⍨↓(#.⍎projectName).⎕NL⍳16
+ →T.GoToTidyUp 9≠#.⎕NC projectName
+ →T.GoToTidyUp'AcreConfig' 'quadVars'≢' '~¨⍨↓(#.⍎projectName).⎕NL⍳16
 
  R←T.∆OK
 

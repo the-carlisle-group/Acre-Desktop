@@ -41,17 +41,14 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'2.1.0.25' '2019-06-28'
+      r←(Last⍕⎕THIS)'2.1.3.44' '2019-11-02'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 2.1.0
-      ⍝   * Method `GetTempSubDir` added. 
-      ⍝   * Bug fix: `GetTempFilename2` should not carry a trailing `.` when an empty string was provided as left
-      ⍝     argument but did.
-      ⍝             
-      ⍝
+      ⍝ * 2.1.3
+      ⍝   Bug fix: `FilesAndDirs` called #.APLTreeUtils.
+      ⍝\\
       ⍝ For information regarding older version see <https://github.com/aplteam/FilesAndDirs/releases>
     ∇
 
@@ -113,7 +110,7 @@
               parms.{{⍎⍺,'←⍵'}/⍵}¨parms_
           :EndIf
       :EndIf
-      :If 0∊⍴path
+      :If 0=≢path
           path←PWD,CurrentSep
       :EndIf
       path↓⍨←-(CurrentSep,'*')≡¯2↑path
@@ -153,11 +150,11 @@
           :EndIf
           :If parms.recursive
               parms.depth-←1
-          :AndIf ~0∊⍴r
+          :AndIf 0≠≢r
           :AndIf 1∊1⊃r
-          :AndIf (0∊⍴parms.depth)∨1↑0<parms.depth
+          :AndIf (0=≢parms.depth)∨1↑0<parms.depth
               buff←parms∘Dir¨((1=1⊃r)/0⊃r),¨CurrentSep
-              :If ~0∊⍴buff←(0<↑∘⍴¨buff)/buff
+              :If 0≠≢buff←(0<≢¨buff)/buff
                   r←r,¨↑,¨/buff
               :EndIf
               :If 1=+/∧\'Dir'∘≡¨⎕SI
@@ -171,11 +168,11 @@
           :If ∨/'*?'∊path
               (folder filename extension)←⎕NPARTS path
               ('Wildcard characters are allowed only after the last "',CurrentSep,'"')⎕SIGNAL 11/⍨∨/'*?'∊folder
-              :If ~0∊⍴buff←↑⎕NPARTS ¯1↓↑⎕NPARTS folder
+              :If 0≠≢buff←↑⎕NPARTS ¯1↓↑⎕NPARTS folder
               :AndIf 0=⎕NEXISTS buff
                   'path does not exist'⎕SIGNAL 6
               :EndIf
-              pattern←(folder,(~0∊⍴folder)/'/'),(filename{0∊⍴⍺,⍵:'' ⋄ ⍺,⍵}extension)
+              pattern←(folder,(0≠≢folder)/'/'),(filename{0=≢⍺,⍵:'' ⋄ ⍺,⍵}extension)
               buff←(0 1,parms.type~0 1)⎕NINFO⍠('Follow'parms.follow)('Wildcard' 1)⊣pattern
               buff←((1⊃buff)∊1 2 4)∘/¨buff   ⍝ Ordinary files, folders and links
               (0⊃buff)←NormalizePath 0⊃buff
@@ -184,18 +181,18 @@
               parms.selfCall←1
               :If parms.recursive
               :AndIf IsDir folder
-              :AndIf ~0∊⍴subFolders←ListDirs folder
+              :AndIf 0≠≢subFolders←ListDirs folder
                   buff←parms Dir¨subFolders,¨⊂CurrentSep,filename,extension
                   :If 0=+/'*?'∊path
                       buff←(⊂∘⊂¨subFolders),¨¨buff
                   :EndIf
-                  :If ~0∊⍴buff←↑{⍺,¨⍵}/buff
-                  :AndIf ~0∊⍴buff←(0<↑∘⍴¨buff)/buff
+                  :If 0≠≢buff←↑{⍺,¨⍵}/buff
+                  :AndIf 0≠≢buff←(0<≢¨buff)/buff
                       r←r,¨buff
                   :EndIf
               :EndIf
               :If 0=isSelfCall
-              :AndIf 0∊⍴(filename,extension)~'*'
+              :AndIf 0=≢(filename,extension)~'*'
                   buff←(0 1,parms.type~0 1)⎕NINFO⍠('Follow'parms.follow)⊣folder
                   (0⊃buff)←NormalizePath 0⊃buff
                   r←(⊂¨buff),¨r
@@ -240,7 +237,7 @@
       :If 2=≡source
           target←Nest target
           :If ≢/⍴¨source target
-          :AndIf 1≠⍴,target
+          :AndIf 1≠≢target
               'Length of left and right argument do do not fit'⎕SIGNAL 5
           :EndIf
           (rc more)←↓⍉⊃source CopyTo¨target
@@ -299,7 +296,7 @@
     ⍝ 'C:\readme.txt' FilesAndDirs.MoveTo 'D:\buffer\'
     ⍝ 'C:\readme.txt' FilesAndDirs.MoveTo 'D:\buffer\newname.txt'
     ⍝ ~~~
-      :If ∨/{0∊⍴⍵}¨source target
+      :If ∨/0=≢¨source target
           rc←¯1
           more←'Invalid left argument'
       :EndIf
@@ -308,7 +305,7 @@
           source←NormalizePath source
           target←NormalizePath target
           :If ≢/⍴¨source target
-          :AndIf 1≠⍴,target
+          :AndIf 1≠≢target
               'Length of left and right argument do do not fit'⎕SIGNAL 5
           :EndIf
           (rc more)←↓⍉⊃source MoveTo¨target
@@ -376,13 +373,13 @@
       :If 0≠≢tree
         ⍝ We now create all directories
           ind←Where 1=tree[;1]
-          tree[ind;2]←~'Create!'∘CheckPath¨target∘,¨(⍴source)↓¨tree[ind;0]
+          tree[ind;2]←~'Create!'∘CheckPath¨target∘,¨(≢source)↓¨tree[ind;0]
         ⍝ Now we copy the files over
           tree[ind;3]←⊂''
           ind←Where 2=tree[;1]
-          tree[ind;2 3]←⍉⊃tree[ind;0]CopyTo target∘,¨(⍴source)↓¨tree[ind;0]
+          tree[ind;2 3]←⍉⊃tree[ind;0]CopyTo target∘,¨(≢source)↓¨tree[ind;0]
           buff←tree[;0 2 3]
-          buff[;0]←(⊂target),¨(⍴source)↓¨buff[;0]
+          buff[;0]←(⊂target),¨(≢source)↓¨buff[;0]
           list⍪←buff
           success←list[;1]∧.=0
       :EndIf
@@ -394,7 +391,7 @@
       r←('Win'≡GetOperatingSystem ⍬)⊃'/\'
     ∇
 
-    ∇ (success more list)←source MoveTree target;success;directories;ind;delFlags;isLinkOrFile;isLinkOrDir;okay;bool
+    ∇ (success more list)←source MoveTree target;success;ind;delFlags;isLinkOrFile;isLinkOrDir;okay;bool;linksAndDirs;isFile;lowercase
     ⍝ ## Overview
     ⍝ `source` must be an existing directory. `target` must be either an existing directory
     ⍝ or a valid directory name.\\
@@ -402,17 +399,18 @@
     ⍝ ## Result
     ⍝ `success` is Boolean with 1 indicating complete success. A 0 means failure, but the failure may
     ⍝ not be total: in case, say, 100 files are to be copied and just some of them failed
-    ⍝ because of a, say, an ACCESS DENIED error then `success` will be 0 but `list` gives you the
+    ⍝ because of, say, an ACCESS DENIED error then `success` will be 0 but `list` gives you the
     ⍝ full story. Even if all copy operations succedd `success` might become 0 because one of the
-    ⍝ delete operations failed.\\
+    ⍝ delete operations failed. Note however that when files (and possibly directories) are moved
+    ⍝ into a sub-directorie then the hosting directory cannot be deleted of course; this does not
+    ⍝ count as a failure.\\
     ⍝ `more` is empty if everything is okay. It may contain additional information if
     ⍝ something goes wrong. An example is when the `target` directory cannot be created.\\
     ⍝ `list` is a matrix with four columns:
     ⍝ * `[;0]` is a list of names of all files and directories that were copied.
     ⍝ * `[;1]` is the copy-related return code: 0 if okay or and an error number otherwise.
     ⍝ * `[;2]` is a Boolean indicating success (1) or fail;ure (0) regarding the delete operation.
-    ⍝ * `[;3]` is either an empty vector (in case of success) or possibly additional information as
-    ⍝   a text vector.\\
+    ⍝ * `[;3]` is either '' (in case of success) or possibly additional information (text vector).\\
     ⍝ ## Misc
     ⍝ `MoveTree` does not rollback in case something goes wrong;
     ⍝ instead it keeps trying. That means that both the copy and the delete operation may have failed
@@ -427,20 +425,31 @@
       'Left argument is not a directory'⎕SIGNAL 11/⍨0=IsDir source
       'Right argument is a file'⎕SIGNAL 11/⍨IsFile target
       (source target)←NormalizePath source target
+      (source target)←{⍵↓⍨-'/\'∊⍨¯1↑⍵}¨source target
       (success more list)←source CopyTree target
       list←list[;0 1 1 2]
-      list[;0]←source∘,¨(⍴target)↓¨list[;0]
+      list[;0]←source∘,¨(≢target)↓¨list[;0]
       isLinkOrFile←({1 ⎕NINFO⍠('Follow' 0)⊣⍵}¨list[;0])∊2 4
       isLinkOrFile∧←isLinkOrFile\IsFile isLinkOrFile/list[;0]
       okay←list[;1]=0
       bool←okay∧isLinkOrFile
+      isFile←IsFile list[;0]
       {}{0::⍬ ⋄ 1 ⎕NDELETE ⍵}¨bool/list[;0]                                 ⍝ Links and files first
       isLinkOrDir←okay∧({19 22::0 ⋄ 1 ⎕NINFO⍠('Follow' 0)⊣⍵}¨list[;0])∊1 4
-      directories←isLinkOrDir/list[;0]
-      ind←⍒+/CurrentSep=⊃directories                                        ⍝ Sub directories first!
-      {}{0::⍬ ⋄ 1 ⎕NDELETE ⍵}¨directories[ind]
+      linksAndDirs←isLinkOrDir/list[;0]
+      ind←⍒+/CurrentSep=⊃linksAndDirs                                       ⍝ Sub directories first!
+      {}{0::⍬ ⋄ 1 ⎕NDELETE ⍵}¨linksAndDirs[ind]
       list[;2]←~Exists list[;0]
-      success←(∧/list[;2])∧list[;1]∧.=0
+      lowercase←{Lowercase⍣('Win'≡GetOperatingSystem ⍬)⊣⍵}
+      (source target)←lowercase¨source target
+      (source target)←NormalizePath¨source target
+      :If source{(⍺,(¯1↑⍵))≡⍵}(1+≢source)↑target
+          success←list[;1]∧.=0
+          ⍝ We copied into a sub-dir, so both the top dir and the target dir cannot be deleted:
+          success∧←∧/(~(lowercase list[;0])∊source target)/list[;2]
+      :Else
+          success←(∧/list[;2])∧list[;1]∧.=0
+      :EndIf
      ⍝Done
     ∇
 
@@ -491,7 +500,7 @@
       :Else
           :If 0=mustBeEmpty
          ⍝ First we delete all files
-              :If 0∊⍴list←⍉⊃('recursive' 1)('type'(0 1))Dir path,CurrentSep
+              :If 0=≢list←⍉⊃('recursive' 1)('type'(0 1))Dir path,CurrentSep
               ⍝ This can happen if for example somebody "look" into the folder
                   rc←1
                   en←11
@@ -513,8 +522,8 @@
                   :EndIf
               :EndIf
          ⍝ Now we remove all sub-directories
-              :If ~0∊⍴list←(~bool)/list[;0]
-                  list←list[⍒↑¨⍴¨list]
+              :If 0≠≢list←(~bool)/list[;0]
+                  list←list[⍒≢¨list]
                   :Trap 0
                       rc←~{1 ⎕NDELETE ⍵}¨list
                   :Else
@@ -564,7 +573,7 @@
       ⍝ * Any pair of `//` or `\\` is reduced to a single one except the first two.
       ⍝ * Environment variables are expanded.
       isScalar←⍬≡⍴path
-      :If ~0∊⍴path
+      :If 0≠≢path
           :If '%'∊path
           :AndIf 'Win'≡GetOperatingSystem ⍬
               'ExpandEnvironmentStrings'⎕NA'I4 KERNEL32.C32|ExpandEnvironmentStrings* <0T >0T I4'
@@ -585,7 +594,7 @@
                   path←'\\',1↓path
               :EndIf
               :If isScalar
-              :AndIf 1=⍴path
+              :AndIf 1=≢path
                   path←↑path
               :EndIf
           :EndIf
@@ -636,7 +645,7 @@
           :Else
               r←NormalizePath↑↑/rc
           :EndIf
-          :If ~0∊⍴path←path~'"'
+          :If 0≠≢path←path~'"'
           :AndIf ' '=1↑0⍴path
               path,←(CurrentSep≠¯1↑path)/CurrentSep
               :If ~∆SetCurrentDirectory⊂path
@@ -645,7 +654,7 @@
           :EndIf
       :CaseList 'Lin' 'Mac'
           path←NormalizePath path
-          :If 0∊⍴path
+          :If 0=≢path
               r←↑⎕SH'pwd'
           :Else
               '∆chdir'⎕NA'I ',##.OS.GetSharedLib,'| chdir <0T1[]'
@@ -663,7 +672,7 @@
       :Case 'Win'
           '∆GetTempPath'⎕NA'I4 KERNEL32.C32|GetTempPath* I4 >T[]'
           path←↑↑/∆GetTempPath 1024 1024
-          :If 0∊⍴path
+          :If 0=≢path
               11 ⎕SIGNAL⍨'Problem getting Windows temp path!; rc=',⍕GetLastError
           :Else
               path←NormalizePath path
@@ -793,8 +802,8 @@
       :Access Public Shared
       prefixString←{0<⎕NC ⍵:⍎⍵ ⋄ ''}'prefixString'
       path←NormalizePath path
-      path,←((~0∊⍴path)∧CurrentSep≠¯1↑path)/CurrentSep
-      :If 0∊⍴path
+      path,←((0≠≢path)∧CurrentSep≠¯1↑path)/CurrentSep
+      :If 0=≢path
           :Trap 0
               path←GetTempPath
           :Else
@@ -832,7 +841,7 @@
       :Access Public Shared
       extension←{0<⎕NC ⍵:⍎⍵ ⋄ 'tmp'}'extension'
       extension←('.'=1⍴extension)↓extension
-      :If 0∊⍴,prefixString
+      :If 0=≢prefixString
           prefixString←⎕AN
       :EndIf
       path←GetTempPath
@@ -894,7 +903,7 @@
       ⍝ Returns a vector of text vectors in case anything was found and `''` otherwise.
       x←{0<⎕NC ⍵:⍎⍵ ⋄ ''⍬}'x'
       x←⊂∘,⍣((↑' '=1↑0⍴↑x)∧1=≡x)⊣x
-      (recursive depth)←2↑x,(⍴,x)↓0 ⍬
+      (recursive depth)←2↑x,(≢x)↓0 ⍬
       depth-←1
       path←NormalizePath path
       (part1 part2)←SplitPath path
@@ -917,11 +926,11 @@
           :Return
       :EndTrap
       r←(1=1⊃buff)/0⊃buff
-      :If ~0∊⍴r←NormalizePath r
+      :If 0≠≢r←NormalizePath r
       :AndIf 1=recursiveFlag
       :AndIf 0=+/'*?'∊path
-      :AndIf (0∊⍴depth)∨1↑0<depth
-      :AndIf ~0∊⍴buff←↑,/(⊂recursiveFlag depth)ListDirs¨r,¨'/'
+      :AndIf (0=≢depth)∨1↑0<depth
+      :AndIf 0≠≢buff←↑,/(⊂recursiveFlag depth)ListDirs¨r,¨'/'
           r,←buff
       :EndIf
     ∇
@@ -940,7 +949,7 @@
       ⍝ Returns a vector of text vectors in case anything was found and `''` otherwise.
       x←{0<⎕NC ⍵:⍎⍵ ⋄ ''⍬}'x'
       x←⊂∘,⍣((↑' '=1↑0⍴↑x)∧1=≡x)⊣x
-      (recursive depth)←2↑x,(⍴,x)↓0 ⍬
+      (recursive depth)←2↑x,(≢x)↓0 ⍬
       path←NormalizePath path
       (part1 part2)←SplitPath path
       'Wildcard characters are allowed only in the last part of a path'⎕SIGNAL 11/⍨∨/'?*'∊part1
@@ -952,7 +961,7 @@
           '"path" must not carry wildcard chars in case "Recursive" is specified'⎕SIGNAL 11
       :EndIf
       path,←(~∨/'?*'∊path)/CurrentSep
-      :If 0∊⍴buff←('recursive'recursiveFlag)('type'(0 1))('depth'depth)Dir path
+      :If 0=≢buff←('recursive'recursiveFlag)('type'(0 1))('depth'depth)Dir path
           r←''
       :Else
           r←(2=1⊃buff)/0⊃buff
@@ -970,12 +979,12 @@
       ⍝ * Text vector representing a single filename.
       ⍝ * Vector of text vectors each representing a single file.\\
       ⍝ In case `filenames` is empty a 0 is returned.
-      :If 0∊⍴filenames
+      :If 0=≢filenames
           success←0
       :Else
           filenames←Nest filenames
           filenames←NormalizePath filenames
-          success←{19 22::0 ⋄ 0∊⍴⍵:0 ⋄ 1 ⎕NDELETE ⍵}¨filenames
+          success←{19 22::0 ⋄ 0=≢⍵:0 ⋄ 1 ⎕NDELETE ⍵}¨filenames
       :EndIf
     ∇
 
@@ -1037,8 +1046,8 @@
     ∇ newline←GetNewLineCharsFor os
       :Access Public Shared
       ⍝ Returns the proper `newline` character(s) for `os` or, if `os` is empty, for the current OS.
-      :If 0∊⍴os
-          os←#.APLTreeUtils.GetOperatingSystem ⍬
+      :If 0=≢os
+          os←GetOperatingSystem ⍬
       :EndIf
       '⍵ is not a supported Operating System'⎕SIGNAL 11/⍨~(⊂os)∊'Win' 'Lin' 'Mac'
       newline←('Win' 'Lin' 'Mac'⍳⊂os)⊃(⎕UCS 13 10)(⎕UCS 10)(⎕UCS 10)
@@ -1149,7 +1158,7 @@
       multiByte←80=⎕DR' '                  ⍝ Flag: is Unicode
       size←1024×1+multiByte                ⍝ Dynamic buffer size
       r←⊃↑/FormatMsg(FORMAT_MESSAGE_FROM_SYSTEM+FORMAT_MESSAGE_IGNORE_INSERTS)0 mid LangID size size 0
-      :If 0∊⍴r
+      :If 0=≢r
           'LoadLibrary'⎕NA'I KERNEL32|LoadLibrary* <0T'
           ⎕NA'I KERNEL32|FreeLibrary I'
           :For this :In 'ADVAPI32' 'NETMSG' 'WININET' 'WSOCK32'

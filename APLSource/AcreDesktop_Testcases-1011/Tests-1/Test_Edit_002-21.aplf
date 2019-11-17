@@ -55,9 +55,9 @@
  ⎕DL 1      ⍝ Otherwise this APL instance will stop for some reason
  :If ∆WaitForFile acreDir,'\acrelog.txt'
      log←A.ReadUtf8File acreDir,'\acrelog.txt'
-     →GoToTidyUp 3≠⍴log   ⍝ [1]=acre version  [2]=Added script...  [3]=Change
+     →T.GoToTidyUp 3≠⍴log   ⍝ [1]=acre version  [2]=Added script...  [3]=Change
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndIf
 
  R←T.∆OK

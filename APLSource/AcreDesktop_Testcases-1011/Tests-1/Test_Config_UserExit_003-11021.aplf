@@ -2,7 +2,7 @@
 ⍝ Checks whether the user's exit function does actually commit the changes.
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- →(0<≢R←batchFlag/∆NoBatchTest)/0
+ →(0<≢R←batchFlag/T.∆NoBatchTest)/0
  R←T.∆Failed
 
  ∆ClearLog
@@ -21,7 +21,7 @@
  :Trap (~stopFlag)/0
      {}'-variables=on'∆RunUcmd'Createproject "',projectPath,'" #.TEMP'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  {}projectPath ∆RunGitCommand'init'
@@ -45,14 +45,14 @@
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →GoToTidyUp ⍬≡#.TEMP.∆RESULT
- →GoToTidyUp(,1)≢,#.TEMP.∆ExitFunctionDidRun        ⍝ Did the function run at all?
- →GoToTidyUp expected≡#.TEMP.∆RESULT                ⍝ Because there WAS something to commit (if the user DID change the function)!
- →GoToTidyUp 0=∨/'1 file changed'⍷∊#.TEMP.∆RESULT   ⍝ We should see this
+ →T.GoToTidyUp ⍬≡#.TEMP.∆RESULT
+ →T.GoToTidyUp(,1)≢,#.TEMP.∆ExitFunctionDidRun        ⍝ Did the function run at all?
+ →T.GoToTidyUp expected≡#.TEMP.∆RESULT                ⍝ Because there WAS something to commit (if the user DID change the function)!
+ →T.GoToTidyUp 0=∨/'1 file changed'⍷∊#.TEMP.∆RESULT   ⍝ We should see this
 
  R←T.∆OK
 

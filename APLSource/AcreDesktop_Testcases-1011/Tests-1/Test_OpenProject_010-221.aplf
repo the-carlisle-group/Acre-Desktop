@@ -35,9 +35,9 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath1,' #.',projectName1
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName1
+ →T.GoToTidyUp result≢'#.',projectName1
 
 ⍝ Create Main's config file which defines the dependencies:
  (bin configFilename)←∆ReadConfigFile projectPath1
@@ -52,17 +52,17 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath2,' #.',projectName2
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName2
+ →T.GoToTidyUp result≢'#.',projectName2
 
 ⍝ Create the second dependency project
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath3,' #.',projectName3
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName3
+ →T.GoToTidyUp result≢'#.',projectName3
 
  ⍝ So far this project does not contain anything. We now create a file in the
  ⍝ APLSource\ folder that won't fix due a syntax problem.
@@ -71,14 +71,14 @@
 
  #.{⎕EX ⍵}¨projectName1 projectName2 projectName3
  result←∆RunUcmd'Projects'
- →GoToTidyUp~(⊃⍴result)∊0 1             ⍝ acre itself might or might not be open by now.
+ →T.GoToTidyUp~(⊃⍴result)∊0 1             ⍝ acre itself might or might not be open by now.
 
  :Trap 11 911
      {}∆RunUcmd'OpenProject ',projectPath1,' #.',projectName1
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 9∨.≠#.{⊃⎕NC ⍵}¨projectName1 projectName2 projectName3
- →GoToTidyUp 0≠≢(' '~¨⍨↓(#.⍎projectName3).⎕NL 9.4)   ⍝ Fails because of Dyalog bug <01546> (Mantis 16354) - there should not be a class!
+ →T.GoToTidyUp 9∨.≠#.{⊃⎕NC ⍵}¨projectName1 projectName2 projectName3
+ →T.GoToTidyUp 0≠≢(' '~¨⍨↓(#.⍎projectName3).⎕NL 9.4)   ⍝ Fails because of Dyalog bug <01546> (Mantis 16354) - there should not be a class!
 
  R←T.∆OK
 

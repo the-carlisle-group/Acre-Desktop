@@ -10,18 +10,18 @@
 
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
- →GoToTidyUp'#.TEMP'≢result
+ →T.GoToTidyUp'#.TEMP'≢result
 
  result←⎕SE.acre.Close'#.TEMP'
- →GoToTidyUp 1≢result
+ →T.GoToTidyUp 1≢result
  #.⎕EX'TEMP'
 
 ⍝ ∘∘∘ ⍝ The next line crashes because acre cannot find the file .acre\latest  ⍝TODO⍝
 ⍝ it seems to have found it
 ⍝ Kai 2019-09-02 11:00 : It passes in 17.1 but fails in 15.0. I have not tried other versions.
  result←∆RunUcmd'OpenProject "',path,'" #.TEMP'
- →GoToTidyUp'#.TEMP'≢result
- →GoToTidyUp 9≠⎕NC'#.TEMP'
+ →T.GoToTidyUp'#.TEMP'≢result
+ →T.GoToTidyUp 9≠⎕NC'#.TEMP'
 
  R←T.∆OK
 

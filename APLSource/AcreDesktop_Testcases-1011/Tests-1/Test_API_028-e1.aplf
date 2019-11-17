@@ -10,21 +10,21 @@
 
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
- →GoToTidyUp'#.TEMP'≢result
+ →T.GoToTidyUp'#.TEMP'≢result
 
  #.TEMP.Foo←{43}
  result←⎕SE.acre.SetChanged'#.TEMP.Foo'
- →GoToTidyUp'#.TEMP.Foo'≡result
+ →T.GoToTidyUp'#.TEMP.Foo'≡result
  #.TEMP.Foo←{44}
  result←⎕SE.acre.SetChanged'#.TEMP.Foo'
- →GoToTidyUp'#.TEMP.Foo'≡result
- →GoToTidyUp 44≠#.TEMP.Foo ⍬
+ →T.GoToTidyUp'#.TEMP.Foo'≡result
+ →T.GoToTidyUp 44≠#.TEMP.Foo ⍬
  result←⎕SE.acre.Undo'#.TEMP.Foo'
- →GoToTidyUp'#.TEMP.Foo'≡result
- →GoToTidyUp 43≠#.TEMP.Foo ⍬
+ →T.GoToTidyUp'#.TEMP.Foo'≡result
+ →T.GoToTidyUp 43≠#.TEMP.Foo ⍬
  result←⎕SE.acre.Redo'#.TEMP.Foo'
- →GoToTidyUp'#.TEMP.Foo'≡result
- →GoToTidyUp 44≠#.TEMP.Foo ⍬
+ →T.GoToTidyUp'#.TEMP.Foo'≡result
+ →T.GoToTidyUp 44≠#.TEMP.Foo ⍬
 
  R←T.∆OK
 

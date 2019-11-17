@@ -17,9 +17,9 @@
  ∆ClearLog
 
  result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -variables=on'
- →GoToTidyUp 0∊⍴result
- →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
- →GoToTidyUp 2≠⍴⊃F.Dir projectPath,'/APLSource/*' ⍝ QuadVars script is added automatically!
+ →T.GoToTidyUp 0∊⍴result
+ →T.GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →T.GoToTidyUp 2≠⍴⊃F.Dir projectPath,'/APLSource/*' ⍝ QuadVars script is added automatically!
 
  R←T.∆OK
 

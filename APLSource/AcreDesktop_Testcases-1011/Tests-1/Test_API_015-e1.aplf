@@ -15,9 +15,9 @@
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
 
- →GoToTidyUp({⍵[;1]}⎕SE.acre.Projects'')≢openList[;1],⊂result
- →GoToTidyUp(≢openList)≢⎕SE.acre.Close result
- →GoToTidyUp({⍵[;1]}⎕SE.acre.Projects'')≢openList[;1]
+ →T.GoToTidyUp({⍵[;1]}⎕SE.acre.Projects'')≢openList[;1],⊂result
+ →T.GoToTidyUp(≢openList)≢⎕SE.acre.Close result
+ →T.GoToTidyUp({⍵[;1]}⎕SE.acre.Projects'')≢openList[;1]
 
  R←T.∆OK
 

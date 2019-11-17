@@ -17,28 +17,28 @@
 
  deleteFilename←⊃⎕SE.acre.Deletefile'#.',projectName,'.Hello'
  result←⎕SE.acre.Erase'#.',projectName,'.Hello'
- →GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello'
+ →T.GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello'
  deleteFilename←⎕SE.acre.Deletefile'#.',projectName,'.Hello2'
  result←⎕SE.acre.Erase'#.',projectName,'.Hello2'
- →GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello2'
+ →T.GoToTidyUp result≢,⊂'#.',(⊃⎕SI),'.Hello2'
  changePath←F.EnforceBackslash 1⊃⎕NPARTS⊃deleteFilename
- →GoToTidyUp projectPath≢(⍴projectPath)↑changePath
- →GoToTidyUp 2≠⍴⊃F.Dir changePath
- →GoToTidyUp~F.IsFile⊃deleteFilename
+ →T.GoToTidyUp projectPath≢(⍴projectPath)↑changePath
+ →T.GoToTidyUp 2≠⍴⊃F.Dir changePath
+ →T.GoToTidyUp~F.IsFile⊃deleteFilename
  deleteFilenames←F.NormalizePath ⎕SE.acre.Deletefile('#.',projectName,'.Hello')('#.',projectName,'.Hello2 ')
- →GoToTidyUp 1 1≢≡¨deleteFilenames
- →GoToTidyUp 2≠⍴deleteFilenames
- →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨deleteFilenames
+ →T.GoToTidyUp 1 1≢≡¨deleteFilenames
+ →T.GoToTidyUp 2≠⍴deleteFilenames
+ →T.GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨deleteFilenames
 
- →GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\.acre\changes\*.delete'
- →GoToTidyUp 0≠≢(F.ListFiles projectPath,'\.acre\changes\')~list
- →GoToTidyUp 0≠⎕NC'#.',projectName,'.Hello2'
+ →T.GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\.acre\changes\*.delete'
+ →T.GoToTidyUp 0≠≢(F.ListFiles projectPath,'\.acre\changes\')~list
+ →T.GoToTidyUp 0≠⎕NC'#.',projectName,'.Hello2'
  result←⎕SE.acre.Restore'#.',projectName,'.Hello2'
- →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\*.aplf.change'
- →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\*.delete'
- →GoToTidyUp 3≠⎕NC'#.',projectName,'.Hello2'
+ →T.GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\*.aplf.change'
+ →T.GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\*.delete'
+ →T.GoToTidyUp 3≠⎕NC'#.',projectName,'.Hello2'
 
- →GoToTidyUp 0≠≢⎕SE.acre.Deletefile'#.DoesNotExistAtAll'
+ →T.GoToTidyUp 0≠≢⎕SE.acre.Deletefile'#.DoesNotExistAtAll'
 
  R←T.∆OK
 

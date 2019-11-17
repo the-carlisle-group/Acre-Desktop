@@ -14,7 +14,7 @@
  :Trap (~stopFlag)/0
      {}∆RunUcmd'Createproject "',projectPath,'" #.TEMP'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  ∆RunUcmd'Close #.TEMP'
@@ -31,7 +31,7 @@
 
  :Trap 0
      {}∆RunUcmd'OpenProject ',projectPath
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :Else
      dmx←⎕DMX
      →T.PassesIf dmx.EN∊11 911

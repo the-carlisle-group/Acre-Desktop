@@ -15,40 +15,40 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp result≢'#.',⊃⎕SI
+ →T.GoToTidyUp result≢'#.',⊃⎕SI
  projects←∆RunUcmd'Projects'
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
  list←⊃F.Dir path,'*'
- →GoToTidyUp 3≠⍴list  ⍝ Quad-Vars script is added automatically
+ →T.GoToTidyUp 3≠⍴list  ⍝ Quad-Vars script is added automatically
  result←∆RunUcmd'Erase #.',projectName,'.Hello'
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
- →GoToTidyUp 0≠ref.⎕NC'Hello'
- →GoToTidyUp 3≠ref.⎕NC'Hello2'
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →T.GoToTidyUp 0≠ref.⎕NC'Hello'
+ →T.GoToTidyUp 3≠ref.⎕NC'Hello2'
  result←∆RunUcmd'Restore #.',projectName,'.Hello'
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
- →GoToTidyUp 3≠ref.⎕NC'Hello'
- →GoToTidyUp 3≠ref.⎕NC'Hello2'
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →T.GoToTidyUp 3≠ref.⎕NC'Hello'
+ →T.GoToTidyUp 3≠ref.⎕NC'Hello2'
  result←∆RunUcmd'Erase #.',projectName,'.Hello #.',projectName,'.Hello2'
- →GoToTidyUp result≢('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
- →GoToTidyUp 0∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
- →GoToTidyUp 1≠⍴⊃F.Dir path,'*'   ⍝ Quad-Vars script is added automatically
+ →T.GoToTidyUp result≢('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
+ →T.GoToTidyUp 0∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
+ →T.GoToTidyUp 1≠⍴⊃F.Dir path,'*'   ⍝ Quad-Vars script is added automatically
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'.acre/changes/'
  list←⊃F.Dir path,'*'
- →GoToTidyUp 2≠⍴list
- →GoToTidyUp'delete' 'delete'≢A.Last¨list
+ →T.GoToTidyUp 2≠⍴list
+ →T.GoToTidyUp'delete' 'delete'≢A.Last¨list
  result←∆RunUcmd'Restore #.',projectName,'.Hello #.',projectName,'.Hello2'
- →GoToTidyUp 3≠ref.⎕NC'Hello'
+ →T.GoToTidyUp 3≠ref.⎕NC'Hello'
  result←∆RunUcmd'Restore #.',projectName,'.Hello2'
- →GoToTidyUp 3∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
+ →T.GoToTidyUp 3∨.≠⊃∘ref.⎕NC¨'Hello' 'Hello2'
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
- →GoToTidyUp 3≠⍴⊃F.Dir path,'*'   ⍝ Quad-Vars script is added automatically
+ →T.GoToTidyUp 3≠⍴⊃F.Dir path,'*'   ⍝ Quad-Vars script is added automatically
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'.acre/changes/'
  list←⊃F.Dir path,'*'
- →GoToTidyUp 2≠⍴list
- →GoToTidyUp'change' 'change'≢A.Last¨list
+ →T.GoToTidyUp 2≠⍴list
+ →T.GoToTidyUp'change' 'change'≢A.Last¨list
 
  R←T.∆OK
 

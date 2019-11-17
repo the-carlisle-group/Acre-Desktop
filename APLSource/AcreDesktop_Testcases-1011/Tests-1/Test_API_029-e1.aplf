@@ -12,33 +12,33 @@
 
  ref.⎕FX'r←Hello' 'r←''World'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp('#.',projectName,'.Hello')≢1⊃result
+ →T.GoToTidyUp('#.',projectName,'.Hello')≢1⊃result
  ref.⎕FX'r←Hello2' 'r←''Whole galaxy'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
- →GoToTidyUp('#.',projectName,'.Hello2')≢1⊃result
+ →T.GoToTidyUp('#.',projectName,'.Hello2')≢1⊃result
  ref.⎕FX'r←Hello2' 'r←''Whole universe'''
  ⎕DL 1.1
  ts←{(1000000 100 100⊥3↑⍵)+(0.00001×24 60 60⊥3↑3↓⍵)}⎕TS
  ts←1↓0⍕100⊥6⍴⎕TS
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
- →GoToTidyUp('#.',projectName,'.Hello2')≢1⊃result
+ →T.GoToTidyUp('#.',projectName,'.Hello2')≢1⊃result
 
  list←⎕SE.acre.Changes'#.',projectName
- →GoToTidyUp 2≠≢list
+ →T.GoToTidyUp 2≠≢list
  list←⎕SE.acre.Changes'#.',projectName,' Hello2'
 
  list←⊃,/{⍵/⍨~'  '⍷⍵}¨,⊃,/,⎕SE.acre.Changes'#.',projectName,'.Hello2'
- →GoToTidyUp 1≠+/'Version 2 '⍷list
- →GoToTidyUp 1≠+/'Version 1 '⍷list
- →GoToTidyUp 0≠+/'Version 3 '⍷list
+ →T.GoToTidyUp 1≠+/'Version 2 '⍷list
+ →T.GoToTidyUp 1≠+/'Version 1 '⍷list
+ →T.GoToTidyUp 0≠+/'Version 3 '⍷list
 
  list←⎕SE.acre.Changes('#.',projectName,'.Hello2')('when' 1)
- →GoToTidyUp 2 1≢⍴list
- →GoToTidyUp 1≠+/'Version 2 '⍷∊{⍵/⍨~'  '⍷⍵}¨,list
- →GoToTidyUp 1≠+/'Version 1 '⍷∊{⍵/⍨~'  '⍷⍵}¨,list
+ →T.GoToTidyUp 2 1≢⍴list
+ →T.GoToTidyUp 1≠+/'Version 2 '⍷∊{⍵/⍨~'  '⍷⍵}¨,list
+ →T.GoToTidyUp 1≠+/'Version 1 '⍷∊{⍵/⍨~'  '⍷⍵}¨,list
 
  list←⎕SE.acre.Changes cmd←('#.',projectName,'.Hello2')('when'ts)
- →GoToTidyUp 1≠≢list
+ →T.GoToTidyUp 1≠≢list
 
  R←T.∆OK
 

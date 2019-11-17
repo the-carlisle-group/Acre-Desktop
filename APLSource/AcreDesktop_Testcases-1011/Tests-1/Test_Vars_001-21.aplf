@@ -19,16 +19,16 @@
  :Trap (~stopFlag)/0
      {}∆RunUcmd'Createproject "',projectPath,'" #.TEMP -variables=off'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
  messages←∆GetLog ⍬
- →GoToTidyUp~∨/'Not stored by acre'⍷1⊃messages
- →GoToTidyUp~∨/' #.TEMP.vars '⍷3⊃messages
- →GoToTidyUp 1≠was←≢F.ListFiles projectPath,'\APLSource\'  ⍝ Saved was just `quadVars`
+ →T.GoToTidyUp~∨/'Not stored by acre'⍷1⊃messages
+ →T.GoToTidyUp~∨/' #.TEMP.vars '⍷3⊃messages
+ →T.GoToTidyUp 1≠was←≢F.ListFiles projectPath,'\APLSource\'  ⍝ Saved was just `quadVars`
 
  #.TEMP.⎕ED'vars'
 
- →GoToTidyUp was≠≢F.ListFiles projectPath,'\APLSource\'
+ →T.GoToTidyUp was≠≢F.ListFiles projectPath,'\APLSource\'
 
  R←T.∆OK
 

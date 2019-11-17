@@ -18,21 +18,21 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp result≢'#.',projectName
 
  sourceFilename←⎕SE.acre.Sourcefile'#.',projectName,'.Hello'
- →GoToTidyUp 1≠≢sourceFilename
+ →T.GoToTidyUp 1≠≢sourceFilename
  sourceFilename←⊃sourceFilename
  body←##.APLTreeUtils.ReadUtf8File sourceFilename
  (2⊃body)←'r←''Galaxy'''
  ⎕DL 1  ⍝ Between "Create project" and a change made to the file we need a delay of at least one second so that acre's ]Refresh can spot the change.
  ##.APLTreeUtils.WriteUtf8File sourceFilename body
  result←∆RunUcmd'Refresh #.',projectName
- →GoToTidyUp 1≠⍴result                              ⍝ Should be a list of names of those objects that got refreshed?!
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
- →GoToTidyUp'Galaxy'≢⍎'#.',projectName,'.Hello'
+ →T.GoToTidyUp 1≠⍴result                              ⍝ Should be a list of names of those objects that got refreshed?!
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →T.GoToTidyUp'Galaxy'≢⍎'#.',projectName,'.Hello'
 
  R←T.∆OK
 

@@ -12,14 +12,14 @@
 
  ref.vars←buff←'* This' '* That' '\\' 'This is another paragraph'
  result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName,' -variables=on'   ⍝ QuadVars is added automatically
- →GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\APLSource\'
+ →T.GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\APLSource\'
  result←∆RunUcmd'Close #.',projectName
- →GoToTidyUp 0=≢result
+ →T.GoToTidyUp 0=≢result
  #.⎕EX projectName
  result←∆RunUcmd'OpenProject ',projectPath
- →GoToTidyUp 0=≢result
+ →T.GoToTidyUp 0=≢result
  ref←#⍎projectName
- →GoToTidyUp buff≢ref.vars
+ →T.GoToTidyUp buff≢ref.vars
 
  R←T.∆OK
 

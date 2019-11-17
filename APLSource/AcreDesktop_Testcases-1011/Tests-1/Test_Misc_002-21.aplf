@@ -13,9 +13,9 @@
 
  noOfOpenProjects←⊃⍴∆RunUcmd'Projects'
  {}∆RunUcmd'CreateProject ',projectPath,' #.',projectName
- →GoToTidyUp 2≠≢messages←∆GetLog ⍬
+ →T.GoToTidyUp 2≠≢messages←∆GetLog ⍬
  result←∆RunUcmd'Projects'
- →GoToTidyUp 1≠(⊃⍴result)-noOfOpenProjects
+ →T.GoToTidyUp 1≠(⊃⍴result)-noOfOpenProjects
 
  R←T.∆OK
 

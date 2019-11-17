@@ -21,7 +21,7 @@
  expected←'.aplf' '.aplo' '.charstring' '.charlist' '.charmat' '.array' '.aplc' '.apln' '.apli'
  names←'Hello' 'MyOp' 'varsSimple' 'varsVTV' 'varsMat' 'varsMixed' 'MyClass' 'MyNamespace' 'MyInterface'
  list←⎕SE.acre.Nameclass(⊂'#.',projectName,'.'),¨names
- →GoToTidyUp list≢expected
+ →T.GoToTidyUp list≢expected
 
  R←T.∆OK
 

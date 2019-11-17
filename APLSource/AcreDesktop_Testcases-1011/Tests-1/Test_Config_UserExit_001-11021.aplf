@@ -16,9 +16,9 @@
  :Trap (~stopFlag)/0
      {}∆RunUcmd'Createproject "',projectPath,'" #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 1≠≢messages←∆GetLog ⍬
+ →T.GoToTidyUp 1≠≢messages←∆GetLog ⍬
 
  #.⎕EX projectName
  #.⎕SHADOW'Temp'
@@ -35,7 +35,7 @@
  :Trap (~stopFlag)/0
      list←∆RunUcmd'OpenProject ',projectPath
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  R←T.∆OK

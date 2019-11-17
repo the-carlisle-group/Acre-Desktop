@@ -17,7 +17,7 @@
  'TEMP'#.⎕NS''
  #.TEMP.PI←{2.14}
  result←∆RunUcmd'CreateProject "',projectDir,'" #.TEMP'
- →GoToTidyUp'#.TEMP'≢result
+ →T.GoToTidyUp'#.TEMP'≢result
 
  path←∆GetPathToOldestAPL'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'" '
  cmd←'"',path,'/dyalog.exe" '
@@ -33,8 +33,8 @@
  rc←parms ##.Execute.Application cmd
  'Could not start second APL instance'Assert 0=⊃rc
  result←⎕SE.acre.Refresh'#.TEMP'
- →GoToTidyUp(,⊂'#.TEMP.PI')≢result
- →GoToTidyUp 3.14≢#.TEMP.PI ⍬
+ →T.GoToTidyUp(,⊂'#.TEMP.PI')≢result
+ →T.GoToTidyUp 3.14≢#.TEMP.PI ⍬
 
  R←T.∆OK
 

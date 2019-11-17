@@ -15,12 +15,12 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -casecode=on'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
- →GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
- →GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.apln')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
+ →T.GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →T.GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
+ →T.GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.apln')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
  R←T.∆OK
 

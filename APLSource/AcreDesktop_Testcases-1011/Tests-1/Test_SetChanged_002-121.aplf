@@ -10,24 +10,24 @@
  projectName #.⎕NS''
 
  result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName,' -casecode=on -keephistory=on'
- →GoToTidyUp result≢'#.',projectName
- →GoToTidyUp 0≠≢list←F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp 0≠≢list←F.ListFiles projectPath,'\.acre\changes\'
  result←∆RunUcmd'Close #.',projectName
 
  result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName  ⍝ FILE NAME ERROR? file "Latest" is missing!  ⍝TODO⍝  Still crashes in 15.0 Kai 2019-09-02 11:13
- →GoToTidyUp 0≠≢list←F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp 0≠≢list←F.ListFiles projectPath,'\.acre\changes\'
  ref←#.⍎projectName
 
  ref.⎕FX'r←Hello' 'r←''World'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0=≢result
+ →T.GoToTidyUp 0=≢result
  ref.⎕FX'r←Hello' 'r←''Universe'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0=≢result
+ →T.GoToTidyUp 0=≢result
 
- →GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp 1≠≢list←F.ListFiles projectPath,'\.acre\changes\'
  tno←(⊃list)⎕FTIE 0
- →GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno   ⍝ Orig, change, pointer
+ →T.GoToTidyUp 3≠-/⌽2↑⎕FSIZE tno   ⍝ Orig, change, pointer
 
  R←T.∆OK
 

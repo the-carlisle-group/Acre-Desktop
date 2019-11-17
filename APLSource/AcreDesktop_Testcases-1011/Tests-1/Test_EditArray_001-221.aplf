@@ -14,14 +14,14 @@
      #.TEMP.Hello←txt←'Please make a change and then press <escape> in this window'
      acreDir←F.GetTempPath,⊃⎕SI
      result←∆RunUcmd'CreateProject ',acreDir,' #.TEMP -casecode=on -variables=on -keephistory=on'
-     →GoToTidyUp'#.TEMP'≢result
+     →T.GoToTidyUp'#.TEMP'≢result
      result←∆RunUcmd'EditArray #.TEMP.Hello'
      'Variable was not changed?!'Assert #.TEMP.Hello≢txt
      ∆WaitAndProcess 0.2
      list←F.ListFiles acreDir,'\.acre\changes\'
-     →GoToTidyUp 1≠≢list
+     →T.GoToTidyUp 1≠≢list
      filename←2⊃##.APLTreeUtils.SplitPath⊃list
-     →GoToTidyUp filename≢'Hello-1.charstring.change'
+     →T.GoToTidyUp filename≢'Hello-1.charstring.change'
      R←T.∆OK
 ∆TidyUp:
      ⊣F.RmDir acreDir

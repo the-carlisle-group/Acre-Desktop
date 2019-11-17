@@ -14,10 +14,10 @@
 
  ref.⎕FX'r←Hello' 'r←''World2'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp 0∊⍴result
- →GoToTidyUp 1≠⍴F.ListFiles projectPath,'\.acre\changes\'
- →GoToTidyUp 1≠∆RunUcmd'PurgeHistory #.',projectName
- →GoToTidyUp 0≠⍴F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp 0∊⍴result
+ →T.GoToTidyUp 1≠⍴F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp 1≠∆RunUcmd'PurgeHistory #.',projectName
+ →T.GoToTidyUp 0≠⍴F.ListFiles projectPath,'\.acre\changes\'
 
  R←T.∆OK
 

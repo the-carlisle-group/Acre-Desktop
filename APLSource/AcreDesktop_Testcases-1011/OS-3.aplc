@@ -1,10 +1,10 @@
 :Class OS
-⍝ This class offers methods that return the same result under Windows, Linux (without the PI) and Mac OS.
+⍝ This class offers methods that return the same result under Windows, Linux (but not Raspberry PI) and Mac OS.
 ⍝ Examples are `GetPID` and `KillPID`.\\
 ⍝ Exceptions are the functions `ShellExecute` (Linux/Mac only) and `WinExecute` (Windows only). They
 ⍝ perform very similar tasks but with very different parameters and results, so they were separated.\\
 ⍝ Kai Jaeger - APL Team Ltd.\\
-⍝ Homepage: <http://aplwiki.com/OS>
+⍝ Homepage: <https://github.com/aplteam/OS>
 
     :Include APLTreeUtils
 
@@ -12,13 +12,14 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.4.2.5' '2019-02-18'
+      r←(Last⍕⎕THIS)'1.5.0.15' '2019-10-23'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 1.4.2
-      ⍝   * `:Include APLTreeUtils` fixed.
+      ⍝ * 1.5.0
+      ⍝   * `OS` does not require `FilesAndDirs` any more
+      ⍝   * Internally `⍴` replaced by `≢` when appropriate
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/OS/releases>
     ∇
@@ -40,7 +41,7 @@
           :Else
               cmd,←' 2>&1; echo "CMDEXIT=$?"; exit 0'
               buff←⎕SH cmd
-              rc←⍎(⍴'CMDEXIT=')↓↑¯1↑buff
+              rc←⍎(≢'CMDEXIT=')↓↑¯1↑buff
               :If 0=rc
                   result←¯1↓buff
               :Else
@@ -58,13 +59,11 @@
       ⍝ Simple way to fire up an application or a document.\\
       ⍝ Note that you **cannot** catch the standard output of any application executed with `WinExecute`.
       ⍝ However, you might be able to execute it with `WinExecBatch` which _can_ return the standard
-      ⍝ output returned by whatever you've executed - see there.
-      ⍝
+      ⍝ output returned by whatever you've executed - see there.\\
       ⍝ `⍵` can be one of:
       ⍝ * A namespace, typically created by calling [`CreateParms_WinExecute`](#). This is called a
       ⍝   parameter space.
-      ⍝ * A text string typically specifying a document or an EXE, possibly with command line parameters.
-      ⍝
+      ⍝ * A text string typically specifying a document or an EXE, possibly with command line parameters.\\
       ⍝ In case a text string is passed and the name of the file (first parameter: the EXE/document) contains
       ⍝ a space then this filename **must** be enclosed within double quotes.\\
       ⍝ Any other filename with spaces in the name must be enclosed by double-quotes as well.\\
@@ -155,16 +154,15 @@
     ⍝ * Execute that batch file with `WinExecute`.
     ⍝ * Circumvent the standard output of the batch file into another temp file.
     ⍝ * Waits until the temp file makes an appearance.
-    ⍝ * Reads that temp file and returns the contents as `result`.
-    ⍝ \\
+    ⍝ * Reads that temp file and returns the contents as `result`.\\
     ⍝ * `success` is a Boolean with 1 indicating success.
     ⍝ * `rc` is a return code. 42 stands for "okay".
       :Access Public Shared
       'Runs under Windows only'⎕SIGNAL 11/⍨'Win'≢GetOperatingSystem ⍬
-      tempFilename←##.FilesAndDirs.GetTempFilename''
+      tempFilename←GetTempFilename
       batFilename←(¯3↓tempFilename),'BAT'
       cmd,←' >',tempFilename
-      ##.FilesAndDirs.DeleteFile tempFilename
+      ⎕NDELETE tempFilename
       WriteUtf8File batFilename cmd
       adminFlag←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'adminFlag'
       parms←CreateParms_WinExecute
@@ -176,15 +174,15 @@
           :Repeat
               i+←1
               ⎕DL 0.01
-              :If ##.FilesAndDirs.IsFile tempFilename
+              :If IsFile tempFilename
                   result←ReadUtf8File tempFilename
-                  flag←(100<i)∨0<⍴result
+                  flag←(100<i)∨0<≢result
               :EndIf
           :Until flag
       :Else
           result←more
       :EndIf
-      ##.FilesAndDirs.DeleteFile batFilename tempFilename
+      {}{19 22::⍬ ⋄ ⎕NDELETE ⍵}¨batFilename tempFilename
     ∇
 
     ∇ r←GetSharedLib
@@ -244,14 +242,14 @@
                   r←1
               :End
               {}∆CloseHandle h
-          :Until 0∊⍴pid←1↓pid
+          :Until 0=≢pid←1↓pid
       :CaseList 'Lin' 'Mac'
           '∆KillPID'⎕NA'I4 ',GetSharedLib,'| kill I4 I4'
           :Repeat
               :Trap 11
                   r←∆KillPID 2↑↑pid
               :EndTrap
-          :Until 0∊⍴pid←1↓pid
+          :Until 0=≢pid←1↓pid
       :Else
           . ⍝ Huuh?!
       :EndSelect
@@ -270,5 +268,60 @@
     ∇ r←GetDyaLib
       r←'dyalog',(⍕GetAPL_Width ⍬),'.dylib'
     ∇
+
+    ∇ filename←GetTempFilename;rc;start;no;fno;path
+    ⍝ Copied from FilesAndDirs in 2019-10 in an attempt to make OS independent.
+      path←GetTempPath
+      start←no←⍎{(,'ZI2,ZI2,ZI2'⎕FMT 3↑⍵),⍕3↓⍵}3↓⎕TS  ⍝ Expensive but successful very soon
+          ⍝ no←100⊥3↓⎕TS ⍝ Not reliable: can take a large number of tries before successful
+      :Repeat
+          filename←path,(⎕AN,'_',⍕no),'.tmp'
+          :Trap 22
+              fno←filename ⎕NCREATE 0
+              ⎕NUNTIE fno
+          :Else
+              fno←0
+          :EndTrap
+          no+←10
+      :Until (fno≠0)∨no>start+1000×10  ⍝ max 1000 tries
+      'Unable to create temporay file'⎕SIGNAL 11/⍨fno=0
+    ∇
+
+    ∇ path←GetTempPath;∆GetTempPath
+    ⍝ Copied from FilesAndDirs in 2019-10 in an attempt to make OS independent.
+    ⍝ Replace this by the `739 ⌶ 0` function once 17.0 becomes the latest supported version.
+      :Select GetOperatingSystem ⍬
+      :Case 'Win'
+          '∆GetTempPath'⎕NA'I4 KERNEL32.C32|GetTempPath* I4 >T[]'
+          path←↑↑/∆GetTempPath 1024 1024
+          :If 0=≢path
+              11 ⎕SIGNAL⍨'Problem getting Windows temp path!; rc=',⍕GetLastError
+          :EndIf
+      :Case 'Lin'
+          path←'/tmp/'
+      :Case 'Mac'
+          path←'/private/tmp/'
+      :Else
+          .⍝ Huuh?!
+      :EndSelect
+    ∇
+
+    ∇ r←GetLastError;∆GetLastError
+    ⍝ Copied from FilesAndDirs in 2019-10 in an attempt to make OS independent.
+      :Select GetOperatingSystem ⍬
+      :Case 'Win'
+          '∆GetLastError'⎕NA'I4 kernel32.C32|GetLastError'
+          r←∆GetLastError
+      :CaseList 'Lin' 'Mac'
+          r←⎕SH'$errno'   ⍝TODO⍝
+      :Else
+          .  ⍝ Huuh?!
+      :EndSelect
+    ∇
+
+      IsFile←{
+          0=⎕NEXISTS ⍵:0
+          2=1 ⎕NINFO ⍵
+      }
 
 :EndClass

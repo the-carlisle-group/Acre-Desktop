@@ -18,24 +18,24 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp result≢'#.',⊃⎕SI
+ →T.GoToTidyUp result≢'#.',⊃⎕SI
  projects←∆RunUcmd'Projects'
  path←(⊃projects[(projects[;1]≡¨⊂'#.',projectName)⍳1;2]),'APLSource/'
  list←⊃('recursive' 1)F.Dir path,'*'
- →GoToTidyUp 6≠⍴list  ⍝ Quad-Vars script, one folder, 4 functions
- →GoToTidyUp 3≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
+ →T.GoToTidyUp 6≠⍴list  ⍝ Quad-Vars script, one folder, 4 functions
+ →T.GoToTidyUp 3≠⊃+/0<⎕NC¨projectName{(⊂'#.',⍺),⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
  result←∆RunUcmd'Erase #.',projectName,'.Sub -recursive'
- →GoToTidyUp 0∊⍴result
- →GoToTidyUp 0≠⊃+/0<⎕NC¨projectName∘{'#.',⍺,'.Sub',⍵}¨'' '.Hello3' '.Hello4'   ⍝ The namespace should not survive!
+ →T.GoToTidyUp 0∊⍴result
+ →T.GoToTidyUp 0≠⊃+/0<⎕NC¨projectName∘{'#.',⍺,'.Sub',⍵}¨'' '.Hello3' '.Hello4'   ⍝ The namespace should not survive!
 
  list←⊃('recursive' 1)F.Dir path,'*'
- →GoToTidyUp 4≠⍴list  ⍝ Quad-Vars script, 2 functions and what once as a namespace (folder): it survives!
+ →T.GoToTidyUp 4≠⍴list  ⍝ Quad-Vars script, 2 functions and what once as a namespace (folder): it survives!
  result←projectName∘{∆RunUcmd'Restore #.',⍺,'.',⍵}¨'Sub' 'Sub.Hello3' 'Sub.Hello4' 'DoesNotExist'
- →GoToTidyUp 0 1 1 0≢≢¨result
- →GoToTidyUp 2≠⊃+/0<⎕NC¨projectName{⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
+ →T.GoToTidyUp 0 1 1 0≢≢¨result
+ →T.GoToTidyUp 2≠⊃+/0<⎕NC¨projectName{⍺∘{'#.',⍺,'.Sub.',⍵}¨⍵}'Hello3' 'Hello4'
 
  R←T.∆OK
 

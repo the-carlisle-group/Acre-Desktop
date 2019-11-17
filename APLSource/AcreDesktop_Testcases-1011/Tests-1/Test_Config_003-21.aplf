@@ -14,7 +14,7 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject "',projectPath,'" #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  #.⎕EX projectName
@@ -30,12 +30,12 @@
  :Trap (~stopFlag)/0
      list←∆RunUcmd'Projects '
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp'#.Temp'≢∆RunUcmd'OpenProject ',projectPath
- →GoToTidyUp 1≠(⊃⍴∆RunUcmd'Projects')-⊃⍴list
- →GoToTidyUp'World'≢#.Temp.Hello
+ →T.GoToTidyUp'#.Temp'≢∆RunUcmd'OpenProject ',projectPath
+ →T.GoToTidyUp 1≠(⊃⍴∆RunUcmd'Projects')-⊃⍴list
+ →T.GoToTidyUp'World'≢#.Temp.Hello
 
  R←T.∆OK
 

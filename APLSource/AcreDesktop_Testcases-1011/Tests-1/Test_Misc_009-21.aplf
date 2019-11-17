@@ -14,9 +14,9 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp result≢'#.',projectName
 
  →T.PassesIf(noOf+1)=≢∆RunUcmd'Projects'
  result←∆RunUcmd'Close #.',projectName

@@ -12,11 +12,11 @@
 
  ref.⎕FX'r←Hello' 'r←''Whole universe'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
 
  sourceFilename←⎕SE.acre.Sourcefile'#.',projectName,'.Hello'
  itemName←⊃⎕SE.acre.Itemname sourceFilename
- →GoToTidyUp itemName≢'#.',projectName,'.Hello'
+ →T.GoToTidyUp itemName≢'#.',projectName,'.Hello'
 
  R←T.∆OK
 

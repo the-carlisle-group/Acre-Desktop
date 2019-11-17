@@ -12,16 +12,16 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp result≢'#.',projectName
 
  ref.⎕FX'r←Hello' 'r←''World'''
  ref.vars←'# Markdown' '' 'APL is Great'
  result←∆RunUcmd'SetChanged #.',projectName,' -recursive'
- →GoToTidyUp 0=≢result
+ →T.GoToTidyUp 0=≢result
 
- →GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
+ →T.GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
 
  R←T.∆OK
 

@@ -10,11 +10,11 @@
 
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
- →GoToTidyUp'#.TEMP'≢result
+ →T.GoToTidyUp'#.TEMP'≢result
 
  buff←⎕SE.acre.Deletefile'#.TEMP.Foo'
- →GoToTidyUp 0=≢buff
- →GoToTidyUp'/Foo.aplf.delete'{⍺≢(-⍴,⍺)↑⍵}⊃buff
+ →T.GoToTidyUp 0=≢buff
+ →T.GoToTidyUp'/Foo.aplf.delete'{⍺≢(-⍴,⍺)↑⍵}⊃buff
 
  R←T.∆OK
 

@@ -18,22 +18,22 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
  ref.⎕EX'Hello'                                 ⍝ Erase from WS but do not tell acre!
  'Hello'ref.⎕NS''                               ⍝ Create a namespace with the name of that function - that's a name clash.
  ref.Hello.⎕FX'r←Foo' 'r←''Universe'''          ⍝ acre does not care about empty namespaces, so we need to populate it with something, anything.
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello.Foo'
- →GoToTidyUp 0∊⍴result
- →GoToTidyUp 0≠≢#.TEMP.Log
+ →T.GoToTidyUp 0∊⍴result
+ →T.GoToTidyUp 0≠≢#.TEMP.Log
  :Trap 11 911
      result←∆RunUcmd'OpenProject ',projectPath
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
- →GoToTidyUp 1≠⍴result
- →GoToTidyUp 1≠∨/' Not fixed '⍷∊log←∆GetLog ⍬
- →GoToTidyUp 1≠⍴'File: .* may require attention.'⎕S 0⍠('Mode' 'D')⊣log
+ →T.GoToTidyUp 1≠⍴result
+ →T.GoToTidyUp 1≠∨/' Not fixed '⍷∊log←∆GetLog ⍬
+ →T.GoToTidyUp 1≠⍴'File: .* may require attention.'⎕S 0⍠('Mode' 'D')⊣log
 
  R←T.∆OK
 

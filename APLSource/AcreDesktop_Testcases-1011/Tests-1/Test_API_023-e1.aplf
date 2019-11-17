@@ -13,11 +13,11 @@
  ref.⎕FX'r←Hello' 'r←''World'''
  {}∆RunUcmd'SetChanged #.',projectName,'.Hello'
  result←⎕SE.acre.Stats''
- →GoToTidyUp 0≠≢result
+ →T.GoToTidyUp 0≠≢result
  result←⎕SE.acre.Stats projectName
- →GoToTidyUp 2≠⍴⍴result
+ →T.GoToTidyUp 2≠⍴⍴result
  result←⎕SE.acre.Stats''('all' 1)
- →GoToTidyUp 2 1≢⍴result
+ →T.GoToTidyUp 2 1≢⍴result
 
  R←T.∆OK
 

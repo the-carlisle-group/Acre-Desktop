@@ -12,21 +12,21 @@
 
  ref.⎕FX'r←Hello' 'r←''World'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
 
  ref.⎕FX'r←Hello2' 'r←''Whole universe'''
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
- →GoToTidyUp result≢,⊂'#.',projectName,'.Hello2'
+ →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello2'
 
  sourceFilename←⎕SE.acre.Sourcefile'#.',projectName,'.Hello'
  sourcePath←F.EnforceBackslash 1⊃⎕NPARTS⊃sourceFilename
- →GoToTidyUp 3≠⍴⊃F.Dir sourcePath   ⍝ Quad-vars script is added automatically
- →GoToTidyUp~F.IsFile sourceFilename
+ →T.GoToTidyUp 3≠⍴⊃F.Dir sourcePath   ⍝ Quad-vars script is added automatically
+ →T.GoToTidyUp~F.IsFile sourceFilename
 
  sourceFilenames←F.NormalizePath ⎕SE.acre.Sourcefile('#.',projectName,'.Hello')('#.',projectName,'.Hello2')
- →GoToTidyUp 1 1≢≡¨sourceFilenames
- →GoToTidyUp 2≠⍴sourceFilenames
- →GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨sourceFilenames
+ →T.GoToTidyUp 1 1≢≡¨sourceFilenames
+ →T.GoToTidyUp 2≠⍴sourceFilenames
+ →T.GoToTidyUp~∧/projectPath∘{⍺≡(⍴⍺)↑⍵}¨sourceFilenames
 
  R←T.∆OK
 

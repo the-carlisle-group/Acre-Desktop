@@ -12,12 +12,12 @@
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
 
  buff←⎕SE.acre.Changefile'#.TEMP.Foo'
- →GoToTidyUp 1≠≢buff
- →GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}⊃buff
+ →T.GoToTidyUp 1≠≢buff
+ →T.GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}⊃buff
 
  buff←⎕SE.acre.Changefile'#.TEMP.Foo' '#.TEMP.Foo'
- →GoToTidyUp 2≠≢buff
- →GoToTidyUp 0∊≢¨buff
+ →T.GoToTidyUp 2≠≢buff
+ →T.GoToTidyUp 0∊≢¨buff
 
  R←T.∆OK
 

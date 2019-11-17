@@ -14,16 +14,16 @@
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
-     →GoToTidyUp 1
+     →T.GoToTidyUp 1
  :EndTrap
 
- →GoToTidyUp result≢'#.',projectName
+ →T.GoToTidyUp result≢'#.',projectName
  →T.PassesIf 1=+/,'Hello.aplf'⍷↑'Recursive'F.ListFiles projectPath,'\APLSource\'
  ref.⎕FX'r←(fns Hello) dummy' 'r←42'
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
- →GoToTidyUp(,⊂'#.',projectName,'.Hello')≢result
+ →T.GoToTidyUp(,⊂'#.',projectName,'.Hello')≢result
  result←∆RunUcmd'Close #.',projectName
- →GoToTidyUp 1≠result
+ →T.GoToTidyUp 1≠result
  #.⎕EX projectName
  #.⎕SHADOW projectName
  ∆ClearLog

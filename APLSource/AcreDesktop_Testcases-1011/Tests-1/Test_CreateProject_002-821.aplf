@@ -17,13 +17,13 @@
 
      :Trap 0
          result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
-         →GoToTidyUp 1
+         →T.GoToTidyUp 1
      :Else
          dmx←⎕DMX
      :EndTrap
-     →GoToTidyUp 0∊⍴dmx.DM
+     →T.GoToTidyUp 0∊⍴dmx.DM
      errMsg←1⊃dmx.DM
-     →GoToTidyUp~∨/'FILE NAME ERROR'⍷errMsg~⎕UCS 8
+     →T.GoToTidyUp~∨/'FILE NAME ERROR'⍷errMsg~⎕UCS 8
 
      R←T.∆OK
 
