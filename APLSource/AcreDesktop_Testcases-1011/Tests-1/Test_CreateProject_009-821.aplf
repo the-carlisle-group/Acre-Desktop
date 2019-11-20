@@ -1,7 +1,7 @@
  R←Test_CreateProject_009(stopFlag batchFlag);⎕TRAP;path;rc;en;more;projectPath;ref;projectName;result;list
 ⍝ Create a project from an empty namepsace. Should inject `QuadVars`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←T.T._Failed
+ R←T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -19,7 +19,7 @@
  →T.GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  →T.GoToTidyUp 1≠≢list←⊃F.Dir projectPath,'/APLSource/*'
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

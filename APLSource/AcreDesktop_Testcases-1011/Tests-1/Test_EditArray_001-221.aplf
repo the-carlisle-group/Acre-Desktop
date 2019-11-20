@@ -5,10 +5,10 @@
      R←∆WindowsOnly
      :Return
  :ElseIf batchFlag
-     R←T.∆NoBatchTest
+     R←T._NoBatchTest
      :Return
  :Else
-     R←T.T._Failed
+     R←T._Failed
      #.⎕SHADOW'TEMP'
      'TEMP'#.⎕NS''
      #.TEMP.Hello←txt←'Please make a change and then press <escape> in this window'
@@ -22,7 +22,7 @@
      →T.GoToTidyUp 1≠≢list
      filename←2⊃##.APLTreeUtils.SplitPath⊃list
      →T.GoToTidyUp filename≢'Hello-1.charstring.change'
-     R←T.T._OK
+     R←T._OK
 ∆TidyUp:
      ⊣F.RmDir acreDir
  :EndIf

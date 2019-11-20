@@ -2,8 +2,8 @@
 ⍝ Checks whether the user's exit function does actually commit the changes.
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- →(0<≢R←batchFlag/T.∆NoBatchTest)/0
- R←T.T._Failed
+ →(0<≢R←batchFlag/T._NoBatchTest)/0
+ R←T._Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -54,7 +54,7 @@
  →T.GoToTidyUp expected≡#.TEMP.∆RESULT                ⍝ Because there WAS something to commit (if the user DID change the function)!
  →T.GoToTidyUp 0=∨/'1 file changed'⍷∊#.TEMP.∆RESULT   ⍝ We should see this
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}⎕CMD'rd /s /q ',projectPath ⋄ :EndTrap   ⍝ At this point RmDir fails with "ACCESS DENIED": Git is the culprit! However, rd works. Reported as <01651>

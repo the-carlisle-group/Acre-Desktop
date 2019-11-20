@@ -2,7 +2,7 @@
 ⍝ Exercise the `]Refresh` command.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -34,7 +34,7 @@
  →T.GoToTidyUp result≢,⊂'#.',projectName,'.Hello'
  →T.GoToTidyUp'Galaxy'≢⍎'#.',projectName,'.Hello'
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

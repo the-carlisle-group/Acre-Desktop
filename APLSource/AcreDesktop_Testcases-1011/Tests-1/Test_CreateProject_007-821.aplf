@@ -2,7 +2,7 @@
 ⍝ Create a project with a public method in a class.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -20,7 +20,7 @@
  expected←'Foo-1.aplc' 'quadVars-10.apln'  ⍝ The latter is added automatically!
  →T.GoToTidyUp~list ∆LazyMatch expected
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

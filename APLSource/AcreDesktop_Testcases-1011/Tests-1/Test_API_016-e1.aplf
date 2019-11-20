@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `AfterSave`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
  fn←⎕SE.acre.AfterSave
  old←fn''
@@ -18,5 +18,5 @@
      alt≡fn old           ⍝ query or restore if old non-null
  }''
 
- R←T.T._OK
+ R←T._OK
 ⍝Done

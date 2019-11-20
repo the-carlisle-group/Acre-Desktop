@@ -3,7 +3,7 @@
 ⍝ Although acre will throw an error eventually it should open the main project and one of the two dependencies.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
 ⍝ Prepare the project
  projectName←(⊃⎕SI),'_Main'
@@ -41,7 +41,7 @@
  →T.GoToTidyUp 9≠#.⎕NC projectName
  →T.GoToTidyUp'AcreConfig' 'quadVars'≢' '~¨⍨↓(#.⍎projectName).⎕NL⍳16
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

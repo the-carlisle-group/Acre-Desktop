@@ -2,7 +2,7 @@
 ⍝ Create a project with a function. Acre once produced (wrongly) a message that "Hello" is an invalid item.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -22,7 +22,7 @@
  →T.GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
  →T.GoToTidyUp(F.EnforceSlash projectPath,'/APLSource/Foo-1.apln')≢F.EnforceSlash⊃⊃F.Dir projectPath,'/APLSource/*'
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

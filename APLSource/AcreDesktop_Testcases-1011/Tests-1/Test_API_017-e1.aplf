@@ -3,11 +3,11 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  :If batchFlag
-     R←T.∆NoBatchTest
+     R←T._NoBatchTest
      :Return
  :EndIf
 
- R←T.T._Failed
+ R←T._Failed
 
  fn←⎕SE.acre.EditArray
  new←,∘'N'⍣{0=⎕NC ⍺}'#.'                 ⍝ non-existent #.N+
@@ -31,5 +31,5 @@
  ⎕EX new
  →T.PassesIf ok
 
- R←T.T._OK
+ R←T._OK
 ⍝Done

@@ -4,10 +4,10 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  :If batchFlag
-     →0,R←T.∆NoBatchTest
+     →0,R←T._NoBatchTest
  :EndIf
 
- R←T.T._Failed
+ R←T._Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -49,7 +49,7 @@
  →T.PassesIf 9=⎕NC'#.TEMP.∆ConfigNS'      ⍝ Should be a namespace clone representing acre's config file
  →T.PassesIf 5<≢#.TEMP.∆ConfigNS.⎕NL⍳16   ⍝ At least 5 config options
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

@@ -3,7 +3,7 @@
 ⍝ acre should prevent the user from doing stupid stuff like this.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -35,7 +35,7 @@
  →T.GoToTidyUp 1≠∨/' Not fixed '⍷∊log←∆GetLog ⍬
  →T.GoToTidyUp 1≠⍴'File: .* may require attention.'⎕S 0⍠('Mode' 'D')⊣log
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

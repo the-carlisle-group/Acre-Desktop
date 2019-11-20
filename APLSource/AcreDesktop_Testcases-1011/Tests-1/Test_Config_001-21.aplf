@@ -2,7 +2,7 @@
 ⍝ Create a project and check whether `acre.config[CaseCode]` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -41,7 +41,7 @@
  →T.GoToTidyUp 1≠F.IsFile projectPath,'\APLSource\Hello.aplf'
  F.RmDir projectPath
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

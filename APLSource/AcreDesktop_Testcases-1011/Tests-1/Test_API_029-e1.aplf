@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `Changes`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.T._Failed
+ R←T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'\',projectName
@@ -20,6 +20,7 @@
  ⎕DL 1.1
  ts←{(1000000 100 100⊥3↑⍵)+(0.00001×24 60 60⊥3↑3↓⍵)}⎕TS
  ts←1↓0⍕100⊥6⍴⎕TS
+ ⎕DL 1.1
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello2'
  →T.GoToTidyUp('#.',projectName,'.Hello2')≢1⊃result
 
@@ -40,7 +41,7 @@
  list←⎕SE.acre.Changes cmd←('#.',projectName,'.Hello2')('when'ts)
  →T.GoToTidyUp 1≠≢list
 
- R←T.T._OK
+ R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath
