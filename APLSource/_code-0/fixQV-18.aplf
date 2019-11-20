@@ -4,11 +4,11 @@
      ~∨/b←0=all.⎕NC⊂⊂nm←MS.BH:0
      ns end text←MS.HG MS.HH MS.BN
      fn←{
-         ⍵.⎕FIX(ns,nm)('    ##.(⎕io⎕ml⎕wx)←',⍕⍵.(⎕IO ⎕ML ⎕WX)),text,⊂end
+         ⍵.⎕FIX(ns,nm)('    ##.(⎕IO ⎕ML ⎕WX)←',⍕⍵.(⎕IO ⎕ML ⎕WX)),text,⊂end
      }
      0⊣fn¨b/all
 ⍝ add "quadVars" script to top space and each subspace
 ⍝   where any ⎕io⎕ml⎕wx differs from parent
 ⍝   and it doesn't already exist
-⍝ Phil 2019-09-13 23:36 6.0.2+266
+⍝ Phil 2019-11-06 11.40 6.0.2+282
  }

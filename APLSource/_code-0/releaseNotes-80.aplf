@@ -2,11 +2,13 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+279 2019-09-27 20.18
+⍝ Acre 6.0.2+283 2019-11-10 11:07
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * #212 A single backslash in a line in a charlist causes an error
+⍝ * **Removeacre** - new usercmd/apifn resets settings changed by acre and removes it from ⎕SE
+⍝   so that ⎕SE may be saved safely.
+⍝   With acre saved in ⎕SE an endless loop is entered if an untracked item is edited.
 ⍝
-⍝ Phil 2019-10-06 20:18 6.0.2+278
+⍝ Phil 2019-11-10 11:07 6.0.2+282
  }

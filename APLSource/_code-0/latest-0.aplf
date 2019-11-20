@@ -1,6 +1,7 @@
  latest←{⍺←⊢
-     src←⊃{⍵/⍨1∊¨'/acre/'∘⍷¨⍵}{⍵.source}⎕SE.acre._code.dataSpaces''
-     ⎕SE.acre.Itemname ⍵⍴⊃{⍺[⍒⍵]}/0 3 ⎕SE.acre._code._NINFO src,'_code-0/*.*'
+     src←#.acre.AcreConfig.ProjectFolder,'APLSource/',⍺⊣''
+     tree←⎕SE.acre._code.fileTree src
+     ⍪⎕SE.acre.Itemname tree.(Path[⍵⍴⍒Date])
 ⍝
-⍝ Phil 2019-09-20 107 6.0.2+274
+⍝ Phil 2019-11-05 09.17 6.0.2+281
  }

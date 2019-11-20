@@ -1,0 +1,11 @@
+ arrayType←{a l m s←⍺⍺
+     dr←(≡⍵),≢⍴⍵
+     dr≡2 1:a l⊃⍨∧/(''≡0∘/)¨⍵
+     dr≡1 2:a m⊃⍨0=10|⎕DR ⍵
+     dr≡1 1:a s⊃⍨0=10|⎕DR ⍵
+     a
+⍝ ⍺⍺ ptrs: array charlist charmat charstring
+⍝ ⍵  array
+⍝ ←  ptr
+⍝ Phil 2019-11-05 20.21 6.0.2+281
+ }

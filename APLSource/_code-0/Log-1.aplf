@@ -1,5 +1,18 @@
- Log←{⍺←⊢
-     logCtrl ⍵
-⍝
-⍝ Phil 2018-11-13 12.34
+ Log←{⍺←⊢ ⋄ cmd str←1(1↑¨↑_↓)⊂if≡⍵
+     (,1)≡⊃v f←(1,¯1+≢MP.log)⌊0⌈⌊⎕VFI⊃cmd:1↓(1+f)↑MP.log
+     ⍝ offset above as current function has already been logged.
+     ix←⊃⍳/⌽cmd nms←1(↑_↓)Cc cmd,(⊢(/⍨)2|⍳∘≢)'`'sep MS.CI
+⍝ Log file - `hide` | `show` | `file` | `clear` | `all` | `find` | number
+     ns←dix nms
+     ix=ns.hide:''⊣MP.log←z⊣MP.⎕EX'log'⊣z←MP.log
+     ok←14.1≤⊃SV.aplver
+     ok∧ix=ns.show:''⊣MP.⎕ED⍠('ReadOnly' 1)&'log'
+     ok<ix=ns.show:''⊣MP.⎕ED&'log'
+     ix=ns.file:(⊢⊣''∘_NPUT)if(~_NEXISTS)SV.logfile
+     ix=ns.clear:''⊣MP.log←0/MP.log
+     ix=ns.all:MP.log
+     ix=ns.find:str(⊢(/⍨)(∨/⍷)¨)MP.log
+     ''
+⍝ log create and edit in setEnvironment
+⍝ Phil 2019-11-06 21.14 6.0.2+282
  }

@@ -4,7 +4,7 @@
          b←0<⎕NC c←'⎕se'∘,¨1↓¨a←validItems s UT.li⍳10
          ⍪(b/a)/⍨{≢/2↑2⊃1 getValue ⍺ ⍵}/b⌿a,⍪c
      }''
-     UT.ed∘⍕∘⍪∘(↑¨a_ 2)¨↓⍉↑getValue'⎕se' '#',¨⊂1↓⍵
+     UT.ed∘⍕∘⍪∘(↑¨a_ 2)¨↓⍉↑getValue'⎕se' '#',¨⊂1↓⍵~' '
 ⍝ changed since latest build
-⍝ Phil 2019-09-06 06:40 6.0.1+263
+⍝ Phil 2019-11-09 12:11 6.0.2+282
  }

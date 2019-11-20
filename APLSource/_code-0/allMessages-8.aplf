@@ -43,6 +43,7 @@
          ⍵.BN←MS.BJ MS.BK MS.BL
          ⍵.BO←'add switch `-recursive` to include space and contents'
          ⍵.BP←' may require attention.'
+         ⍵.BQ←'AfterSave function must be dyadic or ambivalent.'
          ⍵.BU←'History is disabled for '
          ⍵.BV←'No change'
          ⍵.BW←'Project not tracked'
@@ -124,13 +125,13 @@
          ⍵.FV←'AcreConfig'
          ⍵.FW←'File: '
          ⍵.FX←'aplcore'
-         ⍵.FY←''
+         ⍵.FY←'⎕SE.SALTUtils.EditorFix'
          ⍵.FZ←'AcreDesktop_Testcases'
 
          ⍵.GA←'On'
          ⍵.GB←'Off'
          ⍵.GC←'empty'
-         ⍵.GD←''
+         ⍵.GD←'Now safe to save session without ',MS.NA
          ⍵.GI←'hour hours'
          ⍵.GJ←'minute minutes'
          ⍵.GK←'second seconds'

@@ -7,13 +7,7 @@
      c←9(⊢-1|>×⊢)(⎕NC fqn)(⊣×∊)validAPLType'' ⍝ floor < 9
      t←ns.(array function operator script class interface),⊂MS.AX
      r←t[2 3 4 9.1 9.4 9.5⍳c]
-     (a/r)←{
-         dr←(≡v),≢⍴v←#.⍎⍵
-         dr≡2 1:ns.array ns.charlist⊃⍨∧/(''≡0∘/)¨v
-         dr≡1 2:ns.array ns.charmat⊃⍨0=10|⎕DR v
-         dr≡1 1:ns.array ns.charstring⊃⍨0=10|⎕DR v
-         ns.array
-     }/0,⍪fqn/⍨a←c=2
+     (a/r)←ns.(array charlist charmat charstring)arrayType∘#.⍎/0,⍪fqn/⍨a←c=2
      (a/r)←{
          0::''               ⍝ bluebell (hyacinthoides non-scripta)
          ns.script⊣⎕SRC #.⍎⍵ ⍝ script
