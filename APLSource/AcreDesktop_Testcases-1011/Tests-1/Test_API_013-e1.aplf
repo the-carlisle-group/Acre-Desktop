@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `Changefile`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -15,7 +15,7 @@
  →T.GoToTidyUp 0=≢buff
  →T.GoToTidyUp'/Foo.aplf.change'{⍺≢(-⍴,⍺)↑⍵}⊃buff
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap

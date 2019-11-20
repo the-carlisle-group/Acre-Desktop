@@ -2,7 +2,7 @@
 ⍝ Exercise the "SetChanged" command with the -recursive flag
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -23,7 +23,7 @@
 
  →T.GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

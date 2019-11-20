@@ -2,7 +2,7 @@
 ⍝ Exercise the API functions `Undo` and `Redo`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -26,7 +26,7 @@
  →T.GoToTidyUp'#.TEMP.Foo'≡result
  →T.GoToTidyUp 44≠#.TEMP.Foo ⍬
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap

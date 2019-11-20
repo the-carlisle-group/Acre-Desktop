@@ -4,11 +4,11 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  :If 1
-     R←∆Inactive ⍝ No point until Dyalog fixes <01546> (Mantis 16354)
+     R←T._Inactive ⍝ No point until Dyalog fixes <01546> (Mantis 16354)
      :Return
  :EndIf
 
- R←T.∆Failed
+ R←T.T._Failed
 
  ∆ClearLog
 ⍝ Prepare the main project
@@ -80,7 +80,7 @@
  →T.GoToTidyUp 9∨.≠#.{⊃⎕NC ⍵}¨projectName1 projectName2 projectName3
  →T.GoToTidyUp 0≠≢(' '~¨⍨↓(#.⍎projectName3).⎕NL 9.4)   ⍝ Fails because of Dyalog bug <01546> (Mantis 16354) - there should not be a class!
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir¨projectPath1 projectPath2 projectPath3

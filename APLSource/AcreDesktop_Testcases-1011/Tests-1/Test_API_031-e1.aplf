@@ -2,7 +2,7 @@
 ⍝ Exercise `Erase` on a non-existing item
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'\',projectName
@@ -15,7 +15,7 @@
  result←⎕SE.acre.Erase'#.',projectName,'.This_does_not_exist'
  ⍝TODO⍝ Check the result
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

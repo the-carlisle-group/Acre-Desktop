@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `Nameclass`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -41,5 +41,5 @@
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.⎕FIX':Interface Foo' ':EndInterface'
  →T.PassesIf'.apli'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
- R←T.∆OK
+ R←T.T._OK
 ⍝Done

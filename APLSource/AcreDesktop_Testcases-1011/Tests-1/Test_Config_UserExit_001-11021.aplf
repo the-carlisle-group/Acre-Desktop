@@ -3,7 +3,7 @@
 ⍝ This is the user exit that allows the execution of any source code management command like Git's "Commit".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  noOfProjects←⊃⍴∆RunUcmd'Projects'
  projectName←⊃⎕SI
@@ -38,7 +38,7 @@
      →T.GoToTidyUp 1
  :EndTrap
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

@@ -2,7 +2,7 @@
 ⍝ Exercise the `]acre.Close` command.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  noOf←≢∆RunUcmd'Projects'
  projectName←⊃⎕SI
@@ -22,7 +22,7 @@
  result←∆RunUcmd'Close #.',projectName
  →T.PassesIf noOf=≢∆RunUcmd'Projects'
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

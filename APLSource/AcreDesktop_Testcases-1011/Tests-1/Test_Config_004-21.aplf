@@ -2,7 +2,7 @@
 ⍝ Create a project and check whether `acre.config[StartUp]` is honored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -41,7 +41,7 @@
  :EndTrap
  →T.GoToTidyUp 1≠#.Temp.Works
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

@@ -2,7 +2,7 @@
 ⍝ Checks on two text vectors: "⍝TODO⍝" and "⍝CHECK⍝"; never fails, just reports.
  ⎕IO←0 ⋄ ⎕ML←3
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←T.∆OK
+ R←T.T._OK
  report←''
 
  FindSpecialString←{

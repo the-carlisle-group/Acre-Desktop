@@ -4,7 +4,7 @@
 ⍝ It relies on a convention: the name of the function to be testet (but nothing else) is expected to mentioned
 ⍝ on line 2 of any of the test functions between two ticks (`).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←T.∆Failed
+ R←T.T._Failed
  reportOnly←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'reportOnly'
  list←↓¯1↓'Test_API'{⍵⌿⍨((⍴⍺)↑[1+⎕IO]⍵)∧.=⍺}'T'⎕NL 3
  comments←{(1+⎕IO)⊃⎕NR ⍵}¨list
@@ -16,6 +16,6 @@
      ⎕←⍪(' '~¨⍨↓⎕SE.acre.⎕NL 3)~list
      R←(~reportOnly)/R
  :Else
-     R←T.∆OK
+     R←T.T._OK
  :EndIf
 ⍝Done

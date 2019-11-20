@@ -2,7 +2,7 @@
 ⍝ Create a project with a vector of vectors with control characters (\). Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -21,7 +21,7 @@
  ref←#⍎projectName
  →T.GoToTidyUp buff≢ref.vars
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

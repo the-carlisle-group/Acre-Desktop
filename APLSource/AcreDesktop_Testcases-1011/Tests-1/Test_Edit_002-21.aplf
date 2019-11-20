@@ -8,7 +8,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  :If 1
-     R←∆Inactive        ⍝ One some machines this test always failes, on some rarely, on some it makes APL disappear
+     R←T._Inactive        ⍝ One some machines this test always failes, on some rarely, on some it makes APL disappear
                         ⍝ To be re-written when the Ride protocol can be used to drive test cases. ⍝TODO⍝
      :Return
  :EndIf
@@ -18,7 +18,7 @@
      :Return
  :EndIf
 
- R←T.∆Failed
+ R←T.T._Failed
 
  ⎕←'   This test starts a second instance of Dyalog and communicates with it.'
  ⎕←'   That''s why this requires some delays, and there is nothing we can do about this.'
@@ -60,7 +60,7 @@
      →T.GoToTidyUp 1
  :EndIf
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir acreDir

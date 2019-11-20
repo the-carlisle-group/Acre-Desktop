@@ -2,7 +2,7 @@
 ⍝ Exercise `NameClass` function.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  ∆ClearLog
  projectName←⊃⎕SI
@@ -44,6 +44,6 @@
  →T.PassesIf 0∊⍴⊃⎕SE.acre.Nameclass'#.',projectName,'.container'
  →T.PassesIf'.*'≡⊃⎕SE.acre.Nameclass'#.DoesNotExist'
 
- R←T.∆OK
+ R←T.T._OK
  ∆ClearLog
 ⍝Done

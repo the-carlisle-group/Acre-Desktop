@@ -2,7 +2,7 @@
 ⍝ Check complex nested array
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -11,6 +11,6 @@
  #.TEMP.aplan←∆RunUcmd'toaplan #.TEMP.vars'
  →T.PassesIf #.TEMP.vars≡∆RunUcmd'fromaplan #.TEMP.aplan'
 
- R←T.∆OK
+ R←T.T._OK
  ∆ClearLog
 ⍝Done

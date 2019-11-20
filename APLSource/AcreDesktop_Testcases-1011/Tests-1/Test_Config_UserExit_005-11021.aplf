@@ -2,10 +2,10 @@
 ⍝ A user exit function is supposed to return a result. If it does not acre should react gracefully.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  :If batchFlag
-     →0,R←∆NoBatchTest
+     →0,R←T.∆NoBatchTest
  :EndIf
 
  ∆ClearLog
@@ -45,7 +45,7 @@
  #.TEMP.⎕ED'Hello'
  →T.GoToTidyUp #.TEMP.∆FLAG≠0
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

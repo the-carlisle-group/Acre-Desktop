@@ -2,7 +2,7 @@
 ⍝ Exercise the API functions `Deletefile`, `Erase` and `Restore`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'\',projectName
@@ -40,7 +40,7 @@
 
  →T.GoToTidyUp 0≠≢⎕SE.acre.Deletefile'#.DoesNotExistAtAll'
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

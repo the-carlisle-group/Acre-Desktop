@@ -1,4 +1,6 @@
  History
+⍝ * 1.4.0 from 2019-11-20
+⍝   * New test framework `Tester2`.
 ⍝ * 1.3.0 from 2018-08-17
 ⍝   * Now acre 5.2.0 is supported
 ⍝   * APLTree members updated.

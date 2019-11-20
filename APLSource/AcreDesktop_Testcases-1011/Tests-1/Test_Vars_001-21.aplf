@@ -4,10 +4,10 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  :If batchFlag
-     →0,R←∆NoBatchTest
+     →0,R←T.∆NoBatchTest
  :EndIf
 
- R←T.∆Failed
+ R←T.T._Failed
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
@@ -30,7 +30,7 @@
 
  →T.GoToTidyUp was≠≢F.ListFiles projectPath,'\APLSource\'
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

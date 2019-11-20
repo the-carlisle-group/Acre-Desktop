@@ -7,10 +7,10 @@
  :EndIf
 
  :If batchFlag
-     →0,R←∆NoBatchTest
+     →0,R←T.∆NoBatchTest
  :EndIf
 
- R←T.∆Failed
+ R←T.T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -26,7 +26,7 @@
  filename←2⊃##.APLTreeUtils.SplitPath⊃list
  →T.GoToTidyUp filename≢'Hello-1.array.change'
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir acreDir

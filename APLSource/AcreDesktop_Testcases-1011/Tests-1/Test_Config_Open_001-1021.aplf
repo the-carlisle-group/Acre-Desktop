@@ -2,7 +2,7 @@
 ⍝ Create a project and check whether `acre.config[Open]` is honored. (Single project, simple "Open")
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  noOfProjects←⊃⍴∆RunUcmd'Projects'
  projectName←⊃⎕SI
@@ -56,7 +56,7 @@
  →T.GoToTidyUp 9≠≢messages←∆GetLog ⍬
  →T.GoToTidyUp 2≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap

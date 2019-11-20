@@ -2,10 +2,10 @@
 ⍝ Exercise the API function `Sourcefile`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  buff←⊃⎕SE.acre.Sourcefile⊃⎕XSI
  →T.PassesIf'.aplf'{⍺≡(-⍴,⍺)↑⍵}buff
 
- R←T.∆OK
+ R←T.T._OK
 ⍝Done

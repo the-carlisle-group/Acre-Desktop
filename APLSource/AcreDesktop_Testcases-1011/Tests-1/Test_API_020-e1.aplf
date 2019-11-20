@@ -2,7 +2,7 @@
 ⍝ Exercise the API function `ItemName`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'\',projectName
@@ -18,7 +18,7 @@
  itemName←⊃⎕SE.acre.Itemname sourceFilename
  →T.GoToTidyUp itemName≢'#.',projectName,'.Hello'
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

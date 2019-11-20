@@ -2,7 +2,7 @@
 ⍝ Check invalid syntax
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -17,6 +17,6 @@
      →T.PassesIf'NONCE ERROR character error'(1∊⍷)⊃dmx.DM
  :EndTrap
 
- R←T.∆OK
+ R←T.T._OK
  ∆ClearLog
 ⍝Done

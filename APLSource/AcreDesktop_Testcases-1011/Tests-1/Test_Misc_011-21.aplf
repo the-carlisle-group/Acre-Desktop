@@ -3,7 +3,7 @@
 ⍝ This must fail due to the fact that they have different file extensions
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  projectName←⊃⎕SI
  projectPath←∆PATH,'/',projectName
@@ -30,7 +30,7 @@
  result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName
  →T.GoToTidyUp('#.',projectName)≢result
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  F.RmDir projectPath

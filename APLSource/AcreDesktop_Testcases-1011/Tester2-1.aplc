@@ -19,11 +19,15 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'0.5.1.5' '2019-11-17'
+      r←(Last⍕⎕THIS)'0.6.0.7' '2019-11-19'
     ∇
 
     ∇ History
       :Access Public shared
+      ⍝ * 0.6.0
+      ⍝   * Symbolic names (like OK, Failed etc.) all start with an `_` now rather than a `∆`.
+      ⍝   * The documentation now comes with a comparison of the --- now deprecated --- `Tester` class
+      ⍝     with the new `Tester2` class.
       ⍝ * 0.5.1
       ⍝   * Bug fix in `Run` (`stopFlag` and `debugFlag` confused when assigning default to `trapFlag`)
       ⍝ * 0.5.0
@@ -33,18 +37,18 @@
       ⍝ For a full history (including older versions) see <https://github.com/aplteam/Tester2/releases>
     ∇
 
-    :Field Public Instance Readonly ∆OK←0
-    :Field Public Instance Readonly ∆Failed←1
-    :Field Public Instance Readonly ∆NoBatchTest←¯1
-    :Field Public Instance Readonly ∆Inactive←¯2
-    :Field Public Instance Readonly ∆WindowsOnly←¯10
-    :Field Public Instance Readonly ∆LinuxOnly←¯11
-    :Field Public Instance Readonly ∆MacOnly←¯12
-    :Field Public Instance Readonly ∆LinuxOrMacOnly←¯20
-    :Field Public Instance Readonly ∆LinuxOrWindowsOnly←¯21
-    :Field Public Instance Readonly ∆MacOrWindowsOnly←¯22
-    :Field Public Instance Readonly ∆NoAcreTests←¯30
-    :Field Public Instance Readonly ∆NotApplicable←¯31
+    :Field Public Instance Readonly _OK←0
+    :Field Public Instance Readonly _Failed←1
+    :Field Public Instance Readonly _NoBatchTest←¯1
+    :Field Public Instance Readonly _Inactive←¯2
+    :Field Public Instance Readonly _WindowsOnly←¯10
+    :Field Public Instance Readonly _LinuxOnly←¯11
+    :Field Public Instance Readonly _MacOnly←¯12
+    :Field Public Instance Readonly _LinuxOrMacOnly←¯20
+    :Field Public Instance Readonly _LinuxOrWindowsOnly←¯21
+    :Field Public Instance Readonly _MacOrWindowsOnly←¯22
+    :Field Public Instance Readonly _NoAcreTests←¯30
+    :Field Public Instance Readonly _NotApplicable←¯31
 
     :Field public Instance TestFlag←0   ⍝ Used **only** for testing `Tester2`!
                                         ⍝ Setting this to 1 prevents `⎕DQ` from being run on `Tester2`'s own GUI, if any.
@@ -121,7 +125,7 @@
 
     ∇ {(rc log)}←{stopFlag}RunBatchTests debugFlag;⎕ML;⎕IO
     ⍝ Runs all test cases but tells the test functions that this is a batch run meaning that test cases in need
-    ⍝ for any human being for interaction should not execute the test case and return `∆NoBatchTest` instead.\\
+    ⍝ for any human being for interaction should not execute the test case and return `_NoBatchTest` instead.\\
     ⍝ By default any errors are trapped. The boolean right argument decides whether with (0) or without (1)
     ⍝ error trapping. In addition you can specify a 1 as the (optional) left argument which will make `Run` stop
     ⍝ just before any test case is about to be executed.\\
@@ -151,7 +155,7 @@
    ⍝ 2. `debugFlag`: if it is 1 failing tests stop for investigation (stop on error).
    ⍝ 3. `batchFlag`: a 1 would mean that the test should quit itself if for example it
    ⍝     needs a human being in front of the monitor. Such test cases are supposed to
-   ⍝     do nothing but return a `∆NoBatchTest` when this flag is on.
+   ⍝     do nothing but return a `_NoBatchTest` when this flag is on.
    ⍝ 4. `stopFlag`: Is treated as "stop just before the next test case is going to be executed".
    ⍝ 5. `testCaseNos`: the test cases to be executed (IDs or group or a mixture of both)
    ⍝ 6. `guiFlag`: is 0 when no GUI is required an 1 otherwise.
@@ -466,35 +470,35 @@
       log,←⊂'  ',(⍕ps.failedCounter),' test case',((1≠+/ps.failedCounter)/'s'),' failed',(0<ps.failedCounter)/' (flagged with "*")'
       log,←⊂'  ',(⍕ps.errCounter),' test case',((1≠+/ps.errCounter)/'s'),' broken',(0<ps.errCounter)/' (flagged with "#")'
       :If 0≠≢ps.returnCodes
-          :If ∆NoBatchTest∊ps.returnCodes
+          :If _NoBatchTest∊ps.returnCodes
               log,←⊂'  ',(⍕¯1+.=ps.returnCodes),' test cases not executed because they are not "batchable" (flagged with "-")'
           :EndIf
-          :If ∆Inactive∊ps.returnCodes
+          :If _Inactive∊ps.returnCodes
               log,←⊂'  ',(⍕¯2+.=ps.returnCodes),' test cases not executed because they were inactive (flagged with "⍝")'
           :EndIf
-          :If ∆WindowsOnly∊ps.returnCodes
-              log,←⊂'  ',(⍕∆WindowsOnly+.=ps.returnCodes),' test cases not executed because they can only run under Window (flagged with "-")'
+          :If _WindowsOnly∊ps.returnCodes
+              log,←⊂'  ',(⍕_WindowsOnly+.=ps.returnCodes),' test cases not executed because they can only run under Window (flagged with "-")'
           :EndIf
-          :If ∆LinuxOnly∊ps.returnCodes
-              log,←⊂'  ',(⍕∆LinuxOnly+.=ps.returnCodes),' test cases not executed because they can only run under Linux (flagged with "-")'
+          :If _LinuxOnly∊ps.returnCodes
+              log,←⊂'  ',(⍕_LinuxOnly+.=ps.returnCodes),' test cases not executed because they can only run under Linux (flagged with "-")'
           :EndIf
-          :If ∆MacOnly∊ps.returnCodes
-              log,←⊂'  ',(⍕∆MacOnly+.=ps.returnCodes),' test cases not executed because they can only run under Mac OS (flagged with "-")'
+          :If _MacOnly∊ps.returnCodes
+              log,←⊂'  ',(⍕_MacOnly+.=ps.returnCodes),' test cases not executed because they can only run under Mac OS (flagged with "-")'
           :EndIf
-          :If ∆LinuxOrMacOnly∊ps.returnCodes
-              log,←⊂'  ',(⍕∆LinuxOrMacOnly+.=ps.returnCodes),' test cases not executed because they can only run under Linux or Mac OS (flagged with "-")'
+          :If _LinuxOrMacOnly∊ps.returnCodes
+              log,←⊂'  ',(⍕_LinuxOrMacOnly+.=ps.returnCodes),' test cases not executed because they can only run under Linux or Mac OS (flagged with "-")'
           :EndIf
-          :If ∆LinuxOrWindowsOnly∊ps.returnCodes
-              log,←⊂'  ',(⍕∆LinuxOrWindowsOnly+.=ps.returnCodes),' test cases not executed because they can only run under Linux or Windows (flagged with leading "-")'
+          :If _LinuxOrWindowsOnly∊ps.returnCodes
+              log,←⊂'  ',(⍕_LinuxOrWindowsOnly+.=ps.returnCodes),' test cases not executed because they can only run under Linux or Windows (flagged with leading "-")'
           :EndIf
-          :If ∆MacOrWindowsOnly∊ps.returnCodes
-              log,←⊂'  ',(⍕∆MacOrWindowsOnly+.=ps.returnCodes),' test cases not executed because they can only run under Mac OS or Windows (flagged with leading "-")'
+          :If _MacOrWindowsOnly∊ps.returnCodes
+              log,←⊂'  ',(⍕_MacOrWindowsOnly+.=ps.returnCodes),' test cases not executed because they can only run under Mac OS or Windows (flagged with leading "-")'
           :EndIf
-          :If ∆NoAcreTests∊ps.returnCodes
-              log,←⊂'  ',(⍕∆NoAcreTests+.=ps.returnCodes),' test cases not executed because they are acre-related (flagged with leading "-")'
+          :If _NoAcreTests∊ps.returnCodes
+              log,←⊂'  ',(⍕_NoAcreTests+.=ps.returnCodes),' test cases not executed because they are acre-related (flagged with leading "-")'
           :EndIf
-          :If ∆NotApplicable∊ps.returnCodes
-              log,←⊂'  ',(⍕∆NotApplicable+.=ps.returnCodes),' test cases not executed because they were not applicable (flagged with leading "-")'
+          :If _NotApplicable∊ps.returnCodes
+              log,←⊂'  ',(⍕_NotApplicable+.=ps.returnCodes),' test cases not executed because they were not applicable (flagged with leading "-")'
           :EndIf
       :EndIf
       ShowLog log
@@ -883,7 +887,7 @@
       :Access Public Instance
       ⎕IO←1 ⋄ ⎕ML←1
       r←' '~¨⍨↓⎕NL 2.2
-      r←⍪('∆'=⊃¨r)/r
+      r←⍪('_'=⊃¨r)/r
     ∇
 
     ∇ r←FindSpecialString what
@@ -1075,14 +1079,14 @@
     ∇ R←Test_000(stopFlag batchFlag);⎕TRAP
     ⍝ Model for a test function.
       ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
-      R←T.∆Failed
+      R←T._Failed
      
     ⍝ Establish pPreconditions...
      
       →T.PassesIf 1≡1
       →T.FailsIf 1≢1
       →T.GoToTidyUp 1≢1
-      R←T.∆OK
+      R←T._OK
      
      ∆TidyUp: ⍝ Clean up after this label
       ⍝ ...
@@ -1149,7 +1153,7 @@
           0=ps.guiFlag:shy←⍬
           ps←⍺
           (rc row)←⍵
-          l←' '~¨⍨↓'∆'⎕NL 2
+          l←' '~¨⍨↓'_'⎕NL 2
           v←⍎¨l
           symbolic←(v⍳rc)⊃(1↓¨l),⊂⍕rc
           ps.ref2Gui.∆n.Grid.Values[row;4]←⊂symbolic

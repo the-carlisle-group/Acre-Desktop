@@ -2,7 +2,7 @@
 ⍝ Create a project and check whether `acre.config[Dependencies]` is honored (two projects).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←T.∆Failed
+ R←T.T._Failed
 
  :If 16>⊃(//)⎕VFI{⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion'
      →0,R←∆InvalidAplVersion
@@ -77,7 +77,7 @@
  →T.GoToTidyUp 13≠≢messages←∆GetLog ⍬
  →T.GoToTidyUp 3≠(⊃⍴∆RunUcmd'Projects')-noOfProjects
 
- R←T.∆OK
+ R←T.T._OK
 
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
