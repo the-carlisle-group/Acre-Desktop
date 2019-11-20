@@ -4,6 +4,10 @@
 
  R←T._Failed
 
+ :If 1
+     →0,R←T._Inactive  ⍝ Freezes the interpreter
+ :EndIf
+
  :If batchFlag
      →0,R←T._NoBatchTest
  :EndIf

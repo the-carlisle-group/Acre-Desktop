@@ -11,9 +11,9 @@
  ref.PI←{42}
  {}∆RunUcmd'CreateProject  "',projectPath,'" #.',projectName
  result←⎕SE.acre.Erase'#.',projectName,'.PI'
- ⍝TODO⍝ Check the result
+ →T.PassesIf(,⊂'#.Test_API_031.PI')≡result
  result←⎕SE.acre.Erase'#.',projectName,'.This_does_not_exist'
- ⍝TODO⍝ Check the result
+ →T.PassesIf 0≡≢result
 
  R←T._OK
 
