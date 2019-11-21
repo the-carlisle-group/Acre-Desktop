@@ -19,11 +19,13 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'0.6.1.9' '2019-11-20'
+      r←(Last⍕⎕THIS)'0.6.2.11' '2019-11-21'
     ∇
 
     ∇ History
       :Access Public shared
+      ⍝ * 0.6.2
+      ⍝   * `GetRefToAPLTreeUtils` crashed with a VALUE ERROR in case `#._dependencies` did not exist.
       ⍝ * 0.6.1
       ⍝   * Bug fixes:
       ⍝     * `AddToGui` had a problem with assigning a value to the Grid
@@ -1025,7 +1027,7 @@
     ∇
 
     ∇ ref←GetRefToAPLTreeUtils
-      :If 9=#._dependencies.⎕NC'APLTreeUtils'
+      :If 9={6::0⋄#._dependencies.⎕NC⍵}'APLTreeUtils'
           ref←#._dependencies.APLTreeUtils
       :ElseIf 9=#.⎕NC'APLTreeUtils'
           ref←#.APLTreeUtils

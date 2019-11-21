@@ -1,16 +1,23 @@
- R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath
+ R←Test_Config_UserExit_004(stopFlag batchFlag);⎕TRAP;configFilename;bin;configParms;list;messages;projectPath;answer;success
 ⍝ A user exit function is supposed to be dyadic. If it does not acre should react gracefully.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←T._Failed
 
- :If 1
-     →0,R←T._Inactive  ⍝ Freezes the interpreter
- :EndIf
-
  :If batchFlag
      →0,R←T._NoBatchTest
  :EndIf
+
+ :Repeat
+     ⍞←'Sure that you want to execute this test case? It might freeze your interpreter! (y/Y for "Yes" or N/n for "No") '
+     answer←¯1↑⍞
+     :If success←answer∊'YyNn'
+     :AndIf answer∊'Nn'
+         R←T._Inactive
+         :Return
+     :EndIf
+ :Until success
+
 
  ∆ClearLog
  #.⎕SHADOW'TEMP'
