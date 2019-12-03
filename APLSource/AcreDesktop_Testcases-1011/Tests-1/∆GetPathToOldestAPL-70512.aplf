@@ -1,10 +1,12 @@
  path←∆GetPathToOldestAPL cmd;APLs;APL
-⍝ Checks the Registry for all APLs installed and returns the path to the oldest one.
-⍝ 32-bit trump 64-bit.
+⍝ Checks the Registry for all APLs installed and returns the path to the oldest one installed
+⍝ that is still with the limit set by `∆OldestSupportedVersionOfAPL`.\\
+⍝ 32-bit trumps 64-bit.
  APLs←##.WinReg.GetAllSubKeyNames'HKCU\Software\Dyalog\'
  APLs←'Dyalog'{⍵/⍨((≢⍺)↑[2]↑⍵)∧.=⍺}APLs
  APLs←(∨/¨'Unicode'∘⍷¨APLs)/APLs
  APLs←{'APL/W '⎕R'APL/W-32 '⊣⍵}¨APLs
+ APLs←(T.INI.OldestSupportedVersionOfAPL<{⊃##.APLTreeUtils.ToNum 16↓⍵}¨APLs)/APLs
  APL←⊃APLs[⍋⌽↑APLs]
  APL←{'APL/W-64 '⎕R'APL-64 '⊣⍵}{'APL/W-32 '⎕R'APL '⊣⍵}APL
  :If ∨/'-64'⍷APL

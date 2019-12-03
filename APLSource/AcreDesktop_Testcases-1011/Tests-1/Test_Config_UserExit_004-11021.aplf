@@ -8,22 +8,11 @@
      →0,R←T._NoBatchTest
  :EndIf
 
- :Repeat
-     ⍞←'Sure that you want to execute this test case? It might freeze your interpreter! (y/Y for "Yes" or N/n for "No") '
-     answer←¯1↑⍞
-     :If success←answer∊'YyNn'
-     :AndIf answer∊'Nn'
-         R←T._Inactive
-         :Return
-     :EndIf
- :Until success
-
-
  ∆ClearLog
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.∆FLAG←0
- Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit' '⍝ Niladic!' 'r←#.TEMP.∆FLAG←1'
+ Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←UserExit' '⍝ Niladic!'
  Assert' '=1↑0⍴⊃#.TEMP.⎕FX↑'r←Hello' '⍝ Change the function and then press <escape>'
  projectPath←F.GetTempPath,⊃⎕SI
  F.RmDir projectPath
@@ -54,7 +43,6 @@
  :EndTrap
 
  #.TEMP.⎕ED'Hello'
- →T.GoToTidyUp #.TEMP.∆FLAG≠1
 
  R←T._OK
 

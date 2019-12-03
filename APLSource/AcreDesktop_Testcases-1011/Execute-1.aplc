@@ -1,42 +1,31 @@
-:Class Execute
+:Class Execute        
 ⍝ This class allows you two different things:
 ⍝ * Start a process and catch its return code.
-⍝ * Start an application and catch its standard output.
-⍝
+⍝ * Start an application and catch its standard output.\\
 ⍝ The two goals are quite different and therefore handled by two
-⍝ different methods: `Process` and `Application`.
-⍝
+⍝ different methods: `Process` and `Application`.\\
 ⍝ You would use `Application` in order to start...
 ⍝ * another instance of Dyalog from Dyalog.
 ⍝ * a console application from within Dyalog.
 ⍝ * any EXE from Dyalog.
-⍝ * a batch script from Dyalog.
-⍝
-⍝ When you need the actual output then you would use `Process`. Examples are:
-⍝
+⍝ * a batch script from Dyalog.\\
+⍝ When you need the actual output then you would use `Process`. Examples are:\
 ⍝ * Get a list with a SubVersion command.
-⍝ * Get a directory listing with the console DIR command.
-⍝
+⍝ * Get a directory listing with the console DIR command.\\
 ⍝ Note that if you specify `/` as a delimiter at the beginning then `Execute`
-⍝ enforces `\` characters for you. Example:
-⍝
+⍝ enforces `\` characters for you. Example:\\
 ⍝ ~~~
 ⍝ #.Execute.Process'"C:/My Scripts/foo.bat"  ⍝ this will work
 ⍝ ~~~
-⍝
 ⍝ If however a parameter passed later on happens to be a directory name then
 ⍝ it is up to you to specify `\` rather than `/` as separator. Example:
-⍝
 ⍝ ~~~
 ⍝ #.Execute.Process'CMD' 'dir C:/' 'Exit 199' ⍝ this won't work
 ⍝ ~~~
-⍝
 ⍝ Thanks to Peter Michael Hager (<mailto:Hager@Dortmund.net>) without whom
-⍝ this class would hardly exist.
-⍝
-⍝ Author: Kai Jaeger ⋄ APL Team Ltd
-⍝
-⍝ Home page: <http://aplwiki.com/Execute>
+⍝ this class would hardly exist.\\
+⍝ Author: Kai Jaeger ⋄ APL Team Ltd\\
+⍝ Home page: <https://github.com/aplteam/Execute>
 
     :Include APLTreeUtils
 
@@ -44,13 +33,14 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.9.1.3' '2019-02-04'
+      r←(Last⍕⎕THIS)'1.9.1.4' '2019-02-04'
     ∇
 
     ∇ History
       :Access Public Shared
     ⍝ * 1.9.1
     ⍝   * Bug fix: `:Include ##.APLTreeUtils` is now ':Include APLTreeUtils`.
+    ⍝   * Documentation corrected (home page link) and polished.
     ⍝\\
     ⍝ For information regarding older versions see <https://github.com/aplteam/Execute/releases>
     ∇

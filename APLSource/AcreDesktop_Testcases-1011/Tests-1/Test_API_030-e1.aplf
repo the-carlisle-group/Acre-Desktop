@@ -1,7 +1,7 @@
- R←Test_API_030(stopFlag batchFlag);⎕TRAP;rc;cmd;parms;_;log;projectDir;result;path
+ R←Test_API_030(stopFlag batchFlag);⎕TRAP;rc;cmd;parms;_;log;projectDir;result;path;wsPath
 ⍝ Exercise the API function `Refresh`.
 ⍝ For that to work we start an independent instance of Dyalog that loads a workspace which
-⍝ via ⎕LX executes a function that opens a project, makes a changes and then executes )OFF.
+⍝ via ⎕LX executes a function that opens a project, makes a change and then executes )OFF.
 ⍝ In the current test we then execute acre.Refresh and check whether the change made it into the current WS.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -21,7 +21,8 @@
 
  path←∆GetPathToOldestAPL'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'" '
  cmd←'"',path,'/dyalog.exe" '
- cmd,←'"',F.PWD,'\Tests\Change.dws" '
+ wsPath←∆GetWorkspacePath ⍬
+ cmd,←'"',wsPath,'Tests\Change.dws" '
  cmd,←'dir="',projectDir,'" '
  :If 0
      cmd,←'-x '

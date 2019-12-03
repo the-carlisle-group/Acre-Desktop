@@ -41,13 +41,15 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'2.1.3.44' '2019-11-02'
+      r←(Last⍕⎕THIS)'2.1.3.45' '2019-11-28'
     ∇
 
     ∇ History
       :Access Public shared
       ⍝ * 2.1.3
-      ⍝   Bug fix: `FilesAndDirs` called #.APLTreeUtils.
+      ⍝   * Bug fixes:
+      ⍝     * `FilesAndDirs` called #.APLTreeUtils.
+      ⍝     * `MoveTo` handled only files, not directories.
       ⍝\\
       ⍝ For information regarding older version see <https://github.com/aplteam/FilesAndDirs/releases>
     ∇
@@ -267,11 +269,11 @@
     ⍝ Moves `source` to `target`.\\
     ⍝ The function returns a 0 for "okay" and an error number otherwise. `more` is a text
     ⍝  message which is empty in case of success.\\
-    ⍝ The left argument must be a either a text vector representing a filename
-    ⍝ or a vector of text vectors representing a vector of filenames.\\
+    ⍝ The left argument must be a either a text vector representing a filename or a directory
+    ⍝ name or a vector of text vectors representing a vector of filenames.\\
     ⍝ The right argument might be a filename or a directory in case the left argument
-    ⍝ is a single filename. If the left argument is a vector of filenames then the right
-    ⍝ argument must be either a single directory name or a vector of the same length
+    ⍝ is a single filename/directory name. If the left argument is a vector of filenames then
+    ⍝ the right argument must be either a single directory name or a vector of the same length
     ⍝ than the left argument with filenames and/or directory names.\\
     ⍝ If the right argument specifies a directory the filename part of `source` is used for
     ⍝ the new file.\\
@@ -1111,31 +1113,37 @@
       :Else
           (sourceDrive source)←HandlePath source
           (targetDrive target)←HandlePath target
-          :If ~IsFile source
+          :If ~Exists source
               rc←¯1
-              more←'Source file does not exist'
+              more←'Source file/directory does not exist'
           :Else
-              :If CurrentSep=¯1↑target
-              :AndIf CurrentSep≠¯1↑source
-                  target,←source↑⍨-CurrentSep⍳⍨⌽source
-              :EndIf
-              :If sourceDrive≢targetDrive
-                  (rc more)←source CopyTo target
-                  :If 0=rc
-                      :Trap 11 19 22
-                          ⎕NDELETE source
-                      :Else
-                          ⎕NDELETE target ⍝ This is consistent with the Windows function `MoveFileEx`!
-                          rc←32
-                          more←GetMsgFromError rc
-                      :EndTrap
-                  :EndIf
+              :If IsDir source
+              :AndIf Exists target
+                  rc←¯1
+                  more←'Target already exists'
               :Else
-                  '∆MoveFileEx'⎕NA'I kernel32.C32|MoveFileEx* <0T <0T I4'
-                  '∆MoveFile'⎕NA'I Kernel32.C32|MoveFile* <0T <0T'
-                  :If 0=∆MoveFileEx((source~'"')(target~'"')),3       ⍝ 3=REPLACE_EXISTING (1) + COPY_ALLOWED (2)
-                      rc←GetLastError
-                      more←GetMsgFromError rc
+                  :If CurrentSep=¯1↑target
+                  :AndIf CurrentSep≠¯1↑source
+                      target,←source↑⍨-CurrentSep⍳⍨⌽source
+                  :EndIf
+                  :If sourceDrive≢targetDrive
+                      (rc more)←source CopyTo target
+                      :If 0=rc
+                          :Trap 11 19 22
+                              ⎕NDELETE source
+                          :Else
+                              ⎕NDELETE target ⍝ This is consistent with the Windows function `MoveFileEx`!
+                              rc←32
+                              more←GetMsgFromError rc
+                          :EndTrap
+                      :EndIf
+                  :Else
+                      '∆MoveFileEx'⎕NA'I kernel32.C32|MoveFileEx* <0T <0T I4'
+                      '∆MoveFile'⎕NA'I Kernel32.C32|MoveFile* <0T <0T'
+                      :If 0=∆MoveFileEx((source~'"')(target~'"')),3       ⍝ 3=REPLACE_EXISTING (1) + COPY_ALLOWED (2)
+                          rc←GetLastError
+                          more←GetMsgFromError rc
+                      :EndIf
                   :EndIf
               :EndIf
           :EndIf

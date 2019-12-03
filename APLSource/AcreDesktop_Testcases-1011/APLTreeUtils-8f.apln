@@ -1,43 +1,12 @@
 :Namespace APLTreeUtils
-⍝ *** Version 4.2.2 ⋄ 2018-06-12 ***
-⍝
+⍝ *** Version 4.3.0 ⋄ 2019-11-28 ***
 ⍝ ## Overview
-⍝ Version 4.0.0 is a major change in two respects:
-⍝
-⍝ ### Clean-up
-⍝ Several functions that turned out to be very rarely used have been removed from `APLTreeUtils`. For a
-⍝ full list see further down. Use `Fire` to change any calls to those functions.
-⍝
-⍝ ### Use the new ⎕N\*-functions introduced in 15.0
-⍝ This was a necessary step in order to ensure platform compatability which was the main goal of
-⍝ version 15.0 of Dyalog. It means that version 4.0.0 of APLTreeUtils is **not backwards-compatible**,
-⍝ something that is normally avoided, but platform compatability is so important that we had to bite the bullet.
-⍝
-⍝ ## Updating
-⍝ Of course this means that you cannot just update, this time you have to check carefully to take action,
-⍝ even if you use already 15.0.\\
-⍝ However, you can be sure that all members of the APLTree project themselves are ready for this.\\
-⍝ Note that `APLTreeUtils` does not work with the Classic edition - it requires Unicode.
-⍝
-⍝ ## List of removed functions
-⍝ Several functions have been removed from APLTreeUtils:
-⍝ * `CreateUUID`
-⍝ * `DropEmptyZerosAndBlanks`
-⍝ * `Enlist`
-⍝ * `First`
-⍝ * `Mix`
-⍝ * `ReadBytesAs8BitSignedIntegersFromFile`
-⍝ * `WriteBytesAs8BitSignedIntegersToFile`
-⍝
+⍝ Note that `APLTreeUtils` does not work with the Classic edition - it requires Unicode.\\
 ⍝ ## Version History
-⍝ * 4.2.2
-⍝   * `GoToWebPage` crashed on filenames with spaces.
-⍝   * `GoToWebPage` crashed when a specific web web browser EXE was specified via the left argument.
-⍝   * `GoToWebPage` catches any domain errors now. The explicit result which so far has always been `⍬`
-⍝     is now 1 (success) or 0 (failure).
-⍝   * `GoToWebPage`: the default protocol is now `https` rather than `http`.
+⍝ * 4.3.0
+⍝   * Method `ToNum` introduced
 ⍝ Kai Jaeger - APL Team Ltd.\\
-⍝ Homepage: <http://aplwiki.com/APLTreeUtils>
+⍝ Homepage: <https://github.com/aplteam/APLTreeUtils/>
 
     ∇ array←Uppercase array
     ⍝ Fast uppercasing that excepts scalars, vectors and matrices as well as vectors and
@@ -54,6 +23,7 @@
     ∇
 
     IsChar←{0 2∊⍨10|⎕dr ⍵}
+    ToNum←{⎕ml←1 ⋄ ⊃(//)⎕vfi ⍵}
 
     ∇ r←IsDevelopment;⎕IO;⎕ML
     ⍝ Returns 1 in case the function is running under a Dyalog development (EXE or DLL).
@@ -81,8 +51,8 @@
       ⍝ `(,¨'1' '2' '3') ←→ '.' Split '1.2.3'`
           ⎕ML←⎕IO←1
           ⍺←⎕UCS 13 10 ⍝ Default is CR+LF
-          b←(1↑⍨⍴⍺),⍺⍷⍵     ⍝ This is more efficient in terms of memory then doing it one one line
-          (⍴,⍺)↓¨b⊂⍺,⍵
+          b←(1↑⍨≢⍺),⍺⍷⍵     ⍝ This is more efficient in terms of memory then doing it one one line
+          (≢⍺)↓¨b⊂⍺,⍵
       }
 
       Nest←{
@@ -93,14 +63,14 @@
       }
 
     ⍝ Deprecated from 17.0 onwards: use new primitive ⍳ instead of `Where`!
-    Where←{⎕IO←(⎕IO⊃⎕RSI).⎕IO ⋄ ⍵/⍳⍴,⍵}        ⍝ Return indices for Boolean ⍵; depends on ⎕IO in caller's space
+    Where←{⎕IO←(⎕IO⊃⎕RSI).⎕IO ⋄ ⍵/⍳≢⍵}        ⍝ Return indices for Boolean ⍵; depends on ⎕IO in caller's space
     ⍝
 
       Last←{
       ⍝ `(,¨'3') ←→ Last '1.2.3'`
           ⎕ML←⎕IO←1
           ⍺←'.'
-          (⍴,⍵)=where←¯1+⌊/⍺⍳⍨⌽,⍵:0⍴⍵
+          (≢⍵)=where←¯1+⌊/⍺⍳⍨⌽,⍵:0⍴⍵
           0 1∊⍨≡r←(-where)↑⍵:r
           ''⍴r
       }
@@ -113,7 +83,7 @@
           2=⍴⍴⍵:↑∇¨↓⍵
           (,⍺)≡,⍵:''
           w←1↓¯1↓⍺{⍵/⍨~(2⍴⍺)⍷⍵}⍺,⍵,⍺
-          (0=⍴⍴⍵)∧1=⍴w:⍬⍴⍵
+          (0=⍴⍴⍵)∧1=≢w:⍬⍴⍵
           w
       }
 
@@ -239,7 +209,7 @@
       append←(⊂append)∊'append' 1
       simpleFlag←0 1∊⍨≡data
       newline←(1+'Win'≡GetOperatingSystem ⍬)⊃(⎕UCS 10)(⎕UCS 13 10)
-      data{⍵:(-⍴,newline)↓⊃,/⍺,¨⊂newline ⋄ ⍺}←~simpleFlag
+      data{⍵:(-≢newline)↓⊃,/⍺,¨⊂newline ⋄ ⍺}←~simpleFlag
       max←5
       fno←0⍴i←size←flag←0
       :Repeat
@@ -295,12 +265,12 @@
       ⎕WX←1 ⋄ ⎕IO←0 ⋄ ⎕ML←3
       success←1
       url←Lowercase Url
-      :If ∨/'file:'{⍺≡(⍴⍺)↑⍵}url
-          Url←'"',('"'~⍨'file://'{⍺,(⍴⍺)↓⍵}Url),'"'
-      :ElseIf ∨/'https:'{⍺≡(⍴⍺)↑⍵}url
-          Url←'https://'{⍺,(⍴⍺)↓⍵}Url
-      :ElseIf ∨/'http:'{⍺≡(⍴⍺)↑⍵}url
-          Url←'http://'{⍺,(⍴⍺)↓⍵}Url
+      :If ∨/'file:'{⍺≡(≢⍺)↑⍵}url
+          Url←'"',('"'~⍨'file://'{⍺,(≢⍺)↓⍵}Url),'"'
+      :ElseIf ∨/'https:'{⍺≡(≢⍺)↑⍵}url
+          Url←'https://'{⍺,(≢⍺)↓⍵}Url
+      :ElseIf ∨/'http:'{⍺≡(≢⍺)↑⍵}url
+          Url←'http://'{⍺,(≢⍺)↓⍵}Url
       :Else
           :If ∨/'//:'∊Url  ⍝ Any protocol at all?!
               ⍝ ? No idea what that protocol is, so we just allow it going through.
@@ -311,13 +281,13 @@
       (('\'=Url)/Url)←'/'
       Url←{l←3+1⍳⍨'://'⍷⍵ ⋄ (l↑⍵),{(~'//'⍷⍵)/⍵}l↓Url}Url
       :If 3501⌶⍬ ⍝ Connected to Ride?
-          :If 'file://'{⍺≡(⍴⍺)↑⍵}Url
-              EncodeBlanksForNix←{0∊⍴w←⍵:w ⋄ 0=+/b←' '=w:w ⋄ (b/w)←⊂'\ ' ⋄ ↑,/w}
+          :If 'file://'{⍺≡(≢⍺)↑⍵}Url
+              EncodeBlanksForNix←{0=≢w←⍵:w ⋄ 0=+/b←' '=w:w ⋄ (b/w)←⊂'\ ' ⋄ ↑,/w}
               Url←EncodeBlanksForNix Url
-              Url←(⍴'file:')↓Url
+              Url←(≢'file:')↓Url
               Url←{⍵↓⍨+/∧\'/'=⍵}Url
               html←ReadUtf8File Url
-              title←'<title'{{⍵↑⍨¯1+⍵⍳'<'}⍵↓⍨(⍴⍺)+1⍳⍨⍺⍷⍵}∊html
+              title←'<title'{{⍵↑⍨¯1+⍵⍳'<'}⍵↓⍨(≢⍺)+1⍳⍨⍺⍷⍵}∊html
               title(3500⌶)∊html
           :Else
               html←'<html>' '<head>'
@@ -332,7 +302,7 @@
           :Case 'Win'
               'wsh'⎕WC'OLEClient' 'WScript.Shell'
               :Trap 11
-                  :If 0∊⍴browser
+                  :If 0=≢browser
                       {}wsh.Run Url
                   :Else
                       {}wsh.Run browser,Url
@@ -342,7 +312,7 @@
               :EndTrap
           :Case 'Lin'
               :Trap 11
-                  :If 0∊⍴browser
+                  :If 0=≢browser
                       {}⎕SH'xdg-open ',Url,'</dev/null > /dev/null 2>&1 &'
                   :Else
                       {}⎕SH browser,' ',Url,'</dev/null > /dev/null 2>&1 &'
@@ -376,6 +346,8 @@
           9={11::0 ⋄ #.⎕NC ⍵}⍵:#               ⍝ Is it in root?
           path←1⊃⎕RSI~⎕THIS                    ⍝ From where got we called?
           0<path.⎕NC ⍵:path                    ⍝ May be it's there?
+          0=#.⎕NC'_dependencies':''
+          9=#._dependencies.⎕NC ⍵:#._dependencies
           ''                                   ⍝ Give up
       }
 
@@ -403,8 +375,8 @@
       ⎕IO←⎕ML←1
       :If 645≡⎕DR ts
           :If (⍴⍴ts)∊0 1
-              :If 1=⍴,ts
-                  ts←{0∊⍴,⍵:⍬ ⋄ ⎕ML←3 ⋄ ⍎¨(4 2 2 2 2 2/⍳6)⊂14 0⍕⍵}ts
+              :If 1=≢ts
+                  ts←{0=≢,⍵:⍬ ⋄ ⎕ML←3 ⋄ ⍎¨(4 2 2 2 2 2/⍳6)⊂14 0⍕⍵}ts
               :EndIf
           :Else
               ts←↑,{0=⍵:6⍴0 ⋄ v←14 0⍕⍵ ⋄ ⎕ML←3 ⋄ ⍎¨(4 2 2 2 2 2/⍳6)⊂v}¨ts
@@ -413,9 +385,9 @@
       :If ⍬≡length←{2=⎕NC ⍵:⍎⍵ ⋄ 6}'length'
           length←''⍴¯1↑⍴ts
       :EndIf
-      :If ~0∊⍴ts
+      :If ~0=≢ts
           :If 2=⍴⍴ts
-              buffer←{⍵/⍨0<⊃∘⍴¨⍵~¨⊂' ' 0}↓ts
+              buffer←{⍵/⍨0<≢¨⍵~¨⊂' ' 0}↓ts
               'Invalid right argument: must be integer'⎕SIGNAL 11/⍨~326 163∊⍨∪⎕DR¨buffer
               'Invalid right argument: must not be negative'⎕SIGNAL 11/⍨∨/¯1∊¨×¨buffer
               'Invalid right argument: must be simple'⎕SIGNAL 11/⍨1≠∪≡¨buffer
@@ -428,7 +400,7 @@
       :If 2=⍴⍴ts
           ts2←length↑[2]ts
       :Else
-          ts2←,[0.5]length↑{0∊⍴⍵:⎕TS ⋄ ts}ts
+          ts2←,[0.5]length↑{0=≢⍵:⎕TS ⋄ ts}ts
       :EndIf
       :Select ⊃length
       :Case 3
@@ -441,7 +413,7 @@
       bool←(ts2∨.≠' ')∧ts2∨.≠0
       r←bool⍀formatstring ⎕FMT(6⌊length)↑[2]bool⌿ts2
       :If 7=2⊃⍴ts2
-          r←⊃(↓r),¨{0=⍵:'' ⋄ 0∊⍴⍵~' ':'' ⋄ '.',⍕⍵}¨ts2[;7]
+          r←⊃(↓r),¨{0=⍵:'' ⋄ 0=≢⍵~' ':'' ⋄ '.',⍕⍵}¨ts2[;7]
       :EndIf
       :If 2≠⍴⍴ts
           r←,r
