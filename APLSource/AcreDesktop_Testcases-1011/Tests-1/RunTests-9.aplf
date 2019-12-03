@@ -1,7 +1,7 @@
  RunTests
  :If 0=⎕NC'T'
      ⎕SHADOW'T'
-     T←⎕NEW ##.Tester2 ⎕THIS
+     Prepare
  :EndIf
  T.Run 1
 ⍝Done

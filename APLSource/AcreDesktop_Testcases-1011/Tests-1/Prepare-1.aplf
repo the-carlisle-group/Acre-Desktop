@@ -1,2 +1,4 @@
  Prepare
  T←⎕NEW ##.Tester2 ⎕THIS
+ T.custom_1←'Invalid_APL_Version'
+ ⍝Done

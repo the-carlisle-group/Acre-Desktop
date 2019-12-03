@@ -5,7 +5,7 @@
  R←T._Failed
 
  :If 16>⊃(//)⎕VFI{⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion'
-     →0,R←∆InvalidAplVersion
+     →0,R←T.custom_1
  :EndIf
 
  noOfProjects←⊃⍴∆RunUcmd'Projects'
