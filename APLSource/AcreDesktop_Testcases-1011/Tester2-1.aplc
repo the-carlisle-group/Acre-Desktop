@@ -22,7 +22,7 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.0.0.25' '2019-12-01'
+      r←(Last⍕⎕THIS)'1.0.0.26' '2019-12-01'
     ∇
 
     ∇ History
@@ -389,11 +389,16 @@
       :EndIf
     ∇
 
-    ∇ ref←ProcessIniFiles(ref ps);iniFilenames;iniFilename;report
+    ∇ ref←ProcessIniFiles(ref ps);iniFilenames;iniFilename;report;parent
       iniFilenames←''
       iniFilename←'Testcases.ini'
       report←,⊂'Searching for INI file ',iniFilename
       :If ⎕NEXISTS iniFilename
+          iniFilenames,←⊂iniFilename
+          report[≢report]←⊂((≢report)⊃report),': found!'
+      :ElseIf 0<≢parent←'AcreConfig'{⍵∊# ⎕SE:'' ⋄ 0<⍵.⎕NC ⍺:⍵ ⋄ ⍺ ∇ ⍵.##}_ref
+      :AndIf ⎕NEXISTS parent.AcreConfig.ProjectFolder,iniFilename
+          iniFilename←parent.AcreConfig.ProjectFolder,iniFilename
           iniFilenames,←⊂iniFilename
           report[≢report]←⊂((≢report)⊃report),': found!'
       :Else
@@ -403,7 +408,12 @@
       report,←⊂'Searching for INI file ',iniFilename
       :If ⎕NEXISTS iniFilename
           iniFilenames,←⊂iniFilename
-          report[≢report]←⊂((≢report)⊃report),': found!'
+          report[≢report]←⊂((≢report)⊃report),': found'
+      :ElseIf 0<≢parent←'AcreConfig'{⍵∊# ⎕SE:'' ⋄ 0<⍵.⎕NC ⍺:⍵ ⋄ ⍺ ∇ ⍵.##}_ref
+      :AndIf ⎕NEXISTS parent.AcreConfig.ProjectFolder,iniFilename
+          iniFilename←parent.AcreConfig.ProjectFolder,iniFilename
+          iniFilenames,←⊂iniFilename
+          report[≢report]←⊂((≢report)⊃report),': found'
       :Else
           report[≢report]←⊂((≢report)⊃report),': not found'
       :EndIf
