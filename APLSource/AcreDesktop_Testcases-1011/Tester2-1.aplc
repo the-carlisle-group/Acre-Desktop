@@ -22,7 +22,7 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.0.0.26' '2019-12-01'
+      r←(Last⍕⎕THIS)'1.0.0.28' '2019-12-01'
     ∇
 
     ∇ History
@@ -160,7 +160,24 @@
         ∇
     :EndProperty
 
-    ∇ make1 ref
+    :Property IniFolder
+    :Access Public Instance
+        ∇ r←get
+          r←_IniFolder
+        ∇
+        ∇ set arg
+          :If 0<≢arg.NewValue
+              'Must be a simple character vector'⎕SIGNAL 11/⍨1≠≡arg.NewValue
+              'Must be a simple character vector'⎕SIGNAL 11/⍨0=1↑0⍴∊arg.NewValue
+              'Must be a simple character vector'⎕SIGNAL 11/⍨1≠⍴⍴arg.NewValue
+              'Does not exist'⎕SIGNAL 11/⍨0=⎕NEXISTS arg.NewValue
+              'Is not a folder'⎕SIGNAL 11/⍨1≠1 ⎕NINFO arg.NewValue
+          :EndIf
+          _IniFolder←arg.NewValue
+        ∇
+    :EndProperty
+
+    ∇ make1 ref;parent
     ⍝ Requires a reference as the right argument which points to the namespace that hosts the test cases .\\
     ⍝ All instance methods will use that reference in order to find the test cases.
       :Access Public Instance
@@ -170,6 +187,12 @@
       _parms←CreateParms ⍬
       _INI←⍬
       _custom_1←_custom_2←_custom_3←_custom_4←_custom_5←_custom_6←_custom_7←_custom_8←_custom_9←⍬''
+      :If 0<≢parent←'AcreConfig'{⍵∊# ⎕SE:'' ⋄ 0<⍵.⎕NC ⍺:⍵ ⋄ ⍺ ∇ ⍵.##}_ref
+          _IniFolder←parent.AcreConfig.ProjectFolder
+      :Else
+          _IniFolder←''
+      :EndIf
+     
     ∇
 
     ∇ Cleanup
@@ -391,27 +414,17 @@
 
     ∇ ref←ProcessIniFiles(ref ps);iniFilenames;iniFilename;report;parent
       iniFilenames←''
-      iniFilename←'Testcases.ini'
+      iniFilename←_IniFolder,((0<≢_IniFolder)/'/'),'Testcases.ini'
       report←,⊂'Searching for INI file ',iniFilename
       :If ⎕NEXISTS iniFilename
           iniFilenames,←⊂iniFilename
-          report[≢report]←⊂((≢report)⊃report),': found!'
-      :ElseIf 0<≢parent←'AcreConfig'{⍵∊# ⎕SE:'' ⋄ 0<⍵.⎕NC ⍺:⍵ ⋄ ⍺ ∇ ⍵.##}_ref
-      :AndIf ⎕NEXISTS parent.AcreConfig.ProjectFolder,iniFilename
-          iniFilename←parent.AcreConfig.ProjectFolder,iniFilename
-          iniFilenames,←⊂iniFilename
-          report[≢report]←⊂((≢report)⊃report),': found!'
+          report[≢report]←⊂((≢report)⊃report),': found'
       :Else
           report[≢report]←⊂((≢report)⊃report),': not found'
       :EndIf
-      iniFilename←'testcases_',(2 ⎕NQ'#' 'GetEnvironment' 'Computername'),'.ini'
+      iniFilename←_IniFolder,((0<≢_IniFolder)/'/'),'Testcases-',(2 ⎕NQ'#' 'GetEnvironment' 'Computername'),'.ini'
       report,←⊂'Searching for INI file ',iniFilename
       :If ⎕NEXISTS iniFilename
-          iniFilenames,←⊂iniFilename
-          report[≢report]←⊂((≢report)⊃report),': found'
-      :ElseIf 0<≢parent←'AcreConfig'{⍵∊# ⎕SE:'' ⋄ 0<⍵.⎕NC ⍺:⍵ ⋄ ⍺ ∇ ⍵.##}_ref
-      :AndIf ⎕NEXISTS parent.AcreConfig.ProjectFolder,iniFilename
-          iniFilename←parent.AcreConfig.ProjectFolder,iniFilename
           iniFilenames,←⊂iniFilename
           report[≢report]←⊂((≢report)⊃report),': found'
       :Else
