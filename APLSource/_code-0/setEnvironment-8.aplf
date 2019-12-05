@@ -1,8 +1,8 @@
  setEnvironment←{⍺←⊢                  ⍝ only if no projects
      z←⍵{path←⍺
          ⍵.SV←##.⎕NS''
-         SV.(setupcomplete error opened aftersave)←0 0 '' ''
          path ws name←SV.(inipath workspace systemname)←path
+         SV.(setupcomplete error opened aftersave loghaschanged)←2 3/0 ''
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
          z←setEmulators''
@@ -10,18 +10,17 @@
          z←setCase''
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵
-     }ici←⎕THIS
+     }⎕THIS
      SV.sessionstart←sessionStart''
-     z←editFix'Start' ⍝ ← sets other stuff in SV ⍝ ↓ en cas )LOAD )CLEAR
-⍝    z←⎕SE ⎕WS'Event'_(⎕SE ⎕WG'Event'),⊂'WorkspaceLoaded'_(⍕ici),'.openProjects'
+     z←editFix'Start' ⍝ ← sets other stuff in SV
      z←logMsg⍕Version''
      s←⊃'B'UT.mn⊢m←⊃⊃2 _NINFO SV.logfile
      z←logMsg(×m)/('⎕'/⍨'M'∊s),s,MS.FP,SV.logfile
      z←setAPI''
      1:SV.setupcomplete←1
 ⍝ some dictionaries & derived fns
-⍝ ⍵ ?
+⍝ ⍵ path ws name
 ⍝   there should be no tracked instances when this runs
 ⍝ ← 1
-⍝ Phil 2019-09-06 16:35 6.0.1+264
+⍝ Phil 2019-12-05 08:41 6.0.2+284
  }

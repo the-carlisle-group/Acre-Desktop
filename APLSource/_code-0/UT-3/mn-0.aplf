@@ -1,16 +1,17 @@
  mn←{
      ⍺←''
-⍝    mu below is ⎕ucs 181
-     m n←'yzafpnµm' 'kMGTPEZY'
-     (⊂⍺),¨⍨⍵{(m,EN,n)[⍵+8],¨⍨⍕¨3 sg ⍺÷1000*⍵}⌊1000⍟|⍵+⍵=0
-⍝ magnitute
+     r←≢⊃m n←'qryzafpnµm' 'kMGTPEZYRQ'
+     e←(××r⌊|)⌊1000⍟|⍵+⍵=0
+     (⊂⍺),¨⍨(m,EN,n)[e+r],¨⍨⍕¨3 sg ⍵÷1000*e
+⍝ magnitude
 ⍝ ⍺ unit
 ⍝ ⍵ simple number array
 ⍝ ← (⍵) scaled such that (1 ≤ |n) ∧ 1000 > |n
 ⍝   followed by the relevant SI Prefixes and the unit (⍺)
-⍝ 'g' ∇ 12345 0.12345 → 12.345kg  123.45mg
-⍝ yocto, zepto, atto, femto, pico, nano, micro, milli,
-⍝ 1e¯24  1e¯21  1e¯18 1e¯15  1e¯12 1e¯9  1e¯6   1e¯3
-⍝ kilo,  Mega,  Giga, Tera,  Peta, Exa,  Zetta, Yotta.
-⍝ 1e3    1e6    1e9   1e12   1e15  1e18  1e21   1e24
+⍝       'g' ∇ 12345 0.12345 → 12.345kg  123.45mg
+⍝ milli,  micro,  nano,  pico,  femto,  atto,  zepto,  yocto, ronto, quecto
+⍝ 1e¯3    1e¯6    1e¯9   1e¯12  1e¯15   1e¯18  1e¯21   1e¯24  1e¯27  1e¯30
+⍝ kilo,   Mega,   Giga,  Tera,  Peta,   Exa,   Zetta,  Yotta, Ronna, Quecca
+⍝ 1e3     1e6     1e9    1e12   1e15    1e18   1e21    1e24   1e27   1e30
+⍝ Phil 2019-11-24 23:32 6.0.2+284
  }

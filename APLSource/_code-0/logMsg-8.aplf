@@ -4,15 +4,16 @@
      da←hd,ms
      dt←DT.(dt2fm ts2dt ⎕TS),' '
      z←{⎕←⍵}/0,⍪da/⍨SV.error∨←'!'∊⊃¨da  ⍝ errors to session
-     z←{⎕←⍵}¨⍣(∨/z)⊢da←da↓¨⍨z←'⎕'=⊃¨da   ⍝ warning to session
+     z←{⎕←⍵}¨⍣(∨/z)⊢da←da↓¨⍨z←'⎕'=⊃¨da  ⍝ warning to session
      dd←MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←dt∘,¨da
+     z←⍎SV.loghaschanged,'⋄ 1'          ⍝ user exit for log change
      ~_NEXISTS SV.logfile:ms
      fd←⎕UCS MS.HI ⎕UCS⊃,/UT.EN,,∘UT.(CR LF)¨dd
      ms⊣⎕NUNTIE fd(⊢⊣⎕NAPPEND)SV.logfile ⎕NTIE 0
 
-⍝   MP←{⍵⊣⍵._←,¨''}⎕SE.⎕NS'' ⍝ setEnvironment
+⍝   MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS'' ⍝ setEnvironment
 ⍝ [⍺]   header to be underlined if present
 ⍝  ⍵    msg(s) string, list or mat
 ⍝  ←    ⍵ having displayed date,⍵ in log window
-⍝ Phil 2018-11-28 23.41
+⍝ Phil 2019-12-05 08:41 6.0.2+284
  }

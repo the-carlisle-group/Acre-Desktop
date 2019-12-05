@@ -29,7 +29,7 @@
      type←⊃nameClass fqn
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←logMsg MS.DS,⊃dat setChange fqn type newval
-     {}logMsg if('ls'∊'alms'arrayType)afterSave fqn file
+     {}logMsg if(0 1 1 1 arrayType)afterSave fqn file
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or 'Close' or callback argument
 ⍝ ← 0 for 'Start' and 'Close' - else none

@@ -2,8 +2,9 @@
      ⎕AN≢'Phil':0 0⍴''
      ⎕←0/'!!!! message here'
      z←#.ac.MS←allMessages 1⊃'.'sep⊃⎕XSI⊣#.(pl ut)←{⍵.(PL UT)}#.ac←⎕THIS
-     #.⎕WSID←{'V',1⊃'.'⎕WG'APLVersion'}if(MS.CK∘≡)#.⎕WSID
-     0 0⍴keys''⊣(#.ap←⎕SE.acre).Log'show'
+     z←setAplVer''
+     #.⎕WSID←(⊃1 _NPARTS''),{'V',1⊃'.'⎕WG'APLVersion'}if(MS.CK∘≡)#.⎕WSID
+     0 0⍴keys''⊣⎕SE.acre.Log'show'
 ⍝
 ⍝ Phil 2019-08-29 07:38 6.0.0+256
  }

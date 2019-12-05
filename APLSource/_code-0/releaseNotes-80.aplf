@@ -2,13 +2,9 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+283 2019-11-10 11:07
+⍝ Acre 6.0.2+285 2019-12-05 13:13
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * **Removeacre** - new usercmd/apifn resets settings changed by acre and removes it from ⎕SE
-⍝   so that ⎕SE may be saved safely.
-⍝   With acre saved in ⎕SE an endless loop is entered if an untracked item is edited.
-⍝
-⍝ Phil 2019-11-10 11:07 6.0.2+282
+⍝ Phil 2019-12-05 13:13 6.0.2+284
  }
