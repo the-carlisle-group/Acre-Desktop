@@ -22,7 +22,7 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.0.0.28' '2019-12-01'
+      r←(Last⍕⎕THIS)'1.0.0.29' '2019-12-01'
     ∇
 
     ∇ History
@@ -314,7 +314,7 @@
       r.⎕FX'r←List' 'r←⊃{⍵(⍎⍵)}¨'' ''~¨⍨↓⎕NL 2'
     ∇
 
-    ∇ {r}←Run__ ps;rc;log;⎕TRAP
+    ∇ {r}←Run__ ps;rc;log;⎕TRAP;∆InitialGotExecuted
         ⍝ Run all test cases to be found in `_ref`.\\
         ⍝ The right argument is a parameter space, typically created by calling `CreateParms ⍬`.\\
         ⍝ The shy explicit result is a two-element vector:
@@ -326,6 +326,7 @@
       ⎕TRAP←(QuitEvent'C' '→∆GetOutOfHere')((0 1000)'N')
       _ref.Stop←ps.stopFlag         ⍝ "Stop" is honored by "FailsIf" & "PassesIf"
       _INI←⍬                        ⍝ Flatten any leftovers
+      ∆InitialGotExecuted←0
       ps.(log errCounter failedCounter totalCounter)←'' 0 0 0
       ps.guiFlag∧←'Win'≡GetOperatingSystem ⍬  ⍝ Windows only, if at all
       :If ps.guiFlag
@@ -374,7 +375,7 @@
           _ref.TestCasesExecutedAt←FormatDateTime ⎕TS
           ShowLog'Time of execution recorded on variable ',(⍕_ref),'.TestCasesExecutedAt in: ',_ref.TestCasesExecutedAt
       :EndIf
-      ExecuteCleanup _ref ps
+      {}ExecuteCleanup⍣∆InitialGotExecuted⊣_ref ps
       ShowLog'*** Tests done'
       log←ps.log
       r←rc log
@@ -458,6 +459,7 @@
               :Else
                   r←ref.Initial
               :EndIf
+              ∆InitialGotExecuted←1
           :Case 1
               :If 0=↑↑ref.⎕AT'Initial'
                   ref.Initial ps

@@ -11,6 +11,7 @@
  comments←{1↓¯1↓⍵/⍨{⍵∨≠\⍵}⍵='`'}¨comments
  list←⊃,/{0=+/b←'``'⍷⍵:⊂⍵ ⋄ '`'~¨⍨(1,b)⊂'`',⍵}¨comments
  missing←(' '~¨⍨↓⎕SE.acre.⎕NL 3)~list
+ missing~←⊂'Removeacre'     ⍝ Because we cannot test this by definition
  :If 0<≢missing
      ⎕←' *** API functions uncovered by test cases:'
      ⎕←⍪(' '~¨⍨↓⎕SE.acre.⎕NL 3)~list
