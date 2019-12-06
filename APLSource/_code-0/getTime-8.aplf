@@ -1,7 +1,8 @@
  getTime←{dat←⍺ ⋄ res←⌈/dat.loadtime
      ~dat.hist:res
      0::res
+     ~_NEXISTS dat.latest:res
      res⌊⊃1⊃⎕VFI⊃_NGET dat.latest
 ⍝ see putTime
-⍝ Phil 2018-08-08 18.02
+⍝ Phil 2019-12-05 22:03 6.0.2+285
  }
