@@ -2,6 +2,7 @@
  ⎕IO←1 ⋄ ⎕ML←1
  EstablishRefs ⍬
  ∆PATH←F.GetTempPath,'AcreDesktop_Testcases'
+ ∆WSID←⎕WSID
  ⎕←'Oldewst version supported by acre is ',4 1⍕T.INI.OldestSupportedVersionOfAPL
  (rc en more)←F.RmDir ∆PATH
  Assert 0=rc  ⍝ If this fails then somebody might look into the directory, or a file inside is tied etc.
@@ -9,4 +10,5 @@
  ∆DEBUGSTATE←{⍵↓⍨⍵⍳' '}⎕SE.UCMD'udebug'
  {}⎕SE.UCMD'udebug off'
  {}∆RunUcmd'Projects' ⍝ Enforce acre to be loaded
+ ##.FilesAndDirs.Cd'%USERPROFILE%'
 ⍝Done

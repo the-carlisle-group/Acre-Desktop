@@ -1,4 +1,4 @@
- R←Test_API_030(stopFlag batchFlag);⎕TRAP;rc;cmd;parms;_;log;projectDir;result;path;wsPath
+ R←Test_API_030(stopFlag batchFlag);⎕TRAP;rc;cmd;parms;_;log;projectDir;result;path
 ⍝ Exercise the API function `Refresh`.
 ⍝ For that to work we start an independent instance of Dyalog that loads a workspace which
 ⍝ via ⎕LX executes a function that opens a project, makes a change and then executes )OFF.
@@ -20,15 +20,16 @@
  →T.GoToTidyUp'#.TEMP'≢result
 
  path←∆GetPathToOldestAPL'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'" '
- cmd←'"',path,'/dyalog.exe" '
- wsPath←∆GetWorkspacePath ⍬
- cmd,←'"',wsPath,'Tests\Change.dws" '
+ cmd←''
+ cmd,←'"',path,'/dyalog.exe" '
+ cmd,←'"',∆GetHomeDir,'Tests\Change.dws" '
+ cmd,←'exec_setup=0 '   ⍝ Avoid APLTeam-specific stuff, like forcing acre into ⎕SE when firing up any APL.
  cmd,←'dir="',projectDir,'" '
  :If 0
      cmd,←'-x '
  :EndIf
  parms←##.Execute.DefaultParms
- parms.dir←F.PWD,'\Tests'
+ parms.dir←∆GetHomeDir,'\Tests'
  parms.hidden←0
  parms.wait←1
  rc←parms ##.Execute.Application cmd

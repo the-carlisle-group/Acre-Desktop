@@ -1,0 +1,10 @@
+ r←∆GetHomeDir
+⍝ When there is an open acre project then there is a namespace AcreConfig which contains `ProjectFolder`.
+⍝ If not then we `must` have loaded a WS, and either ⎕WSID rules the day or the current dir is already correct.
+ :If 9=#.acre.⎕NC'AcreConfig'
+     r←#.acre.AcreConfig.ProjectFolder
+ :Else
+     ##.FilesAndDirs.PolishCurrentDir
+     ##.FilesAndDirs.PWD,'\'
+ :EndIf
+ ⍝Done

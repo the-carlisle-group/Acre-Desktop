@@ -31,6 +31,7 @@
  cmd,←'Captions\ExitDyalog=',caption,'-X '
  cmd,←'Captions\MessageBox=',caption,'-M '
  cmd,←'confirm_Fix=0 '
+ cmd,←'exec_setup=0 '   ⍝ Avoid APLTeam-specific stuff, like forcing acre into ⎕SE when firing up any APL.
  cmd,←'Edit.dws '
  acreDir←F.GetTempPath,⊃⎕SI
  F.RmDir acreDir
@@ -40,7 +41,7 @@
      cmd,←'-lx '
  :EndIf
  parms←##.Execute.DefaultParms
- parms.dir←F.PWD,'\Tests'
+ parms.dir←∆GetHomeDir,'\Tests'
  parms.hidden←0
  parms.wait←0
  rc←parms ##.Execute.Application cmd
