@@ -1,5 +1,5 @@
  _NINFO←{⍺←⊢ ⋄ key←⍺⊣0
-     15≤⊃SV.aplver:⊢⍺ ⎕NINFO⍠1⊢⍵
+     15≤⊃SV.aplver:⊢⍺ ⎕NINFO⍠('Wildcard' 1)⊢⍵
 
      ss←{('/',⍵)[('\',⍵)⍳⍵]}¨¨a_ 0
      FS.FileExists⊂⍵:key⊃¨⊂ss{

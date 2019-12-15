@@ -2,9 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+286 2019-12-06 12:53
+⍝ Acre 6.0.2+287 2019-12-15 19:50
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Phil 2019-12-06 12:53 6.0.2+285
+⍝    introduced 'Recurse' variant into fileTree for v18.0
+⍝
+⍝ Phil 2019-12-15 19:50 6.0.2+286
  }

@@ -1,5 +1,6 @@
  fileTree←{⍺←⊢
      root←fPath ⍵,'/.'
+     18≤⊃SV.aplver:_fileTree root
      file←{⍵⊣⍵.(Path Size Date)←''⍬ ⍬}⎕NS''
      tree←{file dir←⍺ ⍵
          p t s d←0 1 2 3 _NINFO dir,'/*'
@@ -15,4 +16,5 @@
 ⍝ ← scalar space with [Path Size Date] for all files in tree
 ⍝   Path will always contain '/' rather than '\'
 ⍝   Date is float YYYYMMDD.hhmmss (smaller and 1 vs 7 per item)
+⍝ Phil 2019-12-10 16:18 6.0.2+286
  }

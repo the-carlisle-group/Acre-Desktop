@@ -1,0 +1,8 @@
+ _fileTree←{
+     p t s d←0 1 2 3 _NINFO⍠('Recurse' 2)⊢⍵,'/*'
+     (r←⎕NS'').(Path Size Date)←(t=2)∘/¨p s d
+     r⊣r.Date←DT.ts2dt↑r.Date
+⍝ file object - see fileTree
+⍝ Dyalog version 18+
+⍝ Phil 2019-12-10 16:58 6.0.2+286
+ }
