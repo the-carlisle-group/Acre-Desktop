@@ -10,14 +10,17 @@
  newWsid←⎕WSID←GetTempFilename'dws'
  projectPath←F.GetTempPath,⊃⎕SI
  ⎕LX←(⊃{⍺,'∆',⍵}/'.'A.SplitPath⊃⎕XSI),'''',projectPath,''''
- ⎕SAVE ⎕WSID
+ 0 ⎕SAVE ⎕WSID
  ⎕WSID←old_WSID
  ⎕LX←old_LX
  cmd←''
  cmd,←'"',(1⊃2 ⎕NQ #'GetCommandLineArgs'),'"'
  cmd,←' "',newWsid,'"'
  cmd,←' maxws=64MB '
- cmd,←'exec_setup=0 '   ⍝ Avoid APLTeam-specific stuff, like forcing acre into ⎕SE when firing up any APL.
+ cmd,←'exec_setup=0 '                       ⍝ Avoid APLTeam-specific stuff, like forcing acre into ⎕SE when firing up any APL.
+ :If 0
+     cmd,←' -x '
+ :EndIf
  rc←3⊃##.Execute.Application cmd
  OK←128 ⋄ NOT_OK←129
  Assert rc∊OK NOT_OK
