@@ -1,5 +1,5 @@
  fixQV←{⍺←⊢ ⋄ path←UT.df⊢space←⍵
-     all←⍎¨(⊢(/⍨)0∘ssp>ref)∪(⊂path),space UT.li 9.1
+     all←,⍎¨'#'if null(⊢(/⍨)0∘ssp>ref)∪(⊂path),space UT.li 9.1
      all/⍨←1,1↓⊃≢¨/(all all.##).(⎕IO ⎕ML ⎕WX)
      ~∨/b←0=all.⎕NC⊂⊂nm←MS.BH:0
      ns end text←MS.HG MS.HH MS.BN
@@ -10,5 +10,5 @@
 ⍝ add "quadVars" script to top space and each subspace
 ⍝   where any ⎕io⎕ml⎕wx differs from parent
 ⍝   and it doesn't already exist
-⍝ Phil 2019-11-06 11.40 6.0.2+282
+⍝ Phil 2019-12-17 12:05 6.0.2+287
  }

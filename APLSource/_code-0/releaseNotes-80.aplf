@@ -2,11 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+287 2019-12-15 19:50
+⍝ Acre 6.0.2+288 2019-12-17 12:05
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝    introduced 'Recurse' variant into fileTree for v18.0
+⍝    fixed bug #214 Attempt to create a root project with a single function crashes acre
 ⍝
-⍝ Phil 2019-12-15 19:50 6.0.2+286
+⍝ Phil 2019-12-17 12:05 6.0.2+287
  }
