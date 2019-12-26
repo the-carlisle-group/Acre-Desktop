@@ -1,0 +1,28 @@
+ R←Test_CreateProject_102(stopFlag batchFlag);⎕TRAP;cmd;parms;rc;OK;NOT_OK
+⍝ Create a root project without any namespaces. Due to its nature this test must run in a separate instance of Dyalog.
+⍝ Is only executed when the acre project is open.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←T._Failed
+
+ cmd←''
+ cmd,←'"',(⊃2 ⎕NQ #'GetCommandLineArgs'),'"'
+ cmd,←' "',##.##.AcreConfig.ProjectFolder,'/Tests/RootProject" '
+ cmd,←'maxws=16MB '
+ cmd,←'exec_setup=0 '                       ⍝ Avoid APLTeam-specific stuff, like forcing acre into ⎕SE when firing up any APL.
+ :If 0
+     cmd,←' -x '
+ :EndIf
+ parms←##.Execute.DefaultParms
+ parms.dir←##.FilesAndDirs.PWD
+ rc←(2+⎕IO)⊃parms ##.Execute.Application cmd
+ OK←128 ⋄ NOT_OK←129
+ Assert rc∊OK NOT_OK
+ →T.GoToTidyUp rc≠OK
+ →T.GoToTidyUp
+
+ R←T._OK
+
+∆TidyUp:
+ :Trap 0 ⋄ F.RmDir'Tests/rootproject' ⋄ :EndTrap
+⍝Done

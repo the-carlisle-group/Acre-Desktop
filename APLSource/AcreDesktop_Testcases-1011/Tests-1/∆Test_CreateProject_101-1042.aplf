@@ -1,4 +1,4 @@
- ∆Test_CreateProject_005 path;buff;OK;NOT_OK;rc;projects
+ ∆Test_CreateProject_101 path;buff;OK;NOT_OK;rc;projects
  ⎕IO←1 ⋄ ⎕ML←1
  OK←128 ⋄ NOT_OK←129
  F.RmDir path

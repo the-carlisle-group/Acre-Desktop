@@ -1,6 +1,6 @@
- R←Test_CreateProject_005(stopFlag batchFlag);⎕TRAP;old_WSID;old_LX;cmd;newWsid;rc;OK;NOT_OK;projectPath
-⍝ Create a root project. Due to its nature this test must run in a separate instance of Dyalog.
-⍝ Is only executed when the acre project is open.
+ R←Test_CreateProject_101(stopFlag batchFlag);⎕TRAP;old_WSID;old_LX;cmd;newWsid;rc;OK;NOT_OK;projectPath
+⍝ Create a root project from the current WS. Due to its nature this test must run in a separate instance of Dyalog.
+⍝ Requires function `∆Test_CreateProject_101` which is called in the APL session to be started.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←T._Failed

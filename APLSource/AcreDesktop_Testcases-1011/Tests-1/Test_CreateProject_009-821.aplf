@@ -1,5 +1,5 @@
  R←Test_CreateProject_009(stopFlag batchFlag);⎕TRAP;path;rc;en;more;projectPath;ref;projectName;result;list
-⍝ Create a project from an empty namepsace. Should inject `QuadVars`.
+⍝ Create a project from an empty namespace. Should inject `QuadVars`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
