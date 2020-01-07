@@ -2,11 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+288 2019-12-17 12:05
+⍝ Acre 6.0.2+289 2020-01-06 18:14
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
 ⍝    fixed bug #214 Attempt to create a root project with a single function crashes acre
 ⍝
-⍝ Phil 2019-12-17 12:05 6.0.2+287
+⍝ Phil 2020-01-06 18:14 6.0.2+288
  }

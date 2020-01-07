@@ -137,7 +137,7 @@
          ⍵.GK←'second seconds'
          ⍵.GT←'NO MSG'
          ⍵.GU←'New in Editor'
-         ⍵.GX←'No tracked projects'
+         ⍵.GX←'⎕No tracked projects'
          ⍵.GY←'APLSource/'
          ⍵.GZ←'.txt'
 
