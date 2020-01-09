@@ -6,10 +6,6 @@
          qed.(onFix onAfterFix)←⍬⍴⎕XSI ⋄ ⎕SE.⎕WX←wx ⍝ reset ⎕WX
          {0}SV.itemvalue←editStore ⎕NS''            ⍝ create value store
      }''
-⍝     (⍵≡'Close'):{                                  ⍝ from Close
-⍝         qed←'⎕SE'⎕WG'Editor' ⋄ (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1
-⍝         qed.(onFix onAfterFix)←SV.fxnftr ⋄ {0}⎕SE.⎕WX←wx
-⍝     }''
      (editor event value space name new)←6↑⍵        ⍝ so long as onFix unchanged
      first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space            ⍝ is space scripted?
      {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:cont ⍵
@@ -32,7 +28,7 @@
      z←logMsg MS.DS,⊃dat setChange fqn type newval
      {}logMsg if(0 1 1 1 arrayType)afterSave fqn file
 ⍝ ⍺ probably missing
-⍝ ⍵ 'Start' or 'Close' or callback argument
-⍝ ← 0 for 'Start' and 'Close' - else none
-⍝ Phil 2020-01-09 14:25 6.0.2+289
+⍝ ⍵ 'Start' or callback argument
+⍝ ← 0 for 'Start' - else none
+⍝ Phil 2020-01-09 14:47 6.0.2+289
  }
