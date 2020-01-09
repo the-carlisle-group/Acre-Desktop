@@ -1,19 +1,20 @@
  editFix←{⍺←⊢
-     (⍵≡'Start'):{                                  ⍝ from Start
-         (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
-         SV.fixandafter←⊃if≢¨qed.(onFix onAfterFix) ⍝ odd extra nesting!
+     st←⍵≡'Start' ⋄ v17←18>⊃SV.aplver ⋄ cont←{(⍎first⊃⌽SV.fxnftr)}⍣v17
+     st>v17:{0}⎕SE.Dyalog.(⍎'Hooks'⎕NS'').(Fix AfterFix)←⍬⍴⎕XSI
+     st∧v17:{(wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
+         SV.fxnftr←⊃if≢¨qed.(onFix onAfterFix) ⍝ odd extra nesting!
          qed.(onFix onAfterFix)←⍬⍴⎕XSI ⋄ ⎕SE.⎕WX←wx ⍝ reset ⎕WX
          {0}SV.itemvalue←editStore ⎕NS''            ⍝ create value store
      }''
-     (⍵≡'Close'):{                                  ⍝ from Close
-         qed←'⎕SE'⎕WG'Editor' ⋄ (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1
-         qed.(onFix onAfterFix)←SV.fixandafter ⋄ {0}⎕SE.⎕WX←wx
-     }''
+⍝     (⍵≡'Close'):{                                  ⍝ from Close
+⍝         qed←'⎕SE'⎕WG'Editor' ⋄ (wx ⎕SE.⎕WX)←⎕SE.⎕WX 1
+⍝         qed.(onFix onAfterFix)←SV.fxnftr ⋄ {0}⎕SE.⎕WX←wx
+⍝     }''
      (editor event value space name new)←6↑⍵        ⍝ so long as onFix unchanged
      first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space            ⍝ is space scripted?
-     {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:(⍎first⊃⌽SV.fixandafter)⍵
+     {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:cont ⍵
      fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(nonul new)∧2≠space.⎕NC name
-     0=dat←whichProject fqn:(⍎first⊃⌽SV.fixandafter)⍵
+     0=dat←whichProject fqn:cont ⍵
      (null validItems fqn):
      first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
          z←SV.itemvalue editStore nv
@@ -33,5 +34,5 @@
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or 'Close' or callback argument
 ⍝ ← 0 for 'Start' and 'Close' - else none
-⍝ Phil 2018-10-23 19.51
+⍝ Phil 2020-01-09 14:25 6.0.2+289
  }
