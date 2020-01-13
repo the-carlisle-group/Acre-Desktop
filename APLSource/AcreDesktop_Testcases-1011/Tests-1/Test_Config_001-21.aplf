@@ -19,7 +19,7 @@
  →T.GoToTidyUp result≢'#.',projectName
  →T.GoToTidyUp 1≠F.IsFile projectPath,'\APLSource\Hello-1.aplf'
  F.RmDir projectPath
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 
 
  :Trap (~stopFlag)/0
@@ -30,7 +30,7 @@
  →T.GoToTidyUp result≢'#.',projectName
  →T.GoToTidyUp 1≠F.IsFile projectPath,'\APLSource\Hello.aplf'
  F.RmDir projectPath
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 
  :Trap (~stopFlag)/0
      result←∆RunUcmd'Createproject ',projectPath,' #.',projectName  ⍝ Default is "off"
@@ -46,5 +46,5 @@
 ∆TidyUp:
  F.RmDir projectPath
  ∆ClearLog
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 ⍝Done

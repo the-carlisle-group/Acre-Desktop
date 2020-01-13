@@ -35,7 +35,7 @@
  result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
  →T.GoToTidyUp 6≠≢list←F.ListFiles projectPath,'\.acre\changes\'
 
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
  F.RmDir projectPath
  #.⎕EX projectName
 
@@ -50,7 +50,7 @@
  result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
  →T.GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
 
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
  F.RmDir projectPath
  #.⎕EX projectName
 
@@ -69,6 +69,6 @@
 
 ∆TidyUp:
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
  F.RmDir projectPath
 ⍝Done

@@ -1,0 +1,7 @@
+ CloseProject←{dat←⍺
+     ≢dataSpaces dat⊣logMsg MS.BX,dat.nspath
+⍝ close a tracked project
+⍝ ⍺ dat
+⍝ ← number tracked
+⍝ Phil 2020-01-10 10:17 6.0.2+289
+ }

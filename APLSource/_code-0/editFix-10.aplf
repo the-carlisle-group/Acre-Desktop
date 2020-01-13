@@ -1,10 +1,10 @@
  editFix←{⍺←⊢
-     st←⍵≡'Start' ⋄ v17←18>⊃SV.aplver ⋄ cont←{(⍎first⊃⌽SV.fxnftr)}⍣v17
+     st←⍵≡'Start' ⋄ v17←18>⊃SV.aplver ⋄ cont←{(⍎first⊃⌽SV.fxnftr)⍵}⍣v17
+     z←{{0}SV.itemvalue←editStore ⎕NS''}⍣st⊢0  ⍝ create value store
      st>v17:{0}⎕SE.Dyalog.(⍎'Hooks'⎕NS'').(Fix AfterFix)←⍬⍴⎕XSI
      st∧v17:{(wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
          SV.fxnftr←⊃if≢¨qed.(onFix onAfterFix) ⍝ odd extra nesting!
-         qed.(onFix onAfterFix)←⍬⍴⎕XSI ⋄ ⎕SE.⎕WX←wx ⍝ reset ⎕WX
-         {0}SV.itemvalue←editStore ⎕NS''            ⍝ create value store
+         {0}⎕SE.⎕WX←wx⊣qed.(onFix onAfterFix)←⍬⍴⎕XSI ⍝ reset ⎕WX
      }''
      (editor event value space name new)←6↑⍵        ⍝ so long as onFix unchanged
      first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space            ⍝ is space scripted?

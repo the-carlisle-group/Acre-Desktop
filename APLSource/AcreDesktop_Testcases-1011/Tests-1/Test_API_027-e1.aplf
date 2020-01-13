@@ -12,7 +12,7 @@
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP -keephistory=on'
  →T.GoToTidyUp'#.TEMP'≢result
 
- result←⎕SE.acre.Close'#.TEMP'
+ result←⎕SE.acre.CloseProject'#.TEMP'
  →T.GoToTidyUp 1≢result
  #.⎕EX'TEMP'
 
@@ -27,5 +27,5 @@
 
 ∆TidyUp:
  :Trap 0 ⋄ {}F.RmDir path ⋄ :EndTrap
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'
 ⍝Done

@@ -1,5 +1,5 @@
  R←Test_Misc_009(stopFlag batchFlag);⎕TRAP;projectName;projectPath;ref;result;list;noOf
-⍝ Exercise the `]acre.Close` command.
+⍝ Exercise the `]acre.CloseProject` command.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←T._Failed
@@ -19,7 +19,7 @@
  →T.GoToTidyUp result≢'#.',projectName
 
  →T.PassesIf(noOf+1)=≢∆RunUcmd'Projects'
- result←∆RunUcmd'Close #.',projectName
+ result←∆RunUcmd'CloseProject #.',projectName
  →T.PassesIf noOf=≢∆RunUcmd'Projects'
 
  R←T._OK
@@ -27,5 +27,5 @@
 ∆TidyUp:
  F.RmDir projectPath
  ∆ClearLog
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 ⍝Done

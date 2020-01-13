@@ -12,7 +12,7 @@
  result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName,' -casecode=on -keephistory=on'
  →T.GoToTidyUp result≢'#.',projectName
  →T.GoToTidyUp 0≠≢list←F.ListFiles projectPath,'\.acre\changes\'
- result←∆RunUcmd'Close #.',projectName
+ result←∆RunUcmd'CloseProject #.',projectName
 
  result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName  ⍝ FILE NAME ERROR? file "Latest" is missing!  ⍝TODO⍝  Still crashes in 15.0 Kai 2019-09-02 11:13
  →T.GoToTidyUp 0≠≢list←F.ListFiles projectPath,'\.acre\changes\'
@@ -34,5 +34,5 @@
 ∆TidyUp:
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
  F.RmDir projectPath
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 ⍝Done

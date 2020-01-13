@@ -22,7 +22,7 @@
  ref.⎕FX'r←(fns Hello) dummy' 'r←42'
  result←∆RunUcmd'SetChanged #.',projectName,'.Hello'
  →T.GoToTidyUp(,⊂'#.',projectName,'.Hello')≢result
- result←∆RunUcmd'Close #.',projectName
+ result←∆RunUcmd'CloseProject #.',projectName
  →T.GoToTidyUp 1≠result
  #.⎕EX projectName
  #.⎕SHADOW projectName
@@ -37,5 +37,5 @@
 ∆TidyUp:
  F.RmDir projectPath
  ∆ClearLog
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 ⍝Done

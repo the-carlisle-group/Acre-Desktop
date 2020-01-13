@@ -85,7 +85,7 @@
 ∆TidyUp:
  F.RmDir¨projectPath1 projectPath2 projectPath3
  ∆ClearLog
- ∆RunUcmd'Close #.',projectName1
- ∆RunUcmd'Close #.',projectName2
- ∆RunUcmd'Close #.',projectName3
+ ∆RunUcmd'CloseProject #.',projectName1
+ ∆RunUcmd'CloseProject #.',projectName2
+ ∆RunUcmd'CloseProject #.',projectName3
 ⍝Done

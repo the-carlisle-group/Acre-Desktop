@@ -84,7 +84,7 @@
  :Trap 0 ⋄ F.RmDir projectPath2 ⋄ :EndTrap
  :Trap 0 ⋄ F.RmDir projectPath3 ⋄ :EndTrap
  ∆ClearLog
- :Trap 0 ⋄ ∆RunUcmd'Close #.',projectName ⋄ :EndTrap
- :Trap 0 ⋄ ∆RunUcmd'Close #.',projectName2 ⋄ :EndTrap
- :Trap 0 ⋄ ∆RunUcmd'Close #.',projectName3 ⋄ :EndTrap
+ :Trap 0 ⋄ ∆RunUcmd'CloseProject #.',projectName ⋄ :EndTrap
+ :Trap 0 ⋄ ∆RunUcmd'CloseProject #.',projectName2 ⋄ :EndTrap
+ :Trap 0 ⋄ ∆RunUcmd'CloseProject #.',projectName3 ⋄ :EndTrap
 ⍝Done

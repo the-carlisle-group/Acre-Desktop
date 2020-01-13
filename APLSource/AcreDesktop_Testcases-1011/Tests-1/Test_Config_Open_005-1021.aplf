@@ -17,7 +17,7 @@
      →T.GoToTidyUp 1
  :EndTrap
 
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'
  #.⎕EX'TEMP'
 
  configFilename←2⊃∆ReadConfigFile projectPath
@@ -43,5 +43,5 @@
 ∆TidyUp:
  :Trap 0 ⋄ F.RmDir projectPath ⋄ :EndTrap
  ∆ClearLog
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'
 ⍝Done

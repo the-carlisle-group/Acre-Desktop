@@ -13,7 +13,7 @@
  ref.vars←buff←'* This' '* That' '\\' 'This is another paragraph'
  result←∆RunUcmd'CreateProject ',projectPath,' #.',projectName,' -variables=on'   ⍝ QuadVars is added automatically
  →T.GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\APLSource\'
- result←∆RunUcmd'Close #.',projectName
+ result←∆RunUcmd'CloseProject #.',projectName
  →T.GoToTidyUp 0=≢result
  #.⎕EX projectName
  result←∆RunUcmd'OpenProject ',projectPath
@@ -25,6 +25,6 @@
 
 ∆TidyUp:
  F.RmDir projectPath
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
  ∆ClearLog
 ⍝Done

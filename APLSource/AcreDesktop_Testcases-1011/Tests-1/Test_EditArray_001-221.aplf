@@ -27,5 +27,5 @@
      ⊣F.RmDir acreDir
  :EndIf
  ∆ClearLog
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'
 ⍝Done
