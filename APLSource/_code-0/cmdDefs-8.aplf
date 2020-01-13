@@ -33,7 +33,7 @@
              ⍵.type←'item'
              ⍵
          }⎕NS'')({
-             ⍵.command←'Close'
+             ⍵.command←'CloseProject'
              ⍵.help←'Close (stop tracking) a tracked project'
              ⍵.options←'all'
              ⍵.result←''

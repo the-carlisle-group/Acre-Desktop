@@ -21,10 +21,10 @@
  →T.PassesIf'.charlist'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo←1 2 3 'abc' 'def'
- →T.PassesIf'.array'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
+ →T.PassesIf'.apla'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'
 
  #.TEMP.Foo2←'abc'
- →T.PassesIf'.array' '.charstring'≡⎕SE.acre.Nameclass'#.TEMP.Foo' '#.TEMP.Foo2'
+ →T.PassesIf'.apla' '.charstring'≡⎕SE.acre.Nameclass'#.TEMP.Foo' '#.TEMP.Foo2'
 
  #.TEMP.⎕EX'Foo' ⋄ #.TEMP.Foo←{+/⍵}
  →T.PassesIf'.aplf'≡1⊃⎕SE.acre.Nameclass'#.TEMP.Foo'

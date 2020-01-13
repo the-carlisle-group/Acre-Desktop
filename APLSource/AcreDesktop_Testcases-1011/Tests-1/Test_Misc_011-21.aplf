@@ -26,7 +26,7 @@
  ref.⎕FIX':Namespace Foo' '∇r←Hello dummy' 'r←43' '∇' ':EndNamespace'
  result←∆RunUcmd'SetChanged #.',projectName,'.Foo'
  →T.GoToTidyUp'#.Test_Misc_011.Foo'≢∊result
- {}∆RunUcmd'Close #.',projectName
+ {}∆RunUcmd'CloseProject #.',projectName
  result←∆RunUcmd'OpenProject ',projectPath,' #.',projectName
  →T.GoToTidyUp('#.',projectName)≢result
 
@@ -35,5 +35,5 @@
 ∆TidyUp:
  F.RmDir projectPath
  ∆ClearLog
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 ⍝Done

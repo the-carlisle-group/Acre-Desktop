@@ -14,7 +14,7 @@
  path←{_←F.DeleteFile ⍵ ⋄ ¯4↓⍵}F.GetTempFilename''
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
  Assert'#.TEMP'≡result
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'
  result←∆RunUcmd'OpenProject "',path,'"'
  Assert'#.TEMP'≡result
 
@@ -31,5 +31,5 @@
 
 ∆TidyUp:
  F.RmDir path
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'
 ⍝Done

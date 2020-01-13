@@ -25,5 +25,5 @@
 ∆TidyUp:
  F.RmDir projectPath
  ∆ClearLog
- ∆RunUcmd'Close #.',projectName
+ ∆RunUcmd'CloseProject #.',projectName
 ⍝Done

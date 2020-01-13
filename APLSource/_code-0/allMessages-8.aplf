@@ -25,7 +25,7 @@
          ⍵.AX←'.*'             ⍝ set as filetype for unknown
          ⍵.AY←⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
          ⍝ above MS.AZ and below MS.AY MUST correspond!
-         ⍵.AY[⍵.AY⍳⍵.(AF AO AN AC AI)]←'.apl'∘,¨'f' 'o' 'n' 'c' 'i'
+         ⍵.AY[⍵.AY⍳⍵.(AA AF AO AN AC AI)]←'.apl'∘,¨'a' 'f' 'o' 'n' 'c' 'i'
 
          ⍵.BA←'by ',MS.NA
          ⍵.BB←'Variables is Off'
@@ -159,5 +159,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2019-09-16 20:05 6.0.2+270
+⍝ Phil 2020-01-10 10:17 6.0.2+289
  }

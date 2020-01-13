@@ -2,11 +2,14 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 6.0.2+289 2020-01-06 18:14
+⍝ Acre 6.0.2-adam+292 2020-01-13 15:29
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝    fixed bug #214 Attempt to create a root project with a single function crashes acre
+⍝   .apla files now default for arrays with synonym .array
+⍝   .array will be renamed to .apla by OpenProject and Refresh
+⍝   CloseProject command/function replaces Close
+⍝   Dyalog ≥18.0 uses ⎕SE.Dyalog.Hooks protocol for editor callback
 ⍝
-⍝ Phil 2020-01-06 18:14 6.0.2+288
+⍝ Phil 2020-01-13 15:29 6.0.2-adam+291
  }

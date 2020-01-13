@@ -24,11 +24,11 @@
  list←F.ListFiles acreDir,'\.acre\changes\'
  →T.GoToTidyUp 1≠≢list
  filename←2⊃##.APLTreeUtils.SplitPath⊃list
- →T.GoToTidyUp filename≢'Hello-1.array.change'
+ →T.GoToTidyUp filename≢'Hello-1.apla.change'
 
  R←T._OK
 
 ∆TidyUp:
  F.RmDir acreDir
  ∆ClearLog
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'

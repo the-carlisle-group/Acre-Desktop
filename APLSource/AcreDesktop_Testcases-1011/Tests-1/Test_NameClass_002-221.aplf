@@ -18,7 +18,7 @@
  ref.⎕FIX':Class MyClass' '' ':EndClass'
  ref.⎕FIX':Namespace MyNamespace' ':EndNamespace'
  ref.⎕FIX':Interface MyInterface' ':EndInterface'
- expected←'.aplf' '.aplo' '.charstring' '.charlist' '.charmat' '.array' '.aplc' '.apln' '.apli'
+ expected←'.aplf' '.aplo' '.charstring' '.charlist' '.charmat' '.apla' '.aplc' '.apln' '.apli'
  names←'Hello' 'MyOp' 'varsSimple' 'varsVTV' 'varsMat' 'varsMixed' 'MyClass' 'MyNamespace' 'MyInterface'
  list←⎕SE.acre.Nameclass(⊂'#.',projectName,'.'),¨names
  →T.GoToTidyUp list≢expected

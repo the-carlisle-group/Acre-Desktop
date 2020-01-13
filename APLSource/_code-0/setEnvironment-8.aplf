@@ -13,7 +13,7 @@
      }⎕THIS
      SV.sessionstart←sessionStart''
      z←editFix'Start' ⍝ ← sets other stuff in SV
-     z←logMsg⍕Version''
+     z←logMsg'⎕',⍕Version''
      s←⊃'B'UT.mn⊢m←⊃⊃2 _NINFO SV.logfile
      z←logMsg(×m)/('⎕'/⍨'M'∊s),s,MS.FP,SV.logfile
      z←setAPI''
@@ -22,5 +22,5 @@
 ⍝ ⍵ path ws name
 ⍝   there should be no tracked instances when this runs
 ⍝ ← 1
-⍝ Phil 2019-12-05 08:41 6.0.2+284
+⍝ Phil 2020-01-10 17:39 6.0.2-adam+290
  }

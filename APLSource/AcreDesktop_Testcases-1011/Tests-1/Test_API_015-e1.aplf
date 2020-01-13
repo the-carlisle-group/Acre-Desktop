@@ -1,5 +1,5 @@
  R←Test_API_015(stopFlag batchFlag);⎕TRAP;path;result;buff;openList
-⍝ Exercise the API function `Close`.
+⍝ Exercise the API function `CloseProject`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  R←T._Failed
@@ -16,11 +16,11 @@
  result←∆RunUcmd'CreateProject "',path,'" #.TEMP'
 
  →T.GoToTidyUp({⍵[;1]}⎕SE.acre.Projects'')≢openList[;1],⊂result
- →T.GoToTidyUp(≢openList)≢⎕SE.acre.Close result
+ →T.GoToTidyUp(≢openList)≢⎕SE.acre.CloseProject result
  →T.GoToTidyUp({⍵[;1]}⎕SE.acre.Projects'')≢openList[;1]
 
  R←T._OK
 
 ∆TidyUp:
- ∆RunUcmd'Close #.TEMP'
+ ∆RunUcmd'CloseProject #.TEMP'
 ⍝Done
