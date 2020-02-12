@@ -147,7 +147,7 @@
          }⎕NS'')({
              ⍵.command←cmd←'Remove',name
              z←⎕THIS.⍎cmd,'←Remove'
-             ⍵.help←'Close all projects and remove ',name,' from ⎕SE resetting as found.'
+             ⍵.help←'Close all tracked projects and remove the ⎕SE.',name,' namespace resetting ⎕SE as found'
              ⍵.options←''
              ⍵.result←''
              ⍵.syntax←''

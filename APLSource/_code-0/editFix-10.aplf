@@ -21,7 +21,7 @@
      (oldval≡newval←⊃2⊃getValue,⊂fqn):              ⍝ unchanged
      file←⊃dat getSourceFilenames fqn
      var←2∊⌊⎕NC fqn
-     old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1     ⍝ .array .charlist &c.
+     old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1     ⍝ .char*
      old<dat.vars<var:{}logMsg'⎕',MS.BD,'- ',fqn,' - ',MS.BB   ⍝ don't save
      type←⊃nameClass fqn
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
@@ -30,5 +30,5 @@
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or callback argument
 ⍝ ← 0 for 'Start' - else none
-⍝ Phil 2020-01-09 14:47 6.0.2+289
+⍝ Phil 2020-01-16 11:16 7.0.0+293
  }

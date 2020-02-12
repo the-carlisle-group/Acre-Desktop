@@ -12,7 +12,7 @@
          ⍵.NB←'.',MS.NA,'/'
          ⍵.NU←nms.author
 
-         ⍵.AA←'.array'         ⍝ array
+         ⍵.AA←'.array'         ⍝ apla
          ⍵.AF←'.function'      ⍝ aplf              ⍝ Dylog
          ⍵.AO←'.operator'      ⍝ aplo              ⍝ preferred
          ⍵.AN←'.script'        ⍝ apln              ⍝ item
@@ -21,7 +21,7 @@
          ⍵.AL←'.charlist'      ⍝ charlist
          ⍵.AM←'.charmat'       ⍝ charmat
          ⍵.AS←'.charstring'    ⍝ charstring
-         ⍵.AW←'.*ar*'          ⍝ array of any type
+         ⍵.AW←'.char*'         ⍝ char array
          ⍵.AX←'.*'             ⍝ set as filetype for unknown
          ⍵.AY←⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
          ⍝ above MS.AZ and below MS.AY MUST correspond!
@@ -159,5 +159,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2020-01-10 10:17 6.0.2+289
+⍝ Phil 2020-01-16 11:16 7.0.0+293
  }
