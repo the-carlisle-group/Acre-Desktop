@@ -2,9 +2,10 @@
      null⊢ms←ntbs if≡⍵:ms
      hd←nout{⍵((⍵≠' ')\'=')}⍺⊣''
      da←hd,ms
+     quad←{⎕←⍵}⍣(On SV.sessionmsg)
      dt←DT.(dt2fm ts2dt ⎕TS),' '
-     z←{⎕←⍵}/0,⍪da/⍨SV.error∨←'!'∊⊃¨da  ⍝ errors to session
-     z←{⎕←⍵}¨⍣(∨/z)⊢da←da↓¨⍨z←'⎕'=⊃¨da  ⍝ warning to session
+     z←quad/0,⍪da/⍨SV.error∨←'!'∊⊃¨da  ⍝ errors to session
+     z←quad¨⍣(∨/z)⊢da←da↓¨⍨z←'⎕'=⊃¨da  ⍝ warning to session
      dd←MP.log{(⊢↑⍨1000⌊≢)⍵,⍺}←dt∘,¨da
      z←⍎SV.loghaschanged,'⋄ 1'          ⍝ user exit for log change
      ~_NEXISTS SV.logfile:ms

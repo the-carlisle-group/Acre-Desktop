@@ -6,7 +6,7 @@
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
          z←setEmulators''
-         SV.logfile←path,MS.CJ
+         SV.(logfile sessionmsg)←(path,MS.CJ)MS.GA
          z←setCase''
          ⍵.MP←{⍵⊣⍵.log←,¨''}⎕SE.⎕NS''
          ⍵

@@ -20,7 +20,7 @@
      null dat caseOK fqn:
      (oldval≡newval←⊃2⊃getValue,⊂fqn):              ⍝ unchanged
      file←⊃dat getSourceFilenames fqn
-     var←2∊⌊⎕NC fqn
+     var←2∊⌊⎕NC fqn ⋄ SV.sessionmsg←MS.GA
      old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1     ⍝ .char*
      old<dat.vars<var:{}logMsg'⎕',MS.BD,'- ',fqn,' - ',MS.BB   ⍝ don't save
      type←⊃nameClass fqn
@@ -30,5 +30,5 @@
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or callback argument
 ⍝ ← 0 for 'Start' - else none
-⍝ Phil 2020-01-16 11:16 7.0.0+293
+⍝ Phil 2020-02-14 18:45 7.0.0+299
  }

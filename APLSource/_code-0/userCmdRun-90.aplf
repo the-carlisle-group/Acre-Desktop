@@ -3,16 +3,17 @@
      ⎕THIS.OPT←⎕NS arg.⎕NS opt←'qwertyuiopasdfghjklzxcvbnm'arg.⎕NL-2.1
      z←Start⍣new⊢path wsid name            ⍝ once
      SV.debug←1∊⎕SE.SALTUtils.DEBUG        ⍝ OK?
+     was SV.sessionmsg←SV.sessionmsg MS.GA
      SV.space←space,'.'                    ⍝ whence called
      SV.error←0
-     SV.arguments←,⊂arg.Arguments          ⍝ ditto
      z←openProjects''                      ⍝ still open?
      opt←,/'-',opt,'=',⍪⊢∘⍕∘arg.⍎/0,⍪opt
-     z←logMsg⍕']',name,'.',method,(⊃SV.arguments),opt
+     z←logMsg⍕']',name,'.',method,arg.Arguments,opt
 ⍝         ↓↓↓↓↓
      res←(⍎method)runType type⍕¨arg.Arguments
+     SV.sessionmsg←was
      z←⎕SIGNAL/' ',SV.error/11
      res
 ⍝ ⍵ new; method; arg ns; type of fn; whence called; whence loaded; system.
-⍝ Phil 2019-09-10 11:22 6.0.2+266
+⍝ Phil 2020-02-14 14:42 7.0.0+298
  }

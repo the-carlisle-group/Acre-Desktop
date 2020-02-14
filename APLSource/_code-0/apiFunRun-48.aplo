@@ -1,6 +1,7 @@
  apiFunRun←{
      z←⎕SIGNAL/(⊂MS.DX),4/⍨1≠≢⍴1/⍵
      SV.debug←⎕SE.SALTUtils.DEBUG
+     was SV.sessionmsg←SV.sessionmsg MS.GB
      SV.debug↓0::⎕SIGNAL/⌽⎕EN,⎕DM
      ⍺←⊢ ⋄ fn←⍺⍺ ⋄ fnm type←⍵⍵ ⋄ nam←MS.NA
      z←⎕SE.UCMD if(newSession'')⊢nam,'.Version' ⍝ sledgehammer
@@ -12,7 +13,10 @@
      z←OPT.{⍎⍺,'←⍵'}/opt←opt⌿⍨~nil⊣/opt  ⍝ resolve abbreviations
      z←logMsg⍕⍺,'[',nam,'].',fnm,' ',{(2×',⊂'≡2↑⍵)↓⍵}PL.encode arg,↓opt
      z←setSpace''
-     ⍺ ⍺⍺ runType type⊢arg
+⍝               ↓↓↓
+     res←⍺ ⍺⍺ runType type⊢arg
+     SV.sessionmsg←was
+     res
 ⍝ [⍺] - larg to fn
 ⍝  ⍺⍺ - fn
 ⍝  ⍵⍵ - fnname
