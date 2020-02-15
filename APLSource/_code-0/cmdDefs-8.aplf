@@ -67,7 +67,7 @@
          }⎕NS'')({
              ⍵.command←'Erase'
              ⍵.help←'Erase an item, items or a space from a tracked project'
-             ⍵.options←'recursive' ⍝ 'confirm recursive'
+             ⍵.options←'recursive'
              ⍵.result←''
              ⍵.syntax←'item(s) | space'
              ⍵.type←'item'
@@ -218,5 +218,5 @@
 ⍝ To add a new command clone from "}⎕NS'')({" to " ⍵ " and change the values
 ⍝ Once installed run "]command -?" and follow the link to add the documentation
 ⍝ see optionFields for valid options
-⍝ Phil 2019-09-24 08:57 6.0.2+274
+⍝ Phil 2020-02-15 11:41 7.0.0+302
  }

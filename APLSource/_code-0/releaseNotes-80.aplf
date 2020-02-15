@@ -2,12 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 7.0.0+302 2020-02-14 20:50
+⍝ Acre 7.0.0+304 2020-02-15 18:13
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * No **⎕SE.acre._function_** will deliver any messages to the session.
-⍝ * But **]acre._commands_** and the **editor callback** will continue to do so.
+⍝ * Removing redundant options
 ⍝
-⍝ Phil 2020-02-14 20:50 7.0.0+301
+⍝ Phil 2020-02-15 18:13 7.0.0+303
  }

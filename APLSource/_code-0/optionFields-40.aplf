@@ -2,16 +2,12 @@
      ⎕THIS.DO←{
          ⍵.all←''
          ⍵.casecode←':off'
-         ⍵.confirm←':'
          ⍵.dependencies←':on'
          ⍵.keephistory←':off'
-         ⍵.quadlx←':'
          ⍵.recursive←''
-         ⍵.reopen←''
          ⍵.track←':on'
          ⍵.variables←':off'
          ⍵.when←'[=]'
-         ⍵.wsid←':'
          ⍵
      }⎕NS''
      len←⌊/≢¨nms←~∘' '¨↓DO.⎕NL 2
@@ -25,5 +21,5 @@
      (n↓⊃res)('nargs=',num) ⍝ see openLoad
 ⍝ convert strings of initial abbreviations to option specs
 ⍝ see cmdDefs
-⍝ Phil 2019-09-24 08:57 6.0.2+274
+⍝ Phil 2020-02-15 11:41 7.0.0+302
  }
