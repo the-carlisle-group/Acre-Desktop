@@ -13,7 +13,7 @@
      }⎕THIS
      SV.sessionstart←sessionStart''
      z←editFix'Start' ⍝ ← sets other stuff in SV
-     z←logMsg'⎕',⍕Version''
+     z←logMsg⍕Version''
      s←⊃'B'UT.mn⊢m←⊃⊃2 _NINFO SV.logfile
      z←logMsg(×m)/('⎕'/⍨'M'∊s),s,MS.FP,SV.logfile
      z←setAPI''

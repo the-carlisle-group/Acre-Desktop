@@ -2,11 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 7.0.0+304 2020-02-15 18:13
+⍝ Acre 7.0.0+305 2020-02-20 15:57
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * Removing redundant options
+⍝ * Remove version from session on startup
 ⍝
-⍝ Phil 2020-02-15 18:13 7.0.0+303
+⍝ Phil 2020-02-20 15:57 7.0.0+304
  }
