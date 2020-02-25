@@ -8,15 +8,16 @@
          0}logMsg MS.DG,' ',¯4 tPath dat.folder
      cfg←(dft←configFields'')readConfig dat.config ⍝ #171 SV.config
      z←'dat'⎕NS lcNs cfg.⎕NS dft.⎕NL 2 ⍝ reserved to dat
-⍝     nspath←{'/'UT.nn ¯1↓dat.folder}if null dat.projectspace if null tgt
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath←dat projPath tgt:{0}logMsg MS.DC
      ~dat openLoad trk dep:0 ⍝ load subsids
 
      z←logMsg(MS.ER,MS.EY),(¯4 tPath dat.folder),MS.EZ,dat.nspath
      z←⎕EX''if missing if(≢⍴){# UT.nl⍳10}if≢dat.nspath
      space←⍎dat.nspath #.⎕NS''⊣openProjects''
-     dat.(hist case vars)←On¨dat.(keephistory casecode variables)
-     cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
+⍝   dat.(hist case vars)←On¨dat.(keephistory casecode variables)
+     dat.(hist case)←On¨dat.(keephistory casecode)
+⍝   cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
+     cfg.(KeepHistory CaseCode)←dat.(⊂hist case)⌷MS.GB MS.GA
      dat.cfg←PL.encode cfg⊣cfg.ProjectFolder←dat.folder
      z←space MS.FV _is_ PL.decode dat.cfg ⍝ ←↑ no JSON pre 14.1
      z←deleteFolder⍣(cde>dat.hist)⊢dat.code  ⍝ turned off
@@ -32,5 +33,5 @@
 ⍝ [⍺] trk dep
 ⍝ ⍵ trk dep (folder [space])
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
-⍝ Phil 2019-01-17 16.32
+⍝ Phil 2020-02-25 07:05 7.0.0+305
  }

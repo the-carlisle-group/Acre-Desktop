@@ -6,10 +6,10 @@
          ⍵.ProjectSpace←''    ⍝ #[.path]
          ⍵.Open←''            ⍝ deprecated ⍝TODO⍝
          ⍵.StartUp←''         ⍝ executed after OpenProject
-         ⍵.Variables←'Off'    ⍝ on: all vars | off: already or on request
+⍝       ⍵.Variables←'Off'    ⍝ on: all vars | off: already or on request
          ⍵
      }#.⎕NS''
 ⍝ ⍵ ?
 ⍝ ← config space
-⍝ Phil 2019-08-17 07:53 5.2.0+240
+⍝ Phil 2020-02-25 07:05 7.0.0+305
  }

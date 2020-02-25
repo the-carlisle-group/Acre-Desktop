@@ -28,7 +28,7 @@
          ⍵.AY[⍵.AY⍳⍵.(AA AF AO AN AC AI)]←'.apl'∘,¨'a' 'f' 'o' 'n' 'c' 'i'
 
          ⍵.BA←'by ',MS.NA
-         ⍵.BB←'Variables is Off'
+         ⍵.BB←'use SetChanged' ⍝ 'Variables is Off'
          ⍵.BC←'⎕Please wait - '
          ⍵.BD←'Not stored '
          ⍵.BE←MS.BD,MS.BA
@@ -159,5 +159,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2020-01-16 11:16 7.0.0+293
+⍝ Phil 2020-02-25 07:05 7.0.0+305
  }
