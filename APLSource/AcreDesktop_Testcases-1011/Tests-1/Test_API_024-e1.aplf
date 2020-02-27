@@ -27,13 +27,13 @@
  ref.⎕FX'r←Hello2' 'r←''Universe'''
  ref.TheAnswer←42
  result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
- →T.GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
- →T.GoToTidyUp 3≠≢list←F.ListFiles projectPath,'\APLSource\'
+ →T.GoToTidyUp 4≠≢list←F.ListFiles projectPath,'\.acre\changes\'  ⍝ Because QuadVars is added due to the recursive option
+ →T.GoToTidyUp 4≠≢list←F.ListFiles projectPath,'\APLSource\'
 
  ref.⎕FX'r←Hello3' 'r←''You'''
  ref.Vars2←'More'
  result←⎕SE.acre.SetChanged('#.',projectName)('recursive' 1)
- →T.GoToTidyUp 5≠≢list←F.ListFiles projectPath,'\.acre\changes\'
+ →T.GoToTidyUp 6≠≢list←F.ListFiles projectPath,'\.acre\changes\'
 
  ∆RunUcmd'CloseProject #.',projectName
  F.RmDir projectPath
@@ -90,4 +90,5 @@
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
  ∆RunUcmd'CloseProject #.',projectName
  F.RmDir projectPath
+⍝ Phil 2020-02-26 22:57 7.0.0+306
 ⍝Done

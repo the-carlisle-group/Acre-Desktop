@@ -2,11 +2,15 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 7.0.0+306 2020-02-25 07:05
+⍝ Acre 8.0.0+308 2020-02-27 09:08
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * variable config param retired
+⍝ * ⎕SE.acre._functions_ no longer deliver messages to the session
+⍝ * Redundant options removed
+⍝ * Remove version from session on startup
+⍝ * Remove "Variables" configuration parameter
+⍝ * Edit no longer adds new variables - use SetChanged
 ⍝
-⍝ Phil 2020-02-25 07:05 7.0.0+305
+⍝ Phil 2020-02-27 09:08 8.0.0+307
  }
