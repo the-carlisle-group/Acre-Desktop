@@ -1,0 +1,34 @@
+ R←Test_CreateProject_010(stopFlag batchFlag);⎕TRAP;projectName;ref;ref2;result;projectPath;list
+⍝ Create project with defaults from a namespace that carries 2 functions & 2 vars in the NS and a sub NS.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello1' 'r←''World'''
+ ref.vars1←'This and that'
+ ref2←⍎'Sub1'ref.⎕NS''
+ ref2.⎕FX'r←Hello2' 'r←''World'''
+ ref2.vars2←'This and that'
+ ∆ClearLog
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
+ :Else
+     →T.GoToTidyUp 1
+ :EndTrap
+ →T.GoToTidyUp result≢'#.',projectName
+
+ →T.GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →T.GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
+ →T.GoToTidyUp 3≠≢list←⊃F.Dir projectPath,'/APLSource/*'
+
+ R←T._OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆ClearLog
+ ∆RunUcmd'CloseProject #.',projectName
+⍝Done

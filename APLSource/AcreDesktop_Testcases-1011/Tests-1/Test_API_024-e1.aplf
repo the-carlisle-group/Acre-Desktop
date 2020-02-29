@@ -90,5 +90,4 @@
  :Trap 0 ⋄ ⎕FUNTIE tno ⋄ :EndTrap
  ∆RunUcmd'CloseProject #.',projectName
  F.RmDir projectPath
-⍝ Phil 2020-02-26 22:57 7.0.0+306
 ⍝Done

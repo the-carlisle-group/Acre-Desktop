@@ -1,0 +1,35 @@
+ R←Test_CreateProject_011(stopFlag batchFlag);⎕TRAP;projectName;ref;ref2;result;projectPath;list;expected
+⍝ Create project from a namespace that carries 2 functions & 2 vars in the NS and a sub NS but set vars=on
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ projectName←⊃⎕SI
+ projectPath←∆PATH,'/',projectName
+ #.⎕SHADOW projectName
+ ref←⍎projectName #.⎕NS''
+ ref.⎕FX'r←Hello1' 'r←''World'''
+ ref.vars1←'This and that'
+ ref2←⍎'Sub1'ref.⎕NS''
+ ref2.⎕FX'r←Hello2' 'r←''World'''
+ ref2.vars2←'This and that'
+ ∆ClearLog
+
+ :Trap (~stopFlag)/0
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -variables=on'
+ :Else
+     →T.GoToTidyUp 1
+ :EndTrap
+ →T.GoToTidyUp result≢'#.',projectName
+
+ →T.GoToTidyUp 0=F.IsDir projectPath,'/APLSource'
+ →T.GoToTidyUp 0=F.IsFile projectPath,'/acre.config'
+ →T.GoToTidyUp 5≠≢list←'recursive'F.ListFiles projectPath,'/APLSource/'   ⍝ 1 plus for QuadVars
+ expected←'Hello1' 'Hello2' 'vars2' 'quadVars' 'vars1'
+ →T.GoToTidyUp~expected ∆LazyMatch{2⊃⎕NPARTS ⍵}¨list
+ R←T._OK
+
+∆TidyUp:
+ F.RmDir projectPath
+ ∆ClearLog
+ ∆RunUcmd'CloseProject #.',projectName
+⍝Done

@@ -8,28 +8,28 @@
  projectPath←∆PATH,'/',projectName
  #.⎕SHADOW projectName
  ref←⍎projectName #.⎕NS''
+ ref2←⍎'Sub1'ref.⎕NS''
+ ref2.⎕FX'r←Hello1' 'r←''World'''
+ ref2.vars1←'This and that'
 
  :Trap (~stopFlag)/0
-     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName,' -keephistory=on'
+     result←∆RunUcmd'Createproject ',projectPath,' #.',projectName
  :Else
      →T.GoToTidyUp 1
  :EndTrap
  →T.GoToTidyUp result≢'#.',projectName
 
- ref2←⍎'Sub1'ref.⎕NS''
  ref3←⍎'Sub2'ref2.⎕NS''
  ref3.⎕FX'r←Hello' 'r←''World'''
- ref3.vars←'# Markdown' '' 'APL is Great'
+ ref3.vars2←'# Markdown' '' 'APL is Great'
  result←∆RunUcmd'SetChanged #.',projectName,'.Sub1 -recursive'
  →T.GoToTidyUp 0=≢result
 
- →T.GoToTidyUp 2≠≢list←F.ListFiles projectPath,'\.acre\changes\'            ⍝ Because QuadVars is added due to the recursive option
- →T.GoToTidyUp 3≠≢list←'recursive'F.ListFiles projectPath,'\APLSource\'
+ →T.GoToTidyUp 5≠≢list←'recursive'F.ListFiles projectPath,'\APLSource\' ⍝ Because QuadVars is added due to the recursive option
 
  R←T._OK
 
 ∆TidyUp:
  F.RmDir projectPath
  ∆RunUcmd'CloseProject #.',projectName
-⍝ Phil 2020-02-26 22:57 7.0.0+306
 ⍝Done
