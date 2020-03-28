@@ -1,5 +1,6 @@
- renameSource←{dat←⍺
-     ren←(⊢(⌿⍨)≢/)⊃{⍺,⍪dat getSourceFilenames ⍵}/⍵
+ renameSource←{dat←⍺ ⋄ path fqn←⍵
+     path fqn/⍨←⊂~((-⍴MS.AR)↑¨path)∊⊂MS.AR
+     ren←(⊢(⌿⍨)≢/)path,⍪dat getSourceFilenames fqn
      z←{0}_MKDIR/3,⍪∪((-'/'⍳⍨⌽)↓⊢)¨,ren
      msg←{
          t←⊃{~∘⍵-1+⍳1+≢⍵}⎕NNUMS
@@ -10,6 +11,9 @@
 ⍝ ⍺ dat
 ⍝ ⍵ paths fqns
 ⍝   if source filename for fqn ≢ path then rename path
+⍝ NOT IF path is currently a MS.AR ".raw"
+⍝ - that nameClass will call MS.AA ".apla"
+⍝ - should only occur in OpenProject
 ⍝ ← 0 - having messaged any failures
-⍝ Phil 2018-08-10 11.36
+⍝ Phil 2020-03-28 13:29 8.0.0+310
  }

@@ -4,5 +4,5 @@
      1:⊢ids←dataSpaces kill                   ⍝ remove
 ⍝ ensure tracked projects still in ws
 ⍝ remove any ids where nspath no longer a space.
-⍝ Phil 2018-06-06 21.11
+⍝ Phil 2020-03-20 22:13 8.0.0+308
  }

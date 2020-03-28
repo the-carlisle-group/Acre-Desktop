@@ -4,7 +4,7 @@
      z←#.ac.MS←allMessages 1⊃'.'sep⊃⎕XSI⊣#.(pl ut)←{⍵.(PL UT)}#.ac←⎕THIS
      z←setAplVer''
      #.⎕WSID←(⊃1 _NPARTS''),{'V',1⊃'.'⎕WG'APLVersion'}if(MS.CK∘≡)#.⎕WSID
-     'Branch: ',branch⊣0 0⍴keys''⊣⎕SE.acre.Log'show'
+     'Branch: ' 'Hours:',⍪branch hours⊣0 0⍴keys''⊣⎕SE.acre.Log'show'
 ⍝
 ⍝ Phil 2020-01-09 14:08 6.0.2+289
  }

@@ -1,18 +1,21 @@
  putSource←{dat←⍺
      null⊢fqn type value←,∘⊂¨if(≡⊃)⍵:⍵
      src tgt←dat.(nspath source)
-     path←dat getSourceFilenames fqn
+     path←dat getSourceFilenames fqn ⍝ misnames ...raw as ...apla
+     (z/path)←,∘MS.AR¨(-⍴(MS.AZ⍳⊂MS.AA)⊃MS.AY)∘↓¨path/⍨z←type∊⊂MS.AR
      old←×≢⊃_NINFO tgt,'*'           ⍝ nothing in APLSource
      z←_MKDIR/3,⍪∪((-'/'⍳⍨⌽)↓⊢)¨path ⍝ now there is
      z←{fn←{⊃⊃_NINFO(UT.sp ⍵),MS.AX}¨path
          dat renameSource(~nil fn)∘/¨fn fqn}⍣old⊢0
      (b/path)←{⍺ UT.re MS.AX ⍵}⌿↑path type/¨⍨⊂b←(1∊MS.AX⍷⊢)¨path
-     z←(,∘⊂if≡¨value){(,⍺)_NPUT ⍵}¨path
+     txt←~raw←type∊⊂MS.AR
+     z←{⎕FUNTIE t⊣⍺ ⎕FAPPEND t←⍵ ⎕FCREATE 0}/raw⌿value,⍪path
+     z←{(,⊂if≡⍺)_NPUT ⍵}/txt⌿value,⍪path
      fqn type value
 
 ⍝ ⍺ dat
 ⍝ ⍵ FQNs type values
 ⍝ ← ⍵ same - having written to sourcetree
 ⍝   write to source tree files
-⍝ Phil 2018-08-07 14.40
+⍝ Phil 2020-03-28 13:14 8.0.0+309
  }

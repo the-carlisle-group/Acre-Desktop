@@ -2,15 +2,12 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.0.0+308 2020-02-27 09:08
+⍝ Acre 8.0.0+314 2020-03-28 16:54
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * ⎕SE.acre._functions_ no longer deliver messages to the session
-⍝ * Redundant options removed
-⍝ * Remove version from session on startup
-⍝ * Remove "Variables" configuration parameter
-⍝ * Edit no longer adds new variables - use SetChanged
+⍝ * added CreateProject option value Raw to -var that writes vars as .dcfs with file-ext .raw.
+⍝ * added file-ext .dyalog that will attempt ⎕FX for a fn/op and ⎕FIX for a ns/cls/int
 ⍝
-⍝ Phil 2020-02-27 09:08 8.0.0+307
+⍝ Phil 2020-03-28 16:54 8.0.0+313
  }

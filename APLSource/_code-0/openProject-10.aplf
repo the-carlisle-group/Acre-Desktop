@@ -14,9 +14,7 @@
      z←logMsg(MS.ER,MS.EY),(¯4 tPath dat.folder),MS.EZ,dat.nspath
      z←⎕EX''if missing if(≢⍴){# UT.nl⍳10}if≢dat.nspath
      space←⍎dat.nspath #.⎕NS''⊣openProjects''
-⍝   dat.(hist case vars)←On¨dat.(keephistory casecode variables)
      dat.(hist case)←On¨dat.(keephistory casecode)
-⍝   cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
      cfg.(KeepHistory CaseCode)←dat.(⊂hist case)⌷MS.GB MS.GA
      dat.cfg←PL.encode cfg⊣cfg.ProjectFolder←dat.folder
      z←space MS.FV _is_ PL.decode dat.cfg ⍝ ←↑ no JSON pre 14.1
