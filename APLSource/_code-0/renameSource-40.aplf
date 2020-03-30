@@ -1,5 +1,5 @@
  renameSource←{dat←⍺ ⋄ path fqn←⍵
-     path fqn/⍨←⊂~((-⍴MS.AR)↑¨path)∊⊂MS.AR
+     path fqn/⍨←⊂~((-⍴MS.AR)↑¨path)∊⊂MS.AR ⍝ not .raw
      ren←(⊢(⌿⍨)≢/)path,⍪dat getSourceFilenames fqn
      z←{0}_MKDIR/3,⍪∪((-'/'⍳⍨⌽)↓⊢)¨,ren
      msg←{

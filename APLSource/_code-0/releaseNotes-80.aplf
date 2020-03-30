@@ -2,12 +2,14 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.0.0+314 2020-03-28 16:54
+⍝ Acre 8.1.0+318 2020-03-30 08:31
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ * added CreateProject option value Raw to -var that writes vars as .dcfs with file-ext .raw.
-⍝ * added file-ext .dyalog that will attempt ⎕FX for a fn/op and ⎕FIX for a ns/cls/int
+⍝ * **CreateProject** option `-variables` with new value `"Raw"` writes _unformatted_ vars as `.dcf`s with file-extension `.raw`.
+⍝   * **OpenProject** and **Refresh** finding a `.raw` file set the var with the saved value without the need to decode it.
+⍝   * **SetChanged** finding a `.raw` file overwrites same with new unformatted value.
+⍝ * **OpenProject** and **Refresh** finding a `.dyalog` file attempt **_⎕FX_** for a fn/op and **_⎕FIX_** for a ns/cls/int and rename the file accordingly.
 ⍝
-⍝ Phil 2020-03-28 16:54 8.0.0+313
+⍝ Phil 2020-03-30 08:31 8.0.0+317
  }

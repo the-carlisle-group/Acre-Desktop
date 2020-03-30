@@ -1,0 +1,11 @@
+ putRaw←{
+     t←{⊃(1+⍳1+⍴⍵)~⍵}⎕FNUMS
+     z←{22::0 ⎕FAPPEND ⍵ ⎕FCREATE t
+         ⍵ ⎕FTIE t}⍵
+     ⎕FUNTIE t⊣⍺ ⎕FREPLACE t 1
+⍝ file array as .raw
+⍝ ⍺ value
+⍝ ⍵ filename
+⍝ ← ?
+⍝ Phil 2020-03-29 14:11 8.0.0+314
+ }
