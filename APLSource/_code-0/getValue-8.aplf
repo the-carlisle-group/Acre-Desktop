@@ -1,10 +1,12 @@
- getValue←{⍺←⊢ ⍝ only in dev
+ getValue←{⍺←⊢ ⋄ raw←⍺⊣0
      type←nameClass⊢fqn←,⊂if≡⍵
      ns←(1↓¨MS.AY)dix 1↓¨MS.AZ
+     type←(⊂MS.AR)a_(∊∘(ns.array⌷MS.AY))⍣raw⊢type
      nc←⊃⌊/MS.AY MS.AZ⍳¨⊂type
      val←0⍴⍨⍴fqn
      esc←PL.scape
      fmt←{0::0 ⋄ PL.format ⍵}
+     (x/val)←⊢∘⍎/0,⍪fqn/⍨x←nc=ns.raw
      (x/val)←esc⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist
      (x/val)←esc⊢∘ntbs∘⍎/0,⍪fqn/⍨x←nc=ns.charmat
      (x/val)←esc sep∘⍎/UT.CR,⍪fqn/⍨x←nc=ns.charstring
@@ -12,13 +14,13 @@
      (x/val)←⊢∘⎕NR/0,⍪fqn/⍨x←nc∊ns.(function operator)
      (x/val)←{0::0 ⋄ ⎕SRC⍎⍵}/0,⍪fqn/⍨x←nc∊ns.(script class interface)
      msg←(∨/e)/↓⍕MS.DL'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)fqn/⍨e←(val∊0)>0=⎕NC fqn
-     z←⍴logMsg/(⍺⊣0)↓UT.ht msg
+     z←⍴logMsg/UT.ht msg
      fqn type val/¨⍨⊂~e
 ⍝ [⍺] 1 if no msgs in dev
 ⍝ ⍵ fqns
 ⍝ ← fqn type val - of only arrays, defined fns and ops and scripts
 ⍝   filtered and re-ordered
 ⍝   vals are lists of strings
-⍝ see fixValue
-⍝ Phil Last 2017-11-22 22.38
+⍝ this is format pre-write  where fixValue is evaluate post-read
+⍝ Phil 2020-03-28 12:40 8.0.0+309
  }

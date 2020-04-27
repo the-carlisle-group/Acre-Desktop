@@ -12,18 +12,20 @@
          ⍵.NB←'.',MS.NA,'/'
          ⍵.NU←nms.author
 
-         ⍵.AA←'.array'         ⍝ apla
-         ⍵.AF←'.function'      ⍝ aplf              ⍝ Dylog
-         ⍵.AO←'.operator'      ⍝ aplo              ⍝ preferred
-         ⍵.AN←'.script'        ⍝ apln              ⍝ item
-         ⍵.AC←'.class'         ⍝ aplc              ⍝ file
-         ⍵.AI←'.interface'     ⍝ apli              ⍝ types
+         ⍵.AD←'.dyalog'        ⍝ dyalog
+         ⍵.AR←'.raw'           ⍝ raw
+         ⍵.AA←'.array'         ⍝ apla              ⍝ Dyalog defined
+         ⍵.AF←'.function'      ⍝ aplf              ⍝       |
+         ⍵.AO←'.operator'      ⍝ aplo              ⍝       |
+         ⍵.AN←'.script'        ⍝ apln              ⍝       |
+         ⍵.AC←'.class'         ⍝ aplc              ⍝       |
+         ⍵.AI←'.interface'     ⍝ apli              ⍝ item file types
          ⍵.AL←'.charlist'      ⍝ charlist
          ⍵.AM←'.charmat'       ⍝ charmat
          ⍵.AS←'.charstring'    ⍝ charstring
          ⍵.AW←'.char*'         ⍝ char array
          ⍵.AX←'.*'             ⍝ set as filetype for unknown
-         ⍵.AY←⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS
+         ⍵.AY←⍵.AZ←MS.AA MS.AF MS.AO MS.AN MS.AC MS.AI MS.AL MS.AM MS.AS MS.AR MS.AD
          ⍝ above MS.AZ and below MS.AY MUST correspond!
          ⍵.AY[⍵.AY⍳⍵.(AA AF AO AN AC AI)]←'.apl'∘,¨'a' 'f' 'o' 'n' 'c' 'i'
 
@@ -132,6 +134,7 @@
          ⍵.GB←'Off'
          ⍵.GC←'empty'
          ⍵.GD←'Now safe to save session without ',MS.NA
+         ⍵.GE←'Raw' ⍝ ignore APLAN
          ⍵.GI←'hour hours'
          ⍵.GJ←'minute minutes'
          ⍵.GK←'second seconds'
@@ -159,5 +162,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2020-02-25 07:05 7.0.0+305
+⍝ Phil 2020-03-20 22:12 8.0.0+308
  }

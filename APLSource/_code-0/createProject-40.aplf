@@ -5,8 +5,8 @@
      _NEXISTS dat.folder:{0}logMsg MS.DF
      '⎕'∊dat.nspath←⊃prefSpace⊂nspath:{0}logMsg MS.DC
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:{0}logMsg MS.DC ⍝ 1=≢ => ,'#'
-
-     dat.(hist case vars)←On¨OPT.(keephistory casecode variables)
+     dat.(hist case)←On¨OPT.(keephistory casecode)
+     raw←2=dat.vars←3|⍳/Cc(MS.GB MS.GA MS.GE)(⊂OPT.variables)
      dat.(config source code changes latest)←{
          ⍵}dat.folder∘,¨MS.HO MS.GY,MS.NB∘,¨''MS.EU MS.HE
      z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
@@ -18,15 +18,15 @@
      z←'dat'⎕NS lcNs cfg⊣dat writeConfig cfg⊣cfg.⎕EX'Open'
      z←(MS.NB MS.FX)_NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11
-     fqn/⍨←dat.vars∨2≠⌊⎕NC fqn
+     fqn/⍨←dat.vars≥2=⌊⎕NC fqn  ⍝ vars 0 1 2
      fqn(dat caseOK⍨)←fqn⊣notStored{⍵/⍨0=0 ssp ⍵}nms~fqn
      dat.cfg←PL.encode cfg⊣cfg.ProjectFolder←dat.folder
      z←space MS.FV _is_ PL.decode dat.cfg ⍝ ←↑ no JSON pre 14.1
-     fqn←⊃dat putSource getValue fqn
+     fqn←⊃dat putSource raw getValue fqn
      dat.aftersave←SV.aftersave
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0
 ⍝ see openProject CreateProject
-⍝ Phil 2020-02-25 07:05 7.0.0+305
+⍝ Phil 2020-03-28 12:40 8.0.0+309
  }

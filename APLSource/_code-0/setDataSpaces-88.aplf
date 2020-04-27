@@ -1,6 +1,6 @@
  setDataSpaces←{
 ⍝    ⎕THIS.dataSpaces←({⍵⊣⍵.ids←⍬}⎕NS'')∘{⊢⍺.ids←⍺.ids{(⍺~⍵)∪⍵~⍺}⍵}
-     ⎕THIS.dataSpaces←({⍵⊣⍵.ids←⍬}⎕NS'')∘{⊢⍺.ids←⍺.ids(~∪~⍨)⍵}
+     ⎕THIS.dataSpaces←({⍵⊣⍵.ids←⍬}⎕NS'')∘{~∘0⊢⍺.ids←⍺.ids(~∪~⍨)⍵}
      1:⍵
 ⍝ ←⍵ returned untouched
 ⍝ Runs once in new session.
@@ -8,4 +8,5 @@
 ⍝   in an anonymous space composed with the function.
 ⍝ Call dataSpaces only where adding or removing
 ⍝ To query use openProjects instead.
+⍝ Phil 2020-03-20 22:11 8.0.0+308
  }

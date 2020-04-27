@@ -1,18 +1,25 @@
  putSource←{dat←⍺
      null⊢fqn type value←,∘⊂¨if(≡⊃)⍵:⍵
      src tgt←dat.(nspath source)
-     path←dat getSourceFilenames fqn
+     path←dat getSourceFilenames fqn ⍝ names .raw as .apla
+     (raw/path)←,∘MS.AR¨(-⍴(MS.AZ⍳⊂MS.AA)⊃MS.AY)∘↓¨path/⍨raw←type∊⊂MS.AR
      old←×≢⊃_NINFO tgt,'*'           ⍝ nothing in APLSource
      z←_MKDIR/3,⍪∪((-'/'⍳⍨⌽)↓⊢)¨path ⍝ now there is
      z←{fn←{⊃⊃_NINFO(UT.sp ⍵),MS.AX}¨path
+         chg←raw<((-⍴MS.AR)↑¨fn)∊⊂MS.AR ⍝ .raw file exists
+         (chg/value)←⊢∘⍎/0,⍪chg/fqn     ⍝ chg value, type, path -
+         (chg/type)←⊂MS.AR              ⍝ - from .apla to .raw
+         (chg/path)←chg/fn              ⍝
+         raw∨←chg
          dat renameSource(~nil fn)∘/¨fn fqn}⍣old⊢0
      (b/path)←{⍺ UT.re MS.AX ⍵}⌿↑path type/¨⍨⊂b←(1∊MS.AX⍷⊢)¨path
-     z←(,∘⊂if≡¨value){(,⍺)_NPUT ⍵}¨path
+     z←putRaw/raw⌿value,⍪path
+     z←{(,⊂if≡⍺)_NPUT ⍵}/(~raw)⌿value,⍪path
      fqn type value
 
 ⍝ ⍺ dat
 ⍝ ⍵ FQNs type values
 ⍝ ← ⍵ same - having written to sourcetree
 ⍝   write to source tree files
-⍝ Phil 2018-08-07 14.40
+⍝ Phil 2020-03-29 20:49 8.0.0+316
  }

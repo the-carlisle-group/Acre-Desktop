@@ -1,13 +1,12 @@
  editFix←{⍺←⊢
      st←⍵≡'Start' ⋄ v17←18>⊃SV.aplver ⋄ cont←{(⍎first⊃⌽SV.fxnftr)⍵}⍣v17
-     z←{{0}SV.itemvalue←editStore ⎕NS''}⍣st⊢0  ⍝ create value store
-     st>v17:{0}⎕SE.Dyalog.(⍎'Hooks'⎕NS'').(Fix AfterFix)←⍬⍴⎕XSI
-     st∧v17:{(wx ⎕SE.⎕WX)←⎕SE.⎕WX 1 ⋄ qed←'⎕SE'⎕WG'Editor' ⍝ keep  ⎕WX
-         SV.fxnftr←⊃if≢¨qed.(onFix onAfterFix) ⍝ odd extra nesting!
-         {0}⎕SE.⎕WX←wx⊣qed.(onFix onAfterFix)←⍬⍴⎕XSI ⍝ reset ⎕WX
-     }''
-     (editor event value space name new)←6↑⍵        ⍝ so long as onFix unchanged
-     first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space            ⍝ is space scripted?
+     z←{{0}SV.itemvalue←editStore ⎕NS''}⍣st⊢0    ⍝ create value store
+     st>v17:{0}⎕SE.Dyalog.{2=⍵.⎕NC'Fix':⊢⍵.(Fix AfterFix),←⊂⍬⍴⎕XSI
+         {0}⍵.(Fix AfterFix)←⍬⍴⎕XSI}⍎'Hooks'⎕SE.Dyalog.⎕NS''
+     st∧v17:{SV.fxnftr←⊃if≢¨⍵.(onFix onAfterFix) ⍝ odd extra nesting!
+         {0}⍵.(onFix onAfterFix)←⍬⍴⎕XSI}'⎕se'⎕WG'Editor'
+     (editor event value space name new)←6↑⍵     ⍝ so long as onFix unchanged
+     first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space         ⍝ is space scripted?
      {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:cont ⍵
      fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(nonul new)∧2≠space.⎕NC name
      0=dat←whichProject fqn:cont ⍵
@@ -18,12 +17,11 @@
      new←MS.GU≡oldval←SV.itemvalue editStore fqn
      (0≥#.⎕NC∘⊂)fqn:
      null dat caseOK fqn:
-     (oldval≡newval←⊃2⊃getValue,⊂fqn):              ⍝ unchanged
+     (oldval≡newval←⊃2⊃getValue,⊂fqn):           ⍝ unchanged
      file←⊃dat getSourceFilenames fqn
      var←2∊⌊⎕NC fqn ⋄ SV.sessionmsg←MS.GA
-     old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1     ⍝ .char*
-⍝   old<dat.vars<var:{}logMsg'⎕',MS.BD,'- ',fqn,' - ',MS.BB   ⍝ don't save
-     old<var:{}logMsg'⎕',MS.BD,'- ',fqn,' - ',MS.BB   ⍝ don't save
+     old←{nonul _NINFO(UT.sp file),MS.AW}⍣var⊢1  ⍝ .char* - if edit not .apla
+     old<var:{}logMsg'⎕',MS.BD,'- ',fqn,' - ',MS.BB ⍝ don't save
      type←⊃nameClass fqn
      z←⍴dat∘putChange⍣(new⍱(⊂fqn)∊dat.changed)⊢fqn oldval type
      z←logMsg MS.DS,⊃dat setChange fqn type newval
@@ -31,5 +29,5 @@
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or callback argument
 ⍝ ← 0 for 'Start' - else none
-⍝ Phil 2020-02-25 07:05 7.0.0+305
+⍝ Phil 2020-03-20 22:15 8.0.0+308
  }

@@ -16,12 +16,15 @@
      fixSrc←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←'.'UT.nn⍕s.⎕FIX v:1 ⋄ 1⊣ers⍪←x r}
      fixClss←~{⍵\~1↓0,fixSrc/0,⍪⍵/⍺}⍣≡
 
+     (x/res)←⊢fixVar/0,⍪data/⍨x←nc=ns.raw
      (x/res)←PL.(decode scrape)fixVar/0,⍪data/⍨x←nc=ns.array
      (x/res)←,¨∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charlist
      (x/res)←↑∘(,¨)∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charmat
      (x/res)←{PL.scrape 1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
+     x←x\~(x/res)←fixFn/0,⍪data/⍨x←nc∊ns.dyalog ⍝ dyalog as fn/op ?
+     (x/res)←(x/data)∘fixClss 1/⍨x              ⍝ - or ns/cls/int ?
      z←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
          logMsg'⎕',t,' ',f,MS.DO,c,' ',n ⍝ force to session
      }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨nameClass fqn
@@ -30,5 +33,6 @@
 ⍝ [⍺] 0|1 - compress or return fixed flags - dflt 0
 ⍝ ⍵ fqn type value
 ⍝ ← ⍵ fixed - compressed if ⍺=0 or with mask attached if ⍺=1
-⍝ Phil 2018-07-12 17.44
+⍝ this is evaluate post-read where getValue is format pre-write
+⍝ Phil 2020-03-28 12:40 8.0.0+309
  }
