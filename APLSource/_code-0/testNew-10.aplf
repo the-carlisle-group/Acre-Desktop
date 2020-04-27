@@ -1,0 +1,14 @@
+ testNew←{⍺←⊢
+     z←3 ⎕NDELETE'dfns'
+     z←'dfns'#.⎕NS''
+     z←#.dfns.⎕CY'dfns'
+     #.dfns.shinyNewBigVar←?1000000 5⍴100
+     z←⎕SE.acre.CreateProject'dfns' '#.dfns'('var' 'Raw')
+     z←#.⎕EX'dfns'
+     t←⎕AI
+     z←⎕SE.acre.OpenProject'dfns'
+     ⎕AI-t
+
+⍝ test CreateProject with -var=Raw
+⍝ Phil 2020-03-31 17:22 8.1.0+318
+ }

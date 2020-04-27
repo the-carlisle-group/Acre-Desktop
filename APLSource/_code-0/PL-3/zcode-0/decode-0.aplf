@@ -1,8 +1,8 @@
  decode←{
      mon←{0}arg←1/⍵
      ⍺←{dix 0}arg←flatten arg⊣mon←1          ⍝ once
-     arg≢r←⍺ pull arg:r                     ⍝ done?
-     put←⍺ arg push⊢                        ⍝ fn to store val
+⍝     arg≢r←⍺ pull arg:r                     ⍝ done?
+     put←⊢ ⍝ ⍺ arg push⊢                        ⍝ fn to store val
      next←⍺ ∇⊢
      d←(arg='⋄')>q←quoted arg               ⍝ diamonds / quotes
      ∧/q∨arg='''':put⍎arg
@@ -16,10 +16,10 @@
      pt←((2</⊢)∨¯1⌽2>/⊢)¯1,1⌊bp
      exec←arg⊣arg d bp q⊂⍨←⊂pt
      (x/exec)←{'(',⍵,'⊃arg)'}∘⍕¨x/⍳⍴x←1∊¨d
-     (x/arg)←next part¨x/arg
+     (x/arg)←next part eu x/arg
      put⍎⊃,/exec
 
 ⍝ ⍵ ⋄-charstring - no comments
 ⍝ ← represented array or space
-⍝ Phil 2018-09-12 11.16
+⍝ Phil 2020-04-16 07:31 8.1.0+318
  }

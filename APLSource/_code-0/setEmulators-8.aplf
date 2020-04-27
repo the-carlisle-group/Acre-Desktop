@@ -24,5 +24,6 @@
 ⍝ called at start, this swaps in the primitive itself
 ⍝ or a much lighter cover than the v14.0 emulator
 ⍝ if run in a Dyalog version late enough to use it.
-⍝ Phil 2019-09-05 16:28 6.0.0+261
+⍝ SV.aplver is also referenced in Log, editFix, fileTree & writeConfig
+⍝ Phil 2020-04-09 09:04 8.1.0+318
  }

@@ -1,5 +1,6 @@
  editFix←{⍺←⊢
      st←⍵≡'Start' ⋄ v17←18>⊃SV.aplver ⋄ cont←{(⍎first⊃⌽SV.fxnftr)⍵}⍣v17
+     v17←1 ⍝ pro tem 'til 18.0 is released
      z←{{0}SV.itemvalue←editStore ⎕NS''}⍣st⊢0    ⍝ create value store
      st>v17:{0}⎕SE.Dyalog.{2=⍵.⎕NC'Fix':⊢⍵.(Fix AfterFix),←⊂⍬⍴⎕XSI
          {0}⍵.(Fix AfterFix)←⍬⍴⎕XSI}⍎'Hooks'⎕SE.Dyalog.⎕NS''

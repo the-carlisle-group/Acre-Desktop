@@ -8,9 +8,9 @@
      nt∧(,1)≡⍴⍵:put',',t quote⍤1 else⍕⍵ ⍝ simple singleton
      nt:put rase t quote⍤1 else⍕⍵       ⍝ simple homogeneous
      0=≢⍴⍵:put'⊂',⍺ ∇⊃⍵                 ⍝ scalar
-     r←⍺ ∇¨⍵
+     r←⍺∘∇ eu ⍵
      r←put rase ⍺.wid ravel⍤1⊢r
      r
 ⍝
-⍝ Phil 2018-09-04 14.57
+⍝ Phil 2020-04-16 07:31 8.1.0+318
  }
