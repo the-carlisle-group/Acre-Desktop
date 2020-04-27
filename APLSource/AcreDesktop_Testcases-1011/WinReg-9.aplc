@@ -40,13 +40,13 @@
 
     ∇ R←Version
       :Access Public Shared
-      R←(Last⍕⎕THIS)'3.0.1.5' '2019-02-18'
+      R←(Last⍕⎕THIS)'4.0.0.6' '2020-03-22'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 3.0.1
-      ⍝   * :Include APLTreeUtils fixed.
+      ⍝ * 4.0.0
+      ⍝   * BREAKIN CHANGE: file extension is now .aplc rather than .dyalog
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/WinReg/releases>
     ∇

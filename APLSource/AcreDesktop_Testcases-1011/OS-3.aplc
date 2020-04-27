@@ -12,14 +12,13 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.5.0.17' '2019-10-23'
+      r←(Last⍕⎕THIS)'2.0.0.18' '2020-03-22'
     ∇
 
     ∇ History
       :Access Public shared
       ⍝ * 1.5.0
-      ⍝   * `OS` does not require `FilesAndDirs` any more
-      ⍝   * Internally `⍴` replaced by `≢` when appropriate
+      ⍝   * BREAKING CHANGE: file extension is now .aplc rather than .dyalog
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/OS/releases>
     ∇

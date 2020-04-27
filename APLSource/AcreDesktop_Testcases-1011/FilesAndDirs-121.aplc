@@ -41,15 +41,16 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'2.1.3.45' '2019-11-28'
+      r←(Last⍕⎕THIS)'3.1.0.51' '2020-04-23'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 2.1.3
-      ⍝   * Bug fixes:
-      ⍝     * `FilesAndDirs` called #.APLTreeUtils.
-      ⍝     * `MoveTo` handled only files, not directories.
+      ⍝ * 3.1.0
+      ⍝   * Methods `NPUT` and `NGET` introduced.
+      ⍝   * `CheckPath`, `RmDir` and `MkDir` now all accept and processes nested right arguments.
+      ⍝ * 3.0.0
+      ⍝   * BREAKING CHANGE: file extension is now .aplc rather than .dyalog
       ⍝\\
       ⍝ For information regarding older version see <https://github.com/aplteam/FilesAndDirs/releases>
     ∇
@@ -205,6 +206,31 @@
               (0⊃r)←NormalizePath 0⊃r
               r←,⊂r[,(0 1,parms.type~0 1)⍳parms.type]
           :EndIf
+      :EndIf
+    ∇
+
+    ∇ {r}←x NPUT y;filename;flags
+    :Access Public Shared
+    ⍝ The purpose of this function is to cover ⎕NPUT and make sure that the filename is normalized.\\
+    ⍝ The left-argument X is comprised of 1, 2 or 3 items which identify (content) (encoding) (newline) respectively. 
+      :If (≡y)∊0 1
+          filename←FilesAndDirs.NormalizePath y
+          r←x ⎕NPUT filename
+      :Else
+          (filename flags)←y
+          filename←FilesAndDirs.NormalizePath y
+          r←x ⎕NPUT filename
+      :EndIf
+    ∇
+
+    ∇ r←{encoding}NGET filename
+    :Access Public Shared
+    ⍝ The purpose of this function is to cover ⎕NGET and make sure that the filename is normalized.
+      filename←FilesAndDirs.NormalizePath filename
+      :If 0=⎕NC'encoding'
+          r←⎕NGET filename
+      :Else
+          r←encoding ⎕NGET filename
       :EndIf
     ∇
 
@@ -375,7 +401,7 @@
       :If 0≠≢tree
         ⍝ We now create all directories
           ind←Where 1=tree[;1]
-          tree[ind;2]←~'Create!'∘CheckPath¨target∘,¨(≢source)↓¨tree[ind;0]
+          tree[ind;2]←~'Create!'CheckPath target∘,¨(≢source)↓¨tree[ind;0]
         ⍝ Now we copy the files over
           tree[ind;3]←⊂''
           ind←Where 2=tree[;1]
@@ -475,81 +501,85 @@
       ⍝ * Wildcard characters (`*` and `?`) are not allowed as part of `path`.
       ⍝   If such characters are specified anyway then an error is signalled.\\
       ⍝   This is true even under Linux and Mac OS despite the fact that these characters are \
-      rc←1 ⋄ en←0 ⋄ more←''
       mustBeEmpty←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'mustBeEmpty'
-      'Invalid left argument.'⎕SIGNAL 11/⍨~mustBeEmpty∊0 1
-      'Wildcard characters are not allowed'⎕SIGNAL 11/⍨∨/'*?'∊path
-      path←NormalizePath path
-      path↓⍨←-CurrentSep=¯1↑path
-      :Trap 19 22
-          :If 1≠1 ⎕NINFO path
-              en←6
-              more←'Not a directory'
-              :Return
-          :EndIf
+      :If 2=|≡path
+          (rc en more)←↓⍉⊃mustBeEmpty RmDir¨path
       :Else
-          :If Exists path
-              more←{(≡⍵)∊0 1:⍵ ⋄ ↑{⍺,'; ',⍵}/⍵/⍨' '=↑¨1↑¨0⍴¨⍵}⎕DMX.OSError
-              en←⎕EN
-          :Else
-              rc←0
-              more←'Directory does not exist'
-          :EndIf
-          :Return
-      :EndTrap
-      :Trap 19 22
-          rc←~0 ⎕NDELETE path
-      :Else
-          :If 0=mustBeEmpty
-         ⍝ First we delete all files
-              :If 0=≢list←⍉⊃('recursive' 1)('type'(0 1))Dir path,CurrentSep
-              ⍝ This can happen if for example somebody "look" into the folder
-                  rc←1
-                  en←11
-                  more←'Could not delete all files/folders.'
+          rc←1 ⋄ en←0 ⋄ more←''
+          'Invalid left argument.'⎕SIGNAL 11/⍨~mustBeEmpty∊0 1
+          'Wildcard characters are not allowed'⎕SIGNAL 11/⍨∨/'*?'∊path
+          path←NormalizePath path
+          path↓⍨←-CurrentSep=¯1↑path
+          :Trap 19 22
+              :If 1≠1 ⎕NINFO path
+                  en←6
+                  more←'Not a directory'
                   :Return
               :EndIf
-              :If 0<+/bool←1≠list[;1]
-                  :Trap 0
-                      {}{1 ⎕NDELETE ⍵}¨bool/list[;0]  ⍝ Return code might be 0 for links!
-                  :Else
-                      en←⎕EN
-                      more←⎕DMX.EM
-                      :Return
-                  :EndTrap
-                  :If 0∊{19 22::1 ⋄ 0⊣1 ⎕NINFO ⍵}¨bool/list[;0]
-                      en←11
-                      more←'Could not delete all files.'
-                      :Return
-                  :EndIf
-              :EndIf
-         ⍝ Now we remove all sub-directories
-              :If 0≠≢list←(~bool)/list[;0]
-                  list←list[⍒≢¨list]
-                  :Trap 0
-                      rc←~{1 ⎕NDELETE ⍵}¨list
-                  :Else
-                      en←⎕EN
-                      more←⎕DMX.EM
-                      :Return
-                  :EndTrap
-                  :If 0∊{19 22::1 ⋄ 0⊣1 ⎕NINFO ⍵}¨list
-                      en←11
-                      more←'Could not delete all directories.'
-                      :Return
-                  :EndIf
-                  rc←0
-              :EndIf
-              :Trap 19 22
-                  rc∧←~0 ⎕NDELETE path  ⍝ Now we try again
-              :Else
-                  rc←1
-              :EndTrap
           :Else
-              en←⎕EN
-              more←{↑{⍺,'; ',⍵}/⍵/⍨' '=↑¨0⍴¨⍵}⎕DMX.OSError
-          :EndIf
-      :EndTrap
+              :If Exists path
+                  more←{(≡⍵)∊0 1:⍵ ⋄ ↑{⍺,'; ',⍵}/⍵/⍨' '=↑¨1↑¨0⍴¨⍵}⎕DMX.OSError
+                  en←⎕EN
+              :Else
+                  rc←0
+                  more←'Directory does not exist'
+              :EndIf
+              :Return
+          :EndTrap
+          :Trap 19 22
+              rc←~0 ⎕NDELETE path
+          :Else
+              :If 0=mustBeEmpty
+         ⍝ First we delete all files
+                  :If 0=≢list←⍉⊃('recursive' 1)('type'(0 1))Dir path,CurrentSep
+              ⍝ This can happen if for example somebody "look" into the folder
+                      rc←1
+                      en←11
+                      more←'Could not delete all files/folders.'
+                      :Return
+                  :EndIf
+                  :If 0<+/bool←1≠list[;1]
+                      :Trap 0
+                          {}{1 ⎕NDELETE ⍵}¨bool/list[;0]  ⍝ Return code might be 0 for links!
+                      :Else
+                          en←⎕EN
+                          more←⎕DMX.EM
+                          :Return
+                      :EndTrap
+                      :If 0∊{19 22::1 ⋄ 0⊣1 ⎕NINFO ⍵}¨bool/list[;0]
+                          en←11
+                          more←'Could not delete all files.'
+                          :Return
+                      :EndIf
+                  :EndIf
+         ⍝ Now we remove all sub-directories
+                  :If 0≠≢list←(~bool)/list[;0]
+                      list←list[⍒≢¨list]
+                      :Trap 0
+                          rc←~{1 ⎕NDELETE ⍵}¨list
+                      :Else
+                          en←⎕EN
+                          more←⎕DMX.EM
+                          :Return
+                      :EndTrap
+                      :If 0∊{19 22::1 ⋄ 0⊣1 ⎕NINFO ⍵}¨list
+                          en←11
+                          more←'Could not delete all directories.'
+                          :Return
+                      :EndIf
+                      rc←0
+                  :EndIf
+                  :Trap 19 22
+                      rc∧←~0 ⎕NDELETE path  ⍝ Now we try again
+                  :Else
+                      rc←1
+                  :EndTrap
+              :Else
+                  en←⎕EN
+                  more←{↑{⍺,'; ',⍵}/⍵/⍨' '=↑¨0⍴¨⍵}⎕DMX.OSError
+              :EndIf
+          :EndTrap
+      :EndIf
     ∇
 
     ∇ r←PWD
@@ -772,19 +802,28 @@
     ∇ {success}←{new}CheckPath path;newFlag
       :Access Public Shared
     ⍝ Returns a 1 if the `path` to be checked is fine, otherwise 0.\\
+    ⍝ If `path` is nested it will return a vector of the same length as `path`
     ⍝ * If `path` exists but is not a directory a 0 is returned.\\
     ⍝ * If `path` does not exist a 0 is returned.\\
     ⍝ * If `path` does not exist but the left argument is "CREATE!" it will be created,
     ⍝ including any sub directories.\\
     ⍝ The left argument is case insensitive.
-      path←NormalizePath path
-      :If 1=⎕NEXISTS path
-          success←IsDir path
+      :If 2=|≡path
+          :If 0=⎕NC'new'
+              success←CheckPath¨path
+          :Else
+              success←new∘CheckPath¨path
+          :EndIf
       :Else
-          success←0
-          newFlag←'CREATE!' 1∊⍨⊂{6::0 ⋄ {(0=1↑0⍴⍵):⍵ ⋄ Uppercase ⍵}⍎⍵}'new'
-          :If newFlag
-              success←MkDir path
+          path←NormalizePath path
+          :If 1=⎕NEXISTS path
+              success←IsDir path
+          :Else
+              success←0
+              newFlag←'CREATE!' 1∊⍨⊂{6::0 ⋄ {(0=1↑0⍴⍵):⍵ ⋄ Uppercase ⍵}⍎⍵}'new'
+              :If newFlag
+                  success←MkDir path
+              :EndIf
           :EndIf
       :EndIf
     ∇
@@ -999,27 +1038,33 @@
       ⍝ * Errors 19 & 22 are trapped.
       ⍝ * The function overcomes a strange problem: on some systems `⎕MKDIR` refuses to create
       ⍝   the directory repeatedly unless the code is traced.\\
+      ⍝ In any other respect `MkDir` acts like `3 ⎕MKDIR`.\\
       ⍝ `success` is 1 in case the directory was created successfully or already existed, otherwise 0.
-      path←NormalizePath path
-      success←0
-      :If IsDir path
-          success←1
+      ⍝ If `path` is nested then `success` will have the same tally as `path` ≢
+      :If 2=|≡path
+          success←MkDir¨path
       :Else
-          :Trap 19 22
-              counter←flag←0
-              :Repeat
+          path←NormalizePath path
+          success←0
+          :If IsDir path
+              success←1
+          :Else
+              :Trap 19 22
+                  counter←flag←0
+                  :Repeat
               ⍝ This loop tries to overcome the problem that on some machines ⎕MKDIR does not work
               ⍝ as expected. This cannot (!) be solved by a simple delay. Tracing as well as the
               ⍝ loop however work.
-                  :Trap 19 22
-                      success←3 ⎕MKDIR path
-                  :Else
-                      :Leave ⍝ Something went wrong
-                  :EndTrap
-                  flag←⎕NEXISTS path
-                  ⎕DL flag×0.05×counter+1
-              :Until flag∨10<counter←counter+1
-          :EndTrap
+                      :Trap 19 22
+                          success←3 ⎕MKDIR path
+                      :Else
+                          :Leave ⍝ Something went wrong
+                      :EndTrap
+                      flag←⎕NEXISTS path
+                      ⎕DL flag×0.05×counter+1
+                  :Until flag∨10<counter←counter+1
+              :EndTrap
+          :EndIf
       :EndIf
     ∇
 

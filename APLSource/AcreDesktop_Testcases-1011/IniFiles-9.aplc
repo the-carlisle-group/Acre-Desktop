@@ -16,17 +16,14 @@
 
     ∇ r←Version
       :Access Public Shared
-      r←(Last⍕⎕THIS)'3.2.3.5' '2019-12-01'
+      r←(Last⍕⎕THIS)'4.0.0.6' '2020-03-23'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 3.2.3
-      ⍝   * The `List` function injected into the namespace that is created by the `Convert` method does 
-      ⍝     not depend on APLTreeUtils any more at all.
-      ⍝ * 3.2.2
-      ⍝   * `Put` crashed when called on a non-existing section.
-      ⍝   * `Help` provided out-of-date information regarding ]ADOC
+      ⍝ * 4.0.0
+      ⍝   * BREAKING CHANGE: File extension is now .aplc rather than .dyalog
+      ⍝   * Test case added for the `List` method of an instance.
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/IniFiles/releases>
     ∇

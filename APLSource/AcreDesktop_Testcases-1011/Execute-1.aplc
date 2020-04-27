@@ -1,4 +1,4 @@
-:Class Execute        
+:Class Execute		
 ⍝ This class allows you two different things:
 ⍝ * Start a process and catch its return code.
 ⍝ * Start an application and catch its standard output.\\
@@ -33,14 +33,13 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.9.1.4' '2019-02-04'
+      r←(Last⍕⎕THIS)'2.0.0.6' '2020-03-22'
     ∇
 
     ∇ History
       :Access Public Shared
-    ⍝ * 1.9.1
-    ⍝   * Bug fix: `:Include ##.APLTreeUtils` is now ':Include APLTreeUtils`.
-    ⍝   * Documentation corrected (home page link) and polished.
+    ⍝ * 2.0.0
+    ⍝   * BREAKING CHANGE: file extension changed from .DYALOG to .APLC
     ⍝\\
     ⍝ For information regarding older versions see <https://github.com/aplteam/Execute/releases>
     ∇

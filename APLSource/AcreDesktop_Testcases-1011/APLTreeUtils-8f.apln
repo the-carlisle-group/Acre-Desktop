@@ -1,10 +1,11 @@
 :Namespace APLTreeUtils
-⍝ *** Version 4.3.0 ⋄ 2019-11-28 ***
+
+⍝ *** Version 6.0.0 ⋄ 2020-03-21 ***
 ⍝ ## Overview
 ⍝ Note that `APLTreeUtils` does not work with the Classic edition - it requires Unicode.\\
 ⍝ ## Version History
-⍝ * 4.3.0
-⍝   * Method `ToNum` introduced
+⍝ * 6.0.0
+⍝   * Renamed: it's now APLTreeUtils.apln rather than APLTreeUtils.dyalog
 ⍝ Kai Jaeger - APL Team Ltd.\\
 ⍝ Homepage: <https://github.com/aplteam/APLTreeUtils/>
 
@@ -337,18 +338,18 @@
       ⍝ 2. The namespace where the class (if instanciated) comes from.
       ⍝ 3. In `#`.
       ⍝ 4. Where it was called from (**not** the same as either 1 or 2!).
-      ⍝ If it fails to find `⍵` an empty string is returned.
+      ⍝ If it fails it signals an error.
           ⎕IO←1 ⋄ ⎕ML←1
           base←⎕THIS.##                        ⍝ were are we coming from?
           base{11::0 ⋄ 9=⍺.⎕NC ⍵}⍵:base        ⍝ Is it in that namespace?
           base←{11::⍬ ⋄ (1⊃∊⎕CLASS ⍵).##}⍵     ⍝ Where stems the class from?
           base{11::0 ⋄ 9=⍺.⎕NC{Last ⍵}⍕1⊃⊃⎕CLASS ⍵}⍵:base  ⍝ Is it in that namespace?
+          base←{11::⍬ ⋄ (⊃⊃⎕CLASS ⎕THIS)}⍬     ⍝ Where stems the class from?
+          base{11::0 ⋄ 9=⍺.##.⎕NC⍕⍵}⍵:base.##  ⍝ Is it in the parent of that namespace?
           9={11::0 ⋄ #.⎕NC ⍵}⍵:#               ⍝ Is it in root?
           path←1⊃⎕RSI~⎕THIS                    ⍝ From where got we called?
           0<path.⎕NC ⍵:path                    ⍝ May be it's there?
-          0=#.⎕NC'_dependencies':''
-          9=#._dependencies.⎕NC ⍵:#._dependencies
-          ''                                   ⍝ Give up
+          6 ⎕SIGNAL⍨'Could not find ',⍵
       }
 
     ∇ r←GetOperatingSystem dummy;⎕ML;⎕IO
@@ -420,4 +421,4 @@
       :EndIf
     ∇
 
-:EndNamespace ⍝ APLTreeUtils
+:EndNamespace

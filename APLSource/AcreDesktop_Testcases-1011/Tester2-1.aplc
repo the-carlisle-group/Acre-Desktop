@@ -22,15 +22,23 @@
 
     ∇ r←Version
       :Access Public shared
-      r←(Last⍕⎕THIS)'1.0.0.29' '2019-12-01'
+      r←(Last⍕⎕THIS)'2.2.0.49' '2020-04-25'
     ∇
 
     ∇ History
       :Access Public shared
-      ⍝ * 1.0.0
-      ⍝   * First release.\\
-      ⍝   This is the successor of the `Tester` class. `Tester2` requires to be instanticated, and the
-      ⍝   constructor requires a ref pointing to the namespace (scipted or ordinary) that hosts the tests.
+      ⍝ * 2.2.0 ⋄ 2020-04-25
+      ⍝   * The method `ListTestFunctions` now accepts 'view' as left argument as well as a nested one when
+      ⍝     numbers (of test functions) and 'view` are both specified, in any order.
+      ⍝   * Now a comment inside a test function on the line where a constant is assigned as result will
+      ⍝     show show in the "Result" column of the GUI together with the constant's name.
+      ⍝   * The GUI now offers a context menu command "Copy all comments".
+      ⍝   * `RenameTestFnsTo` can now rename groups.
+      ⍝   * acre is not called via ⎕SE.UCMD anymore but via its API.
+      ⍝   * Support for acre 3 has been rmeoved.
+      ⍝   * Bug fixes:
+      ⍝     * The GUI showed a leading `⍝ ` when it shouldn't - it's wasted space.
+      ⍝     * `ListTestFunctions` did not show a `⍝` in front of the comment - it should.
       ⍝\\
       ⍝ For a full history (including older versions) see <https://github.com/aplteam/Tester2/releases>
     ∇
@@ -47,8 +55,11 @@
     :Field Public Instance Readonly _MacOrWindowsOnly←¯17
     :Field Public Instance Readonly _NoAcreTests←¯18
     :Field Public Instance Readonly _NotApplicable←¯19
+    :Field Public Instance Readonly _NotImplemented←¯20
+    :Field Public Instance Readonly _IncompatibleVersion←21
 
     :Field Public Instance ReadOnly QuitEvent←993
+    :Field Public Instance ReadOnly PassEvent←994
     :Field Public Instance TestFlag←0   ⍝ Used **only** for testing `Tester2`!
                                         ⍝ Setting this to 1 prevents `⎕DQ` from being run on `Tester2`'s own GUI, if any.
 
@@ -73,7 +84,7 @@
           msg←arg.NewValue
           ⎕SIGNAL/2 CheckCustomDef msg
           _custom_2←msg
-        ∇ ⍝         
+        ∇
     :EndProperty
 
     :Property custom_3
@@ -177,6 +188,31 @@
         ∇
     :EndProperty
 
+    :Property exec_before_each_test
+    :Access Public Instance
+        ∇ r←get
+          r←_exec_before_each_test
+        ∇
+        ∇ set arg
+          'Must be fully qualified name of a function'⎕SIGNAL 11/⍨' '≠1↑0⍴∊arg.NewValue
+          'Must be fully qualified name of a function'⎕SIGNAL 11/⍨3≠⎕NC arg.NewValue
+          _exec_before_each_test←arg.NewValue
+        ∇
+    :endproperty
+
+
+    :Property exec_after_each_test
+    :Access Public Instance
+        ∇ r←get
+          r←_exec_after_each_test
+        ∇
+        ∇ set arg
+          'Must be fully qualified name of a function'⎕SIGNAL 11/⍨' '≠1↑0⍴∊arg.NewValue
+          'Must be fully qualified name of a function'⎕SIGNAL 11/⍨3≠⎕NC arg.NewValue
+          _exec_after_each_test←arg.NewValue
+        ∇
+    :endproperty
+
     ∇ make1 ref;parent
     ⍝ Requires a reference as the right argument which points to the namespace that hosts the test cases .\\
     ⍝ All instance methods will use that reference in order to find the test cases.
@@ -187,6 +223,7 @@
       _parms←CreateParms ⍬
       _INI←⍬
       _custom_1←_custom_2←_custom_3←_custom_4←_custom_5←_custom_6←_custom_7←_custom_8←_custom_9←⍬''
+      _exec_before_each_test←_exec_after_each_test←''
       :If 0<≢parent←'AcreConfig'{⍵∊# ⎕SE:'' ⋄ 0<⍵.⎕NC ⍺:⍵ ⋄ ⍺ ∇ ⍵.##}_ref
           _IniFolder←parent.AcreConfig.ProjectFolder
       :Else
@@ -229,16 +266,19 @@
      ⍝Done
     ∇
 
-    ∇ {(rc log)}←RunGUI these;⎕ML;⎕IO
-    ⍝ Runs _all_ test cases. The user can set all sorts of parameters via the GUI.\\
+    ∇ {(rc log)}←{parms}RunGUI these;⎕ML;⎕IO
+    ⍝ Runs `these` test cases, which defaults to _all_ in case `these` is empty.\\
+    ⍝ The user can set all sorts of parameters via the GUI.\\
     ⍝ Note that this is a Windows-only feature.\\
-    ⍝ See also `RunDebug` which does the same but without a GUI.\\
+    ⍝ The left argument is useful only for defining defaults on the GUI.\\
+    ⍝ See also `Run` which does vasically the same but without a GUI.\\
       :Access Public Instance
       ⎕IO←1 ⋄ ⎕ML←3
+      _parms←{0<⎕NC ⍵:⍎⍵ ⋄ CreateParms ⍬}'parms'
       CloseGUI
-      _parms←CreateParms ⍬
       _parms.testCaseNos←these
       _parms.guiFlag←1
+      _parms.testCaseNos←these
       (rc log)←Run__ _parms
     ∇
 
@@ -314,7 +354,7 @@
       r.⎕FX'r←List' 'r←⊃{⍵(⍎⍵)}¨'' ''~¨⍨↓⎕NL 2'
     ∇
 
-    ∇ {r}←Run__ ps;rc;log;⎕TRAP;∆InitialGotExecuted
+    ∇ {r}←Run__ ps;rc;log;⎕TRAP;rc2
         ⍝ Run all test cases to be found in `_ref`.\\
         ⍝ The right argument is a parameter space, typically created by calling `CreateParms ⍬`.\\
         ⍝ The shy explicit result is a two-element vector:
@@ -323,10 +363,9 @@
         ⍝    `r ←→  2   when `Initial` prevented any test case to be executed.\\
         ⍝ 2. Nested vector with the log information
       :Access Public Instance
-      ⎕TRAP←(QuitEvent'C' '→∆GetOutOfHere')((0 1000)'N')
+      ⎕TRAP←(QuitEvent'C' '→∆GetOutOfHere')(PassEvent'C'('⎕SIGNAL ',⍕PassEvent))((0 1000)'N')
       _ref.Stop←ps.stopFlag         ⍝ "Stop" is honored by "FailsIf" & "PassesIf"
       _INI←⍬                        ⍝ Flatten any leftovers
-      ∆InitialGotExecuted←0
       ps.(log errCounter failedCounter totalCounter)←'' 0 0 0
       ps.guiFlag∧←'Win'≡GetOperatingSystem ⍬  ⍝ Windows only, if at all
       :If ps.guiFlag
@@ -344,7 +383,11 @@
       :EndIf
       →(0=≢ps.list)/∆GetOutOfHere
       :If ps.guiFlag
-          CorrectWidthOfCommentColumn ps
+          :If 0<≢ps.list
+              ps.ref2Gui.∆n.Grid.Values[⍳≢ps.list;2]←(≢'Test_')↓¨ps.list
+              ps.ref2Gui.∆n.Grid.Values[⍳≢ps.list;3]←2↓¨_ref GetFirstCommentLine¨ps.list
+              {2 ⎕NQ ps.ref2Gui.∆n.Grid'SetColSize'⍵ ¯3}¨2 3
+          :EndIf
           {}{_←⎕DQ ⍵ ⋄ ⎕DL 0.1}⍣(0=TestFlag)⊣ps.ref2Gui.∆n.Form
           :If ps.ref2Gui.∆n.∆Closed
               r←0 ''
@@ -356,26 +399,33 @@
           ShowLog'*** "Initial" could not initialize'
           ps.errCounter←1
           rc←2
-          ps.⎕EX'list'
+          ps.list←''
           →∆GetOutOfHere
+      :Else
+          rc←0
       :EndIf
       ps.returnCodes←⍬
-      :If ps.guiFlag
-      :AndIf 0<≢ps.list
-          ps.ref2Gui.∆n.Grid.CellWidths[2]←10+2⊃ps.ref2Gui.∆n.Grid.GetTextSize(≢'Test_')↓{⍵⊃⍨{⍵⍳⌈/⍵}≢¨⍵}ps.list
-      :EndIf
       ps.processedGroups←''
       ShowLog(,'--- Tests started at ',FormatDateTime ⎕TS),' on ',(⍕_ref),' ---'
       ps.stopFlag∨←¯1∊×ps.testCaseNos
       ProcessTestCases _ref ps
      ∆GetOutOfHere:
+      :If ps.guiFlag
+      :AndIf {6::1 ⋄ 0⊣⍵.Type}ps.ref2Gui.∆n.Form
+          ⎕←'*** Tests cancelled'
+          r←rc ps.log
+          →0
+      :EndIf
       _INI←⍬                    ⍝ Flatten any leftovers
       :If 0<ps.⎕NC'list'        ⍝ Then no test cases got executed, probably because `Initial` failed.
-          (rc log)←ReportTestResults ps
+          (rc2 log)←ReportTestResults ps
+          :If rc≠2
+              rc←rc2
+          :EndIf
           _ref.TestCasesExecutedAt←FormatDateTime ⎕TS
-          ShowLog'Time of execution recorded on variable ',(⍕_ref),'.TestCasesExecutedAt in: ',_ref.TestCasesExecutedAt
+          ShowLog'Time of execution recorded on variable ',(⍕_ref),'.TestCasesExecutedAt as: ',_ref.TestCasesExecutedAt
       :EndIf
-      {}ExecuteCleanup⍣∆InitialGotExecuted⊣_ref ps
+      {}ExecuteCleanup⍣(0<≢ps.list)⊣_ref ps
       ShowLog'*** Tests done'
       log←ps.log
       r←rc log
@@ -459,7 +509,6 @@
               :Else
                   r←ref.Initial
               :EndIf
-              ∆InitialGotExecuted←1
           :Case 1
               :If 0=↑↑ref.⎕AT'Initial'
                   ref.Initial ps
@@ -546,16 +595,16 @@
           :If 0<≢ps.list
               ps.ref2Gui.∆n.Grid.Values←(noOf,1↓⍴ps.ref2Gui.∆n.Grid.Values)⍴ps.ref2Gui.∆n.Grid.Values
               ps.ref2Gui.∆n.Grid.CellTypes←(noOf,1↓⍴ps.ref2Gui.∆n.Grid.Values)⍴ps.ref2Gui.∆n.Grid.CellTypes
-              ps.ref2Gui.∆n.Grid.Values[;2]←(≢'Test_')↓¨ps.list
-              ps.ref2Gui.∆n.Grid.Values[;3]←ref{{⍵↓⍨+/∧\' '=⍵}{⍵↓⍨⍵⍳'⍝'}2⊃⍺.⎕NR ⍵}¨ps.list
               2 ⎕NQ ps.ref2Gui.∆n.Form'Flush'
           :EndIf
-          →(ps.ref2Gui.∆n.∆Closed)/0
+          :If ps.ref2Gui.∆n.∆Closed
+              ⎕SIGNAL QuitEvent
+          :EndIf
           ps.ref2Gui.∆n.Form.on9998←0
           ps.ref2Gui.∆n.StartBtn.Active←0
           ps.stopFlag←ps.ref2Gui.∆n.StopFlag.State
           ps.trapFlag←ps.ref2Gui.∆n.TrapErrors.State
-          {2 ⎕NQ ps.ref2Gui.∆n.Grid'SetColSize'⍵ ¯3}¨¯1↓1↓⍳2⊃⍴ps.ref2Gui.∆n.Grid.Values
+          {2 ⎕NQ ps.ref2Gui.∆n.Grid'SetColSize'⍵ ¯3}¨¯1↓3↓⍳2⊃⍴ps.ref2Gui.∆n.Grid.Values
       :EndIf
       i←0
       :Repeat
@@ -607,15 +656,20 @@
                   ps.returnCodes,←rc
               :EndIf
               ps AddReturCodeToGrid rc i
-              comment←{⍵↓⍨+/∧\' '=⍵}{⍵↓⍨⍵⍳'⍝'}2⊃ref.⎕NR testFns
+              comment←2↓ref GetFirstCommentLine testFns
               desc←(⎕PW-length2){⍺<≢⍵:'...',⍨⍵↑⍨⍺-4 ⋄ ⍵}⍣(~ps.guiFlag)⊢comment
               :If rc∊0 1
                   marker←('*✓'[1+rc=0])
               :Else
-                  marker←'-'
+                  marker←'⍝'
               :EndIf
               ShowLog(length2↑(length↑marker,' ',testFns),' (',(cw 0⍕i),'/',max,')'),' ⍝ ',desc
               i AddToGui(length2↑(length↑marker,' ',testFns),' (',(cw 0⍕i),'/',max,')'),' ⍝ ',desc
+              :If ~rc∊_OK,_Failed
+              :AndIf ps.guiFlag
+              :AndIf ps.ref2Gui.∆n.∆Closed=0
+                  (GetSymbolicName rc)ReportInactiveToGUI i ref testFns ps.ref2Gui.∆n
+              :EndIf
               :If 0>rc
                   :If 0<ps.errCounter
                       rc←1
@@ -626,7 +680,7 @@
           :Else
               ps.errCounter+←1
               ps.totalCounter+←1
-              comment←{⍵↓⍨+/∧\' '=⍵}{⍵↓⍨⍵⍳'⍝'}2⊃ref.⎕NR testFns
+              comment←ref GetFirstCommentLine testFns
               desc←(⎕PW-length2){⍺<≢⍵:'...',⍨⍵↑⍨⍺-4 ⋄ ⍵}⍣(~ps.guiFlag)⊢comment
               marker←'#'
               ShowLog(length2↑(length↑marker,' ',testFns),' (',(cw 0⍕i),'/',max,')'),' ⍝ ',desc
@@ -653,7 +707,7 @@
               ps.trapFlag←ps.ref2Gui.∆n.TrapErrors.State
               ProcessGuiEvents ps.ref2Gui.∆n
           :AndIf ps.ref2Gui.∆n.∆Closed
-              :Return
+              ⎕SIGNAL QuitEvent
           :EndIf
       :Until i≥≢ps.list
       :If ps.guiFlag
@@ -662,10 +716,11 @@
 ⍝Done
     ∇
 
-    ∇ HandleStops(fns ps StopHere testNo)
+    ∇ HandleStops(fns ps StopHere testNo fnsName)
       :If 0<ps.stopFlag
       :AndIf testNo≥ps.stopFlag
           (∪(⎕STOP fns),StopHere)⎕STOP fns
+          ⎕←'About to execute <',(⍕_ref),'.',fnsName,'> ...'
       :Else
           ((⎕STOP fns)~StopHere)⎕STOP fns
       :EndIf
@@ -732,16 +787,34 @@
       ShowLog report
     ∇
 
-    ∇ rc←ExecuteTestFunction(ref ps testNo fnsName)
+    ∇ rc←ExecuteTestFunction(ref ps testNo fnsName);buff
       :If 0=ps.batchFlag
-      :AndIf 0=+/';⎕TRAP;'⍷Uppercase{';',⍵,';'}{⍵↓⍨⍵⍳';'}{⍵↑⍨¯1+⍵⍳'⍝'}↑ref.⎕NR fnsName
+      :AndIf 0=+/'⎕TRAP'⍷Uppercase{⍵↑⍨⍵⍳'⍝'}{↑,/⍵↑⍨1++/∧\';'=1↓↑¨dlb ⍵}ref.⎕NR fnsName
           ShowLog'  *** WARNING: ⎕TRAP is not localized in ',(⍕ref),'.',fnsName
       :EndIf
-      HandleStops(1⊃⎕SI)ps ∆StopHere testNo
+      HandleStops(1⊃⎕SI)ps ∆StopHere testNo fnsName
       :If ps.guiFlag
           ps.ref2Gui.∆n.Info.Text←'Executing ',(⍕ref),'.',fnsName,'...'
       :EndIf
+      :If 0<≢_exec_before_each_test
+          :If 0=1 1⊃⎕AT _exec_before_each_test
+              ⍎_exec_before_each_test,' ps'
+          :Else
+              :If 0<≢buff←⍎_exec_before_each_test,' fnsName ps'
+                  ⎕←buff
+              :EndIf
+          :EndIf
+      :EndIf
      ∆StopHere:rc←ref.⍎fnsName,' ',(⍕ps.debugFlag),' ',(⍕ps.batchFlag)
+      :If 0<≢_exec_after_each_test
+          :If 0=1 1⊃⎕AT _exec_after_each_test
+              ⍎_exec_after_each_test,' ps'
+          :Else
+              :If 0<≢buff←⍎_exec_after_each_test,' fnsName ps'
+                  ⎕←buff
+              :EndIf
+          :EndIf
+      :EndIf
     ⍝Done
     ∇
 
@@ -773,15 +846,20 @@
       :Else
           buff←{1=≡⍵:⊂⍵ ⋄ (3≠≢⍵)∨'---'≡3↑↑⍵:⍵ ⋄ ⊂(1⊃⍵),' ',(2⊃⍵),' ',(3⊃⍵)}msg
           :If ps.guiFlag
+              :If ps.ref2Gui.∆n.∆Closed
+                  ⎕SIGNAL QuitEvent
+              :EndIf
               ps.ref2Gui.∆n.Log.Text,←Nest msg
               ps.ref2Gui.∆n.Log.SelText←2⍴(≢ps.ref2Gui.∆n.Log.Text),¨1
           :EndIf
           ps.log,←buff
           selog←{1=≡⍵:⍵ ⋄ (3≠≢⍵)∨'---'≡3↑↑⍵:⍪⍵ ⋄ (1⊃⍵),' ',(2⊃⍵),' ',(3⊃⍵)}msg
-          :If type<0
-              ⍞←selog,(type=¯2)/⎕UCS 13
-          :Else
-              ⎕←selog
+          :If ~ps.guiFlag
+              :If type<0
+                  ⍞←selog,(type=¯2)/⎕UCS 13
+              :Else
+                  ⎕←selog
+              :EndIf
           :EndIf
       :EndIf
     ∇
@@ -884,17 +962,17 @@
       ∆,←⊂'Coord' 'Prop'
       ∆,←⊂'Posn'(0 0)
       ∆,←⊂'Size'(100 100)
-      ∆,←⊂'ColTitles'('' 'Name' 'Comments' 'Result')
+      ∆,←⊂'ColTitles'('' 'Name' 'Comments' 'Result' '')
       ∆,←⊂'ResizeCols' 1
       n.Grid←n.SF2.⎕NEW'Grid'∆
      
       n.Grid.Coord←'Pixel'
-      n.Grid.BCol←(255 255 255)(122 255 189)(10 10 10)(3↑255)(3⍴128)(3⍴255) ⍝ Default, okay, broken, failed, inactive, not run yet
-      n.Grid.FCol←(0 0 0)(0 0 0)(255 255 0)(255 255 0)(3⍴255)(3⍴1) ⍝ Default, okay, broken, failed, inactive, place holder
+      n.Grid.BCol←(255 255 255)(122 255 189)(10 10 10)(3↑255)(3⍴128) ⍝ Default, okay, broken, failed, inactive, not run yet
+      n.Grid.FCol←(0 0 0)(0 0 0)(255 255 0)(255 255 0)(3⍴255) ⍝ Default, okay, broken, failed, inactive
       n.Grid.Values←2000 5⍴⊂''
       n.Grid.CellTypes←2000 5⍴6
       n.Grid.TitleWidth←70
-      width←20 200 0,(2+⌈/2⊃¨n.Grid.GetTextSize¨,ListSymbolicNames),1   ⍝ Size of the "RC" column is calculated dynamically
+      width←20 200 0,(2+⌈/2⊃¨n.Grid.GetTextSize¨,ListSymbolicNames)   ⍝ Size of the "RC" column is calculated dynamically
       n.Grid.CellWidths←width
       scrollbarSize←35
       n.Grid.CellWidths[3]←n.Form.Size[2]-scrollbarSize+n.Grid.TitleWidth++/width
@@ -905,7 +983,7 @@
       ⍝Done
     ∇
 
-    ∇ r←OnContextMenuInGrid msg;n2;result;name;ref;row;caption;n;rc;log;ref2Gui;this;was;parms
+    ∇ r←OnContextMenuInGrid msg;n2;result;name;ref;row;caption;n;rc;log;ref2Gui;this;was;parms;cl;buff
       :Access Public Shared
       r←0
       ref←1⊃,msg
@@ -915,15 +993,20 @@
       name←2⊃ref.Values[row;]
       caption←' "',name,'"'
       n2.Edit←n2.Menu.⎕NEW'MenuItem'(⊂('Caption'('Edit',caption)))
+      n2.Copy←n2.Menu.⎕NEW'MenuItem'(⊂('Caption' 'Copy names and comments to ⎕ED'))
       {⍵.onSelect←1}¨'MenuItem'⎕WN n2.Menu
       result←⎕DQ n2.Menu
       :If 0<≢result
           n←ref.##.##.##.∆n
-          :If n2.Edit≡↑result
+          :Select ↑result
+          :Case n2.Edit
               _ref.⎕ED'Test_',name
+          :Case n2.Copy
+              buff←¯1↓↑,/{(dtb ⍵),⎕UCS 13}¨↓⎕FMT{((¯3↑¨⍕¨⍳≢⍵),¨⊂'. '),⍵}{⍵⌿⍨(↑∘⍴¨⍵)∨.≠0 0}n.Grid.Values[;2 3]
+              {{}(#.⎕NS'').(⎕ED⍠('ReadOnly' 1)&{'ed'}ed←⍵)}buff
           :Else
               ∘∘∘ ⍝ Huh?!
-          :EndIf
+          :EndSelect
       :EndIf
     ∇
 
@@ -933,8 +1016,8 @@
       :Access Public Shared
       r←1
       ref←1⊃,msg
-      ⎕NQ ref 9998
-      ref.∆n.∆Closed←1
+      ref{6::shy←⍬ ⋄ ⎕NQ ⍺ ⍵}9998
+      :Trap 6 ⋄ ref.∆n.∆Closed←1 ⋄ :EndTrap
       ⍝Done
     ∇
 
@@ -1048,7 +1131,7 @@
       :EndIf
     ∇
 
-    ∇ r←{numbers}ListTestFunctions groupName;A;r2;⎕IO;⎕ML;b;max;longestName
+    ∇ r←{x}ListTestFunctions groupName;A;r2;⎕IO;⎕ML;b;max;longestName;buff;numbers;view
 ⍝ Returns a matrix with two columns with the names of all test cases in the first column and the
 ⍝ first comment line in the second column.\\
 ⍝ If `groupName` is not empty then it will return only the members of that group (case dependent) or,
@@ -1058,7 +1141,20 @@
       :Access Public Instance
       ⎕IO←1 ⋄ ⎕ML←1
       A←GetRefToAPLTreeUtils
-      numbers←{(0<⎕NC ⍵):⍎⍵ ⋄ ⍬}'numbers'
+      x←{(0<⎕NC ⍵):⍎⍵ ⋄ ⍬}'x'
+      :If (≡x)∊0 1
+          :If 0=1↑0⍴x
+              numbers←x
+              view←0
+          :Else
+              view←'view'≡Lowercase x
+              numbers←⍬
+          :EndIf
+      :Else
+          ''⎕SIGNAL 11/⍨2≠≢x
+          (view numbers)←(0=1↑0⍴1⊃x)⌽x
+          view←'view'≡Lowercase view
+      :EndIf
       r2←↓'Test_'{⍵⌿⍨((≢⍺)↑[2]⍵)∧.=⍺}'T'_ref.⎕NL 3
       :If 0≠≢groupName
           groupName←'Test_'{⍵↓⍨(≢⍺)×⍺≡(≢⍺)↑⍵}groupName
@@ -1074,7 +1170,9 @@
           :If 0≠≢numbers
               r2←((({⊃∘⊃∘(//)∘⎕VFI ⍵↑⍨-(-1)+'_'⍳⍨⌽⍵}¨r2))∊numbers)⌿r2
           :EndIf
-          r2←r2,[1.5]{{⍵↓⍨+/∧\' '=⍵}{⍵↓⍨⍵⍳'⍝'}{⎕ML←3 ⋄ ∊⍵}1↑1↓_ref.⎕NR ⍵}¨r2
+          buff←_ref GetFirstCommentLine¨r2
+          buff←dlb buff
+          r2←r2,[1.5]buff
           r2←r2[⍋↑A.Lowercase r2[;1];]
           longestName←⌈/≢¨r2[;1]
           :If 0<≢r2
@@ -1084,6 +1182,10 @@
               (b⌿r2[;2])←((max-4)↑¨b/r2[;2]),¨⊂'...'
           :EndIf
           r←r2
+          :If view
+             {{}(#.⎕NS'').(⎕ED⍠('ReadOnly' 1)&{'ed'}ed←⍵)}r
+              r←0 0⍴⍬
+          :EndIf
       :EndIf
     ∇
 
@@ -1102,7 +1204,8 @@
     ∇
 
     ∇ r←ListSymbolicNames;A;⎕ML;⎕IO;buff1;buff2;buff3;bool
-  ⍝ Returns a one-column matrix with all symbolic names any test function might return.
+  ⍝ Returns a two-column matrix with all symbolic names.
+  ⍝ The second column is empty for built-in constants but carries a description for custom ones.
       :Access Public Instance
       ⎕IO←1 ⋄ ⎕ML←1
       buff1←⍪' '~¨⍨↓'_'⎕NL 2.2
@@ -1118,44 +1221,78 @@
       :EndIf
     ∇
 
-    ∇ r←FindSpecialString what
-    ⍝ Use this to search for stuff like "CHECK" or "TODO" enclosed between lamps `⍝`.
-    ⍝ Without left argument the search starts in `#`.
+    ∇ r←GetSymbolicName constant;names;values
+   ⍝ Takes a constant and returns it symbolic name.\\
+   ⍝ * If the constant is unknown `''` is returned
+   ⍝ * If it is a single integer a string is returned
+   ⍝ * If `constant` is more than one integer a vector of strings is returned
       :Access Public Instance
-      r←⍉1↓[1+⎕IO]⎕SE.UCMD'locate "',what,'" -return=count -objects=',⍕_ref  ⍝ The quotes are essential because of the ⍝ symbol!
+      'Invalid right argument: must be one or more integers'⎕SIGNAL 11/⍨~∧/{(0 1 2∊⍨≡⍵)∧83∧.=⎕DR ⍵}¨1(2 3)
+      names←,ListSymbolicNames[;1]
+      values←⍎¨names
+      :If 1<≢constant
+          r←(names,⊂'')[values⍳constant]
+      :Else
+          r←(values⍳constant)⊃names,⊂''
+      :EndIf
+    ∇
+
+    ∇ r←{currentVersion}AtLeastVersion min;⎕IO;⎕ML;currentVersion
+      ⍝ Returns 1 if the currently running version is at least `min`.
+      ⍝ If the current version is 17.1 then:
+      ⍝ 0 0 1 1 ←→ AtLeastVersion¨16 17 17.1 18
+      :Access Public Instance
+      currentVersion←{0<⎕NC ⍵:⍎⍵ ⋄ {↑↑(//)⎕VFI ⍵/⍨2>+\⍵='.'}2⊃'#'⎕WG'APLVersion'}'currentVersion'
+      ⎕IO←1 ⋄ ⎕ML←3
+      'Right argument must be length 1'⎕SIGNAL 11/⍨1≠≢min
+     
+      r←min≤currentVersion
+    ∇
+
+    ∇ r←{target}FindSpecialString what
+    ⍝ Use this to search for stuff like "CHECK" or "TODO" enclosed between lamps `⍝`.
+    ⍝ Without left argument the search starts in `_ref`.
+      :Access Public Instance
+      target←{0<⎕NC ⍵:⍎⍵ ⋄ ⍕_ref}'target'
+      r←⍉1↓[1+⎕IO]⎕SE.UCMD'locate "',what,'" -return=count -objects=',⍕target  ⍝ The quotes are essential because of the ⍝ symbol!
       :If 0<≢r←(0<r[;⎕IO+1])⌿r                                    ⍝ Drop those with no hits
           r[;⎕IO]←{2>'#'+.=⍵:⍵ ⋄ {⎕IO←0 ⋄ ⌽⍵↑⍨1+⍵⍳'#'}⌽⍵}¨r[;⎕IO]
       :EndIf
     ∇
 
-    ∇ {r}←oldName RenameTestFnsTo newName;body;rc;header;comment;res;name;right;left;newParent;oldParent;delFilanme;A;⎕ML;⎕IO
-         ⍝ Renames a test function and tells acre.\\
+    ∇ {r}←oldName RenameTestFnsTo newName;body;rc;header;comment;res;name;right;left;delFilanme;A;⎕ML;⎕IO;list;this;no;buff;val
+         ⍝ Renames a test function or a group of tests and tells acre.\\
+         ⍝ Neither `oldName` nor `newName` may contain a dot.
          ⍝ `r ← ⍬`
       :Access Public Instance
       ⎕IO←0 ⋄ ⎕ML←3
       A←GetRefToAPLTreeUtils
       r←⍬
       (oldName newName)←oldName newName~¨' '
-      :If '.'∊oldName
-          (oldParent oldName)←¯1 0↓¨'.'A.SplitPath oldName
-          oldParent←⍎oldParent
+      'Names must not contain dots'⎕SIGNAL 11/⍨↑∨/'.'∊¨oldName newName
+      :If ~'.'∊oldName
+      :AndIf ~'.'∊newName
+      :AndIf 0<≢buff←ListGroups
+      :AndIf (⊂oldName)∊(≢'Test_')↓¨{⍵[;0]}buff     ⍝ Group name?
+          list←{⍵[;0]}ListTestFunctions oldName
+          :For this :In list
+              no←{⍵↑⍨-(⌽⍵)⍳'_'}this
+              :If 0<_ref.⎕NC'Test_',newName,'_',no  ⍝ Already occupied
+                  val←⊃(//)⎕VFI no
+                  no←(-≢no)↑((≢no)⍴'0'),' '~⍨⍕1+⌈/{↑(//)⎕VFI ⍵↑⍨-(⌽⍵)⍳'_'}¨↓_ref.{l←'T'⎕NL 3 ⋄ l⌿⍨((≢⍵)↑[2]l)∧.=⍵}'Test_',newName,'_'
+              :EndIf
+              this RenameTestFnsTo'Test_',newName,'_',no
+          :EndFor
+          →∆Go
       :Else
-          oldParent←{⎕ML←1 ⋄ ⊃⍵}⎕RSI
+          'Function to be renamed not found'⎕SIGNAL 11/⍨3≠_ref.⎕NC oldName
+          'New name is already used'⎕SIGNAL 11/⍨0<_ref.⎕NC newName
+          'New name is invalid'⎕SIGNAL 11/⍨¯1=_ref.⎕NC newName
       :EndIf
-      :If '.'∊newName
-          (newParent newName)←¯1 0↓¨'.'A.SplitPath newName
-          newParent←⍎newParent
-      :Else
-          newParent←↑⎕RSI
-      :EndIf
-      ⎕SIGNAL 11/⍨oldParent≢newParent
-      'Function to be renamed not found'⎕SIGNAL 11/⍨3≠oldParent.⎕NC oldName
-      'New name is already used'⎕SIGNAL 11/⍨0<newParent.⎕NC newName
-      'New name is invalid'⎕SIGNAL 11/⍨¯1=newParent.⎕NC newName
-      body←oldParent.⎕NR oldName
+      body←_ref.⎕NR oldName
       header←⎕IO⊃body
       (header comment)←header{⎕IO←0 ⋄ ⍺{(⍵↑⍺)(⍵↓⍺)}⍵⍳'⍝'}header
-      :If (oldParent.⎕NC⊂oldName)∊3.2   ⍝ Dfns
+      :If (_ref.⎕NC⊂oldName)∊3.2   ⍝ Dfns
           :If 1=≢body
               (oldName body)←{⎕IO←0 ⋄ ⍵{(⍵↑⍺)(⍵↓⍺)}⍵⍳'←'}⎕IO⊃body
               body←,⊂newName,body
@@ -1195,14 +1332,14 @@
           name←newName
           (⎕IO⊃body)←res,left,' ',name,' ',right,comment
       :EndIf
-      :If ' '≠1↑0⍴rc←newParent.⎕FX{⎕ML←1 ⋄ ↑⍵}body
+      :If ' '≠1↑0⍴rc←_ref.⎕FX{⎕ML←1 ⋄ ↑⍵}body
           . ⍝ something went wrong
       :EndIf
       :If (0=#.⎕NC'acre')∧0=⎕SE.⎕NC'acre'
           ⎕←'acre not found in ⎕SE'
-          oldParent.⎕EX oldName
+          _ref.⎕EX oldName
       :Else
-          (oldName newName)←{(⍕newParent),'.',⍵}¨oldName newName
+          (oldName newName)←{(⍕_ref),'.',⍵}¨oldName newName
           :If 3=⎕SE.acre.⎕NC'Version'   ⍝ acre 6 or better?
               delFilanme←((-≢'.change')↓↑⎕SE.acre.Changefile newName),'.delete'
               :Trap 22
@@ -1223,27 +1360,18 @@
               :If ⎕NEXISTS delFilanme
                   ⎕NDELETE delFilanme
               :EndIf
-              :If 0=≢rc←⎕SE.UCMD'acre.SetChanged ',newName
+              :If 0=≢rc←⎕SE.acre.SetChanged newName
                   ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
               :EndIf
-              :If 0=≢rc←⎕SE.UCMD'acre.Erase ',oldName
-                  ⎕←'acre was told about the deletion of a test fns but it was not interested.'
-              :EndIf
-          :Else
-              delFilanme←((-≢'.change')↓⎕SE.UCMD'acre.getchangefilename ',newName),'.DEL'
-              :If ⎕NEXISTS delFilanme
-                  ⎕NDELETE delFilanme
-              :EndIf
-              :If 0=≢rc←⎕SE.UCMD'acre.setchanged ',newName
-                  ⎕←'acre was told about the introduction of a new test fns but it was not interested.'
-              :EndIf
-              :If 0=≢rc←⎕SE.UCMD'acre.Erase ',oldName
+              :If 0=≢rc←⎕SE.acre.Erase oldName
                   ⎕←'acre was told about the deletion of a test fns but it was not interested.'
               :EndIf
           :EndIf
      ∆Go:
-          ⎕EX oldName
-          ⎕←'***Done'
+          _ref.⎕EX oldName
+          :If (↑⎕SI)≢↑1↓⎕SI
+              ⎕←'***Done'
+          :EndIf
       :EndIf
     ∇
 
@@ -1309,7 +1437,7 @@
       :EndIf
     ∇
 
-    ∇ R←Test_000(stopFlag batchFlag);⎕TRAP
+    ∇ r←Test_000(stopFlag batchFlag);⎕TRAP
     ⍝ Model for a test function.
       ⎕TRAP←(999 'C' '∘∘∘ ⍝ Deliberate error')(0 'N')
       R←T._Failed
@@ -1391,15 +1519,9 @@
           v←⍎¨l
           symbolic←(v⍳rc)⊃(1↓¨l),⊂⍕rc
           symbolic←{2⊃ListCustomMessages[ListCustomNumbers⍳↑↑(//)⎕VFI ⍵;]}⍣(↑↑⎕VFI symbolic)⊣symbolic
+          6::shy←⍬
           _←2 ⎕NQ ps.ref2Gui.∆n.Grid'SetColSize' 4 ¯3
           ps.ref2Gui.∆n.Grid.Values[row;4]←⊂symbolic
-          1:shy←⍬
-      }
-
-      CorrectWidthOfCommentColumn←{
-          ps←⍵
-          buff←_ref.{2↓↑1↑1↓⎕NR ⍵}¨ps.list
-          ps.ref2Gui.∆n.Grid.CellWidths[3]←20+⌈/2⊃¨ps.ref2Gui.∆n.Grid.GetTextSize¨buff,⊂' Comments '
           1:shy←⍬
       }
 
@@ -1429,6 +1551,33 @@
     ∇ r←ListCustomNumbers
       r←({⍵⌿⍨0<≢¨⍵[;2]}ListSymbolicNames)[;1]
       r←-{↑↑(//)⎕VFI ¯1↑⍵}¨r
+    ∇
+
+      GetFirstCommentLine←{
+          ⎕IO←1 ⋄ ⎕ML←1
+          body←1↓⍺.⎕NR ⍵
+          body←(~body∧.=¨' ')/body
+          body←⊃⍺{⍵↓⍨+/∧\';'=⊃¨dlb ⍵}body
+          dlb body↓⍨¯1+body⍳'⍝'
+      }
+
+    ∇ {r}←constant ReportInactiveToGUI(row ref testFns n);body;body2
+    ⍝ Tries to find `constant` in the code of the test function (text and comments are ignored).
+    ⍝ It then looks for a comment after the assignment. That comment, if there is any, will be
+    ⍝ shown in the GUI's "Result` column.
+    ⍝ `constant` is something like "_Inactive".
+      r←⍬
+      body←ref.⎕NR testFns
+      :If 0<≢body←(∨/¨('.',constant)∘⍷¨body)/body
+          body←'''[^'']+'''⎕R''⊣body
+          body2←({~∨\'⍝'=⍵}¨body)/¨body
+          body←(∨/¨('.',constant)∘⍷¨body2)/body
+      :AndIf 1=≢body
+          body←1⊃body
+      :AndIf '⍝'∊body
+          n.Grid.Values[row;4]←⊂(1↓constant),':',{⍵↓⍨⍵⍳'⍝'}body
+          2 ⎕NQ n.Grid'SetColSize' 4 ¯3
+      :EndIf
     ∇
 
 :EndClass
