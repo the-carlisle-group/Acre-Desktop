@@ -17,7 +17,7 @@ while keeping all of the benefits.
 
 Acre Desktop is distributed as a compressed folder that contains a folder named acre.  Dyalog APL 14.0 Unicode is the minimum supported version of Dyalog APL.
 
-To install, [download](https://github.com/the-carlisle-group/Acre-Desktop/releases/latest) the latest release, uncompress, and put the acre folder anywhere.
+To install, [download](https://github.com/the-carlisle-group/Acre-Desktop/releases/latest) the acre zip file (currently called *"acre14.0.zip"*) from the latest release, uncompress, and put the acre folder anywhere.
 Inside this folder is a workspace named acre.dws.
 Load this workspace once, and restart the APL session.
 Acre Desktop is now installed as a set of user commands.  
