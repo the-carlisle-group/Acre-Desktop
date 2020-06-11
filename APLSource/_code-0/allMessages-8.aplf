@@ -13,7 +13,7 @@
          ⍵.NU←nms.author
 
          ⍵.AD←'.dyalog'        ⍝ dyalog
-         ⍵.AR←'.raw'           ⍝ raw
+         ⍵.AR←'.binary'        ⍝ raw
          ⍵.AA←'.array'         ⍝ apla              ⍝ Dyalog defined
          ⍵.AF←'.function'      ⍝ aplf              ⍝       |
          ⍵.AO←'.operator'      ⍝ aplo              ⍝       |
@@ -134,7 +134,7 @@
          ⍵.GB←'Off'
          ⍵.GC←'empty'
          ⍵.GD←'Now safe to save session without ',MS.NA
-         ⍵.GE←'Raw' ⍝ ignore APLAN
+         ⍵.GE←'Binary' ⍝ ignore APLAN
          ⍵.GI←'hour hours'
          ⍵.GJ←'minute minutes'
          ⍵.GK←'second seconds'

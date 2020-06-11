@@ -16,7 +16,7 @@
      fixSrc←{0::0 ⋄ x n s v←⍵ ⋄ n≡r←'.'UT.nn⍕s.⎕FIX v:1 ⋄ 1⊣ers⍪←x r}
      fixClss←~{⍵\~1↓0,fixSrc/0,⍪⍵/⍺}⍣≡
 
-     (x/res)←⊢fixVar/0,⍪data/⍨x←nc=ns.raw
+     (x/res)←⊢fixVar/0,⍪data/⍨x←nc=ns.binary
      (x/res)←PL.(decode scrape)fixVar/0,⍪data/⍨x←nc=ns.array
      (x/res)←,¨∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charlist
      (x/res)←↑∘(,¨)∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charmat

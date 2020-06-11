@@ -6,7 +6,7 @@
      val←0⍴⍨⍴fqn
      esc←PL.scape
      fmt←{0::0 ⋄ PL.format ⍵}
-     (x/val)←⊢∘⍎/0,⍪fqn/⍨x←nc=ns.raw
+     (x/val)←⊢∘⍎/0,⍪fqn/⍨x←nc=ns.binary
      (x/val)←esc⊢∘⍎/0,⍪fqn/⍨x←nc=ns.charlist
      (x/val)←esc⊢∘ntbs∘⍎/0,⍪fqn/⍨x←nc=ns.charmat
      (x/val)←esc sep∘⍎/UT.CR,⍪fqn/⍨x←nc=ns.charstring

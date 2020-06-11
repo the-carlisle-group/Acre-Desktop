@@ -1,1 +1,2 @@
 ﻿Run ⎕se.UCMD 'acre.OpenProject .'
+Run ⎕se.UCMD 'CD ..'

@@ -1,9 +1,8 @@
  editFix←{⍺←⊢
-     st←⍵≡'Start' ⋄ v17←18>⊃SV.aplver ⋄ cont←{(⍎first⊃⌽SV.fxnftr)⍵}⍣v17
-     v17←1 ⍝ pro tem 'til 18.0 is released
+     st←⍵≡'Start' ⋄ v17←18>⊃SV.aplver ⋄ v17←1    ⍝ pro tem 'til Hooks works
+     cont←{(⍎first⊃⌽SV.fxnftr)⍵}⍣v17
      z←{{0}SV.itemvalue←editStore ⎕NS''}⍣st⊢0    ⍝ create value store
-     st>v17:{0}⎕SE.Dyalog.{2=⍵.⎕NC'Fix':⊢⍵.(Fix AfterFix),←⊂⍬⍴⎕XSI
-         {0}⍵.(Fix AfterFix)←⍬⍴⎕XSI}⍎'Hooks'⎕SE.Dyalog.⎕NS''
+     st>v17:{0}⎕SE.Dyalog.Hooks.Register⌽99,(⍬⍴⎕XSI),⍪'Fix' 'AfterFix'
      st∧v17:{SV.fxnftr←⊃if≢¨⍵.(onFix onAfterFix) ⍝ odd extra nesting!
          {0}⍵.(onFix onAfterFix)←⍬⍴⎕XSI}'⎕se'⎕WG'Editor'
      (editor event value space name new)←6↑⍵     ⍝ so long as onFix unchanged
@@ -30,5 +29,5 @@
 ⍝ ⍺ probably missing
 ⍝ ⍵ 'Start' or callback argument
 ⍝ ← 0 for 'Start' - else none
-⍝ Phil 2020-03-20 22:15 8.0.0+308
+⍝ Phil 2020-05-11 17:50 8.1.0+320
  }
