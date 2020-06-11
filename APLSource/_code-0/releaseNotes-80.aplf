@@ -2,9 +2,17 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.1.0+322 2020-05-21 13:54
+⍝ Acre 8.2.0+323 2020-06-11 16:30
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝ Phil 2020-05-21 13:54 8.1.0+320
+⍝ Filetype and CreateProject -varisbles option value for large uneditable
+⍝ arrays is now "binary" rather than "raw". Any files with filetype ".raw"
+⍝ will be ignored and the array will not be loaded on OpenProject.
+⍝ Renaming to ".binary" before ]OpenProject or ]Refresh will bring them in.
+⍝
+⍝ The editor callbacks DO NOT make use of the Dyalog v18.0 queuing interface
+⍝ that will be retested.
+⍝
+⍝ Phil 2020-06-11 16:30 8.1.0+322
  }
