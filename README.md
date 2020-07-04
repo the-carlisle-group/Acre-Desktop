@@ -88,8 +88,8 @@ Simply create a folder for your project, create a sub folder named APLSource, an
 ## The APLSource Folder
 
 The APLSource folder contains the APL Source code. 
-Each APL item, be it a class, namespace script, function or variable, is in a .dyalog text file,
-in a folder hierarchy that mimics the namespace structure.
+Each APL item, be it a class, namespace script, function or variable, is in a UTF-8 encoded text file
+with one of ten or so specific filetypes, in a folder hierarchy that mimics the namespace structure.
 
 ### Casing
 
@@ -109,23 +109,20 @@ This text file contains acre parameters specific to the project. For example:
 
 ~~~JSON
 {
-      "ProjectName": "FlipDB",
-      "ProjectSpace": "#.CarlisleRumba",
+      "ProjectSpace": "#.Carlisle.FlipDB",
       "Dependencies": ["Rumba", "Utilities"],
       "StartUp": "Initialize",
       "KeepHistory": "Off",
       "CaseCode": "Off",
       "AfterFix": "",
-      "Variables": "Off",
       "MyCustomField": "possibly required by ancillary software"
 }
 ~~~
 
 Note that in this example...
 
-* the values for "ProjectName" and "ProjectSpace" _must_ be specified and _not empty_.
-* the values for `KeepHistory", "CaseCode" and "Variables" are the default ("off").
-* the other values (excepts "MyCustomField" of course) are optional and if specified may be empty.
+* the values for `KeepHistory" and "CaseCode" are the default ("off").
+* the other values (except "MyCustomField" of course) are optional and if specified may be empty.
 
 ### Remarks
 
