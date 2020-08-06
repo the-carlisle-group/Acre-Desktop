@@ -1,6 +1,6 @@
  caseOK←{⍺←⊢ ⋄ dat←⍺⍺
      null⊢nms←nout⊂if≡⍵:nms
-     dat.case≥∧/_NEXISTS¨0 1 Cc¨⊂dat.source:nms ⍝ ok
+     dat.case≥∧/_NEXISTS¨¯1 1 Cc¨⊂dat.source:nms ⍝ ok
      space←⍎dat.nspath
 
      dup←spcs/⍨multi Cc⊢spcs←(⊢(/⍨)0∘ssp>ref)space UT.li 9.1

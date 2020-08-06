@@ -1,5 +1,5 @@
  nOff←{⍺←⊢
-     ≢/Cc MS.GB(⍕⍵)
-⍝ not if ⍵ is 'off', 'Off', 'OFF' &c.
-⍝ Phil 2018-06-18 12.32
+     ~∊/Cc(⊂⍕⊃if≢⍵)(MS.GB MS.GG)
+⍝ not if ⍵ is 'off', 'ofF' ... 'OFF', 'false', 'falsE' ... 'FALSE'
+⍝ Phil 2020-08-05 18:23 8.2.0+325
  }

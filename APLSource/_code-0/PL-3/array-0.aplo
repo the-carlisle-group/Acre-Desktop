@@ -1,0 +1,8 @@
+ array←{⍺←⊢
+     f←⍺⍺ ⋄ decode⊃{1↓⍵/⍨∨\⍵=⍺}∘⌽/'{}',,/(⎕UCS 13),¨⎕NR'f'
+     f←⍺⍺ ⋄ decode⊃{1↓⍵/⍨∨\⍵=⍺}∘⌽/'{}',{⍺,(⎕UCS 13),⍵}/⎕NR'f'
+⍝ ⍺⍺ dfn whose multi-line content defines an array
+⍝ ⍵  ?
+⍝ ←  the defined array
+⍝ Phil 2020-07-18 15:18 8.2.0+325
+ }

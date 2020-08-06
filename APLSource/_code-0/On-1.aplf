@@ -1,5 +1,5 @@
  On←{⍺←⊢
-     ≡/Cc MS.GA(⍕⍵)
-⍝ only if ⍵ is 'on', 'On', 'oN' or 'ON'.
-⍝ Phil 2018-06-17 15.38
+     ∊/Cc(⊂⍕⊃if≢⍵)(MS.GA MS.GF)
+⍝ only if ⍵ is 'on', 'oN' ... 'ON', 'true', 'truE' ... 'TRUE'
+⍝ Phil 2020-08-05 18:23 8.2.0+325
  }

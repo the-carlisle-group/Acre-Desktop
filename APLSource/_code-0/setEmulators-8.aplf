@@ -4,7 +4,7 @@
      hic.FS←fso'' ⍝ for _MKDIR &c.
      f←{
          [
-         15 'Cc' '(819⌶)'
+         18 'Cc' '⎕C'               ⍝ was 15 'Cc' '(819⌶)'
          17 '_JSON' '⎕JSON⍠(''Compact'' 0)↑'
          15 '_MKDIR' '⊢{3 ⎕MKDIR ⍵}'
          15 '_NDELETE' '⊢{1 ⎕NDELETE ⍵}'

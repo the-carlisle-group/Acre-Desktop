@@ -1,0 +1,14 @@
+ eb←{⍺←⊢ ⋄ n←⍺⊣'_temp_'
+     2≠⎕NC ⍵:''
+     d←(n,'←{{',1↓⊢)¨@0⊢{(+/∨\' '≠⌽⍵)↑¨↓⍵}{
+         (('['=⊣/⍵)\'⋄'),⍵}{
+         (+/∧\' '=⍵)⌽⍵
+     }↑,↓⎕SE.Link.Serialise⍎⍵ ⍝ shouldn't be necessary
+     d,'}⎕SE.Link.Array ⍬}'(((-⊥⍨'.'≠⍵)↑⍵),'←(⎕ex''',n,''')⊢',n,' ⍬')
+
+⍝ embed array named as FQN ⍵
+⍝ [⍺] temp name for defn function - dflt '_temp_'
+⍝  ⍵  FQN of existing array
+⍝  ←  text to embed within a script to repro the original array
+⍝ Phil 2020-07-26 09:16 8.2.0+325
+ }

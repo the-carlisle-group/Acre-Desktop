@@ -6,7 +6,7 @@
      '⎕'∊dat.nspath←⊃prefSpace⊂nspath:{0}logMsg MS.DC
      ~((1=≢)∨0∘ssp∨0=⎕NC)dat.nspath:{0}logMsg MS.DC ⍝ 1=≢ => ,'#'
      dat.(hist case)←On¨OPT.(keephistory casecode)
-     raw←2=dat.vars←3|⍳/Cc(MS.GB MS.GA MS.GE)(⊂OPT.variables)
+     raw←2=dat.vars←3|⍳/Cc(MS.GB MS.GA MS.GE MS.GG MS.GF MS.GE)(⊂OPT.variables)
      dat.(config source code changes latest)←{
          ⍵}dat.folder∘,¨MS.HO MS.GY,MS.NB∘,¨''MS.EU MS.HE
      z←dat.nspath∘{dataSpaces ⍵/⍨⍵.nspath∊⊂⍺}if(×∘≢)openProjects''
@@ -14,7 +14,7 @@
      z←3 _MKDIR¨dat.(source changes)/⍨1,dat.hist
      (cfg←configFields'').ProjectSpace←dat.nspath
 ⍝   cfg.(KeepHistory CaseCode Variables)←dat.(⊂hist case vars)⌷MS.GB MS.GA
-     cfg.(KeepHistory CaseCode)←dat.(⊂hist case)⌷MS.GB MS.GA
+     cfg.(KeepHistory CaseCode)←dat.(⊂hist case)⌷⊂¨MS.GG MS.GF
      z←'dat'⎕NS lcNs cfg⊣dat writeConfig cfg⊣cfg.⎕EX'Open'
      z←(MS.NB MS.FX)_NPUT dat.folder,MS.FM ⍝ git specific -
      fqn←validItems⊢nms←(⊢(/⍨)0<⎕NC)space UT.li⍳11

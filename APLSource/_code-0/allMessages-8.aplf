@@ -135,6 +135,8 @@
          ⍵.GC←'empty'
          ⍵.GD←'Now safe to save session without ',MS.NA
          ⍵.GE←'Binary' ⍝ ignore APLAN
+         ⍵.GF←'true'   ⍝ JSON see On
+         ⍵.GG←'false'  ⍝ JSON see nOff
          ⍵.GI←'hour hours'
          ⍵.GJ←'minute minutes'
          ⍵.GK←'second seconds'

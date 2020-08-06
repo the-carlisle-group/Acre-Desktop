@@ -3,7 +3,7 @@
      z←'dfns'#.⎕NS''
      z←#.dfns.⎕CY'dfns'
      #.dfns.shinyNewBigVar←?1000000 5⍴100
-     z←⎕SE.acre.CreateProject'dfns' '#.dfns'('var' 'Raw')
+     z←⎕SE.acre.CreateProject'dfns' '#.dfns'('var'⍵)
      z←#.⎕EX'dfns'
      t←⎕AI
      z←⎕SE.acre.OpenProject'dfns'
