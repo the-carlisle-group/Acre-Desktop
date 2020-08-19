@@ -1,0 +1,7 @@
+ r←{a}(f dd)w
+ r←⎕FX 1 5⍴'a←a a'
+ r←⍎('aw',f)[('⍺⍵',f)⍳f]
+⍝ {a} optional left arg
+⍝  f  string expression in ⍺ & ⍵
+⍝  w  right arg
+⍝  r  result of expression

@@ -24,6 +24,7 @@
      z←MS.NB∘_NPUT if(~_NEXISTS)dat.folder,MS.FM  ⍝ git specific -
      z←dat getSource''
      dat.aftersave←{⍵.aftersave}(z.(⊃⎕NC'aftersave')⍳2)⊃z←dat SV
+     dat.beforefix←{⍵.beforefix}(z.(⊃⎕NC'beforefix')⍳2)⊃z←dat SV
      dat.changed←⊃dat changes''
      z←space∘{0::⊢logMsg UT.bx MS.DN,MS.DP,⍵
          ⊢⍺.⍎UT.ep ⍵}if(trk∧top>null)dat.startup ⍝ trk?

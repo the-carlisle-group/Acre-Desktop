@@ -1,5 +1,6 @@
  keys←{⍺←⊢
-     sig←⎕AN,(,'G< 9999-99-99 99:99 >'⎕FMT 100⊥5⍴⎕TS),1⊃Version''
+⍝     sig←⎕AN,(,'G< 9999-99-99 99:99 >'⎕FMT 100⊥5⍴⎕TS),1⊃Version''
+     sig←'Phil',(,'G< 9999-99-99 99:99 >'⎕FMT 100⊥5⍴⎕TS),1⊃Version''
      sig←'`D`L`C`u⍝ ',sig,'`L'
      d←'`E←{⍺←⊢`C`C⍝`C }`8`u`u' '⎕NL¨⍳11'(']',MS.NA,'.')'⎕signal '('⎕se.',MS.NA,' `l.')'→⎕lc'sig']changes ' '{(⎕NS'''').(⎕ED&''_''⊣_←⍵)}' 'ac.diff''`R''' '`d1`e'
 ⍝                2                  3           4           5               6          7   8      9                10                        11             12

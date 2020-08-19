@@ -2,7 +2,8 @@
      z←⍵{path←⍺
          ⍵.SV←##.⎕NS''
          path ws name←SV.(inipath workspace systemname)←path
-         SV.(setupcomplete error opened aftersave loghaschanged)←2 3/0 ''
+         SV.(setupcomplete error opened)←0 0 ''
+         SV.(aftersave beforefix loghaschanged)←'' '' ''
          ⍵.MS←allMessages name
          ⍵.CD←cmdDefs name
          z←setEmulators''

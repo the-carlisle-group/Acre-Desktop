@@ -1,0 +1,11 @@
+ BeforeFix←{
+     was←SV.beforefix
+     null⊢arg←⊃⊂if≡⍵:was
+     ''≢0/arg:MS.DW ⎕SIGNAL 11   ⍝ string
+     was⊣SV.beforefix←⊃prefSpace arg/⍨0≤⎕NC arg
+
+⍝ query or set beforefix function
+⍝ ⍵ null    or fqn
+⍝ ← current or previous
+⍝ Phil 2020-08-14 20:45 8.2.0+327
+ }

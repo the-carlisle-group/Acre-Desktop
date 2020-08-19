@@ -2,12 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.2.0+327 2020-08-06 10:51
+⍝ Acre 8.2.0+328 2020-08-18 20:09
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝  Added JSON booleans to config and options
-⍝  Added v18 case folding (⎕C) to emulator
+⍝  BeforeFix command and function
 ⍝
-⍝ Phil 2020-08-06 10:51 8.2.0+325
+⍝ Phil 2020-08-18 20:09 8.2.0+327
  }

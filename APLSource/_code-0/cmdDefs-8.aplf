@@ -9,6 +9,14 @@
              ⍵.type←'shared'
              ⍵
          }⎕NS'')({
+             ⍵.command←'BeforeFix'
+             ⍵.help←'Specify or query callback to run before fixing'
+             ⍵.options←''
+             ⍵.result←''
+             ⍵.syntax←'#.function.name | '''''
+             ⍵.type←'shared'
+             ⍵
+         }⎕NS'')({
              ⍵.command←'CaseCode'
              ⍵.help←'Toggle between names with and without case-codes'
              ⍵.options←''

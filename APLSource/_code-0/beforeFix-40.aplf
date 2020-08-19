@@ -1,0 +1,13 @@
+ beforeFix←{
+     dat←whichProject⊃fqn val←⍵
+     exit←dat.beforefix
+     3≠#.⎕NC exit:''
+     2≠|0 1⊃#.⎕AT exit:↓'⎕',UT.bx(⊃⎕SI),MS.BQ ⍝ must be dyad
+     0::(⊂MS.DN,exit),(↓UT.bx↑⎕DM),⊂(1⊃MS.DV),fqn ⍝ show error
+     cfg←PL.decode dat.cfg ⍝ held as APLAN as no JSON pre 14.1
+     cfg(#.⍎exit)fqn(⊃dat getSourceFilenames fqn)val
+⍝ calls external routine with ⍵ before edited item is fixed
+⍝ ⍵ fqn
+⍝ ← zero or more messages
+⍝ Phil 2020-08-14 21:56 8.2.0+327
+ }

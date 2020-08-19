@@ -11,7 +11,8 @@
      fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(nonul new)∧2≠space.⎕NC name
      0=dat←whichProject fqn:cont ⍵
      (null validItems fqn):
-     first:{nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
+     first:{z←logMsg if(0 1 1 1 arrayType)beforeFix fqn value
+         nv←fqn MS.GU if null⊃¨1 0 1/getValue,⊂fqn
          z←SV.itemvalue editStore nv
      }''
      new←MS.GU≡oldval←SV.itemvalue editStore fqn

@@ -1,10 +1,12 @@
  fromJSON←{
-     ⎕USING←'System' 'System.IO' 'System.Web.Script.Serialization,System.Web.Extensions.dll'
-     jss←⎕NEW JavaScriptSerializer
-     ob←jss.DeserializeObject⊂{⎕ML←3 ⋄ ∊⍵}⍵
+     u←⎕NS''
+     u.⎕USING←'System' 'System.IO' 'System.Web.Script.Serialization,System.Web.Extensions.dll'
+     jss←⎕NEW u.JavaScriptSerializer
+     ob←jss.DeserializeObject⊂arg←{⎕ML←3 ⋄ ∊⍵}⍵
      n←⌷ob.Keys
      v←⌷ob.Values
-     ns←⎕NS''
+     (⎕NS''){⍺⍺⊣⍺ ⍺⍺.{⍎⍺,'←⍵'}¨((⊂¨MS.GG MS.GF),⍵)[(1 0,⍵)⍳⍵]}/n v
+
      ns.ProjectSpace←{0::'' ⋄ (n⍳⊂'ProjectSpace')⊃v}''
      ns.CaseCode←{0::'Off' ⋄ (n⍳⊂'CaseCode')⊃v}''
      ns.KeepHistory←{0::'Off' ⋄ (n⍳⊂'KeepHistory')⊃v}''
@@ -13,4 +15,5 @@
      ns
 ⍝ readonly for Dyalog v14.0 that lacks a JSON interface
 ⍝ NJ 2020-06-26 19:35 8.2.0+323
+⍝ Phil 2020-08-07 15:43 8.2.0+327
  }

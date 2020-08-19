@@ -2,8 +2,8 @@
      dat←whichProject⊃fqn path←⍵
      exit←dat.aftersave
      3≠#.⎕NC exit:''
-     2≠|0 1⊃#.⎕AT exit:↓'⎕',UT.bx MS.BQ ⍝ must be dyad
-     0::(⊂MS.DN,exit),(↓UT.bx↑⎕DM),⊂MS.DV,fqn ⍝ show error
+     2≠|0 1⊃#.⎕AT exit:↓'⎕',UT.bx(⊃⎕SI),MS.BQ ⍝ must be dyad
+     0::(⊂MS.DN,exit),(↓UT.bx↑⎕DM),⊂(⊃MS.DV),fqn ⍝ show error
      cfg←PL.decode dat.cfg ⍝ held as APLAN as no JSON pre 14.1
      cfg(#.⍎exit)fqn path
 ⍝ calls external routine with ⍵ after saving edited item

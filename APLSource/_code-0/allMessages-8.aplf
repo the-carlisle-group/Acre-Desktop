@@ -45,7 +45,7 @@
          ⍵.BN←MS.BJ MS.BK MS.BL
          ⍵.BO←'add switch `-recursive` to include space and contents'
          ⍵.BP←' may require attention.'
-         ⍵.BQ←'AfterSave function must be dyadic or ambivalent.'
+         ⍵.BQ←' function must be dyadic or ambivalent.'
          ⍵.BU←'History is disabled for '
          ⍵.BV←'No change'
          ⍵.BW←'Project not tracked'
@@ -80,7 +80,7 @@
          ⍵.DS←'⎕Saved: '
          ⍵.DT←'JSON not available before Dyalog v14.1 '
          ⍵.DU←'Cannot ascertain encoding of '
-         ⍵.DV←'after saving '
+         ⍵.DV←'after saving ' 'before fixing '
          ⍵.DW←MS.DM,'a name'
          ⍵.DX←MS.DM,'a string or list'
          ⍵.DY←MS.DM,'(folder path) (space path)'
@@ -164,5 +164,5 @@
 ⍝ ⍵ system name
 ⍝ ← ⍵ containing messages
 ⍝ reuse empties - search for "←''"
-⍝ Phil 2020-03-20 22:12 8.0.0+308
+⍝ Phil 2020-08-14 21:56 8.2.0+327
  }

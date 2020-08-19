@@ -23,7 +23,7 @@
      dat.cfg←PL.encode cfg⊣cfg.ProjectFolder←dat.folder
      z←space MS.FV _is_ PL.decode dat.cfg ⍝ ←↑ no JSON pre 14.1
      fqn←⊃dat putSource raw getValue fqn
-     dat.aftersave←SV.aftersave
+     dat.(beforefix aftersave)←SV.(beforefix aftersave)
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS⊣dat.changed←''
 ⍝ ⍵ path [space]
 ⍝ ← dat or 0
