@@ -26,11 +26,11 @@
      dat.aftersave←{⍵.aftersave}(z.(⊃⎕NC'aftersave')⍳2)⊃z←dat SV
      dat.beforefix←{⍵.beforefix}(z.(⊃⎕NC'beforefix')⍳2)⊃z←dat SV
      dat.changed←⊃dat changes''
-     z←space∘{0::⊢logMsg UT.bx MS.DN,MS.DP,⍵
+     z←space∘{0::⊢logMsg(⊂MS.DN,MS.DP,⍵),↓UT.bx↑⎕DM
          ⊢⍺.⍎UT.ep ⍵}if(trk∧top>null)dat.startup ⍝ trk?
      dat⊣dat.loadtime,←DT.ts2dt ⎕TS
 ⍝ [⍺] trk dep
 ⍝ ⍵ trk dep (folder [space])
 ⍝ ← dat or 0 - see OpenProject LoadProject CreateProject
-⍝ Phil 2020-02-25 07:05 7.0.0+305
+⍝ Phil 2020-09-12 09:07 8.2.0+328
  }
