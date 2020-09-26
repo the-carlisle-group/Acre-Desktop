@@ -8,7 +8,7 @@
      (editor event value space name new)←6↑⍵     ⍝ so long as onFix unchanged
      first←event≡'Fix' ⋄ sn←1 ssp⊂⍕space         ⍝ is space scripted?
      {0::1 ⋄ 0∊SV.setupcomplete,⍴openProjects''}0:cont ⍵
-     fqn←(⍕space),(sn≤space=#)/'.',name new⊃⍨ren←(nonul new)∧2≠space.⎕NC name
+     fqn←(⍕space),(sn≤space=#)/'.',name if(0>⎕NC)new
      0=dat←whichProject fqn:cont ⍵
      (null validItems fqn):
      first:{z←logMsg if(0 1 1 1 arrayType)beforeFix fqn value

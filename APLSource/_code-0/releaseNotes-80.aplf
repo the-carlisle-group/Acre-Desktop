@@ -2,11 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.2.0+329 2020-09-12 09:07
+⍝ Acre 8.2.0+330 2020-09-23 09:36
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝  Startup parameter failure is now signalled and recorded also in session.
+⍝   Check and disable invalid "new" name in editFix
 ⍝
-⍝ Phil 2020-09-12 09:07 8.2.0+328
+⍝ Phil 2020-09-23 09:36 8.2.0+329
  }
