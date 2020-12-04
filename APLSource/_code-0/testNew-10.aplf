@@ -1,5 +1,5 @@
  testNew←{⍺←⊢
-     z←3 ⎕NDELETE'dfns'
+     z←3 _NDELETE'dfns'
      z←'dfns'#.⎕NS''
      z←#.dfns.⎕CY'dfns'
      #.dfns.shinyNewBigVar←?1000000 5⍴100

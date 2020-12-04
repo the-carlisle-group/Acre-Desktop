@@ -18,7 +18,7 @@
      z←script _NPUT path,name,'.dyalog'
      rel←path,'releaseNotes','.md'
      z←({⍵/⍨∧\(⍵∊∊⍵)∨⍵∨.≠¨'-'}releaseNotes⊣'')_NPUT rel
-     ⍪'Installed at ' ']open ',∘apo¨path rel
+     {⎕←⍵}¨'Installed at ' ']open ',∘apo¨path rel
 ⍝:  :namespace <n>Init
 ⍝:     ⎕io ⎕ml←0
 ⍝:     name  ← ,'<n>'  ⍝ string
