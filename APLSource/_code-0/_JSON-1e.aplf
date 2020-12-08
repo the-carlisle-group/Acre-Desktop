@@ -1,5 +1,5 @@
  _JSON←{
-     17≤⊃SV.aplver:⎕JSON⍠('Compact' 0),↑⍵
+     17≤⊃SV.aplver:(0=≡⍵)⎕JSON⍠('Compact' 0)↑⍵
 ⍝ possibly temporary fix to ⎕JSON bug ^
      14≥⊃SV.aplver:fromJSON ⍵ ⍝ /NJ ⍝ MS.DT ⎕SIGNAL 11
      chr←0=10|⎕DR↑⍵
@@ -10,5 +10,5 @@
 ⍝ expects only a namespace or a representation of one
 ⍝ although the variant ('Compact' 0) is only relevant for export
 ⍝   it doesn't seem to mind either way
-⍝ Phil 2020-10-04 19:10 8.2.0+330
+⍝ Phil 2020-12-08 13:08 8.2.0+333
  }

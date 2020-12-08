@@ -2,11 +2,11 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.2.0+332 2020-12-04 15:47
+⍝ Acre 8.2.0+334 2020-12-08 13:08
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝   Improved installation messages
+⍝   fixed bug in JSON emulator #236
 ⍝
-⍝ Phil 2020-12-04 15:47 8.2.0+331
+⍝ Phil 2020-12-08 13:08 8.2.0+333
  }
