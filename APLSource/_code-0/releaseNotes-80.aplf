@@ -2,11 +2,12 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.2.0+334 2020-12-08 13:08
+⍝ Acre 8.2.0+336 2021-01-26 09:12
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝   fixed bug in JSON emulator #236
+⍝   workaround for Dyalog v18.0 lexical scope breaking bug:
+⍝   <01820> Assigned expression works fine in 14.0 up to 17.1 but crashes in 18.0
 ⍝
-⍝ Phil 2020-12-08 13:08 8.2.0+333
+⍝ Phil 2021-01-26 09:12 8.2.0+334
  }

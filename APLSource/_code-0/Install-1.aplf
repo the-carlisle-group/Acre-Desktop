@@ -3,10 +3,10 @@
      path wsid←2⍴,\1 _NPARTS(⍵≡∊⍵)⊃⍵ ⎕WSID
      name←1↓{⍵/⍨1=+\⍵='.'}⊃⎕XSI
      apo←'"'∘(qu←UT.qu)
-     sep←⊃~∘'∘'⊢⎕SE.SALT.PATHDEL                           ⍝ thanks Gil
-     old←1↓¨{⍵⊂⍨⍵∊sep,'∘'}sep,⎕SE.SALT.Settings'cmddir'    ⍝ seek both
+     del←⊃~∘'∘'⊢⎕SE.SALT.PATHDEL                           ⍝ thanks Gil
+     old←1↓¨{⍵⊂⍨⍵∊del,'∘'}del,⎕SE.SALT.Settings'cmddir'    ⍝ seek both
      f←{⍵/⍨(⊢=⌈/)(+\×~)⍵∊'/\'}                             ⍝ last /substr/
-     old←⊃,/sep,¨old/⍨~¯1(↓∊↑)Cc f¨old,⊂path               ⍝ sans me
+     old←⊃,/del,¨old/⍨~¯1(↓∊↑)Cc f¨old,⊂path               ⍝ sans me
      z←⎕SE.SALT.Settings'cmddir "',path,old,'" -permanent' ⍝ add me
      cmds help opt syn type grp←{
          ⍕¨qu¨¨⍵.(command help options syntax type group)}cmdDefs name
@@ -46,5 +46,5 @@
 ⍝:     ⎕SE.<n>._code. userCmdRun new cmd arg type nsi path wsid name
 ⍝:    }
 ⍝:  :endnamespace
-⍝ Phil 2019-04-05 07.11
+⍝ Phil 2021-01-25 11:52 8.2.0+334
  }

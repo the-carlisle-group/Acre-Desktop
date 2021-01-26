@@ -1,0 +1,15 @@
+ rl←{
+     ×≢⍵:⍺⍺⌿⍵
+     (1↓⍴⍵)⍴0⍴⍵
+⍝ ⊢rl(0,s)⍴⍵ ←→ s⍴0⍴⍵
+⍝ ⍺⍺ ⊢ ⊣
+⍝ ⍵  arg
+⍝ ←  ⍺⍺⌿⍵ avoiding DOMAIN ERROR on empty
+⍝ use under rank ⍤ for axes beyond first
+⍝ Phil 2020-12-11 19:44 8.2.0+334
+
+⍝ was
+     (¯2-/z⌊≢⍵)↑¨(¯1↓z←+\0,⍺)↓¨⊂⍵
+⍝ run length partitioning
+⍝ Phil 2020-01-17 17:44 7.0.0+294
+ }
