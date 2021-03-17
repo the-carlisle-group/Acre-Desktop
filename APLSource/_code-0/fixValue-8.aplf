@@ -18,7 +18,7 @@
 
      (x/res)←⊢fixVar/0,⍪data/⍨x←nc=ns.binary
      (x/res)←PL.(decode scrape)fixVar/0,⍪data/⍨x←nc=ns.array
-     (x/res)←,¨∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charlist
+     (x/res)←,¨∘PL.scrape fixVar/0,⍪data/⍨x←nc∊ns.(charlist md)
      (x/res)←↑∘(,¨)∘PL.scrape fixVar/0,⍪data/⍨x←nc=ns.charmat
      (x/res)←{PL.scrape 1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
@@ -34,5 +34,5 @@
 ⍝ ⍵ fqn type value
 ⍝ ← ⍵ fixed - compressed if ⍺=0 or with mask attached if ⍺=1
 ⍝ this is evaluate post-read where getValue is format pre-write
-⍝ Phil 2020-03-28 12:40 8.0.0+309
+⍝ Phil 2021-03-16 15:03 8.2.1+338
  }

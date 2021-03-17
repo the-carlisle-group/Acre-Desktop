@@ -2,12 +2,12 @@
      z←UT.cq ntbs UT.ft'⍝ '
      1≡⍺ 1:z
      z⊣#.⎕NEW'ClipBoard'(⊂'Text'z)
-⍝ Acre 8.2.0+336 2021-01-26 09:12
+⍝ Acre 8.3.0+340 2021-03-17 09:35
 ⍝
 ⍝ ## Acre Desktop - Release Notes
 ⍝
-⍝   workaround for Dyalog v18.0 lexical scope breaking bug:
-⍝   <01820> Assigned expression works fine in 14.0 up to 17.1 but crashes in 18.0
+⍝    Import content of .md file in APLSource as .charlist without renaming.
+⍝    Changing and saving a charlist overwrites a correctly named .md file.
 ⍝
-⍝ Phil 2021-01-26 09:12 8.2.0+334
+⍝ Phil 2021-03-17 09:35 8.2.1+338
  }

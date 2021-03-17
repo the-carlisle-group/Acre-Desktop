@@ -16,11 +16,11 @@
      msg←(∨/e)/↓⍕MS.DL'⎕NC'⍪⌽((⎕NC⊢),∘⊂∘↑⌸⊢)fqn/⍨e←(val∊0)>0=⎕NC fqn
      z←⍴logMsg/UT.ht msg
      fqn type val/¨⍨⊂~e
-⍝ [⍺] 1 if no msgs in dev
+⍝ [⍺] 1 if binary in createProject
 ⍝ ⍵ fqns
 ⍝ ← fqn type val - of only arrays, defined fns and ops and scripts
 ⍝   filtered and re-ordered
 ⍝   vals are lists of strings
 ⍝ this is format pre-write  where fixValue is evaluate post-read
-⍝ Phil 2020-03-28 12:40 8.0.0+309
+⍝ Phil 2021-03-16 17:48 8.2.1+338
  }

@@ -1,5 +1,5 @@
  renameSource←{dat←⍺ ⋄ path fqn←⍵
-     path fqn/⍨←⊂~((1⊃px)¨path)∊MS.AR MS.AD ⍝ .binary nor .dyalog
+     path fqn/⍨←⊂~((1⊃px)¨path)∊MS.AR MS.AD MS.MD ⍝ not .binary .dyalog .md
      ren←(⊢(⌿⍨)≢/)path,⍪dat getSourceFilenames fqn
      z←{0}_MKDIR/3,⍪∪((-'/'⍳⍨⌽)↓⊢)¨,ren
      msg←{
@@ -11,9 +11,9 @@
 ⍝ ⍺ dat
 ⍝ ⍵ paths fqns
 ⍝   if source filename for fqn ≢ path then rename path
-⍝ NOT IF path is currently MS.AR or MS.AD ".binary" ".dyalog"
+⍝ unless path is currently ".binary" ".dyalog" ".md"
 ⍝ - that nameClass will call MS.AA ".apla"
 ⍝ - should only occur in OpenProject
 ⍝ ← 0 - having messaged any failures
-⍝ Phil 2020-03-28 13:29 8.0.0+310
+⍝ Phil 2021-03-03 22:54 8.2.1+337
  }
