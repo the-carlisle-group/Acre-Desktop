@@ -23,16 +23,17 @@
      (x/res)←{PL.scrape 1↓⊃,/UT.CR,¨⍵}fixVar/0,⍪data/⍨x←nc=ns.charstring
      (x/res)←fixFn/0,⍪data/⍨x←nc∊ns.(function operator)
      (x/res)←(x/data)∘fixClss 1/⍨x←nc∊ns.(class interface)
-     x←x\~(x/res)←fixFn/0,⍪data/⍨x←nc∊ns.dyalog ⍝ dyalog as fn/op ?
-     (x/res)←(x/data)∘fixClss 1/⍨x              ⍝ - or ns/cls/int ?
+     x←x\~(x/res)←fixFn/0,⍪data/⍨x←nc∊ns.dyalog  ⍝ dyalog as fn/op ?
+     (x/res)←(x/data)∘fixClss 1/⍨x               ⍝ - or ns/cls/int ?
+     chg←{(typ≢¨⍵)>typ∊MS.AD MS.MD}nameClass fqn ⍝ chg exc .md .dyalog
      z←{p←⊃'.'UT.pn⊃f t←⍺⊃¨fqn typ ⋄ (⍺⊃typ)←c←⊃nameClass⊢(⍺⊃fqn)←n←p,⍵
-         logMsg'⎕',t,' ',f,MS.DO,c,' ',n ⍝ force to session
-     }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧typ≢¨nameClass fqn
+         logMsg'⎕',t,' ',f,MS.DO,c,' ',n         ⍝ force to session
+     }/ers⍪{⍵,⍪'.'UT.nn¨fqn[⍵]}~∘(⊣/ers){⍵/⍳⍴⍵}res∧chg
      z←logMsg,/(⊂MS.DJ),⍉↑typ' 'fqn/¨⍨⊂~res
      (⍋ord)∘{⍵[⍺]}¨⍣ren⊢((res∨ren)∘/¨fqn typ val),ren/⊂res
 ⍝ [⍺] 0|1 - compress or return fixed flags - dflt 0
 ⍝ ⍵ fqn type value
 ⍝ ← ⍵ fixed - compressed if ⍺=0 or with mask attached if ⍺=1
 ⍝ this is evaluate post-read where getValue is format pre-write
-⍝ Phil 2021-03-16 15:03 8.2.1+338
+⍝ Phil 2022-03-15 22:49 Acre  8.3.0+340
  }

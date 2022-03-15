@@ -1,0 +1,10 @@
+ gs←{
+     ((⍳1=≢)⊃⊢)¨{       ⍝ disclose singletons
+         ⍵⊂⍨{           ⍝ ... of partitions
+             ⍵∨2≠/2,⍵   ⍝ ... by type-change
+         }0≠10|⎕DR¨⍵    ⍝ ... or non-char
+     }⊃,/⍵
+⍝ gather (catenate adjascent) strings
+⍝   leaving non-char as scalars
+⍝ Phil 2021-04-15 09:02 8.3.0+340
+ }

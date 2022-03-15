@@ -1,0 +1,7 @@
+ fd←{
+     ⌊|⍵×10*-⌊10⍟|⍵+0=⍵
+⍝ first digit
+⍝ ⍵ real
+⍝ ← first significant digit of ⍵ ; 0 iff ⍵=0
+⍝ Phil 2021-05-31 18:07 Acre  8.3.0+340
+ }

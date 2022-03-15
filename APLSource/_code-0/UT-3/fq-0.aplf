@@ -1,7 +1,11 @@
- fq←{⍺←⊢
-     (⍺⊣0){⍵[;⍋⍺×⊢⌿⍵]}⍵{⍵,[-0.1]¯2-/((⌷⍨∘⊂∘⍋⍨⍵⍳⍺)⍳⍳⍴⍵),⍴⍺}∪⍵
+ fq←{⍺←⊢ ⋄ a s←(|,×)⍺⊣0
+     ((fd a)sg⊢÷+/)@1⍣(a≠1=a)⊢s{⍵[;⍋⍺×⊢⌿⍵]}⍵{⍵,[-0.1]¯2-/((⌷⍨∘⊂∘⍋⍨⍵⍳⍺)⍳⍳⍴⍵),⍴⍺}∪⍵
 ⍝ frequency
-⍝ [⍺] order ¯1|0|1 - dflt=0 - ¯1=descending; 0=first occurrence; 1=ascending
+⍝ [⍺] order   ¯1=descending absolute
+⍝           ¯0.n=desc proportional with n significant figures
+⍝              0=first occurrence abs - default
+⍝            0.n=ascending prop with n sig figs
+⍝              1=asc abs
 ⍝ ⍵ list
 ⍝ ← 2d 2 rows - (unique ⍵)⍪(frequency)
 ⍝ Phil Last ⍝ 2008-03-05 11:37
